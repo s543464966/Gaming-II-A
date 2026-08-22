@@ -1,0 +1,37 @@
+﻿cardId,cardType,cardName,cardImage,info,costG,elementType,elementTypeImage,schoolType,schoolTypeImage,skillId,gradeInfo,manaMax,hpMax,atk,atkType
+卡牌ID,卡牌类型,卡牌名字,形象,介绍,花费金币,元素特质,元素特质图片,派系特质,派系特质图片,技能,等级提升信息,星能值,生命值,攻击,攻击类型
+"string",string,"string",string,"string",int,string,string,string,string,string,string,int,float,float,string
+Assets/Resources/Card/Hero,SO_Card,,,,,,,,,,,,,,
+H001,H,塞缪尔,img-H0001,This is Information,500,Light,Assets/Resources/UI/ComUI/comElement/Icon-Element-Light,Alchemist,UI/ComUI/comSchool/Icon-School-Alchemist,S001,-,3,10,3,atk
+H002,H,卡西里,img-H0002,This is Information,500,Dark,Assets/Resources/UI/ComUI/comElement/Icon-Element-Dark,Archer,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Archer,S002,-,3,10,3,mtk
+H003,H,李,img-H0003,This is Information,500,Fire,Assets/Resources/UI/ComUI/comElement/Icon-Element-Fire,Brave,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Brave,S003,-,3,10,3,atk
+H004,H,德里,img-H0004,This is Information,500,Metal,Assets/Resources/UI/ComUI/comElement/Icon-Element-Metal,Exorcism,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Exorcism,S004,-,3,10,3,atk
+H005,H,温莎,img-H0005,This is Information,500,Rock,Assets/Resources/UI/ComUI/comElement/Icon-Element-Rock,Fate,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Fate,S005,-,3,10,3,mtk
+H006,H,莉莉娅,img-H0006,This is Information,500,Snow,Assets/Resources/UI/ComUI/comElement/Icon-Element-Snow,Guard,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Guard,S006,-,3,10,3,atk
+H007,H,卡修斯,img-H0007,This is Information,500,Thunder,Assets/Resources/UI/ComUI/comElement/Icon-Element-Thunder,Magician,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Magician,S007,-,3,10,3,atk
+H008,H,西西莉,img-H0008,This is Information,500,Water,Assets/Resources/UI/ComUI/comElement/Icon-Element-Water,Pharmacist,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Pharmacist,S008,-,3,10,3,mtk
+H009,H,威尔,img-H0009,This is Information,500,Wind,Assets/Resources/UI/ComUI/comElement/Icon-Element-Wind,Spiritual,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Spiritual,S009,-,3,10,3,atk
+H010,H,奥达斯,img-H0010,This is Information,500,Wood,Assets/Resources/UI/ComUI/comElement/Icon-Element-Wood,Thorns,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Thorns,S010,-,3,10,3,atk
+H011,H,伊拉贝尔,img-H0011,This is Information,500,Light,Assets/Resources/UI/ComUI/comElement/Icon-Element-Light,Alchemist,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Alchemist,S011,-,3,10,3,mtk
+H012,H,卡尔,img-H0012,This is Information,500,Dark,Assets/Resources/UI/ComUI/comElement/Icon-Element-Dark,Archer,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Archer,S012,-,3,10,3,atk
+H013,H,露辛达·金凯德,img-H0013,This is Information,500,Fire,Assets/Resources/UI/ComUI/comElement/Icon-Element-Fire,Brave,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Brave,S013,-,3,10,3,atk
+H014,H,伊戈,img-H0014,This is Information,500,Metal,Assets/Resources/UI/ComUI/comElement/Icon-Element-Metal,Exorcism,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Exorcism,S014,-,3,10,3,mtk
+H015,H,钟山,img-H0015,This is Information,500,Rock,Assets/Resources/UI/ComUI/comElement/Icon-Element-Rock,Fate,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Fate,S015,-,3,10,3,atk
+H016,H,克拉拉,img-H0016,This is Information,500,Snow,Assets/Resources/UI/ComUI/comElement/Icon-Element-Snow,Guard,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Guard,S016,-,3,10,3,atk
+Assets/Resources/Card/Servant,,,,,,,,,,,,,,,
+Hs001,Hs,卡西安,img-Hs0001,This is Information,200,Light,Assets/Resources/UI/ComUI/comElement/Icon-Element-Light,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Alchemist,S001,-,3,10,2,atk
+Hs002,Hs,塞隆,img-Hs0002,This is Information,200,Dark,Assets/Resources/UI/ComUI/comElement/Icon-Element-Dark,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Archer,S002,-,3,10,2,mtk
+Hs003,Hs,吉迪恩,img-Hs0003,This is Information,200,Fire,Assets/Resources/UI/ComUI/comElement/Icon-Element-Fire,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Brave,S003,-,3,10,1,atk
+Hs004,Hs,巴斯蒂安,img-Hs0004,This is Information,200,Metal,Assets/Resources/UI/ComUI/comElement/Icon-Element-Metal,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Exorcism,S004,-,3,10,2,atk
+Hs005,Hs,凯乌斯,img-Hs0005,This is Information,200,Rock,Assets/Resources/UI/ComUI/comElement/Icon-Element-Rock,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Fate,S005,-,3,10,2,mtk
+Hs006,Hs,塔莉娅,img-Hs0006,This is Information,200,Snow,Assets/Resources/UI/ComUI/comElement/Icon-Element-Snow,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Guard,S006,-,4,10,1,atk
+Hs007,Hs,瓦莱里娅,img-Hs0007,This is Information,200,Thunder,Assets/Resources/UI/ComUI/comElement/Icon-Element-Thunder,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Magician,S007,-,4,10,2,atk
+Hs008,Hs,伊拉拉,img-Hs0008,This is Information,200,Water,Assets/Resources/UI/ComUI/comElement/Icon-Element-Water,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Pharmacist,S008,-,4,10,2,mtk
+Hs009,Hs,伊奥妮,img-Hs0009,This is Information,200,Wind,Assets/Resources/UI/ComUI/comElement/Icon-Element-Wind,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Spiritual,S009,-,4,10,1,atk
+Hs010,Hs,奥蕾莉亚,img-Hs0010,This is Information,200,Wood,Assets/Resources/UI/ComUI/comElement/Icon-Element-Wood,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Thorns,S010,-,4,10,1,atk
+Hs011,Hs,达莉亚,img-Hs0011,This is Information,200,Light,Assets/Resources/UI/ComUI/comElement/Icon-Element-Light,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Alchemist,S011,-,5,10,2,mtk
+Hs012,Hs,索林,img-Hs0012,This is Information,200,Dark,Assets/Resources/UI/ComUI/comElement/Icon-Element-Dark,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Archer,S012,-,5,10,2,atk
+Hs013,Hs,菲尼克斯,img-Hs0013,This is Information,200,Fire,Assets/Resources/UI/ComUI/comElement/Icon-Element-Fire,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Brave,S013,-,5,10,2,atk
+Hs014,Hs,达里乌斯,img-Hs0014,This is Information,200,Metal,Assets/Resources/UI/ComUI/comElement/Icon-Element-Metal,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Exorcism,S014,-,5,10,1,mtk
+Hs015,Hs,塞拉菲娜,img-Hs0015,This is Information,200,Rock,Assets/Resources/UI/ComUI/comElement/Icon-Element-Rock,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Fate,S015,-,5,10,2,atk
+Hs016,Hs,西尔维娅,img-Hs0016,This is Information,200,Snow,Assets/Resources/UI/ComUI/comElement/Icon-Element-Snow,,Assets/Resources/UI/ComUI/comCareer/Icon-Career-Guard,S016,-,5,10,2,atk

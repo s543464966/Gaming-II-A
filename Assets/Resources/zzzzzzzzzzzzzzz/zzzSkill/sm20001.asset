@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce579bf71b054a538b9538a12f43d78, type: 3}
+  m_Name: sm20001
+  m_EditorClassIdentifier: 
+  starmanaId: 20001
+  starmanName: "\u8FDE\u73AF\u7206\u5F39"
+  starmanaSprite: {fileID: 21300000, guid: 7c42e472a18c94fef9f5f6e2d20345fa, type: 3}
+  starmanaSpriteBG: {fileID: 21300000, guid: 0f11a5f016e11403e94ee8d2c99deee5, type: 3}
+  info: "\u6BCF\u6B21\u547D\u4E2D\u90FD\u4F1A\u7206\u70B8\uFF0C\u9020\u6210\u5927\u8303\u56F4220%\u706B\u80FD\u4F24\u5BB3\uFF0C 
+    \u6BCF\u79CD\u4E0D\u540C\u7684\u8FDE\u51FB\u6548\u679C\u90FD\u4F1A\u4F7F\u7A7F\u900F\u6B21\u6570+1"
+  starmanaRank: 3
+  starmanaUse: -3
+  starmanaGuarder: {fileID: 0}
+  starmanabullet: {fileID: 5114567289377173767, guid: 29c823545ffe54f7081314ee22e1284c, type: 3}
+  starmanaOnOff: 0
+  starmanaEffect: {fileID: 0}

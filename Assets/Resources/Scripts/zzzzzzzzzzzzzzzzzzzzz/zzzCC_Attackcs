@@ -1,0 +1,542 @@
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
+
+// public class zzzCC_Attack : MonoBehaviour
+// {
+//     [Tooltip("获取基础SO_Hero设定数据")] public SO_Hero SO_Hero_Data;
+//     [Tooltip("设定武器OS数据")] public SO_Weapon weapon_SO_Data;
+//     [Tooltip("选定敌对层")] public LayerMask monsterMask; 
+//     [Tooltip("设定子弹种类预制组")] public GameObject[] bulletPrefab; 
+//     [Tooltip("设定子弹种类预制组")] public Dictionary<int,GameObject> bulletPrefabList;
+//     [Tooltip("选定子弹选择值")] public int bulletsSelect;
+
+//     //基础属性
+//         [HideInInspector] public float atk;
+//         [HideInInspector] public float atkSpeed;
+//         [HideInInspector] public int atkCont;
+//         [HideInInspector] public int atkDivide;
+//         [HideInInspector] public int atkPierce;
+//         [HideInInspector] public int atkCrit;
+//         [HideInInspector] public float atkCritDamage;
+//         [HideInInspector] public int bullet;
+//         [HideInInspector] public float bulletGap;
+//         [HideInInspector] public float atkArea;
+//         [HideInInspector] public float atkDivideAngle;
+//         private float atkSpeedAdd;
+//         private float atkSpeedTime;
+
+//     //加成与效果属性
+//         [HideInInspector] public float atkPlus;
+//         [HideInInspector] public float atkPlus_Lv;
+//         [HideInInspector] public float atkSpeedPlus;
+//         [HideInInspector] public float bulletGapPlus;
+
+//     //星能之力属性;
+//         private int atkComboRock;
+//         private int atkComboFire;
+//         private int atkComboWind;
+//         // private int atkComboChainExplore;
+//         private int sm1002;
+//         // private int sm3001;
+//         private float effectAreaPlus;   //效果影响范围
+
+//     // PVE范围检测机制:
+//         [HideInInspector] public List<GameObject> detect; //汇总敌对层总数
+//         protected float disCompare; //计算用：比较距离
+//         protected int x; //计算用：for循环对比
+//         protected GameObject attackMonster;
+
+//     //PVE自动控制Weapon指向:
+//         protected Vector2 attackToward; //攻击朝向
+//         protected float flipY;
+
+//     //PVE自动开火:
+//         protected float timer;
+//         private int atkNum;
+//         protected Animator animator;
+//         protected Transform muzzlePos;
+//         private Transform parent; //父物体
+//         private int bulletNum;
+//         private Animator playerAnimator;
+        
+//     //改造装置
+//         public int[] deviceIndex = new int[4];
+
+//     //强化改件
+//         public List<GameObject> modifyLists;
+//         public float plusIndex;
+
+//     protected virtual void Awake()
+//     {
+//         //初始化基础数据:
+//         atk = weapon_SO_Data.atk;
+//         atkSpeed = weapon_SO_Data.atkSpeed;
+//         atkCont = weapon_SO_Data.atkCont;
+//         atkDivide = weapon_SO_Data.atkDivide;
+//         atkPierce = weapon_SO_Data.atkPierce;
+//         atkCrit = weapon_SO_Data.atkCrit;
+//         atkCritDamage = weapon_SO_Data.atkCritDamage;
+//         bullet = weapon_SO_Data.bullet;
+//         atkDivideAngle = weapon_SO_Data.atkDivideAngle;
+//         bulletGap = weapon_SO_Data.bulletGap;
+//         atkArea = weapon_SO_Data.atkArea;
+
+//         detect = new List<GameObject>(); // 初始化范围检测机制:
+//         bulletPrefabList = new Dictionary<int,GameObject>();
+
+//         flipY = transform.localScale.y; // 初始化控制Weapon指向:
+//         muzzlePos = transform.Find("muzzle");
+
+//         // 初始化角色:
+//         parent = transform.parent;
+//         Sum_AtkSpeedPlus(0);
+
+//         // 初始化动画器:
+//         animator = GetComponent<Animator>();
+//         playerAnimator = parent.GetComponent<Animator>();
+//     }
+
+//     protected virtual void FixedUpdate()
+//     {   
+//         GameObject o = AtkArea_Detect(atkArea);
+//         if( o != null)
+//         {
+//             Fighting(o);   //范围检测机制:
+//             GunAtkGap();
+//         }
+//     }
+    
+//     protected virtual GameObject AtkArea_Detect(float _atkArea)  //自动识别最近的怪物
+//     {
+//         detect.Clear();
+//         disCompare = _atkArea; // 重置disCompare
+//         Collider2D[] objColiders = Physics2D.OverlapCircleAll(transform.position,_atkArea,monsterMask);//寻找范围内的敌对层单位总数位置以碰撞器collider返回
+//             foreach ( Collider2D objColider in objColiders)  //把每个有怪物层的单位加入检测组中
+//             { 
+//                 if(objColider != null)
+//                 {
+//                     GameObject detectedObj = objColider.gameObject; 
+//                     detect.Add(detectedObj);
+//                 }
+//             }
+//             x = detect.Count;
+//             for (int i = 0; i < x; i++) // 将检测组中每个单位进行对比，找到最近的那一个
+//             {
+//                 float len = Vector2.Distance(detect[i].transform.position, new Vector2(detect[i].transform.position.x,transform.position.y));
+//                 // float dis = Vector2.Distance(detect[i].transform.position,transform.position);
+//                 if(disCompare > len)
+//                 {
+//                     disCompare = len;
+//                     attackMonster = detect[i];
+//                 }
+//             }
+//         return attackMonster;
+//     }
+
+//     protected virtual void Fighting(GameObject _attackMonster)  //控制枪口朝向及攻击方向
+//     {
+//         if (attackMonster != null)  
+//         {
+//             if (attackMonster.transform.position.x < transform.position.x) //控制Weapon水平翻转方向:
+//                 transform.localScale = new Vector3(flipY, -flipY, 1);
+//             else
+//                 transform.localScale = new Vector3(flipY, flipY, 1);
+
+//             attackToward = (new Vector2(_attackMonster.transform.position.x, _attackMonster.transform.position.y) - new Vector2(transform.position.x, transform.position.y)).normalized;
+//             transform.right = attackToward;
+//         }
+//     }
+
+//     protected virtual void GunAtkGap()  //枪械攻击间隔(atkSpeed和bulletGaps):
+//     {
+//         if(timer != 0)  //攻击速度控制:
+//         {
+//             timer -= Time.deltaTime;
+//             if(timer <= 0)
+//             {
+//                 timer = 0;
+//             }
+//         }
+
+//         if(timer == 0)  //子弹攻击次数已经超过装填总数，需要休息
+//         {
+//             if(atkNum >= bullet) //装填
+//             {
+//                 timer = bulletGap;
+//                 atkNum = 0;
+//             }
+//             else //正常攻击
+//             {
+//                 GunFireAndScatter();
+//                 timer = atkSpeedTime;
+//                 atkNum += 1;  
+//             }
+//         }
+//     }
+
+//     protected virtual void GunFireAndScatter()  // 自动开火
+//     {
+//         animator.SetTrigger("weaponFire");
+//         playerAnimator.SetTrigger("weapontFire");
+//         if(atkDivide > 1)
+//         {
+//             int medium = atkDivide / 2; //设定子弹中间值
+//             for (int i = 0; i < atkDivide; i++)
+//             {
+//                 GameObject bullet = Instantiate(bulletPrefab[0],muzzlePos.position,Quaternion.identity);
+//                 if(atkDivide%2==1)  //判断子弹数量是双、单数
+//                 {   //单数
+//                     bullet.GetComponent<Bullet>().SetSpeed(Quaternion.AngleAxis(atkDivideAngle * (i - medium),Vector3.forward) * attackToward); 
+//                 }
+//                 else
+//                 {   //双数
+//                     bullet.GetComponent<Bullet>().SetSpeed(Quaternion.AngleAxis(atkDivideAngle * (i - medium) + atkDivideAngle/2,Vector3.forward) * attackToward);
+//                 }
+//                 // Data_GunToBullet(bullet);
+//                 bullet.GetComponentInChildren<Bullet>().attacker = parent.gameObject;  //攻击者
+//                 bullet.GetComponentInChildren<Bullet>().damage = Sum_Damage(0);  //攻击力
+//                 bullet.GetComponentInChildren<Bullet>().atkPierce = atkPierce;  //穿透次数
+//             }
+//         } 
+//         else
+//         {
+//             GameObject bullet = Instantiate(bulletPrefab[bulletNum],muzzlePos.position,Quaternion.identity);
+//             bullet.GetComponent<Bullet>().SetSpeed(attackToward); //给一个子弹的飞行方向
+//             // Data_GunToBullet(bullet);
+//             bullet.GetComponentInChildren<Bullet>().attacker = parent.gameObject;  //攻击者
+//             bullet.GetComponentInChildren<Bullet>().damage = Sum_Damage(1);  //攻击力
+//             bullet.GetComponentInChildren<Bullet>().atkPierce = atkPierce;  //穿透次数
+//         }
+//         AtkComboNum(); //记录一次连击次数
+//     }
+
+// // 通用计算方法
+//     private float Sum_Damage(float _smPlus) //[通用]计算伤害
+//     {
+//         return atk * (1 + atkPlus) * _smPlus;
+//     }
+//     private float Sum_AtkPlus(float _atkPlus) //[通用]计算攻击加成
+//     {
+//         Debug.Log("攻击加成" + _atkPlus + "%");
+//         return atkPlus += _atkPlus;
+//     }
+//     IEnumerator Sum_AtkPlus_KeepTime(float _atkPlus,float _keepTime)  //[通用]计算攻击加成,持续一段时间的
+//     {
+//         Sum_AtkPlus(_atkPlus);
+//         yield return new WaitForSeconds(_keepTime);
+//         Sum_AtkPlus(-1*_atkPlus);
+//     }
+//     private float Sum_AtkSpeedPlus(float _atkSpeedPlus) //[通用]计算攻击速度加成
+//     {
+//         if(atkSpeedAdd <= 10) {atkSpeedAdd += _atkSpeedPlus;}
+//         atkSpeedTime = atkSpeed / (1 + atkSpeedAdd);
+//         // Debug.Log("攻击速度" + _atkSpeedPlus*100 + "%");
+//         return atkSpeedTime;
+//     }
+
+//     private float Sum_EffectAreaPlus(float _effectAreaPlus) //[通用]攻击效果范围加成
+//     {
+//         // if(atkSpeedAdd <= 10) {atkSpeedAdd += _atkSpeedPlus;}
+//         effectAreaPlus += _effectAreaPlus;
+//         // Debug.Log("攻击速度" + _atkSpeedPlus*100 + "%");
+//         return effectAreaPlus;
+//     }
+//     IEnumerator Sum_AtkSpeedPlus_KeepTime(float _atkSpeed,float _keepTime)  //[通用]计算攻击速度加成,持续一段时间的
+//     {
+//         Sum_AtkSpeedPlus(_atkSpeed);
+//         yield return new WaitForSeconds(_keepTime);
+//         Sum_AtkSpeedPlus(-1*_atkSpeed);
+//     }
+//     private int SumAtkCrit(int _atkCrit) //[通用]计算攻击暴击率
+//     {
+//         Debug.Log("暴击率+" + _atkCrit + "%");
+//         return atkCrit += _atkCrit;
+//     }
+//     private float SumAtkCritDamage(float _atkCritDamge) //[通用]计算攻击暴击率
+//     {
+//         Debug.Log("暴击伤害+" + _atkCritDamge + "%");
+//         return atkCritDamage += _atkCritDamge;
+//     }
+
+// //触发：攻击概率
+//     public void AtkComboNum() //[通用]攻击概率触发
+//     {
+//         if (atkComboRock >= 1)
+//         {
+//             if( Random.Range(0,1000) <= 150) AtkComboFire(102,atkComboRock);
+//         }
+//         if (atkComboFire >= 1)
+//         {
+//             if( Random.Range(0,1000) <= 150) AtkComboFire(203,atkComboRock);
+//         }
+//         if (atkComboWind >= 1)
+//         {
+//             if( Random.Range(0,1000) <= 150) AtkComboFire(304,atkComboRock);
+//         }
+//     }
+//     private void AtkComboFire(int _bulletPrefabNum,int _get) //[通用]计算伤害(星能之力编号、触发次数)
+//     {
+//         GameObject b = Instantiate(bulletPrefabList[_bulletPrefabNum],muzzlePos.position,Quaternion.identity);
+//         float a = Mathf.Atan2(attackToward.y, attackToward.x) * Mathf.Rad2Deg;
+//         b.transform.rotation = Quaternion.Euler(new Vector3(0, 0, a));
+//         // Data_GunToBullet(b);
+//         switch(_bulletPrefabNum)
+//         {
+//             case 102: 
+//             {
+//                 b.GetComponent<Bullet>().SetSpeed(attackToward * 1.4f); //给一个子弹的飞行方向
+//                 b.GetComponent<Bullet>().damage = Sum_Damage(1.6f);  //攻击力
+//                 Debug.Log("巨石弹: 发射! 造成额外伤害160%伤害");
+//             break;
+//             }
+//             case 203: 
+//             {
+//                 b.GetComponent<Sm203>().SetSpeed(attackToward * 1.5f); //给一个子弹的飞行方向 
+//                 b.GetComponent<Sm203>().damage = Sum_Damage(1.2f);  //攻击力  
+//                 b.GetComponent<Sm203>().effectAreaPlus = effectAreaPlus;           
+//                 b.GetComponent<Sm203>().damage = b.GetComponent<Bullet>().damage * 1.2f * _get;
+//                 Debug.Log("火焰弹: 发射! 会爆炸造成额外伤害120%伤害");
+//             break;
+//             }
+//             case 20001: 
+//             {
+//                 // Instantiate(b.GetComponent<Sm20001>().firePrefarb ,muzzlePos.position,Quaternion.identity);
+//                 b.GetComponent<Sm20001>().SetSpeed(attackToward * 1.35f); //给一个子弹的飞行方
+//                 b.GetComponent<Sm20001>().damage = Sum_Damage(2.2f);  //攻击力向               
+//                 b.GetComponent<Sm20001>().atkPierce = _get;   //穿透次数
+//                 b.GetComponent<Sm20001>().effectAreaPlus = effectAreaPlus;
+//                 Debug.Log("连环爆弹: 发射! 每次命中造成220%伤害");
+//             break;
+//             }
+//             case 304: 
+//             {
+//                 b.GetComponent<Bullet>().SetSpeed(attackToward * 1.8f); //给一个子弹的飞行方向
+//                 b.GetComponentInChildren<Bullet>().damage = Sum_Damage(0.8f);  //攻击力
+//                 b.GetComponent<Bullet>().atkPierce = 3;   //穿透次数
+//                 Debug.Log("旋风弹: 发射! 可穿透5个怪物并分别造成80%伤害");
+//             break;
+//             }
+//         }
+//     }
+
+// //触发：冷却时间
+//     private void AtkCdNum()
+//     {
+//         if (atkComboRock >= 1)  AtkComboFire(202,atkComboRock);
+//     }
+
+// // 星能之力：
+//     public void Starmama0()
+//     {
+//         atkPlus += 0.1f;
+//         Debug.Log("星能!");
+//     }
+
+//     // public void Starmama1()
+//     // {
+//     //     atkPlus += 0.1f;
+//     //     Debug.Log("岩之力!");
+//     // }
+
+//     // public void Starmama2()
+//     // {
+//     //     atkCrit += 5;
+//     //     Debug.Log("火之力!");
+//     // }
+
+//     // public void Starmama3() 
+//     // {
+//     //     Sum_AtkSpeedPlus(0.05f);
+//     //     Debug.Log("风之力!");
+//     // }
+
+//     public void Starmama101()   //星岩的力量
+//     {
+//         Sum_AtkPlus(0.3f);
+//         // Debug.Log("获得10%攻击加成！");
+//         Debug.Log("星岩的力量!");
+//     }
+
+//     public void Starmama102(GameObject _bulletPrefab)   //巨石弹
+//     {
+//         if (!bulletPrefabList.ContainsKey(102))
+//         {
+//             bulletPrefabList.Add(102,_bulletPrefab);
+//         }
+//         Debug.Log("巨石弹!");
+//         atkComboRock = 1;
+//         AtkComboFire(102, atkComboRock);
+//     }
+
+//     public void Starmama103(GameObject _prefabObj)   //岩石机器人
+//     {
+//         GameObject prefabObj = Instantiate(_prefabObj,transform.position + new Vector3(0, 6f, 0f),Quaternion.identity); //在指定位置实例化
+//         prefabObj.GetComponent<Sm103>().hp = Sum_Damage(1);   //传递攻击力
+//         Starmama1002(0);
+//         Debug.Log("岩石机器人!");
+//     }
+
+//     public void Starmama1001(GameObject _preEffect)  //重压力场
+//     {
+//         GameObject o = Instantiate(_preEffect,transform.position,Quaternion.identity);
+//         o.GetComponent<Sm1001>().damage = Sum_Damage(0.7f);
+//         o.GetComponent<Sm1001>().effectAreaPlus = effectAreaPlus;
+//     }
+
+//     public void Starmama1002(int _sm1002)   //层层叠叠（这个计算方案有问题）
+//     {
+//         if(sm1002 > 0){
+//             Sum_AtkPlus(0.1f * sm1002);
+//             sm1002 += _sm1002;
+//             Debug.Log("1002, 获得攻击加成! " + sm1002 * 0.1f);
+//         }
+//     }
+
+//     public void Starmama10003(GameObject _prefabObj)   //岩石守卫
+//     {
+//         GameObject prefabObj = Instantiate(_prefabObj,transform.position + new Vector3(0, 5f, 0f),Quaternion.identity); //在指定位置实例化
+//         prefabObj.GetComponent<Sm10003>().damage = atk;   //传递攻击力
+//         prefabObj.GetComponent<M_Damage_Player>().hp = 200;   //传递生命值
+//         prefabObj.GetComponent<Sm10003>().attacker = parent.gameObject;   //传递攻击者
+//         Starmama1002(0);
+//         Debug.Log("岩石守卫!");
+//     }
+
+//     public void Starmama201() //怒火
+//     {
+//         SumAtkCrit(150);
+//         Debug.Log("怒火!");
+//     }
+
+//     public void Starmama202(GameObject _prefabObj) //大爆弹
+//     {
+//         GameObject o = Instantiate(_prefabObj,transform.position + new Vector3(0, 6f, 0f),Quaternion.identity);
+//         o.GetComponent<Sm202>().damage = Sum_Damage(5);
+//         o.GetComponent<Sm202>().effectAreaPlus = effectAreaPlus;
+//         Debug.Log("大爆弹!");
+//     }
+
+//     public void Starmama203(GameObject _bulletPrefab)   //火焰弹
+//     {
+//         if (!bulletPrefabList.ContainsKey(203))
+//         {
+//             bulletPrefabList.Add(203,_bulletPrefab);
+//         }
+//         atkComboFire += 1;
+//         AtkComboFire(203, atkComboFire);
+//         Debug.Log("火焰弹!");
+//     }
+
+//     // public void Starmama202(GameObject _objPrefab)  //大爆弹,会留下火焰
+//     // {
+//     //     // animator.SetTrigger("weaponFire");
+//     //     Collider2D[] objColiders = Physics2D.OverlapCircleAll(transform.position + new Vector3(0, 6f, 0f),atkArea,LayerMask.GetMask("Monster"));//寻找范围内的敌对层单位总数位置以碰撞器collider返回
+//     //         foreach ( Collider2D objColider in objColiders) 
+//     //         {   
+//     //             objColider.gameObject.GetComponent<M_Damage_Monster>().Damage(atk * ( 1 + atkPlus ) *3 ,atkCrit ,atkCritDamage);
+//     //         }
+//     //     for (int i = 0; i < 10; i++)
+//     //     {
+//     //         Vector2 randomPosition = UnityEngine.Random.insideUnitCircle * atkArea * 1f; // 在圆形区域内生成随机位置
+//     //         Vector3 firePosition = transform.position + new Vector3(0, 6f, 0f) + new Vector3(randomPosition.x, randomPosition.y, 0);
+//     //         GameObject firePrefabs =  Instantiate(_objPrefab, firePosition, Quaternion.identity);
+//     //         firePrefabs.GetComponent<Starmana012>().damage = atk * ( 1.5f + atkPlus );
+//     //     }
+//     //     Debug.Log("大爆弹!");
+//     // }
+
+//     public void Starmama2001(GameObject _preEffect)  //火焰冲击
+//     {
+//         Collider2D[] objColiders = Physics2D.OverlapBoxAll(transform.position + new Vector3(0, 10f, 0f), new Vector2(20f,20f), LayerMask.GetMask("Monster"));//寻找范围内的敌对层单位总数位置以碰撞器collider返回
+//         int c = objColiders.Length;
+//         Debug.Log("查看总数：" + c);
+//         for (int i = 0; i < 3; i++)
+//         {
+//             int n = Random.Range(0,c); // 在圆形区域内生成随机位置
+//             // GameObject obj =  Instantiate(_objPrefab, (transform.position + new Vector3(0, 10f, 0f) + new Vector3(pos.x, pos.y, 0)), Quaternion.identity);
+//             GameObject m = objColiders[n].gameObject;
+//             if(m != null)
+//             {
+//                 Instantiate(_preEffect,transform.position,Quaternion.identity);//击中展示爆炸效果
+//                 // m.GetComponent<M_Damage_Monster>().Damage(Sum_Damage(1.8f), 0, 0);
+//                 Debug.Log("造成火焰冲击伤害!" + Sum_Damage(1.8f));
+//             }
+//         }
+//         Debug.Log("火焰冲击!");
+//     }
+//     public void Starmama20001(GameObject _bulletPrefab)  //连环爆弹
+//     {
+//         if (!bulletPrefabList.ContainsKey(20001))
+//         {
+//             bulletPrefabList.Add(20001,_bulletPrefab);
+//         }
+//         // atkComboChainExplore = 1;
+//         int n = atkComboRock + atkComboFire + atkComboWind;
+//         AtkComboFire(20001, n);
+//         Debug.Log("连环爆弹: 穿透次数为"+ (n+1));
+//     }
+
+//     public void Starmama301()   //迅捷
+//     {
+//         Sum_AtkSpeedPlus(0.2f);
+//         Debug.Log("旋风: 攻击速度+20%");
+//     }
+
+//     public void Starmama302()   //扩散
+//     {
+//         Sum_EffectAreaPlus(0.3f);
+//         Debug.Log("扩散: 效果影响范围+30%");
+//     }
+
+//     public void Starmama304(GameObject _bulletPrefab)   //旋风弹
+//     {
+//         if (!bulletPrefabList.ContainsKey(304))
+//         {
+//             bulletPrefabList.Add(304,_bulletPrefab);
+//         }
+//         atkComboWind = 1;
+//         AtkComboFire(304, atkComboWind);
+//     }
+
+//     public void Starmama305(GameObject _preEffect)  //旋风
+//     {
+//         GameObject m = AtkArea_Detect(atkArea *1.5f);
+//         GameObject o = Instantiate(_preEffect,m.transform.position,Quaternion.identity);
+//         o.GetComponent<Sm305>().damage = Sum_Damage(1f);
+//         o.GetComponent<Sm305>().effectAreaPlus = effectAreaPlus;
+//         o.GetComponent<Sm305>().pos = new Vector2(attackMonster.transform.position.x, attackMonster.transform.position.y);
+//     }
+
+//     public void Starmama3001()   //风的训练
+//     {
+//         StartCoroutine(Sum_AtkSpeedPlus_KeepTime(1f,35f));
+//     }
+
+    // public void Starmama143(GameObject _prefabObj)
+    // {
+    //     GameObject watStone = Instantiate(_prefabObj,transform.position + new Vector3(0, 6f, 0f),Quaternion.identity);
+    //     watStone.GetComponent<zzzStarmana003>().damage = Sum_Damage(0);
+    //     // Debug.Log("atkPlus:"+ atkPlus);
+    //     // Starmama11(0);
+    // }
+
+    // public void Starmama10004()
+    // {
+    //     GameObject Stone = Instantiate(Stoen,transform.position + new Vector3(0, 6f, 0f),Quaternion.identity);
+    //     Stone.GetComponent<Starmana002>().attacker = parent.gameObject;
+    //     Stone.GetComponent<Starmana002>().damage = atk * ( 1 + atkPlus );
+    // }
+
+    // public void Starmama105(int _jddx)
+    // {
+    //     jddx += _jddx;
+    //     if(jddx >= 1){
+    //         atkPlus += 0.05f;
+    //         Debug.Log("激活岩能之心");
+    //     }
+    // }
+}
+
+
+

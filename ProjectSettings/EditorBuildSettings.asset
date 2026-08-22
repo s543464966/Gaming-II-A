@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/LoadScene.unity
+    guid: 75ce7c30e88e24b4285490ded45539f9
+  - enabled: 1
+    path: Assets/Scenes/zzzScenes/SJT Test.unity
+    guid: a7b487ce3d7b2473cbc6a389ce492f15
+  - enabled: 1
+    path: Assets/Scenes/zzzScenes/SYF_Test.unity
+    guid: fbea1a842553d442e83a0f8d801b8782
+  - enabled: 1
+    path: Assets/Scenes/zzzScenes/Main interface.unity
+    guid: 3655c8a5b81777d46a6a6eab48cf0198
+  - enabled: 1
+    path: Assets/Scenes/zzzScenes/_VenusStar.unity
+    guid: 08b9e95bab144be459da5f07ceca8a97
+  - enabled: 1
+    path: Assets/Scenes/zzzScenes/_MarsStar.unity
+    guid: 35b61838555be3c4db2ae738f2738cdb
+  - enabled: 1
+    path: Assets/Scenes/zzzScenes/Stars.unity
+    guid: a1873b7beed69d54195262c718900ad0
+  - enabled: 1
+    path: Assets/Scenes/zzzScenes/Equip.unity
+    guid: e5ad4ff1cfc8ef94d963cfdf8ccf6d1d
+  - enabled: 1
+    path: Assets/Scenes/zzzScenes/Playing.unity
+    guid: c07fbf8dc2697f04a80bd1a6d6e6cca6
+  - enabled: 1
+    path: Assets/Scenes/zzzScenes/Heros.unity
+    guid: 0de72b541f0aefa44b907968a29fa828
+  - enabled: 0
+    path: Assets/Scenes/zzzScenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/zzzScenes/Gate/Fight01.unity
+    guid: d388fb424857a4c6d8665a410c8dfdc1
+  - enabled: 0
+    path: Assets/Scenes/zzzScenes/Gate/FightBoss.unity
+    guid: 687e24a3427dd403ebf83ee58a60589d
+  - enabled: 0
+    path: Assets/Scenes/zzzScenes/Gate/Fight02.unity
+    guid: f3746b2f4669f4302bf6b690603d218d
+  - enabled: 0
+    path: Assets/Scenes/zzzScenes/Gate/BlackMarket.unity
+    guid: 9da18e36ab9e54774b12e7b732690bcb
+  - enabled: 0
+    path: Assets/Scenes/zzzScenes/Gate/Ruins.unity
+    guid: 3f1b54a6e9add4a0197daddd046c5d28
+  - enabled: 0
+    path: Assets/Scenes/zzzScenes/Gate/Supply.unity
+    guid: bcfb50b999d50483d9fe2e6282e2a823
+  - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: faee80c9bd83645c5a6173e82fadceab
+  - enabled: 1
+    path: Assets/Scenes/LevelGrowth.unity
+    guid: 52014172939df1840aa6d66d58b0c554
+  - enabled: 1
+    path: Assets/Scenes/LevelFighting.unity
+    guid: 8109a52be9bf36e4cbfc773fd3251652
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: db212bd487bee4754a11c2fae28ed707, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}

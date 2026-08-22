@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce579bf71b054a538b9538a12f43d78, type: 3}
+  m_Name: sm0
+  m_EditorClassIdentifier: 
+  starmanaId: 0
+  starmanName: "\u661F\u80FD\u4E4B\u529B"
+  starmanaSprite: {fileID: 21300000, guid: 996e7998664e04be9ae2998060cc7545, type: 3}
+  starmanaSpriteBG: {fileID: 21300000, guid: 0f11a5f016e11403e94ee8d2c99deee5, type: 3}
+  info: "\u661F\u80FD+2"
+  starmanaRank: 1
+  starmanaUse: 1
+  starmanaGuarder: {fileID: 0}
+  starmanabullet: {fileID: 0}
+  starmanaOnOff: 0
+  starmanaEffect: {fileID: 0}

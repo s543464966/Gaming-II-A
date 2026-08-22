@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023ca99eb646da64aa695533b472f421, type: 3}
+  m_Name: Monster_Boss_SO
+  m_EditorClassIdentifier: 
+  monsterID: mb01
+  monsterObj: {fileID: 7021656263137578522, guid: 617b4f318684b45188d3fcde4ece99ca, type: 3}
+  monsterName: Boss
+  monsterSprite: {fileID: 0}
+  info: Boss
+  monsterRank: 0
+  hp: 500
+  atk: 100
+  ar: 0
+  moveSpeed: 0
+  starmanaCharge: 0

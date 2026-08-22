@@ -1,0 +1,6 @@
+文件 Assets/Plugins/ByteGame/com.bytedance.starksdk/Editor/TTAPIUpdate.cs 中 SetImRankData 需要调整参数，参考 TT.SetImRankData 接口
+文件 Assets/Plugins/ByteGame/com.bytedance.starksdk/Editor/TTAPIUpdate.cs 中 share 需要调整参数，参考 TT.Sharexxx 接口
+文件 Assets/Plugins/ByteGame/com.bytedance.starksdk/Editor/TTAPIUpdate.cs 中 ShowVideoAdWithId 需要修改，参考 TT.CreateRewardedVideoAd 接口
+文件 Assets/Plugins/ByteGame/com.bytedance.starksdk/Editor/TTAPIUpdate.cs 中初始化回调接口需要调整，参考 TT.InitSDK 接口
+文件 Assets/Plugins/ByteGame/com.bytedance.starksdk/Editor/TTAPIUpdate.cs onAppShow 监听接口需要添加参数 Dictionary<string, object> param
+其他处理请参考官方文档站的 API 接口说明

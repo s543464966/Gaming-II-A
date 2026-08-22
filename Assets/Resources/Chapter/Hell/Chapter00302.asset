@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10d61dc8d674444f848b6e005a78504, type: 3}
+  m_Name: Chapter00302
+  m_EditorClassIdentifier: 
+  chapterId: Chapter00302
+  chapterIndex: 3
+  chapterDifficulty: 2
+  file_Monster: Monster0302
+  chapterName: "\u51B0\u5203\u8352\u539F\xB7\u6DF7\u4E71"
+  info: "\u7AE0\u82823\xB7\u56F0\u96BE"
+  staminaCost: 6
+  chapterBG_0: {fileID: 0}
+  chapterBG_1: {fileID: 0}
+  chapterIntensity: 1.3
+  diceTypeAdd: []
+  randomMe: 0
+  chapterReward: []
+  chapterRest: 010000000100000001000000010000000100000000000000
+  chapterMonster: 020000000300000004000000050000000600000007000000
+  chapterMonsterElite: 000000000100000001000000010000000100000001000000
+  chapterRelic: 000000000000000001000000000000000000000000000000
+  chapterBlackMarket: 000000000100000000000000010000000000000000000000
+  chapterAdvanture: 000000000100000000000000000000000100000000000000
+  levelMonsterNum: 010000000200000002000000010000000300000002000000020000000200000002000000020000000300000004000000020000000200000003000000040000000500000002000000020000000300000004000000040000000500000002000000020000000300000004000000040000000500000005000000
+  levelMonsterDice:
+  - dices_List:
+    - D001
+    - D002
+    - D003
+  - dices_List:
+    - D001
+    - D002
+    - D003
+  - dices_List:
+    - D001
+    - D002
+    - D003
+  - dices_List:
+    - D001
+    - D002
+    - D003
+  - dices_List:
+    - D001
+    - D002
+    - D003
+  - dices_List:
+    - D001
+    - D002
+    - D003

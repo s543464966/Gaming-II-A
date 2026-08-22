@@ -1,0 +1,208 @@
+﻿cardId,cardType,cardName,cardImage,info,costG,elementType,careerType,skillId,gradeInfo,manaMax,hpMax,atk,atkType
+卡牌ID,卡牌类型,卡牌名字,形象,介绍,花费金币,元素特质,职业,技能,等级提升信息,星能值,生命值,攻击,攻击类型
+"string",string,"string",string,"string",int,string,string,String,string,int,float,float,string
+Assets/Resources/Card/Monster0101,SO_Card,,,,,,,,,,,,
+M010101,Mb,大Boss,img-M010101,This is Information,0,Light,Alchemist,S001,-,3,10,3,atk
+M010102,Me,高级精英A,img-M010102,This is Information,0,Fire,Brave,S002,-,3,10,3,atk
+M010103,Me, 高级精英B,img-M010103,This is Information,0,Metal,Exorcism,S003,-,4,10,3,atk
+M010104,Me, 高级精英C,img-M010104,This is Information,0,Rock,Fate,S004,-,5,10,3,mtk
+M010105,M,泡泡怪,img-M010105,This is Information,0,Thunder,Magician,-,-,-,10,3,atk
+M010106,M,章鱼怪,img-M010106,This is Information,0,Water,Pharmacist,-,-,-,10,3,mtk
+M010107,M,哥布林,img-M010107,This is Information,0,Wind,Spiritual,-,-,-,10,3,atk
+M010108,M,岩石怪,img-M010108,This is Information,0,Wood,Thorns,-,-,-,10,3,atk
+M010109,M,毒蜜蜂,img-M010109,This is Information,0,Light,Alchemist,-,-,-,10,3,mtk
+M010110,M,暴徒,img-M010110,This is Information,0,Dark,Archer,-,-,-,10,3,atk
+Assets/Resources/Card/Monster0102,,,,,,,,,,,,,
+M010201,Mb,大Boss,img-M010201,This is Information,0,Light,Alchemist,S001,-,3,10,3,atk
+M010202,Me,高级精英A,img-M010202,This is Information,0,Fire,Brave,S002,-,3,10,3,atk
+M010203,Me, 高级精英B,img-M010203,This is Information,0,Metal,Exorcism,S003,-,4,10,3,atk
+M010204,Me, 高级精英C,img-M010204,This is Information,0,Rock,Fate,S004,-,5,10,3,mtk
+M010205,M,泡泡怪,img-M010205,This is Information,0,Thunder,Magician,-,-,-,10,3,atk
+M010206,M,章鱼怪,img-M010206,This is Information,0,Water,Pharmacist,-,-,-,10,3,mtk
+M010207,M,哥布林,img-M010207,This is Information,0,Wind,Spiritual,-,-,-,10,3,atk
+M010208,M,岩石怪,img-M010208,This is Information,0,Wood,Thorns,-,-,-,10,3,atk
+M010209,M,毒蜜蜂,img-M010209,This is Information,0,Light,Alchemist,-,-,-,10,3,mtk
+M010210,M,暴徒,img-M010210,This is Information,0,Dark,Archer,-,-,-,10,3,atk
+Assets/Resources/Card/Monster0103,,,,,,,,,,,,,
+M010301,Mb,大Boss,img-M010301,This is Information,0,Light,Alchemist,S001,-,3,10,3,atk
+M010302,Me,高级精英A,img-M010302,This is Information,0,Fire,Brave,S002,-,3,10,3,atk
+M010303,Me, 高级精英B,img-M010303,This is Information,0,Metal,Exorcism,S003,-,4,10,3,atk
+M010304,Me, 高级精英C,img-M010304,This is Information,0,Rock,Fate,S004,-,5,10,3,mtk
+M010305,M,泡泡怪,img-M010305,This is Information,0,Thunder,Magician,-,-,-,10,3,atk
+M010306,M,章鱼怪,img-M010306,This is Information,0,Water,Pharmacist,-,-,-,10,3,mtk
+M010307,M,哥布林,img-M010307,This is Information,0,Wind,Spiritual,-,-,-,10,3,atk
+M010308,M,岩石怪,img-M010308,This is Information,0,Wood,Thorns,-,-,-,10,3,atk
+M010309,M,毒蜜蜂,img-M010309,This is Information,0,Light,Alchemist,-,-,-,10,3,mtk
+M010310,M,暴徒,img-M010310,This is Information,0,Dark,Archer,-,-,-,10,3,atk
+Assets/Resources/Card/Monster0201,,,,,,,,,,,,,
+M020101,Mb,大Boss,img-M020101,This is Information,0,Light,Alchemist,S001,-,3,10,3,atk
+M020102,Me,高级精英A,img-M020102,This is Information,0,Fire,Brave,S002,-,3,10,3,atk
+M020103,Me, 高级精英B,img-M020103,This is Information,0,Metal,Exorcism,S003,-,4,10,3,atk
+M020104,Me, 高级精英C,img-M020104,This is Information,0,Rock,Fate,S004,-,5,10,3,mtk
+M020105,M,泡泡怪,img-M020105,This is Information,0,Thunder,Magician,-,-,-,10,3,atk
+M020106,M,章鱼怪,img-M020106,This is Information,0,Water,Pharmacist,-,-,-,10,3,mtk
+M020107,M,哥布林,img-M020107,This is Information,0,Wind,Spiritual,-,-,-,10,3,atk
+M020108,M,岩石怪,img-M020108,This is Information,0,Wood,Thorns,-,-,-,10,3,atk
+M020109,M,毒蜜蜂,img-M020109,This is Information,0,Light,Alchemist,-,-,-,10,3,mtk
+M020110,M,暴徒,img-M020110,This is Information,0,Dark,Archer,-,-,-,10,3,atk
+Assets/Resources/Card/Monster0202,,,,,,,,,,,,,
+M020201,Mb,大Boss,img-M020201,This is Information,0,Light,Alchemist,S001,-,3,10,3,atk
+M020202,Me,高级精英A,img-M020202,This is Information,0,Fire,Brave,S002,-,3,10,3,atk
+M020203,Me, 高级精英B,img-M020203,This is Information,0,Metal,Exorcism,S003,-,4,10,3,atk
+M020204,Me, 高级精英C,img-M020204,This is Information,0,Rock,Fate,S004,-,5,10,3,mtk
+M020205,M,泡泡怪,img-M020205,This is Information,0,Thunder,Magician,-,-,-,10,3,atk
+M020206,M,章鱼怪,img-M020206,This is Information,0,Water,Pharmacist,-,-,-,10,3,mtk
+M020207,M,哥布林,img-M020207,This is Information,0,Wind,Spiritual,-,-,-,10,3,atk
+M020208,M,岩石怪,img-M020208,This is Information,0,Wood,Thorns,-,-,-,10,3,atk
+M020209,M,毒蜜蜂,img-M020209,This is Information,0,Light,Alchemist,-,-,-,10,3,mtk
+M020210,M,暴徒,img-M020210,This is Information,0,Dark,Archer,-,-,-,10,3,atk
+Assets/Resources/Card/Monster0203,,,,,,,,,,,,,
+M020301,Mb,大Boss,img-M020301,This is Information,0,Light,Alchemist,S001,-,3,10,3,atk
+M020302,Me,高级精英A,img-M020302,This is Information,0,Fire,Brave,S002,-,3,10,3,atk
+M020303,Me, 高级精英B,img-M020303,This is Information,0,Metal,Exorcism,S003,-,4,10,3,atk
+M020304,Me, 高级精英C,img-M020304,This is Information,0,Rock,Fate,S004,-,5,10,3,mtk
+M020305,M,泡泡怪,img-M020305,This is Information,0,Thunder,Magician,-,-,-,10,3,atk
+M020306,M,章鱼怪,img-M020306,This is Information,0,Water,Pharmacist,-,-,-,10,3,mtk
+M020307,M,哥布林,img-M020307,This is Information,0,Wind,Spiritual,-,-,-,10,3,atk
+M020308,M,岩石怪,img-M020308,This is Information,0,Wood,Thorns,-,-,-,10,3,atk
+M020309,M,毒蜜蜂,img-M020309,This is Information,0,Light,Alchemist,-,-,-,10,3,mtk
+M020310,M,暴徒,img-M020310,This is Information,0,Dark,Archer,-,-,-,10,3,atk
+Assets/Resources/Card/Monster0301,,,,,,,,,,,,,
+M030101,Mb,大Boss,img-M030101,This is Information,0,Light,Alchemist,S001,-,3,10,3,atk
+M030102,Me,高级精英A,img-M030102,This is Information,0,Fire,Brave,S002,-,3,10,3,atk
+M030103,Me, 高级精英B,img-M030103,This is Information,0,Metal,Exorcism,S003,-,4,10,3,atk
+M030104,Me, 高级精英C,img-M030104,This is Information,0,Rock,Fate,S004,-,5,10,3,mtk
+M030105,M,泡泡怪,img-M030105,This is Information,0,Thunder,Magician,-,-,-,10,3,atk
+M030106,M,章鱼怪,img-M030106,This is Information,0,Water,Pharmacist,-,-,-,10,3,mtk
+M030107,M,哥布林,img-M030107,This is Information,0,Wind,Spiritual,-,-,-,10,3,atk
+M030108,M,岩石怪,img-M030108,This is Information,0,Wood,Thorns,-,-,-,10,3,atk
+M030109,M,毒蜜蜂,img-M030109,This is Information,0,Light,Alchemist,-,-,-,10,3,mtk
+M030110,M,暴徒,img-M030110,This is Information,0,Dark,Archer,-,-,-,10,3,atk
+Assets/Resources/Card/Monster0302,,,,,,,,,,,,,
+M030201,Mb,大Boss,img-M030201,This is Information,0,Light,Alchemist,S001,-,3,10,3,atk
+M030202,Me,高级精英A,img-M030202,This is Information,0,Fire,Brave,S002,-,3,10,3,atk
+M030203,Me, 高级精英B,img-M030203,This is Information,0,Metal,Exorcism,S003,-,4,10,3,atk
+M030204,Me, 高级精英C,img-M030204,This is Information,0,Rock,Fate,S004,-,5,10,3,mtk
+M030205,M,泡泡怪,img-M030205,This is Information,0,Thunder,Magician,-,-,-,10,3,atk
+M030206,M,章鱼怪,img-M030206,This is Information,0,Water,Pharmacist,-,-,-,10,3,mtk
+M030207,M,哥布林,img-M030207,This is Information,0,Wind,Spiritual,-,-,-,10,3,atk
+M030208,M,岩石怪,img-M030208,This is Information,0,Wood,Thorns,-,-,-,10,3,atk
+M030209,M,毒蜜蜂,img-M030209,This is Information,0,Light,Alchemist,-,-,-,10,3,mtk
+M030210,M,暴徒,img-M030210,This is Information,0,Dark,Archer,-,-,-,10,3,atk
+Assets/Resources/Card/Monster0303,,,,,,,,,,,,,
+M030301,Mb,大Boss,img-M030301,This is Information,0,Light,Alchemist,S001,-,3,10,3,atk
+M030302,Me,高级精英A,img-M030302,This is Information,0,Fire,Brave,S002,-,3,10,3,atk
+M030303,Me, 高级精英B,img-M030303,This is Information,0,Metal,Exorcism,S003,-,4,10,3,atk
+M030304,Me, 高级精英C,img-M030304,This is Information,0,Rock,Fate,S004,-,5,10,3,mtk
+M030305,M,泡泡怪,img-M030305,This is Information,0,Thunder,Magician,-,-,-,10,3,atk
+M030306,M,章鱼怪,img-M030306,This is Information,0,Water,Pharmacist,-,-,-,10,3,mtk
+M030307,M,哥布林,img-M030307,This is Information,0,Wind,Spiritual,-,-,-,10,3,atk
+M030308,M,岩石怪,img-M030308,This is Information,0,Wood,Thorns,-,-,-,10,3,atk
+M030309,M,毒蜜蜂,img-M030309,This is Information,0,Light,Alchemist,-,-,-,10,3,mtk
+M030310,M,暴徒,img-M030310,This is Information,0,Dark,Archer,-,-,-,10,3,atk
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,

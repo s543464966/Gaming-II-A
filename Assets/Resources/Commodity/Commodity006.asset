@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b992eb56628b6d43abb36bdda26b594, type: 3}
+  m_Name: Commodity006
+  m_EditorClassIdentifier: 
+  commodityId: Commodity006
+  tabType: 1
+  sortOrder: 0
+  rewardId: H006
+  rewardAmount: 1
+  currencyType: 0
+  basePrice: 1000
+  maxBuyLimit: 1

@@ -1,0 +1,64 @@
+# Unity generated directories
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# Unity and editor generated files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+ExportedObj/
+.consulo/
+.vs/
+.vscode/
+.idea/
+.gradle/
+/UIElementsSchema/
+/[Aa]ssets/Plugins/Editor/JetBrains*
+
+# Local agent and Unity MCP state
+.agent/
+.agents/
+.unityCodeMcpServer/
+
+# Crash reports and local diagnostics
+/mono_crash*
+sysinfo.txt
+crashlytics-build.properties
+
+# Build artifacts
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# Generated Addressables and Android streaming assets
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Operating system files
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
