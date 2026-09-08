@@ -1,0 +1,353 @@
+[gd_scene load_steps=21 format=3]
+
+[ext_resource type="Script" path="res://ui/components/touch_button.gd" id="touch_input"]
+
+[ext_resource type="Script" path="res://features/game_modes_pve_adventure/ui/adventure_screen.gd" id="1"]
+[ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="2"]
+[ext_resource type="Script" path="res://ui/components/safe_area.gd" id="3"]
+[ext_resource type="PackedScene" path="res://ui/components/button.tscn" id="4"]
+[ext_resource type="Script" path="res://features/game_modes_pve_adventure/ui/route_view.gd" id="5"]
+[ext_resource type="Script" path="res://features/combat/ui/battle_board.gd" id="6"]
+[ext_resource type="Script" path="res://features/combat/ui/battle_effects.gd" id="7"]
+[ext_resource type="PackedScene" path="res://features/game_modes_pve_adventure/ui/route_node_popup.tscn" id="8"]
+[ext_resource type="Script" path="res://ui/components/touch_scroll_container.gd" id="touch_scroll"]
+[ext_resource type="PackedScene" path="res://ui/components/player_header.tscn" id="player_header"]
+
+[ext_resource type="Script" path="res://ui/components/fitted_label.gd" id="fit"]
+[ext_resource type="Theme" path="res://ui/design_system/themes/adventure_route.tres" id="route_theme"]
+[ext_resource type="Texture2D" path="res://features/game_modes_pve_adventure/ui/art/route_background.png" id="route_bg"]
+[ext_resource type="Texture2D" path="res://ui/design_system/icons/common/home_settings.png" id="settings_icon"]
+[ext_resource type="Texture2D" path="res://features/combat/ui/art/battle_background.png" id="battle_bg"]
+[ext_resource type="Theme" path="res://features/combat/ui/battle_theme.tres" id="battle_theme"]
+[ext_resource type="Texture2D" path="res://features/combat/ui/art/battle_countdown.png" id="countdown_art"]
+
+[ext_resource type="Script" path="res://features/game_modes_pve_adventure/ui/route_heading.gd" id="route_heading"]
+
+[ext_resource type="Script" path="res://features/game_modes_pve_adventure/ui/relic_strip.gd" id="relic_strip"]
+
+[node name="AdventureScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+modulate = Color(0.40, 0.40, 0.48, 1)
+
+[node name="BattleBackground" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("battle_bg")
+expand_mode = 1
+stretch_mode = 6
+modulate = Color(0.72, 0.72, 0.72, 1)
+
+[node name="RouteBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("route_bg")
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3")
+
+[node name="Margin" type="MarginContainer" parent="SafeArea"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Content" type="VBoxContainer" parent="SafeArea/Margin"]
+layout_mode = 2
+
+[node name="RouteProfile" type="Control" parent="SafeArea/Margin/Content"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 118)
+mouse_filter = 2
+
+[node name="PlayerHeader" parent="SafeArea/Margin/Content/RouteProfile" instance=ExtResource("player_header")]
+layout_mode = 0
+
+[node name="Header" type="Control" parent="SafeArea/Margin/Content"]
+script = ExtResource("route_heading")
+layout_mode = 2
+custom_minimum_size = Vector2(0, 108)
+mouse_filter = 2
+
+[node name="Back" type="Button" parent="SafeArea/Margin/Content/Header"]
+layout_mode = 0
+offset_right = 108.0
+offset_bottom = 108.0
+theme_type_variation = &"RouteNode"
+mouse_default_cursor_shape = 2
+script = ExtResource("touch_input")
+
+[node name="Title" type="Label" parent="SafeArea/Margin/Content/Header"]
+layout_mode = 1
+anchor_right = 1.0
+offset_left = 108.0
+offset_right = -108.0
+offset_bottom = 62.0
+script = ExtResource("fit")
+minimum_font_size = 26
+maximum_lines = 1
+max_lines_visible = 1
+clip_text = true
+text_overrun_behavior = 3
+theme_override_font_sizes/font_size = 38
+text = "ui.page.modes"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Progress" type="Label" parent="SafeArea/Margin/Content/Header"]
+layout_mode = 1
+anchor_left = 0.25
+anchor_right = 0.75
+offset_top = 66.0
+offset_bottom = 104.0
+script = ExtResource("fit")
+minimum_font_size = 19
+maximum_lines = 1
+max_lines_visible = 1
+clip_text = true
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Settings" parent="SafeArea/Margin/Content/Header" instance=ExtResource("4")]
+visible = false
+custom_minimum_size = Vector2(108, 108)
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -108.0
+offset_bottom = 108.0
+grow_horizontal = 0
+text = ""
+icon = ExtResource("settings_icon")
+expand_icon = true
+theme_type_variation = &"RouteNode"
+theme_override_constants/icon_max_width = 44
+
+[node name="Route" type="VBoxContainer" parent="SafeArea/Margin/Content"]
+theme = ExtResource("route_theme")
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Status" type="VBoxContainer" parent="SafeArea/Margin/Content/Route"]
+visible = false
+layout_mode = 2
+
+[node name="Map" type="Control" parent="SafeArea/Margin/Content/Route"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Scroll" type="ScrollContainer" parent="SafeArea/Margin/Content/Route/Map"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("touch_scroll")
+
+[node name="RouteView" type="Control" parent="SafeArea/Margin/Content/Route/Map/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("5")
+
+[node name="Battle" type="VBoxContainer" parent="SafeArea/Margin/Content"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StartError" type="Label" parent="SafeArea/Margin/Content/Battle"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
+
+[node name="Board" type="Control" parent="SafeArea/Margin/Content/Battle"]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("6")
+
+[node name="Effects" type="Control" parent="SafeArea/Margin/Content/Battle/Board"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7")
+
+[node name="Relics" type="ScrollContainer" parent="SafeArea/Margin/Content/Battle"]
+visible = false
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+script = ExtResource("relic_strip")
+
+[node name="Items" type="HBoxContainer" parent="SafeArea/Margin/Content/Battle/Relics"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ActionSlot" type="Control" parent="SafeArea/Margin/Content/Battle"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Start" parent="SafeArea/Margin/Content/Battle/ActionSlot" instance=ExtResource("4")]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 1
+anchor_left = 0.21
+anchor_right = 0.79
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+clip_text = true
+text = "ui.adventure.start"
+theme = ExtResource("battle_theme")
+theme_type_variation = &"BattleStart"
+
+[node name="Countdown" type="TextureRect" parent="SafeArea/Margin/Content/Battle/ActionSlot"]
+layout_mode = 1
+anchor_left = 0.79
+anchor_right = 0.79
+offset_left = -20.0
+offset_right = 88.0
+offset_bottom = 108.0
+texture = ExtResource("countdown_art")
+expand_mode = 1
+stretch_mode = 5
+self_modulate = Color(0.88, 0.84, 0.76, 1)
+mouse_filter = 2
+
+[node name="Value" type="Label" parent="SafeArea/Margin/Content/Battle/ActionSlot/Countdown"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource("battle_theme")
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "15"
+
+[node name="Judgment" type="VBoxContainer" parent="SafeArea/Margin/Content/Battle/ActionSlot"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="SafeArea/Margin/Content/Battle/ActionSlot/Judgment"]
+layout_mode = 2
+text = "ui.adventure.judgment_countdown"
+horizontal_alignment = 1
+
+[node name="Health" type="Label" parent="SafeArea/Margin/Content/Battle/ActionSlot/Judgment"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "ui.adventure.judgment_health"
+horizontal_alignment = 1
+
+[node name="Result" type="VBoxContainer" parent="SafeArea/Margin/Content"]
+visible = false
+layout_mode = 2
+
+[node name="Summary" type="Label" parent="SafeArea/Margin/Content/Result"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+autowrap_mode = 3
+
+[node name="Feedback" type="Label" parent="SafeArea/Margin/Content/Result"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
+
+[node name="Confirm" parent="SafeArea/Margin/Content/Result" instance=ExtResource("4")]
+layout_mode = 2
+text = "ui.common.confirm"
+
+[node name="NodePopup" parent="." instance=ExtResource("8")]
+
+[node name="RewardOverlay" type="Control" parent="."]
+visible = false
+z_index = 20
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="Shade" type="ColorRect" parent="RewardOverlay"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+color = Color(0.015, 0.018, 0.022, 0.88)
+
+[node name="SafeArea" type="MarginContainer" parent="RewardOverlay"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource("3")
+
+[node name="Margin" type="MarginContainer" parent="RewardOverlay/SafeArea"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="Content" type="VBoxContainer" parent="RewardOverlay/SafeArea/Margin"]
+layout_mode = 2
+mouse_filter = 1

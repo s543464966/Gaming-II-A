@@ -1,61 +1,42 @@
-# Unity generated directories
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Uu]ser[Ss]ettings/
-/[Mm]emoryCaptures/
-/[Rr]ecordings/
-
-# Unity and editor generated files
-*.csproj
-*.unityproj
-*.sln
-*.suo
+# Godot-generated cache and local export artifacts
+/.godot/
+/exports/
+/build/
+/builds/
+/dist/
+/temp/
+/tmp/
+.runtime/
+node_modules/
+.dy-game-cache/
+*.translation
 *.tmp
-*.user
-*.userprefs
-*.pidb
-*.booproj
-*.svd
-*.pdb
-*.mdb
-*.opendb
-*.VC.db
-*.pidb.meta
-*.pdb.meta
-*.mdb.meta
-ExportedObj/
-.consulo/
-.vs/
+
+# Local export credentials, signing material and developer-tool preferences
+export_credentials.cfg
+project.private.config.json
+.env
+.env.*
+!.env.example
+!.env.sample
+*.p12
+*.pfx
+*.keystore
+*.jks
+*.pem
+*.key
+
+# Local editor and agent state
 .vscode/
 .idea/
-.gradle/
-/UIElementsSchema/
-/[Aa]ssets/Plugins/Editor/JetBrains*
-
-# Local agent and Unity MCP state
+.fleet/
 .agent/
 .agents/
-.unityCodeMcpServer/
-
-# Crash reports and local diagnostics
+.codex/
+*.log
+*.stacktrace
 /mono_crash*
-sysinfo.txt
-crashlytics-build.properties
-
-# Build artifacts
-*.apk
-*.aab
-*.unitypackage
-*.app
-
-# Generated Addressables and Android streaming assets
-/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
-/[Aa]ssets/[Ss]treamingAssets/aa.meta
-/[Aa]ssets/[Ss]treamingAssets/aa/*
+/crash_dump*
 
 # Operating system files
 .DS_Store

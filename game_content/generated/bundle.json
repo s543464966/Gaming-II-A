@@ -1,0 +1,25 @@
+{
+  "files": {
+    "game_data_snapshot.json": "f91044e19c6b5de1caf06e5b87cedea154740b9bb4d557d01aa9c8ca5b3a1cf3",
+    "localization/de/content.po": "9dd5d5034511043396de04df8d8efe460d08d26873185a08d79bb77e6fcf375c",
+    "localization/de/rules.po": "e0e2fe53ad6a583695e6bdb4876a305cafe91ca8bcd4e638919089b634d409df",
+    "localization/de/ui.po": "775cdf80724a87816196b4021971c995f0fe6f4851616ec9643e0a36502a9f27",
+    "localization/en/content.po": "6feaeda582123db724a7629455c52c227d42e0ecb379f7538f1d40a701f60c73",
+    "localization/en/rules.po": "0cf5523d569bfb61539003c32f7852a0c43b55b3ee6d8628d2ff05d6f1d477ce",
+    "localization/en/ui.po": "31cc4d0ad972f13f9bd5410f7e0fd0b7fa5a393a53acd450808e0d162a88bfb8",
+    "localization/fr/content.po": "7fba594866370680c192037eba86166a5bb9338a5635e1acef5337750a3051d1",
+    "localization/fr/rules.po": "9789fda502b99da7c45f90575022e1e7909ce017227144a34ddd397d416117ea",
+    "localization/fr/ui.po": "b62a4dd13dcdab4b5bfe4de9d5bcf5458f4e6e9aa01f5f31435d23a9cfe5faf3",
+    "localization/ja/content.po": "211660167a2bf3232c6f2b8a7d2045c6938cc6a281974df71cab5dc80d3fb262",
+    "localization/ja/rules.po": "338576c19fb8a07fe51d916f042cdb5eef1ceb955e4a2a9f259b7568fb28bcd1",
+    "localization/ja/ui.po": "6dd369bd2e3da4dbe61f6a11cdc543a0faac14f31ff165ee1ad24969d2f2bff3",
+    "localization/manifest.json": "0493acb26a95d0f1aa4766e0572c762dc1cb76765f1d2f37cbfbfc34e17a44f0",
+    "localization/zh_hans/content.po": "5e087d4747e528d8d82bd40458e765580b236a928bc13cede911e57d520433b1",
+    "localization/zh_hans/rules.po": "c6a233d23d560c397272d32c68658d556b693ab06eec45f41f989231837301d3",
+    "localization/zh_hans/ui.po": "10d291ddd43fb6a533add3aae91f66190def0136c80526efec4178d8a7a2e592",
+    "localization/zh_hant/content.po": "53843057cafc3f56c393283966494d41a12045de91f144d9e155d6fc01f32e8c",
+    "localization/zh_hant/rules.po": "dc25c0b6ae4e36198b62dabd38e5559c86489013945e5253ca0ebb4454c7f4fb",
+    "localization/zh_hant/ui.po": "59d8c8ffb178841b51abb7b414fc506f282b237f4f1735c80239083cb7399f2a"
+  },
+  "version": 1
+}

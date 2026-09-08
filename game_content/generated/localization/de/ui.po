@@ -1,0 +1,718 @@
+# Generated. Edit authoring sources, not this file.
+msgid ""
+msgstr "Language: de\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "ui.adventure.actual_definition"
+msgstr "Kapitel +{level} · Tatsächliche Kampfwerte"
+
+msgid "ui.adventure.chapter_completed"
+msgstr "Kapitel abgeschlossen."
+
+msgid "ui.adventure.confirm_defeat"
+msgstr "Niederlage bestätigen und zurück"
+
+msgid "ui.adventure.continue"
+msgstr "Fortsetzen"
+
+msgid "ui.adventure.current_health"
+msgstr "{stat_health} {current} · {stat_shield_power} {shield}"
+
+msgid "ui.adventure.defeat"
+msgstr "Herausforderung gescheitert"
+
+msgid "ui.adventure.enemies"
+msgstr "Gegner: {names}\nAusdauer {stamina} · Siegeswürfel: {dice}"
+
+msgid "ui.adventure.enter_battle"
+msgstr "Kampf betreten"
+
+msgid "ui.adventure.judgment_countdown"
+msgstr "Entscheidung in {seconds}"
+
+msgid "ui.adventure.judgment_health"
+msgstr "Verbündete {ally} · Gegner {enemy}"
+
+msgid "ui.adventure.node_completed"
+msgstr "Knoten abgeschlossen."
+
+msgid "ui.adventure.node_title"
+msgstr "Etage {floor} · {type}"
+
+msgid "ui.adventure.node_unavailable"
+msgstr "Dieser Knoten ist aktuell nicht betretbar."
+
+msgid "ui.adventure.paused"
+msgstr "Pausiert"
+
+msgid "ui.adventure.reload"
+msgstr "Abenteuerszene neu laden"
+
+msgid "ui.adventure.restart_notice"
+msgstr "Neuladen würfelt weder Route noch Gegneraufstellung neu aus. Wer den Kampf verlässt, gibt diesen Knoten auf; verbrauchte Ausdauer wird nicht erstattet."
+
+msgid "ui.adventure.result"
+msgstr "{title}\n{explanation}\nDauer {seconds} s · Verschmutzung {pollution}/100"
+
+msgid "ui.adventure.retry_rollback"
+msgstr "Speichern und Ausdauererstattung wiederholen"
+
+msgid "ui.adventure.retry_save"
+msgstr "Speichern erneut versuchen"
+
+msgid "ui.adventure.return_home"
+msgstr "Zur Startseite"
+
+msgid "ui.adventure.rollback_failed"
+msgstr "Die Rücksetzung konnte nicht gespeichert werden. Bitte erneut versuchen."
+
+msgid "ui.adventure.rolled_back"
+msgstr "Routenwahl und Ausdauer wurden zurückgesetzt."
+
+msgid "ui.adventure.save_exit"
+msgstr "Speichern und zur Startseite"
+
+msgid "ui.adventure.saved"
+msgstr "Gespeichert."
+
+msgid "ui.adventure.start"
+msgstr "Kampf starten"
+
+msgid "ui.adventure.start_failed"
+msgstr "Der Kampf konnte nicht gestartet werden."
+
+msgid "ui.adventure.victory"
+msgstr "Sieg"
+
+msgid "ui.aurora.amount"
+msgstr "{name} ×{amount}"
+
+msgid "ui.aurora.choose_card"
+msgstr "Karte zum Verstärken wählen"
+
+msgid "ui.aurora.claimed"
+msgstr "Erhalten"
+
+msgid "ui.aurora.limit"
+msgstr "Das Limit für Sternenbelohnungen in diesem Kapitel ist erreicht."
+
+msgid "ui.aurora.progress"
+msgstr "Sternenbelohnungen {count}/{max} · Noch {remaining} Auswahlen"
+
+msgid "ui.aurora.upgrade"
+msgstr "Verstärken"
+
+msgid "ui.aurora.upgrade_target"
+msgstr "{name} · Verstärkung +{level} → +{next}"
+
+msgid "ui.backpack.actions_unavailable"
+msgstr "Verwenden und Zerlegen sind noch nicht verfügbar."
+
+msgid "ui.catalog.empty"
+msgstr "Keine Inhalte verfügbar"
+
+msgid "ui.catalog.filter"
+msgstr "Filter"
+
+msgid "ui.catalog.search"
+msgstr "Nach Name oder ID suchen"
+
+msgid "ui.category.all"
+msgstr "Alle"
+
+msgid "ui.category.aurora"
+msgstr "Astralkräfte"
+
+msgid "ui.category.hero"
+msgstr "Helden"
+
+msgid "ui.category.inventory_prop"
+msgstr "Inventargegenstände"
+
+msgid "ui.category.item"
+msgstr "Gegenstände"
+
+msgid "ui.category.item_card"
+msgstr "Gegenstandskarten"
+
+msgid "ui.category.material"
+msgstr "Materialien"
+
+msgid "ui.category.minion"
+msgstr "Gefolgsleute"
+
+msgid "ui.category.monsters"
+msgstr "Monster"
+
+msgid "ui.category.recommended"
+msgstr "Empfohlen"
+
+msgid "ui.category.relic"
+msgstr "Relikt"
+
+msgid "ui.category.team"
+msgstr "Team"
+
+msgid "ui.collection.change_title"
+msgstr "Helden wechseln"
+
+msgid "ui.collection.change_warning"
+msgstr "Ein Heldenwechsel beendet die aktuelle Kapitelzusammenstellung und entfernt ihre Begleiter, Relikte, Sternenkräfte und ihren Fortschritt. Die feste Route, permanente Talente und Kontowerte bleiben erhalten."
+
+msgid "ui.collection.changed"
+msgstr "Held gewechselt"
+
+msgid "ui.collection.current_hero"
+msgstr "Aktueller Held"
+
+msgid "ui.collection.owned"
+msgstr "Im Besitz"
+
+msgid "ui.collection.permanent_stats"
+msgstr "Permanenter Kontofortschritt · Ohne Kapitelverbesserungen und Relikte"
+
+msgid "ui.collection.select_hero"
+msgstr "Diesen Helden wählen"
+
+msgid "ui.collection.star_confirm"
+msgstr "{cost} Kartenfragmente ausgeben, um {name} auf ★{star} anzuheben?\n{remaining} Fragmente bleiben. Permanente Stärke: {strength}% der Basis.\nDas laufende Kapitel bleibt unverändert."
+
+msgid "ui.collection.star_max"
+msgstr "Maximum: 5 Sterne"
+
+msgid "ui.collection.star_success"
+msgstr "Sternaufstieg abgeschlossen. Übrige Fragmente bleiben erhalten."
+
+msgid "ui.collection.star_unavailable"
+msgstr "Voraussetzungen nicht erfüllt. Keine Fragmente verbraucht."
+
+msgid "ui.collection.star_upgrade"
+msgstr "Sternaufstieg"
+
+msgid "ui.collection.unowned"
+msgstr "Nicht erworben"
+
+msgid "ui.combat.ammo"
+msgstr "{stat_ammo_capacity} · {remaining} / {capacity} Einsätze übrig"
+
+msgid "ui.combat.ammo_empty"
+msgstr "Keine Einsätze übrig"
+
+msgid "ui.combat.ammo_remaining"
+msgstr "{status} · Einsätze: {count}"
+
+msgid "ui.combat.blocked"
+msgstr "Vom Schild abgewehrt"
+
+msgid "ui.combat.cooldown"
+msgstr "Abklingzeit {seconds} s"
+
+msgid "ui.combat.critical"
+msgstr "Kritisch {text}"
+
+msgid "ui.combat.defeated"
+msgstr "Besiegt"
+
+msgid "ui.combat.haste"
+msgstr " · {stat_haste_ratio} {percent}%"
+
+msgid "ui.combat.health"
+msgstr "{current}/{maximum}{shield}"
+
+msgid "ui.combat.main_ability_count"
+msgstr "{status} · Hauptfähigkeiten: {count}"
+
+msgid "ui.combat.passive"
+msgstr "Keine Hauptfähigkeiten"
+
+msgid "ui.combat.poison"
+msgstr "Gift ist eingedrungen: Später erhaltene Schilde blockieren es nicht"
+
+msgid "ui.combat.shield"
+msgstr " Schild {amount}"
+
+msgid "ui.combat.shield_gained"
+msgstr "Schild +{amount}"
+
+msgid "ui.common.back"
+msgstr "Zurück"
+
+msgid "ui.common.cancel"
+msgstr "Abbrechen"
+
+msgid "ui.common.close"
+msgstr "Schließen"
+
+msgid "ui.common.confirm"
+msgstr "Bestätigen"
+
+msgid "ui.common.confirm_title"
+msgstr "Bitte bestätigen"
+
+msgid "ui.common.done"
+msgstr "Fertig"
+
+msgid "ui.currency.fragments"
+msgstr "Exklusive Fragmente"
+
+msgid "ui.currency.gold"
+msgstr "Gold"
+
+msgid "ui.currency.star_stone"
+msgstr "Sternsteine"
+
+msgid "ui.detail.actions"
+msgstr "Effekte"
+
+msgid "ui.detail.ammo"
+msgstr "Aktionskapazität"
+
+msgid "ui.detail.fragments"
+msgstr "Sternaufstiegsfragmente"
+
+msgid "ui.detail.main_ability_clock"
+msgstr "{stat_cooldown_seconds} {remaining} / {cooldown} s{haste}"
+
+msgid "ui.detail.overview"
+msgstr "Übersicht"
+
+msgid "ui.detail.purchase"
+msgstr "Kaufinformationen"
+
+msgid "ui.detail.stack_limit"
+msgstr "Stapellimit"
+
+msgid "ui.detail.usage"
+msgstr "Verwendung"
+
+msgid "ui.filter.ability_facet"
+msgstr "Fähigkeitseffekte"
+
+msgid "ui.filter.card_tag"
+msgstr "Tags"
+
+msgid "ui.filter.output_type"
+msgstr "Ausgabetyp"
+
+msgid "ui.home.achievements"
+msgstr "Erfolge"
+
+msgid "ui.home.adventure_mode"
+msgstr "Abenteuermodus"
+
+msgid "ui.home.backpack"
+msgstr "Tasche"
+
+msgid "ui.home.chapter_progress"
+msgstr "{chapter} · {current}/{total}"
+
+msgid "ui.home.collection"
+msgstr "Sammlung"
+
+msgid "ui.home.contract_summon"
+msgstr "Paktbeschwörung"
+
+msgid "ui.home.daily"
+msgstr "Täglich"
+
+msgid "ui.home.encyclopedia"
+msgstr "Kodex"
+
+msgid "ui.home.layout_preview"
+msgstr "Einzelne Layoutvorschau · Für das vollständige Spiel bootstrap/app.tscn starten"
+
+msgid "ui.home.mail"
+msgstr "Post"
+
+msgid "ui.home.no_hero_detail"
+msgstr "Kein Held ausgewählt."
+
+msgid "ui.home.preview_resources"
+msgstr "Spielername\nGold · Sternsteine · Ausdauer"
+
+msgid "ui.home.rank"
+msgstr "Rang"
+
+msgid "ui.home.ranking_info"
+msgstr "Zeigt nur den Wert des aktuellen lokalen Spielers. Dies ist keine Online-Rangliste."
+
+msgid "ui.home.resources"
+msgstr "{name}\nGold {gold} · Sternsteine {star_stone} · Ausdauer {stamina}/{maximum}"
+
+msgid "ui.home.select_mode"
+msgstr "Modus wählen"
+
+msgid "ui.home.sign_in"
+msgstr "Anmelden"
+
+msgid "ui.home.stamina_info"
+msgstr "Ausdauerregeneration"
+
+msgid "ui.home.start_adventure"
+msgstr "Abenteuer starten"
+
+msgid "ui.language.label"
+msgstr "Sprache"
+
+msgid "ui.language.preference_recovered"
+msgstr "Die Spracheinstellungen wurden aus einer Sicherung wiederhergestellt."
+
+msgid "ui.language.preference_unreadable"
+msgstr "Die Datei mit der Spracheinstellung konnte nicht gelesen werden und wurde beibehalten. Sprachänderungen gelten nur für diese Sitzung."
+
+msgid "ui.language.save_failed"
+msgstr "Die Spracheinstellung konnte nicht gespeichert werden. Bitte erneut versuchen."
+
+msgid "ui.language.unavailable"
+msgstr "Diese Sprache ist nicht verfügbar."
+
+msgid "ui.mode.adventure"
+msgstr "Abenteuer"
+
+msgid "ui.mode.challenge"
+msgstr "Herausforderung"
+
+msgid "ui.mode.chapter"
+msgstr "Kapitel {number} · {name}"
+
+msgid "ui.mode.chapter_terms"
+msgstr "Normaler Schwierigkeitsgrad · {stamina} Ausdauer pro Kampf\n{status}"
+
+msgid "ui.mode.chess"
+msgstr "Taktik"
+
+msgid "ui.mode.confirm"
+msgstr "Kapitel auswählen"
+
+msgid "ui.mode.current"
+msgstr "Aktuell"
+
+msgid "ui.mode.empty"
+msgstr "Keine Modi verfügbar."
+
+msgid "ui.mode.enter"
+msgstr "Abenteuer beginnen"
+
+msgid "ui.mode.level"
+msgstr "Kapitel {number}"
+
+msgid "ui.mode.locked"
+msgstr "Schließe das vorige Kapitel ab, um es freizuschalten"
+
+msgid "ui.mode.locked_label"
+msgstr "Gesperrt"
+
+msgid "ui.mode.next"
+msgstr "Nächstes Kapitel ›"
+
+msgid "ui.mode.not_open"
+msgstr "Noch nicht verfügbar"
+
+msgid "ui.mode.preview_title"
+msgstr "Modus: {mode}"
+
+msgid "ui.mode.previous"
+msgstr "‹ Voriges Kapitel"
+
+msgid "ui.mode.pvp"
+msgstr "Duell"
+
+msgid "ui.mode.unavailable"
+msgstr "Dieser Modus ist noch nicht verfügbar."
+
+msgid "ui.mode.unlocked"
+msgstr "Freigeschaltet"
+
+msgid "ui.page.achievements"
+msgstr "Erfolge"
+
+msgid "ui.page.activity"
+msgstr "Events"
+
+msgid "ui.page.assets"
+msgstr "Inventar"
+
+msgid "ui.page.collection"
+msgstr "Sammlung"
+
+msgid "ui.page.daily_tasks"
+msgstr "Tägliche Aufgaben"
+
+msgid "ui.page.encyclopedia"
+msgstr "Lexikon"
+
+msgid "ui.page.legend_road"
+msgstr "Pfad der Legenden"
+
+msgid "ui.page.modes"
+msgstr "Modi und Kapitel"
+
+msgid "ui.page.notices"
+msgstr "Mitteilungen"
+
+msgid "ui.page.ranking"
+msgstr "Lokale Rangliste"
+
+msgid "ui.page.settings"
+msgstr "Einstellungen"
+
+msgid "ui.page.seven_day_sign_in"
+msgstr "7-Tage-Anmeldung"
+
+msgid "ui.page.shop"
+msgstr "Laden"
+
+msgid "ui.page.social"
+msgstr "Community und Freunde"
+
+msgid "ui.page.talents"
+msgstr "Talente"
+
+msgid "ui.platform.portrait_required"
+msgstr "Hochformat\nSpiel pausiert"
+
+msgid "ui.preview.base_stats"
+msgstr "★1-Basisvorschau · Ohne Aufbauboni"
+
+msgid "ui.preview.build_reference"
+msgstr "Fähigkeitsübersicht für den Aufbau · Nicht erworben"
+
+msgid "ui.relic.consumable"
+msgstr "Verbrauchbar"
+
+msgid "ui.relic.empty"
+msgstr "Keine Relikte"
+
+msgid "ui.relic.history"
+msgstr "Relikte des Kapitels"
+
+msgid "ui.relic.persistent"
+msgstr "Dauerhaft"
+
+msgid "ui.relic.unused"
+msgstr "Unbenutzt"
+
+msgid "ui.relic.used"
+msgstr "Verbraucht"
+
+msgid "ui.reward.activate"
+msgstr "Würfel hier ablegen, um seinen Effekt auszulösen"
+
+msgid "ui.reward.card_growth"
+msgstr "Nach Erhalt: Kapitel +{level} · Nächste Stufe {progress}/{next}"
+
+msgid "ui.reward.carry_notice"
+msgstr "Unbenutzte Würfel bleiben erhalten und werden bei jedem Wurf mitgewürfelt."
+
+msgid "ui.reward.choice_title"
+msgstr "Belohnung wählen"
+
+msgid "ui.reward.choose_aurora"
+msgstr "Belohnung erhalten"
+
+msgid "ui.reward.complete_build"
+msgstr "Abenteuer fortsetzen"
+
+msgid "ui.reward.countdown"
+msgstr "{seconds}s"
+
+msgid "ui.reward.kind.fragment"
+msgstr "Spezialfragment"
+
+msgid "ui.reward.kind.hero_growth"
+msgstr "Aktuellen Helden aufwerten"
+
+msgid "ui.reward.kind.item_card"
+msgstr "Gegenstand"
+
+msgid "ui.reward.kind.minion"
+msgstr "Gefolgsmann"
+
+msgid "ui.reward.kind.relic"
+msgstr "Relikt"
+
+msgid "ui.reward.layout_preview"
+msgstr "Kampfbelohnungen · Layoutvorschau"
+
+msgid "ui.reward.migration_receipt"
+msgstr "Migration abgeschlossen: {merged_account_gold} Gold wurde dem Konto hinzugefügt; {converted_dice} unbenutzte Würfel wurden in die neue Version übertragen."
+
+msgid "ui.reward.named"
+msgstr "{kind} · {name} ×{count}"
+
+msgid "ui.reward.open_die"
+msgstr "{name} · Drei Optionen anzeigen"
+
+msgid "ui.reward.refresh_count"
+msgstr "Erneuern · {count} übrig"
+
+msgid "ui.reward.reroll"
+msgstr "Neu würfeln"
+
+msgid "ui.reward.retry"
+msgstr "Belohnungen erneut laden"
+
+msgid "ui.reward.stones"
+msgstr "Sternsteine ×{count}"
+
+msgid "ui.route.battle"
+msgstr "Kampf"
+
+msgid "ui.route.boss"
+msgstr "Boss"
+
+msgid "ui.route.current"
+msgstr "Aktuell"
+
+msgid "ui.route.elite"
+msgstr "Elite"
+
+msgid "ui.route.encounter"
+msgstr "Begegnung"
+
+msgid "ui.route.market"
+msgstr "Schwarzmarkt"
+
+msgid "ui.route.progress"
+msgstr "Ebene {floor} / {total}"
+
+msgid "ui.route.relic"
+msgstr "Ruinen"
+
+msgid "ui.route.start"
+msgstr "Start"
+
+msgid "ui.route.unknown"
+msgstr "Unbekannt"
+
+msgid "ui.save.failed"
+msgstr "Speichern fehlgeschlagen. Bitte erneut versuchen."
+
+msgid "ui.session.backup_recovered"
+msgstr "Lokale Spielerdaten wurden aus einer Sicherung wiederhergestellt. Ein Teil des letzten Fortschritts fehlt möglicherweise."
+
+msgid "ui.session.choose_existing"
+msgstr "Mehrere bestehende Spielstände gefunden. Bitte den Standardspielstand für dieses Gerät auswählen. Andere Spielstände werden nicht gelöscht."
+
+msgid "ui.session.legacy_deletion"
+msgstr "Ein unvollständiger Löschvorgang einer älteren Version wurde gefunden. Die automatische Wiederherstellung wurde zum Schutz Ihrer Daten angehalten. Bitte zuerst das Speicherverzeichnis prüfen und reparieren."
+
+msgid "ui.session.load_failed"
+msgstr "Dein Spielstand konnte nicht gelesen werden. Die Originaldateien wurden beibehalten. Prüfe den Spielstand oder stelle eine Sicherung wieder her."
+
+msgid "ui.session.not_ready"
+msgstr "Die Spielerdaten sind noch nicht bereit. Bitte erneut versuchen."
+
+msgid "ui.session.profile_unreadable"
+msgstr "Die lokale Spieleridentität konnte nicht gelesen werden. Originaldateien bleiben erhalten. Bitte den Spielstand prüfen oder eine Sicherung wiederherstellen."
+
+msgid "ui.session.profile_write_failed"
+msgstr "Der Standardspieler konnte nicht gespeichert werden. Der erstellte Fortschritt bleibt erhalten. Bitte erneut versuchen."
+
+msgid "ui.session.recovery_failed"
+msgstr "Das unterbrochene Spiel konnte nicht wiederhergestellt werden. Dein Spielstand wurde beibehalten. Versuche erneut, das Spiel zu starten."
+
+msgid "ui.session.save_missing"
+msgstr "Für den gespeicherten lokalen Spieler fehlt ein wiederherstellbarer Spielstand. Es wird kein Ersatz erstellt. Bitte den ursprünglichen Spielstand wiederherstellen."
+
+msgid "ui.settings.local_player"
+msgstr "Lokaler Spieler"
+
+msgid "ui.settings.local_player_note"
+msgstr "Keine Anmeldung nötig. Fortschritt bleibt auf diesem Gerät."
+
+msgid "ui.shop.busy"
+msgstr "Die vorige Transaktion wird verarbeitet."
+
+msgid "ui.shop.buy_button"
+msgstr "{amount} {currency}"
+
+msgid "ui.shop.buy_confirm"
+msgstr "{name} für {amount} {currency} kaufen."
+
+msgid "ui.shop.buy_title"
+msgstr "Kauf bestätigen"
+
+msgid "ui.shop.failure"
+msgstr "Dieses Angebot kann aktuell nicht gekauft werden."
+
+msgid "ui.shop.fragments_detail"
+msgstr "{name}: {owned} / {required}"
+
+msgid "ui.shop.gold_price"
+msgstr "{amount} Gold"
+
+msgid "ui.shop.insufficient"
+msgstr "Guthaben reicht nicht aus."
+
+msgid "ui.shop.owned"
+msgstr "Du besitzt diesen Inhalt bereits."
+
+msgid "ui.shop.price_detail"
+msgstr "{currency}: Originalpreis {original} → Zahlbetrag {amount}"
+
+msgid "ui.shop.save_failed"
+msgstr "Speichern fehlgeschlagen. Die Transaktion wurde rückgängig gemacht."
+
+msgid "ui.shop.success"
+msgstr "Kauf erfolgreich; zur Sammlung hinzugefügt."
+
+msgid "ui.shop.unavailable"
+msgstr "Nicht verfügbar"
+
+msgid "ui.shop.unpriced"
+msgstr "Noch kein Preis"
+
+msgid "ui.social.community"
+msgstr "Community"
+
+msgid "ui.social.friends"
+msgstr "Freunde"
+
+msgid "ui.startup.content_failed"
+msgstr "Die Spielinhalte konnten nicht geladen werden. Prüfe die Spielressourcen oder installiere sie erneut."
+
+msgid "ui.startup.language_failed"
+msgstr "Die Sprachressourcen konnten nicht geladen werden. Prüfe die Spielressourcen oder installiere sie erneut."
+
+msgid "ui.startup.local_player"
+msgstr "Keine Registrierung oder Anmeldung erforderlich. Diese Version verwendet einen lokalen Spieler und speichert den Fortschritt auf diesem Gerät."
+
+msgid "ui.startup.retry"
+msgstr "Erneut versuchen"
+
+msgid "ui.startup.title"
+msgstr "Das Spiel kann nicht gestartet werden"
+
+msgid "ui.storage.unavailable"
+msgstr "Der lokale Speichervorgang konnte nicht abgeschlossen werden. Prüfe den verfügbaren Speicherplatz und die Zugriffsrechte und versuche es erneut."
+
+msgid "ui.talents.cost"
+msgstr "Kosten: 1 Talentpunkt"
+
+msgid "ui.talents.invalid"
+msgstr "Talent nicht gefunden"
+
+msgid "ui.talents.learned"
+msgstr "Freigeschaltet"
+
+msgid "ui.talents.no_points"
+msgstr "Keine Talentpunkte"
+
+msgid "ui.talents.point_source"
+msgstr "Erster Kapitelabschluss: +1 Punkt"
+
+msgid "ui.talents.points"
+msgstr "Talentpunkte: {count}"
+
+msgid "ui.talents.prerequisite"
+msgstr "Zuerst das vorherige Talent freischalten"
+
+msgid "ui.talents.requires"
+msgstr "Voraussetzung: {name}"
+
+msgid "ui.talents.success"
+msgstr "Talent freigeschaltet"
+
+msgid "ui.talents.unlock"
+msgstr "Freischalten"
+

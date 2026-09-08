@@ -1,0 +1,922 @@
+{
+  "rules.condition.event_target_is_enemy": {
+    "text": "the target is an enemy",
+    "source_hash": "8ed6263a411fcba20cccc733633d86df9f1fa677c9359130f7a705b6074a237e"
+  },
+  "rules.condition.event_has_kill_credit": {
+    "text": "the defeat grants kill credit",
+    "source_hash": "051362e2caf3dc943b70905faa34452b62d0b40db8004300ed86aa912c4c5c0e"
+  },
+  "rules.ability.internal_cooldown": {
+    "text": "Trigger cooldown: {seconds}s",
+    "source_hash": "f060a179a2e57408290a3dbe0f321453ca8b51a32c98ccd1847e400d10b4415f"
+  },
+  "rules.ability.internal_cooldown_remaining": {
+    "text": "Ready to trigger again in {seconds}s",
+    "source_hash": "5e68a09a317eead6a776d1c4e79dde097d93bb04a67a77fc7d9a625a92327d13"
+  },
+  "rules.ability.scope": {
+    "text": "{target}: {description}",
+    "source_hash": "0e0fb7eedce5f838aeff313e0fbf2c32ed50fd0a0973274d652f1ab7980ee247"
+  },
+  "rules.mechanic.accumulate": {
+    "text": "{target}: +{amount} counters; threshold {threshold}, cap {limit}",
+    "source_hash": "9fa1cdae4b80c572710835c9154619712ce8b9580d3eb9f8b47f20e24f37630e"
+  },
+  "rules.mechanic.detonate": {
+    "text": "Consume {count} allied Burn stacks on {target}; deal {percent}% of remaining base damage",
+    "source_hash": "d80634c76f3d4d83f06f14cdab4d4f5cc7043e45d5aa19fa182a9c16b40cf546"
+  },
+  "rules.mechanic.mark": {
+    "text": "Mark {target} for {seconds}s",
+    "source_hash": "70ee0789dd966f41090b3606c19739eb732ccb68936fe57a0864aac9a324dd85"
+  },
+  "rules.mechanic.empower": {
+    "text": "{target}: next active cast group +{percent}%; {duration}",
+    "source_hash": "5f07103add1fb2945686220ea1d87efda497fa47fd0751fd348b43c2fa468aaa"
+  },
+  "rules.mechanic.guard": {
+    "text": "{target} intercepts {amount} single-target damage instances against adjacent allies; {duration}",
+    "source_hash": "2173afe15ba6fbb805cb0ccdf48a5e969ce04dc89b6f605cec7a6546226a000d"
+  },
+  "rules.mechanic.link": {
+    "text": "Link to {target} and observe active casts; {duration}",
+    "source_hash": "963f5c571229bc619e48505d64d90ae5c2ced60acd3147d185cc63627d5ce21e"
+  },
+  "rules.mechanic.convert": {
+    "text": "{target} pays {amount} {resource}, then: {payload}",
+    "source_hash": "2ce956e291274693f91255f3a03a11ed2c1188e21b52b89eefce6fb2a5022f2b"
+  },
+  "rules.mechanic.transfer": {
+    "text": "Transfer {amount} existing {resource} from self to {target}, preserving timers",
+    "source_hash": "345f94029c0cf4061df6de66a5516794e451ac62834bb232374af06994f17c91"
+  },
+  "rules.mechanic.overload": {
+    "text": "{target}: +{amount} heat; at {limit}, shut down for {recovery}s. This effect: {payload}",
+    "source_hash": "38a0f12d87722d84a123dc99eb057c1a6e9a1ba9001219a139f19af31858c18a"
+  },
+  "rules.mechanic.chain": {
+    "text": "Chain from {target} through {count} distinct targets, retaining {percent}% strength per hop: {payload}",
+    "source_hash": "7b3510d701d9c4b6ae504d2c0e55163d21eb0c2ece90655f3b29818b65780488"
+  },
+  "rules.mechanic.echo": {
+    "text": "Echo the last original numerical effect of {target} at {percent}% strength",
+    "source_hash": "3372efb0bb982c0609f0686d496ae9c09c44b6d662836f1f49a1ebd4dc627b7c"
+  },
+  "rules.mechanic.sacrifice": {
+    "text": "Sacrifice the allied minion {target}, then: {payload}",
+    "source_hash": "dddf27203c22362016b603c4579ed2f6f65f37f0a444ec63550c7dd8c56cf384"
+  },
+  "rules.mechanic.combo": {
+    "text": "After {count} original events within {seconds}s (0: battle), {unique}",
+    "source_hash": "d59105329621c1e05b3c51c7be859bf5185f9e6ca432113106b2e86aeef2f1e7"
+  },
+  "rules.mechanic.distinct": {
+    "text": "distinct sources",
+    "source_hash": "c32b83efaaa5d2b114c619fbdf087cc5f2cddc4e75f49b2f5dc1c139b3f983ac"
+  },
+  "rules.mechanic.any_source": {
+    "text": "repeated sources allowed",
+    "source_hash": "2e837a899097a414e23b62782eed0bff539cbea3cd03175d0d8aee592d021b9a"
+  },
+  "rules.resource.shield": {
+    "text": "shield",
+    "source_hash": "b65b6e3a2e3dfc52581f7e3bdb625da8e777b37aa94926c635e2ec28837f7fc6"
+  },
+  "rules.resource.health": {
+    "text": "health",
+    "source_hash": "45bc77bc1c58d0449b9b35c54ff8883e3b1389eee3e04e4dd1300a5632ec46ca"
+  },
+  "rules.resource.ammo": {
+    "text": "ammo",
+    "source_hash": "5a8114a4b3320ccb5e672eca75180cf6e5f9e4a339bc6ec139e7524b690829e7"
+  },
+  "rules.resource.counter": {
+    "text": "counters",
+    "source_hash": "21179deb9a747f5f35ab3069a5d7762cc6189db0e124e10fad8af4fc26af2832"
+  },
+  "rules.resource.burn": {
+    "text": "Burn stacks",
+    "source_hash": "7fd2ee9edc47ca53900ee2ff881a6bc2d08b2b4dcf0a2393bb84e3577ea64e54"
+  },
+  "rules.resource.poison": {
+    "text": "Poison instances",
+    "source_hash": "accd7c0564386b5fd00e413ce1ff45beaea0e405204e0c3653b96d2079b9f2e7"
+  },
+  "rules.modifier.stat_ratio": {
+    "text": "{stat} increased by {percent}% (additive)",
+    "source_hash": "ebe648205a4be483e0eabf503539ac0b6b94975d54194b497710b4362b1e9d19"
+  },
+  "rules.stat.max_health": {
+    "text": "Max health",
+    "source_hash": "f50b6574e8b750b14003d97d2c4d0dec98d580394b2915cea9ca158ab7c16f1e"
+  },
+  "rules.section.current": {
+    "text": "Current effects and trigger status",
+    "source_hash": "4fafa266aa99381025929603cc15d493c0bdf45161e0ee330559c46e43f90d42"
+  },
+  "rules.ability.conditional_description": {
+    "text": "While {conditions}: {modifiers}",
+    "source_hash": "5a4bb3109fe8442e194e72cb87c4a8ab3d33d8facaac6287f5cddc4e5a531c85"
+  },
+  "rules.unknown": {
+    "text": "Unknown",
+    "source_hash": "4d8c1c5b42830791a4ce99f630fb9f02ba08c67c5299d46d6cf76661bfd03584"
+  },
+  "rules.separator.sentences": {
+    "text": "; ",
+    "source_hash": "b0d3c9cfa0e1ef6799ec266c5467a1dc04e54e2f22b853c2f35d1dec1bbd2e71"
+  },
+  "rules.separator.list": {
+    "text": ", ",
+    "source_hash": "c4a40ea8fe35627476f7f8cb9e1fc7f8898f428c6d1ff18b0bc5479d5db39c5f"
+  },
+  "rules.separator.and": {
+    "text": " and ",
+    "source_hash": "9f00f6770f8cfe0b1ec666b0af2ac6798bff6e9b98d51b3fe59a481c96d898cf"
+  },
+  "rules.separator.or": {
+    "text": " or ",
+    "source_hash": "a2123d69506f51ff112bad06f9c997cb4fa8b854ecce191a5204861bbb1ee732"
+  },
+  "rules.cooldown.seconds": {
+    "text": "{stat_cooldown_seconds} {seconds}s",
+    "source_hash": "26ed1fc3e68938bbc18dacba40bbafc37031d1421ba8466eb953deac8ec35294"
+  },
+  "rules.card.haste": {
+    "text": "{stat_haste_ratio} {percent}% · reduces each cooldown",
+    "source_hash": "43579905cb170c024a222c89656979e192d97ab036eecce545bc14c9251518b4"
+  },
+  "rules.card.lifesteal": {
+    "text": "{stat_lifesteal_ratio} {percent}% · health loss only",
+    "source_hash": "da5d2352ce5047451001cd63d4018505b3ee3a29e3adcd35145b637e159fc22c"
+  },
+  "rules.card.ammo": {
+    "text": "{stat_ammo_capacity} · {count} uses per battle; active casts consume 1; passives remain when empty",
+    "source_hash": "38567a7055052bcf9fb4c7b24d324ae77b0e2af71e44b21146bb76a7360863ac"
+  },
+  "rules.card.main_ability": {
+    "text": "{cooldown}{multicast}: {actions}",
+    "source_hash": "cdf875dc5587fae8a9a7b306b14fe8ac67ab3cf093cade0f5082462540548d47"
+  },
+  "rules.identity": {
+    "text": "{kind} · {output}\nFootprint: {width} × {height}",
+    "source_hash": "8f7b009682de31919eedf4f759740d4dc0c77b03da8871fdaff7b3acbfec4ceb"
+  },
+  "rules.main_ability.description": {
+    "text": "{cooldown}{multicast}\n{actions}",
+    "source_hash": "f3b921c0d14cb583d2b81bc9f0053550823f8d293e517ae08233e595af757a04"
+  },
+  "rules.actions.physical_damage": {
+    "text": "Deal {amount} {stat_physical_damage} to {target}",
+    "source_hash": "d09bcbca6263734c1f713deda4c6c41b90f411fc6a9b6df2d40c5a2e05da949e"
+  },
+  "rules.actions.heal": {
+    "text": "Provide {amount} {stat_healing_power} to {target}",
+    "source_hash": "3f6d84f5859fd2176809515fa487f6055b6357e5ef53896749c6e647a3a7a704"
+  },
+  "rules.actions.shield": {
+    "text": "Provide {amount} {stat_shield_power} to {target}",
+    "source_hash": "bc7010156fcf905b59a533ca2bd29d061ae15d29c10d88b88a0971b7ed9ba3c3"
+  },
+  "rules.actions.status_damage": {
+    "text": "Apply {status} to {target} for {seconds}s ({amount} damage per second)",
+    "source_hash": "10d1c9fbbaa9e5b83cc6d91cc6bbd2495ff7f64e53c5369b12e2fce33bcf148e"
+  },
+  "rules.actions.status_control": {
+    "text": "Apply {status} to {target} for {seconds}s",
+    "source_hash": "053f16dccd1ebfd8846da9040a8063948c8354431e5f03283a2d45221c9a7061"
+  },
+  "rules.actions.poison_penetration": {
+    "text": "While poisoned, healing received is reduced by 20% (non-stacking). Existing shields block poison damage until depleted; poison then bypasses later shields",
+    "source_hash": "34501bbe8b60f666b6fa515fc03b39426fa36edf3fd163037296139fb3d94492"
+  },
+  "rules.actions.pollution": {
+    "text": "Pollution change: {amount}",
+    "source_hash": "4ede6adb8a2a4f4f46b9287e842faebc3c60d33e3a42f4a648e457be856b40e4"
+  },
+  "rules.actions.charge": {
+    "text": "Advance the cooldown of {main_ability} for {target} by {amount}s",
+    "source_hash": "1a49f7d836c1a124832f23bb7f6d0ecb07784e43cb9e8e4c60eabccbe5ee88df"
+  },
+  "rules.actions.delay": {
+    "text": "Add {amount}s to the remaining cooldown of {main_ability} for {target}",
+    "source_hash": "6a8a62654bc70c50ae7c40ad824ef46d1b4b13dd6d9432837567a898ea4c82d4"
+  },
+  "rules.actions.haste": {
+    "text": "Grant {percent}% {stat_haste_ratio} to {target}’s {main_ability} ({duration})",
+    "source_hash": "2b125dcc03ff4e7b02a90c5fe173418d149ec7c4e4b535831742cdf6e0ebf85b"
+  },
+  "rules.actions.refill": {
+    "text": "Restore {amount} uses to {target}, up to its ammo capacity",
+    "source_hash": "b4703cb23c49d81f05ba378c3530aa1820c245146dba604a3ecd4ede3d3ad595"
+  },
+  "rules.actions.expand": {
+    "text": "Increase the ammo capacity of {target} by {amount} and restore the same number of uses",
+    "source_hash": "85f22fd9d97d3b085577258c63eae01f21c474fcc6c1a5d338983275a77ffcca"
+  },
+  "rules.actions.lifesteal": {
+    "text": "This damage has {percent}% {stat_lifesteal_ratio} (shield loss excluded)",
+    "source_hash": "676fef1cef296887ae23c33db61da08ddd42652c5837727017be978d081f1d03"
+  },
+  "rules.duration.battle": {
+    "text": "for this battle",
+    "source_hash": "1d53673e7f0f2643233c3b11e2a6491e1fa9ba92dbd6a7efa34fb22bc21084ca"
+  },
+  "rules.duration.source": {
+    "text": "while the source remains active",
+    "source_hash": "dc4e413de9e72ce53bf0552d1e65682381980999c6de324a521479c6f4a7e2f5"
+  },
+  "rules.duration.seconds": {
+    "text": "{seconds}s",
+    "source_hash": "622b117f298b186539fb5748fe09039f1289dc6be3d8bd6a7a7a568ae896c0f1"
+  },
+  "rules.multicast": {
+    "text": " · {stat_multicast_bonus} ×{count}",
+    "source_hash": "30df00fe4d8f57cb8e2b7a44c36c1f8bb20448e45b7c4ff4b0dd152b36b5c995"
+  },
+  "rules.node.missing": {
+    "text": "Node rules are missing.",
+    "source_hash": "594a2c26848b2a0f3e8892eaadd1fb67674a373f33969a01f3e3fce293e9ebf0"
+  },
+  "rules.node.reward": {
+    "text": "Gain {amount} {reward} for your account.",
+    "source_hash": "51cacd501cecebc8cf355fea7e6e6f9df8edcae8124e06fc5ef781b882765f45"
+  },
+  "rules.node.exchange": {
+    "text": "Spend {cost} account {currency} to gain {amount} account {reward}.",
+    "source_hash": "817a12ba46f89ad525d41e44c4935eaf647e0415651e663ea640e064d0e5ef1a"
+  },
+  "rules.rule": {
+    "text": "{trigger}{conditions}: {actions} (up to {per_second}/s and {per_battle}/battle){multicast}",
+    "source_hash": "f063dfc3506183dc2451827ee5e60cd10a22fb61b1db2659322c6581881912a6"
+  },
+  "rules.rule.conditions": {
+    "text": ", if {conditions}",
+    "source_hash": "3b2fea023ba92b659fc9d061042ce95b64bcd841d574112eacadb399a293bbf9"
+  },
+  "rules.condition.always": {
+    "text": "always",
+    "source_hash": "0f782a19f0eee18b0bcdcebcaa264bebbabc05ceacd1afefb448d984be91edad"
+  },
+  "rules.condition.owner_health_at_most_percent": {
+    "text": "own health is at most {threshold}%",
+    "source_hash": "3e01dd04a0e6147dffe3443f3b40fdd4d08c5dcb328d0c89541d5c9861e40122"
+  },
+  "rules.condition.pollution_at_least": {
+    "text": "pollution is at least {threshold}",
+    "source_hash": "d131191e14c60e0b3cf55bd60b75dfdc0c5ce9f69c298c6b148807457d3be814"
+  },
+  "rules.condition.pollution_at_most": {
+    "text": "pollution is at most {threshold}",
+    "source_hash": "79b6a6191739f5f4f430427b6b4ab608c7c3fa486507e0336e5e2407430d4fdf"
+  },
+  "rules.condition.event_source_is_owner": {
+    "text": "the source is self",
+    "source_hash": "7af347c1e5c4150466fa51efcbc3a4828368fb95237a19bdbf2aa22e3ac27a3d"
+  },
+  "rules.condition.event_target_is_owner": {
+    "text": "the target is self",
+    "source_hash": "1c7579d084a724e58bbd134d5954fc333ff0c35b1b4500f946a7c1ccb7c5c6bf"
+  },
+  "rules.condition.event_source_is_minion": {
+    "text": "the source is a minion",
+    "source_hash": "d32032af5373e74aaa81d32a7f37631e46780c394029c2f8e2dda9769ac0cf77"
+  },
+  "rules.condition.event_target_is_core": {
+    "text": "the target is a hero",
+    "source_hash": "71313b0d9c928325af7abe4006b120ac9782973b8b27cb34fb0a008d231a9fc0"
+  },
+  "rules.condition.owner_has_status": {
+    "text": "self has {status}",
+    "source_hash": "c914829dc044976acc167e523251480746a7af29f81ad8ee89c22aaf4bd4264d"
+  },
+  "rules.condition.event_source_is_adjacent": {
+    "text": "the source is adjacent to self",
+    "source_hash": "31b7443414d803f8287e5f6595f9267c87375bccbfb9201c72a07f0ec8c79178"
+  },
+  "rules.condition.event_source_is_ally": {
+    "text": "the source is on the allied team",
+    "source_hash": "f959c94256b56f0b475489299237b62bf9be189c9e6c15cee5d9efbb66de797c"
+  },
+  "rules.condition.event_source_is_enemy": {
+    "text": "the source is on the enemy team",
+    "source_hash": "d4247f2cc98825aecb2e485edc7c6977891879e7c7debd87ea2ec822c73f3635"
+  },
+  "rules.modifier.health": {
+    "text": "{stat_max_health} {amount}",
+    "source_hash": "306e2a5c2267e26d45771618fcbf82d85bda4e4bfbc816f4b536d0169f3ca378"
+  },
+  "rules.modifier.cooldown": {
+    "text": "Base {stat_cooldown_seconds} {seconds}s",
+    "source_hash": "939bd6d88dcbe295846654f53dc82bb9031c43a42bfc607070651cc5211ab83f"
+  },
+  "rules.modifier.percent": {
+    "text": "{stat} {amount} percentage points",
+    "source_hash": "92badf5b55d69b9d3256c09c294811d9650c55fd0f8dd2b3f58eafd91e4a5a77"
+  },
+  "rules.modifier.ammo": {
+    "text": "{stat_ammo_capacity} limit {count} (enabled items only)",
+    "source_hash": "fe7957a4d1743a8e2caf00df11d8400c679fb14706ad115c6df0f096232438aa"
+  },
+  "rules.modifier.multicast": {
+    "text": "{stat_multicast_bonus} ×{count}",
+    "source_hash": "9e17bd0f1dd9090133906132be52076e44769985f522dc83039c7b132ca8f7c4"
+  },
+  "rules.modifier.projectile": {
+    "text": "Replace the attack projectile",
+    "source_hash": "2605d19fc02647036041af1c7efc7580b74490c69a2e2c6741cfb55e022f254d"
+  },
+  "rules.modifier.action": {
+    "text": "{action} effect parameter {amount}",
+    "source_hash": "e3ddfff6df64f35439b62b2a14028112514c24230b1b3e0531455a96c04102e6"
+  },
+  "rules.synergy.cards": {
+    "text": "At least {count} cards in battle",
+    "source_hash": "9687c8cc4fea8e8253141cf59a544f1815cc5efcf39b796f506bf405cc9ac593"
+  },
+  "rules.stat.crit_chance": {
+    "text": "Critical chance",
+    "source_hash": "d4b0baf9557a144096efeb174d78f716c80d0674342cc61b3c43e9b2ed1e1487"
+  },
+  "rules.stat.crit_multiplier": {
+    "text": "Critical multiplier",
+    "source_hash": "65a9b0d1856d32270a3b29cbe4b8ee34d1f4a17bd46e4a46b8770da3891dff6e"
+  },
+  "rules.stat.haste_ratio": {
+    "text": "Haste",
+    "source_hash": "27c75f4ac930a1ea3c7873fd47de8e4e2abac230d0fb8a9ef06f0b9a6773a775"
+  },
+  "rules.stat.lifesteal_ratio": {
+    "text": "Lifesteal",
+    "source_hash": "0c8abadacd7fb6716251de01c874a5ffdbcc1f5881f3732c2fe4b6d6db171b1d"
+  },
+  "rules.card_kind.core_hero": {
+    "text": "Hero",
+    "source_hash": "09e9b2088fa078167852e0975045c9b7b854226d19352624e68d30ced70f7921"
+  },
+  "rules.card_kind.minion": {
+    "text": "Minion",
+    "source_hash": "34448448dda154c26716e8b05f4bf5b45751a0c97e1545ab4ca1ef2417748332"
+  },
+  "rules.card_kind.item_card": {
+    "text": "Item card",
+    "source_hash": "38e536cefc0b5987743afb62648291f16d15b92fad311ff01ba0b83598731246"
+  },
+  "rules.card_kind.monster": {
+    "text": "Monster",
+    "source_hash": "31567e20345be2c5470e5a9b77d6dc4b143e67899a282fd98bb14397b3768207"
+  },
+  "rules.status.none": {
+    "text": "No status",
+    "source_hash": "27b7a80b46d8e746308d2e1e2d2fd72733f4848d37347d2b682b27281a988891"
+  },
+  "rules.status.burn": {
+    "text": "Burn",
+    "source_hash": "6e3c6d247db5646cf1e4f80cfce2aafbbe388d8f45d4fe7855bee745e9f97f9e"
+  },
+  "rules.status.poison": {
+    "text": "Poison",
+    "source_hash": "3af01c498fe41db0acebedaf95e2414ec01ada1e1df9168e964eb88853938d03"
+  },
+  "rules.status.freeze": {
+    "text": "Freeze",
+    "source_hash": "0eafcb149bcdb501be4dbc1632a3e197c0fe1dc39907267c82d0250a2f013e6d"
+  },
+  "rules.status.slow": {
+    "text": "Slow",
+    "source_hash": "4c85bb20dab412b28be5f08d065af1788e395c9d8ef039ea32d6e085cea8af72"
+  },
+  "rules.status.stun": {
+    "text": "Stun",
+    "source_hash": "345ec59d3b39a6f382734407ef41f1484f8d609b6443c3cb3da49f402ae73f8a"
+  },
+  "rules.currency.gold": {
+    "text": "Gold",
+    "source_hash": "bbece6f829af7a27bd7ed37acc0eacfdcf1f30b4c6c14cf3728a75d485a1ec6d"
+  },
+  "rules.currency.star_stone": {
+    "text": "Star Stones",
+    "source_hash": "ddbee2f785521a6a9e26eed867233449e622af16092b382731fc54f8370defd4"
+  },
+  "rules.currency.rmb": {
+    "text": "CNY",
+    "source_hash": "ba9771ca730db58fec6782e8bb84034a1e7d8d2f8ab26f897168a2c175fe8419"
+  },
+  "rules.target.self": {
+    "text": "self",
+    "source_hash": "8e8021bc1026928c1f561983d83ad5d3223f736219cc689965bd159bfa8d73bc"
+  },
+  "rules.target.event_source": {
+    "text": "the event source",
+    "source_hash": "5f025d69cecafe403ae91cfee3c80d88c9d7418a73c9fa68cb7c7a6840ab6555"
+  },
+  "rules.target.event_target": {
+    "text": "the event target",
+    "source_hash": "372e3a8c1ec6d85ad0e7bb0899f7314191a7faf301686b7ba97f1a00e7137ffd"
+  },
+  "rules.target.nearest_enemy": {
+    "text": "the nearest enemy",
+    "source_hash": "0d975c24b266e48f68e66b2401f12b0990a809bace0cd3321eb895485f113e6d"
+  },
+  "rules.target.farthest_enemy": {
+    "text": "the farthest enemy",
+    "source_hash": "5c81c18cda5b171215541f60295c88d1be51df4778ed06772fa5379e66d7d6f7"
+  },
+  "rules.target.lowest_health_ally": {
+    "text": "the ally with the lowest health",
+    "source_hash": "b08dc313a41f6a459db8784848bda6ebdfd93538ea30ea94f76068842c0f3141"
+  },
+  "rules.target.all_enemies": {
+    "text": "all enemies",
+    "source_hash": "1c0c06082e42d7923cce2133a10d1a6d321c045f27a910dc3a1ffcc021dc8914"
+  },
+  "rules.target.all_allies": {
+    "text": "all allies",
+    "source_hash": "2adb0f22348acd45411a78a6c1f709f51eb451bca2bb2236b7eec8f76f97ac66"
+  },
+  "rules.target.adjacent_allies": {
+    "text": "adjacent allies",
+    "source_hash": "2b811a94e63b7d92f585010166fd5f83d4bbf22f4eed1200ad2cabb26017fcda"
+  },
+  "rules.target.random_enemy": {
+    "text": "a random enemy",
+    "source_hash": "cdefd1a7e2a1f1f16d52d3033e6e93f1698b4164e169ac7468136d45bd4b9599"
+  },
+  "rules.target.all_units": {
+    "text": "all units in battle",
+    "source_hash": "d945b526034fb18439d03350e101d7146b6fb8bbb76921a748cd1d433a021322"
+  },
+  "rules.action.physical_damage": {
+    "text": "Physical damage",
+    "source_hash": "a454f17872a14b8ae11e9a7f6ffd9b09075e748ae4fb27700dc99328be039e42"
+  },
+  "rules.action.heal": {
+    "text": "Healing",
+    "source_hash": "c81995fafdc22cd7c31600663c9acce9c34a25ce7593b6d64243b68bd38ff9f6"
+  },
+  "rules.action.grant_shield": {
+    "text": "Shield",
+    "source_hash": "b65b6e3a2e3dfc52581f7e3bdb625da8e777b37aa94926c635e2ec28837f7fc6"
+  },
+  "rules.action.apply_status": {
+    "text": "Status power",
+    "source_hash": "f18150f743a3880250df0d40b349d0ac593323f82ed2527b8410e00a8f08d5c4"
+  },
+  "rules.action.change_pollution": {
+    "text": "Pollution",
+    "source_hash": "aca5283c3ef207cf9db120cf30e79cb74ef9555437a448279111a0719222585f"
+  },
+  "rules.action.charge": {
+    "text": "Charge",
+    "source_hash": "c0c253c2710b4e91f3de60d1e8737902b327ee3d7f419d4046b1c8cf3ea4cf67"
+  },
+  "rules.action.delay_cooldown": {
+    "text": "Cooldown delay",
+    "source_hash": "18045b8c40f135cd3812cd98041ada341fb802b12239d7caed213947b0691a43"
+  },
+  "rules.action.haste": {
+    "text": "Haste",
+    "source_hash": "27c75f4ac930a1ea3c7873fd47de8e4e2abac230d0fb8a9ef06f0b9a6773a775"
+  },
+  "rules.action.refill_ammo": {
+    "text": "Ammo refill",
+    "source_hash": "da9d2276b2e31755961505fc274da2db3098d4a0ef65a3eaa200684ed113c912"
+  },
+  "rules.action.expand_ammo": {
+    "text": "Ammo expansion",
+    "source_hash": "cb4c8f3660235dc692c3e9e6c540999e8f249fe5831bd33781f68ad1866a033b"
+  },
+  "rules.trigger.battle_started": {
+    "text": "At battle start",
+    "source_hash": "878cec84e37a47654ed25504edda0ae6ed319511c3499da030c1e05c083e6823"
+  },
+  "rules.trigger.damage_resolved": {
+    "text": "When damage is resolved",
+    "source_hash": "07512adb97849e27a2a431f9e00fc36438fa7f3d7ecb38aa5c2808f705a3ce91"
+  },
+  "rules.trigger.shield_gained": {
+    "text": "When a shield is gained",
+    "source_hash": "4fb3abf32a882b013316c4d243daeb568b6900bdf5cb21b54df889f5ea3b6eb7"
+  },
+  "rules.trigger.healing_resolved": {
+    "text": "When healing is resolved",
+    "source_hash": "8f6669c35902b42b0bb51e4745627533872777357e6d5e221aba9d914324c274"
+  },
+  "rules.trigger.status_applied": {
+    "text": "When a status is applied",
+    "source_hash": "056c152f9f794c5ac7ba9fca3150dcafa5d2eee62c196aeb6329181f1413ba91"
+  },
+  "rules.trigger.pollution_changed": {
+    "text": "When pollution changes",
+    "source_hash": "2f1cc4aa87d8a0316c131a8398396da5f617945690c3b11e22f0cc2724003fd3"
+  },
+  "rules.trigger.pollution_threshold_reached": {
+    "text": "When pollution crosses a threshold",
+    "source_hash": "23da3c96ec76b7473a025b67ae3da593f3da035ddf94d6faab072534248e4248"
+  },
+  "rules.trigger.core_damaged": {
+    "text": "When a hero takes damage",
+    "source_hash": "fef7343540a9bbd564226c22da7630e3c95ae7e50306bbab675cb894b902f49d"
+  },
+  "rules.trigger.minion_defeated": {
+    "text": "When a minion falls",
+    "source_hash": "9243cfaaf30e6905954c7d4a7906c89ff2b35596d5845b51aaf63f6a785c6237"
+  },
+  "rules.trigger.allied_minion_defeated": {
+    "text": "When an allied minion falls",
+    "source_hash": "c0be08ef58856ddddf3952abd604fa2dd0106faf89ea31cab8d333dc092567b0"
+  },
+  "rules.trigger.last_minion_defeated": {
+    "text": "When the last allied minion falls",
+    "source_hash": "354bc2b0e861833c3202191c50a1381b8ef4335e1e1f394502916123da1c7430"
+  },
+  "rules.trigger.item_disabled": {
+    "text": "When an item is disabled",
+    "source_hash": "27000213bbcf407c69a81bf38f1beb9d3ed1df1421741a2c78de60447c53e7e3"
+  },
+  "rules.trigger.battle_completed": {
+    "text": "At battle end",
+    "source_hash": "fce2f1fdaaa147ffffe8188f998d326eb0e024495ac839a48866d0a66d272ad3"
+  },
+  "rules.completion.victory": {
+    "text": "Your team met this battle's victory conditions in {seconds}s.",
+    "source_hash": "cc0a704dceff7f565bb56fe09c61e7153f3293a7abdbdcf40c287d070abe78b6"
+  },
+  "rules.completion.defeat": {
+    "text": "Your team met this battle's defeat conditions.",
+    "source_hash": "003a39006a36df394d504df8553e834769c8d73215ad6c9b56820b9c1b55f032"
+  },
+  "rules.completion.draw": {
+    "text": "Both teams met the defeat conditions at the same time. The battle is a draw.",
+    "source_hash": "d665cde9fe233b4b5a2d91a3ba0aed5d33eb370e5d6e8e658eec61e4f16b33c2"
+  },
+  "rules.completion.timeout": {
+    "text": "Auto-battle reached this battle's time limit.",
+    "source_hash": "fa46edee9c5a876df23f0d59662d98fc0fc82a28ecfe870d7f280cba6e0a0bbc"
+  },
+  "rules.completion.invalid_request": {
+    "text": "The battle input does not meet this battle's rules.",
+    "source_hash": "daa8462141237858f2de7071fb8cd92c1a60e2074de6521c844e9a6e3664f6b5"
+  },
+  "rules.node.aurora": {
+    "text": "Choose one of eight rewards on the first trigger. Each later trigger in this chapter grants one more pick, up to five triggers.",
+    "source_hash": "01abeaa9e5cda2d0e7c810fd166ed756b1635e5564d8e2f542666a45d280232f"
+  },
+  "rules.output.physical": {
+    "text": "Physical",
+    "source_hash": "e9dabd6848e629387736678643920b76b13e9ddefc620b3b42f9a6f8e6e4e2d3"
+  },
+  "rules.output.witchcraft": {
+    "text": "Witchcraft",
+    "source_hash": "8242fc47b3e1517f79e809509a0dd8bbc5db33c6ddf30c452091df8a628f37b2"
+  },
+  "rules.output.burn": {
+    "text": "Burn",
+    "source_hash": "657c011dd5e75bf47dcd57c73666cfb231c2ce2df60c7b18c13847b8732d0e4d"
+  },
+  "rules.output.poison": {
+    "text": "Poison application",
+    "source_hash": "13b83aeeefd471279bbe9925414ad4f6478978691167b25b5e111dcb9e99147e"
+  },
+  "rules.output.healing": {
+    "text": "Healing",
+    "source_hash": "d305449a05baacd4c929aadf72159d38a04b43ba8c2d49a2f74518a5bc309446"
+  },
+  "rules.output.shield": {
+    "text": "Shield",
+    "source_hash": "ef505537112b5b4c5abf002c37376780a089a118d618a0ffe9bcd358a785610f"
+  },
+  "rules.output.special": {
+    "text": "Special",
+    "source_hash": "67e1c6e49ab1813e6cabafd95b30a09992826d158ff0d1ff1ba5cd428fe6aa3e"
+  },
+  "rules.stat.physical_damage": {
+    "text": "Physical damage",
+    "source_hash": "a454f17872a14b8ae11e9a7f6ffd9b09075e748ae4fb27700dc99328be039e42"
+  },
+  "rules.stat.witchcraft_damage": {
+    "text": "Witchcraft",
+    "source_hash": "38ea011a2abfbfb01ff133887109c18aebe1c16e1184106b71fc7ba21fbedc39"
+  },
+  "rules.stat.burn_damage": {
+    "text": "Burn",
+    "source_hash": "73d6418deddec87d1f3989349fb4719a9221bcbb6131f68738b4ce997d49c656"
+  },
+  "rules.stat.poison_damage": {
+    "text": "Poison",
+    "source_hash": "3af01c498fe41db0acebedaf95e2414ec01ada1e1df9168e964eb88853938d03"
+  },
+  "rules.stat.healing_power": {
+    "text": "Healing",
+    "source_hash": "c81995fafdc22cd7c31600663c9acce9c34a25ce7593b6d64243b68bd38ff9f6"
+  },
+  "rules.stat.shield_power": {
+    "text": "Shield",
+    "source_hash": "b65b6e3a2e3dfc52581f7e3bdb625da8e777b37aa94926c635e2ec28837f7fc6"
+  },
+  "rules.action.witchcraft": {
+    "text": "Witchcraft",
+    "source_hash": "38ea011a2abfbfb01ff133887109c18aebe1c16e1184106b71fc7ba21fbedc39"
+  },
+  "rules.output.per_second": {
+    "text": "{amount}/s",
+    "source_hash": "671c7966a86b471d6ffe911e05d1bb5aa65b96baaf1a0d5f6ca033734e48c2ac"
+  },
+  "rules.actions.card_power_ratio": {
+    "text": "{percent}% of the card’s {type} power",
+    "source_hash": "3c1382a0d282a2faea0834686876172fef88fc799157181e08c2f9e7f700001a"
+  },
+  "rules.actions.witchcraft": {
+    "text": "Deal {amount} {stat_witchcraft_damage} to {target} (+20% against shields)",
+    "source_hash": "50cd87e4c4d59ac02b50a51660587a6df9cb839e1501d395e08d5a1aa79ecb71"
+  },
+  "rules.synergy.outputs": {
+    "text": "The team includes: {groups}",
+    "source_hash": "5831d2107a1cff6dd4a25ca66dcce3d4d18bb03c8d21bcaf26a47f14497949a8"
+  },
+  "rules.synergy.distinct_outputs": {
+    "text": "At least {count} effect types",
+    "source_hash": "252b376340c1d0372881d4c518f3a9cc99f67517d2d9183e165b54c5917c1cd0"
+  },
+  "rules.modifier.team_buff": {
+    "text": "Team bonus {amount}",
+    "source_hash": "1fd0b3626c29857548f96bd0c6672ca9094d79d8ddeef05410956642d83e2e7e"
+  },
+  "rules.trigger.haste_gained": {
+    "text": "Haste gained",
+    "source_hash": "fc6b9e4a65454001e8fd5201f2378aa37747efae637c10503979cc09818dfc42"
+  },
+  "rules.trigger.action_released": {
+    "text": "Effect released",
+    "source_hash": "237f8434eff488aa2dd989b1509b6ea12a2a7f704662ae616b733214a98567e6"
+  },
+  "rules.condition.event_is_critical": {
+    "text": "This damage is a critical hit",
+    "source_hash": "7eb49fc44448480c080d3c52031d9a7b7278535cedbc0eac43c531fcc114c83b"
+  },
+  "rules.condition.event_source_has_ammo": {
+    "text": "The acting card has an ammo pool",
+    "source_hash": "c5152fdd56bc5ce0ec259a0bae71986d64150952cf1611246308036b4dce1fda"
+  },
+  "rules.trigger.counter_changed": {
+    "text": "when counters change",
+    "source_hash": "958957910460cfa1198a27ff159a8de0b2959af14952e77f0ee75adb733e323c"
+  },
+  "rules.trigger.counter_threshold_reached": {
+    "text": "when a counter crosses its threshold",
+    "source_hash": "9717636d15193b00b9169ba55eb997a21c3de5f7779d9d31e412030a559d4511"
+  },
+  "rules.trigger.unit_defeated": {
+    "text": "when a card dies",
+    "source_hash": "16657980605fef5934157af57925a8f1aa5553d421335297a0f2f6533045c30e"
+  },
+  "rules.trigger.damage_guarded": {
+    "text": "when a hit is guarded",
+    "source_hash": "fd2448c5a012cf25baba1369a6cc3e4a99a692a7f02feecc8c5d47ab78cf58d1"
+  },
+  "rules.trigger.linked_main_ability_cast": {
+    "text": "after a linked unit casts",
+    "source_hash": "b0a72a9f3a0dda210661a48e8ad39db455958f3472aa68e6e97499681278af3d"
+  },
+  "rules.trigger.mark_applied": {
+    "text": "when a mark is applied",
+    "source_hash": "48ca282a3310504a9c9affec1c1a8d906f30e17a0eda7a1cfb6aa0b4cbd6d72f"
+  },
+  "rules.trigger.mechanic_resolved": {
+    "text": "when a mechanic resolves",
+    "source_hash": "3ab01616b20184f0d2d31b84eba9276c28c85c6c77fcebe6df9340eb039606f4"
+  },
+  "rules.action.accumulate": {
+    "text": "Accumulate",
+    "source_hash": "84b02957da6c6713ce058f28dcdb247b07b5b85ad4bc356916d6c404943fbfdc"
+  },
+  "rules.action.detonate": {
+    "text": "Detonate",
+    "source_hash": "6b32b847328d82c9238ec75f847dda4127dd30d70aab043f0e9c3c5fd9e58990"
+  },
+  "rules.action.mark": {
+    "text": "Mark",
+    "source_hash": "269635727321c64f44eb1ca366baec5762134d215bb7f0a0a1362a22df1d5267"
+  },
+  "rules.action.empower": {
+    "text": "Empower",
+    "source_hash": "d7051102e956af395855bc47e6c44e1fd6d4072b2bf1d584d266a4edb011a751"
+  },
+  "rules.action.guard": {
+    "text": "Guard",
+    "source_hash": "b27d18ebab358a2dc59717a06531ce539f8fbb9949d98d51203aeb66904a14e7"
+  },
+  "rules.action.link": {
+    "text": "Link",
+    "source_hash": "a5574109f0208e899feb6b620feb3f1f686aded4ec939631420afc1bec51c400"
+  },
+  "rules.action.convert": {
+    "text": "Convert",
+    "source_hash": "7ad0adcca6d389b6a49489fc74f7943d328b2e0b2d9ac9114c8e51849fa04a37"
+  },
+  "rules.action.transfer": {
+    "text": "Transfer",
+    "source_hash": "95224dd01d153afd13ea3ad30af64bdb8a494d70ca7ef0c56e6ef0ff1261b2ed"
+  },
+  "rules.action.copy_main_ability": {
+    "text": "Copy",
+    "source_hash": "63d90d977348ab1f9aa34ebb42b103216ce161feb0a1c08e237607bf42c3cf79"
+  },
+  "rules.action.transform": {
+    "text": "Transform",
+    "source_hash": "64f3d2a3eb7b73590aa28672591751b254be433611f9cc078cc7a8ee1bf49b8c"
+  },
+  "rules.action.overload": {
+    "text": "Overload",
+    "source_hash": "a91616c85fcfd507660ff24feb65efe3933b27da7b94557726d9886ee8341a50"
+  },
+  "rules.action.chain": {
+    "text": "Chain",
+    "source_hash": "dc9ce849cebc8498c82d1f12cdf8b908c2b2387ceca19c3587e2df45b7a7b50e"
+  },
+  "rules.action.echo": {
+    "text": "Echo",
+    "source_hash": "9672ff454a2c6e4404f3985054e4269a864d32da1fce2d1375ba304437eaa607"
+  },
+  "rules.action.sacrifice": {
+    "text": "Sacrifice",
+    "source_hash": "57a2ea416a7e0f8042228d2a015c6705e0c3a7f6024f95520eb258c8e32f83f1"
+  },
+  "rules.target.nearest_ally": {
+    "text": "nearest ally",
+    "source_hash": "6ff85fd242f6d935c203950f4d1096d832df155ae164911a0ef160e165e8e21b"
+  },
+  "rules.target.marked_enemy": {
+    "text": "enemy marked by this team",
+    "source_hash": "6ac9d4c08a84d5de12fea95c465dec85303774f4da366f5bd915954989a029be"
+  },
+  "rules.target.linked_ally": {
+    "text": "linked allies",
+    "source_hash": "c266c94e24099f158509d08c547b24b5dc87f25441f76d63ce1e4778888bd4f2"
+  },
+  "rules.target.allied_minion": {
+    "text": "nearest allied minion",
+    "source_hash": "72f099dbedb05a32bfe48d8bcdfa11b07aef405d888630c281e312b3c5f50a87"
+  },
+  "rules.condition.owner_counter_at_least": {
+    "text": "own counter at least {threshold}",
+    "source_hash": "0450e865154065323405e5795634c3f73911cea8fd029d18f3206fe9bb6aa2d6"
+  },
+  "rules.condition.event_counter_key": {
+    "text": "matching the configured counter",
+    "source_hash": "116b39c228889022302ecca41a72b23e00852bd5b9c1c0b2e3ea83e685a8a3a2"
+  },
+  "rules.condition.event_target_marked": {
+    "text": "target has the configured allied mark",
+    "source_hash": "54f451c9d9bd624dc06b00dfc0c7ea562cd5ab3aca337c35123008d62d12ae5d"
+  },
+  "rules.condition.event_source_is_linked": {
+    "text": "source is a linked unit",
+    "source_hash": "226a93b2168bc953071b93f1353fb3a90489cd2060993786adb8739e8a7250cd"
+  },
+  "rules.condition.event_target_status_stacks_at_least": {
+    "text": "target has at least {threshold} {status} stacks",
+    "source_hash": "0b7923b4a64652607fd44d3ff3daed744bf1f3fc6260e249b947eb2bd4db6b02"
+  },
+  "rules.condition.owner_has_tags": {
+    "text": "Owner tags: {tags}",
+    "source_hash": "7a2daef4c5cb2ba8904529cb825241d8f116cf556554933cba9cdb96af2d7fd5"
+  },
+  "rules.condition.event_source_has_tags": {
+    "text": "Event source tags: {tags}",
+    "source_hash": "3232eb1ffcfc5226295fb54eb402ac8df5d05a19b688ef390983731969db82a0"
+  },
+  "rules.condition.event_target_has_tags": {
+    "text": "Event target tags: {tags}",
+    "source_hash": "abcc91b684d08f864e967e4c5239e57fb0b4e8b91a19dd3e7b7ff740aeafc861"
+  },
+  "rules.condition.event_is_primary": {
+    "text": "Excludes derived effects and additional casts",
+    "source_hash": "88114fdf8b3dc65f8dede40490900ee906995ec6cfac8092013ad85bda454145"
+  },
+  "rules.tags.any": {
+    "text": "Any of: {tags}",
+    "source_hash": "0f8faeda43625b2c9dd33aabef5a16db45223d11647e2ff5801e0c7e7b6432c7"
+  },
+  "rules.tags.all": {
+    "text": "All of: {tags}",
+    "source_hash": "d69c08d998b7d6cf0c8df96bcce0984ba324caaa3caa86babb9411f2fd5922fc"
+  },
+  "rules.tags.none": {
+    "text": "None of: {tags}",
+    "source_hash": "92d741d2e982343528b6a69817760513270f7bf17e44d526b20563725de628d9"
+  },
+  "rules.tags.target": {
+    "text": "{target} ({tags})",
+    "source_hash": "f333eef35bd0b44f10a3cd94ff63e2e3aaadfd4f4ed6d5f155fcaef145d851fc"
+  },
+  "rules.stat.cooldown_seconds": {
+    "text": "Cooldown",
+    "source_hash": "6cac16b39789379a25157f3bc8b91f3f2a7e0825c8f7a37148567961ac101365"
+  },
+  "rules.stat.ammo_capacity": {
+    "text": "Ammo",
+    "source_hash": "5a8114a4b3320ccb5e672eca75180cf6e5f9e4a339bc6ec139e7524b690829e7"
+  },
+  "rules.stat.multicast_bonus": {
+    "text": "Multicast",
+    "source_hash": "892349510aafbf30236dc59426b34a937ebb18e3e5393a2f856d61ac281a6e98"
+  },
+  "rules.completion.judgment_victory": {
+    "text": "Health judgment at {seconds}s: your team has the higher remaining health ratio.",
+    "source_hash": "36cdd0f333a20dd02f686510a829a1f0f8bcfe5730b5d7c3e960fdcb94233f1c"
+  },
+  "rules.completion.judgment_defeat": {
+    "text": "Health judgment at {seconds}s: the enemy has the higher remaining health ratio.",
+    "source_hash": "f0140ba9f61f60722467240bba429c98afae0c585986c12e4e4c3b7cdbda5a5a"
+  },
+  "rules.completion.judgment_tie": {
+    "text": "Equal health ratios at {seconds}s. The defending team wins.",
+    "source_hash": "91a482fbbe8bc0bda62375fc629893620463f1efe2a72b368dda19781c0d945a"
+  },
+  "rules.trigger.time_limit_resolved": {
+    "text": "When health judgment completes",
+    "source_hash": "bae92ea9e70ce2027bb2fdba7d398f6c1db5d31f6d66300f1298c4575a10b185"
+  },
+  "rules.ability.team_scope": {
+    "text": "Our team: {description}",
+    "source_hash": "1fc66997f743d9a6f68ae7ac2319c450c6ecfc53690f51f47803721f4954ff9e"
+  },
+  "rules.modifier.team_bonus": {
+    "text": "{stat} {amount}",
+    "source_hash": "589419df6c8eb392ad079875b72f2c020c7409f6e0af70a42d00b70a8f6b18db"
+  },
+  "rules.section.core_attributes": {
+    "text": "Core attributes",
+    "source_hash": "16a86742e4c27988d079b4d87b87df6d2d8748cf911d51838b36ac1f692aed71"
+  },
+  "rules.section.modifier_attributes": {
+    "text": "Modifier attributes",
+    "source_hash": "5dd8647641e5f46eaea3a14ffaa4c33eb86bab29f520363c6bb4fd6e9ac463d8"
+  },
+  "rules.mechanic.copy_main_ability": {
+    "text": "{target} gains an independent {percent}%-strength snapshot of a preset main ability for {seconds}s",
+    "source_hash": "9714516c7220155218cb30f7258e0e4537e1c52e31104f7c032d713c55215084"
+  },
+  "rules.mechanic.transform": {
+    "text": "{target} switches to a preset main ability form for {seconds}s; health and ammo are preserved",
+    "source_hash": "3bf307398fde8d2e039a22e964403ffa0612c4addc6a8da6e473e9648b63fcaa"
+  },
+  "rules.cooldown.passive": {
+    "text": "No main abilities",
+    "source_hash": "c63d0f9c053f1b7c47b074b118ddb6b466802951332e7324193789a6c8b4b2ad"
+  },
+  "rules.main_ability.all": {
+    "text": "all main abilities",
+    "source_hash": "229bf90a83707436763d6e5db341a07131d4de75628ffd937364e9a155cdfc95"
+  },
+  "rules.actions.grant_main_ability": {
+    "text": "Grant an main ability to {target} ({duration})",
+    "source_hash": "7f52038d9a2a3d8a325e0e038cc73a42e4fbffbf475b0f4041374458e95541f0"
+  },
+  "rules.modifier.main_ability": {
+    "text": "Grants an main ability",
+    "source_hash": "484278bb3f562823ba41e00a8fc1ac357c0f92b61a2ec70d798723e1249020cd"
+  },
+  "rules.action.grant_main_ability": {
+    "text": "main ability grant",
+    "source_hash": "521c65f606cdbf260ba6c914d0d2ae3f6be98e505619cac972f46047472af7e5"
+  },
+  "rules.ability_execution.cooldown_main": {
+    "text": "Main Ability",
+    "source_hash": "6bdaf870352aa4dac4908baf3c3a35a83004d476d3583367969e931c96269782"
+  },
+  "rules.ability_execution.triggered_passive": {
+    "text": "Event-triggered Passive",
+    "source_hash": "eb7f25682da54008e89dbe0b8767213204dfe81a4b74ad5660b734f8ee40e04c"
+  },
+  "rules.ability_execution.persistent_bonus": {
+    "text": "Persistent Bonus",
+    "source_hash": "85aa7d06622cacf1390f89b9783ddda8035793b560d99065c34a6617e5336799"
+  },
+  "rules.ability_execution.conditional_passive": {
+    "text": "Conditional Passive",
+    "source_hash": "de0f115662e9a4fba9bde4204cf750e653f95201453eb40ca9c8e7399f17f44f"
+  },
+  "rules.trigger.main_ability_cooldown_ready": {
+    "text": "When a main ability cooldown completes",
+    "source_hash": "8c83beaf372418e7c0aff6cc83dd947bcaa3bb1fb33c617f4a7a378ead9cc584"
+  },
+  "rules.trigger.before_main_ability_cast": {
+    "text": "Before casting a main ability",
+    "source_hash": "6492c2c8bcf5d5423f35343c830228c7f898f642a4f6ed63900a82c73560f68a"
+  },
+  "rules.trigger.after_main_ability_cast": {
+    "text": "After casting a main ability",
+    "source_hash": "74f218fd682d744da501afc767dd4cfba19e80f96ceff441d27fa388a68b1037"
+  },
+  "rules.trigger.adjacent_main_ability_cast": {
+    "text": "When an adjacent ally casts a main ability",
+    "source_hash": "b48fa3a291995869827dbb5eb861ee6d6d37eaf70c12e691c46e55d7bfbcf193"
+  },
+  "rules.main_ability.specific": {
+    "text": "the specified main ability",
+    "source_hash": "6d6da1495ced2ebdc869be7364036a1dd980136de58e348f57aaf0eed21e2ba9"
+  }
+}

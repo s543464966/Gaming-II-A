@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://ui/components/button.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://ui/components/content/content_artwork.tscn" id="2"]
+[ext_resource type="Script" path="res://ui/components/content/catalog_card.gd" id="3"]
+
+[sub_resource type="StyleBoxEmpty" id="Empty"]
+
+[node name="CatalogCard" instance=ExtResource("1")]
+custom_minimum_size = Vector2(150, 186)
+size_flags_horizontal = 1
+theme_override_styles/normal = SubResource("Empty")
+theme_override_styles/hover = SubResource("Empty")
+theme_override_styles/pressed = SubResource("Empty")
+theme_override_styles/disabled = SubResource("Empty")
+theme_override_styles/focus = SubResource("Empty")
+script = ExtResource("3")
+text = ""
+mouse_default_cursor_shape = 2
+
+[node name="Picture" parent="." instance=ExtResource("2")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+show_labels = true

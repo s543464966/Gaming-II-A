@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://bootstrap/app.gd" id="1"]
+[ext_resource type="Script" path="res://features/player_session/session_controller.gd" id="2"]
+[ext_resource type="Script" path="res://platforms/game_platform.gd" id="3"]
+[ext_resource type="Script" path="res://ui/overlays/global_ui.gd" id="4"]
+[ext_resource type="Script" path="res://services/localization/localization_service.gd" id="5"]
+[ext_resource type="PackedScene" path="res://ui/overlays/orientation_guard.tscn" id="6"]
+[ext_resource type="Script" path="res://services/content_delivery/content_delivery.gd" id="7"]
+
+[node name="App" type="Node"]
+process_mode = 3
+script = ExtResource("1")
+
+[node name="Services" type="Node" parent="."]
+
+[node name="Localization" type="Node" parent="Services"]
+script = ExtResource("5")
+
+[node name="PlayerSession" type="Node" parent="Services"]
+script = ExtResource("2")
+
+[node name="ContentDelivery" type="Node" parent="Services"]
+process_mode = 3
+script = ExtResource("7")
+
+[node name="PlatformService" type="Node" parent="Services"]
+script = ExtResource("3")
+
+[node name="SceneContainer" type="Control" parent="."]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 100
+script = ExtResource("4")
+
+[node name="OrientationGuard" parent="Overlay" instance=ExtResource("6")]

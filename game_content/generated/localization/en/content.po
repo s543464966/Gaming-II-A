@@ -1,0 +1,1030 @@
+# Generated. Edit authoring sources, not this file.
+msgid ""
+msgstr "Language: en\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "content.adventure_node_rules.NR002.action_label"
+msgstr "Claim Stellar Rewards"
+
+msgid "content.adventure_node_rules.NR002.description"
+msgstr "Stellar power gathers in the ruins. Choose your chapter rewards."
+
+msgid "content.adventure_node_rules.NR002.title"
+msgstr "Starlit Ruins"
+
+msgid "content.adventure_node_rules.NR003.action_label"
+msgstr "Trade and Continue"
+
+msgid "content.adventure_node_rules.NR003.description"
+msgstr "A traveling merchant has set up a stall at the fork, waiting for travelers willing to trade."
+
+msgid "content.adventure_node_rules.NR003.title"
+msgstr "Wandering Black Market"
+
+msgid "content.adventure_node_rules.NR004.action_label"
+msgstr "Explore and Continue"
+
+msgid "content.adventure_node_rules.NR004.description"
+msgstr "A request from an unfamiliar traveler brings unexpected rewards along the way."
+
+msgid "content.adventure_node_rules.NR004.title"
+msgstr "Chance Encounter"
+
+msgid "content.aurora_rewards.AR001.description"
+msgstr "Gain 1000–1200 Star Stones."
+
+msgid "content.aurora_rewards.AR001.name"
+msgstr "Star Stone Cache"
+
+msgid "content.aurora_rewards.AR002.description"
+msgstr "Gain 1 exclusive fragment for each of 3 different minions."
+
+msgid "content.aurora_rewards.AR002.name"
+msgstr "Minion Fragments"
+
+msgid "content.aurora_rewards.AR003.description"
+msgstr "Gain exclusive fragments for random relics."
+
+msgid "content.aurora_rewards.AR003.name"
+msgstr "Relic Fragments"
+
+msgid "content.aurora_rewards.AR004.description"
+msgstr "Gain 1 exclusive hero fragment."
+
+msgid "content.aurora_rewards.AR004.name"
+msgstr "Hero Fragment"
+
+msgid "content.aurora_rewards.AR005.description"
+msgstr "Gain 30 stamina."
+
+msgid "content.aurora_rewards.AR005.name"
+msgstr "Stamina Recovery"
+
+msgid "content.aurora_rewards.AR006.description"
+msgstr "Gain 5 gold."
+
+msgid "content.aurora_rewards.AR006.name"
+msgstr "Gold Reward"
+
+msgid "content.aurora_rewards.AR007.description"
+msgstr "Choose a card in this chapter and increase its chapter upgrade level by 1."
+
+msgid "content.aurora_rewards.AR007.name"
+msgstr "Chapter Card Upgrade"
+
+msgid "content.aurora_rewards.AR008.description"
+msgstr "Gain a random chapter relic."
+
+msgid "content.aurora_rewards.AR008.name"
+msgstr "Chapter Relic"
+
+msgid "content.card_tags.TG001.name"
+msgstr "Light"
+
+msgid "content.card_tags.TG002.name"
+msgstr "Forest"
+
+msgid "content.card_tags.TG003.name"
+msgstr "Rock"
+
+msgid "content.card_tags.TG004.name"
+msgstr "Wind"
+
+msgid "content.card_tags.TG005.name"
+msgstr "Sea"
+
+msgid "content.card_tags.TG006.name"
+msgstr "Dark"
+
+msgid "content.card_tags.TG007.name"
+msgstr "Metal"
+
+msgid "content.card_tags.TG008.name"
+msgstr "Ice"
+
+msgid "content.card_tags.TG009.name"
+msgstr "Lightning"
+
+msgid "content.card_tags.TG010.name"
+msgstr "Fire"
+
+msgid "content.cards.H001.name"
+msgstr "Samuel"
+
+msgid "content.cards.H002.name"
+msgstr "Cassiri"
+
+msgid "content.cards.H003.name"
+msgstr "Li"
+
+msgid "content.cards.H004.name"
+msgstr "Derry"
+
+msgid "content.cards.H005.name"
+msgstr "Windsor"
+
+msgid "content.cards.H006.name"
+msgstr "Lilia"
+
+msgid "content.cards.H007.name"
+msgstr "Cassius"
+
+msgid "content.cards.H008.name"
+msgstr "Cicily"
+
+msgid "content.cards.H009.name"
+msgstr "Will"
+
+msgid "content.cards.H010.name"
+msgstr "Aldas"
+
+msgid "content.cards.H011.name"
+msgstr "Irabel"
+
+msgid "content.cards.H012.name"
+msgstr "Karl"
+
+msgid "content.cards.H013.name"
+msgstr "Lucinda Kincaid"
+
+msgid "content.cards.H014.name"
+msgstr "Igo"
+
+msgid "content.cards.H015.name"
+msgstr "Zhongshan"
+
+msgid "content.cards.H016.name"
+msgstr "Clara"
+
+msgid "content.cards.HS001.name"
+msgstr "Cassian"
+
+msgid "content.cards.HS002.name"
+msgstr "Theron"
+
+msgid "content.cards.HS003.name"
+msgstr "Gideon"
+
+msgid "content.cards.HS004.name"
+msgstr "Bastian"
+
+msgid "content.cards.HS005.name"
+msgstr "Caius"
+
+msgid "content.cards.HS006.name"
+msgstr "Talia"
+
+msgid "content.cards.HS007.name"
+msgstr "Valeria"
+
+msgid "content.cards.HS008.name"
+msgstr "Ilara"
+
+msgid "content.cards.HS009.name"
+msgstr "Ione"
+
+msgid "content.cards.HS010.name"
+msgstr "Aurelia"
+
+msgid "content.cards.HS011.name"
+msgstr "Dahlia"
+
+msgid "content.cards.HS012.name"
+msgstr "Thorin"
+
+msgid "content.cards.HS013.name"
+msgstr "Phoenix"
+
+msgid "content.cards.HS014.name"
+msgstr "Darius"
+
+msgid "content.cards.HS015.name"
+msgstr "Seraphina"
+
+msgid "content.cards.HS016.name"
+msgstr "Sylvia"
+
+msgid "content.cards.IC001.name"
+msgstr "Swiftblade"
+
+msgid "content.cards.IC002.name"
+msgstr "Rockbreaker Cannon"
+
+msgid "content.cards.IC003.name"
+msgstr "Resonance Shield"
+
+msgid "content.cards.IC004.name"
+msgstr "Tidal Medkit"
+
+msgid "content.cards.IC005.name"
+msgstr "Ember Nozzle"
+
+msgid "content.cards.IC006.name"
+msgstr "Poison Mist Canister"
+
+msgid "content.cards.IC007.name"
+msgstr "Frost Prism"
+
+msgid "content.cards.IC008.name"
+msgstr "Wind Disruptor"
+
+msgid "content.cards.IC009.name"
+msgstr "Link Core"
+
+msgid "content.cards.IC010.name"
+msgstr "Pollution Pump"
+
+msgid "content.cards.IC011.name"
+msgstr "Pollution Filter Lamp"
+
+msgid "content.cards.IC012.name"
+msgstr "Emergency Swarm"
+
+msgid "content.cards.M001.name"
+msgstr "Rockpeak Floating Beast"
+
+msgid "content.cards.M002.name"
+msgstr "Rockpeak Stalker"
+
+msgid "content.cards.M003.name"
+msgstr "Rockpeak Raider"
+
+msgid "content.cards.M004.name"
+msgstr "Rockpeak Colossus"
+
+msgid "content.cards.M005.name"
+msgstr "Rockpeak Swarm"
+
+msgid "content.cards.M006.name"
+msgstr "Rockpeak Fanatic"
+
+msgid "content.cards.M019.name"
+msgstr "Bloodflame Floating Beast"
+
+msgid "content.cards.M020.name"
+msgstr "Bloodflame Stalker"
+
+msgid "content.cards.M021.name"
+msgstr "Bloodflame Raider"
+
+msgid "content.cards.M022.name"
+msgstr "Bloodflame Colossus"
+
+msgid "content.cards.M023.name"
+msgstr "Bloodflame Swarm"
+
+msgid "content.cards.M024.name"
+msgstr "Bloodflame Fanatic"
+
+msgid "content.cards.M037.name"
+msgstr "Icefield Floating Beast"
+
+msgid "content.cards.M038.name"
+msgstr "Icefield Stalker"
+
+msgid "content.cards.M039.name"
+msgstr "Icefield Raider"
+
+msgid "content.cards.M040.name"
+msgstr "Icefield Colossus"
+
+msgid "content.cards.M041.name"
+msgstr "Icefield Swarm"
+
+msgid "content.cards.M042.name"
+msgstr "Icefield Fanatic"
+
+msgid "content.cards.MB001.name"
+msgstr "Rockpeak Lord"
+
+msgid "content.cards.MB002.name"
+msgstr "Rockpeak Lord · Chaos"
+
+msgid "content.cards.MB003.name"
+msgstr "Rockpeak Lord · Terror"
+
+msgid "content.cards.MB004.name"
+msgstr "Bloodflame Lord"
+
+msgid "content.cards.MB005.name"
+msgstr "Bloodflame Lord · Chaos"
+
+msgid "content.cards.MB006.name"
+msgstr "Bloodflame Lord · Terror"
+
+msgid "content.cards.MB007.name"
+msgstr "Icefield Lord"
+
+msgid "content.cards.MB008.name"
+msgstr "Icefield Lord · Chaos"
+
+msgid "content.cards.MB009.name"
+msgstr "Icefield Lord · Terror"
+
+msgid "content.cards.ME001.name"
+msgstr "Rockpeak Guard Captain"
+
+msgid "content.cards.ME002.name"
+msgstr "Rockpeak Priest"
+
+msgid "content.cards.ME003.name"
+msgstr "Rockpeak Hunter"
+
+msgid "content.cards.ME004.name"
+msgstr "Rockpeak Guard Captain · Chaos"
+
+msgid "content.cards.ME005.name"
+msgstr "Rockpeak Priest · Chaos"
+
+msgid "content.cards.ME006.name"
+msgstr "Rockpeak Hunter · Chaos"
+
+msgid "content.cards.ME007.name"
+msgstr "Rockpeak Guard Captain · Terror"
+
+msgid "content.cards.ME008.name"
+msgstr "Rockpeak Priest · Terror"
+
+msgid "content.cards.ME009.name"
+msgstr "Rockpeak Hunter · Terror"
+
+msgid "content.cards.ME010.name"
+msgstr "Bloodflame Guard Captain"
+
+msgid "content.cards.ME011.name"
+msgstr "Bloodflame Priest"
+
+msgid "content.cards.ME012.name"
+msgstr "Bloodflame Hunter"
+
+msgid "content.cards.ME013.name"
+msgstr "Bloodflame Guard Captain · Chaos"
+
+msgid "content.cards.ME014.name"
+msgstr "Bloodflame Priest · Chaos"
+
+msgid "content.cards.ME015.name"
+msgstr "Bloodflame Hunter · Chaos"
+
+msgid "content.cards.ME016.name"
+msgstr "Bloodflame Guard Captain · Terror"
+
+msgid "content.cards.ME017.name"
+msgstr "Bloodflame Priest · Terror"
+
+msgid "content.cards.ME018.name"
+msgstr "Bloodflame Hunter · Terror"
+
+msgid "content.cards.ME019.name"
+msgstr "Icefield Guard Captain"
+
+msgid "content.cards.ME020.name"
+msgstr "Icefield Priest"
+
+msgid "content.cards.ME021.name"
+msgstr "Icefield Hunter"
+
+msgid "content.cards.ME022.name"
+msgstr "Icefield Guard Captain · Chaos"
+
+msgid "content.cards.ME023.name"
+msgstr "Icefield Priest · Chaos"
+
+msgid "content.cards.ME024.name"
+msgstr "Icefield Hunter · Chaos"
+
+msgid "content.cards.ME025.name"
+msgstr "Icefield Guard Captain · Terror"
+
+msgid "content.cards.ME026.name"
+msgstr "Icefield Priest · Terror"
+
+msgid "content.cards.ME027.name"
+msgstr "Icefield Hunter · Terror"
+
+msgid "content.chapters.CH001.flavor_text"
+msgstr "Guards among the cliffs block travelers with their resilient defenses."
+
+msgid "content.chapters.CH001.name"
+msgstr "Sundered Peak"
+
+msgid "content.chapters.CH002.flavor_text"
+msgstr "Deep within, embers and poisonous mist keep the battle heating up."
+
+msgid "content.chapters.CH002.name"
+msgstr "Bloodflame Cavern"
+
+msgid "content.chapters.CH003.flavor_text"
+msgstr "Cold winds and ice crystals constantly disrupt intruders’ rhythm."
+
+msgid "content.chapters.CH003.name"
+msgstr "Iceblade Wastes"
+
+msgid "content.chapters.CH004.flavor_text"
+msgstr "Guards among the cliffs block travelers with their resilient defenses."
+
+msgid "content.chapters.CH004.name"
+msgstr "Sundered Peak · Chaos"
+
+msgid "content.chapters.CH005.flavor_text"
+msgstr "Deep within, embers and poisonous mist keep the battle heating up."
+
+msgid "content.chapters.CH005.name"
+msgstr "Bloodflame Cavern · Chaos"
+
+msgid "content.chapters.CH006.flavor_text"
+msgstr "Deep within, embers and poisonous mist keep the battle heating up."
+
+msgid "content.chapters.CH006.name"
+msgstr "Bloodflame Cavern · Terror"
+
+msgid "content.chapters.CH007.flavor_text"
+msgstr "Guards among the cliffs block travelers with their resilient defenses."
+
+msgid "content.chapters.CH007.name"
+msgstr "Sundered Peak · Terror"
+
+msgid "content.chapters.CH008.flavor_text"
+msgstr "Cold winds and ice crystals constantly disrupt intruders’ rhythm."
+
+msgid "content.chapters.CH008.name"
+msgstr "Iceblade Wastes · Chaos"
+
+msgid "content.chapters.CH009.flavor_text"
+msgstr "Cold winds and ice crystals constantly disrupt intruders’ rhythm."
+
+msgid "content.chapters.CH009.name"
+msgstr "Iceblade Wastes · Terror"
+
+msgid "content.innate_abilities.EN001.name"
+msgstr "Venomous Requiem"
+
+msgid "content.innate_abilities.EN002.name"
+msgstr "Linked Gears"
+
+msgid "content.innate_abilities.EN003.name"
+msgstr "Core Counterattack"
+
+msgid "content.innate_abilities.EN004.name"
+msgstr "Desperate Sorcery"
+
+msgid "content.innate_abilities.EN005.name"
+msgstr "Hex Pulse"
+
+msgid "content.innate_abilities.EN006.name"
+msgstr "Ember Pursuit"
+
+msgid "content.innate_abilities.EN007.name"
+msgstr "Frost Disruption"
+
+msgid "content.innate_abilities.EN008.name"
+msgstr "Shield Echo"
+
+msgid "content.innate_abilities.EN009.name"
+msgstr "Restorative Echo"
+
+msgid "content.innate_abilities.EN010.name"
+msgstr "Earthshaking Strike"
+
+msgid "content.innate_abilities.EN011.name"
+msgstr "Arcane Follow-up"
+
+msgid "content.innate_abilities.EN012.name"
+msgstr "Critical Haste"
+
+msgid "content.innate_abilities.EN013.name"
+msgstr "Venom Retaliation"
+
+msgid "content.innate_abilities.EN014.name"
+msgstr "Precise Aim"
+
+msgid "content.innate_abilities.EN015.name"
+msgstr "Opening Wildfire"
+
+msgid "content.innate_abilities.EN016.name"
+msgstr "Advancing Rhythm"
+
+msgid "content.items.FR001.flavor_text"
+msgstr "A fragment bearing the mark of Samuel, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR001.name"
+msgstr "Exclusive Fragment: Samuel"
+
+msgid "content.items.FR002.flavor_text"
+msgstr "A fragment bearing the mark of Cassiri, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR002.name"
+msgstr "Exclusive Fragment: Cassiri"
+
+msgid "content.items.FR003.flavor_text"
+msgstr "A fragment bearing the mark of Li, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR003.name"
+msgstr "Exclusive Fragment: Li"
+
+msgid "content.items.FR004.flavor_text"
+msgstr "A fragment bearing the mark of Derry, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR004.name"
+msgstr "Exclusive Fragment: Derry"
+
+msgid "content.items.FR005.flavor_text"
+msgstr "A fragment bearing the mark of Windsor, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR005.name"
+msgstr "Exclusive Fragment: Windsor"
+
+msgid "content.items.FR006.flavor_text"
+msgstr "A fragment bearing the mark of Lilia, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR006.name"
+msgstr "Exclusive Fragment: Lilia"
+
+msgid "content.items.FR007.flavor_text"
+msgstr "A fragment bearing the mark of Cassius, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR007.name"
+msgstr "Exclusive Fragment: Cassius"
+
+msgid "content.items.FR008.flavor_text"
+msgstr "A fragment bearing the mark of Cicily, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR008.name"
+msgstr "Exclusive Fragment: Cicily"
+
+msgid "content.items.FR009.flavor_text"
+msgstr "A fragment bearing the mark of Will, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR009.name"
+msgstr "Exclusive Fragment: Will"
+
+msgid "content.items.FR010.flavor_text"
+msgstr "A fragment bearing the mark of Aldas, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR010.name"
+msgstr "Exclusive Fragment: Aldas"
+
+msgid "content.items.FR011.flavor_text"
+msgstr "A fragment bearing the mark of Irabel, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR011.name"
+msgstr "Exclusive Fragment: Irabel"
+
+msgid "content.items.FR012.flavor_text"
+msgstr "A fragment bearing the mark of Karl, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR012.name"
+msgstr "Exclusive Fragment: Karl"
+
+msgid "content.items.FR013.flavor_text"
+msgstr "A fragment bearing the mark of Lucinda Kincaid, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR013.name"
+msgstr "Exclusive Fragment: Lucinda Kincaid"
+
+msgid "content.items.FR014.flavor_text"
+msgstr "A fragment bearing the mark of Igo, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR014.name"
+msgstr "Exclusive Fragment: Igo"
+
+msgid "content.items.FR015.flavor_text"
+msgstr "A fragment bearing the mark of Zhongshan, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR015.name"
+msgstr "Exclusive Fragment: Zhongshan"
+
+msgid "content.items.FR016.flavor_text"
+msgstr "A fragment bearing the mark of Clara, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR016.name"
+msgstr "Exclusive Fragment: Clara"
+
+msgid "content.items.FR017.flavor_text"
+msgstr "A fragment bearing the mark of Cassian, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR017.name"
+msgstr "Exclusive Fragment: Cassian"
+
+msgid "content.items.FR018.flavor_text"
+msgstr "A fragment bearing the mark of Theron, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR018.name"
+msgstr "Exclusive Fragment: Theron"
+
+msgid "content.items.FR019.flavor_text"
+msgstr "A fragment bearing the mark of Gideon, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR019.name"
+msgstr "Exclusive Fragment: Gideon"
+
+msgid "content.items.FR020.flavor_text"
+msgstr "A fragment bearing the mark of Bastian, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR020.name"
+msgstr "Exclusive Fragment: Bastian"
+
+msgid "content.items.FR021.flavor_text"
+msgstr "A fragment bearing the mark of Caius, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR021.name"
+msgstr "Exclusive Fragment: Caius"
+
+msgid "content.items.FR022.flavor_text"
+msgstr "A fragment bearing the mark of Talia, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR022.name"
+msgstr "Exclusive Fragment: Talia"
+
+msgid "content.items.FR023.flavor_text"
+msgstr "A fragment bearing the mark of Valeria, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR023.name"
+msgstr "Exclusive Fragment: Valeria"
+
+msgid "content.items.FR024.flavor_text"
+msgstr "A fragment bearing the mark of Ilara, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR024.name"
+msgstr "Exclusive Fragment: Ilara"
+
+msgid "content.items.FR025.flavor_text"
+msgstr "A fragment bearing the mark of Ione, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR025.name"
+msgstr "Exclusive Fragment: Ione"
+
+msgid "content.items.FR026.flavor_text"
+msgstr "A fragment bearing the mark of Aurelia, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR026.name"
+msgstr "Exclusive Fragment: Aurelia"
+
+msgid "content.items.FR027.flavor_text"
+msgstr "A fragment bearing the mark of Dahlia, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR027.name"
+msgstr "Exclusive Fragment: Dahlia"
+
+msgid "content.items.FR028.flavor_text"
+msgstr "A fragment bearing the mark of Thorin, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR028.name"
+msgstr "Exclusive Fragment: Thorin"
+
+msgid "content.items.FR029.flavor_text"
+msgstr "A fragment bearing the mark of Phoenix, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR029.name"
+msgstr "Exclusive Fragment: Phoenix"
+
+msgid "content.items.FR030.flavor_text"
+msgstr "A fragment bearing the mark of Darius, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR030.name"
+msgstr "Exclusive Fragment: Darius"
+
+msgid "content.items.FR031.flavor_text"
+msgstr "A fragment bearing the mark of Seraphina, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR031.name"
+msgstr "Exclusive Fragment: Seraphina"
+
+msgid "content.items.FR032.flavor_text"
+msgstr "A fragment bearing the mark of Sylvia, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR032.name"
+msgstr "Exclusive Fragment: Sylvia"
+
+msgid "content.items.FR033.flavor_text"
+msgstr "A fragment bearing the mark of Amulet of Resilience, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR033.name"
+msgstr "Exclusive Fragment: Amulet of Resilience"
+
+msgid "content.items.FR034.flavor_text"
+msgstr "A fragment bearing the mark of Sigil of Renewal, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR034.name"
+msgstr "Exclusive Fragment: Sigil of Renewal"
+
+msgid "content.items.FR035.flavor_text"
+msgstr "A fragment bearing the mark of Swift Gear, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR035.name"
+msgstr "Exclusive Fragment: Swift Gear"
+
+msgid "content.items.FR036.flavor_text"
+msgstr "A fragment bearing the mark of Wayfarer’s Crest, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR036.name"
+msgstr "Exclusive Fragment: Wayfarer’s Crest"
+
+msgid "content.items.FR037.flavor_text"
+msgstr "A fragment bearing the mark of Swiftblade, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR037.name"
+msgstr "Exclusive Fragment: Swiftblade"
+
+msgid "content.items.FR038.flavor_text"
+msgstr "A fragment bearing the mark of Rockbreaker Cannon, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR038.name"
+msgstr "Exclusive Fragment: Rockbreaker Cannon"
+
+msgid "content.items.FR039.flavor_text"
+msgstr "A fragment bearing the mark of Resonance Shield, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR039.name"
+msgstr "Exclusive Fragment: Resonance Shield"
+
+msgid "content.items.FR040.flavor_text"
+msgstr "A fragment bearing the mark of Tidal Medkit, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR040.name"
+msgstr "Exclusive Fragment: Tidal Medkit"
+
+msgid "content.items.FR041.flavor_text"
+msgstr "A fragment bearing the mark of Ember Nozzle, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR041.name"
+msgstr "Exclusive Fragment: Ember Nozzle"
+
+msgid "content.items.FR042.flavor_text"
+msgstr "A fragment bearing the mark of Poison Mist Canister, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR042.name"
+msgstr "Exclusive Fragment: Poison Mist Canister"
+
+msgid "content.items.FR043.flavor_text"
+msgstr "A fragment bearing the mark of Frost Prism, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR043.name"
+msgstr "Exclusive Fragment: Frost Prism"
+
+msgid "content.items.FR044.flavor_text"
+msgstr "A fragment bearing the mark of Wind Disruptor, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR044.name"
+msgstr "Exclusive Fragment: Wind Disruptor"
+
+msgid "content.items.FR045.flavor_text"
+msgstr "A fragment bearing the mark of Link Core, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR045.name"
+msgstr "Exclusive Fragment: Link Core"
+
+msgid "content.items.FR046.flavor_text"
+msgstr "A fragment bearing the mark of Pollution Pump, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR046.name"
+msgstr "Exclusive Fragment: Pollution Pump"
+
+msgid "content.items.FR047.flavor_text"
+msgstr "A fragment for Pollution Filter Lamp."
+
+msgid "content.items.FR047.name"
+msgstr "Pollution Filter Lamp Exclusive Fragment"
+
+msgid "content.items.FR048.flavor_text"
+msgstr "A fragment bearing the mark of Emergency Swarm, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR048.name"
+msgstr "Exclusive Fragment: Emergency Swarm"
+
+msgid "content.items.FR049.flavor_text"
+msgstr "A fragment for Sorcery Amplifier."
+
+msgid "content.items.FR049.name"
+msgstr "Sorcery Amplifier Exclusive Fragment"
+
+msgid "content.items.FR050.flavor_text"
+msgstr "A fragment for Corrosive Venom Sigil."
+
+msgid "content.items.FR050.name"
+msgstr "Corrosive Venom Sigil Exclusive Fragment"
+
+msgid "content.items.FR051.flavor_text"
+msgstr "A fragment bearing the mark of Overclock Coil, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR051.name"
+msgstr "Exclusive Fragment: Overclock Coil"
+
+msgid "content.items.FR052.flavor_text"
+msgstr "A fragment bearing the mark of Emblem of Clarity, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR052.name"
+msgstr "Exclusive Fragment: Emblem of Clarity"
+
+msgid "content.items.FR053.flavor_text"
+msgstr "A fragment for Assault Emblem."
+
+msgid "content.items.FR053.name"
+msgstr "Assault Emblem Exclusive Fragment"
+
+msgid "content.items.FR054.flavor_text"
+msgstr "A fragment bearing the mark of Ember Inscription, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR054.name"
+msgstr "Exclusive Fragment: Ember Inscription"
+
+msgid "content.items.FR055.flavor_text"
+msgstr "A fragment bearing the mark of Watchful Inscription, used exclusively for the corresponding exchange."
+
+msgid "content.items.FR055.name"
+msgstr "Exclusive Fragment: Watchful Inscription"
+
+msgid "content.items.FR056.flavor_text"
+msgstr "A fragment for Cooperation Sigil."
+
+msgid "content.items.FR056.name"
+msgstr "Cooperation Sigil Exclusive Fragment"
+
+msgid "content.items.IT001.flavor_text"
+msgstr "Restores some of the player’s stamina."
+
+msgid "content.items.IT001.name"
+msgstr "Small Stamina Recovery"
+
+msgid "content.relics.GA001.flavor_text"
+msgstr "An amulet that remains intact despite wind and frost."
+
+msgid "content.relics.GA001.name"
+msgstr "Amulet of Resilience"
+
+msgid "content.relics.GA002.flavor_text"
+msgstr "An ancient sigil with a faint, flowing glow."
+
+msgid "content.relics.GA002.name"
+msgstr "Sigil of Renewal"
+
+msgid "content.relics.GA003.flavor_text"
+msgstr "A light, finely crafted clockwork component."
+
+msgid "content.relics.GA003.name"
+msgstr "Swift Gear"
+
+msgid "content.relics.GA004.flavor_text"
+msgstr "A protective crest given to those who travel far."
+
+msgid "content.relics.GA004.name"
+msgstr "Wayfarer’s Crest"
+
+msgid "content.relics.GA005.flavor_text"
+msgstr "A precise device that gathers hex power."
+
+msgid "content.relics.GA005.name"
+msgstr "Hex Amplifier"
+
+msgid "content.relics.GA006.flavor_text"
+msgstr "An ancient sigil holding venom."
+
+msgid "content.relics.GA006.name"
+msgstr "Venom Sigil"
+
+msgid "content.relics.GA007.flavor_text"
+msgstr "A surge of energy to set the team in motion."
+
+msgid "content.relics.GA007.name"
+msgstr "Overclock Coil"
+
+msgid "content.relics.GA008.flavor_text"
+msgstr "An emblem formed from clear light."
+
+msgid "content.relics.GA008.name"
+msgstr "Emblem of Clarity"
+
+msgid "content.relics.GA009.flavor_text"
+msgstr "A battle emblem that inspires courage."
+
+msgid "content.relics.GA009.name"
+msgstr "Assault Emblem"
+
+msgid "content.relics.GA010.flavor_text"
+msgstr "An inscription of lingering embers."
+
+msgid "content.relics.GA010.name"
+msgstr "Ember Inscription"
+
+msgid "content.relics.GA011.flavor_text"
+msgstr "An inscription shaped by the will to protect."
+
+msgid "content.relics.GA011.name"
+msgstr "Watchful Inscription"
+
+msgid "content.relics.GA012.flavor_text"
+msgstr "A seal that unites the strength of many."
+
+msgid "content.relics.GA012.name"
+msgstr "Cooperation Sigil"
+
+msgid "content.relics.GA013.name"
+msgstr "Ember Fuse"
+
+msgid "content.relics.GA014.name"
+msgstr "Spark Counter"
+
+msgid "content.relics.GA015.name"
+msgstr "Gathering Seal"
+
+msgid "content.relics.GA016.name"
+msgstr "Echo Stone"
+
+msgid "content.relics.GA017.name"
+msgstr "Arc Coil"
+
+msgid "content.relics.GA018.name"
+msgstr "Hunting Mark"
+
+msgid "content.relics.GA019.name"
+msgstr "Guardian Pact"
+
+msgid "content.relics.GA020.name"
+msgstr "Last Echo Relic"
+
+msgid "content.relics.GA021.name"
+msgstr "Offering Dagger"
+
+msgid "content.relics.GA022.name"
+msgstr "Overload Circuit"
+
+msgid "content.relics.GA023.name"
+msgstr "Prismatic Converter"
+
+msgid "content.relics.GA024.name"
+msgstr "Flowing Emblem"
+
+msgid "content.relics.GA025.name"
+msgstr "Mirror Shard"
+
+msgid "content.relics.GA026.name"
+msgstr "Shifting Prism"
+
+msgid "content.relics.GA027.name"
+msgstr "Combo Clasp"
+
+msgid "content.relics.GA028.name"
+msgstr "Radiant Totem"
+
+msgid "content.relics.GA029.name"
+msgstr "Resonant Bond"
+
+msgid "content.reward_dice.DI002.flavor_text"
+msgstr "Gain a chapter relic."
+
+msgid "content.reward_dice.DI002.name"
+msgstr "Relic Die"
+
+msgid "content.reward_dice.DI003.flavor_text"
+msgstr "Choose an unlocked minion or item to add to this chapter’s build."
+
+msgid "content.reward_dice.DI003.name"
+msgstr "Card Die"
+
+msgid "content.reward_dice.DI004.flavor_text"
+msgstr "Roll to immediately gain Star Stones equal to the result."
+
+msgid "content.reward_dice.DI004.name"
+msgstr "Star Stone Die"
+
+msgid "content.reward_dice.DI005.flavor_text"
+msgstr "A guaranteed elite reward: choose exclusive fragments or more Star Stones."
+
+msgid "content.reward_dice.DI005.name"
+msgstr "Treasure Die"
+
+msgid "content.synergies.SY001.flavor_text"
+msgstr "Activated by the team’s mix of effect types."
+
+msgid "content.synergies.SY001.name"
+msgstr "Balanced Formation"
+
+msgid "content.synergies.SY002.flavor_text"
+msgstr "Activated by the team’s mix of effect types."
+
+msgid "content.synergies.SY002.name"
+msgstr "Corrosive Resonance"
+
+msgid "content.synergies.SY003.flavor_text"
+msgstr "Activated by the team’s mix of effect types."
+
+msgid "content.synergies.SY003.name"
+msgstr "Versatile Rotation"
+
+msgid "content.talents.TA101.flavor_text"
+msgstr "Team base health +5; heroes gain an additional +5."
+
+msgid "content.talents.TA101.name"
+msgstr "Vital Foundation"
+
+msgid "content.talents.TA102.flavor_text"
+msgstr "Team base physical damage +5."
+
+msgid "content.talents.TA102.name"
+msgstr "Physical Boost"
+
+msgid "content.talents.TA103.flavor_text"
+msgstr "Team base health +10; heroes gain an additional +5."
+
+msgid "content.talents.TA103.name"
+msgstr "Greater Vitality"
+

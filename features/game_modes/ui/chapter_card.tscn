@@ -1,0 +1,166 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://features/game_modes/ui/chapter_card.gd" id="script"]
+[ext_resource type="Script" path="res://ui/components/fitted_label.gd" id="fit"]
+[ext_resource type="Texture2D" path="res://features/game_modes/ui/art/mode_atlas.png" id="atlas"]
+[ext_resource type="Texture2D" path="res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter00101/background.tres" id="chapter"]
+[ext_resource type="Shader" path="res://features/game_modes/ui/art/cut_corner.gdshader" id="cut"]
+[ext_resource type="Shader" path="res://features/game_modes/ui/art/chapter_art.gdshader" id="art_shader"]
+
+[sub_resource type="AtlasTexture" id="frame"]
+atlas = ExtResource("atlas")
+region = Rect2(155, 381, 622, 857)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="paper"]
+atlas = ExtResource("atlas")
+region = Rect2(153, 1292, 625, 144)
+filter_clip = true
+
+[sub_resource type="ShaderMaterial" id="frame_material"]
+shader = ExtResource("cut")
+shader_parameter/clear_black = true
+
+[sub_resource type="ShaderMaterial" id="paper_material"]
+shader = ExtResource("cut")
+shader_parameter/extent = Vector2(200, 77)
+shader_parameter/corner = Vector2(14, 20)
+
+[sub_resource type="ShaderMaterial" id="art_material"]
+shader = ExtResource("art_shader")
+
+[sub_resource type="Gradient" id="shade_gradient"]
+colors = PackedColorArray(0.04, 0.035, 0.03, 0, 0.04, 0.035, 0.03, 0.74)
+
+[sub_resource type="GradientTexture2D" id="shade_texture"]
+gradient = SubResource("shade_gradient")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[node name="ChapterCard" type="Control"]
+layout_mode = 0
+offset_right = 725.0
+offset_bottom = 1044.0
+mouse_filter = 2
+clip_contents = true
+script = ExtResource("script")
+
+[node name="Art" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("chapter")
+expand_mode = 1
+material = SubResource("art_material")
+
+[node name="PreviousArt" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("chapter")
+expand_mode = 1
+material = SubResource("art_material")
+
+[node name="CaptionShade" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -246.0
+offset_right = -12.0
+offset_bottom = -12.0
+mouse_filter = 2
+texture = SubResource("shade_texture")
+expand_mode = 1
+
+[node name="Border" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = SubResource("frame")
+patch_margin_left = 36
+patch_margin_top = 36
+patch_margin_right = 36
+patch_margin_bottom = 36
+draw_center = false
+material = SubResource("frame_material")
+
+[node name="Metadata" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Level" type="Label" parent="Metadata"]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = -165.0
+offset_right = -138.0
+offset_bottom = -117.0
+mouse_filter = 2
+script = ExtResource("fit")
+maximum_lines = 1
+minimum_font_size = 24
+theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(0.902, 0.824, 0.667, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_y = 2
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="Metadata"]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = -122.0
+offset_right = -98.0
+offset_bottom = -32.0
+mouse_filter = 2
+script = ExtResource("fit")
+maximum_lines = 1
+minimum_font_size = 24
+theme_override_font_sizes/font_size = 54
+theme_override_colors/font_color = Color(0.902, 0.824, 0.667, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_y = 2
+vertical_alignment = 1
+
+[node name="Current" type="TextureRect" parent="Metadata"]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -231.0
+offset_top = 33.0
+offset_right = -31.0
+offset_bottom = 110.0
+mouse_filter = 2
+texture = SubResource("paper")
+expand_mode = 1
+material = SubResource("paper_material")
+
+[node name="Caption" type="Label" parent="Metadata/Current"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 8.0
+offset_right = -13.0
+offset_bottom = -8.0
+mouse_filter = 2
+script = ExtResource("fit")
+maximum_lines = 1
+minimum_font_size = 20
+theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.161, 0.145, 0.114, 1)
+text = "ui.mode.current"
+horizontal_alignment = 1
+vertical_alignment = 1

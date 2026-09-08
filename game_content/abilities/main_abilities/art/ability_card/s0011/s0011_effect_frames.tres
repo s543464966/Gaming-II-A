@@ -1,0 +1,29 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3]
+
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0011/0.png" id="1"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0011/1.png" id="2"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0011/2.png" id="3"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0011/3.png" id="4"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0011/4.png" id="5"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0011/5.png" id="6"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0011/6.png" id="7"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0011/7.png" id="8"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0011/8.png" id="9"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0011/9.png" id="10"]
+
+[resource]
+animations = [{
+"frames": [{ "duration": 6, "texture": ExtResource("1") },
+{ "duration": 5.0000004, "texture": ExtResource("2") },
+{ "duration": 5.999999399999999, "texture": ExtResource("3") },
+{ "duration": 5.0000003999999985, "texture": ExtResource("4") },
+{ "duration": 6.000000000000002, "texture": ExtResource("5") },
+{ "duration": 4.999999800000002, "texture": ExtResource("6") },
+{ "duration": 5.999999999999998, "texture": ExtResource("7") },
+{ "duration": 5.000000999999998, "texture": ExtResource("8") },
+{ "duration": 5.999997000000004, "texture": ExtResource("9") },
+{ "duration": 1, "texture": ExtResource("10") }],
+"loop": false,
+"name": &"S0011_Attacked",
+"speed": 60
+}]

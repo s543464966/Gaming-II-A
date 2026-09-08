@@ -1,0 +1,1030 @@
+# Generated. Edit authoring sources, not this file.
+msgid ""
+msgstr "Language: de\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "content.adventure_node_rules.NR002.action_label"
+msgstr "Sternenbelohnungen erhalten"
+
+msgid "content.adventure_node_rules.NR002.description"
+msgstr "Sternenkraft sammelt sich in den Ruinen. Wähle deine Kapitelbelohnungen."
+
+msgid "content.adventure_node_rules.NR002.title"
+msgstr "Sternenruinen"
+
+msgid "content.adventure_node_rules.NR003.action_label"
+msgstr "Handeln und weiter"
+
+msgid "content.adventure_node_rules.NR003.description"
+msgstr "Ein fahrender Händler hat an der Weggabelung einen Stand aufgebaut und wartet auf tauschwillige Reisende."
+
+msgid "content.adventure_node_rules.NR003.title"
+msgstr "Wandernder Schwarzmarkt"
+
+msgid "content.adventure_node_rules.NR004.action_label"
+msgstr "Erkunden und weiter"
+
+msgid "content.adventure_node_rules.NR004.description"
+msgstr "Der Auftrag eines fremden Reisenden bringt unterwegs unerwarteten Gewinn."
+
+msgid "content.adventure_node_rules.NR004.title"
+msgstr "Unerwartete Begegnung"
+
+msgid "content.aurora_rewards.AR001.description"
+msgstr "Erhalte 1000–1200 Sternsteine."
+
+msgid "content.aurora_rewards.AR001.name"
+msgstr "Sternsteinschatz"
+
+msgid "content.aurora_rewards.AR002.description"
+msgstr "Erhalte je 1 exklusives Fragment für 3 verschiedene Begleiter."
+
+msgid "content.aurora_rewards.AR002.name"
+msgstr "Begleiterfragmente"
+
+msgid "content.aurora_rewards.AR003.description"
+msgstr "Erhalte exklusive Fragmente für zufällige Relikte."
+
+msgid "content.aurora_rewards.AR003.name"
+msgstr "Reliktfragmente"
+
+msgid "content.aurora_rewards.AR004.description"
+msgstr "Erhalte 1 exklusives Heldenfragment."
+
+msgid "content.aurora_rewards.AR004.name"
+msgstr "Heldenfragment"
+
+msgid "content.aurora_rewards.AR005.description"
+msgstr "Erhalte 30 Ausdauer."
+
+msgid "content.aurora_rewards.AR005.name"
+msgstr "Ausdauererholung"
+
+msgid "content.aurora_rewards.AR006.description"
+msgstr "Erhalte 5 Gold."
+
+msgid "content.aurora_rewards.AR006.name"
+msgstr "Goldbelohnung"
+
+msgid "content.aurora_rewards.AR007.description"
+msgstr "Wähle eine Karte dieses Kapitels und erhöhe ihre Kapitelverstärkungsstufe um 1."
+
+msgid "content.aurora_rewards.AR007.name"
+msgstr "Kapitelskartenverstärkung"
+
+msgid "content.aurora_rewards.AR008.description"
+msgstr "Erhalte ein zufälliges Kapitelrelikt."
+
+msgid "content.aurora_rewards.AR008.name"
+msgstr "Kapitelrelikt"
+
+msgid "content.card_tags.TG001.name"
+msgstr "Licht"
+
+msgid "content.card_tags.TG002.name"
+msgstr "Wald"
+
+msgid "content.card_tags.TG003.name"
+msgstr "Fels"
+
+msgid "content.card_tags.TG004.name"
+msgstr "Wind"
+
+msgid "content.card_tags.TG005.name"
+msgstr "Meer"
+
+msgid "content.card_tags.TG006.name"
+msgstr "Dunkelheit"
+
+msgid "content.card_tags.TG007.name"
+msgstr "Metall"
+
+msgid "content.card_tags.TG008.name"
+msgstr "Eis"
+
+msgid "content.card_tags.TG009.name"
+msgstr "Blitz"
+
+msgid "content.card_tags.TG010.name"
+msgstr "Feuer"
+
+msgid "content.cards.H001.name"
+msgstr "Samuel"
+
+msgid "content.cards.H002.name"
+msgstr "Cassiri"
+
+msgid "content.cards.H003.name"
+msgstr "Li"
+
+msgid "content.cards.H004.name"
+msgstr "Derry"
+
+msgid "content.cards.H005.name"
+msgstr "Windsor"
+
+msgid "content.cards.H006.name"
+msgstr "Lilia"
+
+msgid "content.cards.H007.name"
+msgstr "Cassius"
+
+msgid "content.cards.H008.name"
+msgstr "Cicily"
+
+msgid "content.cards.H009.name"
+msgstr "Will"
+
+msgid "content.cards.H010.name"
+msgstr "Aldas"
+
+msgid "content.cards.H011.name"
+msgstr "Irabel"
+
+msgid "content.cards.H012.name"
+msgstr "Karl"
+
+msgid "content.cards.H013.name"
+msgstr "Lucinda Kincaid"
+
+msgid "content.cards.H014.name"
+msgstr "Igo"
+
+msgid "content.cards.H015.name"
+msgstr "Zhongshan"
+
+msgid "content.cards.H016.name"
+msgstr "Clara"
+
+msgid "content.cards.HS001.name"
+msgstr "Cassian"
+
+msgid "content.cards.HS002.name"
+msgstr "Theron"
+
+msgid "content.cards.HS003.name"
+msgstr "Gideon"
+
+msgid "content.cards.HS004.name"
+msgstr "Bastian"
+
+msgid "content.cards.HS005.name"
+msgstr "Caius"
+
+msgid "content.cards.HS006.name"
+msgstr "Talia"
+
+msgid "content.cards.HS007.name"
+msgstr "Valeria"
+
+msgid "content.cards.HS008.name"
+msgstr "Ilara"
+
+msgid "content.cards.HS009.name"
+msgstr "Ione"
+
+msgid "content.cards.HS010.name"
+msgstr "Aurelia"
+
+msgid "content.cards.HS011.name"
+msgstr "Dahlia"
+
+msgid "content.cards.HS012.name"
+msgstr "Thorin"
+
+msgid "content.cards.HS013.name"
+msgstr "Phoenix"
+
+msgid "content.cards.HS014.name"
+msgstr "Darius"
+
+msgid "content.cards.HS015.name"
+msgstr "Seraphina"
+
+msgid "content.cards.HS016.name"
+msgstr "Sylvia"
+
+msgid "content.cards.IC001.name"
+msgstr "Flinke Klinge"
+
+msgid "content.cards.IC002.name"
+msgstr "Felsbrecherkanone"
+
+msgid "content.cards.IC003.name"
+msgstr "Resonanzschild"
+
+msgid "content.cards.IC004.name"
+msgstr "Gezeiten-Sanitätskasten"
+
+msgid "content.cards.IC005.name"
+msgstr "Glutdüse"
+
+msgid "content.cards.IC006.name"
+msgstr "Giftnebelkanister"
+
+msgid "content.cards.IC007.name"
+msgstr "Frostprisma"
+
+msgid "content.cards.IC008.name"
+msgstr "Winddruck-Störer"
+
+msgid "content.cards.IC009.name"
+msgstr "Verbindungskern"
+
+msgid "content.cards.IC010.name"
+msgstr "Verschmutzungspumpe"
+
+msgid "content.cards.IC011.name"
+msgstr "Schadstofffilterlampe"
+
+msgid "content.cards.IC012.name"
+msgstr "Notfallschwarm"
+
+msgid "content.cards.M001.name"
+msgstr "Schwebebestie des Felsgipfels"
+
+msgid "content.cards.M002.name"
+msgstr "Schleicher des Felsgipfels"
+
+msgid "content.cards.M003.name"
+msgstr "Plünderer des Felsgipfels"
+
+msgid "content.cards.M004.name"
+msgstr "Koloss des Felsgipfels"
+
+msgid "content.cards.M005.name"
+msgstr "Schwarm des Felsgipfels"
+
+msgid "content.cards.M006.name"
+msgstr "Fanatiker des Felsgipfels"
+
+msgid "content.cards.M019.name"
+msgstr "Schwebebestie der Blutflamme"
+
+msgid "content.cards.M020.name"
+msgstr "Schleicher der Blutflamme"
+
+msgid "content.cards.M021.name"
+msgstr "Plünderer der Blutflamme"
+
+msgid "content.cards.M022.name"
+msgstr "Koloss der Blutflamme"
+
+msgid "content.cards.M023.name"
+msgstr "Schwarm der Blutflamme"
+
+msgid "content.cards.M024.name"
+msgstr "Fanatiker der Blutflamme"
+
+msgid "content.cards.M037.name"
+msgstr "Schwebebestie des Eislands"
+
+msgid "content.cards.M038.name"
+msgstr "Schleicher des Eislands"
+
+msgid "content.cards.M039.name"
+msgstr "Plünderer des Eislands"
+
+msgid "content.cards.M040.name"
+msgstr "Koloss des Eislands"
+
+msgid "content.cards.M041.name"
+msgstr "Schwarm des Eislands"
+
+msgid "content.cards.M042.name"
+msgstr "Fanatiker des Eislands"
+
+msgid "content.cards.MB001.name"
+msgstr "Herr des Felsgipfels"
+
+msgid "content.cards.MB002.name"
+msgstr "Herr des Felsgipfels · Chaos"
+
+msgid "content.cards.MB003.name"
+msgstr "Herr des Felsgipfels · Schrecken"
+
+msgid "content.cards.MB004.name"
+msgstr "Herr der Blutflamme"
+
+msgid "content.cards.MB005.name"
+msgstr "Herr der Blutflamme · Chaos"
+
+msgid "content.cards.MB006.name"
+msgstr "Herr der Blutflamme · Schrecken"
+
+msgid "content.cards.MB007.name"
+msgstr "Herr des Eislands"
+
+msgid "content.cards.MB008.name"
+msgstr "Herr des Eislands · Chaos"
+
+msgid "content.cards.MB009.name"
+msgstr "Herr des Eislands · Schrecken"
+
+msgid "content.cards.ME001.name"
+msgstr "Wachhauptmann des Felsgipfels"
+
+msgid "content.cards.ME002.name"
+msgstr "Priester des Felsgipfels"
+
+msgid "content.cards.ME003.name"
+msgstr "Jäger des Felsgipfels"
+
+msgid "content.cards.ME004.name"
+msgstr "Wachhauptmann des Felsgipfels · Chaos"
+
+msgid "content.cards.ME005.name"
+msgstr "Priester des Felsgipfels · Chaos"
+
+msgid "content.cards.ME006.name"
+msgstr "Jäger des Felsgipfels · Chaos"
+
+msgid "content.cards.ME007.name"
+msgstr "Wachhauptmann des Felsgipfels · Schrecken"
+
+msgid "content.cards.ME008.name"
+msgstr "Priester des Felsgipfels · Schrecken"
+
+msgid "content.cards.ME009.name"
+msgstr "Jäger des Felsgipfels · Schrecken"
+
+msgid "content.cards.ME010.name"
+msgstr "Wachhauptmann der Blutflamme"
+
+msgid "content.cards.ME011.name"
+msgstr "Priester der Blutflamme"
+
+msgid "content.cards.ME012.name"
+msgstr "Jäger der Blutflamme"
+
+msgid "content.cards.ME013.name"
+msgstr "Wachhauptmann der Blutflamme · Chaos"
+
+msgid "content.cards.ME014.name"
+msgstr "Priester der Blutflamme · Chaos"
+
+msgid "content.cards.ME015.name"
+msgstr "Jäger der Blutflamme · Chaos"
+
+msgid "content.cards.ME016.name"
+msgstr "Wachhauptmann der Blutflamme · Schrecken"
+
+msgid "content.cards.ME017.name"
+msgstr "Priester der Blutflamme · Schrecken"
+
+msgid "content.cards.ME018.name"
+msgstr "Jäger der Blutflamme · Schrecken"
+
+msgid "content.cards.ME019.name"
+msgstr "Wachhauptmann des Eislands"
+
+msgid "content.cards.ME020.name"
+msgstr "Priester des Eislands"
+
+msgid "content.cards.ME021.name"
+msgstr "Jäger des Eislands"
+
+msgid "content.cards.ME022.name"
+msgstr "Wachhauptmann des Eislands · Chaos"
+
+msgid "content.cards.ME023.name"
+msgstr "Priester des Eislands · Chaos"
+
+msgid "content.cards.ME024.name"
+msgstr "Jäger des Eislands · Chaos"
+
+msgid "content.cards.ME025.name"
+msgstr "Wachhauptmann des Eislands · Schrecken"
+
+msgid "content.cards.ME026.name"
+msgstr "Priester des Eislands · Schrecken"
+
+msgid "content.cards.ME027.name"
+msgstr "Jäger des Eislands · Schrecken"
+
+msgid "content.chapters.CH001.flavor_text"
+msgstr "Wachen zwischen den Felswänden halten Reisende mit zähen Verteidigungen auf."
+
+msgid "content.chapters.CH001.name"
+msgstr "Zerklüfteter Gipfel"
+
+msgid "content.chapters.CH002.flavor_text"
+msgstr "In der Tiefe heizen Glut und Giftnebel das Kampfgeschehen immer weiter an."
+
+msgid "content.chapters.CH002.name"
+msgstr "Blutflammenhöhle"
+
+msgid "content.chapters.CH003.flavor_text"
+msgstr "Kalte Winde und Eiskristalle bringen Eindringlinge ständig aus dem Takt."
+
+msgid "content.chapters.CH003.name"
+msgstr "Eisklingenödnis"
+
+msgid "content.chapters.CH004.flavor_text"
+msgstr "Wachen zwischen den Felswänden halten Reisende mit zähen Verteidigungen auf."
+
+msgid "content.chapters.CH004.name"
+msgstr "Zerklüfteter Gipfel · Chaos"
+
+msgid "content.chapters.CH005.flavor_text"
+msgstr "In der Tiefe heizen Glut und Giftnebel das Kampfgeschehen immer weiter an."
+
+msgid "content.chapters.CH005.name"
+msgstr "Blutflammenhöhle · Chaos"
+
+msgid "content.chapters.CH006.flavor_text"
+msgstr "In der Tiefe heizen Glut und Giftnebel das Kampfgeschehen immer weiter an."
+
+msgid "content.chapters.CH006.name"
+msgstr "Blutflammenhöhle · Schrecken"
+
+msgid "content.chapters.CH007.flavor_text"
+msgstr "Wachen zwischen den Felswänden halten Reisende mit zähen Verteidigungen auf."
+
+msgid "content.chapters.CH007.name"
+msgstr "Zerklüfteter Gipfel · Schrecken"
+
+msgid "content.chapters.CH008.flavor_text"
+msgstr "Kalte Winde und Eiskristalle bringen Eindringlinge ständig aus dem Takt."
+
+msgid "content.chapters.CH008.name"
+msgstr "Eisklingenödnis · Chaos"
+
+msgid "content.chapters.CH009.flavor_text"
+msgstr "Kalte Winde und Eiskristalle bringen Eindringlinge ständig aus dem Takt."
+
+msgid "content.chapters.CH009.name"
+msgstr "Eisklingenödnis · Schrecken"
+
+msgid "content.innate_abilities.EN001.name"
+msgstr "Giftiges Requiem"
+
+msgid "content.innate_abilities.EN002.name"
+msgstr "Verbundene Zahnräder"
+
+msgid "content.innate_abilities.EN003.name"
+msgstr "Kerngegenangriff"
+
+msgid "content.innate_abilities.EN004.name"
+msgstr "Verzweifelte Hexerei"
+
+msgid "content.innate_abilities.EN005.name"
+msgstr "Fluchimpuls"
+
+msgid "content.innate_abilities.EN006.name"
+msgstr "Glutverfolgung"
+
+msgid "content.innate_abilities.EN007.name"
+msgstr "Froststörung"
+
+msgid "content.innate_abilities.EN008.name"
+msgstr "Schildecho"
+
+msgid "content.innate_abilities.EN009.name"
+msgstr "Heilendes Echo"
+
+msgid "content.innate_abilities.EN010.name"
+msgstr "Erderschütternder Schlag"
+
+msgid "content.innate_abilities.EN011.name"
+msgstr "Arkaner Folgeangriff"
+
+msgid "content.innate_abilities.EN012.name"
+msgstr "Kritische Hast"
+
+msgid "content.innate_abilities.EN013.name"
+msgstr "Giftiger Gegenschlag"
+
+msgid "content.innate_abilities.EN014.name"
+msgstr "Präzises Zielen"
+
+msgid "content.innate_abilities.EN015.name"
+msgstr "Eröffnendes Lauffeuer"
+
+msgid "content.innate_abilities.EN016.name"
+msgstr "Vorwärtsrhythmus"
+
+msgid "content.items.FR001.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Samuel“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR001.name"
+msgstr "Spezialfragment: Samuel"
+
+msgid "content.items.FR002.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Cassiri“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR002.name"
+msgstr "Spezialfragment: Cassiri"
+
+msgid "content.items.FR003.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Li“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR003.name"
+msgstr "Spezialfragment: Li"
+
+msgid "content.items.FR004.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Derry“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR004.name"
+msgstr "Spezialfragment: Derry"
+
+msgid "content.items.FR005.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Windsor“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR005.name"
+msgstr "Spezialfragment: Windsor"
+
+msgid "content.items.FR006.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Lilia“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR006.name"
+msgstr "Spezialfragment: Lilia"
+
+msgid "content.items.FR007.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Cassius“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR007.name"
+msgstr "Spezialfragment: Cassius"
+
+msgid "content.items.FR008.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Cicily“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR008.name"
+msgstr "Spezialfragment: Cicily"
+
+msgid "content.items.FR009.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Will“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR009.name"
+msgstr "Spezialfragment: Will"
+
+msgid "content.items.FR010.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Aldas“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR010.name"
+msgstr "Spezialfragment: Aldas"
+
+msgid "content.items.FR011.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Irabel“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR011.name"
+msgstr "Spezialfragment: Irabel"
+
+msgid "content.items.FR012.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Karl“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR012.name"
+msgstr "Spezialfragment: Karl"
+
+msgid "content.items.FR013.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Lucinda Kincaid“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR013.name"
+msgstr "Spezialfragment: Lucinda Kincaid"
+
+msgid "content.items.FR014.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Igo“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR014.name"
+msgstr "Spezialfragment: Igo"
+
+msgid "content.items.FR015.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Zhongshan“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR015.name"
+msgstr "Spezialfragment: Zhongshan"
+
+msgid "content.items.FR016.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Clara“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR016.name"
+msgstr "Spezialfragment: Clara"
+
+msgid "content.items.FR017.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Cassian“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR017.name"
+msgstr "Spezialfragment: Cassian"
+
+msgid "content.items.FR018.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Theron“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR018.name"
+msgstr "Spezialfragment: Theron"
+
+msgid "content.items.FR019.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Gideon“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR019.name"
+msgstr "Spezialfragment: Gideon"
+
+msgid "content.items.FR020.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Bastian“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR020.name"
+msgstr "Spezialfragment: Bastian"
+
+msgid "content.items.FR021.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Caius“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR021.name"
+msgstr "Spezialfragment: Caius"
+
+msgid "content.items.FR022.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Talia“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR022.name"
+msgstr "Spezialfragment: Talia"
+
+msgid "content.items.FR023.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Valeria“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR023.name"
+msgstr "Spezialfragment: Valeria"
+
+msgid "content.items.FR024.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Ilara“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR024.name"
+msgstr "Spezialfragment: Ilara"
+
+msgid "content.items.FR025.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Ione“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR025.name"
+msgstr "Spezialfragment: Ione"
+
+msgid "content.items.FR026.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Aurelia“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR026.name"
+msgstr "Spezialfragment: Aurelia"
+
+msgid "content.items.FR027.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Dahlia“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR027.name"
+msgstr "Spezialfragment: Dahlia"
+
+msgid "content.items.FR028.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Thorin“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR028.name"
+msgstr "Spezialfragment: Thorin"
+
+msgid "content.items.FR029.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Phoenix“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR029.name"
+msgstr "Spezialfragment: Phoenix"
+
+msgid "content.items.FR030.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Darius“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR030.name"
+msgstr "Spezialfragment: Darius"
+
+msgid "content.items.FR031.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Seraphina“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR031.name"
+msgstr "Spezialfragment: Seraphina"
+
+msgid "content.items.FR032.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Sylvia“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR032.name"
+msgstr "Spezialfragment: Sylvia"
+
+msgid "content.items.FR033.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Amulett der Widerstandskraft“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR033.name"
+msgstr "Spezialfragment: Amulett der Widerstandskraft"
+
+msgid "content.items.FR034.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Siegel der Erneuerung“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR034.name"
+msgstr "Spezialfragment: Siegel der Erneuerung"
+
+msgid "content.items.FR035.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Flinkes Zahnrad“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR035.name"
+msgstr "Spezialfragment: Flinkes Zahnrad"
+
+msgid "content.items.FR036.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Wappen des Wanderers“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR036.name"
+msgstr "Spezialfragment: Wappen des Wanderers"
+
+msgid "content.items.FR037.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Flinke Klinge“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR037.name"
+msgstr "Spezialfragment: Flinke Klinge"
+
+msgid "content.items.FR038.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Felsbrecherkanone“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR038.name"
+msgstr "Spezialfragment: Felsbrecherkanone"
+
+msgid "content.items.FR039.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Resonanzschild“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR039.name"
+msgstr "Spezialfragment: Resonanzschild"
+
+msgid "content.items.FR040.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Gezeiten-Sanitätskasten“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR040.name"
+msgstr "Spezialfragment: Gezeiten-Sanitätskasten"
+
+msgid "content.items.FR041.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Glutdüse“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR041.name"
+msgstr "Spezialfragment: Glutdüse"
+
+msgid "content.items.FR042.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Giftnebelkanister“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR042.name"
+msgstr "Spezialfragment: Giftnebelkanister"
+
+msgid "content.items.FR043.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Frostprisma“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR043.name"
+msgstr "Spezialfragment: Frostprisma"
+
+msgid "content.items.FR044.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Winddruck-Störer“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR044.name"
+msgstr "Spezialfragment: Winddruck-Störer"
+
+msgid "content.items.FR045.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Verbindungskern“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR045.name"
+msgstr "Spezialfragment: Verbindungskern"
+
+msgid "content.items.FR046.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Verschmutzungspumpe“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR046.name"
+msgstr "Spezialfragment: Verschmutzungspumpe"
+
+msgid "content.items.FR047.flavor_text"
+msgstr "Ein Fragment für Schadstofffilterlampe."
+
+msgid "content.items.FR047.name"
+msgstr "Exklusives Fragment: Schadstofffilterlampe"
+
+msgid "content.items.FR048.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Notfallschwarm“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR048.name"
+msgstr "Spezialfragment: Notfallschwarm"
+
+msgid "content.items.FR049.flavor_text"
+msgstr "Ein Fragment für Hexereiverstärker."
+
+msgid "content.items.FR049.name"
+msgstr "Exklusives Fragment: Hexereiverstärker"
+
+msgid "content.items.FR050.flavor_text"
+msgstr "Ein Fragment für Ätzgiftsiegel."
+
+msgid "content.items.FR050.name"
+msgstr "Exklusives Fragment: Ätzgiftsiegel"
+
+msgid "content.items.FR051.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Übertaktungsspule“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR051.name"
+msgstr "Spezialfragment: Übertaktungsspule"
+
+msgid "content.items.FR052.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Emblem der Klarheit“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR052.name"
+msgstr "Spezialfragment: Emblem der Klarheit"
+
+msgid "content.items.FR053.flavor_text"
+msgstr "Ein Fragment für Angriffsemblem."
+
+msgid "content.items.FR053.name"
+msgstr "Exklusives Fragment: Angriffsemblem"
+
+msgid "content.items.FR054.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Glutinschrift“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR054.name"
+msgstr "Spezialfragment: Glutinschrift"
+
+msgid "content.items.FR055.flavor_text"
+msgstr "Ein Fragment mit dem Zeichen „Wächterinschrift“, ausschließlich für den zugehörigen Tausch."
+
+msgid "content.items.FR055.name"
+msgstr "Spezialfragment: Wächterinschrift"
+
+msgid "content.items.FR056.flavor_text"
+msgstr "Ein Fragment für Kooperationssiegel."
+
+msgid "content.items.FR056.name"
+msgstr "Exklusives Fragment: Kooperationssiegel"
+
+msgid "content.items.IT001.flavor_text"
+msgstr "Stellt einen Teil der Ausdauer des Spielers wieder her."
+
+msgid "content.items.IT001.name"
+msgstr "Kleine Ausdauererholung"
+
+msgid "content.relics.GA001.flavor_text"
+msgstr "Ein Amulett, das Wind und Frost unbeschadet überstanden hat."
+
+msgid "content.relics.GA001.name"
+msgstr "Amulett der Widerstandskraft"
+
+msgid "content.relics.GA002.flavor_text"
+msgstr "Ein uraltes Siegel, durch das ein schwaches Leuchten fließt."
+
+msgid "content.relics.GA002.name"
+msgstr "Siegel der Erneuerung"
+
+msgid "content.relics.GA003.flavor_text"
+msgstr "Ein leichtes, präzise gefertigtes Uhrwerkbauteil."
+
+msgid "content.relics.GA003.name"
+msgstr "Flinkes Zahnrad"
+
+msgid "content.relics.GA004.flavor_text"
+msgstr "Ein schützendes Wappen für Reisende, die in die Ferne ziehen."
+
+msgid "content.relics.GA004.name"
+msgstr "Wappen des Wanderers"
+
+msgid "content.relics.GA005.flavor_text"
+msgstr "Ein präzises Gerät, das Fluchkraft bündelt."
+
+msgid "content.relics.GA005.name"
+msgstr "Fluchverstärker"
+
+msgid "content.relics.GA006.flavor_text"
+msgstr "Ein altes Siegel voller Gift."
+
+msgid "content.relics.GA006.name"
+msgstr "Giftsiegel"
+
+msgid "content.relics.GA007.flavor_text"
+msgstr "Ein Energieschub zum Aufbruch des Teams."
+
+msgid "content.relics.GA007.name"
+msgstr "Übertaktungsspule"
+
+msgid "content.relics.GA008.flavor_text"
+msgstr "Ein Abzeichen aus klarem Licht."
+
+msgid "content.relics.GA008.name"
+msgstr "Emblem der Klarheit"
+
+msgid "content.relics.GA009.flavor_text"
+msgstr "Ein Kampfzeichen, das Mut macht."
+
+msgid "content.relics.GA009.name"
+msgstr "Angriffsemblem"
+
+msgid "content.relics.GA010.flavor_text"
+msgstr "Eine Inschrift mit glimmender Asche."
+
+msgid "content.relics.GA010.name"
+msgstr "Glutinschrift"
+
+msgid "content.relics.GA011.flavor_text"
+msgstr "Eine Inschrift aus dem Willen zu schützen."
+
+msgid "content.relics.GA011.name"
+msgstr "Wächterinschrift"
+
+msgid "content.relics.GA012.flavor_text"
+msgstr "Ein Siegel, das gemeinsame Kräfte bündelt."
+
+msgid "content.relics.GA012.name"
+msgstr "Kooperationssiegel"
+
+msgid "content.relics.GA013.name"
+msgstr "Glutzünder"
+
+msgid "content.relics.GA014.name"
+msgstr "Funkenzähler"
+
+msgid "content.relics.GA015.name"
+msgstr "Kraftsiegel"
+
+msgid "content.relics.GA016.name"
+msgstr "Echostein"
+
+msgid "content.relics.GA017.name"
+msgstr "Lichtbogenspule"
+
+msgid "content.relics.GA018.name"
+msgstr "Jagdmarke"
+
+msgid "content.relics.GA019.name"
+msgstr "Wächterpakt"
+
+msgid "content.relics.GA020.name"
+msgstr "Relikt des Nachhalls"
+
+msgid "content.relics.GA021.name"
+msgstr "Opferdolch"
+
+msgid "content.relics.GA022.name"
+msgstr "Überlastschaltung"
+
+msgid "content.relics.GA023.name"
+msgstr "Prismenwandler"
+
+msgid "content.relics.GA024.name"
+msgstr "Flusswappen"
+
+msgid "content.relics.GA025.name"
+msgstr "Spiegelsplitter"
+
+msgid "content.relics.GA026.name"
+msgstr "Wandelprisma"
+
+msgid "content.relics.GA027.name"
+msgstr "Kombospange"
+
+msgid "content.relics.GA028.name"
+msgstr "Strahlentotem"
+
+msgid "content.relics.GA029.name"
+msgstr "Resonanzband"
+
+msgid "content.reward_dice.DI002.flavor_text"
+msgstr "Erhalte ein Relikt für das Kapitel."
+
+msgid "content.reward_dice.DI002.name"
+msgstr "Reliktwürfel"
+
+msgid "content.reward_dice.DI003.flavor_text"
+msgstr "Wähle einen freigeschalteten Gefolgsmann oder Gegenstand für die Zusammenstellung dieses Kapitels."
+
+msgid "content.reward_dice.DI003.name"
+msgstr "Kartenwürfel"
+
+msgid "content.reward_dice.DI004.flavor_text"
+msgstr "Erhalte nach dem Wurf sofort Sternsteine entsprechend dem gewürfelten Wert."
+
+msgid "content.reward_dice.DI004.name"
+msgstr "Sternsteinwürfel"
+
+msgid "content.reward_dice.DI005.flavor_text"
+msgstr "Garantierte Elite-Belohnung: Wähle Spezialfragmente oder zusätzliche Sternsteine."
+
+msgid "content.reward_dice.DI005.name"
+msgstr "Schatzwürfel"
+
+msgid "content.synergies.SY001.flavor_text"
+msgstr "Wird durch die Kombination der Effekttypen im Team aktiviert."
+
+msgid "content.synergies.SY001.name"
+msgstr "Ausgewogene Formation"
+
+msgid "content.synergies.SY002.flavor_text"
+msgstr "Wird durch die Kombination der Effekttypen im Team aktiviert."
+
+msgid "content.synergies.SY002.name"
+msgstr "Ätzende Resonanz"
+
+msgid "content.synergies.SY003.flavor_text"
+msgstr "Wird durch die Kombination der Effekttypen im Team aktiviert."
+
+msgid "content.synergies.SY003.name"
+msgstr "Vielseitiger Wechsel"
+
+msgid "content.talents.TA101.flavor_text"
+msgstr "Basisleben des Teams +5; Helden erhalten zusätzlich +5."
+
+msgid "content.talents.TA101.name"
+msgstr "Lebensgrundlage"
+
+msgid "content.talents.TA102.flavor_text"
+msgstr "Physischer Basisschaden des Teams +5."
+
+msgid "content.talents.TA102.name"
+msgstr "Physisch stärken"
+
+msgid "content.talents.TA103.flavor_text"
+msgstr "Basisleben des Teams +10; Helden erhalten zusätzlich +5."
+
+msgid "content.talents.TA103.name"
+msgstr "Höhere Lebenskraft"
+

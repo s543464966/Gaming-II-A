@@ -1,0 +1,37 @@
+[gd_resource type="SpriteFrames" load_steps=15 format=3]
+
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/0.png" id="1"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/1.png" id="2"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/2.png" id="3"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/3.png" id="4"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/4.png" id="5"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/5.png" id="6"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/6.png" id="7"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/7.png" id="8"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/8.png" id="9"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/9.png" id="10"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/10_1.png" id="11"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/11_1.png" id="12"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/12_1.png" id="13"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0004/13_1.png" id="14"]
+
+[resource]
+animations = [{
+"frames": [{ "duration": 3, "texture": ExtResource("1") },
+{ "duration": 3, "texture": ExtResource("2") },
+{ "duration": 2.999999999999999, "texture": ExtResource("3") },
+{ "duration": 3.000000000000001, "texture": ExtResource("4") },
+{ "duration": 2.999999999999999, "texture": ExtResource("5") },
+{ "duration": 2.999999999999999, "texture": ExtResource("6") },
+{ "duration": 2.999999999999999, "texture": ExtResource("7") },
+{ "duration": 3.0000000000000027, "texture": ExtResource("8") },
+{ "duration": 2.999999999999999, "texture": ExtResource("9") },
+{ "duration": 2.999999999999999, "texture": ExtResource("10") },
+{ "duration": 3.9999995999999993, "texture": ExtResource("11") },
+{ "duration": 3.0000024000000014, "texture": ExtResource("12") },
+{ "duration": 2.999999999999996, "texture": ExtResource("13") },
+{ "duration": 1, "texture": ExtResource("14") }],
+"loop": false,
+"name": &"S0004_Clip",
+"speed": 60
+}]

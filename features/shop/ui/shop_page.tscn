@@ -1,0 +1,788 @@
+[gd_scene load_steps=24 format=3]
+
+[ext_resource type="Script" path="res://ui/components/touch_button.gd" id="touch_input"]
+
+[ext_resource type="Script" path="res://features/shop/ui/shop_page.gd" id="1"]
+[ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="2"]
+[ext_resource type="Script" path="res://ui/components/tab_group.gd" id="3"]
+[ext_resource type="Script" path="res://ui/components/touch_scroll_container.gd" id="4"]
+[ext_resource type="PackedScene" path="res://ui/components/content/content_detail.tscn" id="6"]
+[ext_resource type="Texture2D" path="res://ui/design_system/themes/detail_title.png" id="9"]
+[ext_resource type="Texture2D" path="res://ui/design_system/themes/detail_supplement.png" id="10"]
+[ext_resource type="Texture2D" path="res://ui/design_system/themes/detail_paper.png" id="11"]
+[ext_resource type="Texture2D" path="res://ui/design_system/icons/common/home_gold.png" id="12"]
+[ext_resource type="Texture2D" path="res://ui/design_system/icons/common/home_star_stone.png" id="13"]
+[ext_resource type="Texture2D" path="res://ui/design_system/icons/common/home_stamina.png" id="14"]
+
+[ext_resource type="PackedScene" path="res://ui/components/unavailable_view.tscn" id="unavailable"]
+[ext_resource type="PackedScene" path="res://ui/components/content/content_artwork.tscn" id="artwork"]
+[ext_resource type="PackedScene" path="res://ui/components/content/card_artwork.tscn" id="showcase"]
+
+[sub_resource type="StyleBoxEmpty" id="Empty"]
+
+[sub_resource type="StyleBoxTexture" id="DarkNormal"]
+texture = ExtResource("9")
+texture_margin_left = 22.0
+texture_margin_top = 20.0
+texture_margin_right = 22.0
+texture_margin_bottom = 20.0
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="DarkHover"]
+texture = ExtResource("9")
+texture_margin_left = 22.0
+texture_margin_top = 20.0
+texture_margin_right = 22.0
+texture_margin_bottom = 20.0
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+modulate_color = Color(1.12, 1.08, 0.95, 1)
+
+[sub_resource type="StyleBoxTexture" id="DarkPressed"]
+texture = ExtResource("9")
+texture_margin_left = 22.0
+texture_margin_top = 20.0
+texture_margin_right = 22.0
+texture_margin_bottom = 20.0
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+modulate_color = Color(0.79, 0.62, 0.43, 1)
+
+[sub_resource type="StyleBoxTexture" id="FeatureNormal"]
+texture = ExtResource("10")
+texture_margin_left = 40.0
+texture_margin_top = 32.0
+texture_margin_right = 40.0
+texture_margin_bottom = 32.0
+content_margin_left = 22.0
+content_margin_top = 18.0
+content_margin_right = 22.0
+content_margin_bottom = 18.0
+
+[sub_resource type="StyleBoxFlat" id="Focus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.94, 0.8, 0.52, 1)
+
+[sub_resource type="StyleBoxFlat" id="TabMarker"]
+bg_color = Color(0.075, 0.065, 0.05, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.76, 0.58, 0.31, 1)
+
+[sub_resource type="StyleBoxFlat" id="ResourceSurface"]
+bg_color = Color(0.035, 0.032, 0.028, 0.94)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.63, 0.5, 0.3, 0.72)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+
+[node name="ShopPage" type="Control"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 42
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 14
+
+[node name="Column" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="Margin/Column"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Margin/Column/Header"]
+custom_minimum_size = Vector2(126, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.82, 0.63, 1)
+theme_override_colors/font_outline_color = Color(0.055, 0.038, 0.024, 0.96)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 44
+text = "ui.page.shop"
+vertical_alignment = 1
+
+[node name="Resources" type="PanelContainer" parent="Margin/Column/Header"]
+custom_minimum_size = Vector2(360, 58)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("ResourceSurface")
+
+[node name="Row" type="HBoxContainer" parent="Margin/Column/Header/Resources"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Gold" type="HBoxContainer" parent="Margin/Column/Header/Resources/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Icon" type="TextureRect" parent="Margin/Column/Header/Resources/Row/Gold"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("12")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Value" type="Label" parent="Margin/Column/Header/Resources/Row/Gold"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.82, 0.63, 1)
+theme_override_font_sizes/font_size = 22
+text = "0"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="StarStone" type="HBoxContainer" parent="Margin/Column/Header/Resources/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Icon" type="TextureRect" parent="Margin/Column/Header/Resources/Row/StarStone"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("13")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Value" type="Label" parent="Margin/Column/Header/Resources/Row/StarStone"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.82, 0.63, 1)
+theme_override_font_sizes/font_size = 22
+text = "0"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Stamina" type="HBoxContainer" parent="Margin/Column/Header/Resources/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Icon" type="TextureRect" parent="Margin/Column/Header/Resources/Row/Stamina"]
+custom_minimum_size = Vector2(27, 30)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("14")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Value" type="Label" parent="Margin/Column/Header/Resources/Row/Stamina"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.82, 0.63, 1)
+theme_override_font_sizes/font_size = 22
+text = "0/0"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="CloseSpace" type="Control" parent="Margin/Column/Header"]
+custom_minimum_size = Vector2(108, 0)
+layout_mode = 2
+
+[node name="Views" type="Control" parent="Margin/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Overview" type="VBoxContainer" parent="Margin/Column/Views"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Unavailable" parent="Margin/Column/Views/Overview" instance=ExtResource("unavailable")]
+visible = false
+layout_mode = 2
+title = "ui.category.recommended"
+
+[node name="FilterPanel" type="PanelContainer" parent="Margin/Column/Views/Overview"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("FeatureNormal")
+
+[node name="Filters" type="HBoxContainer" parent="Margin/Column/Views/Overview/FilterPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CardTag" type="VBoxContainer" parent="Margin/Column/Views/Overview/FilterPanel/Filters"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="Margin/Column/Views/Overview/FilterPanel/Filters/CardTag"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.7, 0.55, 1)
+theme_override_font_sizes/font_size = 18
+text = "ui.filter.card_tag"
+horizontal_alignment = 1
+
+[node name="CardTagPicker" type="OptionButton" parent="Margin/Column/Views/Overview/FilterPanel/Filters/CardTag"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.86, 0.78, 0.61, 1)
+theme_override_colors/font_hover_color = Color(1, 0.93, 0.75, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.93, 0.75, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("DarkNormal")
+theme_override_styles/hover = SubResource("DarkHover")
+theme_override_styles/pressed = SubResource("DarkPressed")
+
+[node name="OutputType" type="VBoxContainer" parent="Margin/Column/Views/Overview/FilterPanel/Filters"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="Margin/Column/Views/Overview/FilterPanel/Filters/OutputType"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.7, 0.55, 1)
+theme_override_font_sizes/font_size = 18
+text = "ui.filter.output_type"
+horizontal_alignment = 1
+
+[node name="OutputTypePicker" type="OptionButton" parent="Margin/Column/Views/Overview/FilterPanel/Filters/OutputType"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.86, 0.78, 0.61, 1)
+theme_override_colors/font_hover_color = Color(1, 0.93, 0.75, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.93, 0.75, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("DarkNormal")
+theme_override_styles/hover = SubResource("DarkHover")
+theme_override_styles/pressed = SubResource("DarkPressed")
+
+[node name="AbilityFacet" type="VBoxContainer" parent="Margin/Column/Views/Overview/FilterPanel/Filters"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="Margin/Column/Views/Overview/FilterPanel/Filters/AbilityFacet"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.7, 0.55, 1)
+theme_override_font_sizes/font_size = 18
+text = "ui.filter.ability_facet"
+horizontal_alignment = 1
+
+[node name="AbilityFacetPicker" type="OptionButton" parent="Margin/Column/Views/Overview/FilterPanel/Filters/AbilityFacet"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.86, 0.78, 0.61, 1)
+theme_override_colors/font_hover_color = Color(1, 0.93, 0.75, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.93, 0.75, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("DarkNormal")
+theme_override_styles/hover = SubResource("DarkHover")
+theme_override_styles/pressed = SubResource("DarkPressed")
+
+[node name="Catalog" type="ScrollContainer" parent="Margin/Column/Views/Overview"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+script = ExtResource("4")
+
+[node name="Center" type="CenterContainer" parent="Margin/Column/Views/Overview/Catalog"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Grid" type="GridContainer" parent="Margin/Column/Views/Overview/Catalog/Center"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+columns = 4
+
+[node name="Tabs" type="ScrollContainer" parent="Margin/Column/Views/Overview"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+clip_contents = false
+script = ExtResource("3")
+presentation = 1
+authored_buttons = Array[NodePath]([NodePath("Bar/Recommend"), NodePath("Bar/Hero"), NodePath("Bar/Minion"), NodePath("Bar/Item"), NodePath("Bar/Relic")])
+
+[node name="Bar" type="Control" parent="Margin/Column/Views/Overview/Tabs"]
+custom_minimum_size = Vector2(672, 108)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Art" type="NinePatchRect" parent="Margin/Column/Views/Overview/Tabs/Bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11")
+patch_margin_left = 20
+patch_margin_top = 18
+patch_margin_right = 20
+patch_margin_bottom = 18
+modulate = Color(0.96, 0.93, 0.86, 1)
+
+[node name="Divider1" type="ColorRect" parent="Margin/Column/Views/Overview/Tabs/Bar"]
+layout_mode = 1
+anchor_left = 0.2
+anchor_right = 0.2
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 22.0
+offset_right = 1.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.55, 0.47, 0.34, 0.58)
+
+[node name="Divider2" type="ColorRect" parent="Margin/Column/Views/Overview/Tabs/Bar"]
+layout_mode = 1
+anchor_left = 0.4
+anchor_right = 0.4
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 22.0
+offset_right = 1.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.55, 0.47, 0.34, 0.58)
+
+[node name="Divider3" type="ColorRect" parent="Margin/Column/Views/Overview/Tabs/Bar"]
+layout_mode = 1
+anchor_left = 0.6
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 22.0
+offset_right = 1.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.55, 0.47, 0.34, 0.58)
+
+[node name="Divider4" type="ColorRect" parent="Margin/Column/Views/Overview/Tabs/Bar"]
+layout_mode = 1
+anchor_left = 0.8
+anchor_right = 0.8
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 22.0
+offset_right = 1.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.55, 0.47, 0.34, 0.58)
+
+[node name="Selection" type="NinePatchRect" parent="Margin/Column/Views/Overview/Tabs/Bar"]
+layout_mode = 0
+offset_left = 134.4
+offset_right = 268.8
+offset_bottom = 108.0
+mouse_filter = 2
+texture = ExtResource("9")
+patch_margin_left = 22
+patch_margin_top = 20
+patch_margin_right = 22
+patch_margin_bottom = 20
+modulate = Color(0.92, 0.78, 0.56, 1)
+
+[node name="Marker" type="Panel" parent="Margin/Column/Views/Overview/Tabs/Bar/Selection"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -9.0
+offset_right = 7.0
+offset_bottom = 5.0
+grow_horizontal = 2
+pivot_offset = Vector2(7, 7)
+rotation = 0.785398
+mouse_filter = 2
+theme_override_styles/panel = SubResource("TabMarker")
+
+[node name="Recommend" type="Button" parent="Margin/Column/Views/Overview/Tabs/Bar"]
+layout_mode = 1
+anchor_right = 0.2
+anchor_bottom = 1.0
+mouse_filter = 0
+theme_override_styles/normal = SubResource("Empty")
+theme_override_styles/hover = SubResource("Empty")
+theme_override_styles/pressed = SubResource("Empty")
+theme_override_styles/hover_pressed = SubResource("Empty")
+theme_override_styles/disabled = SubResource("Empty")
+theme_override_styles/focus = SubResource("Focus")
+mouse_default_cursor_shape = 2
+script = ExtResource("touch_input")
+
+[node name="Caption" type="Label" parent="Margin/Column/Views/Overview/Tabs/Bar/Recommend"]
+self_modulate = Color(0.16, 0.13, 0.09, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 24
+text = "ui.category.recommended"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hero" type="Button" parent="Margin/Column/Views/Overview/Tabs/Bar"]
+layout_mode = 1
+anchor_left = 0.2
+anchor_right = 0.4
+anchor_bottom = 1.0
+mouse_filter = 0
+theme_override_styles/normal = SubResource("Empty")
+theme_override_styles/hover = SubResource("Empty")
+theme_override_styles/pressed = SubResource("Empty")
+theme_override_styles/hover_pressed = SubResource("Empty")
+theme_override_styles/disabled = SubResource("Empty")
+theme_override_styles/focus = SubResource("Focus")
+mouse_default_cursor_shape = 2
+script = ExtResource("touch_input")
+
+[node name="Caption" type="Label" parent="Margin/Column/Views/Overview/Tabs/Bar/Hero"]
+self_modulate = Color(0.9, 0.82, 0.63, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 24
+text = "ui.category.hero"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Minion" type="Button" parent="Margin/Column/Views/Overview/Tabs/Bar"]
+layout_mode = 1
+anchor_left = 0.4
+anchor_right = 0.6
+anchor_bottom = 1.0
+mouse_filter = 0
+theme_override_styles/normal = SubResource("Empty")
+theme_override_styles/hover = SubResource("Empty")
+theme_override_styles/pressed = SubResource("Empty")
+theme_override_styles/hover_pressed = SubResource("Empty")
+theme_override_styles/disabled = SubResource("Empty")
+theme_override_styles/focus = SubResource("Focus")
+mouse_default_cursor_shape = 2
+script = ExtResource("touch_input")
+
+[node name="Caption" type="Label" parent="Margin/Column/Views/Overview/Tabs/Bar/Minion"]
+self_modulate = Color(0.16, 0.13, 0.09, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 24
+text = "ui.category.minion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item" type="Button" parent="Margin/Column/Views/Overview/Tabs/Bar"]
+layout_mode = 1
+anchor_left = 0.6
+anchor_right = 0.8
+anchor_bottom = 1.0
+mouse_filter = 0
+theme_override_styles/normal = SubResource("Empty")
+theme_override_styles/hover = SubResource("Empty")
+theme_override_styles/pressed = SubResource("Empty")
+theme_override_styles/hover_pressed = SubResource("Empty")
+theme_override_styles/disabled = SubResource("Empty")
+theme_override_styles/focus = SubResource("Focus")
+mouse_default_cursor_shape = 2
+script = ExtResource("touch_input")
+
+[node name="Caption" type="Label" parent="Margin/Column/Views/Overview/Tabs/Bar/Item"]
+self_modulate = Color(0.16, 0.13, 0.09, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 24
+text = "ui.category.item"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Relic" type="Button" parent="Margin/Column/Views/Overview/Tabs/Bar"]
+layout_mode = 1
+anchor_left = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+theme_override_styles/normal = SubResource("Empty")
+theme_override_styles/hover = SubResource("Empty")
+theme_override_styles/pressed = SubResource("Empty")
+theme_override_styles/hover_pressed = SubResource("Empty")
+theme_override_styles/disabled = SubResource("Empty")
+theme_override_styles/focus = SubResource("Focus")
+mouse_default_cursor_shape = 2
+script = ExtResource("touch_input")
+
+[node name="Caption" type="Label" parent="Margin/Column/Views/Overview/Tabs/Bar/Relic"]
+self_modulate = Color(0.16, 0.13, 0.09, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 24
+text = "ui.category.relic"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Detail" type="Control" parent="Margin/Column/Views"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scroll" type="ScrollContainer" parent="Margin/Column/Views/Detail"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+script = ExtResource("4")
+
+[node name="Column" type="VBoxContainer" parent="Margin/Column/Views/Detail/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Carousel" type="HBoxContainer" parent="Margin/Column/Views/Detail/Scroll/Column"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="Previous" type="Button" parent="Margin/Column/Views/Detail/Scroll/Column/Carousel"]
+custom_minimum_size = Vector2(108, 280)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("Empty")
+theme_override_styles/hover = SubResource("Empty")
+theme_override_styles/pressed = SubResource("Empty")
+theme_override_styles/focus = SubResource("Empty")
+text = ""
+mouse_default_cursor_shape = 2
+script = ExtResource("touch_input")
+
+[node name="Picture" parent="Margin/Column/Views/Detail/Scroll/Column/Carousel/Previous" instance=ExtResource("artwork")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Arrow" type="Label" parent="Margin/Column/Views/Detail/Scroll/Column/Carousel/Previous"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -30.0
+offset_right = 36.0
+offset_bottom = 30.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.92, 0.82, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0.03, 0.02, 0.01, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 42
+text = "‹"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Center" parent="Margin/Column/Views/Detail/Scroll/Column/Carousel" instance=ExtResource("showcase")]
+custom_minimum_size = Vector2(400, 450)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+frame_unit_limit = 160.0
+
+[node name="Next" type="Button" parent="Margin/Column/Views/Detail/Scroll/Column/Carousel"]
+custom_minimum_size = Vector2(108, 280)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("Empty")
+theme_override_styles/hover = SubResource("Empty")
+theme_override_styles/pressed = SubResource("Empty")
+theme_override_styles/focus = SubResource("Empty")
+text = ""
+mouse_default_cursor_shape = 2
+script = ExtResource("touch_input")
+
+[node name="Picture" parent="Margin/Column/Views/Detail/Scroll/Column/Carousel/Next" instance=ExtResource("artwork")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Arrow" type="Label" parent="Margin/Column/Views/Detail/Scroll/Column/Carousel/Next"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -30.0
+offset_right = 8.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.92, 0.82, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0.03, 0.02, 0.01, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 42
+text = "›"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Indicator" type="Label" parent="Margin/Column/Views/Detail/Scroll/Column"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.72, 0.45, 1)
+theme_override_font_sizes/font_size = 22
+text = "◆"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="Label" parent="Margin/Column/Views/Detail/Scroll/Column"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93, 0.85, 0.66, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.025, 0.015, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 38
+text = "—"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Summary" type="Label" parent="Margin/Column/Views/Detail/Scroll/Column"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.75, 0.61, 1)
+theme_override_font_sizes/font_size = 24
+text = "—"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Actions" type="HBoxContainer" parent="Margin/Column/Views/Detail/Scroll/Column"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="RulesPaper" type="PanelContainer" parent="Margin/Column/Views/Detail/Scroll/Column"]
+layout_mode = 2
+theme_type_variation = &"DetailPaper"
+
+[node name="Margin" type="MarginContainer" parent="Margin/Column/Views/Detail/Scroll/Column/RulesPaper"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 32
+
+[node name="Content" parent="Margin/Column/Views/Detail/Scroll/Column/RulesPaper/Margin" instance=ExtResource("6")]
+unique_name_in_owner = true
+layout_mode = 2
+show_artwork = false

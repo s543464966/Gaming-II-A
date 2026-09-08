@@ -1,0 +1,694 @@
+# Generated. Edit authoring sources, not this file.
+msgid ""
+msgstr "Language: ja\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "rules.ability.conditional_description"
+msgstr "{conditions}の間：{modifiers}"
+
+msgid "rules.ability.internal_cooldown"
+msgstr "発動クールダウン：{seconds}秒"
+
+msgid "rules.ability.internal_cooldown_remaining"
+msgstr "再発動可能まで{seconds}秒"
+
+msgid "rules.ability.scope"
+msgstr "{target}：{description}"
+
+msgid "rules.ability.team_scope"
+msgstr "味方チーム：{description}"
+
+msgid "rules.ability_execution.conditional_passive"
+msgstr "条件型パッシブ能力"
+
+msgid "rules.ability_execution.cooldown_main"
+msgstr "主能力"
+
+msgid "rules.ability_execution.persistent_bonus"
+msgstr "常時ボーナス能力"
+
+msgid "rules.ability_execution.triggered_passive"
+msgstr "イベント型パッシブ能力"
+
+msgid "rules.action.accumulate"
+msgstr "蓄積"
+
+msgid "rules.action.apply_status"
+msgstr "状態異常の強度"
+
+msgid "rules.action.chain"
+msgstr "連鎖"
+
+msgid "rules.action.change_pollution"
+msgstr "汚染"
+
+msgid "rules.action.charge"
+msgstr "チャージ"
+
+msgid "rules.action.convert"
+msgstr "変換"
+
+msgid "rules.action.copy_main_ability"
+msgstr "コピー"
+
+msgid "rules.action.delay_cooldown"
+msgstr "クールダウン延長"
+
+msgid "rules.action.detonate"
+msgstr "起爆"
+
+msgid "rules.action.echo"
+msgstr "残響"
+
+msgid "rules.action.empower"
+msgstr "力溜め"
+
+msgid "rules.action.expand_ammo"
+msgstr "弾薬拡張"
+
+msgid "rules.action.grant_main_ability"
+msgstr "主能力付与"
+
+msgid "rules.action.grant_shield"
+msgstr "シールド"
+
+msgid "rules.action.guard"
+msgstr "庇護"
+
+msgid "rules.action.haste"
+msgstr "ヘイスト"
+
+msgid "rules.action.heal"
+msgstr "回復"
+
+msgid "rules.action.link"
+msgstr "リンク"
+
+msgid "rules.action.mark"
+msgstr "マーク"
+
+msgid "rules.action.overload"
+msgstr "過負荷"
+
+msgid "rules.action.physical_damage"
+msgstr "物理ダメージ"
+
+msgid "rules.action.refill_ammo"
+msgstr "使用回数補充"
+
+msgid "rules.action.sacrifice"
+msgstr "生贄"
+
+msgid "rules.action.transfer"
+msgstr "移動"
+
+msgid "rules.action.transform"
+msgstr "変身"
+
+msgid "rules.action.witchcraft"
+msgstr "呪術"
+
+msgid "rules.actions.card_power_ratio"
+msgstr "カードの{type}値の {percent}%"
+
+msgid "rules.actions.charge"
+msgstr "{target}の{main_ability}を{amount}秒チャージ"
+
+msgid "rules.actions.delay"
+msgstr "{target}の{main_ability}の残りクールダウンを{amount}秒延長"
+
+msgid "rules.actions.expand"
+msgstr "{target}の弾薬上限を{amount}回増やし、同じ回数を補充"
+
+msgid "rules.actions.grant_main_ability"
+msgstr "{target}に主能力を1つ付与（{duration}）"
+
+msgid "rules.actions.haste"
+msgstr "{target}の{main_ability}に {stat_haste_ratio} {percent}%（{duration}）"
+
+msgid "rules.actions.heal"
+msgstr "{target}に {stat_healing_power} {amount}点"
+
+msgid "rules.actions.lifesteal"
+msgstr "このダメージの {stat_lifesteal_ratio} {percent}%（シールド減少分は除外）"
+
+msgid "rules.actions.physical_damage"
+msgstr "{target}に {stat_physical_damage} {amount}点"
+
+msgid "rules.actions.poison_penetration"
+msgstr "毒の間、受ける回復量が20%減少（重複なし）。付与前のシールドは毒ダメージを防ぐが、無盾または盾が尽きると、その毒は後から得た盾を貫通する"
+
+msgid "rules.actions.pollution"
+msgstr "汚染変化：{amount}"
+
+msgid "rules.actions.refill"
+msgstr "{target}の使用回数を{amount}回補充（弾薬拡張の上限まで）"
+
+msgid "rules.actions.shield"
+msgstr "{target}に {stat_shield_power} {amount}点"
+
+msgid "rules.actions.status_control"
+msgstr "{target}に{status}を{seconds}秒付与"
+
+msgid "rules.actions.status_damage"
+msgstr "{target}に{status}を{seconds}秒付与（毎秒{amount}ダメージ）"
+
+msgid "rules.actions.witchcraft"
+msgstr "{target}に {stat_witchcraft_damage} {amount}点（シールドへのダメージ +20%）"
+
+msgid "rules.card.ammo"
+msgstr "{stat_ammo_capacity} · 1戦 {count}回、能動発動ごとに1回消費。枯渇してもパッシブは有効"
+
+msgid "rules.card.haste"
+msgstr "{stat_haste_ratio} {percent}% · 各クールダウンを短縮"
+
+msgid "rules.card.lifesteal"
+msgstr "{stat_lifesteal_ratio} {percent}% · 生命減少分のみ"
+
+msgid "rules.card.main_ability"
+msgstr "{cooldown}{multicast}：{actions}"
+
+msgid "rules.card_kind.core_hero"
+msgstr "英雄"
+
+msgid "rules.card_kind.item_card"
+msgstr "道具カード"
+
+msgid "rules.card_kind.minion"
+msgstr "従者"
+
+msgid "rules.card_kind.monster"
+msgstr "モンスター"
+
+msgid "rules.completion.defeat"
+msgstr "味方チームがこの戦闘の敗北条件に達しました。"
+
+msgid "rules.completion.draw"
+msgstr "両チームが同時に敗北条件に達したため、引き分けです。"
+
+msgid "rules.completion.invalid_request"
+msgstr "戦闘入力がこの戦闘のルールに適合していません。"
+
+msgid "rules.completion.judgment_defeat"
+msgstr "{seconds}秒の生命判定：敵の残り生命割合が上回りました。"
+
+msgid "rules.completion.judgment_tie"
+msgstr "{seconds}秒で生命割合が同率のため、防衛側の勝利です。"
+
+msgid "rules.completion.judgment_victory"
+msgstr "{seconds}秒の生命判定：味方の残り生命割合が上回りました。"
+
+msgid "rules.completion.timeout"
+msgstr "自動戦闘がこの戦闘の制限時間に達しました。"
+
+msgid "rules.completion.victory"
+msgstr "味方チームは{seconds}秒でこの戦闘の勝利条件を達成しました。"
+
+msgid "rules.condition.always"
+msgstr "常に"
+
+msgid "rules.condition.event_counter_key"
+msgstr "指定カウントと一致"
+
+msgid "rules.condition.event_has_kill_credit"
+msgstr "この撃破がキルとして認められる"
+
+msgid "rules.condition.event_is_critical"
+msgstr "今回のダメージが会心"
+
+msgid "rules.condition.event_is_primary"
+msgstr "派生効果と追加発動を除く"
+
+msgid "rules.condition.event_source_has_ammo"
+msgstr "発動者が弾薬を持つ"
+
+msgid "rules.condition.event_source_has_tags"
+msgstr "イベント発生元のタグ：{tags}"
+
+msgid "rules.condition.event_source_is_adjacent"
+msgstr "発生源が自身に隣接"
+
+msgid "rules.condition.event_source_is_ally"
+msgstr "発生源が味方"
+
+msgid "rules.condition.event_source_is_enemy"
+msgstr "発生源が敵"
+
+msgid "rules.condition.event_source_is_linked"
+msgstr "発生源がリンクしたユニット"
+
+msgid "rules.condition.event_source_is_minion"
+msgstr "発生源が従者"
+
+msgid "rules.condition.event_source_is_owner"
+msgstr "発生源が自身"
+
+msgid "rules.condition.event_target_has_tags"
+msgstr "イベント対象のタグ：{tags}"
+
+msgid "rules.condition.event_target_is_core"
+msgstr "対象が英雄"
+
+msgid "rules.condition.event_target_is_enemy"
+msgstr "対象が敵である"
+
+msgid "rules.condition.event_target_is_owner"
+msgstr "対象が自身"
+
+msgid "rules.condition.event_target_marked"
+msgstr "対象に指定の味方マークがある"
+
+msgid "rules.condition.event_target_status_stacks_at_least"
+msgstr "対象の{status}が{threshold}層以上"
+
+msgid "rules.condition.owner_counter_at_least"
+msgstr "自身のカウントが{threshold}以上"
+
+msgid "rules.condition.owner_has_status"
+msgstr "自身が{status}状態"
+
+msgid "rules.condition.owner_has_tags"
+msgstr "自身のタグ：{tags}"
+
+msgid "rules.condition.owner_health_at_most_percent"
+msgstr "自身のHPが{threshold}%以下"
+
+msgid "rules.condition.pollution_at_least"
+msgstr "汚染が{threshold}以上"
+
+msgid "rules.condition.pollution_at_most"
+msgstr "汚染が{threshold}以下"
+
+msgid "rules.cooldown.passive"
+msgstr "主能力なし"
+
+msgid "rules.cooldown.seconds"
+msgstr "{stat_cooldown_seconds} {seconds}秒"
+
+msgid "rules.currency.gold"
+msgstr "ゴールド"
+
+msgid "rules.currency.rmb"
+msgstr "人民元"
+
+msgid "rules.currency.star_stone"
+msgstr "星石"
+
+msgid "rules.duration.battle"
+msgstr "この戦闘中"
+
+msgid "rules.duration.seconds"
+msgstr "{seconds}秒"
+
+msgid "rules.duration.source"
+msgstr "付与元が有効な間"
+
+msgid "rules.identity"
+msgstr "{kind} · {output}\n占有：{width} × {height}"
+
+msgid "rules.main_ability.all"
+msgstr "すべての主能力"
+
+msgid "rules.main_ability.description"
+msgstr "{cooldown}{multicast}\n{actions}"
+
+msgid "rules.main_ability.specific"
+msgstr "指定した主能力"
+
+msgid "rules.mechanic.accumulate"
+msgstr "{target}に{amount}蓄積。閾値{threshold}、上限{limit}"
+
+msgid "rules.mechanic.any_source"
+msgstr "同じ発生源も可"
+
+msgid "rules.mechanic.chain"
+msgstr "{target}から異なる{count}体へ連鎖、各跳躍で威力{percent}%を維持：{payload}"
+
+msgid "rules.mechanic.combo"
+msgstr "{seconds}秒以内に元のイベント{count}回（0は戦闘全体）、{unique}"
+
+msgid "rules.mechanic.convert"
+msgstr "{target}が{resource}を{amount}支払い：{payload}"
+
+msgid "rules.mechanic.copy_main_ability"
+msgstr "{target}にプリセット主能力の威力{percent}%の独立コピーを{seconds}秒付与"
+
+msgid "rules.mechanic.detonate"
+msgstr "{target}の味方由来の火傷を{count}層消費し、残り基礎ダメージの{percent}%を与える"
+
+msgid "rules.mechanic.distinct"
+msgstr "異なる発生源"
+
+msgid "rules.mechanic.echo"
+msgstr "{target}の直近の元の数値効果を威力{percent}%で再現"
+
+msgid "rules.mechanic.empower"
+msgstr "{target}の次のアクティブ発動一組を+{percent}%強化。{duration}"
+
+msgid "rules.mechanic.guard"
+msgstr "{target}が隣接味方への単体ダメージを{amount}回肩代わり。{duration}"
+
+msgid "rules.mechanic.link"
+msgstr "{target}とリンクし、アクティブ発動を検知。{duration}"
+
+msgid "rules.mechanic.mark"
+msgstr "{target}を{seconds}秒マーク"
+
+msgid "rules.mechanic.overload"
+msgstr "{target}の熱量+{amount}。{limit}で{recovery}秒停止。今回：{payload}"
+
+msgid "rules.mechanic.sacrifice"
+msgstr "味方従者{target}を生贄に捧げ：{payload}"
+
+msgid "rules.mechanic.transfer"
+msgstr "自身の{resource}を{amount}、残り時間を維持して{target}へ移す"
+
+msgid "rules.mechanic.transform"
+msgstr "{target}を{seconds}秒、プリセット主能力形態へ変更。HPと弾薬は維持"
+
+msgid "rules.modifier.action"
+msgstr "{action}の効果値 {amount}"
+
+msgid "rules.modifier.ammo"
+msgstr "{stat_ammo_capacity}上限 {count}回（有効な道具のみ）"
+
+msgid "rules.modifier.cooldown"
+msgstr "基礎{stat_cooldown_seconds} {seconds}秒"
+
+msgid "rules.modifier.health"
+msgstr "{stat_max_health} {amount}"
+
+msgid "rules.modifier.main_ability"
+msgstr "主能力を付与"
+
+msgid "rules.modifier.multicast"
+msgstr "{stat_multicast_bonus} {count}回"
+
+msgid "rules.modifier.percent"
+msgstr "{stat} {amount}ポイント"
+
+msgid "rules.modifier.projectile"
+msgstr "攻撃弾道を変更"
+
+msgid "rules.modifier.stat_ratio"
+msgstr "{stat}が{percent}%増加（同種は加算）"
+
+msgid "rules.modifier.team_bonus"
+msgstr "{stat} {amount}"
+
+msgid "rules.modifier.team_buff"
+msgstr "チームボーナス {amount}"
+
+msgid "rules.multicast"
+msgstr " · {stat_multicast_bonus} {count}回"
+
+msgid "rules.node.aurora"
+msgstr "初回は8種類の報酬から1つ選択。この章では発動するたびに選択数が1つ増え、最大5回発動する。"
+
+msgid "rules.node.exchange"
+msgstr "アカウントの{currency}を{cost}消費し、{reward}を{amount}獲得する。"
+
+msgid "rules.node.missing"
+msgstr "ノードのルールがありません。"
+
+msgid "rules.node.reward"
+msgstr "アカウント資産として{reward}を{amount}獲得する。"
+
+msgid "rules.output.burn"
+msgstr "火傷型"
+
+msgid "rules.output.healing"
+msgstr "治療型"
+
+msgid "rules.output.per_second"
+msgstr "{amount}/秒"
+
+msgid "rules.output.physical"
+msgstr "物理型"
+
+msgid "rules.output.poison"
+msgstr "毒付与型"
+
+msgid "rules.output.shield"
+msgstr "シールド型"
+
+msgid "rules.output.special"
+msgstr "特殊型"
+
+msgid "rules.output.witchcraft"
+msgstr "妖術型"
+
+msgid "rules.resource.ammo"
+msgstr "弾薬"
+
+msgid "rules.resource.burn"
+msgstr "火傷層"
+
+msgid "rules.resource.counter"
+msgstr "カウント"
+
+msgid "rules.resource.health"
+msgstr "HP"
+
+msgid "rules.resource.poison"
+msgstr "毒の付与"
+
+msgid "rules.resource.shield"
+msgstr "シールド"
+
+msgid "rules.rule"
+msgstr "{trigger}{conditions}：{actions}（毎秒最大{per_second}回、1戦最大{per_battle}回）{multicast}"
+
+msgid "rules.rule.conditions"
+msgstr "、条件：{conditions}"
+
+msgid "rules.section.core_attributes"
+msgstr "コア属性"
+
+msgid "rules.section.current"
+msgstr "現在の効果と発動状態"
+
+msgid "rules.section.modifier_attributes"
+msgstr "補正属性"
+
+msgid "rules.separator.and"
+msgstr "かつ"
+
+msgid "rules.separator.list"
+msgstr "、"
+
+msgid "rules.separator.or"
+msgstr "または"
+
+msgid "rules.separator.sentences"
+msgstr "；"
+
+msgid "rules.stat.ammo_capacity"
+msgstr "弾薬"
+
+msgid "rules.stat.burn_damage"
+msgstr "燃焼"
+
+msgid "rules.stat.cooldown_seconds"
+msgstr "クールダウン"
+
+msgid "rules.stat.crit_chance"
+msgstr "会心率"
+
+msgid "rules.stat.crit_multiplier"
+msgstr "会心倍率"
+
+msgid "rules.stat.haste_ratio"
+msgstr "ヘイスト"
+
+msgid "rules.stat.healing_power"
+msgstr "回復"
+
+msgid "rules.stat.lifesteal_ratio"
+msgstr "吸血"
+
+msgid "rules.stat.max_health"
+msgstr "最大HP"
+
+msgid "rules.stat.multicast_bonus"
+msgstr "多重発動"
+
+msgid "rules.stat.physical_damage"
+msgstr "物理ダメージ"
+
+msgid "rules.stat.poison_damage"
+msgstr "毒"
+
+msgid "rules.stat.shield_power"
+msgstr "シールド"
+
+msgid "rules.stat.witchcraft_damage"
+msgstr "呪術"
+
+msgid "rules.status.burn"
+msgstr "火傷"
+
+msgid "rules.status.freeze"
+msgstr "凍結"
+
+msgid "rules.status.none"
+msgstr "状態異常なし"
+
+msgid "rules.status.poison"
+msgstr "毒"
+
+msgid "rules.status.slow"
+msgstr "スロウ"
+
+msgid "rules.status.stun"
+msgstr "スタン"
+
+msgid "rules.synergy.cards"
+msgstr "戦闘参加カードが{count}枚以上"
+
+msgid "rules.synergy.distinct_outputs"
+msgstr "効果タイプが {count} 種類以上"
+
+msgid "rules.synergy.outputs"
+msgstr "編成に次のタイプを含む：{groups}"
+
+msgid "rules.tags.all"
+msgstr "すべてを含む：{tags}"
+
+msgid "rules.tags.any"
+msgstr "いずれかを含む：{tags}"
+
+msgid "rules.tags.none"
+msgstr "含まない：{tags}"
+
+msgid "rules.tags.target"
+msgstr "{target}（{tags}）"
+
+msgid "rules.target.adjacent_allies"
+msgstr "隣接する味方"
+
+msgid "rules.target.all_allies"
+msgstr "味方全体"
+
+msgid "rules.target.all_enemies"
+msgstr "敵全体"
+
+msgid "rules.target.all_units"
+msgstr "戦闘中の全ユニット"
+
+msgid "rules.target.allied_minion"
+msgstr "最も近い味方従者"
+
+msgid "rules.target.event_source"
+msgstr "イベント発生源"
+
+msgid "rules.target.event_target"
+msgstr "イベント対象"
+
+msgid "rules.target.farthest_enemy"
+msgstr "最も遠い敵"
+
+msgid "rules.target.linked_ally"
+msgstr "リンクした味方"
+
+msgid "rules.target.lowest_health_ally"
+msgstr "HPが最も低い味方"
+
+msgid "rules.target.marked_enemy"
+msgstr "自チームがマークした敵"
+
+msgid "rules.target.nearest_ally"
+msgstr "最も近い味方"
+
+msgid "rules.target.nearest_enemy"
+msgstr "最も近い敵"
+
+msgid "rules.target.random_enemy"
+msgstr "ランダムな敵"
+
+msgid "rules.target.self"
+msgstr "自身"
+
+msgid "rules.trigger.action_released"
+msgstr "効果発動"
+
+msgid "rules.trigger.adjacent_main_ability_cast"
+msgstr "隣接する味方の主能力発動時"
+
+msgid "rules.trigger.after_main_ability_cast"
+msgstr "主能力発動後"
+
+msgid "rules.trigger.allied_minion_defeated"
+msgstr "味方の従者が倒れた時"
+
+msgid "rules.trigger.battle_completed"
+msgstr "戦闘終了時"
+
+msgid "rules.trigger.battle_started"
+msgstr "戦闘開始時"
+
+msgid "rules.trigger.before_main_ability_cast"
+msgstr "主能力発動前"
+
+msgid "rules.trigger.core_damaged"
+msgstr "英雄の被ダメージ時"
+
+msgid "rules.trigger.counter_changed"
+msgstr "カウント変化時"
+
+msgid "rules.trigger.counter_threshold_reached"
+msgstr "カウントが閾値を超えた時"
+
+msgid "rules.trigger.damage_guarded"
+msgstr "庇護で肩代わりした時"
+
+msgid "rules.trigger.damage_resolved"
+msgstr "ダメージ確定時"
+
+msgid "rules.trigger.haste_gained"
+msgstr "加速獲得"
+
+msgid "rules.trigger.healing_resolved"
+msgstr "回復確定時"
+
+msgid "rules.trigger.item_disabled"
+msgstr "道具が無効になった時"
+
+msgid "rules.trigger.last_minion_defeated"
+msgstr "最後の味方従者が倒れた時"
+
+msgid "rules.trigger.linked_main_ability_cast"
+msgstr "リンクしたユニットの発動後"
+
+msgid "rules.trigger.main_ability_cooldown_ready"
+msgstr "主能力のクールダウン完了時"
+
+msgid "rules.trigger.mark_applied"
+msgstr "マーク付与時"
+
+msgid "rules.trigger.mechanic_resolved"
+msgstr "メカニズム解決時"
+
+msgid "rules.trigger.minion_defeated"
+msgstr "従者が倒れた時"
+
+msgid "rules.trigger.pollution_changed"
+msgstr "汚染変化時"
+
+msgid "rules.trigger.pollution_threshold_reached"
+msgstr "汚染がしきい値を超えた時"
+
+msgid "rules.trigger.shield_gained"
+msgstr "シールド獲得時"
+
+msgid "rules.trigger.status_applied"
+msgstr "状態異常付与時"
+
+msgid "rules.trigger.time_limit_resolved"
+msgstr "生命判定の完了時"
+
+msgid "rules.trigger.unit_defeated"
+msgstr "カード死亡時"
+
+msgid "rules.unknown"
+msgstr "不明"
+

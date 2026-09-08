@@ -1,0 +1,86 @@
+[gd_resource type="Theme" load_steps=7 format=3]
+
+
+[ext_resource type="Texture2D" path="res://ui/design_system/themes/route_panel.svg" id="paper_art"]
+
+[sub_resource type="StyleBoxEmpty" id="empty"]
+
+[sub_resource type="StyleBoxTexture" id="paper"]
+texture = ExtResource("paper_art")
+texture_margin_left = 28.0
+texture_margin_top = 28.0
+texture_margin_right = 28.0
+texture_margin_bottom = 28.0
+content_margin_left = 26.0
+content_margin_top = 26.0
+content_margin_right = 26.0
+content_margin_bottom = 26.0
+
+[sub_resource type="StyleBoxFlat" id="action"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.12, 0.10, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.67, 0.55, 0.33, 1)
+
+[sub_resource type="StyleBoxFlat" id="pressed"]
+bg_color = Color(0.20, 0.19, 0.14, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.73, 0.48, 1)
+
+[sub_resource type="StyleBoxFlat" id="disabled"]
+bg_color = Color(0.76, 0.72, 0.63, 1)
+border_width_bottom = 1
+border_color = Color(0.6, 0.55, 0.43, 1)
+
+[resource]
+default_font_size = 25
+Label/colors/font_color = Color(0.86, 0.79, 0.61, 1)
+Label/constants/outline_size = 0
+Label/constants/line_spacing = 4
+Button/colors/font_color = Color(0.86, 0.79, 0.61, 1)
+Button/colors/font_hover_color = Color(0.96, 0.89, 0.72, 1)
+Button/colors/font_pressed_color = Color(0.96, 0.89, 0.72, 1)
+Button/colors/font_disabled_color = Color(0.45, 0.40, 0.31, 1)
+Button/styles/normal = SubResource("action")
+Button/styles/hover = SubResource("pressed")
+Button/styles/pressed = SubResource("pressed")
+Button/styles/disabled = SubResource("disabled")
+Button/styles/focus = SubResource("pressed")
+VBoxContainer/constants/separation = 10
+HBoxContainer/constants/separation = 10
+RouteNode/base_type = &"Button"
+RouteNode/constants/art_extent = 96
+RouteNode/constants/art_top = 8
+RouteNode/styles/normal = SubResource("empty")
+RouteNode/styles/hover = SubResource("empty")
+RouteNode/styles/pressed = SubResource("empty")
+RouteNode/styles/disabled = SubResource("empty")
+RouteNode/styles/focus = SubResource("empty")
+RouteNode/colors/active = Color(1, 1, 1, 1)
+RouteNode/colors/completed = Color(0.78, 0.77, 0.70, 1)
+RouteNode/colors/unavailable = Color(0.38, 0.39, 0.37, 1)
+RouteNode/colors/unknown = Color(0.54, 0.54, 0.51, 1)
+RouteNode/colors/ready = Color(0.84, 0.70, 0.44, 1)
+RouteNode/colors/focus = Color(0.98, 0.94, 0.82, 1)
+RouteNode/colors/badge = Color(0.11, 0.11, 0.09, 1)
+RouteNode/colors/caption = Color(0.86, 0.79, 0.61, 1)
+RouteNode/colors/caption_muted = Color(0.51, 0.49, 0.42, 1)
+RouteNode/colors/seal = Color(0.91, 0.82, 0.60, 1)
+RouteNode/colors/seal_ink = Color(0.22, 0.19, 0.12, 1)
+RouteView/colors/path_ready = Color(0.90, 0.75, 0.47, 1)
+RouteView/colors/path_walked = Color(0.60, 0.51, 0.32, 1)
+RouteView/colors/path_idle = Color(0.46, 0.42, 0.32, 0.55)
+RouteView/colors/path_shadow = Color(0.05, 0.04, 0.03, 0.7)
+RoutePopup/base_type = &"PanelContainer"
+RoutePopup/styles/panel = SubResource("paper")
+RoutePopup/colors/paper = Color(0.88, 0.83, 0.71, 1)
+RoutePopup/colors/ink = Color(0.25, 0.22, 0.16, 1)

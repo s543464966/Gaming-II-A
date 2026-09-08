@@ -1,0 +1,38 @@
+# 字体与语言
+
+语言和字体的对应关系由 `game_content/localization/locale_registry.json` 声明。当前简体中文、日文和繁体中文复用既有思源黑体；英文、法文和德文共用 DejaVu Sans。字体不是每种语言各复制一份，清单按资源路径去重。
+
+中文界面的正文、标题、按钮、奖励铭牌和骰子数字统一使用 `source_han_sans_cn_regular.otf`。页面继承当前语言字体，字重由 FontVariation 表现，不再直接引用宋体或完整 Bold。常规字体原 SHA-256 为 `14ec9d09dad83098938370be17170a747d63084022b05710e3d34b4ddb359091`。
+
+这一阶段保留完整常规字库，没有做文案子集化；玩家昵称等不可预知文本仍受该字库实际字符覆盖范围限制。原 Bold 与宋体及许可证保留为设计原件，没有运行入口、不会加载或导出，不是另一套运行方案。
+
+## DejaVu Sans 来源
+
+- 官方来源：[DejaVu 2.37](https://github.com/dejavu-fonts/dejavu-fonts/releases/tag/version_2_37)。
+- 发布归档：`dejavu-fonts-ttf-2.37.zip`，SHA-256 为 `7576310b219e04159d35ff61dd4a4ec4cdba4f35c00e002a136f00e96a908b0a`，与官方下载页一致。
+- 上游文件：`ttf/DejaVuSans.ttf`，本地为 `latin/dejavu_sans.ttf`，字体内部名称与原始字节未修改。
+- 字体 SHA-256：`7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954`。
+- 上游 `LICENSE` 原字节保存在 `latin/LICENSE.txt`，SHA-256 为 `7a083b136e64d064794c3419751e5c7dd10d2f64c108fe5ba161eae5e5958a93`，保留 Bitstream Vera、Arev 等原始声明。
+- 选择基于当前英法德实际文案的独立覆盖（含 `★`）；未使用缺字符字体加系统回退掩盖发行缺字。
+
+## 运行与导出
+
+语言生成清单记录字体与许可证的指纹；运行和导出共用 `LanguageManifest` 校验。语言服务仅装载已开放语言的字体，当前字体优先，其他已开放语言字体作为语言选择器等文字的回退。运行时不依赖系统字体回退。
+
+App 将当前语言字体绑定到唯一共享 Theme；切换只更改字体与文本，离开 App 后恢复开发预览字体。编辑器的默认中文预览字体不构成所有发行包的强制依赖：导出副本清空 Theme 的默认字体，正式启动再由 App 绑定。
+
+主题样式由脚本与令牌重建，不序列化派生条目。详情阅读仍保留局部高采样字体；未开放提示继承共享字体，不再预建独立高采样字库。骰子 Label3D 在绑定金额时复用当前字体的加粗变体。
+
+导出只保留所选语言声明的原始字体与许可证，排除未选语言、退役字体和所有 `.fontdata` 副本。中文发行只有一份常规字库，英文发行不再被场景强制带入中文字库。打包前按当前 PO 逐字检查覆盖；字符存在不等于地区字形、排版与译文质量已完成人工审校。
+
+## 保留的设计原件
+
+`source_han_sans_cn_bold.otf` 原 SHA-256 为 `97e5eff6dd208ccb814726458c8c7ab4b59327c62b9ee8df3440e7e835209ab9`。
+
+`noto_serif_sc.ttf` 是 Noto Serif SC 的 700 字重静态实例。来源为 Google Fonts 官方仓库 `ofl/notoserifsc/NotoSerifSC[wght].ttf`，许可证原文在 `noto_serif_license.txt`（SIL OFL 1.1）。
+
+这两份原件字节不变，语言导出白名单不收录它们及其导入副本。
+
+- 上游文件 SHA-256：`050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9`。
+- 静态实例 SHA-256：`ea865fbe8395c0faf27de0fb6a8912f0599ca00ef81881ab4a7c9c7ac2697e8d`。
+- 制作：fontTools `instantiateVariableFont(font, {"wght": 700}, inplace=True)`，不裁减字形。

@@ -1,0 +1,718 @@
+# Generated. Edit authoring sources, not this file.
+msgid ""
+msgstr "Language: en\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "ui.adventure.actual_definition"
+msgstr "Chapter +{level} · Actual battle stats"
+
+msgid "ui.adventure.chapter_completed"
+msgstr "Chapter complete."
+
+msgid "ui.adventure.confirm_defeat"
+msgstr "Confirm defeat & return home"
+
+msgid "ui.adventure.continue"
+msgstr "Continue"
+
+msgid "ui.adventure.current_health"
+msgstr "{stat_health} {current} · {stat_shield_power} {shield}"
+
+msgid "ui.adventure.defeat"
+msgstr "Challenge failed"
+
+msgid "ui.adventure.enemies"
+msgstr "Enemies: {names}\nStamina {stamina} · Victory reward: {dice} dice"
+
+msgid "ui.adventure.enter_battle"
+msgstr "Enter battle"
+
+msgid "ui.adventure.judgment_countdown"
+msgstr "Final countdown {seconds}"
+
+msgid "ui.adventure.judgment_health"
+msgstr "Allies {ally} · Enemies {enemy}"
+
+msgid "ui.adventure.node_completed"
+msgstr "Node completed."
+
+msgid "ui.adventure.node_title"
+msgstr "Floor {floor} · {type}"
+
+msgid "ui.adventure.node_unavailable"
+msgstr "This node cannot be entered right now."
+
+msgid "ui.adventure.paused"
+msgstr "Paused"
+
+msgid "ui.adventure.reload"
+msgstr "Reload adventure scene"
+
+msgid "ui.adventure.restart_notice"
+msgstr "Reloading does not reroll the route or enemy formation. Leaving during battle abandons this node; spent stamina is not refunded."
+
+msgid "ui.adventure.result"
+msgstr "{title}\n{explanation}\nTime {seconds}s · Pollution {pollution}/100"
+
+msgid "ui.adventure.retry_rollback"
+msgstr "Retry save and refund stamina"
+
+msgid "ui.adventure.retry_save"
+msgstr "Retry saving"
+
+msgid "ui.adventure.return_home"
+msgstr "Return home"
+
+msgid "ui.adventure.rollback_failed"
+msgstr "Could not save the rollback. Please retry."
+
+msgid "ui.adventure.rolled_back"
+msgstr "Route selection and stamina have been restored."
+
+msgid "ui.adventure.save_exit"
+msgstr "Save & return home"
+
+msgid "ui.adventure.saved"
+msgstr "Saved."
+
+msgid "ui.adventure.start"
+msgstr "Start battle"
+
+msgid "ui.adventure.start_failed"
+msgstr "The battle could not be started."
+
+msgid "ui.adventure.victory"
+msgstr "Victory"
+
+msgid "ui.aurora.amount"
+msgstr "{name} ×{amount}"
+
+msgid "ui.aurora.choose_card"
+msgstr "Choose a card to upgrade"
+
+msgid "ui.aurora.claimed"
+msgstr "Claimed"
+
+msgid "ui.aurora.limit"
+msgstr "The chapter limit for Stellar Rewards has been reached."
+
+msgid "ui.aurora.progress"
+msgstr "Stellar Rewards {count}/{max} · {remaining} picks left"
+
+msgid "ui.aurora.upgrade"
+msgstr "Upgrade"
+
+msgid "ui.aurora.upgrade_target"
+msgstr "{name} · Upgrade +{level} → +{next}"
+
+msgid "ui.backpack.actions_unavailable"
+msgstr "Using and dismantling items are not available yet."
+
+msgid "ui.catalog.empty"
+msgstr "No content available"
+
+msgid "ui.catalog.filter"
+msgstr "Filters"
+
+msgid "ui.catalog.search"
+msgstr "Search by name or ID"
+
+msgid "ui.category.all"
+msgstr "All"
+
+msgid "ui.category.aurora"
+msgstr "Astral Powers"
+
+msgid "ui.category.hero"
+msgstr "Heroes"
+
+msgid "ui.category.inventory_prop"
+msgstr "Inventory props"
+
+msgid "ui.category.item"
+msgstr "Items"
+
+msgid "ui.category.item_card"
+msgstr "Item cards"
+
+msgid "ui.category.material"
+msgstr "Materials"
+
+msgid "ui.category.minion"
+msgstr "Minions"
+
+msgid "ui.category.monsters"
+msgstr "Monsters"
+
+msgid "ui.category.recommended"
+msgstr "Recommended"
+
+msgid "ui.category.relic"
+msgstr "Relic"
+
+msgid "ui.category.team"
+msgstr "Team"
+
+msgid "ui.collection.change_title"
+msgstr "Change hero"
+
+msgid "ui.collection.change_warning"
+msgstr "Changing heroes ends the current chapter build and clears its minions, relics, auroras, and progress. The fixed route, permanent talents, and account assets are kept."
+
+msgid "ui.collection.changed"
+msgstr "Hero changed"
+
+msgid "ui.collection.current_hero"
+msgstr "Current hero"
+
+msgid "ui.collection.owned"
+msgstr "Owned"
+
+msgid "ui.collection.permanent_stats"
+msgstr "Permanent account growth · Excludes chapter upgrades and relics"
+
+msgid "ui.collection.select_hero"
+msgstr "Select this hero"
+
+msgid "ui.collection.star_confirm"
+msgstr "Spend {cost} dedicated fragments to raise {name} to ★{star}?\nKeep {remaining} fragments. Permanent strength becomes {strength}% of base.\nThe current chapter is unchanged."
+
+msgid "ui.collection.star_max"
+msgstr "Maximum: 5 stars"
+
+msgid "ui.collection.star_success"
+msgstr "Star-up complete. Extra fragments retained."
+
+msgid "ui.collection.star_unavailable"
+msgstr "Star-up requirements not met. No fragments consumed."
+
+msgid "ui.collection.star_upgrade"
+msgstr "Star up"
+
+msgid "ui.collection.unowned"
+msgstr "Not acquired"
+
+msgid "ui.combat.ammo"
+msgstr "{stat_ammo_capacity} · {remaining} / {capacity} uses left"
+
+msgid "ui.combat.ammo_empty"
+msgstr "No uses left"
+
+msgid "ui.combat.ammo_remaining"
+msgstr "{status} · Uses: {count}"
+
+msgid "ui.combat.blocked"
+msgstr "Blocked by shield"
+
+msgid "ui.combat.cooldown"
+msgstr "Cooldown {seconds}s"
+
+msgid "ui.combat.critical"
+msgstr "Critical {text}"
+
+msgid "ui.combat.defeated"
+msgstr "Defeated"
+
+msgid "ui.combat.haste"
+msgstr " · {stat_haste_ratio} {percent}%"
+
+msgid "ui.combat.health"
+msgstr "{current}/{maximum}{shield}"
+
+msgid "ui.combat.main_ability_count"
+msgstr "{status} · main abilities: {count}"
+
+msgid "ui.combat.passive"
+msgstr "No main abilities"
+
+msgid "ui.combat.poison"
+msgstr "Poison has penetrated: shields gained afterward cannot block it"
+
+msgid "ui.combat.shield"
+msgstr " Shield {amount}"
+
+msgid "ui.combat.shield_gained"
+msgstr "Shield +{amount}"
+
+msgid "ui.common.back"
+msgstr "Back"
+
+msgid "ui.common.cancel"
+msgstr "Cancel"
+
+msgid "ui.common.close"
+msgstr "Close"
+
+msgid "ui.common.confirm"
+msgstr "Confirm"
+
+msgid "ui.common.confirm_title"
+msgstr "Please confirm"
+
+msgid "ui.common.done"
+msgstr "Done"
+
+msgid "ui.currency.fragments"
+msgstr "Exclusive fragments"
+
+msgid "ui.currency.gold"
+msgstr "Gold"
+
+msgid "ui.currency.star_stone"
+msgstr "Star Stones"
+
+msgid "ui.detail.actions"
+msgstr "Effects"
+
+msgid "ui.detail.ammo"
+msgstr "Action capacity"
+
+msgid "ui.detail.fragments"
+msgstr "Star-up fragments"
+
+msgid "ui.detail.main_ability_clock"
+msgstr "{stat_cooldown_seconds} {remaining} / {cooldown} s{haste}"
+
+msgid "ui.detail.overview"
+msgstr "Overview"
+
+msgid "ui.detail.purchase"
+msgstr "Purchase details"
+
+msgid "ui.detail.stack_limit"
+msgstr "Stack limit"
+
+msgid "ui.detail.usage"
+msgstr "Usage"
+
+msgid "ui.filter.ability_facet"
+msgstr "Ability Effects"
+
+msgid "ui.filter.card_tag"
+msgstr "Tags"
+
+msgid "ui.filter.output_type"
+msgstr "Output Type"
+
+msgid "ui.home.achievements"
+msgstr "Awards"
+
+msgid "ui.home.adventure_mode"
+msgstr "Adventure Mode"
+
+msgid "ui.home.backpack"
+msgstr "Bag"
+
+msgid "ui.home.chapter_progress"
+msgstr "{chapter} · {current}/{total}"
+
+msgid "ui.home.collection"
+msgstr "Collection"
+
+msgid "ui.home.contract_summon"
+msgstr "Contract summon"
+
+msgid "ui.home.daily"
+msgstr "Daily"
+
+msgid "ui.home.encyclopedia"
+msgstr "Codex"
+
+msgid "ui.home.layout_preview"
+msgstr "Standalone layout preview · Run bootstrap/app.tscn for the full game"
+
+msgid "ui.home.mail"
+msgstr "Mail"
+
+msgid "ui.home.no_hero_detail"
+msgstr "No hero selected."
+
+msgid "ui.home.preview_resources"
+msgstr "Player name\nGold · Star Stones · Stamina"
+
+msgid "ui.home.rank"
+msgstr "Rank"
+
+msgid "ui.home.ranking_info"
+msgstr "Shows only the current local player's value. This is not an online leaderboard."
+
+msgid "ui.home.resources"
+msgstr "{name}\nGold {gold} · Star Stones {star_stone} · Stamina {stamina}/{maximum}"
+
+msgid "ui.home.select_mode"
+msgstr "Select mode"
+
+msgid "ui.home.sign_in"
+msgstr "Check-in"
+
+msgid "ui.home.stamina_info"
+msgstr "Stamina recovery"
+
+msgid "ui.home.start_adventure"
+msgstr "Start Adventure"
+
+msgid "ui.language.label"
+msgstr "Language"
+
+msgid "ui.language.preference_recovered"
+msgstr "Language settings have been restored from a backup."
+
+msgid "ui.language.preference_unreadable"
+msgstr "Your language preference file could not be read and has been preserved. Language changes will apply only to this session."
+
+msgid "ui.language.save_failed"
+msgstr "Could not save your language preference. Please retry."
+
+msgid "ui.language.unavailable"
+msgstr "This language is unavailable."
+
+msgid "ui.mode.adventure"
+msgstr "Adventure"
+
+msgid "ui.mode.challenge"
+msgstr "Challenge"
+
+msgid "ui.mode.chapter"
+msgstr "Chapter {number} · {name}"
+
+msgid "ui.mode.chapter_terms"
+msgstr "Normal difficulty · {stamina} stamina per battle\n{status}"
+
+msgid "ui.mode.chess"
+msgstr "Tactics"
+
+msgid "ui.mode.confirm"
+msgstr "Select chapter"
+
+msgid "ui.mode.current"
+msgstr "In use"
+
+msgid "ui.mode.empty"
+msgstr "No modes available."
+
+msgid "ui.mode.enter"
+msgstr "Enter Adventure"
+
+msgid "ui.mode.level"
+msgstr "Chapter {number}"
+
+msgid "ui.mode.locked"
+msgstr "Clear the previous chapter to unlock"
+
+msgid "ui.mode.locked_label"
+msgstr "Locked"
+
+msgid "ui.mode.next"
+msgstr "Next chapter ›"
+
+msgid "ui.mode.not_open"
+msgstr "Not available yet"
+
+msgid "ui.mode.preview_title"
+msgstr "{mode} mode"
+
+msgid "ui.mode.previous"
+msgstr "‹ Previous chapter"
+
+msgid "ui.mode.pvp"
+msgstr "Versus"
+
+msgid "ui.mode.unavailable"
+msgstr "This mode is not available yet."
+
+msgid "ui.mode.unlocked"
+msgstr "Unlocked"
+
+msgid "ui.page.achievements"
+msgstr "Achievements"
+
+msgid "ui.page.activity"
+msgstr "Events"
+
+msgid "ui.page.assets"
+msgstr "Inventory"
+
+msgid "ui.page.collection"
+msgstr "Collection"
+
+msgid "ui.page.daily_tasks"
+msgstr "Daily quests"
+
+msgid "ui.page.encyclopedia"
+msgstr "Encyclopedia"
+
+msgid "ui.page.legend_road"
+msgstr "Path of Legends"
+
+msgid "ui.page.modes"
+msgstr "Modes & chapters"
+
+msgid "ui.page.notices"
+msgstr "Notifications"
+
+msgid "ui.page.ranking"
+msgstr "Local rankings"
+
+msgid "ui.page.settings"
+msgstr "Settings"
+
+msgid "ui.page.seven_day_sign_in"
+msgstr "7-day check-in"
+
+msgid "ui.page.shop"
+msgstr "Shop"
+
+msgid "ui.page.social"
+msgstr "Community & friends"
+
+msgid "ui.page.talents"
+msgstr "Talents"
+
+msgid "ui.platform.portrait_required"
+msgstr "Portrait mode\nGame paused"
+
+msgid "ui.preview.base_stats"
+msgstr "★1 base preview · Build bonuses excluded"
+
+msgid "ui.preview.build_reference"
+msgstr "Build ability reference · Not acquired"
+
+msgid "ui.relic.consumable"
+msgstr "Consumable"
+
+msgid "ui.relic.empty"
+msgstr "No relics"
+
+msgid "ui.relic.history"
+msgstr "Chapter relics"
+
+msgid "ui.relic.persistent"
+msgstr "Persistent"
+
+msgid "ui.relic.unused"
+msgstr "Unused"
+
+msgid "ui.relic.used"
+msgstr "Used"
+
+msgid "ui.reward.activate"
+msgstr "Drop a die here to activate its effect"
+
+msgid "ui.reward.card_growth"
+msgstr "After claiming: chapter +{level} · Next level {progress}/{next}"
+
+msgid "ui.reward.carry_notice"
+msgstr "Unused dice remain and join every roll."
+
+msgid "ui.reward.choice_title"
+msgstr "Choose a reward"
+
+msgid "ui.reward.choose_aurora"
+msgstr "Claim Reward"
+
+msgid "ui.reward.complete_build"
+msgstr "Continue Adventure"
+
+msgid "ui.reward.countdown"
+msgstr "{seconds}s"
+
+msgid "ui.reward.kind.fragment"
+msgstr "Exclusive Fragment"
+
+msgid "ui.reward.kind.hero_growth"
+msgstr "Current hero upgrade"
+
+msgid "ui.reward.kind.item_card"
+msgstr "Item"
+
+msgid "ui.reward.kind.minion"
+msgstr "Minion"
+
+msgid "ui.reward.kind.relic"
+msgstr "Relic"
+
+msgid "ui.reward.layout_preview"
+msgstr "Post-battle Rewards · Layout Preview"
+
+msgid "ui.reward.migration_receipt"
+msgstr "Migration complete: {merged_account_gold} Gold was added to your account; {converted_dice} unused dice were transferred to the new version."
+
+msgid "ui.reward.named"
+msgstr "{kind} · {name} ×{count}"
+
+msgid "ui.reward.open_die"
+msgstr "{name} · Show Three Choices"
+
+msgid "ui.reward.refresh_count"
+msgstr "Refresh · {count} left"
+
+msgid "ui.reward.reroll"
+msgstr "Reroll"
+
+msgid "ui.reward.retry"
+msgstr "Retry rewards"
+
+msgid "ui.reward.stones"
+msgstr "Star Stones ×{count}"
+
+msgid "ui.route.battle"
+msgstr "Battle"
+
+msgid "ui.route.boss"
+msgstr "Boss"
+
+msgid "ui.route.current"
+msgstr "Current"
+
+msgid "ui.route.elite"
+msgstr "Elite"
+
+msgid "ui.route.encounter"
+msgstr "Encounter"
+
+msgid "ui.route.market"
+msgstr "Black market"
+
+msgid "ui.route.progress"
+msgstr "Floor {floor} / {total}"
+
+msgid "ui.route.relic"
+msgstr "Ruins"
+
+msgid "ui.route.start"
+msgstr "Start"
+
+msgid "ui.route.unknown"
+msgstr "Unknown"
+
+msgid "ui.save.failed"
+msgstr "Save failed. Please retry."
+
+msgid "ui.session.backup_recovered"
+msgstr "Local player data was restored from a backup. Some recent progress may be missing."
+
+msgid "ui.session.choose_existing"
+msgstr "Multiple existing player saves were found. Choose the default save for this device. Other saves will not be deleted."
+
+msgid "ui.session.legacy_deletion"
+msgstr "An unfinished save deletion from an older version was found. Automatic recovery was stopped to protect your data. Please check and repair the save directory first."
+
+msgid "ui.session.load_failed"
+msgstr "Could not read your player save. The original files have been preserved. Check the save or restore a backup."
+
+msgid "ui.session.not_ready"
+msgstr "Player data is not ready. Please retry."
+
+msgid "ui.session.profile_unreadable"
+msgstr "Could not read the local player identity. Original files were preserved. Check the save or restore a backup."
+
+msgid "ui.session.profile_write_failed"
+msgstr "Could not save the default player identity. Created progress was preserved. Please retry."
+
+msgid "ui.session.recovery_failed"
+msgstr "Could not recover the interrupted game. Your save has been preserved. Please try entering again."
+
+msgid "ui.session.save_missing"
+msgstr "The recorded local player has no recoverable save. No replacement will be created. Please restore the original save."
+
+msgid "ui.settings.local_player"
+msgstr "Local Player"
+
+msgid "ui.settings.local_player_note"
+msgstr "No sign-in required. Progress stays on this device."
+
+msgid "ui.shop.busy"
+msgstr "The previous transaction is being processed."
+
+msgid "ui.shop.buy_button"
+msgstr "{amount} {currency}"
+
+msgid "ui.shop.buy_confirm"
+msgstr "Buy {name} for {amount} {currency}."
+
+msgid "ui.shop.buy_title"
+msgstr "Confirm purchase"
+
+msgid "ui.shop.failure"
+msgstr "This product cannot be purchased right now."
+
+msgid "ui.shop.fragments_detail"
+msgstr "{name}: {owned} / {required}"
+
+msgid "ui.shop.gold_price"
+msgstr "{amount} Gold"
+
+msgid "ui.shop.insufficient"
+msgstr "Insufficient balance."
+
+msgid "ui.shop.owned"
+msgstr "You already own this content."
+
+msgid "ui.shop.price_detail"
+msgstr "{currency}: original {original} → pay {amount}"
+
+msgid "ui.shop.save_failed"
+msgstr "Save failed. The transaction was rolled back."
+
+msgid "ui.shop.success"
+msgstr "Purchased and added to your collection."
+
+msgid "ui.shop.unavailable"
+msgstr "Unavailable"
+
+msgid "ui.shop.unpriced"
+msgstr "Not priced yet"
+
+msgid "ui.social.community"
+msgstr "Community"
+
+msgid "ui.social.friends"
+msgstr "Friends"
+
+msgid "ui.startup.content_failed"
+msgstr "Could not load game content. Check or reinstall the game resources."
+
+msgid "ui.startup.language_failed"
+msgstr "Could not load language resources. Check or reinstall the game resources."
+
+msgid "ui.startup.local_player"
+msgstr "No registration or sign-in is required. This version uses one local player and saves progress on this device."
+
+msgid "ui.startup.retry"
+msgstr "Retry"
+
+msgid "ui.startup.title"
+msgstr "Unable to start the game"
+
+msgid "ui.storage.unavailable"
+msgstr "The local storage operation could not be completed. Check available space and access permissions, then try again."
+
+msgid "ui.talents.cost"
+msgstr "Cost: 1 talent point"
+
+msgid "ui.talents.invalid"
+msgstr "Talent not found"
+
+msgid "ui.talents.learned"
+msgstr "Unlocked"
+
+msgid "ui.talents.no_points"
+msgstr "No talent points"
+
+msgid "ui.talents.point_source"
+msgstr "First clear of each chapter: +1 point"
+
+msgid "ui.talents.points"
+msgstr "Talent points: {count}"
+
+msgid "ui.talents.prerequisite"
+msgstr "Unlock the prerequisite talent first"
+
+msgid "ui.talents.requires"
+msgstr "Requires: {name}"
+
+msgid "ui.talents.success"
+msgstr "Talent unlocked"
+
+msgid "ui.talents.unlock"
+msgstr "Unlock"
+

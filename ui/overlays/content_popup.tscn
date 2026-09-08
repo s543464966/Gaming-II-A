@@ -1,0 +1,124 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://ui/components/touch_button.gd" id="touch_input"]
+
+[ext_resource type="Script" path="res://ui/overlays/content_popup.gd" id="1"]
+[ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="2"]
+[ext_resource type="Script" path="res://ui/components/safe_area.gd" id="3"]
+[ext_resource type="PackedScene" path="res://ui/components/content/content_detail.tscn" id="4"]
+[ext_resource type="Script" path="res://ui/components/touch_scroll_container.gd" id="5"]
+
+[ext_resource type="PackedScene" path="res://ui/components/content/content_growth.tscn" id="6"]
+[ext_resource type="Shader" path="res://ui/design_system/themes/detail_supplement.gdshader" id="7"]
+
+[sub_resource type="StyleBoxEmpty" id="StackStyle"]
+
+[sub_resource type="ShaderMaterial" id="SupplementMaterial"]
+shader = ExtResource("7")
+
+[node name="ContentPopup" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("3")
+
+[node name="Bounds" type="Control" parent="SafeArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Paper" type="Panel" parent="SafeArea/Bounds"]
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"DetailPaper"
+
+[node name="Panel" type="PanelContainer" parent="SafeArea/Bounds"]
+layout_mode = 0
+theme_override_styles/panel = SubResource("StackStyle")
+mouse_filter = 0
+focus_mode = 2
+
+[node name="Column" type="VBoxContainer" parent="SafeArea/Bounds/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Card" type="PanelContainer" parent="SafeArea/Bounds/Panel/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"DetailPopup"
+
+[node name="Column" type="VBoxContainer" parent="SafeArea/Bounds/Panel/Column/Card"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="SafeArea/Bounds/Panel/Column/Card/Column"]
+custom_minimum_size = Vector2(0, 86)
+layout_mode = 2
+auto_translate_mode = 2
+theme_type_variation = &"DetailTitle"
+autowrap_mode = 3
+horizontal_alignment = 1
+
+[node name="Close" type="Button" parent="SafeArea/Bounds/Panel/Column/Card/Column/Title"]
+custom_minimum_size = Vector2(44, 44)
+auto_translate_mode = 1
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_right = -4.0
+offset_top = -22.0
+offset_bottom = 22.0
+theme_type_variation = &"DetailCloseButton"
+text = "×"
+tooltip_text = "ui.common.close"
+script = ExtResource("touch_input")
+
+[node name="Scroll" type="ScrollContainer" parent="SafeArea/Bounds/Panel/Column/Card/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+script = ExtResource("5")
+
+[node name="Detail" parent="SafeArea/Bounds/Panel/Column/Card/Column/Scroll" instance=ExtResource("4")]
+layout_mode = 2
+
+[node name="Supplement" type="PanelContainer" parent="SafeArea/Bounds/Panel/Column"]
+visible = false
+material = SubResource("SupplementMaterial")
+layout_mode = 2
+theme_type_variation = &"DetailSupplement"
+
+[node name="Column" type="VBoxContainer" parent="SafeArea/Bounds/Panel/Column/Supplement"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Growth" parent="SafeArea/Bounds/Panel/Column/Supplement/Column" instance=ExtResource("6")]
+visible = false
+layout_mode = 2
+
+[node name="Actions" type="VBoxContainer" parent="SafeArea/Bounds/Panel/Column/Supplement/Column"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 6

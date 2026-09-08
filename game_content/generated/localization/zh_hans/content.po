@@ -1,0 +1,1030 @@
+# Generated. Edit authoring sources, not this file.
+msgid ""
+msgstr "Language: zh_Hans\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "content.adventure_node_rules.NR002.action_label"
+msgstr "领取星能奖励"
+
+msgid "content.adventure_node_rules.NR002.description"
+msgstr "星能之力在遗迹中汇聚，选择本章奖励。"
+
+msgid "content.adventure_node_rules.NR002.title"
+msgstr "星辉遗迹"
+
+msgid "content.adventure_node_rules.NR003.action_label"
+msgstr "交易并前进"
+
+msgid "content.adventure_node_rules.NR003.description"
+msgstr "行商在岔路支起小摊，等候愿意交易的旅人。"
+
+msgid "content.adventure_node_rules.NR003.title"
+msgstr "流动黑市"
+
+msgid "content.adventure_node_rules.NR004.action_label"
+msgstr "探索并前进"
+
+msgid "content.adventure_node_rules.NR004.description"
+msgstr "陌生旅人的委托，为这段道路带来意外收获。"
+
+msgid "content.adventure_node_rules.NR004.title"
+msgstr "旅途奇遇"
+
+msgid "content.aurora_rewards.AR001.description"
+msgstr "获得1000～1200星石。"
+
+msgid "content.aurora_rewards.AR001.name"
+msgstr "星石宝藏"
+
+msgid "content.aurora_rewards.AR002.description"
+msgstr "获得3种不同的随从专属碎片，各1片。"
+
+msgid "content.aurora_rewards.AR002.name"
+msgstr "随从碎片"
+
+msgid "content.aurora_rewards.AR003.description"
+msgstr "获得随机遗物的专属碎片。"
+
+msgid "content.aurora_rewards.AR003.name"
+msgstr "遗物碎片"
+
+msgid "content.aurora_rewards.AR004.description"
+msgstr "获得1片英雄专属碎片。"
+
+msgid "content.aurora_rewards.AR004.name"
+msgstr "英雄碎片"
+
+msgid "content.aurora_rewards.AR005.description"
+msgstr "获得30点体力。"
+
+msgid "content.aurora_rewards.AR005.name"
+msgstr "恢复体力"
+
+msgid "content.aurora_rewards.AR006.description"
+msgstr "获得5金币。"
+
+msgid "content.aurora_rewards.AR006.name"
+msgstr "金币奖励"
+
+msgid "content.aurora_rewards.AR007.description"
+msgstr "选择一张本章卡牌，章节强化提升一级。"
+
+msgid "content.aurora_rewards.AR007.name"
+msgstr "章节卡牌强化"
+
+msgid "content.aurora_rewards.AR008.description"
+msgstr "获得一件随机章节遗物。"
+
+msgid "content.aurora_rewards.AR008.name"
+msgstr "章节遗物"
+
+msgid "content.card_tags.TG001.name"
+msgstr "光"
+
+msgid "content.card_tags.TG002.name"
+msgstr "森"
+
+msgid "content.card_tags.TG003.name"
+msgstr "岩"
+
+msgid "content.card_tags.TG004.name"
+msgstr "风"
+
+msgid "content.card_tags.TG005.name"
+msgstr "海"
+
+msgid "content.card_tags.TG006.name"
+msgstr "暗"
+
+msgid "content.card_tags.TG007.name"
+msgstr "金属"
+
+msgid "content.card_tags.TG008.name"
+msgstr "寒冰"
+
+msgid "content.card_tags.TG009.name"
+msgstr "雷"
+
+msgid "content.card_tags.TG010.name"
+msgstr "火"
+
+msgid "content.cards.H001.name"
+msgstr "塞缪尔"
+
+msgid "content.cards.H002.name"
+msgstr "卡西里"
+
+msgid "content.cards.H003.name"
+msgstr "李"
+
+msgid "content.cards.H004.name"
+msgstr "德里"
+
+msgid "content.cards.H005.name"
+msgstr "温莎"
+
+msgid "content.cards.H006.name"
+msgstr "莉莉娅"
+
+msgid "content.cards.H007.name"
+msgstr "卡修斯"
+
+msgid "content.cards.H008.name"
+msgstr "西西莉"
+
+msgid "content.cards.H009.name"
+msgstr "威尔"
+
+msgid "content.cards.H010.name"
+msgstr "奥达斯"
+
+msgid "content.cards.H011.name"
+msgstr "伊拉贝尔"
+
+msgid "content.cards.H012.name"
+msgstr "卡尔"
+
+msgid "content.cards.H013.name"
+msgstr "露辛达·金凯德"
+
+msgid "content.cards.H014.name"
+msgstr "伊戈"
+
+msgid "content.cards.H015.name"
+msgstr "钟山"
+
+msgid "content.cards.H016.name"
+msgstr "克拉拉"
+
+msgid "content.cards.HS001.name"
+msgstr "卡西安"
+
+msgid "content.cards.HS002.name"
+msgstr "塞隆"
+
+msgid "content.cards.HS003.name"
+msgstr "吉迪恩"
+
+msgid "content.cards.HS004.name"
+msgstr "巴斯蒂安"
+
+msgid "content.cards.HS005.name"
+msgstr "凯乌斯"
+
+msgid "content.cards.HS006.name"
+msgstr "塔莉娅"
+
+msgid "content.cards.HS007.name"
+msgstr "瓦莱里娅"
+
+msgid "content.cards.HS008.name"
+msgstr "伊拉拉"
+
+msgid "content.cards.HS009.name"
+msgstr "伊奥妮"
+
+msgid "content.cards.HS010.name"
+msgstr "奥蕾莉亚"
+
+msgid "content.cards.HS011.name"
+msgstr "达莉亚"
+
+msgid "content.cards.HS012.name"
+msgstr "索林"
+
+msgid "content.cards.HS013.name"
+msgstr "菲尼克斯"
+
+msgid "content.cards.HS014.name"
+msgstr "达里乌斯"
+
+msgid "content.cards.HS015.name"
+msgstr "塞拉菲娜"
+
+msgid "content.cards.HS016.name"
+msgstr "西尔维娅"
+
+msgid "content.cards.IC001.name"
+msgstr "疾速刃"
+
+msgid "content.cards.IC002.name"
+msgstr "裂岩炮"
+
+msgid "content.cards.IC003.name"
+msgstr "共振盾"
+
+msgid "content.cards.IC004.name"
+msgstr "潮汐药箱"
+
+msgid "content.cards.IC005.name"
+msgstr "余烬喷口"
+
+msgid "content.cards.IC006.name"
+msgstr "毒雾罐"
+
+msgid "content.cards.IC007.name"
+msgstr "寒霜棱镜"
+
+msgid "content.cards.IC008.name"
+msgstr "风压扰流器"
+
+msgid "content.cards.IC009.name"
+msgstr "联动核心"
+
+msgid "content.cards.IC010.name"
+msgstr "污染泵"
+
+msgid "content.cards.IC011.name"
+msgstr "滤污灯"
+
+msgid "content.cards.IC012.name"
+msgstr "应急蜂群"
+
+msgid "content.cards.M001.name"
+msgstr "岩峰浮游兽"
+
+msgid "content.cards.M002.name"
+msgstr "岩峰潜行者"
+
+msgid "content.cards.M003.name"
+msgstr "岩峰掠夺者"
+
+msgid "content.cards.M004.name"
+msgstr "岩峰巨像"
+
+msgid "content.cards.M005.name"
+msgstr "岩峰蜂群"
+
+msgid "content.cards.M006.name"
+msgstr "岩峰狂徒"
+
+msgid "content.cards.M019.name"
+msgstr "血焰浮游兽"
+
+msgid "content.cards.M020.name"
+msgstr "血焰潜行者"
+
+msgid "content.cards.M021.name"
+msgstr "血焰掠夺者"
+
+msgid "content.cards.M022.name"
+msgstr "血焰巨像"
+
+msgid "content.cards.M023.name"
+msgstr "血焰蜂群"
+
+msgid "content.cards.M024.name"
+msgstr "血焰狂徒"
+
+msgid "content.cards.M037.name"
+msgstr "冰原浮游兽"
+
+msgid "content.cards.M038.name"
+msgstr "冰原潜行者"
+
+msgid "content.cards.M039.name"
+msgstr "冰原掠夺者"
+
+msgid "content.cards.M040.name"
+msgstr "冰原巨像"
+
+msgid "content.cards.M041.name"
+msgstr "冰原蜂群"
+
+msgid "content.cards.M042.name"
+msgstr "冰原狂徒"
+
+msgid "content.cards.MB001.name"
+msgstr "岩峰领主"
+
+msgid "content.cards.MB002.name"
+msgstr "岩峰领主·混乱"
+
+msgid "content.cards.MB003.name"
+msgstr "岩峰领主·恐怖"
+
+msgid "content.cards.MB004.name"
+msgstr "血焰领主"
+
+msgid "content.cards.MB005.name"
+msgstr "血焰领主·混乱"
+
+msgid "content.cards.MB006.name"
+msgstr "血焰领主·恐怖"
+
+msgid "content.cards.MB007.name"
+msgstr "冰原领主"
+
+msgid "content.cards.MB008.name"
+msgstr "冰原领主·混乱"
+
+msgid "content.cards.MB009.name"
+msgstr "冰原领主·恐怖"
+
+msgid "content.cards.ME001.name"
+msgstr "岩峰守卫长"
+
+msgid "content.cards.ME002.name"
+msgstr "岩峰祭司"
+
+msgid "content.cards.ME003.name"
+msgstr "岩峰追猎者"
+
+msgid "content.cards.ME004.name"
+msgstr "岩峰守卫长·混乱"
+
+msgid "content.cards.ME005.name"
+msgstr "岩峰祭司·混乱"
+
+msgid "content.cards.ME006.name"
+msgstr "岩峰追猎者·混乱"
+
+msgid "content.cards.ME007.name"
+msgstr "岩峰守卫长·恐怖"
+
+msgid "content.cards.ME008.name"
+msgstr "岩峰祭司·恐怖"
+
+msgid "content.cards.ME009.name"
+msgstr "岩峰追猎者·恐怖"
+
+msgid "content.cards.ME010.name"
+msgstr "血焰守卫长"
+
+msgid "content.cards.ME011.name"
+msgstr "血焰祭司"
+
+msgid "content.cards.ME012.name"
+msgstr "血焰追猎者"
+
+msgid "content.cards.ME013.name"
+msgstr "血焰守卫长·混乱"
+
+msgid "content.cards.ME014.name"
+msgstr "血焰祭司·混乱"
+
+msgid "content.cards.ME015.name"
+msgstr "血焰追猎者·混乱"
+
+msgid "content.cards.ME016.name"
+msgstr "血焰守卫长·恐怖"
+
+msgid "content.cards.ME017.name"
+msgstr "血焰祭司·恐怖"
+
+msgid "content.cards.ME018.name"
+msgstr "血焰追猎者·恐怖"
+
+msgid "content.cards.ME019.name"
+msgstr "冰原守卫长"
+
+msgid "content.cards.ME020.name"
+msgstr "冰原祭司"
+
+msgid "content.cards.ME021.name"
+msgstr "冰原追猎者"
+
+msgid "content.cards.ME022.name"
+msgstr "冰原守卫长·混乱"
+
+msgid "content.cards.ME023.name"
+msgstr "冰原祭司·混乱"
+
+msgid "content.cards.ME024.name"
+msgstr "冰原追猎者·混乱"
+
+msgid "content.cards.ME025.name"
+msgstr "冰原守卫长·恐怖"
+
+msgid "content.cards.ME026.name"
+msgstr "冰原祭司·恐怖"
+
+msgid "content.cards.ME027.name"
+msgstr "冰原追猎者·恐怖"
+
+msgid "content.chapters.CH001.flavor_text"
+msgstr "岩壁间的守卫依靠坚韧防护阻挡旅人。"
+
+msgid "content.chapters.CH001.name"
+msgstr "岩断巨峰"
+
+msgid "content.chapters.CH002.flavor_text"
+msgstr "深处的火种与毒雾令战局持续升温。"
+
+msgid "content.chapters.CH002.name"
+msgstr "血焰溶洞"
+
+msgid "content.chapters.CH003.flavor_text"
+msgstr "寒风与冰晶不断打乱闯入者的行动节奏。"
+
+msgid "content.chapters.CH003.name"
+msgstr "冰刃荒原"
+
+msgid "content.chapters.CH004.flavor_text"
+msgstr "岩壁间的守卫依靠坚韧防护阻挡旅人。"
+
+msgid "content.chapters.CH004.name"
+msgstr "岩断巨峰·混乱"
+
+msgid "content.chapters.CH005.flavor_text"
+msgstr "深处的火种与毒雾令战局持续升温。"
+
+msgid "content.chapters.CH005.name"
+msgstr "血焰溶洞·混乱"
+
+msgid "content.chapters.CH006.flavor_text"
+msgstr "深处的火种与毒雾令战局持续升温。"
+
+msgid "content.chapters.CH006.name"
+msgstr "血焰溶洞·恐怖"
+
+msgid "content.chapters.CH007.flavor_text"
+msgstr "岩壁间的守卫依靠坚韧防护阻挡旅人。"
+
+msgid "content.chapters.CH007.name"
+msgstr "岩断巨峰·恐怖"
+
+msgid "content.chapters.CH008.flavor_text"
+msgstr "寒风与冰晶不断打乱闯入者的行动节奏。"
+
+msgid "content.chapters.CH008.name"
+msgstr "冰刃荒原·混乱"
+
+msgid "content.chapters.CH009.flavor_text"
+msgstr "寒风与冰晶不断打乱闯入者的行动节奏。"
+
+msgid "content.chapters.CH009.name"
+msgstr "冰刃荒原·恐怖"
+
+msgid "content.innate_abilities.EN001.name"
+msgstr "蚀毒追悼"
+
+msgid "content.innate_abilities.EN002.name"
+msgstr "联动齿轮"
+
+msgid "content.innate_abilities.EN003.name"
+msgstr "核心反击"
+
+msgid "content.innate_abilities.EN004.name"
+msgstr "绝境咒能"
+
+msgid "content.innate_abilities.EN005.name"
+msgstr "咒能脉冲"
+
+msgid "content.innate_abilities.EN006.name"
+msgstr "余烬追击"
+
+msgid "content.innate_abilities.EN007.name"
+msgstr "冰霜干扰"
+
+msgid "content.innate_abilities.EN008.name"
+msgstr "护盾回声"
+
+msgid "content.innate_abilities.EN009.name"
+msgstr "复苏回响"
+
+msgid "content.innate_abilities.EN010.name"
+msgstr "震地重击"
+
+msgid "content.innate_abilities.EN011.name"
+msgstr "咒术连击"
+
+msgid "content.innate_abilities.EN012.name"
+msgstr "暴击加速"
+
+msgid "content.innate_abilities.EN013.name"
+msgstr "蚀毒反击"
+
+msgid "content.innate_abilities.EN014.name"
+msgstr "精准瞄准"
+
+msgid "content.innate_abilities.EN015.name"
+msgstr "燎原先手"
+
+msgid "content.innate_abilities.EN016.name"
+msgstr "进击节拍"
+
+msgid "content.items.FR001.flavor_text"
+msgstr "刻有塞缪尔印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR001.name"
+msgstr "塞缪尔专属碎片"
+
+msgid "content.items.FR002.flavor_text"
+msgstr "刻有卡西里印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR002.name"
+msgstr "卡西里专属碎片"
+
+msgid "content.items.FR003.flavor_text"
+msgstr "刻有李印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR003.name"
+msgstr "李专属碎片"
+
+msgid "content.items.FR004.flavor_text"
+msgstr "刻有德里印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR004.name"
+msgstr "德里专属碎片"
+
+msgid "content.items.FR005.flavor_text"
+msgstr "刻有温莎印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR005.name"
+msgstr "温莎专属碎片"
+
+msgid "content.items.FR006.flavor_text"
+msgstr "刻有莉莉娅印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR006.name"
+msgstr "莉莉娅专属碎片"
+
+msgid "content.items.FR007.flavor_text"
+msgstr "刻有卡修斯印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR007.name"
+msgstr "卡修斯专属碎片"
+
+msgid "content.items.FR008.flavor_text"
+msgstr "刻有西西莉印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR008.name"
+msgstr "西西莉专属碎片"
+
+msgid "content.items.FR009.flavor_text"
+msgstr "刻有威尔印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR009.name"
+msgstr "威尔专属碎片"
+
+msgid "content.items.FR010.flavor_text"
+msgstr "刻有奥达斯印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR010.name"
+msgstr "奥达斯专属碎片"
+
+msgid "content.items.FR011.flavor_text"
+msgstr "刻有伊拉贝尔印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR011.name"
+msgstr "伊拉贝尔专属碎片"
+
+msgid "content.items.FR012.flavor_text"
+msgstr "刻有卡尔印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR012.name"
+msgstr "卡尔专属碎片"
+
+msgid "content.items.FR013.flavor_text"
+msgstr "刻有露辛达·金凯德印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR013.name"
+msgstr "露辛达·金凯德专属碎片"
+
+msgid "content.items.FR014.flavor_text"
+msgstr "刻有伊戈印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR014.name"
+msgstr "伊戈专属碎片"
+
+msgid "content.items.FR015.flavor_text"
+msgstr "刻有钟山印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR015.name"
+msgstr "钟山专属碎片"
+
+msgid "content.items.FR016.flavor_text"
+msgstr "刻有克拉拉印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR016.name"
+msgstr "克拉拉专属碎片"
+
+msgid "content.items.FR017.flavor_text"
+msgstr "刻有卡西安印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR017.name"
+msgstr "卡西安专属碎片"
+
+msgid "content.items.FR018.flavor_text"
+msgstr "刻有塞隆印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR018.name"
+msgstr "塞隆专属碎片"
+
+msgid "content.items.FR019.flavor_text"
+msgstr "刻有吉迪恩印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR019.name"
+msgstr "吉迪恩专属碎片"
+
+msgid "content.items.FR020.flavor_text"
+msgstr "刻有巴斯蒂安印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR020.name"
+msgstr "巴斯蒂安专属碎片"
+
+msgid "content.items.FR021.flavor_text"
+msgstr "刻有凯乌斯印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR021.name"
+msgstr "凯乌斯专属碎片"
+
+msgid "content.items.FR022.flavor_text"
+msgstr "刻有塔莉娅印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR022.name"
+msgstr "塔莉娅专属碎片"
+
+msgid "content.items.FR023.flavor_text"
+msgstr "刻有瓦莱里娅印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR023.name"
+msgstr "瓦莱里娅专属碎片"
+
+msgid "content.items.FR024.flavor_text"
+msgstr "刻有伊拉拉印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR024.name"
+msgstr "伊拉拉专属碎片"
+
+msgid "content.items.FR025.flavor_text"
+msgstr "刻有伊奥妮印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR025.name"
+msgstr "伊奥妮专属碎片"
+
+msgid "content.items.FR026.flavor_text"
+msgstr "刻有奥蕾莉亚印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR026.name"
+msgstr "奥蕾莉亚专属碎片"
+
+msgid "content.items.FR027.flavor_text"
+msgstr "刻有达莉亚印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR027.name"
+msgstr "达莉亚专属碎片"
+
+msgid "content.items.FR028.flavor_text"
+msgstr "刻有索林印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR028.name"
+msgstr "索林专属碎片"
+
+msgid "content.items.FR029.flavor_text"
+msgstr "刻有菲尼克斯印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR029.name"
+msgstr "菲尼克斯专属碎片"
+
+msgid "content.items.FR030.flavor_text"
+msgstr "刻有达里乌斯印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR030.name"
+msgstr "达里乌斯专属碎片"
+
+msgid "content.items.FR031.flavor_text"
+msgstr "刻有塞拉菲娜印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR031.name"
+msgstr "塞拉菲娜专属碎片"
+
+msgid "content.items.FR032.flavor_text"
+msgstr "刻有西尔维娅印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR032.name"
+msgstr "西尔维娅专属碎片"
+
+msgid "content.items.FR033.flavor_text"
+msgstr "刻有坚韧护符印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR033.name"
+msgstr "坚韧护符专属碎片"
+
+msgid "content.items.FR034.flavor_text"
+msgstr "刻有回春印记印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR034.name"
+msgstr "回春印记专属碎片"
+
+msgid "content.items.FR035.flavor_text"
+msgstr "刻有迅捷齿轮印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR035.name"
+msgstr "迅捷齿轮专属碎片"
+
+msgid "content.items.FR036.flavor_text"
+msgstr "刻有启程纹章印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR036.name"
+msgstr "启程纹章专属碎片"
+
+msgid "content.items.FR037.flavor_text"
+msgstr "刻有疾速刃印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR037.name"
+msgstr "疾速刃专属碎片"
+
+msgid "content.items.FR038.flavor_text"
+msgstr "刻有裂岩炮印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR038.name"
+msgstr "裂岩炮专属碎片"
+
+msgid "content.items.FR039.flavor_text"
+msgstr "刻有共振盾印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR039.name"
+msgstr "共振盾专属碎片"
+
+msgid "content.items.FR040.flavor_text"
+msgstr "刻有潮汐药箱印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR040.name"
+msgstr "潮汐药箱专属碎片"
+
+msgid "content.items.FR041.flavor_text"
+msgstr "刻有余烬喷口印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR041.name"
+msgstr "余烬喷口专属碎片"
+
+msgid "content.items.FR042.flavor_text"
+msgstr "刻有毒雾罐印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR042.name"
+msgstr "毒雾罐专属碎片"
+
+msgid "content.items.FR043.flavor_text"
+msgstr "刻有寒霜棱镜印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR043.name"
+msgstr "寒霜棱镜专属碎片"
+
+msgid "content.items.FR044.flavor_text"
+msgstr "刻有风压扰流器印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR044.name"
+msgstr "风压扰流器专属碎片"
+
+msgid "content.items.FR045.flavor_text"
+msgstr "刻有联动核心印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR045.name"
+msgstr "联动核心专属碎片"
+
+msgid "content.items.FR046.flavor_text"
+msgstr "刻有污染泵印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR046.name"
+msgstr "污染泵专属碎片"
+
+msgid "content.items.FR047.flavor_text"
+msgstr "刻有滤污灯印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR047.name"
+msgstr "滤污灯专属碎片"
+
+msgid "content.items.FR048.flavor_text"
+msgstr "刻有应急蜂群印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR048.name"
+msgstr "应急蜂群专属碎片"
+
+msgid "content.items.FR049.flavor_text"
+msgstr "刻有咒能增幅器印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR049.name"
+msgstr "咒能增幅器专属碎片"
+
+msgid "content.items.FR050.flavor_text"
+msgstr "刻有蚀毒刻印印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR050.name"
+msgstr "蚀毒刻印专属碎片"
+
+msgid "content.items.FR051.flavor_text"
+msgstr "刻有超频线圈印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR051.name"
+msgstr "超频线圈专属碎片"
+
+msgid "content.items.FR052.flavor_text"
+msgstr "刻有澄明徽记印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR052.name"
+msgstr "澄明徽记专属碎片"
+
+msgid "content.items.FR053.flavor_text"
+msgstr "刻有猛攻徽记印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR053.name"
+msgstr "猛攻徽记专属碎片"
+
+msgid "content.items.FR054.flavor_text"
+msgstr "刻有余烬铭文印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR054.name"
+msgstr "余烬铭文专属碎片"
+
+msgid "content.items.FR055.flavor_text"
+msgstr "刻有守望铭文印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR055.name"
+msgstr "守望铭文专属碎片"
+
+msgid "content.items.FR056.flavor_text"
+msgstr "刻有协作刻印印记的碎片，用于对应内容的专属兑换。"
+
+msgid "content.items.FR056.name"
+msgstr "协作刻印专属碎片"
+
+msgid "content.items.IT001.flavor_text"
+msgstr "恢复玩家一定的体力"
+
+msgid "content.items.IT001.name"
+msgstr "小型恢复体力"
+
+msgid "content.relics.GA001.flavor_text"
+msgstr "风霜磨砺下仍完好的护符。"
+
+msgid "content.relics.GA001.name"
+msgstr "坚韧护符"
+
+msgid "content.relics.GA002.flavor_text"
+msgstr "微光流转的古老印记。"
+
+msgid "content.relics.GA002.name"
+msgstr "回春印记"
+
+msgid "content.relics.GA003.flavor_text"
+msgstr "轻巧而精密的发条构件。"
+
+msgid "content.relics.GA003.name"
+msgstr "迅捷齿轮"
+
+msgid "content.relics.GA004.flavor_text"
+msgstr "赠予远行者的守望纹章。"
+
+msgid "content.relics.GA004.name"
+msgstr "启程纹章"
+
+msgid "content.relics.GA005.flavor_text"
+msgstr "聚拢咒能的精密装置。"
+
+msgid "content.relics.GA005.name"
+msgstr "咒能增幅器"
+
+msgid "content.relics.GA006.flavor_text"
+msgstr "封存毒液的古老刻印。"
+
+msgid "content.relics.GA006.name"
+msgstr "蚀毒刻印"
+
+msgid "content.relics.GA007.flavor_text"
+msgstr "为队伍注入启程的动力。"
+
+msgid "content.relics.GA007.name"
+msgstr "超频线圈"
+
+msgid "content.relics.GA008.flavor_text"
+msgstr "澄澈微光凝成的徽记。"
+
+msgid "content.relics.GA008.name"
+msgstr "澄明徽记"
+
+msgid "content.relics.GA009.flavor_text"
+msgstr "鼓舞勇气的战斗徽记。"
+
+msgid "content.relics.GA009.name"
+msgstr "猛攻徽记"
+
+msgid "content.relics.GA010.flavor_text"
+msgstr "余烬未熄的铭文。"
+
+msgid "content.relics.GA010.name"
+msgstr "余烬铭文"
+
+msgid "content.relics.GA011.flavor_text"
+msgstr "守护意志凝成的铭文。"
+
+msgid "content.relics.GA011.name"
+msgstr "守望铭文"
+
+msgid "content.relics.GA012.flavor_text"
+msgstr "凝聚众人力量的刻印。"
+
+msgid "content.relics.GA012.name"
+msgstr "协作刻印"
+
+msgid "content.relics.GA013.name"
+msgstr "熔火引信"
+
+msgid "content.relics.GA014.name"
+msgstr "星火计"
+
+msgid "content.relics.GA015.name"
+msgstr "蓄势刻印"
+
+msgid "content.relics.GA016.name"
+msgstr "回音石"
+
+msgid "content.relics.GA017.name"
+msgstr "跃弧线圈"
+
+msgid "content.relics.GA018.name"
+msgstr "狩猎印记"
+
+msgid "content.relics.GA019.name"
+msgstr "守卫契约"
+
+msgid "content.relics.GA020.name"
+msgstr "余响遗物"
+
+msgid "content.relics.GA021.name"
+msgstr "献礼匕首"
+
+msgid "content.relics.GA022.name"
+msgstr "过载回路"
+
+msgid "content.relics.GA023.name"
+msgstr "棱盾转换器"
+
+msgid "content.relics.GA024.name"
+msgstr "流转纹章"
+
+msgid "content.relics.GA025.name"
+msgstr "镜像残片"
+
+msgid "content.relics.GA026.name"
+msgstr "变形棱镜"
+
+msgid "content.relics.GA027.name"
+msgstr "连携扣环"
+
+msgid "content.relics.GA028.name"
+msgstr "辉光图腾"
+
+msgid "content.relics.GA029.name"
+msgstr "共鸣纽带"
+
+msgid "content.reward_dice.DI002.flavor_text"
+msgstr "获得一件章节遗物。"
+
+msgid "content.reward_dice.DI002.name"
+msgstr "遗物骰子"
+
+msgid "content.reward_dice.DI003.flavor_text"
+msgstr "选择已解锁的随从或道具加入本章构筑。"
+
+msgid "content.reward_dice.DI003.name"
+msgstr "卡牌骰子"
+
+msgid "content.reward_dice.DI004.flavor_text"
+msgstr "掷出后立即获得对应点数的星石。"
+
+msgid "content.reward_dice.DI004.name"
+msgstr "星石骰子"
+
+msgid "content.reward_dice.DI005.flavor_text"
+msgstr "精英保底奖励，可选择专属碎片或更多星石。"
+
+msgid "content.reward_dice.DI005.name"
+msgstr "宝物骰子"
+
+msgid "content.synergies.SY001.flavor_text"
+msgstr "由队伍的效果类型组合激活。"
+
+msgid "content.synergies.SY001.name"
+msgstr "攻守协同"
+
+msgid "content.synergies.SY002.flavor_text"
+msgstr "由队伍的效果类型组合激活。"
+
+msgid "content.synergies.SY002.name"
+msgstr "侵蚀共鸣"
+
+msgid "content.synergies.SY003.flavor_text"
+msgstr "由队伍的效果类型组合激活。"
+
+msgid "content.synergies.SY003.name"
+msgstr "多效轮转"
+
+msgid "content.talents.TA101.flavor_text"
+msgstr "队伍基础生命值 +5，英雄额外 +5。"
+
+msgid "content.talents.TA101.name"
+msgstr "生命根基"
+
+msgid "content.talents.TA102.flavor_text"
+msgstr "队伍基础物理 +5。"
+
+msgid "content.talents.TA102.name"
+msgstr "物理强化"
+
+msgid "content.talents.TA103.flavor_text"
+msgstr "队伍基础生命值 +10，英雄额外 +5。"
+
+msgid "content.talents.TA103.name"
+msgstr "生命进阶"
+

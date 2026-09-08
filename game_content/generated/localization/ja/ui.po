@@ -1,0 +1,718 @@
+# Generated. Edit authoring sources, not this file.
+msgid ""
+msgstr "Language: ja\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "ui.adventure.actual_definition"
+msgstr "章内 +{level} · 実際の戦闘数値"
+
+msgid "ui.adventure.chapter_completed"
+msgstr "この章はクリア済みです。"
+
+msgid "ui.adventure.confirm_defeat"
+msgstr "敗北を確定してホームへ"
+
+msgid "ui.adventure.continue"
+msgstr "続ける"
+
+msgid "ui.adventure.current_health"
+msgstr "{stat_health} {current} · {stat_shield_power} {shield}"
+
+msgid "ui.adventure.defeat"
+msgstr "挑戦失敗"
+
+msgid "ui.adventure.enemies"
+msgstr "敵：{names}\nスタミナ {stamina} · 勝利報酬：ダイス{dice}個"
+
+msgid "ui.adventure.enter_battle"
+msgstr "戦闘へ"
+
+msgid "ui.adventure.judgment_countdown"
+msgstr "決着まで {seconds}"
+
+msgid "ui.adventure.judgment_health"
+msgstr "味方 {ally}　敵 {enemy}"
+
+msgid "ui.adventure.node_completed"
+msgstr "このノードは完了済みです。"
+
+msgid "ui.adventure.node_title"
+msgstr "第{floor}層 · {type}"
+
+msgid "ui.adventure.node_unavailable"
+msgstr "現在このノードには入れません。"
+
+msgid "ui.adventure.paused"
+msgstr "一時停止中"
+
+msgid "ui.adventure.reload"
+msgstr "冒険シーンを再読み込み"
+
+msgid "ui.adventure.restart_notice"
+msgstr "再読み込みではルートや敵の配置は抽選し直されません。戦闘中に離れるとこのノードを放棄し、消費済みスタミナは返却されません。"
+
+msgid "ui.adventure.result"
+msgstr "{title}\n{explanation}\n所要時間 {seconds}秒 · 汚染 {pollution}/100"
+
+msgid "ui.adventure.retry_rollback"
+msgstr "保存・スタミナ返却を再試行"
+
+msgid "ui.adventure.retry_save"
+msgstr "保存を再試行"
+
+msgid "ui.adventure.return_home"
+msgstr "ホームへ"
+
+msgid "ui.adventure.rollback_failed"
+msgstr "元に戻した状態を保存できませんでした。再試行してください。"
+
+msgid "ui.adventure.rolled_back"
+msgstr "ルート選択とスタミナを元に戻しました。"
+
+msgid "ui.adventure.save_exit"
+msgstr "保存してホームへ"
+
+msgid "ui.adventure.saved"
+msgstr "保存しました。"
+
+msgid "ui.adventure.start"
+msgstr "戦闘開始"
+
+msgid "ui.adventure.start_failed"
+msgstr "戦闘を開始できませんでした。"
+
+msgid "ui.adventure.victory"
+msgstr "勝利"
+
+msgid "ui.aurora.amount"
+msgstr "{name} ×{amount}"
+
+msgid "ui.aurora.choose_card"
+msgstr "強化するカードを選択"
+
+msgid "ui.aurora.claimed"
+msgstr "受取済み"
+
+msgid "ui.aurora.limit"
+msgstr "この章の星の報酬は上限に達しました。"
+
+msgid "ui.aurora.progress"
+msgstr "星の報酬 {count}/{max} · あと{remaining}個選択可能"
+
+msgid "ui.aurora.upgrade"
+msgstr "強化"
+
+msgid "ui.aurora.upgrade_target"
+msgstr "{name} · 強化 +{level} → +{next}"
+
+msgid "ui.backpack.actions_unavailable"
+msgstr "使用・分解機能はまだ利用できません。"
+
+msgid "ui.catalog.empty"
+msgstr "表示できるコンテンツはありません"
+
+msgid "ui.catalog.filter"
+msgstr "フィルター"
+
+msgid "ui.catalog.search"
+msgstr "名前またはIDで検索"
+
+msgid "ui.category.all"
+msgstr "すべて"
+
+msgid "ui.category.aurora"
+msgstr "星能の力"
+
+msgid "ui.category.hero"
+msgstr "英雄"
+
+msgid "ui.category.inventory_prop"
+msgstr "所持道具"
+
+msgid "ui.category.item"
+msgstr "道具"
+
+msgid "ui.category.item_card"
+msgstr "道具カード"
+
+msgid "ui.category.material"
+msgstr "素材"
+
+msgid "ui.category.minion"
+msgstr "従者"
+
+msgid "ui.category.monsters"
+msgstr "モンスター"
+
+msgid "ui.category.recommended"
+msgstr "おすすめ"
+
+msgid "ui.category.relic"
+msgstr "遺物"
+
+msgid "ui.category.team"
+msgstr "チーム"
+
+msgid "ui.collection.change_title"
+msgstr "英雄を変更"
+
+msgid "ui.collection.change_warning"
+msgstr "英雄を変更すると現在の章の編成が終了し、この章の従者、遺物、星能、進行状況がリセットされます。固定ルート、恒久才能、アカウント資産は保持されます。"
+
+msgid "ui.collection.changed"
+msgstr "英雄を変更しました"
+
+msgid "ui.collection.current_hero"
+msgstr "現在の英雄"
+
+msgid "ui.collection.owned"
+msgstr "所持済み"
+
+msgid "ui.collection.permanent_stats"
+msgstr "アカウントの恒久成長 · 章内強化と遺物を除く"
+
+msgid "ui.collection.select_hero"
+msgstr "この英雄を選択"
+
+msgid "ui.collection.star_confirm"
+msgstr "専用欠片 {cost} 個を使い、{name}を ★{star} に昇星しますか？\n残り {remaining} 個は保持され、永続強度は初期値の {strength}% になります。\n進行中の章には影響しません。"
+
+msgid "ui.collection.star_max"
+msgstr "最大の5つ星です"
+
+msgid "ui.collection.star_success"
+msgstr "昇星しました。余分な欠片は保持されます。"
+
+msgid "ui.collection.star_unavailable"
+msgstr "昇星条件を満たしていません。欠片は消費されていません。"
+
+msgid "ui.collection.star_upgrade"
+msgstr "昇星"
+
+msgid "ui.collection.unowned"
+msgstr "未獲得"
+
+msgid "ui.combat.ammo"
+msgstr "{stat_ammo_capacity} · 残り {remaining} / {capacity}回"
+
+msgid "ui.combat.ammo_empty"
+msgstr "使用回数切れ"
+
+msgid "ui.combat.ammo_remaining"
+msgstr "{status} · {count}回"
+
+msgid "ui.combat.blocked"
+msgstr "シールドで防御"
+
+msgid "ui.combat.cooldown"
+msgstr "クールダウン {seconds}秒"
+
+msgid "ui.combat.critical"
+msgstr "会心 {text}"
+
+msgid "ui.combat.defeated"
+msgstr "戦闘不能"
+
+msgid "ui.combat.haste"
+msgstr " · {stat_haste_ratio} {percent}%"
+
+msgid "ui.combat.health"
+msgstr "{current}/{maximum}{shield}"
+
+msgid "ui.combat.main_ability_count"
+msgstr "{status} · 主能力{count}個"
+
+msgid "ui.combat.passive"
+msgstr "主能力なし"
+
+msgid "ui.combat.poison"
+msgstr "毒が浸透済み：後から得たシールドでは防げません"
+
+msgid "ui.combat.shield"
+msgstr " 盾{amount}"
+
+msgid "ui.combat.shield_gained"
+msgstr "盾 +{amount}"
+
+msgid "ui.common.back"
+msgstr "戻る"
+
+msgid "ui.common.cancel"
+msgstr "キャンセル"
+
+msgid "ui.common.close"
+msgstr "閉じる"
+
+msgid "ui.common.confirm"
+msgstr "決定"
+
+msgid "ui.common.confirm_title"
+msgstr "確認してください"
+
+msgid "ui.common.done"
+msgstr "完了"
+
+msgid "ui.currency.fragments"
+msgstr "専用の欠片"
+
+msgid "ui.currency.gold"
+msgstr "ゴールド"
+
+msgid "ui.currency.star_stone"
+msgstr "星石"
+
+msgid "ui.detail.actions"
+msgstr "効果"
+
+msgid "ui.detail.ammo"
+msgstr "行動回数"
+
+msgid "ui.detail.fragments"
+msgstr "星ランクアップの欠片"
+
+msgid "ui.detail.main_ability_clock"
+msgstr "{stat_cooldown_seconds} {remaining} / {cooldown} 秒{haste}"
+
+msgid "ui.detail.overview"
+msgstr "説明"
+
+msgid "ui.detail.purchase"
+msgstr "購入情報"
+
+msgid "ui.detail.stack_limit"
+msgstr "スタック上限"
+
+msgid "ui.detail.usage"
+msgstr "用途"
+
+msgid "ui.filter.ability_facet"
+msgstr "能力効果"
+
+msgid "ui.filter.card_tag"
+msgstr "タグ"
+
+msgid "ui.filter.output_type"
+msgstr "出力タイプ"
+
+msgid "ui.home.achievements"
+msgstr "実績"
+
+msgid "ui.home.adventure_mode"
+msgstr "冒険モード"
+
+msgid "ui.home.backpack"
+msgstr "バッグ"
+
+msgid "ui.home.chapter_progress"
+msgstr "{chapter} · {current}/{total}"
+
+msgid "ui.home.collection"
+msgstr "所蔵"
+
+msgid "ui.home.contract_summon"
+msgstr "契約召喚"
+
+msgid "ui.home.daily"
+msgstr "デイリー"
+
+msgid "ui.home.encyclopedia"
+msgstr "図鑑"
+
+msgid "ui.home.layout_preview"
+msgstr "単独レイアウトプレビュー · ゲーム全体はbootstrap/app.tscnを実行"
+
+msgid "ui.home.mail"
+msgstr "メール"
+
+msgid "ui.home.no_hero_detail"
+msgstr "英雄が選択されていません。"
+
+msgid "ui.home.preview_resources"
+msgstr "プレイヤー名\nゴールド · 星石 · スタミナ"
+
+msgid "ui.home.rank"
+msgstr "順位"
+
+msgid "ui.home.ranking_info"
+msgstr "この端末のプレイヤーの評価のみを表示します。オンラインランキングではありません。"
+
+msgid "ui.home.resources"
+msgstr "{name}\nゴールド {gold} · 星石 {star_stone} · スタミナ {stamina}/{maximum}"
+
+msgid "ui.home.select_mode"
+msgstr "モード選択"
+
+msgid "ui.home.sign_in"
+msgstr "ログイン"
+
+msgid "ui.home.stamina_info"
+msgstr "スタミナ回復について"
+
+msgid "ui.home.start_adventure"
+msgstr "冒険開始"
+
+msgid "ui.language.label"
+msgstr "言語"
+
+msgid "ui.language.preference_recovered"
+msgstr "バックアップから言語設定を復元しました。"
+
+msgid "ui.language.preference_unreadable"
+msgstr "言語設定ファイルを読み込めませんでした。元のファイルは保持されています。言語の変更は今回の起動中のみ有効です。"
+
+msgid "ui.language.save_failed"
+msgstr "言語設定を保存できませんでした。再試行してください。"
+
+msgid "ui.language.unavailable"
+msgstr "この言語は利用できません。"
+
+msgid "ui.mode.adventure"
+msgstr "冒険"
+
+msgid "ui.mode.challenge"
+msgstr "チャレンジ"
+
+msgid "ui.mode.chapter"
+msgstr "第{number}章 · {name}"
+
+msgid "ui.mode.chapter_terms"
+msgstr "通常難度 · 1戦につきスタミナ{stamina}消費\n{status}"
+
+msgid "ui.mode.chess"
+msgstr "戦棋"
+
+msgid "ui.mode.confirm"
+msgstr "章を選択"
+
+msgid "ui.mode.current"
+msgstr "使用中"
+
+msgid "ui.mode.empty"
+msgstr "利用できるモードはありません。"
+
+msgid "ui.mode.enter"
+msgstr "冒険に出る"
+
+msgid "ui.mode.level"
+msgstr "第 {number} 章"
+
+msgid "ui.mode.locked"
+msgstr "前の章をクリアすると解放"
+
+msgid "ui.mode.locked_label"
+msgstr "未解放"
+
+msgid "ui.mode.next"
+msgstr "次の章 ›"
+
+msgid "ui.mode.not_open"
+msgstr "未開放"
+
+msgid "ui.mode.preview_title"
+msgstr "{mode}モード"
+
+msgid "ui.mode.previous"
+msgstr "‹ 前の章"
+
+msgid "ui.mode.pvp"
+msgstr "対戦"
+
+msgid "ui.mode.unavailable"
+msgstr "このモードはまだ利用できません。"
+
+msgid "ui.mode.unlocked"
+msgstr "解放済み"
+
+msgid "ui.page.achievements"
+msgstr "実績"
+
+msgid "ui.page.activity"
+msgstr "イベント"
+
+msgid "ui.page.assets"
+msgstr "資産・バッグ"
+
+msgid "ui.page.collection"
+msgstr "コレクション"
+
+msgid "ui.page.daily_tasks"
+msgstr "デイリー任務"
+
+msgid "ui.page.encyclopedia"
+msgstr "図鑑"
+
+msgid "ui.page.legend_road"
+msgstr "伝説への道"
+
+msgid "ui.page.modes"
+msgstr "モード・章"
+
+msgid "ui.page.notices"
+msgstr "お知らせ"
+
+msgid "ui.page.ranking"
+msgstr "ローカルランキング"
+
+msgid "ui.page.settings"
+msgstr "設定"
+
+msgid "ui.page.seven_day_sign_in"
+msgstr "7日間ログイン"
+
+msgid "ui.page.shop"
+msgstr "ショップ"
+
+msgid "ui.page.social"
+msgstr "コミュニティ・フレンド"
+
+msgid "ui.page.talents"
+msgstr "天賦"
+
+msgid "ui.platform.portrait_required"
+msgstr "縦画面モード\nゲームは一時停止中です"
+
+msgid "ui.preview.base_stats"
+msgstr "★1の基礎プレビュー · 構築ボーナスを除く"
+
+msgid "ui.preview.build_reference"
+msgstr "構築能力の参照 · 未獲得"
+
+msgid "ui.relic.consumable"
+msgstr "消耗品"
+
+msgid "ui.relic.empty"
+msgstr "遺物なし"
+
+msgid "ui.relic.history"
+msgstr "この章の遺物"
+
+msgid "ui.relic.persistent"
+msgstr "常時"
+
+msgid "ui.relic.unused"
+msgstr "未使用"
+
+msgid "ui.relic.used"
+msgstr "使用済み"
+
+msgid "ui.reward.activate"
+msgstr "ダイスをここに入れると効果が発動"
+
+msgid "ui.reward.card_growth"
+msgstr "獲得後：章内 +{level} · 次の強化まで {progress}/{next}"
+
+msgid "ui.reward.carry_notice"
+msgstr "未使用のダイスは残り、次のロールでも一緒に振られます。"
+
+msgid "ui.reward.choice_title"
+msgstr "報酬を選択"
+
+msgid "ui.reward.choose_aurora"
+msgstr "報酬を受け取る"
+
+msgid "ui.reward.complete_build"
+msgstr "冒険を続ける"
+
+msgid "ui.reward.countdown"
+msgstr "{seconds}s"
+
+msgid "ui.reward.kind.fragment"
+msgstr "専用の欠片"
+
+msgid "ui.reward.kind.hero_growth"
+msgstr "現在の英雄を強化"
+
+msgid "ui.reward.kind.item_card"
+msgstr "道具"
+
+msgid "ui.reward.kind.minion"
+msgstr "従者"
+
+msgid "ui.reward.kind.relic"
+msgstr "遺物"
+
+msgid "ui.reward.layout_preview"
+msgstr "戦闘後報酬 · 単独レイアウトプレビュー"
+
+msgid "ui.reward.migration_receipt"
+msgstr "旧版からの移行完了：{merged_account_gold}ゴールドをアカウントに統合し、未使用ダイス{converted_dice}個を新版へ移行しました。"
+
+msgid "ui.reward.named"
+msgstr "{kind} · {name} ×{count}"
+
+msgid "ui.reward.open_die"
+msgstr "{name} · 3つの候補を表示"
+
+msgid "ui.reward.refresh_count"
+msgstr "更新 · 残り{count}回"
+
+msgid "ui.reward.reroll"
+msgstr "振り直し"
+
+msgid "ui.reward.retry"
+msgstr "報酬を再試行"
+
+msgid "ui.reward.stones"
+msgstr "星石 ×{count}"
+
+msgid "ui.route.battle"
+msgstr "戦闘"
+
+msgid "ui.route.boss"
+msgstr "ボス"
+
+msgid "ui.route.current"
+msgstr "現在地"
+
+msgid "ui.route.elite"
+msgstr "エリート"
+
+msgid "ui.route.encounter"
+msgstr "奇遇"
+
+msgid "ui.route.market"
+msgstr "闇市場"
+
+msgid "ui.route.progress"
+msgstr "第 {floor} / {total} 層"
+
+msgid "ui.route.relic"
+msgstr "遺跡"
+
+msgid "ui.route.start"
+msgstr "出発点"
+
+msgid "ui.route.unknown"
+msgstr "不明"
+
+msgid "ui.save.failed"
+msgstr "保存に失敗しました。再試行してください。"
+
+msgid "ui.session.backup_recovered"
+msgstr "ローカルのプレイヤーデータをバックアップから復元しました。直近の進行状況の一部が失われている可能性があります。"
+
+msgid "ui.session.choose_existing"
+msgstr "複数の既存セーブデータが見つかりました。この端末で使用するデータを選んでください。他のデータは削除されません。"
+
+msgid "ui.session.legacy_deletion"
+msgstr "旧バージョンの未完了の削除処理が見つかりました。データ保護のため自動復元を停止しました。先に保存先を確認・修復してください。"
+
+msgid "ui.session.load_failed"
+msgstr "プレイヤーのセーブデータを読み込めませんでした。元のファイルは保持されています。データを確認するか、バックアップから復元してください。"
+
+msgid "ui.session.not_ready"
+msgstr "プレイヤーデータの準備ができていません。再試行してください。"
+
+msgid "ui.session.profile_unreadable"
+msgstr "端末のプレイヤー情報を読み込めません。元のファイルは保持されています。セーブデータを確認するか、バックアップを復元してください。"
+
+msgid "ui.session.profile_write_failed"
+msgstr "既定のプレイヤー情報を保存できません。作成済みの進行状況は保持されています。再試行してください。"
+
+msgid "ui.session.recovery_failed"
+msgstr "中断されたゲームを復元できませんでした。セーブデータは保持されています。もう一度ゲームに入ってください。"
+
+msgid "ui.session.save_missing"
+msgstr "記録済みのプレイヤーに復元可能なセーブデータがありません。新規作成や上書きは行いません。元のデータを復元してください。"
+
+msgid "ui.settings.local_player"
+msgstr "ローカルプレイヤー"
+
+msgid "ui.settings.local_player_note"
+msgstr "ログイン不要。進行状況はこの端末に保存されます。"
+
+msgid "ui.shop.busy"
+msgstr "前の取引を処理中です。"
+
+msgid "ui.shop.buy_button"
+msgstr "{amount} {currency}"
+
+msgid "ui.shop.buy_confirm"
+msgstr "{amount} {currency}で{name}を購入します。"
+
+msgid "ui.shop.buy_title"
+msgstr "購入確認"
+
+msgid "ui.shop.failure"
+msgstr "現在この商品は購入できません。"
+
+msgid "ui.shop.fragments_detail"
+msgstr "{name}：{owned} / {required}"
+
+msgid "ui.shop.gold_price"
+msgstr "{amount} ゴールド"
+
+msgid "ui.shop.insufficient"
+msgstr "残高が足りません。"
+
+msgid "ui.shop.owned"
+msgstr "このコンテンツは所持済みです。"
+
+msgid "ui.shop.price_detail"
+msgstr "{currency}：通常 {original} → お支払い {amount}"
+
+msgid "ui.shop.save_failed"
+msgstr "保存に失敗したため、取引を取り消しました。"
+
+msgid "ui.shop.success"
+msgstr "購入が完了し、コレクションに追加しました。"
+
+msgid "ui.shop.unavailable"
+msgstr "未開放"
+
+msgid "ui.shop.unpriced"
+msgstr "価格未設定"
+
+msgid "ui.social.community"
+msgstr "コミュニティ"
+
+msgid "ui.social.friends"
+msgstr "フレンド"
+
+msgid "ui.startup.content_failed"
+msgstr "ゲームコンテンツを読み込めませんでした。ゲームリソースを確認するか、再インストールしてください。"
+
+msgid "ui.startup.language_failed"
+msgstr "言語リソースを読み込めませんでした。ゲームリソースを確認するか、再インストールしてください。"
+
+msgid "ui.startup.local_player"
+msgstr "登録やログインは不要です。この端末のプレイヤーを使用し、進行状況は端末に保存されます。"
+
+msgid "ui.startup.retry"
+msgstr "再試行"
+
+msgid "ui.startup.title"
+msgstr "ゲームを開始できません"
+
+msgid "ui.storage.unavailable"
+msgstr "端末内のストレージ操作を完了できませんでした。空き容量とアクセス権限を確認してから、もう一度お試しください。"
+
+msgid "ui.talents.cost"
+msgstr "必要：天賦ポイント1"
+
+msgid "ui.talents.invalid"
+msgstr "天賦が見つかりません"
+
+msgid "ui.talents.learned"
+msgstr "解放済み"
+
+msgid "ui.talents.no_points"
+msgstr "天賦ポイント不足"
+
+msgid "ui.talents.point_source"
+msgstr "各章の初回クリアで1ポイント獲得"
+
+msgid "ui.talents.points"
+msgstr "天賦ポイント {count}"
+
+msgid "ui.talents.prerequisite"
+msgstr "先に前提の天賦を解放してください"
+
+msgid "ui.talents.requires"
+msgstr "前提：{name}"
+
+msgid "ui.talents.success"
+msgstr "天賦を解放しました"
+
+msgid "ui.talents.unlock"
+msgstr "解放"
+

@@ -1,0 +1,694 @@
+# Generated. Edit authoring sources, not this file.
+msgid ""
+msgstr "Language: zh_Hant\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "rules.ability.conditional_description"
+msgstr "當{conditions}期間：{modifiers}"
+
+msgid "rules.ability.internal_cooldown"
+msgstr "觸發冷卻 {seconds} 秒"
+
+msgid "rules.ability.internal_cooldown_remaining"
+msgstr "距可再次觸發 {seconds} 秒"
+
+msgid "rules.ability.scope"
+msgstr "{target}：{description}"
+
+msgid "rules.ability.team_scope"
+msgstr "我方隊伍 {description}"
+
+msgid "rules.ability_execution.conditional_passive"
+msgstr "條件被動能力"
+
+msgid "rules.ability_execution.cooldown_main"
+msgstr "主能力"
+
+msgid "rules.ability_execution.persistent_bonus"
+msgstr "常駐增益能力"
+
+msgid "rules.ability_execution.triggered_passive"
+msgstr "事件被動能力"
+
+msgid "rules.action.accumulate"
+msgstr "積累"
+
+msgid "rules.action.apply_status"
+msgstr "狀態強度"
+
+msgid "rules.action.chain"
+msgstr "連鎖"
+
+msgid "rules.action.change_pollution"
+msgstr "污染"
+
+msgid "rules.action.charge"
+msgstr "充能"
+
+msgid "rules.action.convert"
+msgstr "轉化"
+
+msgid "rules.action.copy_main_ability"
+msgstr "複製"
+
+msgid "rules.action.delay_cooldown"
+msgstr "延遲"
+
+msgid "rules.action.detonate"
+msgstr "引爆"
+
+msgid "rules.action.echo"
+msgstr "迴響"
+
+msgid "rules.action.empower"
+msgstr "蓄力"
+
+msgid "rules.action.expand_ammo"
+msgstr "彈藥擴充"
+
+msgid "rules.action.grant_main_ability"
+msgstr "授予主能力"
+
+msgid "rules.action.grant_shield"
+msgstr "護盾"
+
+msgid "rules.action.guard"
+msgstr "守護"
+
+msgid "rules.action.haste"
+msgstr "急速"
+
+msgid "rules.action.heal"
+msgstr "治療"
+
+msgid "rules.action.link"
+msgstr "連接"
+
+msgid "rules.action.mark"
+msgstr "標記"
+
+msgid "rules.action.overload"
+msgstr "過載"
+
+msgid "rules.action.physical_damage"
+msgstr "物理"
+
+msgid "rules.action.refill_ammo"
+msgstr "次數補充"
+
+msgid "rules.action.sacrifice"
+msgstr "獻祭"
+
+msgid "rules.action.transfer"
+msgstr "傳遞"
+
+msgid "rules.action.transform"
+msgstr "變形"
+
+msgid "rules.action.witchcraft"
+msgstr "巫術"
+
+msgid "rules.actions.card_power_ratio"
+msgstr "卡牌{type}數值的 {percent}%"
+
+msgid "rules.actions.charge"
+msgstr "為{target}的{main_ability}充能 {amount} 秒"
+
+msgid "rules.actions.delay"
+msgstr "增加{target}的{main_ability} {amount} 秒剩餘冷卻"
+
+msgid "rules.actions.expand"
+msgstr "為{target}彈藥擴充 {amount} 次，並補充相同次數"
+
+msgid "rules.actions.grant_main_ability"
+msgstr "向{target}授予一項主能力（{duration}）"
+
+msgid "rules.actions.haste"
+msgstr "使{target}的{main_ability}獲得 {stat_haste_ratio} {percent}%（{duration}）"
+
+msgid "rules.actions.heal"
+msgstr "為{target}提供 {stat_healing_power} {amount} 點"
+
+msgid "rules.actions.lifesteal"
+msgstr "該傷害具有 {stat_lifesteal_ratio} {percent}%（不計算護盾損失）"
+
+msgid "rules.actions.physical_damage"
+msgstr "對{target}造成 {stat_physical_damage} {amount} 點"
+
+msgid "rules.actions.poison_penetration"
+msgstr "中毒期間受到的治療減少 20%，不疊加。施毒前已有的護盾可抵擋毒傷；無盾或舊盾耗盡後，該毒的傷害穿透後來獲得的護盾"
+
+msgid "rules.actions.pollution"
+msgstr "污染變化 {amount}"
+
+msgid "rules.actions.refill"
+msgstr "為{target}補充 {amount} 次可用次數，不超過彈藥擴充上限"
+
+msgid "rules.actions.shield"
+msgstr "為{target}提供 {stat_shield_power} {amount} 點"
+
+msgid "rules.actions.status_control"
+msgstr "使{target}{status} {seconds} 秒"
+
+msgid "rules.actions.status_damage"
+msgstr "使{target}{status} {seconds} 秒（每秒 {amount} 傷害）"
+
+msgid "rules.actions.witchcraft"
+msgstr "對{target}造成 {stat_witchcraft_damage} {amount} 點（對護盾傷害提高 20%）"
+
+msgid "rules.card.ammo"
+msgstr "{stat_ammo_capacity} · 每場 {count} 次，主動發動消耗 1 次，耗盡不影響被動"
+
+msgid "rules.card.haste"
+msgstr "{stat_haste_ratio} {percent}% · 每輪冷卻縮短"
+
+msgid "rules.card.lifesteal"
+msgstr "{stat_lifesteal_ratio} {percent}% · 僅計算生命損失"
+
+msgid "rules.card.main_ability"
+msgstr "{cooldown}{multicast}：{actions}"
+
+msgid "rules.card_kind.core_hero"
+msgstr "英雄"
+
+msgid "rules.card_kind.item_card"
+msgstr "道具卡"
+
+msgid "rules.card_kind.minion"
+msgstr "隨從"
+
+msgid "rules.card_kind.monster"
+msgstr "怪物"
+
+msgid "rules.completion.defeat"
+msgstr "本隊觸發了本場失敗條件。"
+
+msgid "rules.completion.draw"
+msgstr "本場雙方同時觸發失敗條件，結果為平局。"
+
+msgid "rules.completion.invalid_request"
+msgstr "戰鬥輸入不符合本場規則。"
+
+msgid "rules.completion.judgment_defeat"
+msgstr "{seconds}秒生命裁決：敵方剩餘生命比例更高。"
+
+msgid "rules.completion.judgment_tie"
+msgstr "{seconds}秒生命比例相同，守方獲勝。"
+
+msgid "rules.completion.judgment_victory"
+msgstr "{seconds}秒生命裁決：我方剩餘生命比例更高。"
+
+msgid "rules.completion.timeout"
+msgstr "自動戰鬥達到本場時間上限。"
+
+msgid "rules.completion.victory"
+msgstr "本隊在 {seconds} 秒內達成本場勝利條件。"
+
+msgid "rules.condition.always"
+msgstr "始終"
+
+msgid "rules.condition.event_counter_key"
+msgstr "匹配指定計數"
+
+msgid "rules.condition.event_has_kill_credit"
+msgstr "本次死亡具有有效擊殺歸屬"
+
+msgid "rules.condition.event_is_critical"
+msgstr "本次傷害為暴擊"
+
+msgid "rules.condition.event_is_primary"
+msgstr "不含衍生效果與追加施放"
+
+msgid "rules.condition.event_source_has_ammo"
+msgstr "發動者擁有彈藥池"
+
+msgid "rules.condition.event_source_has_tags"
+msgstr "事件來源標籤：{tags}"
+
+msgid "rules.condition.event_source_is_adjacent"
+msgstr "來源與自身相鄰"
+
+msgid "rules.condition.event_source_is_ally"
+msgstr "來源屬於本隊"
+
+msgid "rules.condition.event_source_is_enemy"
+msgstr "來源屬於敵隊"
+
+msgid "rules.condition.event_source_is_linked"
+msgstr "來源是已連接單位"
+
+msgid "rules.condition.event_source_is_minion"
+msgstr "來源為隨從"
+
+msgid "rules.condition.event_source_is_owner"
+msgstr "來源為自身"
+
+msgid "rules.condition.event_target_has_tags"
+msgstr "事件目標標籤：{tags}"
+
+msgid "rules.condition.event_target_is_core"
+msgstr "目標為英雄"
+
+msgid "rules.condition.event_target_is_enemy"
+msgstr "目標為敵方"
+
+msgid "rules.condition.event_target_is_owner"
+msgstr "目標為自身"
+
+msgid "rules.condition.event_target_marked"
+msgstr "目標持有己方指定標記"
+
+msgid "rules.condition.event_target_status_stacks_at_least"
+msgstr "目標至少有{threshold}層{status}"
+
+msgid "rules.condition.owner_counter_at_least"
+msgstr "自身計數至少{threshold}"
+
+msgid "rules.condition.owner_has_status"
+msgstr "自身處於{status}"
+
+msgid "rules.condition.owner_has_tags"
+msgstr "自身標籤：{tags}"
+
+msgid "rules.condition.owner_health_at_most_percent"
+msgstr "自身生命不高於 {threshold}%"
+
+msgid "rules.condition.pollution_at_least"
+msgstr "污染不低於 {threshold}"
+
+msgid "rules.condition.pollution_at_most"
+msgstr "污染不高於 {threshold}"
+
+msgid "rules.cooldown.passive"
+msgstr "無主能力"
+
+msgid "rules.cooldown.seconds"
+msgstr "{stat_cooldown_seconds} {seconds} 秒"
+
+msgid "rules.currency.gold"
+msgstr "金幣"
+
+msgid "rules.currency.rmb"
+msgstr "人民幣"
+
+msgid "rules.currency.star_stone"
+msgstr "星石"
+
+msgid "rules.duration.battle"
+msgstr "本場持續"
+
+msgid "rules.duration.seconds"
+msgstr "{seconds} 秒"
+
+msgid "rules.duration.source"
+msgstr "來源持續期間有效"
+
+msgid "rules.identity"
+msgstr "{kind} · {output}\n占位：{width} × {height}"
+
+msgid "rules.main_ability.all"
+msgstr "所有主能力"
+
+msgid "rules.main_ability.description"
+msgstr "{cooldown}{multicast}\n{actions}"
+
+msgid "rules.main_ability.specific"
+msgstr "指定主能力"
+
+msgid "rules.mechanic.accumulate"
+msgstr "{target}積累{amount}點；閾值{threshold}，上限{limit}"
+
+msgid "rules.mechanic.any_source"
+msgstr "允許同來源"
+
+msgid "rules.mechanic.chain"
+msgstr "從{target}起連鎖{count}個不同目標，每跳保留{percent}%強度：{payload}"
+
+msgid "rules.mechanic.combo"
+msgstr "累計{count}次原生事件，窗口{seconds}秒（0為整場），{unique}"
+
+msgid "rules.mechanic.convert"
+msgstr "{target}支付{amount}{resource}後：{payload}"
+
+msgid "rules.mechanic.copy_main_ability"
+msgstr "{target}獲得預設主能力的{percent}%強度獨立快照，持續{seconds}秒"
+
+msgid "rules.mechanic.detonate"
+msgstr "消耗{target}的{count}層己方灼燒，造成剩餘基礎傷害的{percent}%"
+
+msgid "rules.mechanic.distinct"
+msgstr "不同來源"
+
+msgid "rules.mechanic.echo"
+msgstr "以{percent}%強度迴響{target}最近一次原生數值效果"
+
+msgid "rules.mechanic.empower"
+msgstr "{target}蓄力+{percent}%，強化下一組主動；{duration}"
+
+msgid "rules.mechanic.guard"
+msgstr "{target}獲得{amount}次守護，替相鄰友軍承受單體傷害；{duration}"
+
+msgid "rules.mechanic.link"
+msgstr "連接{target}，監聽其主動發動；{duration}"
+
+msgid "rules.mechanic.mark"
+msgstr "標記{target}，持續{seconds}秒"
+
+msgid "rules.mechanic.overload"
+msgstr "{target}增加{amount}熱量，達到{limit}後停機{recovery}秒；本次：{payload}"
+
+msgid "rules.mechanic.sacrifice"
+msgstr "獻祭{target}的友方隨從後：{payload}"
+
+msgid "rules.mechanic.transfer"
+msgstr "將自身{amount}{resource}傳給{target}，保留現有時限"
+
+msgid "rules.mechanic.transform"
+msgstr "{target}切換為預設主能力形態{seconds}秒；保留生命和彈藥"
+
+msgid "rules.modifier.action"
+msgstr "{action}效果參數 {amount}"
+
+msgid "rules.modifier.ammo"
+msgstr "{stat_ammo_capacity}上限 {count} 次（僅已啟用的道具）"
+
+msgid "rules.modifier.cooldown"
+msgstr "基礎{stat_cooldown_seconds} {seconds} 秒"
+
+msgid "rules.modifier.health"
+msgstr "{stat_max_health} {amount}"
+
+msgid "rules.modifier.main_ability"
+msgstr "授予一項主能力"
+
+msgid "rules.modifier.multicast"
+msgstr "{stat_multicast_bonus} {count} 次"
+
+msgid "rules.modifier.percent"
+msgstr "{stat} {amount} 個百分點"
+
+msgid "rules.modifier.projectile"
+msgstr "替換攻擊彈道"
+
+msgid "rules.modifier.stat_ratio"
+msgstr "{stat}提高 {percent}%（同類相加）"
+
+msgid "rules.modifier.team_bonus"
+msgstr "{stat} {amount}"
+
+msgid "rules.modifier.team_buff"
+msgstr "隊伍加成 {amount}"
+
+msgid "rules.multicast"
+msgstr " · {stat_multicast_bonus} {count} 次"
+
+msgid "rules.node.aurora"
+msgstr "首次從八項獎勵中選一項，本章每次觸發多選一項，最多觸發五次。"
+
+msgid "rules.node.exchange"
+msgstr "消耗 {cost} 帳號{currency}，獲得 {amount} 帳號{reward}。"
+
+msgid "rules.node.missing"
+msgstr "缺少節點規則。"
+
+msgid "rules.node.reward"
+msgstr "獲得 {amount} 帳號{reward}。"
+
+msgid "rules.output.burn"
+msgstr "灼燒型"
+
+msgid "rules.output.healing"
+msgstr "治療型"
+
+msgid "rules.output.per_second"
+msgstr "{amount}/秒"
+
+msgid "rules.output.physical"
+msgstr "物理型"
+
+msgid "rules.output.poison"
+msgstr "施毒型"
+
+msgid "rules.output.shield"
+msgstr "護盾型"
+
+msgid "rules.output.special"
+msgstr "特殊型"
+
+msgid "rules.output.witchcraft"
+msgstr "巫術型"
+
+msgid "rules.resource.ammo"
+msgstr "彈藥"
+
+msgid "rules.resource.burn"
+msgstr "層灼燒"
+
+msgid "rules.resource.counter"
+msgstr "計數"
+
+msgid "rules.resource.health"
+msgstr "生命"
+
+msgid "rules.resource.poison"
+msgstr "份中毒"
+
+msgid "rules.resource.shield"
+msgstr "護盾"
+
+msgid "rules.rule"
+msgstr "{trigger}{conditions}：{actions}（每秒最多 {per_second} 次，每戰最多 {per_battle} 次）{multicast}"
+
+msgid "rules.rule.conditions"
+msgstr "，若{conditions}"
+
+msgid "rules.section.core_attributes"
+msgstr "核心屬性"
+
+msgid "rules.section.current"
+msgstr "目前生效與觸發狀態"
+
+msgid "rules.section.modifier_attributes"
+msgstr "修正屬性"
+
+msgid "rules.separator.and"
+msgstr "且"
+
+msgid "rules.separator.list"
+msgstr "、"
+
+msgid "rules.separator.or"
+msgstr "或"
+
+msgid "rules.separator.sentences"
+msgstr "；"
+
+msgid "rules.stat.ammo_capacity"
+msgstr "彈藥"
+
+msgid "rules.stat.burn_damage"
+msgstr "灼傷"
+
+msgid "rules.stat.cooldown_seconds"
+msgstr "冷卻"
+
+msgid "rules.stat.crit_chance"
+msgstr "暴擊率"
+
+msgid "rules.stat.crit_multiplier"
+msgstr "暴擊倍率"
+
+msgid "rules.stat.haste_ratio"
+msgstr "急速"
+
+msgid "rules.stat.healing_power"
+msgstr "治療"
+
+msgid "rules.stat.lifesteal_ratio"
+msgstr "吸血"
+
+msgid "rules.stat.max_health"
+msgstr "生命上限"
+
+msgid "rules.stat.multicast_bonus"
+msgstr "多重施法"
+
+msgid "rules.stat.physical_damage"
+msgstr "物理"
+
+msgid "rules.stat.poison_damage"
+msgstr "中毒"
+
+msgid "rules.stat.shield_power"
+msgstr "護盾"
+
+msgid "rules.stat.witchcraft_damage"
+msgstr "巫術"
+
+msgid "rules.status.burn"
+msgstr "灼燒"
+
+msgid "rules.status.freeze"
+msgstr "凍結"
+
+msgid "rules.status.none"
+msgstr "無狀態"
+
+msgid "rules.status.poison"
+msgstr "中毒"
+
+msgid "rules.status.slow"
+msgstr "減速"
+
+msgid "rules.status.stun"
+msgstr "眩暈"
+
+msgid "rules.synergy.cards"
+msgstr "至少 {count} 張參戰卡牌"
+
+msgid "rules.synergy.distinct_outputs"
+msgstr "至少 {count} 種效果類型"
+
+msgid "rules.synergy.outputs"
+msgstr "陣容同時具有：{groups}"
+
+msgid "rules.tags.all"
+msgstr "同時包含：{tags}"
+
+msgid "rules.tags.any"
+msgstr "含任一：{tags}"
+
+msgid "rules.tags.none"
+msgstr "不含：{tags}"
+
+msgid "rules.tags.target"
+msgstr "{target}（{tags}）"
+
+msgid "rules.target.adjacent_allies"
+msgstr "相鄰友軍"
+
+msgid "rules.target.all_allies"
+msgstr "全體友軍"
+
+msgid "rules.target.all_enemies"
+msgstr "全體敵人"
+
+msgid "rules.target.all_units"
+msgstr "所有參戰單位"
+
+msgid "rules.target.allied_minion"
+msgstr "最近友方隨從"
+
+msgid "rules.target.event_source"
+msgstr "事件來源"
+
+msgid "rules.target.event_target"
+msgstr "事件目標"
+
+msgid "rules.target.farthest_enemy"
+msgstr "最遠敵人"
+
+msgid "rules.target.linked_ally"
+msgstr "已連接友軍"
+
+msgid "rules.target.lowest_health_ally"
+msgstr "生命最低友軍"
+
+msgid "rules.target.marked_enemy"
+msgstr "己方標記的敵人"
+
+msgid "rules.target.nearest_ally"
+msgstr "最近友軍"
+
+msgid "rules.target.nearest_enemy"
+msgstr "最近敵人"
+
+msgid "rules.target.random_enemy"
+msgstr "隨機敵人"
+
+msgid "rules.target.self"
+msgstr "自身"
+
+msgid "rules.trigger.action_released"
+msgstr "效果發動"
+
+msgid "rules.trigger.adjacent_main_ability_cast"
+msgstr "相鄰友軍施放主能力時"
+
+msgid "rules.trigger.after_main_ability_cast"
+msgstr "主能力施放後"
+
+msgid "rules.trigger.allied_minion_defeated"
+msgstr "友方隨從倒下時"
+
+msgid "rules.trigger.battle_completed"
+msgstr "戰鬥結束時"
+
+msgid "rules.trigger.battle_started"
+msgstr "戰鬥開始時"
+
+msgid "rules.trigger.before_main_ability_cast"
+msgstr "主能力施放前"
+
+msgid "rules.trigger.core_damaged"
+msgstr "英雄受傷時"
+
+msgid "rules.trigger.counter_changed"
+msgstr "計數變化時"
+
+msgid "rules.trigger.counter_threshold_reached"
+msgstr "計數跨越閾值時"
+
+msgid "rules.trigger.damage_guarded"
+msgstr "守護攔截時"
+
+msgid "rules.trigger.damage_resolved"
+msgstr "傷害結算時"
+
+msgid "rules.trigger.haste_gained"
+msgstr "獲得加速"
+
+msgid "rules.trigger.healing_resolved"
+msgstr "治療結算時"
+
+msgid "rules.trigger.item_disabled"
+msgstr "道具失效時"
+
+msgid "rules.trigger.last_minion_defeated"
+msgstr "最後一名友方隨從倒下時"
+
+msgid "rules.trigger.linked_main_ability_cast"
+msgstr "連接單位發動後"
+
+msgid "rules.trigger.main_ability_cooldown_ready"
+msgstr "主能力冷卻完成時"
+
+msgid "rules.trigger.mark_applied"
+msgstr "標記施加時"
+
+msgid "rules.trigger.mechanic_resolved"
+msgstr "機制完成時"
+
+msgid "rules.trigger.minion_defeated"
+msgstr "隨從倒下時"
+
+msgid "rules.trigger.pollution_changed"
+msgstr "污染變化時"
+
+msgid "rules.trigger.pollution_threshold_reached"
+msgstr "污染越過閾值時"
+
+msgid "rules.trigger.shield_gained"
+msgstr "獲得護盾時"
+
+msgid "rules.trigger.status_applied"
+msgstr "施加狀態時"
+
+msgid "rules.trigger.time_limit_resolved"
+msgstr "生命裁決完成時"
+
+msgid "rules.trigger.unit_defeated"
+msgstr "卡牌死亡時"
+
+msgid "rules.unknown"
+msgstr "未知"
+

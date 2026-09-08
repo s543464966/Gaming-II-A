@@ -1,0 +1,954 @@
+{
+  "ui.detail.main_ability_clock": {
+    "text": "{stat_cooldown_seconds} {remaining} / {cooldown} 秒{haste}",
+    "source_hash": "b4ea55c1c856579beca12937a36dbe06517194d5e502899408cfcd58f1e28cd7"
+  },
+  "ui.page.talents": {
+    "text": "天賦",
+    "source_hash": "866e2e6d6739a6f7e93fb1fc5a2d4578677393ec4b9d435cecbe7d20121a6c36"
+  },
+  "ui.talents.points": {
+    "text": "天賦點 {count}",
+    "source_hash": "c5acf59c1136c4dad9e55af6e2e8c02df99df0e7e2913ba6be77046209c028a1"
+  },
+  "ui.talents.point_source": {
+    "text": "每章首次通關獲得 1 點",
+    "source_hash": "7bd138e068a747eaa5281a8642d85ee6767aad7c5049f4b3ef3dc11979f58ee0"
+  },
+  "ui.talents.cost": {
+    "text": "消耗 1 天賦點",
+    "source_hash": "3ebbe017e58bbc41e97d22bc664ad1883024470a27177d3127008f921fa19ff2"
+  },
+  "ui.talents.unlock": {
+    "text": "點亮",
+    "source_hash": "f911a105541e635dd6a82470a18892866c9b79ba87d819d88f7860efaeba07e6"
+  },
+  "ui.talents.learned": {
+    "text": "已點亮",
+    "source_hash": "b8ec4b94833b8f4e8eb04ca893c194448348e6cd1050e65bc434f0472acd80e2"
+  },
+  "ui.talents.no_points": {
+    "text": "暫無天賦點",
+    "source_hash": "0c53e7bbd313740ab4b4164f9f98971d2a7018aae566369425d92c6f40e38278"
+  },
+  "ui.talents.prerequisite": {
+    "text": "需要先點亮前置天賦",
+    "source_hash": "cbc961dee8a399b9b0a7662caa8fd6a877bb9f9c274f2a747ae9013b8204f924"
+  },
+  "ui.talents.requires": {
+    "text": "前置：{name}",
+    "source_hash": "362b2ebbf8ca9a776112d5eec62a190b0ba9f6d29cfc6c6e3e99e97de63c656d"
+  },
+  "ui.talents.invalid": {
+    "text": "天賦不存在",
+    "source_hash": "b24f0ebab46026ada9db5fbf73e2424312a1e81638393c8c1acbadcb8e66c1be"
+  },
+  "ui.talents.success": {
+    "text": "天賦已點亮",
+    "source_hash": "f0981b1228db18175e2d71295f12faa35180027a2562eabfd1ab47de3005654d"
+  },
+  "ui.session.backup_recovered": {
+    "text": "已從備份恢復本機玩家資料，部分最近進度可能未保留。",
+    "source_hash": "8da467adde03825d217b20f230fccb4ac79e98146ece490f47f5ac66c4cc827a"
+  },
+  "ui.platform.portrait_required": {
+    "text": "直向模式\n遊戲已暫停",
+    "source_hash": "b2c799e7d534fe8026368fa244c328eea7067746211ef7db3e8ec419afc8ef9a"
+  },
+  "ui.startup.title": {
+    "text": "暫時無法進入遊戲",
+    "source_hash": "de77b730a0214c1b1dee1baff5d9ab191d096674a6b3e57b50737a33ecbd1126"
+  },
+  "ui.startup.retry": {
+    "text": "重試",
+    "source_hash": "b8784c8dd5636ff231b121892144e4a3977d5b874f21934c53f850cde7bac0ea"
+  },
+  "ui.startup.local_player": {
+    "text": "本版本無需註冊或登入，使用本機預設玩家，進度儲存在本機。",
+    "source_hash": "bb2f293d01a49a4bcad20a5b1874513d44830230e04821fb3ceb82bdd1a8028a"
+  },
+  "ui.session.not_ready": {
+    "text": "玩家資料尚未就緒，請重試。",
+    "source_hash": "4f7d9d06038f886efb6cdb573ac9b572956f8ed5c3641b66623183f26170289d"
+  },
+  "ui.session.profile_unreadable": {
+    "text": "無法讀取本機玩家身分。原始檔案已保留，請檢查存檔或還原備份。",
+    "source_hash": "ad4244b4fd353547af6fb1ca9db08aa8ff5e40dc352ae1962f177973f137cbce"
+  },
+  "ui.session.profile_write_failed": {
+    "text": "無法儲存預設玩家身分。已建立的進度已保留，請重試。",
+    "source_hash": "83a70f8f2ac461e5a2f19e36e956269848ac68434e219a8016368a4b9197bfd9"
+  },
+  "ui.session.choose_existing": {
+    "text": "發現多個舊玩家存檔。請選擇本機預設使用的存檔；其他存檔不會刪除。",
+    "source_hash": "4fe3224f2ccc68ed08dd5c7002ff427ee177a176eedd953b50b7c6ea14ae65ae"
+  },
+  "ui.session.legacy_deletion": {
+    "text": "偵測到舊版本未完成的存檔刪除操作。為保護資料，已停止自動還原；請先檢查並處理該存檔目錄。",
+    "source_hash": "84ddc4b21f57a7d9133822931c935471e0616ce35592ff18d0546d0c1cb2027f"
+  },
+  "ui.session.save_missing": {
+    "text": "已記錄的本機玩家缺少可還原存檔。不會重新建立或覆蓋，請還原原存檔。",
+    "source_hash": "301bc2524ac17d3ab26cb23fe4134e33f52876d2bda3008f2f7b6ba518cbcb1f"
+  },
+  "ui.home.ranking_info": {
+    "text": "僅顯示目前本機玩家的價值記錄，不是連線排行榜。",
+    "source_hash": "23a70a54896740af002883d49e203126ae34d5bafff80d32f3f6bd453e61516d"
+  },
+  "ui.session.load_failed": {
+    "text": "無法讀取玩家存檔。原檔案已保留，請檢查存檔或從備份還原。",
+    "source_hash": "f9e242c893036b0c67e4f9ec49a109838ed82599205b762e6862e523ac3544af"
+  },
+  "ui.session.recovery_failed": {
+    "text": "無法還原上次中斷的遊戲。存檔已保留，請重新嘗試進入。",
+    "source_hash": "e1bdf167dfd7684ee7b950adc6f1a450eef965b2a6a696c2bc90f09437eb311c"
+  },
+  "ui.startup.language_failed": {
+    "text": "無法載入語言資源，請檢查或重新安裝遊戲資源。",
+    "source_hash": "9068c506158773c96a1448d7546432e7af67499fef8e372fa3bcc0a25539e96d"
+  },
+  "ui.startup.content_failed": {
+    "text": "無法載入遊戲內容，請檢查或重新安裝遊戲資源。",
+    "source_hash": "b1af0a8eda410039f6f7e1a44025a3a4c7ec48ebd8d05d68a7533dee2eaa9489"
+  },
+  "ui.storage.unavailable": {
+    "text": "無法完成本機儲存操作，請檢查可用空間和存取權限後重試。",
+    "source_hash": "c26d24ed7026602fb7db0e4301c29e14998721a35773f33faa8a03c97ef15022"
+  },
+  "ui.category.item_card": {
+    "text": "道具卡",
+    "source_hash": "38e536cefc0b5987743afb62648291f16d15b92fad311ff01ba0b83598731246"
+  },
+  "ui.category.relic": {
+    "text": "遺物",
+    "source_hash": "62dcac7955d1409d06e573c330eae252602122722a11a4e25c46538db7562e15"
+  },
+  "ui.category.inventory_prop": {
+    "text": "背包道具",
+    "source_hash": "0c387998f130ed25d73ed00fd4f187d9efd121eacbc8894c3fd3163688b89c77"
+  },
+  "ui.language.label": {
+    "text": "語言",
+    "source_hash": "9f6fee1aba17a56586bf16a77b07b1a76d8c4e867430c6ee6abfa3128b55fa98"
+  },
+  "ui.language.unavailable": {
+    "text": "此語言尚未開放。",
+    "source_hash": "b7d7728749ba4906697220995f88ff9f816f1f2f52fbd51e80d68744c5f58ae1"
+  },
+  "ui.language.preference_unreadable": {
+    "text": "無法讀取語言偏好檔案，原檔案已保留；本次語言選擇不會儲存。",
+    "source_hash": "a6d57dae0e195fe50f680c8b7bddc630b1cb0ecd7098e2eccff9c2af129958b4"
+  },
+  "ui.language.preference_recovered": {
+    "text": "已從備份還原語言設定。",
+    "source_hash": "6221ed32e5f87686d5cec52676b17b41dbe7bd7ab68d162d17792c9a32626afc"
+  },
+  "ui.language.save_failed": {
+    "text": "語言偏好儲存失敗，請重試。",
+    "source_hash": "056a3ca39813cf2a18e2804edcc6ed082b76dc7e54a9292645465bf2f7068525"
+  },
+  "ui.catalog.empty": {
+    "text": "暫無可用內容",
+    "source_hash": "753b8caf58b203106195c2c966b1e1bb2a6f45a52893e57abd7065258f67e865"
+  },
+  "ui.catalog.search": {
+    "text": "搜尋名稱或 ID",
+    "source_hash": "5b46bc7bada5b28ff4ae290bfbf700f74c4e8026bf08051361e00493174a363a"
+  },
+  "ui.catalog.filter": {
+    "text": "篩選",
+    "source_hash": "b5f15473fdc0fefe54938ded6af1586874e43b8b6012627bf5fb325f75912cc3"
+  },
+  "ui.preview.build_reference": {
+    "text": "構築能力 · 非已獲得",
+    "source_hash": "15dd94221bc685b3bf06cf8243a8149404d4296794aad3db9eb936cfd455ac70"
+  },
+  "ui.preview.base_stats": {
+    "text": "★1 基礎預覽 · 未計構築加成",
+    "source_hash": "047f855062cc93b0ff56241ae6155ee614821038a9be3be34edde4f3e6994061"
+  },
+  "ui.category.hero": {
+    "text": "英雄",
+    "source_hash": "09e9b2088fa078167852e0975045c9b7b854226d19352624e68d30ced70f7921"
+  },
+  "ui.category.minion": {
+    "text": "隨從",
+    "source_hash": "34448448dda154c26716e8b05f4bf5b45751a0c97e1545ab4ca1ef2417748332"
+  },
+  "ui.category.item": {
+    "text": "道具",
+    "source_hash": "7483f8ec95d8906cd501ce8d2941a101663b04747f6f906b6782ed5152045b60"
+  },
+  "ui.category.team": {
+    "text": "隊伍",
+    "source_hash": "1053fbb75f9a3c5242d0431550a6d4e4477587af261d1d37a5939c0b07bd6b9b"
+  },
+  "ui.category.monsters": {
+    "text": "怪物",
+    "source_hash": "31567e20345be2c5470e5a9b77d6dc4b143e67899a282fd98bb14397b3768207"
+  },
+  "ui.category.aurora": {
+    "text": "星能之力",
+    "source_hash": "95278797264c82278d45a7ea676841d7ef265b868f1a3bd2b6fcb687cc16b2eb"
+  },
+  "ui.category.all": {
+    "text": "全部",
+    "source_hash": "5c55a67935af8f4508ba05d6d81c9eb240a2ea0ba886d8428b985e305470da3f"
+  },
+  "ui.category.material": {
+    "text": "材料",
+    "source_hash": "e140c977bfb9051c1efa53ba15be72ff8cc7cef32bd12ddad2861a0d258a25e0"
+  },
+  "ui.category.recommended": {
+    "text": "推薦",
+    "source_hash": "1452deafc6d96546b7ab40acde3d93027b476b3609202fef2ffc875644ada8f6"
+  },
+  "ui.collection.owned": {
+    "text": "已擁有",
+    "source_hash": "70ddc40598903cfea89ca20addcc7e5532c3b4b2a1c43184903e2e52043f0852"
+  },
+  "ui.collection.unowned": {
+    "text": "未獲得",
+    "source_hash": "e56277b59dbc50e6aa26b282500ca4e6df505ca5884cfc365ea062cfaa9ceab8"
+  },
+  "ui.collection.current_hero": {
+    "text": "當前英雄",
+    "source_hash": "16304d1ece44ded1baf8e8a3be74a38cb84fa31f6e81c832a4fd22c26dbecaea"
+  },
+  "ui.collection.select_hero": {
+    "text": "選擇此英雄",
+    "source_hash": "d31cfe93b0c3c4cbc7b0ce0a15d2ad004dd544d0a2840982a0a7ff167b02a7ec"
+  },
+  "ui.collection.change_warning": {
+    "text": "更換英雄會結束目前章節構築，清空本章隨從、遺物、星能和進度；保留固定路線、永久天賦與帳號資產。",
+    "source_hash": "6e98fd44cad09e00180e71028a6c266d7293d1c1ae6688c7a17b89c040e801f0"
+  },
+  "ui.collection.change_title": {
+    "text": "更換英雄",
+    "source_hash": "1c142561ead7472a1b58f3401a100211e08b389fe7a75104d19f4e2fd91db889"
+  },
+  "ui.collection.changed": {
+    "text": "已更換英雄",
+    "source_hash": "225760fb2ac5a467f6ee8af072e55022fd821e8a5fef064e2968426f5de05baa"
+  },
+  "ui.backpack.actions_unavailable": {
+    "text": "使用與分解尚未開放。",
+    "source_hash": "14e55bed1a44406e750cdce4616d0dc07753533ff0d5c29f35ec5e1e9b8fd7ad"
+  },
+  "ui.mode.adventure": {
+    "text": "冒險",
+    "source_hash": "c79e8435b942cd5f0458ba78f4ede83f64770b285e5c960d3754a659b2c30b9b"
+  },
+  "ui.mode.pvp": {
+    "text": "對戰",
+    "source_hash": "8acd28caf2723837e3d07795a4a2b79df63d211eadf1700011b2a502bd66fa4c"
+  },
+  "ui.mode.chess": {
+    "text": "戰棋",
+    "source_hash": "038daa5fed18e5ef2c742693062740ae57eb2d8795e32721a82f93720e4a448c"
+  },
+  "ui.mode.challenge": {
+    "text": "挑戰",
+    "source_hash": "4eed57b5a12b5dc42bf4b315151be1603b5995e8eb88fcbb18d1af0b0d04c930"
+  },
+  "ui.mode.unavailable": {
+    "text": "該模式尚未開放。",
+    "source_hash": "44ad0e36bdec7dcd5b51178896a9d46cac4e17718c1675113daec9b9a9cd5a1a"
+  },
+  "ui.mode.empty": {
+    "text": "暫無可用模式。",
+    "source_hash": "9cebb91b3644e00ac76f2b03929285d8f337e60d67584bd223ef3e6f6759add9"
+  },
+  "ui.mode.chapter": {
+    "text": "第 {number} 章 · {name}",
+    "source_hash": "da7276f2399fcef9b42c9407df955326f6c76fb09e976ea457a9bbce792ed416"
+  },
+  "ui.mode.chapter_terms": {
+    "text": "普通難度 · 每場戰鬥消耗 {stamina} 體力\n{status}",
+    "source_hash": "e747b047356f025049ba479f50cae4d99c4b6478cb006cda771c95337e36cf82"
+  },
+  "ui.mode.unlocked": {
+    "text": "已解鎖",
+    "source_hash": "e4cf2de9b47ffd6e8dac15c5192dc61eb0cd628a4d36ab3e24a733d497ccb202"
+  },
+  "ui.mode.locked": {
+    "text": "通關上一章後解鎖",
+    "source_hash": "a5a9d5c25f9cfbd3be43d7a77b9d1ebd238f248e96d9d72ad1d97abe0b1cbf1e"
+  },
+  "ui.mode.previous": {
+    "text": "‹ 上一章",
+    "source_hash": "1886f8d9943e7e2369842af5c45fcf68c252a961b8555c7d0f1dda7ba5d9c5c3"
+  },
+  "ui.mode.next": {
+    "text": "下一章 ›",
+    "source_hash": "8fa81c9ba3664b96d0eeec1892f4332f0d216a731434aa848e6671f979fe0a69"
+  },
+  "ui.mode.confirm": {
+    "text": "選擇章節",
+    "source_hash": "f9afea4369dfa2814847ad675545ad86353c4931de46c1dcfebdcafa9fb26140"
+  },
+  "ui.mode.level": {
+    "text": "第 {number} 章",
+    "source_hash": "4f42b93ff3d5a64b6ee6bb624e45688b43bb892281942951739d1765998ab328"
+  },
+  "ui.mode.preview_title": {
+    "text": "{mode}模式",
+    "source_hash": "5e343c9d376dcf8dcb5a5a78ef3b373a8d8c82929115754a89fce89814a46322"
+  },
+  "ui.mode.not_open": {
+    "text": "尚未開放",
+    "source_hash": "255da73fcd8408864ab397be8fd5c3510ff06a06d4de882a5ba8aa82e0ac0a07"
+  },
+  "ui.mode.current": {
+    "text": "目前使用",
+    "source_hash": "5ddff4afab2765c3f9e69e60262eda391f74b44f1a44a76a94d25d20f5de2412"
+  },
+  "ui.mode.enter": {
+    "text": "進入冒險",
+    "source_hash": "04a81dab8e12b9076079a877b214e0ed8118fbb75025bf09a50539006c0b8c8e"
+  },
+  "ui.page.modes": {
+    "text": "模式與章節",
+    "source_hash": "5867c1a090c1ab966781b2a2a600c738678d86890958870a1fa997e565c3fcc8"
+  },
+  "ui.page.collection": {
+    "text": "收藏",
+    "source_hash": "60a53514eb9228a2cee1e6914eb36819fd13716e5df64eb5e9dd1868ebda5a0b"
+  },
+  "ui.page.encyclopedia": {
+    "text": "圖鑑",
+    "source_hash": "06169ded8b7b61afe1b619de9e1440c4e7a7ecb4f77640dba10d74d5d2635072"
+  },
+  "ui.page.assets": {
+    "text": "資產背包",
+    "source_hash": "ad5f2b04ce8611bdbc47f86b730b3abaf22f5375fc670cd4fda87a50b9afa0b0"
+  },
+  "ui.page.shop": {
+    "text": "商城",
+    "source_hash": "70a0cb94b277d32b3b498c9b63e6af2694b33b413cf1367e5162403b57d7037b"
+  },
+  "ui.page.activity": {
+    "text": "活動",
+    "source_hash": "9e9bead81498b8980af6092ce91f0161f6b1eea4d1836b3fdc1338e140b7a481"
+  },
+  "ui.page.legend_road": {
+    "text": "傳說之路",
+    "source_hash": "6d39ba37eb596831998c327ee4f54788302522862edf58ed85b044433773a7c5"
+  },
+  "ui.page.daily_tasks": {
+    "text": "每日任務",
+    "source_hash": "e5ef21ae155da72283a3203fe3c56cfb3756918a7184bb0280a072b2f47284c5"
+  },
+  "ui.page.seven_day_sign_in": {
+    "text": "七日簽到",
+    "source_hash": "61616c7afbe556cc6cb2021c35bc48ba8cd2fb00a0623dd4ded70ea0dbe4442d"
+  },
+  "ui.page.social": {
+    "text": "社群與好友",
+    "source_hash": "5afde3a6d469a4242f61593b400d196f0398af7b05cbedc47e251282a52ee3f0"
+  },
+  "ui.page.ranking": {
+    "text": "本機排行榜",
+    "source_hash": "b369c8abe12248604a2f331a935b545a718e73eecfdbc2caf01f1eefda80c092"
+  },
+  "ui.page.notices": {
+    "text": "通知",
+    "source_hash": "4b6ded8a7f181397121cbfa64c684d5d183160a83cfd03b01dfa434337fc08e0"
+  },
+  "ui.page.settings": {
+    "text": "設定",
+    "source_hash": "df3d58c7d84b85f2037cdd20ffca0f386668645ea53008c11b0c8887182b0356"
+  },
+  "ui.page.achievements": {
+    "text": "成就",
+    "source_hash": "52b0e1703d140d288c853fdd270c2d0c0df95105bc9545ecd775aa8c64aabbcb"
+  },
+  "ui.home.layout_preview": {
+    "text": "獨立版面預覽 · 完整遊戲請執行 bootstrap/app.tscn",
+    "source_hash": "c2d79980b02bd8e6eeb50918dfca4b3a0be3b319ab5e488ff29010e649deb600"
+  },
+  "ui.home.no_hero_detail": {
+    "text": "尚未選擇英雄。",
+    "source_hash": "6ffab406011a949b6d8b140f7bd3530065fea2aa04d6d50fc61382aabefa3d59"
+  },
+  "ui.home.resources": {
+    "text": "{name}\n金幣 {gold} · 星石 {star_stone} · 體力 {stamina}/{maximum}",
+    "source_hash": "5f9d7fe117b437e66bb654aa864416a3e188c9baab596bfc02ddf555c7a4fa1b"
+  },
+  "ui.home.contract_summon": {
+    "text": "契約召喚",
+    "source_hash": "e47a7f25230dcd18d403d6f249e96207dc0a7bcc127f88c58cf9fa6590a702dd"
+  },
+  "ui.home.daily": {
+    "text": "每日",
+    "source_hash": "fd7b67c923cd4b3eee674729a32af80181fc58a52c8008198843db7cb03f7f58"
+  },
+  "ui.home.sign_in": {
+    "text": "簽到",
+    "source_hash": "347fa28b3b2a3c6256174db59147d6a47800a508e0bf12405fb1f8ec3b01ed5b"
+  },
+  "ui.home.rank": {
+    "text": "排行",
+    "source_hash": "f7013680152321ebf807fca114fa2c61a9e9d0f2e28d183c916009cac142614b"
+  },
+  "ui.home.adventure_mode": {
+    "text": "冒險模式",
+    "source_hash": "16d0879b78417cf23f62b4aede9df9b74b54d9e6658aa1decc88f89ac4390172"
+  },
+  "ui.home.collection": {
+    "text": "藏品",
+    "source_hash": "5ad2552a2628da6b9f15e553a42ec1efc3af7ac7fa5d8e2c780e3a1116c1b937"
+  },
+  "ui.home.backpack": {
+    "text": "背包",
+    "source_hash": "015845346aa9dc94f515bee8810b3a1dc4ed6f24fbbd434402ab8c8c0d59979f"
+  },
+  "ui.home.stamina_info": {
+    "text": "體力恢復說明",
+    "source_hash": "81c0f4d0793214ae051deee3677f293d64c32cd7fc3676b952965e0c7ad77004"
+  },
+  "ui.home.preview_resources": {
+    "text": "玩家名稱\n金幣 · 星石 · 體力",
+    "source_hash": "78a5ef93774b55e8aede5376385e163974b84e932af410ad326d7becafe5e874"
+  },
+  "ui.save.failed": {
+    "text": "儲存失敗，請重試。",
+    "source_hash": "3461df8deb4dbcc882751bfc69878b0299ef96ef1e384451b7b3655907321515"
+  },
+  "ui.social.community": {
+    "text": "社群",
+    "source_hash": "5bcd0ddcdd694b5c4e12853ae80bf8aacc1303a2c311cd3ec012e28d31f7a0b2"
+  },
+  "ui.social.friends": {
+    "text": "好友",
+    "source_hash": "b9b1480dd6eceff58cc13bafc6b96e9eec6be9401ced9cb5ac75132b204d5c6a"
+  },
+  "ui.common.close": {
+    "text": "關閉",
+    "source_hash": "3fd47edce45b3603d4192f61dbf3e51162589b0951042a18d244132ac92e7bb7"
+  },
+  "ui.common.done": {
+    "text": "完成",
+    "source_hash": "c0b3fbff51ccc40b8bf1a81666e7ecced016187cbe2ac6f1d627e0d7a287e04d"
+  },
+  "ui.common.confirm": {
+    "text": "確認",
+    "source_hash": "36f33adaf0942634a8ece1eec4a6f30d44dec73e1ef8704b29d983a57f2e09ae"
+  },
+  "ui.common.cancel": {
+    "text": "取消",
+    "source_hash": "2cd0f3be8738a86cede1a1452f874f31d569864bbb00cacd4130990f4610cb5c"
+  },
+  "ui.common.confirm_title": {
+    "text": "請確認",
+    "source_hash": "5fd01fe08acd9970814e60f51fcb41b6fe2d4316fc5c303ff9dd89fa5b51d2cb"
+  },
+  "ui.settings.local_player": {
+    "text": "本機玩家",
+    "source_hash": "dc9af3ddeaaa1ca3a9733207f23123fba6cfa458348017cb58b0b939e9aa3b10"
+  },
+  "ui.settings.local_player_note": {
+    "text": "無需註冊或登入，進度保存在本機。",
+    "source_hash": "936e48414cb1a8cd376e13598c315743751a340d2032148d5e26043465188557"
+  },
+  "ui.shop.unpriced": {
+    "text": "暫未報價",
+    "source_hash": "b0456c9d050d0eaf12d5a589590da90ec768cd09368071902e91db66cc87310b"
+  },
+  "ui.shop.gold_price": {
+    "text": "{amount} 金幣",
+    "source_hash": "a435a8b99a33f6568261bea7cab5744324067bca33cfc8659794df4951888821"
+  },
+  "ui.shop.price_detail": {
+    "text": "{currency}：原價 {original} → 實付 {amount}",
+    "source_hash": "a1373b81dc81edfd9ccb17b250c45f078d468d72f9a85de24777b65683efa9ea"
+  },
+  "ui.shop.fragments_detail": {
+    "text": "{name}：{owned} / {required}",
+    "source_hash": "37c8fcd2f5f0ae276a64cbbc46f8585fe86e4e59e1366d846118e54aca0ce829"
+  },
+  "ui.shop.buy_button": {
+    "text": "{amount} {currency}",
+    "source_hash": "01b90de73b99c7b77511ea078ea22f666cc2cf6edcc2bdda5f366f7fcbefb5b1"
+  },
+  "ui.shop.unavailable": {
+    "text": "未開放",
+    "source_hash": "d82d79ae27071e050942c18d2b81cf83785e01ea78a3fee7c169bcaecbd6cffa"
+  },
+  "ui.shop.buy_confirm": {
+    "text": "購買 {name}，支付 {amount} {currency}。",
+    "source_hash": "d025dced84483e9a9de311349d7dace7e1a6774db6be3d6a038443f5a430d9d5"
+  },
+  "ui.shop.buy_title": {
+    "text": "確認購買",
+    "source_hash": "441e53e61a6ef1ff60196fe47638502915d7c7e9a3b90c2d12e0fc61ffa0c067"
+  },
+  "ui.currency.gold": {
+    "text": "金幣",
+    "source_hash": "bbece6f829af7a27bd7ed37acc0eacfdcf1f30b4c6c14cf3728a75d485a1ec6d"
+  },
+  "ui.currency.star_stone": {
+    "text": "星石",
+    "source_hash": "ddbee2f785521a6a9e26eed867233449e622af16092b382731fc54f8370defd4"
+  },
+  "ui.currency.fragments": {
+    "text": "專屬碎片",
+    "source_hash": "06ce3aa735fa8a18f0b123e1dc9e29aae7c581b10ec8898f43019fb51282d71f"
+  },
+  "ui.shop.success": {
+    "text": "購買成功，已加入收藏。",
+    "source_hash": "183a52e6edf1907435e56c49f0e81b28207e4c2c9f8325be5447b5a871f50d89"
+  },
+  "ui.shop.save_failed": {
+    "text": "儲存失敗，交易已回復原狀。",
+    "source_hash": "601f938660a1cee3755e77064fec6efd062ae854c48bcab82be8265b900bbab8"
+  },
+  "ui.shop.owned": {
+    "text": "已經擁有此內容。",
+    "source_hash": "1d72c307db9bb4b4f79806b88cfe8556e89376733ffb060f9e9a496b59e08a40"
+  },
+  "ui.shop.insufficient": {
+    "text": "餘額不足。",
+    "source_hash": "981b7603fb639a938d0be26b336cde0816f5f608ee3011ab3823c7661324de93"
+  },
+  "ui.shop.busy": {
+    "text": "正在提交上一筆交易。",
+    "source_hash": "ff6dce18c560e04b136b727277d12ae523e6ee14bbe6f48e81fa0944098340c1"
+  },
+  "ui.shop.failure": {
+    "text": "目前無法購買此商品。",
+    "source_hash": "42226407a554f6cb2843230d0a47effd1542a8ba8d56de66d3243596a61a5242"
+  },
+  "ui.combat.defeated": {
+    "text": "已倒下",
+    "source_hash": "09b5e65eac388ac40a4124d6cff3e3dd5cd02c8b4c6fd4b97b7c3c49569abde8"
+  },
+  "ui.combat.cooldown": {
+    "text": "冷卻 {seconds} 秒",
+    "source_hash": "6015ac5929d0480a7eb8592bb8dfe522df9d5c44a55dd8082368fa71840bd559"
+  },
+  "ui.combat.health": {
+    "text": "{current}/{maximum}{shield}",
+    "source_hash": "9ac6e974a854f5470a965f0519cb9716db54dd5c6844488058d7e41806b35646"
+  },
+  "ui.combat.shield": {
+    "text": " 盾{amount}",
+    "source_hash": "4b20d29b5110e98808b4e8dd1ac75b67ac8093f4f95a6fadc5efeaddf3d2507c"
+  },
+  "ui.combat.haste": {
+    "text": " · {stat_haste_ratio} {percent}%",
+    "source_hash": "3308ddddd57da10ccf6765348f16fc62c57ba70d526554f9f3bff43b75df0115"
+  },
+  "ui.combat.ammo": {
+    "text": "{stat_ammo_capacity} · 剩餘 {remaining} / {capacity} 次",
+    "source_hash": "30309f8c1bc54af6643ac7aa16da63c9129a07de082739cb5692ab51ad61f396"
+  },
+  "ui.combat.ammo_empty": {
+    "text": "次數耗盡",
+    "source_hash": "0855294101b749a6ecac81b0ad96730a9e92e8f6f864184dfd2ee112573f00ad"
+  },
+  "ui.combat.ammo_remaining": {
+    "text": "{status} · {count} 次",
+    "source_hash": "32387001b90ddbd8bb255af5132e664aec37f571c0f4bd471ddf0ce91acb86d0"
+  },
+  "ui.combat.poison": {
+    "text": "中毒已入體：後獲得的護盾無法抵擋",
+    "source_hash": "356fa2d8a70333edda12a4bd94af50a2c547c31cecdcebe7f5d4bbf60ff32ef3"
+  },
+  "ui.combat.blocked": {
+    "text": "護盾抵擋",
+    "source_hash": "95d09d1dc8bc42acc0b457fbfe8ba7d100da84413a7cd863dfc12fc53f8bf140"
+  },
+  "ui.combat.critical": {
+    "text": "暴擊 {text}",
+    "source_hash": "eba0a48ab7dd669bb3175732ab626458eb36be56f002efab3dcaabaf1796387b"
+  },
+  "ui.combat.shield_gained": {
+    "text": "盾 +{amount}",
+    "source_hash": "8c53260b2310f45be9c645fff80aa047044317361645906e3e4006aff2e3577d"
+  },
+  "ui.route.start": {
+    "text": "起點",
+    "source_hash": "5491701e1c3a8cfd9553d76c787e62fcb3987bc98a4f41adf17ce1d9fda79df8"
+  },
+  "ui.route.battle": {
+    "text": "戰鬥",
+    "source_hash": "a642a31e11820a4e919881ad3462e6dafb388dcb00153cea8777e3a07822b7b0"
+  },
+  "ui.route.elite": {
+    "text": "精英",
+    "source_hash": "3de8aaae165c99778623bd339ce4f3de113810ac28c491ea989a328e8ad778b7"
+  },
+  "ui.route.boss": {
+    "text": "首領",
+    "source_hash": "58cae7ec875aba70f25d36b3f4445802e79545cb77a800049b434a46359ec58d"
+  },
+  "ui.route.relic": {
+    "text": "遺跡",
+    "source_hash": "2b12c4022b2dc316bdfa025d30d8719488355f2dc567215bf0d10870450665c3"
+  },
+  "ui.route.market": {
+    "text": "黑市",
+    "source_hash": "d2549b4fe1430cff57e4834038a83b6a8e37d83749d609b6bc748bd55c08eb5d"
+  },
+  "ui.route.encounter": {
+    "text": "奇遇",
+    "source_hash": "015b050041d3221b6aa8c50a5a9539dcaaf4c464b7d34698b83fd599edd82733"
+  },
+  "ui.route.unknown": {
+    "text": "未知",
+    "source_hash": "4d8c1c5b42830791a4ce99f630fb9f02ba08c67c5299d46d6cf76661bfd03584"
+  },
+  "ui.adventure.return_home": {
+    "text": "返回主頁",
+    "source_hash": "5ff221f046f02c60dc74439aeecfecffe53500ca459493d64fbf9fc0a6939493"
+  },
+  "ui.adventure.chapter_completed": {
+    "text": "本章已完成。",
+    "source_hash": "00d08821b52c6c2e9a7563918040e53b6b118b0ba03fbd54464063166f4012f0"
+  },
+  "ui.adventure.start": {
+    "text": "開始戰鬥",
+    "source_hash": "f09db611687814521c8619583857ec3cd4cb54ca8103e6397f40e1669c5cb229"
+  },
+  "ui.adventure.node_title": {
+    "text": "第 {floor} 層 · {type}",
+    "source_hash": "9e1e29d4cb56f5c71f8c325c3ad33ec1ae5ef84f1482217cae51de02cd29fbd5"
+  },
+  "ui.adventure.enemies": {
+    "text": "敵人：{names}\n體力 {stamina} · 勝利獎勵 {dice} 骰",
+    "source_hash": "91d64f62879bfd7bcf5a603a53a451b9fb490a1b868d49521db78491c3f02e0f"
+  },
+  "ui.adventure.enter_battle": {
+    "text": "進入戰鬥",
+    "source_hash": "e62745dce1728417dfeff01de0c32b3169e73bbf2730558368f7b32b44357924"
+  },
+  "ui.adventure.node_completed": {
+    "text": "節點已完成。",
+    "source_hash": "ed3290b640a0f38d5f881cd235b349f7fa161a461c0602cae7e84e6f86381f19"
+  },
+  "ui.adventure.node_unavailable": {
+    "text": "此節點目前無法進入。",
+    "source_hash": "069506f899bec739ced763a8c3f264983c6c9a949c6540c2732efb1dd221dc11"
+  },
+  "ui.adventure.start_failed": {
+    "text": "系統未能啟動戰鬥。",
+    "source_hash": "cccec1be2559a7310b73bd2ea05f4c7168e09fbcb4b4455a860168c718258987"
+  },
+  "ui.adventure.rolled_back": {
+    "text": "路線與體力已回復原狀。",
+    "source_hash": "17bac3caeb9bdfee735e03595d28dccde4583aa583bae116a3bd23e49cb839c5"
+  },
+  "ui.adventure.rollback_failed": {
+    "text": "回復儲存失敗，請重試。",
+    "source_hash": "2933482895cb56cd4725e05c9c3da19b50a2039ac85932234bba8e6e091fd1c3"
+  },
+  "ui.adventure.retry_rollback": {
+    "text": "重試儲存並退還體力",
+    "source_hash": "6b1f5cd00430f113daa3d4ffde0372eb9a4277feb16fd4c073e782a5b32ea510"
+  },
+  "ui.adventure.victory": {
+    "text": "勝利",
+    "source_hash": "943874ecb6bd8f61cc01b760401f86b5a0072c9c7bc2a120081f5d0dfb9588cf"
+  },
+  "ui.adventure.defeat": {
+    "text": "挑戰失敗",
+    "source_hash": "798b55eb701cdbf9e0163d62a45ab80839436ca6ad893f4d4889bf165ea8aa4d"
+  },
+  "ui.adventure.result": {
+    "text": "{title}\n{explanation}\n用時 {seconds} 秒 · 污染 {pollution}/100",
+    "source_hash": "acdf3ca134e668f302150840dd14552169496c0ee5d0e99d46c430eb72d69549"
+  },
+  "ui.adventure.retry_save": {
+    "text": "重試儲存",
+    "source_hash": "917e75040547cc9fa8ab0d2e4a08695c15fceb8ee69802c6159d02af64b040aa"
+  },
+  "ui.adventure.confirm_defeat": {
+    "text": "確認失敗，返回主頁",
+    "source_hash": "756c8eee5f9b867cd393dffd9485bb3b67674121e09013ff7437ec265212567f"
+  },
+  "ui.adventure.saved": {
+    "text": "已儲存。",
+    "source_hash": "193f229df3d99e3ab420c2bc41c892c315a8df13c6af05a06becce03909532be"
+  },
+  "ui.adventure.paused": {
+    "text": "已暫停",
+    "source_hash": "eb0c326b60ae897a19080c0b21565029be8da614a7dd6ecad97da24f4cb8fc90"
+  },
+  "ui.adventure.restart_notice": {
+    "text": "重新載入不會重抽路線或怪物陣型；戰鬥中離開會放棄本關，已支付體力不退還。",
+    "source_hash": "8eaece7c830c5e68ef453f13702671d6a195d62d6c23111aacba5ae17739ec8d"
+  },
+  "ui.adventure.continue": {
+    "text": "繼續",
+    "source_hash": "7c9691192f1b73408bbe4c0cb6d00db94375ca9d8fce0a0d5985e7a5178f083f"
+  },
+  "ui.adventure.reload": {
+    "text": "重新載入冒險場景",
+    "source_hash": "2336eb24fc2823ffaaa76ff81ee44fea2f43200ed6eb3776408f186b4beb7a70"
+  },
+  "ui.adventure.save_exit": {
+    "text": "儲存並返回主頁",
+    "source_hash": "8f93e8f74eb97b887b553f87e45d6f13a8a50ede734849ae3b6a7604bd8b4a5c"
+  },
+  "ui.adventure.actual_definition": {
+    "text": "本章 +{level} · 實際戰鬥數值",
+    "source_hash": "7e3b3fe5230a9a2b9c9199f9bd2a3732f48a6048392c8dfa06fe29b28d162123"
+  },
+  "ui.adventure.current_health": {
+    "text": "{stat_health} {current} · {stat_shield_power} {shield}",
+    "source_hash": "1873fb522fe0d0879bfcfb6146e36ee7613c0f31e128c9733ffa2468759d1bc2"
+  },
+  "ui.reward.complete_build": {
+    "text": "繼續冒險",
+    "source_hash": "b8a50e3317185eb5b371783cc1461e884585c0c73a3a37d4acd00a4fe86665fe"
+  },
+  "ui.reward.choose_aurora": {
+    "text": "領取獎勵",
+    "source_hash": "ea96728e2f6e4198881a0bd59602593f459e7c05a0f809c5033a37fcd0423dc6"
+  },
+  "ui.reward.layout_preview": {
+    "text": "戰後獎勵 · 獨立版面預覽",
+    "source_hash": "4a59b18a1c6a9bbb01b6d75cee350783aa5c5128643f07e921c618204100f6d0"
+  },
+  "ui.reward.countdown": {
+    "text": "{seconds}s",
+    "source_hash": "5307d20dc7c46cc7771e80a1d10417915bcf84ff57f50a15e3f7aea5d1661ed6"
+  },
+  "ui.reward.open_die": {
+    "text": "{name} · 展開三選一",
+    "source_hash": "42a094d2f210b7716106d1d5c4d522def38d41472e8d6cb75df485803dcc0e31"
+  },
+  "ui.reward.stones": {
+    "text": "星石 ×{count}",
+    "source_hash": "b51d131890682cfd3a497faf30464fcb895d8c91748f67b679fbddeea100bc68"
+  },
+  "ui.reward.named": {
+    "text": "{kind} · {name} ×{count}",
+    "source_hash": "e324cabeab147bb26e0c135213edf8e111a3adac09967c2d3496da24b714fb03"
+  },
+  "ui.reward.migration_receipt": {
+    "text": "舊版遷移已完成：{merged_account_gold} 金幣已併入帳號；{converted_dice} 顆未用骰已轉入新版。",
+    "source_hash": "1042d36b25a47a75261006d8161266411539665fde8aba2974eecd72d820fd82"
+  },
+  "ui.reward.kind.relic": {
+    "text": "遺物",
+    "source_hash": "62dcac7955d1409d06e573c330eae252602122722a11a4e25c46538db7562e15"
+  },
+  "ui.reward.kind.minion": {
+    "text": "隨從",
+    "source_hash": "34448448dda154c26716e8b05f4bf5b45751a0c97e1545ab4ca1ef2417748332"
+  },
+  "ui.reward.kind.item_card": {
+    "text": "道具",
+    "source_hash": "7483f8ec95d8906cd501ce8d2941a101663b04747f6f906b6782ed5152045b60"
+  },
+  "ui.reward.kind.fragment": {
+    "text": "專屬碎片",
+    "source_hash": "06ce3aa735fa8a18f0b123e1dc9e29aae7c581b10ec8898f43019fb51282d71f"
+  },
+  "ui.collection.permanent_stats": {
+    "text": "帳號永久成長 · 不含本章強化與遺物",
+    "source_hash": "cc590027c9fb42910691d3b1ec844fce2ff70a496745d366cda79c7c36518f1d"
+  },
+  "ui.collection.star_unavailable": {
+    "text": "尚未滿足升星條件，碎片未消耗。",
+    "source_hash": "dce31f626827ad79bc85042d78b0405a16638a4b1fbd86dde68b5b72816b3998"
+  },
+  "ui.collection.star_upgrade": {
+    "text": "升星",
+    "source_hash": "d5c33f2f99552dc4245c119abae4191aa31ee90edf7c841158c0ae24cbd5c0d8"
+  },
+  "ui.collection.star_max": {
+    "text": "已達五星上限",
+    "source_hash": "a13e7cf266ca6ee7fb3082fcf3b63419d76383d766c2caa5ed020c9f0de4992e"
+  },
+  "ui.collection.star_success": {
+    "text": "升星成功，多餘碎片已保留。",
+    "source_hash": "6eaa325c3d975422979d60fe4a9be08235c47965fd6f9dd2a3b7239800ea972f"
+  },
+  "ui.collection.star_confirm": {
+    "text": "為{name}消耗 {cost} 片專屬碎片，升至 ★{star}？\n剩餘 {remaining} 片會保留。升星後永久強度為初始值的 {strength}%。\n進行中的章節不受影響。",
+    "source_hash": "de18c6e7b0791e23e65c7dfb46ef76160134ea1332040f431c33a9fd78d0e4a9"
+  },
+  "ui.reward.kind.hero_growth": {
+    "text": "當前英雄強化",
+    "source_hash": "33e3caa2b08217698364eef3236ef01bd0295a2615213d815520a715436908af"
+  },
+  "ui.reward.card_growth": {
+    "text": "領取後：本章 +{level} · 下級進度 {progress}/{next}",
+    "source_hash": "5c22578f55cd2d17ed2fcf27be0b84c8901355a27dc79bd870c450dde91b54eb"
+  },
+  "ui.reward.retry": {
+    "text": "重試載入獎勵",
+    "source_hash": "1f00636dca20db15768a2a7ff892e6cbf1f4ae3e3a31e1f7a3ebecb701d20735"
+  },
+  "ui.detail.ammo": {
+    "text": "行動次數",
+    "source_hash": "e5b39064de3376f3c814f32d6b0ca5f0176f5362a1ea5ec8178023c03ec8faa7"
+  },
+  "ui.detail.overview": {
+    "text": "說明",
+    "source_hash": "4262c45dc797bb0cd5008331ef25b684413859f55b73c71fb4e2c01b645dbbb7"
+  },
+  "ui.detail.stack_limit": {
+    "text": "堆疊上限",
+    "source_hash": "420d8f35190b1d9df841fddb57f4872c4f40f2382ba2cf1303de667e0be44f55"
+  },
+  "ui.detail.actions": {
+    "text": "效果",
+    "source_hash": "86a00cf74253c265263db3745b475c524e605565f746ef833690cf5af3784e98"
+  },
+  "ui.detail.fragments": {
+    "text": "升星碎片",
+    "source_hash": "7bb7a8124bd0ed7c163fbf71709bcc1ba99d19d35c0b8cfd71f9cac2db7dbcea"
+  },
+  "ui.detail.usage": {
+    "text": "用途",
+    "source_hash": "05b36669c4ad9a73e6a79e10ae97bdec1a313ea498fcac491e3c0fd3a1c1ab13"
+  },
+  "ui.detail.purchase": {
+    "text": "購買資訊",
+    "source_hash": "42c6be35a14230afff170d5c0357b724f8fbb15403a904c9145c27ed7802bc60"
+  },
+  "ui.aurora.progress": {
+    "text": "星能之力 {count}/{max} · 還可選 {remaining} 項",
+    "source_hash": "cf4cf0e5b759b17bd4d44a28ba1a71f68d4b2180c438eca020d80ff9f418e318"
+  },
+  "ui.aurora.limit": {
+    "text": "本章星能觸發次數已達上限。",
+    "source_hash": "348b748d9e9ce9086833d0d58d1d676eb96ee3115b309b323f9df7801147e9f0"
+  },
+  "ui.aurora.choose_card": {
+    "text": "選擇強化卡牌",
+    "source_hash": "1aade3554712a1e1834a461c94ed661df3fb1ec61728ba9c1860c4d60bcf64e7"
+  },
+  "ui.aurora.upgrade": {
+    "text": "強化",
+    "source_hash": "dfd9daf043cf66453ebf9e546ec0cadf8acdd8000e2f95615c7e3097e64c49db"
+  },
+  "ui.aurora.upgrade_target": {
+    "text": "{name} · 強化 +{level} → +{next}",
+    "source_hash": "108231fca72a0895f7a803b30eb896200b2fe02e1b1d5789683096d5e3ef9aa5"
+  },
+  "ui.aurora.claimed": {
+    "text": "已領取",
+    "source_hash": "426e458a41246bd57582b69029242358edf5c6614f1bbc2abceaaffd4546ba67"
+  },
+  "ui.aurora.amount": {
+    "text": "{name} ×{amount}",
+    "source_hash": "b8fe0437351f47fb6caaa198b4d3eab0eeb29bc0b1daca9a8f6598abeb5d2c9c"
+  },
+  "ui.adventure.judgment_countdown": {
+    "text": "決勝倒數 {seconds}",
+    "source_hash": "765623df490ba24b3191761bf4b6be611bb0d0421837670997a4739c093bf678"
+  },
+  "ui.adventure.judgment_health": {
+    "text": "我方 {ally}　敵方 {enemy}",
+    "source_hash": "6dbecf271926bd4d2bf755b56e01b1aa1917594953306b958ba3c7fa36c6e808"
+  },
+  "ui.home.mail": {
+    "text": "郵箱",
+    "source_hash": "73075237fd0f05f024dfe25d9b5289d70c27b9232a94ddb5dbb43eb0e9292f49"
+  },
+  "ui.home.select_mode": {
+    "text": "模式選擇",
+    "source_hash": "d550103a12fa6d1b5612ebef0f0ff05687dc4a42c05976a25603532038ab649b"
+  },
+  "ui.mode.locked_label": {
+    "text": "未解鎖",
+    "source_hash": "308d62ba2360e3484962e916f63225cd40bcc6d3f79d67f8b162ce570e025d03"
+  },
+  "ui.home.achievements": {
+    "text": "成就",
+    "source_hash": "52b0e1703d140d288c853fdd270c2d0c0df95105bc9545ecd775aa8c64aabbcb"
+  },
+  "ui.home.encyclopedia": {
+    "text": "圖鑑",
+    "source_hash": "06169ded8b7b61afe1b619de9e1440c4e7a7ecb4f77640dba10d74d5d2635072"
+  },
+  "ui.common.back": {
+    "text": "返回",
+    "source_hash": "572cf45ba43634b3448aadbc48d5398a1b32ad8a97bf42b689c394de222c30a1"
+  },
+  "ui.home.start_adventure": {
+    "text": "開始冒險",
+    "source_hash": "63659616a8117949d9b35659e1e74754bb4f1de230a01b29121f49d3bcd5d297"
+  },
+  "ui.home.chapter_progress": {
+    "text": "{chapter} · {current}/{total}",
+    "source_hash": "e9974744f133fa3325dcd2a0c81c74c1d2d2c44f475ede3c51489757e7ad6317"
+  },
+  "ui.route.current": {
+    "text": "目前",
+    "source_hash": "cb62ebd689ee8f2076e7157977eefc2d59dc31cee7ffa862d9514ab8e3d85fc7"
+  },
+  "ui.route.progress": {
+    "text": "第 {floor} / {total} 層",
+    "source_hash": "d4a4fac4865a1ae2929dbdb22a1c8773cddb2a86cf8237811077c2dfa61f86dc"
+  },
+  "ui.reward.activate": {
+    "text": "拖入骰子可觸發效果",
+    "source_hash": "5b293e3e601137dd1953723996d06eceb01d8108aa693d558e20b18f9fab0b96"
+  },
+  "ui.reward.choice_title": {
+    "text": "選擇獎勵",
+    "source_hash": "027ad7e2373ebd84d09f2f9ed0f94d752989407f21f44730314ae75b1fba6179"
+  },
+  "ui.reward.refresh_count": {
+    "text": "刷新 · 剩餘 {count} 次",
+    "source_hash": "477f2e7f4b27faa3a00afb5e3d0aa2af4173b7d4df1902ee327111a87a56aaff"
+  },
+  "ui.relic.persistent": {
+    "text": "常駐",
+    "source_hash": "300b6634fef3cfc5347568a8ea581e4f7b2a45cf8adf896501d714e8fa09b15e"
+  },
+  "ui.relic.consumable": {
+    "text": "一次性",
+    "source_hash": "4687f0397ffa3998c53ad609623e9495e19e3ffcf730e7af1d172aee1848905d"
+  },
+  "ui.relic.used": {
+    "text": "已使用",
+    "source_hash": "9845c165151daee324a95af28d3fa2ace20fc333702ee552629338ef6ca5b382"
+  },
+  "ui.relic.unused": {
+    "text": "未使用",
+    "source_hash": "fa73ed85e86a3ca991eb8a67d8c81f71b45fe83fcd2236ecc4416ffbfe918c36"
+  },
+  "ui.relic.history": {
+    "text": "本章遺物",
+    "source_hash": "ba061c070a4cb21f76d8c3d8255c20a7e8c10dff5df978bfdab97d7b71f1a5f0"
+  },
+  "ui.relic.empty": {
+    "text": "暫無遺物",
+    "source_hash": "8185adb1278f0e43f38c4fdccd6417fed76e0a2579a417e351a08fdff4d38dbc"
+  },
+  "ui.filter.card_tag": {
+    "text": "標籤",
+    "source_hash": "1d0fd5f9336d9103b3ed62c663b44b847af5d14203b2259ddf35507659de5908"
+  },
+  "ui.filter.output_type": {
+    "text": "輸出類型",
+    "source_hash": "836f2584c39fcd58fdb690e11739f52d6d34cdc2b8def1a8c89a518ce806fb22"
+  },
+  "ui.filter.ability_facet": {
+    "text": "能力效果",
+    "source_hash": "f70161228d6b44992e474076fe46e6b921735d171c1b282474b134d54f11b400"
+  },
+  "ui.combat.passive": {
+    "text": "無主能力",
+    "source_hash": "c63d0f9c053f1b7c47b074b118ddb6b466802951332e7324193789a6c8b4b2ad"
+  },
+  "ui.combat.main_ability_count": {
+    "text": "{status} · {count} 主能力",
+    "source_hash": "af6f073fced63e49e588293c8cc68bb11da43a3f60f2564dbec56bc02c35f7e8"
+  },
+  "ui.reward.carry_notice": {
+    "text": "未使用的骰子不會消失，每次投擲時都會參與投擲。",
+    "source_hash": "350b15073b2c7d10623cc4d4374c16fca597da7b6e556655dd0e2401706e24da"
+  },
+  "ui.reward.reroll": {
+    "text": "重投",
+    "source_hash": "8ba3ca4cdcad6582e1487e36a4e6084b3a80795cdf243ec66d372ad8cb834a48"
+  }
+}

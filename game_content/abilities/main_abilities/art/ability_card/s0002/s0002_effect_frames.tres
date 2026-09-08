@@ -1,0 +1,21 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3]
+
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0002/01.png" id="1"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0002/02.png" id="2"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0002/03.png" id="3"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0002/04.png" id="4"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0002/05.png" id="5"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0002/06.png" id="6"]
+
+[resource]
+animations = [{
+"frames": [{ "duration": 4.0000002, "texture": ExtResource("1") },
+{ "duration": 4.0000002, "texture": ExtResource("2") },
+{ "duration": 3.999999600000001, "texture": ExtResource("3") },
+{ "duration": 4.000000799999999, "texture": ExtResource("4") },
+{ "duration": 3.9999995999999993, "texture": ExtResource("5") },
+{ "duration": 1.0000008000000027, "texture": ExtResource("6") }],
+"loop": false,
+"name": &"S0002_Play",
+"speed": 60
+}]

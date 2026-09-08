@@ -1,0 +1,718 @@
+# Generated. Edit authoring sources, not this file.
+msgid ""
+msgstr "Language: zh_Hant\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "ui.adventure.actual_definition"
+msgstr "本章 +{level} · 實際戰鬥數值"
+
+msgid "ui.adventure.chapter_completed"
+msgstr "本章已完成。"
+
+msgid "ui.adventure.confirm_defeat"
+msgstr "確認失敗，返回主頁"
+
+msgid "ui.adventure.continue"
+msgstr "繼續"
+
+msgid "ui.adventure.current_health"
+msgstr "{stat_health} {current} · {stat_shield_power} {shield}"
+
+msgid "ui.adventure.defeat"
+msgstr "挑戰失敗"
+
+msgid "ui.adventure.enemies"
+msgstr "敵人：{names}\n體力 {stamina} · 勝利獎勵 {dice} 骰"
+
+msgid "ui.adventure.enter_battle"
+msgstr "進入戰鬥"
+
+msgid "ui.adventure.judgment_countdown"
+msgstr "決勝倒數 {seconds}"
+
+msgid "ui.adventure.judgment_health"
+msgstr "我方 {ally}　敵方 {enemy}"
+
+msgid "ui.adventure.node_completed"
+msgstr "節點已完成。"
+
+msgid "ui.adventure.node_title"
+msgstr "第 {floor} 層 · {type}"
+
+msgid "ui.adventure.node_unavailable"
+msgstr "此節點目前無法進入。"
+
+msgid "ui.adventure.paused"
+msgstr "已暫停"
+
+msgid "ui.adventure.reload"
+msgstr "重新載入冒險場景"
+
+msgid "ui.adventure.restart_notice"
+msgstr "重新載入不會重抽路線或怪物陣型；戰鬥中離開會放棄本關，已支付體力不退還。"
+
+msgid "ui.adventure.result"
+msgstr "{title}\n{explanation}\n用時 {seconds} 秒 · 污染 {pollution}/100"
+
+msgid "ui.adventure.retry_rollback"
+msgstr "重試儲存並退還體力"
+
+msgid "ui.adventure.retry_save"
+msgstr "重試儲存"
+
+msgid "ui.adventure.return_home"
+msgstr "返回主頁"
+
+msgid "ui.adventure.rollback_failed"
+msgstr "回復儲存失敗，請重試。"
+
+msgid "ui.adventure.rolled_back"
+msgstr "路線與體力已回復原狀。"
+
+msgid "ui.adventure.save_exit"
+msgstr "儲存並返回主頁"
+
+msgid "ui.adventure.saved"
+msgstr "已儲存。"
+
+msgid "ui.adventure.start"
+msgstr "開始戰鬥"
+
+msgid "ui.adventure.start_failed"
+msgstr "系統未能啟動戰鬥。"
+
+msgid "ui.adventure.victory"
+msgstr "勝利"
+
+msgid "ui.aurora.amount"
+msgstr "{name} ×{amount}"
+
+msgid "ui.aurora.choose_card"
+msgstr "選擇強化卡牌"
+
+msgid "ui.aurora.claimed"
+msgstr "已領取"
+
+msgid "ui.aurora.limit"
+msgstr "本章星能觸發次數已達上限。"
+
+msgid "ui.aurora.progress"
+msgstr "星能之力 {count}/{max} · 還可選 {remaining} 項"
+
+msgid "ui.aurora.upgrade"
+msgstr "強化"
+
+msgid "ui.aurora.upgrade_target"
+msgstr "{name} · 強化 +{level} → +{next}"
+
+msgid "ui.backpack.actions_unavailable"
+msgstr "使用與分解尚未開放。"
+
+msgid "ui.catalog.empty"
+msgstr "暫無可用內容"
+
+msgid "ui.catalog.filter"
+msgstr "篩選"
+
+msgid "ui.catalog.search"
+msgstr "搜尋名稱或 ID"
+
+msgid "ui.category.all"
+msgstr "全部"
+
+msgid "ui.category.aurora"
+msgstr "星能之力"
+
+msgid "ui.category.hero"
+msgstr "英雄"
+
+msgid "ui.category.inventory_prop"
+msgstr "背包道具"
+
+msgid "ui.category.item"
+msgstr "道具"
+
+msgid "ui.category.item_card"
+msgstr "道具卡"
+
+msgid "ui.category.material"
+msgstr "材料"
+
+msgid "ui.category.minion"
+msgstr "隨從"
+
+msgid "ui.category.monsters"
+msgstr "怪物"
+
+msgid "ui.category.recommended"
+msgstr "推薦"
+
+msgid "ui.category.relic"
+msgstr "遺物"
+
+msgid "ui.category.team"
+msgstr "隊伍"
+
+msgid "ui.collection.change_title"
+msgstr "更換英雄"
+
+msgid "ui.collection.change_warning"
+msgstr "更換英雄會結束目前章節構築，清空本章隨從、遺物、星能和進度；保留固定路線、永久天賦與帳號資產。"
+
+msgid "ui.collection.changed"
+msgstr "已更換英雄"
+
+msgid "ui.collection.current_hero"
+msgstr "當前英雄"
+
+msgid "ui.collection.owned"
+msgstr "已擁有"
+
+msgid "ui.collection.permanent_stats"
+msgstr "帳號永久成長 · 不含本章強化與遺物"
+
+msgid "ui.collection.select_hero"
+msgstr "選擇此英雄"
+
+msgid "ui.collection.star_confirm"
+msgstr "為{name}消耗 {cost} 片專屬碎片，升至 ★{star}？\n剩餘 {remaining} 片會保留。升星後永久強度為初始值的 {strength}%。\n進行中的章節不受影響。"
+
+msgid "ui.collection.star_max"
+msgstr "已達五星上限"
+
+msgid "ui.collection.star_success"
+msgstr "升星成功，多餘碎片已保留。"
+
+msgid "ui.collection.star_unavailable"
+msgstr "尚未滿足升星條件，碎片未消耗。"
+
+msgid "ui.collection.star_upgrade"
+msgstr "升星"
+
+msgid "ui.collection.unowned"
+msgstr "未獲得"
+
+msgid "ui.combat.ammo"
+msgstr "{stat_ammo_capacity} · 剩餘 {remaining} / {capacity} 次"
+
+msgid "ui.combat.ammo_empty"
+msgstr "次數耗盡"
+
+msgid "ui.combat.ammo_remaining"
+msgstr "{status} · {count} 次"
+
+msgid "ui.combat.blocked"
+msgstr "護盾抵擋"
+
+msgid "ui.combat.cooldown"
+msgstr "冷卻 {seconds} 秒"
+
+msgid "ui.combat.critical"
+msgstr "暴擊 {text}"
+
+msgid "ui.combat.defeated"
+msgstr "已倒下"
+
+msgid "ui.combat.haste"
+msgstr " · {stat_haste_ratio} {percent}%"
+
+msgid "ui.combat.health"
+msgstr "{current}/{maximum}{shield}"
+
+msgid "ui.combat.main_ability_count"
+msgstr "{status} · {count} 主能力"
+
+msgid "ui.combat.passive"
+msgstr "無主能力"
+
+msgid "ui.combat.poison"
+msgstr "中毒已入體：後獲得的護盾無法抵擋"
+
+msgid "ui.combat.shield"
+msgstr " 盾{amount}"
+
+msgid "ui.combat.shield_gained"
+msgstr "盾 +{amount}"
+
+msgid "ui.common.back"
+msgstr "返回"
+
+msgid "ui.common.cancel"
+msgstr "取消"
+
+msgid "ui.common.close"
+msgstr "關閉"
+
+msgid "ui.common.confirm"
+msgstr "確認"
+
+msgid "ui.common.confirm_title"
+msgstr "請確認"
+
+msgid "ui.common.done"
+msgstr "完成"
+
+msgid "ui.currency.fragments"
+msgstr "專屬碎片"
+
+msgid "ui.currency.gold"
+msgstr "金幣"
+
+msgid "ui.currency.star_stone"
+msgstr "星石"
+
+msgid "ui.detail.actions"
+msgstr "效果"
+
+msgid "ui.detail.ammo"
+msgstr "行動次數"
+
+msgid "ui.detail.fragments"
+msgstr "升星碎片"
+
+msgid "ui.detail.main_ability_clock"
+msgstr "{stat_cooldown_seconds} {remaining} / {cooldown} 秒{haste}"
+
+msgid "ui.detail.overview"
+msgstr "說明"
+
+msgid "ui.detail.purchase"
+msgstr "購買資訊"
+
+msgid "ui.detail.stack_limit"
+msgstr "堆疊上限"
+
+msgid "ui.detail.usage"
+msgstr "用途"
+
+msgid "ui.filter.ability_facet"
+msgstr "能力效果"
+
+msgid "ui.filter.card_tag"
+msgstr "標籤"
+
+msgid "ui.filter.output_type"
+msgstr "輸出類型"
+
+msgid "ui.home.achievements"
+msgstr "成就"
+
+msgid "ui.home.adventure_mode"
+msgstr "冒險模式"
+
+msgid "ui.home.backpack"
+msgstr "背包"
+
+msgid "ui.home.chapter_progress"
+msgstr "{chapter} · {current}/{total}"
+
+msgid "ui.home.collection"
+msgstr "藏品"
+
+msgid "ui.home.contract_summon"
+msgstr "契約召喚"
+
+msgid "ui.home.daily"
+msgstr "每日"
+
+msgid "ui.home.encyclopedia"
+msgstr "圖鑑"
+
+msgid "ui.home.layout_preview"
+msgstr "獨立版面預覽 · 完整遊戲請執行 bootstrap/app.tscn"
+
+msgid "ui.home.mail"
+msgstr "郵箱"
+
+msgid "ui.home.no_hero_detail"
+msgstr "尚未選擇英雄。"
+
+msgid "ui.home.preview_resources"
+msgstr "玩家名稱\n金幣 · 星石 · 體力"
+
+msgid "ui.home.rank"
+msgstr "排行"
+
+msgid "ui.home.ranking_info"
+msgstr "僅顯示目前本機玩家的價值記錄，不是連線排行榜。"
+
+msgid "ui.home.resources"
+msgstr "{name}\n金幣 {gold} · 星石 {star_stone} · 體力 {stamina}/{maximum}"
+
+msgid "ui.home.select_mode"
+msgstr "模式選擇"
+
+msgid "ui.home.sign_in"
+msgstr "簽到"
+
+msgid "ui.home.stamina_info"
+msgstr "體力恢復說明"
+
+msgid "ui.home.start_adventure"
+msgstr "開始冒險"
+
+msgid "ui.language.label"
+msgstr "語言"
+
+msgid "ui.language.preference_recovered"
+msgstr "已從備份還原語言設定。"
+
+msgid "ui.language.preference_unreadable"
+msgstr "無法讀取語言偏好檔案，原檔案已保留；本次語言選擇不會儲存。"
+
+msgid "ui.language.save_failed"
+msgstr "語言偏好儲存失敗，請重試。"
+
+msgid "ui.language.unavailable"
+msgstr "此語言尚未開放。"
+
+msgid "ui.mode.adventure"
+msgstr "冒險"
+
+msgid "ui.mode.challenge"
+msgstr "挑戰"
+
+msgid "ui.mode.chapter"
+msgstr "第 {number} 章 · {name}"
+
+msgid "ui.mode.chapter_terms"
+msgstr "普通難度 · 每場戰鬥消耗 {stamina} 體力\n{status}"
+
+msgid "ui.mode.chess"
+msgstr "戰棋"
+
+msgid "ui.mode.confirm"
+msgstr "選擇章節"
+
+msgid "ui.mode.current"
+msgstr "目前使用"
+
+msgid "ui.mode.empty"
+msgstr "暫無可用模式。"
+
+msgid "ui.mode.enter"
+msgstr "進入冒險"
+
+msgid "ui.mode.level"
+msgstr "第 {number} 章"
+
+msgid "ui.mode.locked"
+msgstr "通關上一章後解鎖"
+
+msgid "ui.mode.locked_label"
+msgstr "未解鎖"
+
+msgid "ui.mode.next"
+msgstr "下一章 ›"
+
+msgid "ui.mode.not_open"
+msgstr "尚未開放"
+
+msgid "ui.mode.preview_title"
+msgstr "{mode}模式"
+
+msgid "ui.mode.previous"
+msgstr "‹ 上一章"
+
+msgid "ui.mode.pvp"
+msgstr "對戰"
+
+msgid "ui.mode.unavailable"
+msgstr "該模式尚未開放。"
+
+msgid "ui.mode.unlocked"
+msgstr "已解鎖"
+
+msgid "ui.page.achievements"
+msgstr "成就"
+
+msgid "ui.page.activity"
+msgstr "活動"
+
+msgid "ui.page.assets"
+msgstr "資產背包"
+
+msgid "ui.page.collection"
+msgstr "收藏"
+
+msgid "ui.page.daily_tasks"
+msgstr "每日任務"
+
+msgid "ui.page.encyclopedia"
+msgstr "圖鑑"
+
+msgid "ui.page.legend_road"
+msgstr "傳說之路"
+
+msgid "ui.page.modes"
+msgstr "模式與章節"
+
+msgid "ui.page.notices"
+msgstr "通知"
+
+msgid "ui.page.ranking"
+msgstr "本機排行榜"
+
+msgid "ui.page.settings"
+msgstr "設定"
+
+msgid "ui.page.seven_day_sign_in"
+msgstr "七日簽到"
+
+msgid "ui.page.shop"
+msgstr "商城"
+
+msgid "ui.page.social"
+msgstr "社群與好友"
+
+msgid "ui.page.talents"
+msgstr "天賦"
+
+msgid "ui.platform.portrait_required"
+msgstr "直向模式\n遊戲已暫停"
+
+msgid "ui.preview.base_stats"
+msgstr "★1 基礎預覽 · 未計構築加成"
+
+msgid "ui.preview.build_reference"
+msgstr "構築能力 · 非已獲得"
+
+msgid "ui.relic.consumable"
+msgstr "一次性"
+
+msgid "ui.relic.empty"
+msgstr "暫無遺物"
+
+msgid "ui.relic.history"
+msgstr "本章遺物"
+
+msgid "ui.relic.persistent"
+msgstr "常駐"
+
+msgid "ui.relic.unused"
+msgstr "未使用"
+
+msgid "ui.relic.used"
+msgstr "已使用"
+
+msgid "ui.reward.activate"
+msgstr "拖入骰子可觸發效果"
+
+msgid "ui.reward.card_growth"
+msgstr "領取後：本章 +{level} · 下級進度 {progress}/{next}"
+
+msgid "ui.reward.carry_notice"
+msgstr "未使用的骰子不會消失，每次投擲時都會參與投擲。"
+
+msgid "ui.reward.choice_title"
+msgstr "選擇獎勵"
+
+msgid "ui.reward.choose_aurora"
+msgstr "領取獎勵"
+
+msgid "ui.reward.complete_build"
+msgstr "繼續冒險"
+
+msgid "ui.reward.countdown"
+msgstr "{seconds}s"
+
+msgid "ui.reward.kind.fragment"
+msgstr "專屬碎片"
+
+msgid "ui.reward.kind.hero_growth"
+msgstr "當前英雄強化"
+
+msgid "ui.reward.kind.item_card"
+msgstr "道具"
+
+msgid "ui.reward.kind.minion"
+msgstr "隨從"
+
+msgid "ui.reward.kind.relic"
+msgstr "遺物"
+
+msgid "ui.reward.layout_preview"
+msgstr "戰後獎勵 · 獨立版面預覽"
+
+msgid "ui.reward.migration_receipt"
+msgstr "舊版遷移已完成：{merged_account_gold} 金幣已併入帳號；{converted_dice} 顆未用骰已轉入新版。"
+
+msgid "ui.reward.named"
+msgstr "{kind} · {name} ×{count}"
+
+msgid "ui.reward.open_die"
+msgstr "{name} · 展開三選一"
+
+msgid "ui.reward.refresh_count"
+msgstr "刷新 · 剩餘 {count} 次"
+
+msgid "ui.reward.reroll"
+msgstr "重投"
+
+msgid "ui.reward.retry"
+msgstr "重試載入獎勵"
+
+msgid "ui.reward.stones"
+msgstr "星石 ×{count}"
+
+msgid "ui.route.battle"
+msgstr "戰鬥"
+
+msgid "ui.route.boss"
+msgstr "首領"
+
+msgid "ui.route.current"
+msgstr "目前"
+
+msgid "ui.route.elite"
+msgstr "精英"
+
+msgid "ui.route.encounter"
+msgstr "奇遇"
+
+msgid "ui.route.market"
+msgstr "黑市"
+
+msgid "ui.route.progress"
+msgstr "第 {floor} / {total} 層"
+
+msgid "ui.route.relic"
+msgstr "遺跡"
+
+msgid "ui.route.start"
+msgstr "起點"
+
+msgid "ui.route.unknown"
+msgstr "未知"
+
+msgid "ui.save.failed"
+msgstr "儲存失敗，請重試。"
+
+msgid "ui.session.backup_recovered"
+msgstr "已從備份恢復本機玩家資料，部分最近進度可能未保留。"
+
+msgid "ui.session.choose_existing"
+msgstr "發現多個舊玩家存檔。請選擇本機預設使用的存檔；其他存檔不會刪除。"
+
+msgid "ui.session.legacy_deletion"
+msgstr "偵測到舊版本未完成的存檔刪除操作。為保護資料，已停止自動還原；請先檢查並處理該存檔目錄。"
+
+msgid "ui.session.load_failed"
+msgstr "無法讀取玩家存檔。原檔案已保留，請檢查存檔或從備份還原。"
+
+msgid "ui.session.not_ready"
+msgstr "玩家資料尚未就緒，請重試。"
+
+msgid "ui.session.profile_unreadable"
+msgstr "無法讀取本機玩家身分。原始檔案已保留，請檢查存檔或還原備份。"
+
+msgid "ui.session.profile_write_failed"
+msgstr "無法儲存預設玩家身分。已建立的進度已保留，請重試。"
+
+msgid "ui.session.recovery_failed"
+msgstr "無法還原上次中斷的遊戲。存檔已保留，請重新嘗試進入。"
+
+msgid "ui.session.save_missing"
+msgstr "已記錄的本機玩家缺少可還原存檔。不會重新建立或覆蓋，請還原原存檔。"
+
+msgid "ui.settings.local_player"
+msgstr "本機玩家"
+
+msgid "ui.settings.local_player_note"
+msgstr "無需註冊或登入，進度保存在本機。"
+
+msgid "ui.shop.busy"
+msgstr "正在提交上一筆交易。"
+
+msgid "ui.shop.buy_button"
+msgstr "{amount} {currency}"
+
+msgid "ui.shop.buy_confirm"
+msgstr "購買 {name}，支付 {amount} {currency}。"
+
+msgid "ui.shop.buy_title"
+msgstr "確認購買"
+
+msgid "ui.shop.failure"
+msgstr "目前無法購買此商品。"
+
+msgid "ui.shop.fragments_detail"
+msgstr "{name}：{owned} / {required}"
+
+msgid "ui.shop.gold_price"
+msgstr "{amount} 金幣"
+
+msgid "ui.shop.insufficient"
+msgstr "餘額不足。"
+
+msgid "ui.shop.owned"
+msgstr "已經擁有此內容。"
+
+msgid "ui.shop.price_detail"
+msgstr "{currency}：原價 {original} → 實付 {amount}"
+
+msgid "ui.shop.save_failed"
+msgstr "儲存失敗，交易已回復原狀。"
+
+msgid "ui.shop.success"
+msgstr "購買成功，已加入收藏。"
+
+msgid "ui.shop.unavailable"
+msgstr "未開放"
+
+msgid "ui.shop.unpriced"
+msgstr "暫未報價"
+
+msgid "ui.social.community"
+msgstr "社群"
+
+msgid "ui.social.friends"
+msgstr "好友"
+
+msgid "ui.startup.content_failed"
+msgstr "無法載入遊戲內容，請檢查或重新安裝遊戲資源。"
+
+msgid "ui.startup.language_failed"
+msgstr "無法載入語言資源，請檢查或重新安裝遊戲資源。"
+
+msgid "ui.startup.local_player"
+msgstr "本版本無需註冊或登入，使用本機預設玩家，進度儲存在本機。"
+
+msgid "ui.startup.retry"
+msgstr "重試"
+
+msgid "ui.startup.title"
+msgstr "暫時無法進入遊戲"
+
+msgid "ui.storage.unavailable"
+msgstr "無法完成本機儲存操作，請檢查可用空間和存取權限後重試。"
+
+msgid "ui.talents.cost"
+msgstr "消耗 1 天賦點"
+
+msgid "ui.talents.invalid"
+msgstr "天賦不存在"
+
+msgid "ui.talents.learned"
+msgstr "已點亮"
+
+msgid "ui.talents.no_points"
+msgstr "暫無天賦點"
+
+msgid "ui.talents.point_source"
+msgstr "每章首次通關獲得 1 點"
+
+msgid "ui.talents.points"
+msgstr "天賦點 {count}"
+
+msgid "ui.talents.prerequisite"
+msgstr "需要先點亮前置天賦"
+
+msgid "ui.talents.requires"
+msgstr "前置：{name}"
+
+msgid "ui.talents.success"
+msgstr "天賦已點亮"
+
+msgid "ui.talents.unlock"
+msgstr "點亮"
+

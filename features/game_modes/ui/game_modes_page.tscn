@@ -1,0 +1,535 @@
+[gd_scene load_steps=31 format=3]
+
+[ext_resource type="Script" path="res://features/game_modes/ui/game_modes_page.gd" id="script"]
+
+[ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="theme"]
+
+
+[ext_resource type="Script" path="res://ui/components/fitted_label.gd" id="fit"]
+
+[ext_resource type="Script" path="res://ui/components/tab_group.gd" id="tabs"]
+
+[ext_resource type="Script" path="res://ui/components/icon_button.gd" id="icon"]
+
+[ext_resource type="Texture2D" path="res://features/game_modes/ui/art/mode_atlas.png" id="atlas"]
+
+[ext_resource type="PackedScene" path="res://features/game_modes/ui/chapter_card.tscn" id="card"]
+
+[ext_resource type="Shader" path="res://features/game_modes/ui/art/cut_corner.gdshader" id="cut"]
+
+[ext_resource type="Texture2D" path="res://ui/design_system/icons/common/immersive_back.png" id="immersive_back"]
+
+[ext_resource type="Texture2D" path="res://features/game_modes/ui/art/mode_selected_plaque.png" id="plaque"]
+
+[ext_resource type="PackedScene" path="res://ui/components/unavailable_view.tscn" id="unavailable"]
+
+[sub_resource type="AtlasTexture" id="mountain"]
+atlas = ExtResource("atlas")
+region = Rect2(108, 1484, 104, 81)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="swords"]
+atlas = ExtResource("atlas")
+region = Rect2(347, 1495, 72, 73)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="horse"]
+atlas = ExtResource("atlas")
+region = Rect2(539, 1493, 53, 75)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="helmet"]
+atlas = ExtResource("atlas")
+region = Rect2(736, 1496, 67, 70)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="previous"]
+atlas = ExtResource("atlas")
+region = Rect2(53, 777, 108, 110)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="next"]
+atlas = ExtResource("atlas")
+region = Rect2(771, 777, 108, 110)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="paper"]
+atlas = ExtResource("atlas")
+region = Rect2(153, 1292, 625, 144)
+filter_clip = true
+
+[sub_resource type="Shader" id="diamond"]
+code = "shader_type canvas_item;
+uniform vec2 extent = vec2(108.0, 110.0);
+varying vec2 local_uv;
+void vertex() { local_uv = VERTEX / extent; }
+void fragment() { float edge = abs(local_uv.x - 0.5) + abs(local_uv.y - 0.5); COLOR.a *= 1.0 - smoothstep(0.48, 0.50, edge); }"
+
+[sub_resource type="ShaderMaterial" id="diamond_material"]
+shader = SubResource("diamond")
+
+[sub_resource type="ShaderMaterial" id="return_material"]
+shader = SubResource("diamond")
+shader_parameter/extent = Vector2(111, 111)
+
+[sub_resource type="Shader" id="icon_mask"]
+code = "shader_type canvas_item;\nuniform bool dark_ink = true;\nvarying vec4 tint;\nvoid vertex() { tint = COLOR; }\nvoid fragment() { vec4 sample_color = texture(TEXTURE, UV); float luminance = dot(sample_color.rgb, vec3(0.299, 0.587, 0.114)); float coverage = dark_ink ? 1.0 - smoothstep(0.24, 0.53, luminance) : smoothstep(0.24, 0.57, luminance); COLOR = vec4(tint.rgb, tint.a * coverage); }"
+
+[sub_resource type="ShaderMaterial" id="gold_icon"]
+shader = SubResource("icon_mask")
+shader_parameter/dark_ink = false
+
+[sub_resource type="ShaderMaterial" id="ink_icon"]
+shader = SubResource("icon_mask")
+shader_parameter/dark_ink = true
+
+[sub_resource type="AtlasTexture" id="selected_plaque"]
+atlas = ExtResource("plaque")
+region = Rect2(76, 100, 1299, 862)
+filter_clip = true
+
+[sub_resource type="Shader" id="plaque_clip"]
+code = "shader_type canvas_item;\nvarying vec2 plaque_uv;\nvoid vertex() { plaque_uv = VERTEX / vec2(241.75, 187.0); }\nvoid fragment() {\n\t// 在原图尺寸中沿四个实际切角内缩，抗锯齿宽度随屏幕像素变化。\n\tvec2 p = plaque_uv * vec2(1299.0, 862.0);\n\tfloat edge = min(min(p.x, 1299.0 - p.x), min(p.y, 862.0 - p.y)) - 3.0;\n\tedge = min(edge, (p.x / 164.0 + p.y / 172.0 - 1.04) * 120.0);\n\tedge = min(edge, ((1299.0 - p.x) / 168.0 + p.y / 172.0 - 1.04) * 120.0);\n\tedge = min(edge, (p.x / 164.0 + (862.0 - p.y) / 184.0 - 1.04) * 120.0);\n\tedge = min(edge, ((1299.0 - p.x) / 168.0 + (862.0 - p.y) / 184.0 - 1.04) * 120.0);\n\t// 清除边缘采样混入的中性浅底，保留暖金色金属高光。\n\tfloat lowest = min(COLOR.r, min(COLOR.g, COLOR.b));\n\tfloat chroma = max(COLOR.r, max(COLOR.g, COLOR.b)) - lowest;\n\tfloat matte = smoothstep(0.80, 0.94, lowest) * (1.0 - smoothstep(0.05, 0.16, chroma));\n\tCOLOR.a *= smoothstep(0.0, max(fwidth(edge), 0.5), edge) * (1.0 - matte);\n}"
+
+[sub_resource type="ShaderMaterial" id="plaque_clip_material"]
+shader = SubResource("plaque_clip")
+
+[sub_resource type="Theme" id="mode_theme"]
+
+[sub_resource type="ShaderMaterial" id="confirm_clip"]
+shader = ExtResource("cut")
+shader_parameter/extent = Vector2(521, 105)
+shader_parameter/corner = Vector2(36, 28)
+
+[sub_resource type="ShaderMaterial" id="bar_clip"]
+shader = ExtResource("cut")
+shader_parameter/extent = Vector2(871, 154)
+shader_parameter/corner = Vector2(34, 30)
+
+[node name="GameModesPage" type="Control"]
+texture_filter = 2
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+theme = ExtResource("theme")
+script = ExtResource("script")
+
+[node name="Chapter" type="Control" parent="."]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 941.0
+offset_bottom = 1672.0
+mouse_filter = 2
+theme = SubResource("mode_theme")
+
+[node name="Neighbors" type="Control" parent="Chapter"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="Previous" parent="Chapter/Neighbors" instance=ExtResource("card")]
+layout_mode = 0
+offset_left = -577.0
+offset_top = 258.64
+offset_right = 148.0
+offset_bottom = 1302.64
+scale = Vector2(0.88, 0.88)
+modulate = Color(0.62, 0.62, 0.62, 1)
+
+[node name="Next" parent="Chapter/Neighbors" instance=ExtResource("card")]
+layout_mode = 0
+offset_left = 878.0
+offset_top = 258.64
+offset_right = 1603.0
+offset_bottom = 1302.64
+scale = Vector2(0.88, 0.88)
+modulate = Color(0.62, 0.62, 0.62, 1)
+
+[node name="ArtStage" parent="Chapter" instance=ExtResource("card")]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 196.0
+offset_right = 832.0
+offset_bottom = 1240.0
+
+[node name="Chrome" type="Control" parent="Chapter"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Previous" type="Button" parent="Chapter/Chrome"]
+layout_mode = 0
+offset_left = -9.0
+offset_top = 646.0
+offset_right = 135.0
+offset_bottom = 790.0
+theme_type_variation = &"IconButton"
+script = ExtResource("icon")
+mouse_default_cursor_shape = 2
+tooltip_text = "ui.mode.previous"
+
+[node name="Icon" type="TextureRect" parent="Chapter/Chrome/Previous"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 17.0
+offset_right = 126.0
+offset_bottom = 127.0
+mouse_filter = 2
+texture = SubResource("previous")
+expand_mode = 1
+material = SubResource("diamond_material")
+
+[node name="Next" type="Button" parent="Chapter/Chrome"]
+layout_mode = 0
+offset_left = 806.0
+offset_top = 646.0
+offset_right = 950.0
+offset_bottom = 790.0
+theme_type_variation = &"IconButton"
+script = ExtResource("icon")
+mouse_default_cursor_shape = 2
+tooltip_text = "ui.mode.next"
+
+[node name="Icon" type="TextureRect" parent="Chapter/Chrome/Next"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 17.0
+offset_right = 126.0
+offset_bottom = 127.0
+mouse_filter = 2
+texture = SubResource("next")
+expand_mode = 1
+material = SubResource("diamond_material")
+
+[node name="Indicators" type="Control" parent="Chapter/Chrome"]
+layout_mode = 0
+offset_left = 325.5
+offset_top = 1265.0
+offset_right = 615.5
+offset_bottom = 1289.0
+mouse_filter = 2
+
+[node name="Line" type="Line2D" parent="Chapter/Chrome/Indicators"]
+points = PackedVector2Array(72.5, 12, 217.5, 12)
+width = 1.2
+default_color = Color(0.561, 0.459, 0.294, 1)
+antialiased = true
+
+[node name="Dots" type="Control" parent="Chapter/Chrome/Indicators"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Confirm" type="Button" parent="Chapter/Chrome"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 1296.5
+offset_right = 731.0
+offset_bottom = 1440.5
+theme_type_variation = &"IconButton"
+script = ExtResource("icon")
+mouse_default_cursor_shape = 2
+
+[node name="Art" type="TextureRect" parent="Chapter/Chrome/Confirm"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 19.5
+offset_right = 521.0
+offset_bottom = 124.5
+mouse_filter = 2
+texture = SubResource("paper")
+expand_mode = 1
+
+material = SubResource("confirm_clip")
+
+[node name="Caption" type="Label" parent="Chapter/Chrome/Confirm"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 33.5
+offset_right = 491.0
+offset_bottom = 110.5
+mouse_filter = 2
+script = ExtResource("fit")
+maximum_lines = 1
+minimum_font_size = 24
+theme_override_font_sizes/font_size = 52
+theme_override_colors/font_color = Color(0.10, 0.09, 0.07, 1)
+text = "ui.mode.confirm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Unavailable" parent="." instance=ExtResource("unavailable")]
+visible = false
+layout_mode = 1
+
+[node name="Tabs" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 1454.0
+offset_right = 905.0
+offset_bottom = 1641.0
+clip_contents = false
+script = ExtResource("tabs")
+presentation = 1
+theme = SubResource("mode_theme")
+authored_buttons = Array[NodePath]([NodePath("Bar/PveAdventure"), NodePath("Bar/Pvp"), NodePath("Bar/PvpChess"), NodePath("Bar/PveChallenge")])
+
+[node name="Bar" type="Control" parent="Tabs"]
+custom_minimum_size = Vector2(871, 187)
+layout_mode = 2
+
+[node name="Art" type="NinePatchRect" parent="Tabs/Bar"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 18.0
+offset_right = 871.0
+offset_bottom = 172.0
+mouse_filter = 2
+texture = SubResource("paper")
+patch_margin_left = 40
+patch_margin_top = 32
+patch_margin_right = 40
+patch_margin_bottom = 32
+material = SubResource("bar_clip")
+
+[node name="Divider1" type="ColorRect" parent="Tabs/Bar"]
+layout_mode = 0
+offset_left = 217.75
+offset_top = 32.0
+offset_right = 219.75
+offset_bottom = 158.0
+mouse_filter = 2
+color = Color(0.66, 0.58, 0.43, 0.65)
+
+[node name="Divider2" type="ColorRect" parent="Tabs/Bar"]
+layout_mode = 0
+offset_left = 435.5
+offset_top = 32.0
+offset_right = 437.5
+offset_bottom = 158.0
+mouse_filter = 2
+color = Color(0.66, 0.58, 0.43, 0.65)
+
+[node name="Divider3" type="ColorRect" parent="Tabs/Bar"]
+layout_mode = 0
+offset_left = 653.25
+offset_top = 32.0
+offset_right = 655.25
+offset_bottom = 158.0
+mouse_filter = 2
+color = Color(0.66, 0.58, 0.43, 0.65)
+
+[node name="Selection" type="TextureRect" parent="Tabs/Bar"]
+texture_filter = 4
+layout_mode = 0
+offset_left = -12.0
+offset_top = 0.0
+offset_right = 229.75
+offset_bottom = 187.0
+mouse_filter = 2
+texture = SubResource("selected_plaque")
+expand_mode = 1
+material = SubResource("plaque_clip_material")
+
+[node name="PveAdventure" type="Button" parent="Tabs/Bar"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 217.75
+offset_bottom = 187.0
+script = ExtResource("icon")
+theme_type_variation = &"IconButton"
+mouse_default_cursor_shape = 2
+
+[node name="Icon" type="TextureRect" parent="Tabs/Bar/PveAdventure"]
+layout_mode = 0
+offset_left = 70.875
+offset_top = 40.0
+offset_right = 146.875
+offset_bottom = 116.0
+mouse_filter = 2
+texture = SubResource("mountain")
+expand_mode = 1
+stretch_mode = 5
+material = SubResource("gold_icon")
+
+[node name="Caption" type="Label" parent="Tabs/Bar/PveAdventure"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 104.0
+offset_right = 205.75
+offset_bottom = 150.0
+mouse_filter = 2
+script = ExtResource("fit")
+maximum_lines = 1
+minimum_font_size = 24
+theme_override_font_sizes/font_size = 34
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "ui.mode.adventure"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pvp" type="Button" parent="Tabs/Bar"]
+layout_mode = 0
+offset_left = 217.75
+offset_top = 0.0
+offset_right = 435.5
+offset_bottom = 187.0
+script = ExtResource("icon")
+theme_type_variation = &"IconButton"
+mouse_default_cursor_shape = 2
+
+[node name="Icon" type="TextureRect" parent="Tabs/Bar/Pvp"]
+layout_mode = 0
+offset_left = 70.875
+offset_top = 40.0
+offset_right = 146.875
+offset_bottom = 116.0
+mouse_filter = 2
+texture = SubResource("swords")
+expand_mode = 1
+stretch_mode = 5
+material = SubResource("ink_icon")
+
+[node name="Caption" type="Label" parent="Tabs/Bar/Pvp"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 104.0
+offset_right = 205.75
+offset_bottom = 150.0
+mouse_filter = 2
+script = ExtResource("fit")
+maximum_lines = 1
+minimum_font_size = 24
+theme_override_font_sizes/font_size = 34
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "ui.mode.pvp"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PvpChess" type="Button" parent="Tabs/Bar"]
+layout_mode = 0
+offset_left = 435.5
+offset_top = 0.0
+offset_right = 653.25
+offset_bottom = 187.0
+script = ExtResource("icon")
+theme_type_variation = &"IconButton"
+mouse_default_cursor_shape = 2
+
+[node name="Icon" type="TextureRect" parent="Tabs/Bar/PvpChess"]
+layout_mode = 0
+offset_left = 70.875
+offset_top = 40.0
+offset_right = 146.875
+offset_bottom = 116.0
+mouse_filter = 2
+texture = SubResource("horse")
+expand_mode = 1
+stretch_mode = 5
+material = SubResource("ink_icon")
+
+[node name="Caption" type="Label" parent="Tabs/Bar/PvpChess"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 104.0
+offset_right = 205.75
+offset_bottom = 150.0
+mouse_filter = 2
+script = ExtResource("fit")
+maximum_lines = 1
+minimum_font_size = 24
+theme_override_font_sizes/font_size = 34
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "ui.mode.chess"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PveChallenge" type="Button" parent="Tabs/Bar"]
+layout_mode = 0
+offset_left = 653.25
+offset_top = 0.0
+offset_right = 871.0
+offset_bottom = 187.0
+script = ExtResource("icon")
+theme_type_variation = &"IconButton"
+mouse_default_cursor_shape = 2
+
+[node name="Icon" type="TextureRect" parent="Tabs/Bar/PveChallenge"]
+layout_mode = 0
+offset_left = 70.875
+offset_top = 40.0
+offset_right = 146.875
+offset_bottom = 116.0
+mouse_filter = 2
+texture = SubResource("helmet")
+expand_mode = 1
+stretch_mode = 5
+material = SubResource("ink_icon")
+
+[node name="Caption" type="Label" parent="Tabs/Bar/PveChallenge"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 104.0
+offset_right = 205.75
+offset_bottom = 150.0
+mouse_filter = 2
+script = ExtResource("fit")
+maximum_lines = 1
+minimum_font_size = 24
+theme_override_font_sizes/font_size = 34
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "ui.mode.challenge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnArt" type="Control" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 40.0
+offset_right = 905.0
+offset_bottom = 151.0
+mouse_filter = 2
+theme = SubResource("mode_theme")
+
+[node name="Icon" type="TextureRect" parent="ReturnArt"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 111.0
+offset_bottom = 111.0
+mouse_filter = 2
+texture = ExtResource("immersive_back")
+expand_mode = 1
+material = SubResource("return_material")
+
+[node name="Caption" type="Label" parent="ReturnArt"]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 19.5
+offset_right = 874.0
+offset_bottom = 91.5
+mouse_filter = 2
+script = ExtResource("fit")
+maximum_lines = 1
+minimum_font_size = 28
+theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(0.87, 0.80, 0.61, 1)
+text = "ui.page.modes"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="TransitionBlocker" type="ColorRect" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+z_index = 100
+mouse_filter = 0
+color = Color(0, 0, 0, 0)

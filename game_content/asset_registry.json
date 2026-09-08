@@ -1,0 +1,844 @@
+{
+  "dice.reward_surface": {
+    "kind": "Texture",
+    "path": "res://game_content/dice/art/faces/reward_faces.png"
+  },
+  "ui.card_tag.TG001": {
+    "kind": "Texture",
+    "path": "res://ui/design_system/icons/elements/light.png"
+  },
+  "ui.card_tag.TG002": {
+    "kind": "Texture",
+    "path": "res://ui/design_system/icons/elements/forest.png"
+  },
+  "ui.card_tag.TG003": {
+    "kind": "Texture",
+    "path": "res://ui/design_system/icons/elements/rock.png"
+  },
+  "ui.card_tag.TG004": {
+    "kind": "Texture",
+    "path": "res://ui/design_system/icons/elements/wind.png"
+  },
+  "ui.card_tag.TG005": {
+    "kind": "Texture",
+    "path": "res://ui/design_system/icons/elements/sea.png"
+  },
+  "ui.card_tag.TG006": {
+    "kind": "Texture",
+    "path": "res://ui/design_system/icons/elements/dark.png"
+  },
+  "ui.card_tag.TG007": {
+    "kind": "Texture",
+    "path": "res://ui/design_system/icons/elements/metal.png"
+  },
+  "ui.card_tag.TG008": {
+    "kind": "Texture",
+    "path": "res://ui/design_system/icons/elements/ice.png"
+  },
+  "ui.card_tag.TG009": {
+    "kind": "Texture",
+    "path": "res://ui/design_system/icons/elements/thunder.png"
+  },
+  "ui.card_tag.TG010": {
+    "kind": "Texture",
+    "path": "res://ui/design_system/icons/elements/fire.png"
+  },
+  "ability.SK001.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/ab001/ab001_effect_frames.tres"
+  },
+  "ability.SK002.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/ab016/ab016_effect_frames.tres"
+  },
+  "ability.SK003.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0002/s0002_effect_frames.tres"
+  },
+  "ability.SK004.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0003/s0003_effect_frames.tres"
+  },
+  "ability.SK004.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0003.png"
+  },
+  "ability.SK005.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0004/s0004_effect_frames.tres"
+  },
+  "ability.SK005.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0004.png"
+  },
+  "ability.SK006.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0005/s0005_effect_frames.tres"
+  },
+  "ability.SK006.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0005.png"
+  },
+  "ability.SK007.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0006/s0006_effect_frames.tres"
+  },
+  "ability.SK007.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0006.png"
+  },
+  "ability.SK008.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0007/s0007_effect_frames.tres"
+  },
+  "ability.SK008.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0007.png"
+  },
+  "ability.SK009.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0008/s0008_effect_frames.tres"
+  },
+  "ability.SK009.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0008.png"
+  },
+  "ability.SK010.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0009/s0009_effect_frames.tres"
+  },
+  "ability.SK010.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0009.png"
+  },
+  "ability.SK011.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0010/s0010_effect_frames.tres"
+  },
+  "ability.SK011.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0010.png"
+  },
+  "ability.SK012.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0011/s0011_effect_frames.tres"
+  },
+  "ability.SK012.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0011.png"
+  },
+  "ability.SK013.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0012/s0012_effect_frames.tres"
+  },
+  "ability.SK013.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0012.png"
+  },
+  "ability.SK014.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0013/s0013_effect_frames.tres"
+  },
+  "ability.SK014.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0013.png"
+  },
+  "ability.SK015.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0014/s0014_effect_frames.tres"
+  },
+  "ability.SK016.effect": {
+    "kind": "Effect",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0015/s0015_effect_frames.tres"
+  },
+  "ability.SK016.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0015.png"
+  },
+  "card.H001.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0001.png"
+  },
+  "card.H002.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0002.png"
+  },
+  "card.H003.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0003.png"
+  },
+  "card.H004.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0004.png"
+  },
+  "card.H005.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0005.png"
+  },
+  "card.H006.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0006.png"
+  },
+  "card.H007.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0007.png"
+  },
+  "card.H008.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0008.png"
+  },
+  "card.H009.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0009.png"
+  },
+  "card.H010.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0010.png"
+  },
+  "card.H011.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0011.png"
+  },
+  "card.H012.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0012.png"
+  },
+  "card.H013.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0013.png"
+  },
+  "card.H014.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0014.png"
+  },
+  "card.H015.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0015.png"
+  },
+  "card.H016.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/hero/img_h0016.png"
+  },
+  "card.HS001.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0001.png"
+  },
+  "card.HS002.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0002.png"
+  },
+  "card.HS003.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0003.png"
+  },
+  "card.HS004.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0004.png"
+  },
+  "card.HS005.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0005.png"
+  },
+  "card.HS006.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0006.png"
+  },
+  "card.HS007.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0007.png"
+  },
+  "card.HS008.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0008.png"
+  },
+  "card.HS009.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0009.png"
+  },
+  "card.HS010.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0010.png"
+  },
+  "card.HS011.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0011.png"
+  },
+  "card.HS012.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0012.png"
+  },
+  "card.HS013.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0013.png"
+  },
+  "card.HS014.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0014.png"
+  },
+  "card.HS015.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0015.png"
+  },
+  "card.HS016.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/servant/img_hs0016.png"
+  },
+  "card.IC001.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/item/img_ic0001.png"
+  },
+  "card.IC002.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/item/img_ic0002.png"
+  },
+  "card.IC003.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/item/img_ic0003.png"
+  },
+  "card.IC004.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/item/img_ic0004.png"
+  },
+  "card.IC005.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/item/img_ic0005.png"
+  },
+  "card.IC006.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/item/img_ic0006.png"
+  },
+  "card.IC007.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/item/img_ic0007.png"
+  },
+  "card.IC008.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/item/img_ic0008.png"
+  },
+  "card.IC009.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/item/img_ic0009.png"
+  },
+  "card.IC010.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/item/img_ic0010.png"
+  },
+  "card.IC011.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/item/img_ic0011.png"
+  },
+  "card.IC012.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/item/img_ic0012.png"
+  },
+  "card.MB001.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0101/img_m010101.png"
+  },
+  "card.ME001.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0101/img_m010102.png"
+  },
+  "card.ME002.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0101/img_m010103.png"
+  },
+  "card.ME003.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0101/img_m010104.png"
+  },
+  "card.M001.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0101/img_m010105.png"
+  },
+  "card.M002.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0101/img_m010106.png"
+  },
+  "card.M003.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0101/img_m010107.png"
+  },
+  "card.M004.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0101/img_m010108.png"
+  },
+  "card.M005.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0101/img_m010109.png"
+  },
+  "card.M006.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0101/img_m010110.png"
+  },
+  "card.MB002.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0102/img_m010201.png"
+  },
+  "card.ME004.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0102/img_m010202.png"
+  },
+  "card.ME005.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0102/img_m010203.png"
+  },
+  "card.ME006.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0102/img_m010204.png"
+  },
+  "card.MB003.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0103/img_m010301.png"
+  },
+  "card.ME007.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0103/img_m010302.png"
+  },
+  "card.ME008.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0103/img_m010303.png"
+  },
+  "card.ME009.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0103/img_m010304.png"
+  },
+  "card.MB004.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0201/img_m020101.png"
+  },
+  "card.ME010.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0201/img_m020102.png"
+  },
+  "card.ME011.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0201/img_m020103.png"
+  },
+  "card.ME012.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0201/img_m020104.png"
+  },
+  "card.M019.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0201/img_m020105.png"
+  },
+  "card.M020.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0201/img_m020106.png"
+  },
+  "card.M021.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0201/img_m020107.png"
+  },
+  "card.M022.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0201/img_m020108.png"
+  },
+  "card.M023.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0201/img_m020109.png"
+  },
+  "card.M024.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0201/img_m020110.png"
+  },
+  "card.MB005.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0202/img_m020201.png"
+  },
+  "card.ME013.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0202/img_m020202.png"
+  },
+  "card.ME014.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0202/img_m020203.png"
+  },
+  "card.ME015.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0202/img_m020204.png"
+  },
+  "card.MB006.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0203/img_m020301.png"
+  },
+  "card.ME016.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0203/img_m020302.png"
+  },
+  "card.ME017.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0203/img_m020303.png"
+  },
+  "card.ME018.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0203/img_m020304.png"
+  },
+  "card.MB007.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0301/img_m030101.png"
+  },
+  "card.ME019.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0301/img_m030102.png"
+  },
+  "card.ME020.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0301/img_m030103.png"
+  },
+  "card.ME021.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0301/img_m030104.png"
+  },
+  "card.M037.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0301/img_m030105.png"
+  },
+  "card.M038.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0301/img_m030106.png"
+  },
+  "card.M039.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0301/img_m030107.png"
+  },
+  "card.M040.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0301/img_m030108.png"
+  },
+  "card.M041.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0301/img_m030109.png"
+  },
+  "card.M042.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0301/img_m030110.png"
+  },
+  "card.MB008.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0302/img_m030201.png"
+  },
+  "card.ME022.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0302/img_m030202.png"
+  },
+  "card.ME023.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0302/img_m030203.png"
+  },
+  "card.ME024.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0302/img_m030204.png"
+  },
+  "card.MB009.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0303/img_m030301.png"
+  },
+  "card.ME025.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0303/img_m030302.png"
+  },
+  "card.ME026.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0303/img_m030303.png"
+  },
+  "card.ME027.image": {
+    "kind": "Texture",
+    "path": "res://game_content/cards/art/monster0303/img_m030304.png"
+  },
+  "chapter.CH001.background.locked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter00101/bg_chapter_0.png"
+  },
+  "chapter.CH001.background.unlocked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter00101/background.tres"
+  },
+  "chapter.CH002.background.locked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter00102/main_background.png"
+  },
+  "chapter.CH002.background.unlocked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter00102/main_background.png"
+  },
+  "chapter.CH003.background.locked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter00103/main_background.png"
+  },
+  "chapter.CH003.background.unlocked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter00103/main_background.png"
+  },
+  "chapter.CH004.background.locked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0201/bg_chapter_0.png"
+  },
+  "chapter.CH004.background.unlocked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0201/bg_chapter_1.png"
+  },
+  "chapter.CH005.background.locked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0202/bg_chapter_0.png"
+  },
+  "chapter.CH005.background.unlocked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0202/bg_chapter_1.png"
+  },
+  "chapter.CH006.background.locked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0203/bg_chapter_0.png"
+  },
+  "chapter.CH006.background.unlocked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0203/bg_chapter_1.png"
+  },
+  "chapter.CH007.background.locked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0301/bg_chapter_0.png"
+  },
+  "chapter.CH007.background.unlocked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0301/bg_chapter_1.png"
+  },
+  "chapter.CH008.background.locked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0302/bg_chapter_0.png"
+  },
+  "chapter.CH008.background.unlocked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0302/bg_chapter_1.png"
+  },
+  "chapter.CH009.background.locked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0303/bg_chapter_0.png"
+  },
+  "chapter.CH009.background.unlocked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0303/bg_chapter_1.png"
+  },
+  "chapter_node.path_straight_idle": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_connect_line_x_off.png"
+  },
+  "chapter_node.path_straight_selected": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_connect_line_x_on.png"
+  },
+  "chapter_node.path_diagonal_idle": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_connect_line_xy_off.png"
+  },
+  "chapter_node.path_diagonal_selected": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_connect_line_xy_on.png"
+  },
+  "chapter_node.node_locked": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_monster_not.png"
+  },
+  "chapter_node.node_completed": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_monster_pass.png"
+  },
+  "chapter_node.node_ready": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_monster_ready.png"
+  },
+  "chapter_node.node_unknown": {
+    "kind": "Texture",
+    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_unknown.png"
+  },
+  "dice.DI001.face.0": {
+    "kind": "Texture",
+    "path": "res://game_content/dice/art/faces/img_df1.png"
+  },
+  "dice.DI001.face.1": {
+    "kind": "Texture",
+    "path": "res://game_content/dice/art/faces/img_df2.png"
+  },
+  "dice.DI001.face.2": {
+    "kind": "Texture",
+    "path": "res://game_content/dice/art/faces/img_df3.png"
+  },
+  "dice.DI001.face.3": {
+    "kind": "Texture",
+    "path": "res://game_content/dice/art/faces/img_df4.png"
+  },
+  "dice.DI001.face.4": {
+    "kind": "Texture",
+    "path": "res://game_content/dice/art/faces/img_df5.png"
+  },
+  "dice.DI001.face.5": {
+    "kind": "Texture",
+    "path": "res://game_content/dice/art/faces/img_df6.png"
+  },
+  "relic.GA001.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0001.png"
+  },
+  "relic.GA002.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0002.png"
+  },
+  "relic.GA003.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0003.png"
+  },
+  "relic.GA004.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0004.png"
+  },
+  "relic.GA005.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0005.png"
+  },
+  "relic.GA006.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0006.png"
+  },
+  "relic.GA007.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0007.png"
+  },
+  "relic.GA008.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0008.png"
+  },
+  "relic.GA009.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0009.png"
+  },
+  "relic.GA010.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0010.png"
+  },
+  "relic.GA011.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0011.png"
+  },
+  "relic.GA012.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0012.png"
+  },
+  "relic.GA013.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0013.png"
+  },
+  "relic.GA014.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0014.png"
+  },
+  "relic.GA015.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0015.png"
+  },
+  "relic.GA016.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0016.png"
+  },
+  "relic.GA017.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0017.png"
+  },
+  "relic.GA018.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0018.png"
+  },
+  "relic.GA019.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0019.png"
+  },
+  "relic.GA020.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0020.png"
+  },
+  "relic.GA021.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0021.png"
+  },
+  "relic.GA022.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0022.png"
+  },
+  "relic.GA023.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0023.png"
+  },
+  "relic.GA024.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0024.png"
+  },
+  "relic.GA025.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0025.png"
+  },
+  "relic.GA026.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0026.png"
+  },
+  "relic.GA027.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0027.png"
+  },
+  "relic.GA028.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0028.png"
+  },
+  "relic.GA029.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/relics/art/img_e0029.png"
+  },
+  "item.IT001.sprite": {
+    "kind": "Texture",
+    "path": "res://game_content/items/art/coin_energy.png"
+  },
+  "projectile.default": {
+    "kind": "Projectile",
+    "path": "res://game_content/projectiles/projectile_default.tres",
+    "width": 104,
+    "height": 26
+  },
+  "projectile.physical": {
+    "kind": "Projectile",
+    "path": "res://game_content/projectiles/projectile_physical.tres",
+    "width": 60,
+    "height": 25
+  },
+  "projectile.witchcraft": {
+    "kind": "Projectile",
+    "path": "res://game_content/projectiles/projectile_witchcraft.tres",
+    "width": 48,
+    "height": 30
+  },
+  "projectile.burn": {
+    "kind": "Projectile",
+    "path": "res://game_content/projectiles/projectile_burn.tres",
+    "width": 48,
+    "height": 30
+  },
+  "projectile.poison": {
+    "kind": "Projectile",
+    "path": "res://game_content/projectiles/projectile_poison.tres",
+    "width": 48,
+    "height": 30
+  },
+  "projectile.healing": {
+    "kind": "Projectile",
+    "path": "res://game_content/projectiles/projectile_healing.tres",
+    "width": 60,
+    "height": 25
+  },
+  "projectile.shield": {
+    "kind": "Projectile",
+    "path": "res://game_content/projectiles/projectile_shield.tres",
+    "width": 48,
+    "height": 30
+  },
+  "dice.relic_surface": {
+    "kind": "Texture",
+    "path": "res://game_content/dice/art/faces/relic_surface.tres"
+  }
+}

@@ -1,0 +1,694 @@
+# Generated. Edit authoring sources, not this file.
+msgid ""
+msgstr "Language: en\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "rules.ability.conditional_description"
+msgstr "While {conditions}: {modifiers}"
+
+msgid "rules.ability.internal_cooldown"
+msgstr "Trigger cooldown: {seconds}s"
+
+msgid "rules.ability.internal_cooldown_remaining"
+msgstr "Ready to trigger again in {seconds}s"
+
+msgid "rules.ability.scope"
+msgstr "{target}: {description}"
+
+msgid "rules.ability.team_scope"
+msgstr "Our team: {description}"
+
+msgid "rules.ability_execution.conditional_passive"
+msgstr "Conditional Passive"
+
+msgid "rules.ability_execution.cooldown_main"
+msgstr "Main Ability"
+
+msgid "rules.ability_execution.persistent_bonus"
+msgstr "Persistent Bonus"
+
+msgid "rules.ability_execution.triggered_passive"
+msgstr "Event-triggered Passive"
+
+msgid "rules.action.accumulate"
+msgstr "Accumulate"
+
+msgid "rules.action.apply_status"
+msgstr "Status power"
+
+msgid "rules.action.chain"
+msgstr "Chain"
+
+msgid "rules.action.change_pollution"
+msgstr "Pollution"
+
+msgid "rules.action.charge"
+msgstr "Charge"
+
+msgid "rules.action.convert"
+msgstr "Convert"
+
+msgid "rules.action.copy_main_ability"
+msgstr "Copy"
+
+msgid "rules.action.delay_cooldown"
+msgstr "Cooldown delay"
+
+msgid "rules.action.detonate"
+msgstr "Detonate"
+
+msgid "rules.action.echo"
+msgstr "Echo"
+
+msgid "rules.action.empower"
+msgstr "Empower"
+
+msgid "rules.action.expand_ammo"
+msgstr "Ammo expansion"
+
+msgid "rules.action.grant_main_ability"
+msgstr "main ability grant"
+
+msgid "rules.action.grant_shield"
+msgstr "Shield"
+
+msgid "rules.action.guard"
+msgstr "Guard"
+
+msgid "rules.action.haste"
+msgstr "Haste"
+
+msgid "rules.action.heal"
+msgstr "Healing"
+
+msgid "rules.action.link"
+msgstr "Link"
+
+msgid "rules.action.mark"
+msgstr "Mark"
+
+msgid "rules.action.overload"
+msgstr "Overload"
+
+msgid "rules.action.physical_damage"
+msgstr "Physical damage"
+
+msgid "rules.action.refill_ammo"
+msgstr "Ammo refill"
+
+msgid "rules.action.sacrifice"
+msgstr "Sacrifice"
+
+msgid "rules.action.transfer"
+msgstr "Transfer"
+
+msgid "rules.action.transform"
+msgstr "Transform"
+
+msgid "rules.action.witchcraft"
+msgstr "Witchcraft"
+
+msgid "rules.actions.card_power_ratio"
+msgstr "{percent}% of the card’s {type} power"
+
+msgid "rules.actions.charge"
+msgstr "Advance the cooldown of {main_ability} for {target} by {amount}s"
+
+msgid "rules.actions.delay"
+msgstr "Add {amount}s to the remaining cooldown of {main_ability} for {target}"
+
+msgid "rules.actions.expand"
+msgstr "Increase the ammo capacity of {target} by {amount} and restore the same number of uses"
+
+msgid "rules.actions.grant_main_ability"
+msgstr "Grant an main ability to {target} ({duration})"
+
+msgid "rules.actions.haste"
+msgstr "Grant {percent}% {stat_haste_ratio} to {target}’s {main_ability} ({duration})"
+
+msgid "rules.actions.heal"
+msgstr "Provide {amount} {stat_healing_power} to {target}"
+
+msgid "rules.actions.lifesteal"
+msgstr "This damage has {percent}% {stat_lifesteal_ratio} (shield loss excluded)"
+
+msgid "rules.actions.physical_damage"
+msgstr "Deal {amount} {stat_physical_damage} to {target}"
+
+msgid "rules.actions.poison_penetration"
+msgstr "While poisoned, healing received is reduced by 20% (non-stacking). Existing shields block poison damage until depleted; poison then bypasses later shields"
+
+msgid "rules.actions.pollution"
+msgstr "Pollution change: {amount}"
+
+msgid "rules.actions.refill"
+msgstr "Restore {amount} uses to {target}, up to its ammo capacity"
+
+msgid "rules.actions.shield"
+msgstr "Provide {amount} {stat_shield_power} to {target}"
+
+msgid "rules.actions.status_control"
+msgstr "Apply {status} to {target} for {seconds}s"
+
+msgid "rules.actions.status_damage"
+msgstr "Apply {status} to {target} for {seconds}s ({amount} damage per second)"
+
+msgid "rules.actions.witchcraft"
+msgstr "Deal {amount} {stat_witchcraft_damage} to {target} (+20% against shields)"
+
+msgid "rules.card.ammo"
+msgstr "{stat_ammo_capacity} · {count} uses per battle; active casts consume 1; passives remain when empty"
+
+msgid "rules.card.haste"
+msgstr "{stat_haste_ratio} {percent}% · reduces each cooldown"
+
+msgid "rules.card.lifesteal"
+msgstr "{stat_lifesteal_ratio} {percent}% · health loss only"
+
+msgid "rules.card.main_ability"
+msgstr "{cooldown}{multicast}: {actions}"
+
+msgid "rules.card_kind.core_hero"
+msgstr "Hero"
+
+msgid "rules.card_kind.item_card"
+msgstr "Item card"
+
+msgid "rules.card_kind.minion"
+msgstr "Minion"
+
+msgid "rules.card_kind.monster"
+msgstr "Monster"
+
+msgid "rules.completion.defeat"
+msgstr "Your team met this battle's defeat conditions."
+
+msgid "rules.completion.draw"
+msgstr "Both teams met the defeat conditions at the same time. The battle is a draw."
+
+msgid "rules.completion.invalid_request"
+msgstr "The battle input does not meet this battle's rules."
+
+msgid "rules.completion.judgment_defeat"
+msgstr "Health judgment at {seconds}s: the enemy has the higher remaining health ratio."
+
+msgid "rules.completion.judgment_tie"
+msgstr "Equal health ratios at {seconds}s. The defending team wins."
+
+msgid "rules.completion.judgment_victory"
+msgstr "Health judgment at {seconds}s: your team has the higher remaining health ratio."
+
+msgid "rules.completion.timeout"
+msgstr "Auto-battle reached this battle's time limit."
+
+msgid "rules.completion.victory"
+msgstr "Your team met this battle's victory conditions in {seconds}s."
+
+msgid "rules.condition.always"
+msgstr "always"
+
+msgid "rules.condition.event_counter_key"
+msgstr "matching the configured counter"
+
+msgid "rules.condition.event_has_kill_credit"
+msgstr "the defeat grants kill credit"
+
+msgid "rules.condition.event_is_critical"
+msgstr "This damage is a critical hit"
+
+msgid "rules.condition.event_is_primary"
+msgstr "Excludes derived effects and additional casts"
+
+msgid "rules.condition.event_source_has_ammo"
+msgstr "The acting card has an ammo pool"
+
+msgid "rules.condition.event_source_has_tags"
+msgstr "Event source tags: {tags}"
+
+msgid "rules.condition.event_source_is_adjacent"
+msgstr "the source is adjacent to self"
+
+msgid "rules.condition.event_source_is_ally"
+msgstr "the source is on the allied team"
+
+msgid "rules.condition.event_source_is_enemy"
+msgstr "the source is on the enemy team"
+
+msgid "rules.condition.event_source_is_linked"
+msgstr "source is a linked unit"
+
+msgid "rules.condition.event_source_is_minion"
+msgstr "the source is a minion"
+
+msgid "rules.condition.event_source_is_owner"
+msgstr "the source is self"
+
+msgid "rules.condition.event_target_has_tags"
+msgstr "Event target tags: {tags}"
+
+msgid "rules.condition.event_target_is_core"
+msgstr "the target is a hero"
+
+msgid "rules.condition.event_target_is_enemy"
+msgstr "the target is an enemy"
+
+msgid "rules.condition.event_target_is_owner"
+msgstr "the target is self"
+
+msgid "rules.condition.event_target_marked"
+msgstr "target has the configured allied mark"
+
+msgid "rules.condition.event_target_status_stacks_at_least"
+msgstr "target has at least {threshold} {status} stacks"
+
+msgid "rules.condition.owner_counter_at_least"
+msgstr "own counter at least {threshold}"
+
+msgid "rules.condition.owner_has_status"
+msgstr "self has {status}"
+
+msgid "rules.condition.owner_has_tags"
+msgstr "Owner tags: {tags}"
+
+msgid "rules.condition.owner_health_at_most_percent"
+msgstr "own health is at most {threshold}%"
+
+msgid "rules.condition.pollution_at_least"
+msgstr "pollution is at least {threshold}"
+
+msgid "rules.condition.pollution_at_most"
+msgstr "pollution is at most {threshold}"
+
+msgid "rules.cooldown.passive"
+msgstr "No main abilities"
+
+msgid "rules.cooldown.seconds"
+msgstr "{stat_cooldown_seconds} {seconds}s"
+
+msgid "rules.currency.gold"
+msgstr "Gold"
+
+msgid "rules.currency.rmb"
+msgstr "CNY"
+
+msgid "rules.currency.star_stone"
+msgstr "Star Stones"
+
+msgid "rules.duration.battle"
+msgstr "for this battle"
+
+msgid "rules.duration.seconds"
+msgstr "{seconds}s"
+
+msgid "rules.duration.source"
+msgstr "while the source remains active"
+
+msgid "rules.identity"
+msgstr "{kind} · {output}\nFootprint: {width} × {height}"
+
+msgid "rules.main_ability.all"
+msgstr "all main abilities"
+
+msgid "rules.main_ability.description"
+msgstr "{cooldown}{multicast}\n{actions}"
+
+msgid "rules.main_ability.specific"
+msgstr "the specified main ability"
+
+msgid "rules.mechanic.accumulate"
+msgstr "{target}: +{amount} counters; threshold {threshold}, cap {limit}"
+
+msgid "rules.mechanic.any_source"
+msgstr "repeated sources allowed"
+
+msgid "rules.mechanic.chain"
+msgstr "Chain from {target} through {count} distinct targets, retaining {percent}% strength per hop: {payload}"
+
+msgid "rules.mechanic.combo"
+msgstr "After {count} original events within {seconds}s (0: battle), {unique}"
+
+msgid "rules.mechanic.convert"
+msgstr "{target} pays {amount} {resource}, then: {payload}"
+
+msgid "rules.mechanic.copy_main_ability"
+msgstr "{target} gains an independent {percent}%-strength snapshot of a preset main ability for {seconds}s"
+
+msgid "rules.mechanic.detonate"
+msgstr "Consume {count} allied Burn stacks on {target}; deal {percent}% of remaining base damage"
+
+msgid "rules.mechanic.distinct"
+msgstr "distinct sources"
+
+msgid "rules.mechanic.echo"
+msgstr "Echo the last original numerical effect of {target} at {percent}% strength"
+
+msgid "rules.mechanic.empower"
+msgstr "{target}: next active cast group +{percent}%; {duration}"
+
+msgid "rules.mechanic.guard"
+msgstr "{target} intercepts {amount} single-target damage instances against adjacent allies; {duration}"
+
+msgid "rules.mechanic.link"
+msgstr "Link to {target} and observe active casts; {duration}"
+
+msgid "rules.mechanic.mark"
+msgstr "Mark {target} for {seconds}s"
+
+msgid "rules.mechanic.overload"
+msgstr "{target}: +{amount} heat; at {limit}, shut down for {recovery}s. This effect: {payload}"
+
+msgid "rules.mechanic.sacrifice"
+msgstr "Sacrifice the allied minion {target}, then: {payload}"
+
+msgid "rules.mechanic.transfer"
+msgstr "Transfer {amount} existing {resource} from self to {target}, preserving timers"
+
+msgid "rules.mechanic.transform"
+msgstr "{target} switches to a preset main ability form for {seconds}s; health and ammo are preserved"
+
+msgid "rules.modifier.action"
+msgstr "{action} effect parameter {amount}"
+
+msgid "rules.modifier.ammo"
+msgstr "{stat_ammo_capacity} limit {count} (enabled items only)"
+
+msgid "rules.modifier.cooldown"
+msgstr "Base {stat_cooldown_seconds} {seconds}s"
+
+msgid "rules.modifier.health"
+msgstr "{stat_max_health} {amount}"
+
+msgid "rules.modifier.main_ability"
+msgstr "Grants an main ability"
+
+msgid "rules.modifier.multicast"
+msgstr "{stat_multicast_bonus} ×{count}"
+
+msgid "rules.modifier.percent"
+msgstr "{stat} {amount} percentage points"
+
+msgid "rules.modifier.projectile"
+msgstr "Replace the attack projectile"
+
+msgid "rules.modifier.stat_ratio"
+msgstr "{stat} increased by {percent}% (additive)"
+
+msgid "rules.modifier.team_bonus"
+msgstr "{stat} {amount}"
+
+msgid "rules.modifier.team_buff"
+msgstr "Team bonus {amount}"
+
+msgid "rules.multicast"
+msgstr " · {stat_multicast_bonus} ×{count}"
+
+msgid "rules.node.aurora"
+msgstr "Choose one of eight rewards on the first trigger. Each later trigger in this chapter grants one more pick, up to five triggers."
+
+msgid "rules.node.exchange"
+msgstr "Spend {cost} account {currency} to gain {amount} account {reward}."
+
+msgid "rules.node.missing"
+msgstr "Node rules are missing."
+
+msgid "rules.node.reward"
+msgstr "Gain {amount} {reward} for your account."
+
+msgid "rules.output.burn"
+msgstr "Burn"
+
+msgid "rules.output.healing"
+msgstr "Healing"
+
+msgid "rules.output.per_second"
+msgstr "{amount}/s"
+
+msgid "rules.output.physical"
+msgstr "Physical"
+
+msgid "rules.output.poison"
+msgstr "Poison application"
+
+msgid "rules.output.shield"
+msgstr "Shield"
+
+msgid "rules.output.special"
+msgstr "Special"
+
+msgid "rules.output.witchcraft"
+msgstr "Witchcraft"
+
+msgid "rules.resource.ammo"
+msgstr "ammo"
+
+msgid "rules.resource.burn"
+msgstr "Burn stacks"
+
+msgid "rules.resource.counter"
+msgstr "counters"
+
+msgid "rules.resource.health"
+msgstr "health"
+
+msgid "rules.resource.poison"
+msgstr "Poison instances"
+
+msgid "rules.resource.shield"
+msgstr "shield"
+
+msgid "rules.rule"
+msgstr "{trigger}{conditions}: {actions} (up to {per_second}/s and {per_battle}/battle){multicast}"
+
+msgid "rules.rule.conditions"
+msgstr ", if {conditions}"
+
+msgid "rules.section.core_attributes"
+msgstr "Core attributes"
+
+msgid "rules.section.current"
+msgstr "Current effects and trigger status"
+
+msgid "rules.section.modifier_attributes"
+msgstr "Modifier attributes"
+
+msgid "rules.separator.and"
+msgstr " and "
+
+msgid "rules.separator.list"
+msgstr ", "
+
+msgid "rules.separator.or"
+msgstr " or "
+
+msgid "rules.separator.sentences"
+msgstr "; "
+
+msgid "rules.stat.ammo_capacity"
+msgstr "Ammo"
+
+msgid "rules.stat.burn_damage"
+msgstr "Burn"
+
+msgid "rules.stat.cooldown_seconds"
+msgstr "Cooldown"
+
+msgid "rules.stat.crit_chance"
+msgstr "Critical chance"
+
+msgid "rules.stat.crit_multiplier"
+msgstr "Critical multiplier"
+
+msgid "rules.stat.haste_ratio"
+msgstr "Haste"
+
+msgid "rules.stat.healing_power"
+msgstr "Healing"
+
+msgid "rules.stat.lifesteal_ratio"
+msgstr "Lifesteal"
+
+msgid "rules.stat.max_health"
+msgstr "Max health"
+
+msgid "rules.stat.multicast_bonus"
+msgstr "Multicast"
+
+msgid "rules.stat.physical_damage"
+msgstr "Physical damage"
+
+msgid "rules.stat.poison_damage"
+msgstr "Poison"
+
+msgid "rules.stat.shield_power"
+msgstr "Shield"
+
+msgid "rules.stat.witchcraft_damage"
+msgstr "Witchcraft"
+
+msgid "rules.status.burn"
+msgstr "Burn"
+
+msgid "rules.status.freeze"
+msgstr "Freeze"
+
+msgid "rules.status.none"
+msgstr "No status"
+
+msgid "rules.status.poison"
+msgstr "Poison"
+
+msgid "rules.status.slow"
+msgstr "Slow"
+
+msgid "rules.status.stun"
+msgstr "Stun"
+
+msgid "rules.synergy.cards"
+msgstr "At least {count} cards in battle"
+
+msgid "rules.synergy.distinct_outputs"
+msgstr "At least {count} effect types"
+
+msgid "rules.synergy.outputs"
+msgstr "The team includes: {groups}"
+
+msgid "rules.tags.all"
+msgstr "All of: {tags}"
+
+msgid "rules.tags.any"
+msgstr "Any of: {tags}"
+
+msgid "rules.tags.none"
+msgstr "None of: {tags}"
+
+msgid "rules.tags.target"
+msgstr "{target} ({tags})"
+
+msgid "rules.target.adjacent_allies"
+msgstr "adjacent allies"
+
+msgid "rules.target.all_allies"
+msgstr "all allies"
+
+msgid "rules.target.all_enemies"
+msgstr "all enemies"
+
+msgid "rules.target.all_units"
+msgstr "all units in battle"
+
+msgid "rules.target.allied_minion"
+msgstr "nearest allied minion"
+
+msgid "rules.target.event_source"
+msgstr "the event source"
+
+msgid "rules.target.event_target"
+msgstr "the event target"
+
+msgid "rules.target.farthest_enemy"
+msgstr "the farthest enemy"
+
+msgid "rules.target.linked_ally"
+msgstr "linked allies"
+
+msgid "rules.target.lowest_health_ally"
+msgstr "the ally with the lowest health"
+
+msgid "rules.target.marked_enemy"
+msgstr "enemy marked by this team"
+
+msgid "rules.target.nearest_ally"
+msgstr "nearest ally"
+
+msgid "rules.target.nearest_enemy"
+msgstr "the nearest enemy"
+
+msgid "rules.target.random_enemy"
+msgstr "a random enemy"
+
+msgid "rules.target.self"
+msgstr "self"
+
+msgid "rules.trigger.action_released"
+msgstr "Effect released"
+
+msgid "rules.trigger.adjacent_main_ability_cast"
+msgstr "When an adjacent ally casts a main ability"
+
+msgid "rules.trigger.after_main_ability_cast"
+msgstr "After casting a main ability"
+
+msgid "rules.trigger.allied_minion_defeated"
+msgstr "When an allied minion falls"
+
+msgid "rules.trigger.battle_completed"
+msgstr "At battle end"
+
+msgid "rules.trigger.battle_started"
+msgstr "At battle start"
+
+msgid "rules.trigger.before_main_ability_cast"
+msgstr "Before casting a main ability"
+
+msgid "rules.trigger.core_damaged"
+msgstr "When a hero takes damage"
+
+msgid "rules.trigger.counter_changed"
+msgstr "when counters change"
+
+msgid "rules.trigger.counter_threshold_reached"
+msgstr "when a counter crosses its threshold"
+
+msgid "rules.trigger.damage_guarded"
+msgstr "when a hit is guarded"
+
+msgid "rules.trigger.damage_resolved"
+msgstr "When damage is resolved"
+
+msgid "rules.trigger.haste_gained"
+msgstr "Haste gained"
+
+msgid "rules.trigger.healing_resolved"
+msgstr "When healing is resolved"
+
+msgid "rules.trigger.item_disabled"
+msgstr "When an item is disabled"
+
+msgid "rules.trigger.last_minion_defeated"
+msgstr "When the last allied minion falls"
+
+msgid "rules.trigger.linked_main_ability_cast"
+msgstr "after a linked unit casts"
+
+msgid "rules.trigger.main_ability_cooldown_ready"
+msgstr "When a main ability cooldown completes"
+
+msgid "rules.trigger.mark_applied"
+msgstr "when a mark is applied"
+
+msgid "rules.trigger.mechanic_resolved"
+msgstr "when a mechanic resolves"
+
+msgid "rules.trigger.minion_defeated"
+msgstr "When a minion falls"
+
+msgid "rules.trigger.pollution_changed"
+msgstr "When pollution changes"
+
+msgid "rules.trigger.pollution_threshold_reached"
+msgstr "When pollution crosses a threshold"
+
+msgid "rules.trigger.shield_gained"
+msgstr "When a shield is gained"
+
+msgid "rules.trigger.status_applied"
+msgstr "When a status is applied"
+
+msgid "rules.trigger.time_limit_resolved"
+msgstr "When health judgment completes"
+
+msgid "rules.trigger.unit_defeated"
+msgstr "when a card dies"
+
+msgid "rules.unknown"
+msgstr "Unknown"
+

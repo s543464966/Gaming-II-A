@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://features/game_modes_pve_adventure/ui/reward_icon.gdshader" id="1"]
+
+[resource]
+shader = ExtResource("1")
+shader_parameter/keep_rect = Vector4(34, 50.5, 443, 82.75)
+shader_parameter/corner_cut_radius = 18.5

@@ -1,0 +1,46 @@
+[gd_resource type="Theme" load_steps=8 format=3]
+
+[ext_resource type="Texture2D" path="res://features/combat/ui/art/board_frame.svg" id="frame"]
+[ext_resource type="Texture2D" path="res://features/combat/ui/art/battle_start.png" id="paper_source"]
+
+[sub_resource type="AtlasTexture" id="paper"]
+atlas = ExtResource("paper_source")
+region = Rect2(35, 100, 2106, 514)
+filter_clip = true
+
+[sub_resource type="StyleBoxTexture" id="board"]
+texture = ExtResource("frame")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxTexture" id="action"]
+texture = SubResource("paper")
+modulate_color = Color(0.88, 0.84, 0.76, 1)
+content_margin_left = 28.0
+content_margin_right = 28.0
+
+[sub_resource type="StyleBoxTexture" id="hover"]
+texture = SubResource("paper")
+modulate_color = Color(0.91, 0.86, 0.77, 1)
+
+[sub_resource type="StyleBoxTexture" id="disabled"]
+texture = SubResource("paper")
+modulate_color = Color(0.46, 0.45, 0.41, 1)
+
+[resource]
+BattleBoard/styles/frame = SubResource("board")
+BattleBoard/colors/slot_tint = Color(0.78, 0.78, 0.78, 1)
+BattleStart/base_type = &"Button"
+BattleStart/colors/font_color = Color(0.17, 0.13, 0.09, 1)
+BattleStart/colors/font_hover_color = Color(0.17, 0.13, 0.09, 1)
+BattleStart/colors/font_pressed_color = Color(0.17, 0.13, 0.09, 1)
+BattleStart/colors/font_disabled_color = Color(0.28, 0.26, 0.22, 1)
+BattleStart/constants/outline_size = 0
+BattleStart/font_sizes/font_size = 34
+BattleStart/styles/normal = SubResource("action")
+BattleStart/styles/hover = SubResource("hover")
+BattleStart/styles/pressed = SubResource("action")
+BattleStart/styles/disabled = SubResource("disabled")
+BattleStart/styles/focus = SubResource("hover")

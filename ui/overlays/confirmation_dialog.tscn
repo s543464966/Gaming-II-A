@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://ui/overlays/confirmation_dialog.gd" id="1"]
+[ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="2"]
+[ext_resource type="Script" path="res://ui/components/safe_area.gd" id="3"]
+[ext_resource type="PackedScene" path="res://ui/components/button.tscn" id="4"]
+[ext_resource type="Script" path="res://ui/components/touch_scroll_container.gd" id="5"]
+
+[node name="ConfirmationDialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78)
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3")
+
+[node name="Center" type="CenterContainer" parent="SafeArea"]
+layout_mode = 2
+
+[node name="Panel" type="PanelContainer" parent="SafeArea/Center"]
+custom_minimum_size = Vector2(620, 0)
+layout_mode = 2
+
+[node name="Column" type="VBoxContainer" parent="SafeArea/Center/Panel"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="SafeArea/Center/Panel/Column"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "请确认"
+autowrap_mode = 3
+
+[node name="Scroll" type="ScrollContainer" parent="SafeArea/Center/Panel/Column"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+horizontal_scroll_mode = 0
+script = ExtResource("5")
+
+[node name="Message" type="Label" parent="SafeArea/Center/Panel/Column/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "确认操作内容"
+autowrap_mode = 3
+
+[node name="Actions" type="HBoxContainer" parent="SafeArea/Center/Panel/Column"]
+layout_mode = 2
+
+[node name="Cancel" parent="SafeArea/Center/Panel/Column/Actions" instance=ExtResource("4")]
+layout_mode = 2
+text = "ui.common.cancel"
+
+[node name="Confirm" parent="SafeArea/Center/Panel/Column/Actions" instance=ExtResource("4")]
+layout_mode = 2
+text = "ui.common.confirm"

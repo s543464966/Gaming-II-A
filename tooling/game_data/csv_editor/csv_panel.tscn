@@ -1,0 +1,180 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://tooling/game_data/csv_editor/csv_panel.gd" id="1"]
+
+[node name="CsvData" type="VBoxContainer"]
+offset_right = 1100.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+script = ExtResource("1")
+
+[node name="Toolbar" type="HFlowContainer" parent="."]
+layout_mode = 2
+
+[node name="Refresh" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "刷新"
+
+[node name="Save" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "保存"
+tooltip_text = "保存当前 CSV，随后同步游戏数据（⌘/Ctrl+S）"
+
+[node name="SaveAll" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "保存全部"
+tooltip_text = "保存全部已修改 CSV，再统一同步一次（⌘/Ctrl+Shift+S）"
+
+[node name="Sync" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "重新同步"
+tooltip_text = "使用磁盘中的 CSV 执行现有数据同步"
+
+[node name="Undo" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "撤销"
+
+[node name="Redo" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "重做"
+
+[node name="Add" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "新增行"
+
+[node name="Copy" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "复制行"
+
+[node name="Delete" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "删除行"
+
+[node name="Reload" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "重新载入当前表"
+
+[node name="Source" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text_overrun_behavior = 3
+
+[node name="Body" type="HSplitContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 200
+
+[node name="Files" type="Tree" parent="Body"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 200)
+layout_mode = 2
+hide_root = true
+
+[node name="Editor" type="HSplitContainer" parent="Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+split_offset = 620
+
+[node name="TableArea" type="VBoxContainer" parent="Body/Editor"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Search" type="LineEdit" parent="Body/Editor/TableArea"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "搜索当前表的所有列…"
+clear_button_enabled = true
+
+[node name="Grid" type="Tree" parent="Body/Editor/TableArea"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+hide_root = true
+select_mode = 0
+column_titles_visible = true
+
+[node name="Pager" type="HBoxContainer" parent="Body/Editor/TableArea"]
+layout_mode = 2
+
+[node name="Previous" type="Button" parent="Body/Editor/TableArea/Pager"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "上一页"
+
+[node name="Page" type="Label" parent="Body/Editor/TableArea/Pager"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+
+[node name="Next" type="Button" parent="Body/Editor/TableArea/Pager"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "下一页"
+
+[node name="DetailArea" type="VBoxContainer" parent="Body/Editor"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="CellLabel" type="Label" parent="Body/Editor/DetailArea"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "单元格全文"
+autowrap_mode = 2
+
+[node name="Detail" type="TextEdit" parent="Body/Editor/DetailArea"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+wrap_mode = 1
+
+[node name="ColumnWidth" type="SpinBox" parent="Body/Editor/DetailArea"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 80.0
+max_value = 800.0
+step = 10.0
+value = 160.0
+prefix = "当前列宽"
+suffix = "px"
+
+[node name="Status" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "选择 CSV 开始编辑"
+autowrap_mode = 2
+
+[node name="ShowLog" type="CheckButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "显示同步日志"
+
+[node name="Log" type="TextEdit" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+editable = false
+wrap_mode = 1
+
+[node name="Confirm" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "CSV 编辑器"
+
+[node name="Poll" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5

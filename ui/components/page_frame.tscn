@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://ui/components/page_frame.gd" id="1"]
+[ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="2"]
+[ext_resource type="PackedScene" path="res://ui/components/close_button.tscn" id="3"]
+[ext_resource type="Script" path="res://ui/components/safe_area.gd" id="safe"]
+
+[node name="PageFrame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2")
+script = ExtResource("1")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("safe")
+
+[node name="Bounds" type="Control" parent="SafeArea"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="SafeArea/Bounds"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Column" type="VBoxContainer" parent="SafeArea/Bounds/Margin"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Header" type="HBoxContainer" parent="SafeArea/Bounds/Margin/Column"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="SafeArea/Bounds/Margin/Column/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 34
+text = "页面"
+
+[node name="CloseSpace" type="Control" parent="SafeArea/Bounds/Margin/Column/Header"]
+custom_minimum_size = Vector2(108, 0)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="SafeArea/Bounds/Margin/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Close" parent="SafeArea/Bounds" instance=ExtResource("3")]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -132.0
+offset_top = 48.0
+offset_right = -24.0
+offset_bottom = 156.0

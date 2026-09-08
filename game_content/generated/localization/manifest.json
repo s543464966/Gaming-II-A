@@ -1,0 +1,139 @@
+{
+  "content_hash": "f4a8d50277affba0412e97aacb7e9df8ca321973db3fb446ab8f63e204205a8a",
+  "default_locale": "zh_Hans",
+  "disabled_locales": [],
+  "inputs": {
+    "Cards/translations.csv": "35e1122543dcb82cdc1d2830cb3e4fcd859090a2d293de7830c31cd858c79ada",
+    "Combat/translations.csv": "981e9acf46e52dcdec313a49483616447e5296ba55e78907eea6695f161c891b",
+    "Inventory/translations.csv": "6fc166361de789e6520994b66945cba02f75cdab044eaa11c48b7acf7e6cddcb",
+    "Progression/translations.csv": "ccaa74ee1cc4366192b28d5a0eb351a229953f59e41cce7f3158eb2eda0e3f0a",
+    "res://game_content/localization/authoring/de/rules.json": "f3667debf076d4c48ed20a13e4813d18fa26b61f57cd7b35eac5655c97c4e3c7",
+    "res://game_content/localization/authoring/de/ui.json": "e879a39393da85bc4a356cf7f41805a0814f66e33239dd1aff701e5c11f9b387",
+    "res://game_content/localization/authoring/en/rules.json": "0d0dbd6d3ba511b7b0c8becb289ebfff5a382a878062cf5118530873ecacb378",
+    "res://game_content/localization/authoring/en/ui.json": "df7ab1fa24f49383e567cc701b2d18d78e1d257d7d9ab1896692c772edb07128",
+    "res://game_content/localization/authoring/fr/rules.json": "4f09c53b31f32ddaa70720d1ae6fd4572312b467b49c4867f0d42d3f54a3be8a",
+    "res://game_content/localization/authoring/fr/ui.json": "a6c639130cc07f75179fb385e61d35b68f3be9f84b61fd433f6f2e85fa5e551c",
+    "res://game_content/localization/authoring/ja/rules.json": "cef944b0886d8d269d3fd41f7ebdd30f6f4f06769708e9103c00996606db083e",
+    "res://game_content/localization/authoring/ja/ui.json": "8e10cc166e63a5cc348b6af21719daca881f23c4377c5d2e6d297814c9422f94",
+    "res://game_content/localization/authoring/zh_hans/rules.json": "5f5aabad5d85466c03c4e60daa9529575587a16ccbe6e8e602b83ba4ffab1dcc",
+    "res://game_content/localization/authoring/zh_hans/ui.json": "c0a2ff4540e263034128b10ac6dadfba2d39271fc4bf87a47559bae885f4e8ee",
+    "res://game_content/localization/authoring/zh_hant/rules.json": "16cec958318732e455f4c3309259c539f48a2289a0126c82e65c835d07466828",
+    "res://game_content/localization/authoring/zh_hant/ui.json": "d0932309774c16e5ae5e73703256e0658b9c94a61094e40885c9ab3745435d61",
+    "res://game_content/localization/locale_registry.json": "03f0f951fd4891ceda706c9e3f75e2736f8d056de7549ab53e3cd5445b1beb0c",
+    "res://ui/design_system/typography/LICENSE.txt": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2",
+    "res://ui/design_system/typography/latin/LICENSE.txt": "7a083b136e64d064794c3419751e5c7dd10d2f64c108fe5ba161eae5e5958a93",
+    "res://ui/design_system/typography/latin/dejavu_sans.ttf": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954",
+    "res://ui/design_system/typography/source_han_sans_cn_regular.otf": "14ec9d09dad83098938370be17170a747d63084022b05710e3d34b4ddb359091"
+  },
+  "locales": [
+    {
+      "directory": "zh_hans",
+      "files": {
+        "localization/zh_hans/content.po": "5e087d4747e528d8d82bd40458e765580b236a928bc13cede911e57d520433b1",
+        "localization/zh_hans/rules.po": "c6a233d23d560c397272d32c68658d556b693ab06eec45f41f989231837301d3",
+        "localization/zh_hans/ui.po": "10d291ddd43fb6a533add3aae91f66190def0136c80526efec4178d8a7a2e592"
+      },
+      "font": {
+        "license_path": "res://ui/design_system/typography/LICENSE.txt",
+        "license_sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2",
+        "path": "res://ui/design_system/typography/source_han_sans_cn_regular.otf",
+        "sha256": "14ec9d09dad83098938370be17170a747d63084022b05710e3d34b4ddb359091"
+      },
+      "id": "zh_Hans",
+      "missing_count": 0,
+      "native_name": "简体中文",
+      "plural_forms": "nplurals=1; plural=0;"
+    },
+    {
+      "directory": "en",
+      "files": {
+        "localization/en/content.po": "6feaeda582123db724a7629455c52c227d42e0ecb379f7538f1d40a701f60c73",
+        "localization/en/rules.po": "0cf5523d569bfb61539003c32f7852a0c43b55b3ee6d8628d2ff05d6f1d477ce",
+        "localization/en/ui.po": "31cc4d0ad972f13f9bd5410f7e0fd0b7fa5a393a53acd450808e0d162a88bfb8"
+      },
+      "font": {
+        "license_path": "res://ui/design_system/typography/latin/LICENSE.txt",
+        "license_sha256": "7a083b136e64d064794c3419751e5c7dd10d2f64c108fe5ba161eae5e5958a93",
+        "path": "res://ui/design_system/typography/latin/dejavu_sans.ttf",
+        "sha256": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954"
+      },
+      "id": "en",
+      "missing_count": 0,
+      "native_name": "English",
+      "plural_forms": "nplurals=2; plural=(n != 1);"
+    },
+    {
+      "directory": "ja",
+      "files": {
+        "localization/ja/content.po": "211660167a2bf3232c6f2b8a7d2045c6938cc6a281974df71cab5dc80d3fb262",
+        "localization/ja/rules.po": "338576c19fb8a07fe51d916f042cdb5eef1ceb955e4a2a9f259b7568fb28bcd1",
+        "localization/ja/ui.po": "6dd369bd2e3da4dbe61f6a11cdc543a0faac14f31ff165ee1ad24969d2f2bff3"
+      },
+      "font": {
+        "license_path": "res://ui/design_system/typography/LICENSE.txt",
+        "license_sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2",
+        "path": "res://ui/design_system/typography/source_han_sans_cn_regular.otf",
+        "sha256": "14ec9d09dad83098938370be17170a747d63084022b05710e3d34b4ddb359091"
+      },
+      "id": "ja",
+      "missing_count": 0,
+      "native_name": "日本語",
+      "plural_forms": "nplurals=1; plural=0;"
+    },
+    {
+      "directory": "zh_hant",
+      "files": {
+        "localization/zh_hant/content.po": "53843057cafc3f56c393283966494d41a12045de91f144d9e155d6fc01f32e8c",
+        "localization/zh_hant/rules.po": "dc25c0b6ae4e36198b62dabd38e5559c86489013945e5253ca0ebb4454c7f4fb",
+        "localization/zh_hant/ui.po": "59d8c8ffb178841b51abb7b414fc506f282b237f4f1735c80239083cb7399f2a"
+      },
+      "font": {
+        "license_path": "res://ui/design_system/typography/LICENSE.txt",
+        "license_sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2",
+        "path": "res://ui/design_system/typography/source_han_sans_cn_regular.otf",
+        "sha256": "14ec9d09dad83098938370be17170a747d63084022b05710e3d34b4ddb359091"
+      },
+      "id": "zh_Hant",
+      "missing_count": 0,
+      "native_name": "繁體中文",
+      "plural_forms": "nplurals=1; plural=0;"
+    },
+    {
+      "directory": "fr",
+      "files": {
+        "localization/fr/content.po": "7fba594866370680c192037eba86166a5bb9338a5635e1acef5337750a3051d1",
+        "localization/fr/rules.po": "9789fda502b99da7c45f90575022e1e7909ce017227144a34ddd397d416117ea",
+        "localization/fr/ui.po": "b62a4dd13dcdab4b5bfe4de9d5bcf5458f4e6e9aa01f5f31435d23a9cfe5faf3"
+      },
+      "font": {
+        "license_path": "res://ui/design_system/typography/latin/LICENSE.txt",
+        "license_sha256": "7a083b136e64d064794c3419751e5c7dd10d2f64c108fe5ba161eae5e5958a93",
+        "path": "res://ui/design_system/typography/latin/dejavu_sans.ttf",
+        "sha256": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954"
+      },
+      "id": "fr",
+      "missing_count": 0,
+      "native_name": "Français",
+      "plural_forms": "nplurals=2; plural=(n > 1);"
+    },
+    {
+      "directory": "de",
+      "files": {
+        "localization/de/content.po": "9dd5d5034511043396de04df8d8efe460d08d26873185a08d79bb77e6fcf375c",
+        "localization/de/rules.po": "e0e2fe53ad6a583695e6bdb4876a305cafe91ca8bcd4e638919089b634d409df",
+        "localization/de/ui.po": "775cdf80724a87816196b4021971c995f0fe6f4851616ec9643e0a36502a9f27"
+      },
+      "font": {
+        "license_path": "res://ui/design_system/typography/latin/LICENSE.txt",
+        "license_sha256": "7a083b136e64d064794c3419751e5c7dd10d2f64c108fe5ba161eae5e5958a93",
+        "path": "res://ui/design_system/typography/latin/dejavu_sans.ttf",
+        "sha256": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954"
+      },
+      "id": "de",
+      "missing_count": 0,
+      "native_name": "Deutsch",
+      "plural_forms": "nplurals=2; plural=(n != 1);"
+    }
+  ],
+  "version": 2
+}

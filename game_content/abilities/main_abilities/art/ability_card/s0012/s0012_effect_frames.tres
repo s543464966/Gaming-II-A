@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=16 format=3]
+
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_0.tres" id="1"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_1.tres" id="2"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_2.tres" id="3"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_3.tres" id="4"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_4.tres" id="5"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_5.tres" id="6"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_6.tres" id="7"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_7.tres" id="8"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_8.tres" id="9"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_9.tres" id="10"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_10.tres" id="11"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_11.tres" id="12"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_12.tres" id="13"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_13.tres" id="14"]
+[ext_resource type="Texture2D" path="res://game_content/abilities/main_abilities/art/ability_card/s0015/slices/sm2001_animation_14.tres" id="15"]
+
+[resource]
+animations = [{
+"frames": [{ "duration": 2.0000001, "texture": ExtResource("1") },
+{ "duration": 2.0000001, "texture": ExtResource("2") },
+{ "duration": 1.9999998000000005, "texture": ExtResource("3") },
+{ "duration": 2.0000003999999993, "texture": ExtResource("4") },
+{ "duration": 1.9999997999999997, "texture": ExtResource("5") },
+{ "duration": 1.9999998000000012, "texture": ExtResource("6") },
+{ "duration": 1.9999997999999997, "texture": ExtResource("7") },
+{ "duration": 2.0000009999999993, "texture": ExtResource("8") },
+{ "duration": 1.9999992, "texture": ExtResource("9") },
+{ "duration": 2.0000003999999993, "texture": ExtResource("10") },
+{ "duration": 1.9999997999999997, "texture": ExtResource("11") },
+{ "duration": 1.999999800000003, "texture": ExtResource("12") },
+{ "duration": 2.0000003999999993, "texture": ExtResource("13") },
+{ "duration": 1.9999997999999997, "texture": ExtResource("14") },
+{ "duration": 1.0000007999999994, "texture": ExtResource("15") }],
+"loop": false,
+"name": &"S0015_Attacked",
+"speed": 60
+}]

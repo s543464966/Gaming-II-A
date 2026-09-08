@@ -1,0 +1,694 @@
+# Generated. Edit authoring sources, not this file.
+msgid ""
+msgstr "Language: fr\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "rules.ability.conditional_description"
+msgstr "Tant que {conditions} : {modifiers}"
+
+msgid "rules.ability.internal_cooldown"
+msgstr "Délai de déclenchement : {seconds} s"
+
+msgid "rules.ability.internal_cooldown_remaining"
+msgstr "Nouveau déclenchement possible dans {seconds} s"
+
+msgid "rules.ability.scope"
+msgstr "{target} : {description}"
+
+msgid "rules.ability.team_scope"
+msgstr "Notre équipe : {description}"
+
+msgid "rules.ability_execution.conditional_passive"
+msgstr "Capacité passive conditionnelle"
+
+msgid "rules.ability_execution.cooldown_main"
+msgstr "Capacité principale"
+
+msgid "rules.ability_execution.persistent_bonus"
+msgstr "Bonus permanent"
+
+msgid "rules.ability_execution.triggered_passive"
+msgstr "Capacité passive déclenchée"
+
+msgid "rules.action.accumulate"
+msgstr "Accumulation"
+
+msgid "rules.action.apply_status"
+msgstr "Puissance d'état"
+
+msgid "rules.action.chain"
+msgstr "Chaîne"
+
+msgid "rules.action.change_pollution"
+msgstr "Pollution"
+
+msgid "rules.action.charge"
+msgstr "Charge"
+
+msgid "rules.action.convert"
+msgstr "Conversion"
+
+msgid "rules.action.copy_main_ability"
+msgstr "Copie"
+
+msgid "rules.action.delay_cooldown"
+msgstr "Retard de recharge"
+
+msgid "rules.action.detonate"
+msgstr "Détonation"
+
+msgid "rules.action.echo"
+msgstr "Écho"
+
+msgid "rules.action.empower"
+msgstr "Concentration"
+
+msgid "rules.action.expand_ammo"
+msgstr "Extension de munitions"
+
+msgid "rules.action.grant_main_ability"
+msgstr "Octroi de capacité principale"
+
+msgid "rules.action.grant_shield"
+msgstr "Bouclier"
+
+msgid "rules.action.guard"
+msgstr "Garde"
+
+msgid "rules.action.haste"
+msgstr "Hâte"
+
+msgid "rules.action.heal"
+msgstr "Soin"
+
+msgid "rules.action.link"
+msgstr "Lien"
+
+msgid "rules.action.mark"
+msgstr "Marque"
+
+msgid "rules.action.overload"
+msgstr "Surcharge"
+
+msgid "rules.action.physical_damage"
+msgstr "Dégâts physiques"
+
+msgid "rules.action.refill_ammo"
+msgstr "Recharge de munitions"
+
+msgid "rules.action.sacrifice"
+msgstr "Sacrifice"
+
+msgid "rules.action.transfer"
+msgstr "Transfert"
+
+msgid "rules.action.transform"
+msgstr "Transformation"
+
+msgid "rules.action.witchcraft"
+msgstr "Sorcellerie"
+
+msgid "rules.actions.card_power_ratio"
+msgstr "{percent}% de la puissance {type} de la carte"
+
+msgid "rules.actions.charge"
+msgstr "Avance de {amount} s la recharge de {main_ability} pour la cible : {target}"
+
+msgid "rules.actions.delay"
+msgstr "Ajoute {amount} s à la recharge restante de {main_ability} pour la cible : {target}"
+
+msgid "rules.actions.expand"
+msgstr "Augmente de {amount} la réserve de munitions de la cible : {target}, et restaure autant d'utilisations"
+
+msgid "rules.actions.grant_main_ability"
+msgstr "Confère une capacité principale à {target} ({duration})"
+
+msgid "rules.actions.haste"
+msgstr "Accorde {percent}% de {stat_haste_ratio} à {main_ability} de {target} ({duration})"
+
+msgid "rules.actions.heal"
+msgstr "Accorde {amount} {stat_healing_power} à {target}"
+
+msgid "rules.actions.lifesteal"
+msgstr "Ces dégâts ont {percent}% de {stat_lifesteal_ratio} (pertes de bouclier exclues)"
+
+msgid "rules.actions.physical_damage"
+msgstr "Inflige {amount} {stat_physical_damage} à {target}"
+
+msgid "rules.actions.poison_penetration"
+msgstr "Sous poison, les soins reçus sont réduits de 20% (non cumulable). Les boucliers existants bloquent le poison jusqu’à épuisement ; il ignore ensuite les nouveaux boucliers"
+
+msgid "rules.actions.pollution"
+msgstr "Variation de pollution : {amount}"
+
+msgid "rules.actions.refill"
+msgstr "Restaure {amount} utilisations à la cible : {target}, sans dépasser sa réserve de munitions"
+
+msgid "rules.actions.shield"
+msgstr "Accorde {amount} {stat_shield_power} à {target}"
+
+msgid "rules.actions.status_control"
+msgstr "Applique {status} pendant {seconds} s à la cible : {target}"
+
+msgid "rules.actions.status_damage"
+msgstr "Applique {status} pendant {seconds} s à la cible : {target} ({amount} dégâts par seconde)"
+
+msgid "rules.actions.witchcraft"
+msgstr "Inflige {amount} {stat_witchcraft_damage} à {target} (+20% contre les boucliers)"
+
+msgid "rules.card.ammo"
+msgstr "{stat_ammo_capacity} · {count} utilisations par combat ; chaque activation en consomme 1 ; les passifs restent actifs à vide"
+
+msgid "rules.card.haste"
+msgstr "{stat_haste_ratio} {percent}% · réduit chaque délai"
+
+msgid "rules.card.lifesteal"
+msgstr "{stat_lifesteal_ratio} {percent}% · pertes de vie uniquement"
+
+msgid "rules.card.main_ability"
+msgstr "{cooldown}{multicast} : {actions}"
+
+msgid "rules.card_kind.core_hero"
+msgstr "Héros"
+
+msgid "rules.card_kind.item_card"
+msgstr "Carte objet"
+
+msgid "rules.card_kind.minion"
+msgstr "Serviteur"
+
+msgid "rules.card_kind.monster"
+msgstr "Monstre"
+
+msgid "rules.completion.defeat"
+msgstr "Votre équipe a rempli les conditions de défaite de ce combat."
+
+msgid "rules.completion.draw"
+msgstr "Les deux équipes ont rempli les conditions de défaite simultanément : match nul."
+
+msgid "rules.completion.invalid_request"
+msgstr "Les données d'entrée du combat ne respectent pas ses règles."
+
+msgid "rules.completion.judgment_defeat"
+msgstr "Verdict à {seconds} s : l’ennemi conserve la plus grande proportion de vie."
+
+msgid "rules.completion.judgment_tie"
+msgstr "Proportions de vie égales à {seconds} s. L’équipe en défense gagne."
+
+msgid "rules.completion.judgment_victory"
+msgstr "Verdict à {seconds} s : votre équipe conserve la plus grande proportion de vie."
+
+msgid "rules.completion.timeout"
+msgstr "Le combat automatique a atteint la limite de temps."
+
+msgid "rules.completion.victory"
+msgstr "Votre équipe a rempli les conditions de victoire en {seconds} s."
+
+msgid "rules.condition.always"
+msgstr "toujours"
+
+msgid "rules.condition.event_counter_key"
+msgstr "compteur configuré correspondant"
+
+msgid "rules.condition.event_has_kill_credit"
+msgstr "la défaite attribue une élimination"
+
+msgid "rules.condition.event_is_critical"
+msgstr "Ces dégâts sont critiques"
+
+msgid "rules.condition.event_is_primary"
+msgstr "Exclut les effets dérivés et les activations supplémentaires"
+
+msgid "rules.condition.event_source_has_ammo"
+msgstr "La carte active possède des munitions"
+
+msgid "rules.condition.event_source_has_tags"
+msgstr "Tags de la source : {tags}"
+
+msgid "rules.condition.event_source_is_adjacent"
+msgstr "la source est adjacente au porteur"
+
+msgid "rules.condition.event_source_is_ally"
+msgstr "la source appartient à l'équipe alliée"
+
+msgid "rules.condition.event_source_is_enemy"
+msgstr "la source appartient à l'équipe ennemie"
+
+msgid "rules.condition.event_source_is_linked"
+msgstr "source liée"
+
+msgid "rules.condition.event_source_is_minion"
+msgstr "la source est un serviteur"
+
+msgid "rules.condition.event_source_is_owner"
+msgstr "le porteur est la source"
+
+msgid "rules.condition.event_target_has_tags"
+msgstr "Tags de la cible : {tags}"
+
+msgid "rules.condition.event_target_is_core"
+msgstr "la cible est un héros"
+
+msgid "rules.condition.event_target_is_enemy"
+msgstr "la cible est un ennemi"
+
+msgid "rules.condition.event_target_is_owner"
+msgstr "le porteur est la cible"
+
+msgid "rules.condition.event_target_marked"
+msgstr "cible portant la marque alliée configurée"
+
+msgid "rules.condition.event_target_status_stacks_at_least"
+msgstr "cible avec au moins {threshold} charges de {status}"
+
+msgid "rules.condition.owner_counter_at_least"
+msgstr "compteur propre ≥ {threshold}"
+
+msgid "rules.condition.owner_has_status"
+msgstr "le porteur est sous l'effet de {status}"
+
+msgid "rules.condition.owner_has_tags"
+msgstr "Tags du porteur : {tags}"
+
+msgid "rules.condition.owner_health_at_most_percent"
+msgstr "les PV du porteur sont au plus à {threshold}%"
+
+msgid "rules.condition.pollution_at_least"
+msgstr "la pollution est d'au moins {threshold}"
+
+msgid "rules.condition.pollution_at_most"
+msgstr "la pollution est d'au plus {threshold}"
+
+msgid "rules.cooldown.passive"
+msgstr "Aucune capacité principale"
+
+msgid "rules.cooldown.seconds"
+msgstr "{stat_cooldown_seconds} {seconds}s"
+
+msgid "rules.currency.gold"
+msgstr "Or"
+
+msgid "rules.currency.rmb"
+msgstr "CNY"
+
+msgid "rules.currency.star_stone"
+msgstr "Pierres astrales"
+
+msgid "rules.duration.battle"
+msgstr "pour ce combat"
+
+msgid "rules.duration.seconds"
+msgstr "{seconds} s"
+
+msgid "rules.duration.source"
+msgstr "tant que la source reste active"
+
+msgid "rules.identity"
+msgstr "{kind} · {output}\nEmprise : {width} × {height}"
+
+msgid "rules.main_ability.all"
+msgstr "toutes les capacités principales"
+
+msgid "rules.main_ability.description"
+msgstr "{cooldown}{multicast}\n{actions}"
+
+msgid "rules.main_ability.specific"
+msgstr "la capacité principale indiquée"
+
+msgid "rules.mechanic.accumulate"
+msgstr "{target} : +{amount} compteurs ; seuil {threshold}, plafond {limit}"
+
+msgid "rules.mechanic.any_source"
+msgstr "sources répétées autorisées"
+
+msgid "rules.mechanic.chain"
+msgstr "Chaîne depuis {target} sur {count} cibles distinctes, conservant {percent}% par saut : {payload}"
+
+msgid "rules.mechanic.combo"
+msgstr "Après {count} événements originaux en {seconds}s (0 : combat), {unique}"
+
+msgid "rules.mechanic.convert"
+msgstr "{target} dépense {amount} {resource}, puis : {payload}"
+
+msgid "rules.mechanic.copy_main_ability"
+msgstr "{target} reçoit une copie indépendante à {percent}% d’une capacité principale prédéfinie pendant {seconds} s"
+
+msgid "rules.mechanic.detonate"
+msgstr "Consomme {count} charges de Brûlure alliées sur {target} ; inflige {percent}% des dégâts de base restants"
+
+msgid "rules.mechanic.distinct"
+msgstr "sources distinctes"
+
+msgid "rules.mechanic.echo"
+msgstr "Répète le dernier effet numérique original de {target} à {percent}%"
+
+msgid "rules.mechanic.empower"
+msgstr "{target} : prochaine activation +{percent}% ; {duration}"
+
+msgid "rules.mechanic.guard"
+msgstr "{target} intercepte {amount} coups de Dégâts individuels visant les alliés adjacents ; {duration}"
+
+msgid "rules.mechanic.link"
+msgstr "Se lie à {target} et observe ses activations ; {duration}"
+
+msgid "rules.mechanic.mark"
+msgstr "Marque {target} pendant {seconds}s"
+
+msgid "rules.mechanic.overload"
+msgstr "{target} : +{amount} chaleur ; à {limit}, arrêt de {recovery}s. Effet : {payload}"
+
+msgid "rules.mechanic.sacrifice"
+msgstr "Sacrifie le serviteur allié {target}, puis : {payload}"
+
+msgid "rules.mechanic.transfer"
+msgstr "Transfère {amount} {resource} de soi à {target}, sans réinitialiser les durées"
+
+msgid "rules.mechanic.transform"
+msgstr "{target} adopte une forme de capacité principale prédéfinie pendant {seconds} s ; vie et munitions conservées"
+
+msgid "rules.modifier.action"
+msgstr "Paramètre de l'effet {action} : {amount}"
+
+msgid "rules.modifier.ammo"
+msgstr "Limite de {stat_ammo_capacity} : {count} (objets activés uniquement)"
+
+msgid "rules.modifier.cooldown"
+msgstr "{stat_cooldown_seconds} de base {seconds}s"
+
+msgid "rules.modifier.health"
+msgstr "{stat_max_health} {amount}"
+
+msgid "rules.modifier.main_ability"
+msgstr "Confère une capacité principale"
+
+msgid "rules.modifier.multicast"
+msgstr "{stat_multicast_bonus} ×{count}"
+
+msgid "rules.modifier.percent"
+msgstr "{stat} {amount} points de pourcentage"
+
+msgid "rules.modifier.projectile"
+msgstr "Remplace le projectile d'attaque"
+
+msgid "rules.modifier.stat_ratio"
+msgstr "{stat} : augmentation de {percent}% (additive)"
+
+msgid "rules.modifier.team_bonus"
+msgstr "{stat} {amount}"
+
+msgid "rules.modifier.team_buff"
+msgstr "Bonus d’équipe {amount}"
+
+msgid "rules.multicast"
+msgstr " · {stat_multicast_bonus} ×{count}"
+
+msgid "rules.node.aurora"
+msgstr "Au premier déclenchement, choisissez une récompense parmi huit. Chaque déclenchement suivant de ce chapitre ajoute un choix, avec un maximum de cinq déclenchements."
+
+msgid "rules.node.exchange"
+msgstr "Dépense {cost} ({currency}) du compte pour obtenir {amount} ({reward})."
+
+msgid "rules.node.missing"
+msgstr "Les règles du nœud sont manquantes."
+
+msgid "rules.node.reward"
+msgstr "Obtient {amount} pour le compte. Devise : {reward}."
+
+msgid "rules.output.burn"
+msgstr "Brûlure"
+
+msgid "rules.output.healing"
+msgstr "Soins"
+
+msgid "rules.output.per_second"
+msgstr "{amount}/s"
+
+msgid "rules.output.physical"
+msgstr "Physique"
+
+msgid "rules.output.poison"
+msgstr "Application de poison"
+
+msgid "rules.output.shield"
+msgstr "Bouclier"
+
+msgid "rules.output.special"
+msgstr "Spécial"
+
+msgid "rules.output.witchcraft"
+msgstr "Sorcellerie"
+
+msgid "rules.resource.ammo"
+msgstr "munitions"
+
+msgid "rules.resource.burn"
+msgstr "charges de Brûlure"
+
+msgid "rules.resource.counter"
+msgstr "compteurs"
+
+msgid "rules.resource.health"
+msgstr "vie"
+
+msgid "rules.resource.poison"
+msgstr "instances de Poison"
+
+msgid "rules.resource.shield"
+msgstr "bouclier"
+
+msgid "rules.rule"
+msgstr "{trigger}{conditions} : {actions} (au plus {per_second}/s et {per_battle}/combat){multicast}"
+
+msgid "rules.rule.conditions"
+msgstr ", si {conditions}"
+
+msgid "rules.section.core_attributes"
+msgstr "Attributs principaux"
+
+msgid "rules.section.current"
+msgstr "Effets actuels et déclenchements"
+
+msgid "rules.section.modifier_attributes"
+msgstr "Attributs modificateurs"
+
+msgid "rules.separator.and"
+msgstr " et "
+
+msgid "rules.separator.list"
+msgstr ", "
+
+msgid "rules.separator.or"
+msgstr " ou "
+
+msgid "rules.separator.sentences"
+msgstr " ; "
+
+msgid "rules.stat.ammo_capacity"
+msgstr "Munitions"
+
+msgid "rules.stat.burn_damage"
+msgstr "Brûlure"
+
+msgid "rules.stat.cooldown_seconds"
+msgstr "Délai"
+
+msgid "rules.stat.crit_chance"
+msgstr "Chances de critique"
+
+msgid "rules.stat.crit_multiplier"
+msgstr "Multiplicateur critique"
+
+msgid "rules.stat.haste_ratio"
+msgstr "Hâte"
+
+msgid "rules.stat.healing_power"
+msgstr "Soin"
+
+msgid "rules.stat.lifesteal_ratio"
+msgstr "Vol de vie"
+
+msgid "rules.stat.max_health"
+msgstr "PV max."
+
+msgid "rules.stat.multicast_bonus"
+msgstr "Incantations multiples"
+
+msgid "rules.stat.physical_damage"
+msgstr "Dégâts physiques"
+
+msgid "rules.stat.poison_damage"
+msgstr "Poison"
+
+msgid "rules.stat.shield_power"
+msgstr "Bouclier"
+
+msgid "rules.stat.witchcraft_damage"
+msgstr "Sorcellerie"
+
+msgid "rules.status.burn"
+msgstr "Brûlure"
+
+msgid "rules.status.freeze"
+msgstr "Gel"
+
+msgid "rules.status.none"
+msgstr "Aucun état"
+
+msgid "rules.status.poison"
+msgstr "Poison"
+
+msgid "rules.status.slow"
+msgstr "Ralentissement"
+
+msgid "rules.status.stun"
+msgstr "Étourdissement"
+
+msgid "rules.synergy.cards"
+msgstr "Au moins {count} cartes au combat"
+
+msgid "rules.synergy.distinct_outputs"
+msgstr "Au moins {count} types d’effets"
+
+msgid "rules.synergy.outputs"
+msgstr "L’équipe comprend : {groups}"
+
+msgid "rules.tags.all"
+msgstr "Tous : {tags}"
+
+msgid "rules.tags.any"
+msgstr "Au moins un : {tags}"
+
+msgid "rules.tags.none"
+msgstr "Aucun : {tags}"
+
+msgid "rules.tags.target"
+msgstr "{target} ({tags})"
+
+msgid "rules.target.adjacent_allies"
+msgstr "alliés adjacents"
+
+msgid "rules.target.all_allies"
+msgstr "tous les alliés"
+
+msgid "rules.target.all_enemies"
+msgstr "tous les ennemis"
+
+msgid "rules.target.all_units"
+msgstr "toutes les unités au combat"
+
+msgid "rules.target.allied_minion"
+msgstr "serviteur allié le plus proche"
+
+msgid "rules.target.event_source"
+msgstr "source de l'événement"
+
+msgid "rules.target.event_target"
+msgstr "cible de l'événement"
+
+msgid "rules.target.farthest_enemy"
+msgstr "ennemi le plus éloigné"
+
+msgid "rules.target.linked_ally"
+msgstr "alliés liés"
+
+msgid "rules.target.lowest_health_ally"
+msgstr "allié aux PV les plus faibles"
+
+msgid "rules.target.marked_enemy"
+msgstr "ennemi marqué par cette équipe"
+
+msgid "rules.target.nearest_ally"
+msgstr "allié le plus proche"
+
+msgid "rules.target.nearest_enemy"
+msgstr "ennemi le plus proche"
+
+msgid "rules.target.random_enemy"
+msgstr "un ennemi aléatoire"
+
+msgid "rules.target.self"
+msgstr "soi-même"
+
+msgid "rules.trigger.action_released"
+msgstr "Effet déclenché"
+
+msgid "rules.trigger.adjacent_main_ability_cast"
+msgstr "Quand un allié adjacent lance une capacité principale"
+
+msgid "rules.trigger.after_main_ability_cast"
+msgstr "Après avoir lancé une capacité principale"
+
+msgid "rules.trigger.allied_minion_defeated"
+msgstr "Quand un serviteur allié tombe"
+
+msgid "rules.trigger.battle_completed"
+msgstr "À la fin du combat"
+
+msgid "rules.trigger.battle_started"
+msgstr "Au début du combat"
+
+msgid "rules.trigger.before_main_ability_cast"
+msgstr "Avant de lancer une capacité principale"
+
+msgid "rules.trigger.core_damaged"
+msgstr "Quand un héros subit des dégâts"
+
+msgid "rules.trigger.counter_changed"
+msgstr "au changement des compteurs"
+
+msgid "rules.trigger.counter_threshold_reached"
+msgstr "au franchissement du seuil"
+
+msgid "rules.trigger.damage_guarded"
+msgstr "lors d’une interception"
+
+msgid "rules.trigger.damage_resolved"
+msgstr "À la résolution des dégâts"
+
+msgid "rules.trigger.haste_gained"
+msgstr "Hâte obtenue"
+
+msgid "rules.trigger.healing_resolved"
+msgstr "À la résolution d'un soin"
+
+msgid "rules.trigger.item_disabled"
+msgstr "Quand un objet est désactivé"
+
+msgid "rules.trigger.last_minion_defeated"
+msgstr "Quand le dernier serviteur allié tombe"
+
+msgid "rules.trigger.linked_main_ability_cast"
+msgstr "après l’activation d’une unité liée"
+
+msgid "rules.trigger.main_ability_cooldown_ready"
+msgstr "À la fin du délai d’une capacité principale"
+
+msgid "rules.trigger.mark_applied"
+msgstr "à l’application d’une marque"
+
+msgid "rules.trigger.mechanic_resolved"
+msgstr "à la résolution d’une mécanique"
+
+msgid "rules.trigger.minion_defeated"
+msgstr "Quand un serviteur tombe"
+
+msgid "rules.trigger.pollution_changed"
+msgstr "Quand la pollution change"
+
+msgid "rules.trigger.pollution_threshold_reached"
+msgstr "Quand la pollution franchit un seuil"
+
+msgid "rules.trigger.shield_gained"
+msgstr "À l'obtention d'un bouclier"
+
+msgid "rules.trigger.status_applied"
+msgstr "À l'application d'un état"
+
+msgid "rules.trigger.time_limit_resolved"
+msgstr "À la fin du verdict de vie"
+
+msgid "rules.trigger.unit_defeated"
+msgstr "à la mort d’une carte"
+
+msgid "rules.unknown"
+msgstr "Inconnu"
+
