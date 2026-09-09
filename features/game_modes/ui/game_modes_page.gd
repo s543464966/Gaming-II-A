@@ -11,8 +11,8 @@ const TRANSITION_SECONDS = 0.42
 const BROWSE_SECONDS = 0.38
 const CAROUSEL_STEP = 727.5
 const NEIGHBOR_SCALE = 0.88
-const DESIGN_SIZE = Vector2(941, 1672)
-const FRAME_RECT = Rect2(107, 196, 725, 1044)
+const DESIGN_SIZE = Vector2(941, 1476)
+const FRAME_RECT = Rect2(107, 0, 725, 1044)
 const ATLAS = preload("res://features/game_modes/ui/art/mode_atlas.png")
 const CORNER_CLIP = preload("res://features/game_modes/ui/art/cut_corner.gdshader")
 var session: RefCounted
@@ -29,7 +29,6 @@ var _expansion: float = 0.0
 var _browse_progress: float = 1.0
 var _browse_direction: float = 1.0
 var _tab_motion: Tween
-var _return_button: Button
 var _background: Control
 @onready var tabs: StandardTabGroup = $Tabs
 
@@ -39,25 +38,9 @@ func bind_player(player: RefCounted, flow: RefCounted, overlay: CanvasLayer) -> 
 	progression = flow
 	overlays = overlay
 
-## 保留宿主的统一关闭组件，只替换模式页内的返回材质和位置。
-func bind_return_button(button: Button) -> void:
-	_return_button = button
-	for state: String in ["normal", "hover", "pressed", "disabled", "focus"]:
-		button.add_theme_stylebox_override(state, StyleBoxEmpty.new())
-	for event: Signal in [button.button_down, button.button_up, button.mouse_entered, button.mouse_exited, button.focus_entered, button.focus_exited]:
-		event.connect(_refresh_return_tint)
-
 ## 模式过渡只改变框架背景的透明度，铺屏与安全区仍由统一页面结构维护。
 func bind_background(background: Control) -> void:
 	_background = background
-
-## 返回热区与装饰分开布局，原生焦点和按压仍使用共享明度令牌反馈。
-func _refresh_return_tint() -> void:
-	if not is_node_ready() or not is_instance_valid(_return_button): return
-	var brightness: float = UI.tokens.entry_normal_brightness
-	if _return_button.is_pressed(): brightness = UI.tokens.entry_pressed_brightness
-	elif _return_button.is_hovered() or _return_button.has_focus(): brightness = UI.tokens.entry_hover_brightness
-	$ReturnArt.self_modulate = Color(brightness, brightness, brightness)
 
 ## 原生页签继续统一管理选择，独立场景预览不补造玩家。
 func _ready() -> void:
@@ -248,7 +231,7 @@ func _set_expansion(value: float) -> void:
 	$Chapter/ArtStage.size = FRAME_RECT.size.lerp(expanded.size, value)
 	$Chapter/ArtStage.set_home_blend(value)
 	if is_instance_valid(_background): _background.modulate.a = 1.0 - value
-	for part in [$Chapter/Neighbors, $Chapter/Chrome, $Tabs, $Unavailable, $ReturnArt]:
+	for part in [$Chapter/Neighbors, $Chapter/Chrome, $Tabs, $Unavailable]:
 		part.modulate.a = 1.0 - value
 
 ## 画布等比落在安全区；背景展开仍使用整个视口，避免 Home 交接时变换裁切。
@@ -259,15 +242,8 @@ func _layout_art() -> void:
 	var origin: Vector2 = (size - DESIGN_SIZE * ratio) * 0.5
 	$Chapter.position = origin
 	$Chapter.scale = Vector2.ONE * ratio
-	$Tabs.position = origin + Vector2(34, 1454) * ratio
+	$Tabs.position = Vector2(origin.x + 34 * ratio, size.y - 218 * ratio)
 	$Tabs.scale = Vector2.ONE * ratio
-	$ReturnArt.position = origin + Vector2(31, 40) * ratio
-	$ReturnArt.scale = Vector2.ONE * ratio
-	if is_instance_valid(_return_button):
-		_return_button.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
-		_return_button.size = Vector2(144, 144)
-		_return_button.scale = Vector2.ONE * ratio
-		_return_button.global_position = $ReturnArt/Icon.get_global_rect().get_center() - _return_button.size * ratio * 0.5
 	_set_expansion(_expansion)
 	if _browsing: _set_browse_progress(_browse_progress)
 

@@ -82,7 +82,7 @@ static func validate(request: Dictionary) -> Array[String]:
 			if source.scope == "battle" and condition.kind in [T.Condition.EventSourceIsAlly, T.Condition.EventSourceIsEnemy, T.Condition.EventTargetIsEnemy]: errors.append("整场宿主没有默认所属队伍。")
 		for action in MechanicSchema.flatten(source.actions):
 			if source.scope != "card" and MechanicSchema.is_mechanic(int(action.kind)): errors.append("组合机制需要明确的卡牌宿主。")
-			if source.scope != "card" and action.get("power_multiplier", 0) > 0: errors.append("非卡牌宿主没有可引用的输出属性。")
+			if source.scope != "card" and (action.get("power_multiplier", 0) > 0 or action.get("amount_source", T.AmountSource.Fixed) != T.AmountSource.Fixed): errors.append("非卡牌宿主没有可引用的输出属性。")
 			if action.kind == T.CombatAction.ChangePollution and resource.is_empty(): errors.append("效果依赖尚未启用的污染机制。")
 			if action.kind in MechanicSchema.MAIN_ABILITY_REFERENCES and not action.main_ability_id in visited:
 				visited.append(action.main_ability_id)
@@ -253,11 +253,13 @@ static func _deployment(request: Dictionary) -> Array[String]:
 		var ammo: Variant = definition.get("ammo_capacity", 0)
 		if not ammo is int or ammo < 0 or (ammo > 0 and definition.kind != CardTypes.Kind.ItemCard): errors.append("弹药扩充容量仅允许道具使用非负整数。")
 		var growth_bonus: Variant = definition.get("growth_bonus_ratio", 0)
-		var fragment_bonus: Variant = definition.get("fragment_bonus_ratio", 0)
+		var training_bonus: Variant = definition.get("training_bonus_ratio", 0)
+		var damage_growth: Variant = definition.get("base_damage_growth_ratio", 0)
+		if not (damage_growth is int or damage_growth is float) or not is_finite(float(damage_growth)) or damage_growth < 0: errors.append("基础伤害成长必须是有限非负比例。")
 		var valid_growth = (growth_bonus is int or growth_bonus is float) and is_finite(float(growth_bonus)) and growth_bonus >= 0
 		if not valid_growth: errors.append("成长加成必须是有限非负比例。")
-		if not (fragment_bonus is int or fragment_bonus is float) or not is_finite(float(fragment_bonus)) or fragment_bonus < 0 or (valid_growth and fragment_bonus > growth_bonus): errors.append("碎片加值必须属于成长加值。")
-		if not _positive(definition.get("max_health")) or not _positive(definition.get("main_ability_strength_multiplier", 1)): errors.append("载体生命或主能力强度无效。")
+		if not (training_bonus is int or training_bonus is float) or not is_finite(float(training_bonus)) or training_bonus < 0 or (valid_growth and training_bonus > growth_bonus): errors.append("培养加值必须属于成长加值。")
+		if not _positive(definition.get("max_health")) or not _positive(definition.get("main_ability_strength_multiplier", 1)) or not _positive(definition.get("base_point_multiplier", 1)): errors.append("载体生命或主能力强度无效。")
 		if not (card.get("health") is int or card.get("health") is float) or not is_finite(float(card.health)) or card.health < 0: errors.append("载体当前生命无效。")
 		if not definition.get("output_type") in T.Output.values() or not definition.get("main_abilities") is Array or not definition.get("rules") is Array or not definition.get("modifiers") is Dictionary: return ["载体分类或能力集合格式错误。"]
 		var codec = AbilitySchema.new()

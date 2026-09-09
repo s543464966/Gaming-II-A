@@ -62,11 +62,10 @@ static func _main_ability_lines(state: Dictionary) -> Array:
 			"haste": AttributeIcons.format_rule("ui.combat.haste", {"percent": RuleText.number(active.get("haste_ratio", 0) * 100)}, false) if active.get("haste_ratio", 0) > 0 else ""}, false))
 	return lines
 
-## 弹药与穿盾中毒是当前状态，不改写基础属性或创建第二份规则。
+## 弹药摘要只读当前状态，不改写基础属性或创建第二份规则。
 static func _condition_lines(state: Dictionary, iconic: bool = false) -> Array:
 	var lines: Array = []
 	if state.get("ammo_capacity", 0) > 0: lines.append(AttributeIcons.format_rule("ui.combat.ammo", {"remaining": state.ammo_remaining, "capacity": state.ammo_capacity}, iconic))
-	if state.get("poison_penetrated", false): lines.append(ContentText.text("ui.combat.poison"))
 	return lines
 
 ## 卡面只显示当前存在的状态和机制短标签，不显示操作教学或内部计数键。

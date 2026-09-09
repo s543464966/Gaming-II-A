@@ -3,13 +3,17 @@ extends VBoxContainer
 ## 战后奖励界面，只通过冒险事务提交选择和账号奖励。
 
 signal finished
+signal settings_requested
 const UI = preload("res://ui/components/ui.gd")
 const C = preload("res://game_content/runtime/content_types.gd")
 const Dice = preload("res://features/game_modes_pve_adventure/domain/reward_dice.gd")
 const Receipt = preload("res://features/game_modes_pve_adventure/ui/reward_receipt.tscn")
+const AuroraChoice = preload("res://features/game_modes_pve_adventure/ui/aurora_choice.tscn")
+const Artwork = preload("res://features/game_modes_pve_adventure/ui/event_artwork.gd")
 const RewardCard = preload("res://features/game_modes_pve_adventure/ui/reward_card.tscn")
 var session: PlayerSessionState
 var progression: AdventureProgression
+var audio: AudioService
 var _aurora_upgrade_id: String = ""
 var _feedback_renderer: Callable
 var _timeout_pending: bool = false
@@ -26,6 +30,8 @@ var _roll_revision: int = 0
 
 ## 无会话时只预览场景骨架，不创建账号或章节状态。
 func _ready() -> void:
+	$AuroraHeader/Header.settings_requested.connect(func(): settings_requested.emit())
+	resized.connect(_layout_aurora_hero)
 	_timer.theme_type_variation = &"GrowthLabel"
 	# 缩小纸面视觉高度，同时保留标准触摸区域；不修改共享 Theme。
 	for state: String in ["normal", "hover", "pressed", "disabled"]:
@@ -41,9 +47,11 @@ func _ready() -> void:
 	UI.bind_text(_feedback, _feedback_text)
 
 ## 页面只持有会话入口，回滚后重新查询其最新 Owner。
-func configure(player: PlayerSessionState, commands: AdventureProgression, victory_seconds: float = -1.0) -> void:
+func configure(player: PlayerSessionState, commands: AdventureProgression, victory_seconds: float = -1.0, sound: AudioService = null) -> void:
 	session = player
 	progression = commands
+	audio = sound
+	$DiceTray.audio = audio
 	_roll_revision += 1
 	_aurora_upgrade_id = ""
 	_retry_after = 0.0
@@ -72,6 +80,10 @@ func refresh() -> void:
 	var build: RunBuild = session.build
 	var rewards: RewardDice = build.rewards
 	var aurora_only: bool = progression.is_aurora_node()
+	$AuroraHeader.visible = aurora_only
+	_layout_aurora_hero()
+	$Footer/Completion.anchor_left = 0.1 if aurora_only else 0.25
+	$Footer/Completion.anchor_right = 0.9 if aurora_only else 0.75
 	var choosing: bool = not rewards.choice.is_empty()
 	$ChoiceHeader.visible = choosing
 	$ChoiceGap.visible = choosing
@@ -92,12 +104,13 @@ func refresh() -> void:
 	$Footer/Completion/Complete.text = "ui.reward.complete_build"
 	$Footer/Completion/Complete.disabled = build.aurora_rewards.remaining() > 0 or not rewards.choice.is_empty() or unrolled
 	$ChoiceHeader/Timer.visible = not rewards.choice.is_empty()
-	$Resources.visible = not choosing and $Resources/Items.get_child_count() > 0
+	$Resources.visible = not aurora_only and not choosing and $Resources/Items.get_child_count() > 0
 	if aurora_only:
 		$Footer/Actions.hide()
 		$Footer/Actions/Reroll.hide()
 		$ChoiceHeader/Timer.hide()
 		$Footer/Completion/Complete.disabled = build.aurora_rewards.remaining() > 0
+		$Footer/Completion/Complete.text = "ui.reward.complete_build"
 		_aurora_rewards()
 		return
 	if not rewards.choice.is_empty():
@@ -144,7 +157,7 @@ func _refresh_receipts() -> void:
 		item.get_node("Icon/Marker").text = row.marker
 		item.get_node("Icon/Marker").visible = not row.marker.is_empty()
 		item.tooltip_text = row.title
-	$Resources.visible = session.build.rewards.choice.is_empty() and $Resources/Items.get_child_count() > 0
+	$Resources.visible = not progression.is_aurora_node() and session.build.rewards.choice.is_empty() and $Resources/Items.get_child_count() > 0
 
 ## 骰子回执按本场身份取已用结果，星能按本次已领选项取锁定金额与内容。
 func _receipt_rows() -> Array[Dictionary]:
@@ -235,6 +248,7 @@ func _candidate_action(action: String, index: int, revision: int) -> void:
 ## 动态正文按钮在输入结束后执行；版本随重建递增，迟到操作不能影响新列表。
 func _reward_button(text: String, action: Callable) -> Button:
 	var button: Button = UI.button(text)
+	button.theme_type_variation = &"DetailActionButton"
 	button.pressed.connect(_apply_view_action.bind(action, _choice_revision), CONNECT_DEFERRED)
 	return button
 
@@ -252,7 +266,7 @@ func _candidate_view(reward: Dictionary) -> Dictionary:
 	if reward.kind in [C.DiceReward.Minion, C.DiceReward.ItemCard, C.DiceReward.HeroGrowth]:
 		var cards: Array = session.build.cards.filter(func(card): return card.definition_id == row.id)
 		var copies: int = 1 if cards.is_empty() else int(cards[0].copies) + 1
-		var definition: Dictionary = CardGrowth.project(BattleAssembly.new(session.content).base_definition(row.id), session.build.permanent_growth.get(row.id, {"star_level": 1, "fragment_steps": 0}), copies, session.content.data.growth_rules[0])
+		var definition: Dictionary = CardGrowth.project(BattleAssembly.new(session.content).base_definition(row.id), session.build.permanent_growth.get(row.id, {"star_level": 1, "training_steps": 0}), copies, session.content.data.growth_rules[0])
 		detail = ContentPreview.card_detail(definition)
 		detail.scope = ""
 	else:
@@ -280,10 +294,24 @@ func _reward_title(reward: Dictionary) -> String:
 	var row: Dictionary = session.adventure.reward_record(reward)
 	return ContentText.format_key("ui.reward.named", {"kind": tr("ui.reward.kind." + String(C.DiceReward.find_key(reward.kind)).to_snake_case()), "name": ContentText.field(row), "count": reward.amount})
 
-## 八项奖励只展示已保存结果，强化目标选择不提前消费领取额度。
+## 每轮只展示三个已锁定选项，点击领取后立即刷新下一轮三选一。
 func _aurora_rewards() -> void:
 	var rewards: AuroraRewards = session.build.aurora_rewards
-	_body.add_child(UI.bound_label(func(): return ContentText.format_key("ui.aurora.progress", {"count": rewards.trigger_count, "max": session.content.data.aurora_reward_rules[0].max_triggers, "remaining": rewards.remaining()}), 26))
+	if progression.is_aurora_node():
+		var route: RouteState = session.current_route()
+		$AuroraHeader/Header.configure(session, ContentText.field(session.content.node_definition(route.nodes[route.current]), "title"))
+		$AuroraHeader/Trigger.text = ContentText.format_key("ui.event.ruins.trigger", {"count": rewards.trigger_count})
+		$AuroraHeader/Round.text = ContentText.format_key("ui.event.ruins.round", {"current": mini(rewards.selected.size() + 1, rewards.trigger_count), "total": rewards.trigger_count}) if rewards.remaining() > 0 else tr("ui.aurora.claimed")
+		UI.clear($AuroraHeader/Stars)
+		for index: int in range(session.content.data.aurora_reward_rules[0].max_triggers):
+			var star: Label = UI.label("✦", 32)
+			star.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+			star.autowrap_mode = TextServer.AUTOWRAP_OFF
+			star.custom_minimum_size.x = 34
+			star.add_theme_color_override("font_color", Color("d4b36f") if index < rewards.trigger_count else Color("8c8576"))
+			$AuroraHeader/Stars.add_child(star)
+	else:
+		_body.add_child(UI.bound_label(func(): return ContentText.format_key("ui.aurora.progress", {"count": rewards.trigger_count, "max": session.content.data.aurora_reward_rules[0].max_triggers, "remaining": rewards.remaining()}), 26))
 	if rewards.offers.is_empty():
 		_body.add_child(UI.label("ui.aurora.limit", 22))
 		return
@@ -297,20 +325,61 @@ func _aurora_rewards() -> void:
 			_body.add_child(target)
 		_body.add_child(_reward_button("ui.common.cancel", _cancel_aurora_upgrade))
 		return
-	for offer: Dictionary in rewards.offers:
+	if rewards.remaining() <= 0:
+		for id: String in rewards.selected:
+			var selected: Dictionary = rewards.offers.filter(func(offer): return offer.id == id)[0]
+			var definition: Dictionary = session.content.get_record("aurora_rewards", id)
+			var receipt: Label = UI.label(ContentText.field(definition) + " · " + _aurora_detail(definition, selected), 23)
+			receipt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			_body.add_child(receipt)
+		return
+	var choices := HBoxContainer.new()
+	choices.add_theme_constant_override("separation", 12)
+	_body.add_child(choices)
+	for offer_id: String in rewards.active_offer_ids:
+		var offer: Dictionary = rewards.available(offer_id)
 		var row: Dictionary = session.content.get_record("aurora_rewards", offer.id)
-		var box: VBoxContainer = _section()
-		box.add_child(UI.bound_label(func(): return ContentText.field(row), 25))
-		box.add_child(UI.bound_label(_aurora_detail.bind(row, offer), 20))
-		var chosen: bool = offer.id in rewards.selected
-		var button: Button = _reward_button("ui.aurora.claimed" if chosen else "ui.reward.choose_aurora", _choose_aurora.bind(offer.id))
-		button.disabled = chosen or rewards.remaining() <= 0
-		box.add_child(button)
+		var card: Button = AuroraChoice.instantiate()
+		choices.add_child(card)
+		card.set_meta("aurora_id", offer.id)
+		card.get_node("Margin/Content/Title").text = ContentText.field(row)
+		card.get_node("Margin/Content/Detail").text = _aurora_detail(row, offer)
+		for texture: Texture2D in _aurora_art(row, offer):
+			var icon: TextureRect = UI.texture(texture, Vector2(0, 140))
+			icon.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			card.get_node("Margin/Content/Art").add_child(icon)
+		card.tooltip_text = ContentText.field(row) + "\n" + _aurora_detail(row, offer)
+		card.pressed.connect(_apply_view_action.bind(_choose_aurora.bind(offer.id), _choice_revision), CONNECT_DEFERRED)
+		_fit_aurora_card.call_deferred(card)
+
+## 三栏纸牌随真实长文增长，由外层滚动承载，不压缩文字与命中区域。
+func _fit_aurora_card(card: Button) -> void:
+	if not is_instance_valid(card) or not card.is_inside_tree(): return
+	card.custom_minimum_size.y = maxf(400.0, card.get_node("Margin").get_combined_minimum_size().y)
+
+## 高度变化只缩小祭坛留白，横屏和小屏保留完整三选一与底部动作。
+func _layout_aurora_hero() -> void:
+	if not is_node_ready(): return
+	$AuroraHeader/Hero.custom_minimum_size.y = clampf(size.y * 0.23, 0.0, 280.0) if size.y > 800.0 else 0.0
+	for card: Node in _body.find_children("AuroraChoice*", "Button", true, false): _fit_aurora_card.call_deferred(card)
+
+## 数值奖励用资源图标，碎片与遗物用这次已锁定内容的实际原图。
+func _aurora_art(row: Dictionary, offer: Dictionary) -> Array[Texture2D]:
+	match int(row.aurora_reward_kind):
+		C.AuroraReward.StarStone: return [Artwork.STAR]
+		C.AuroraReward.Gold: return [Artwork.GOLD]
+		C.AuroraReward.Stamina: return [Artwork.STAMINA]
+		C.AuroraReward.CardUpgrade: return [Artwork.UPGRADE]
+	var textures: Array[Texture2D] = []
+	for id: String in offer.content_ids:
+		textures.append(Artwork.content(session.content, "relics" if row.aurora_reward_kind == C.AuroraReward.Relic else "items", id))
+	return textures
 
 ## 货币显示锁定数额，碎片与遗物显示具体内容，卡牌强化保留目标选择。
 func _aurora_detail(row: Dictionary, offer: Dictionary) -> String:
 	if row.aurora_reward_kind in [C.AuroraReward.StarStone, C.AuroraReward.Gold, C.AuroraReward.Stamina]:
-		return ContentText.format_key("ui.aurora.amount", {"name": ContentText.field(row), "amount": offer.amount})
+		return "+%d" % offer.amount
 	if row.aurora_reward_kind == C.AuroraReward.CardUpgrade: return ContentText.field(row, "description")
 	var lines: PackedStringArray = []
 	for id: String in offer.content_ids:
@@ -331,26 +400,20 @@ func _cancel_aurora_upgrade() -> void:
 	_aurora_upgrade_id = ""
 	refresh()
 
-## 分区只承载动态内容，稳定布局由奖励场景保存。
-func _section() -> VBoxContainer:
-	var panel = PanelContainer.new()
-	_body.add_child(panel)
-	var box = VBoxContainer.new()
-	panel.add_child(box)
-	return box
-
 ## 失败刷新回滚后的事实，不把局部动画或按钮状态当成已领取。
 func _command(action: String, index: int = -1, id: String = "", target: String = "") -> String:
 	var offset: int = $Scroll.scroll_vertical
 	var error: String = progression.reward_command(action, index, id, target)
 	_command_failed = not error.is_empty()
 	if not error.is_empty():
+		if audio != null: audio.play_ui_cue("sfx.ui.error", -3.0)
 		_set_feedback(func(): return error)
 	else:
+		if audio != null and action in ["open", "choose", "aurora", "complete"]: audio.play_ui_cue("sfx.adventure.reward", -3.0)
 		if action == "reroll": _roll_revision += 1
 		_set_feedback(func(): return "")
 	refresh()
-	$Scroll.set_deferred("scroll_vertical", 0 if action in ["open", "choose", "timeout"] else offset)
+	$Scroll.set_deferred("scroll_vertical", 0 if action in ["open", "choose", "timeout", "aurora"] else offset)
 	return error
 
 ## 保存结果和当前选择各自持有展示来源，切换语言不重新发起操作。
@@ -383,13 +446,15 @@ func _refresh_completion() -> void:
 
 ## 动态条目自行重绑文字，页面不重建列表、撤销拖拽或改变倒计时。
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready(): _translate_header.call_deferred()
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		if progression != null and progression.is_aurora_node(): refresh.call_deferred()
+		else: _translate_header.call_deferred()
 
 ## 奖励页动态内容统一使用现有黑金标题和纸面控件，不改变共享主题或交互。
 func _style_reward_content(parent: Node) -> void:
 	if not is_inside_tree() or is_queued_for_deletion(): return
 	for child in parent.get_children():
-		if child.is_queued_for_deletion() or child in [$DiceTray, $ChoiceHeader, _choice_cards]: continue
+		if child.is_queued_for_deletion() or child in [$DiceTray, $ChoiceHeader, _choice_cards, $AuroraHeader, _body]: continue
 		if child is PanelContainer:
 			child.theme_type_variation = &"DetailSupplement"
 		elif child is Button:

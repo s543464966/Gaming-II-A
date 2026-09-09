@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://ui/components/touch_button.gd" id="touch_input"]
 
@@ -10,9 +10,6 @@
 [ext_resource type="Texture2D" path="res://ui/design_system/themes/detail_title.png" id="9"]
 [ext_resource type="Texture2D" path="res://ui/design_system/themes/detail_supplement.png" id="10"]
 [ext_resource type="Texture2D" path="res://ui/design_system/themes/detail_paper.png" id="11"]
-[ext_resource type="Texture2D" path="res://ui/design_system/icons/common/home_gold.png" id="12"]
-[ext_resource type="Texture2D" path="res://ui/design_system/icons/common/home_star_stone.png" id="13"]
-[ext_resource type="Texture2D" path="res://ui/design_system/icons/common/home_stamina.png" id="14"]
 
 [ext_resource type="PackedScene" path="res://ui/components/unavailable_view.tscn" id="unavailable"]
 [ext_resource type="PackedScene" path="res://ui/components/content/content_artwork.tscn" id="artwork"]
@@ -66,38 +63,6 @@ content_margin_top = 18.0
 content_margin_right = 22.0
 content_margin_bottom = 18.0
 
-[sub_resource type="StyleBoxFlat" id="Focus"]
-bg_color = Color(0, 0, 0, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.94, 0.8, 0.52, 1)
-
-[sub_resource type="StyleBoxFlat" id="TabMarker"]
-bg_color = Color(0.075, 0.065, 0.05, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.76, 0.58, 0.31, 1)
-
-[sub_resource type="StyleBoxFlat" id="ResourceSurface"]
-bg_color = Color(0.035, 0.032, 0.028, 0.94)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.63, 0.5, 0.3, 0.72)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-content_margin_left = 14.0
-content_margin_top = 8.0
-content_margin_right = 14.0
-content_margin_bottom = 8.0
-
 [node name="ShopPage" type="Control"]
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -111,110 +76,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 42
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 14
 
 [node name="Column" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
 theme_override_constants/separation = 10
-
-[node name="Header" type="HBoxContainer" parent="Margin/Column"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Title" type="Label" parent="Margin/Column/Header"]
-custom_minimum_size = Vector2(126, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.82, 0.63, 1)
-theme_override_colors/font_outline_color = Color(0.055, 0.038, 0.024, 0.96)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 44
-text = "ui.page.shop"
-vertical_alignment = 1
-
-[node name="Resources" type="PanelContainer" parent="Margin/Column/Header"]
-custom_minimum_size = Vector2(360, 58)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("ResourceSurface")
-
-[node name="Row" type="HBoxContainer" parent="Margin/Column/Header/Resources"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Gold" type="HBoxContainer" parent="Margin/Column/Header/Resources/Row"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 5
-
-[node name="Icon" type="TextureRect" parent="Margin/Column/Header/Resources/Row/Gold"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("12")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Value" type="Label" parent="Margin/Column/Header/Resources/Row/Gold"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.9, 0.82, 0.63, 1)
-theme_override_font_sizes/font_size = 22
-text = "0"
-vertical_alignment = 1
-text_overrun_behavior = 3
-
-[node name="StarStone" type="HBoxContainer" parent="Margin/Column/Header/Resources/Row"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 5
-
-[node name="Icon" type="TextureRect" parent="Margin/Column/Header/Resources/Row/StarStone"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("13")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Value" type="Label" parent="Margin/Column/Header/Resources/Row/StarStone"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.9, 0.82, 0.63, 1)
-theme_override_font_sizes/font_size = 22
-text = "0"
-vertical_alignment = 1
-text_overrun_behavior = 3
-
-[node name="Stamina" type="HBoxContainer" parent="Margin/Column/Header/Resources/Row"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 5
-
-[node name="Icon" type="TextureRect" parent="Margin/Column/Header/Resources/Row/Stamina"]
-custom_minimum_size = Vector2(27, 30)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("14")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Value" type="Label" parent="Margin/Column/Header/Resources/Row/Stamina"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.9, 0.82, 0.63, 1)
-theme_override_font_sizes/font_size = 22
-text = "0/0"
-vertical_alignment = 1
-text_overrun_behavior = 3
-
-[node name="CloseSpace" type="Control" parent="Margin/Column/Header"]
-custom_minimum_size = Vector2(108, 0)
-layout_mode = 2
 
 [node name="Views" type="Control" parent="Margin/Column"]
 layout_mode = 2
@@ -356,102 +221,85 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 8.0
-offset_bottom = -8.0
+offset_top = 6.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("11")
-patch_margin_left = 20
-patch_margin_top = 18
-patch_margin_right = 20
-patch_margin_bottom = 18
-modulate = Color(0.96, 0.93, 0.86, 1)
+patch_margin_left = 18
+patch_margin_top = 10
+patch_margin_right = 18
+patch_margin_bottom = 10
 
 [node name="Divider1" type="ColorRect" parent="Margin/Column/Views/Overview/Tabs/Bar"]
 layout_mode = 1
 anchor_left = 0.2
 anchor_right = 0.2
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = 22.0
+offset_left = 0.0
+offset_top = 12.0
 offset_right = 1.0
-offset_bottom = -22.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.55, 0.47, 0.34, 0.58)
+color = Color(0.60, 0.49, 0.33, 0.52)
 
 [node name="Divider2" type="ColorRect" parent="Margin/Column/Views/Overview/Tabs/Bar"]
 layout_mode = 1
 anchor_left = 0.4
 anchor_right = 0.4
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = 22.0
+offset_left = 0.0
+offset_top = 12.0
 offset_right = 1.0
-offset_bottom = -22.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.55, 0.47, 0.34, 0.58)
+color = Color(0.60, 0.49, 0.33, 0.52)
 
 [node name="Divider3" type="ColorRect" parent="Margin/Column/Views/Overview/Tabs/Bar"]
 layout_mode = 1
 anchor_left = 0.6
 anchor_right = 0.6
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = 22.0
+offset_left = 0.0
+offset_top = 12.0
 offset_right = 1.0
-offset_bottom = -22.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.55, 0.47, 0.34, 0.58)
+color = Color(0.60, 0.49, 0.33, 0.52)
 
 [node name="Divider4" type="ColorRect" parent="Margin/Column/Views/Overview/Tabs/Bar"]
 layout_mode = 1
 anchor_left = 0.8
 anchor_right = 0.8
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = 22.0
+offset_left = 0.0
+offset_top = 12.0
 offset_right = 1.0
-offset_bottom = -22.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.55, 0.47, 0.34, 0.58)
+color = Color(0.60, 0.49, 0.33, 0.52)
 
 [node name="Selection" type="NinePatchRect" parent="Margin/Column/Views/Overview/Tabs/Bar"]
 layout_mode = 0
-offset_left = 134.4
-offset_right = 268.8
-offset_bottom = 108.0
+offset_left = 133.4
+offset_top = 4.0
+offset_right = 269.8
+offset_bottom = 104.0
 mouse_filter = 2
 texture = ExtResource("9")
-patch_margin_left = 22
-patch_margin_top = 20
-patch_margin_right = 22
-patch_margin_bottom = 20
-modulate = Color(0.92, 0.78, 0.56, 1)
-
-[node name="Marker" type="Panel" parent="Margin/Column/Views/Overview/Tabs/Bar/Selection"]
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -7.0
-offset_top = -9.0
-offset_right = 7.0
-offset_bottom = 5.0
-grow_horizontal = 2
-pivot_offset = Vector2(7, 7)
-rotation = 0.785398
-mouse_filter = 2
-theme_override_styles/panel = SubResource("TabMarker")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
 [node name="Recommend" type="Button" parent="Margin/Column/Views/Overview/Tabs/Bar"]
 layout_mode = 1
@@ -463,12 +311,12 @@ theme_override_styles/hover = SubResource("Empty")
 theme_override_styles/pressed = SubResource("Empty")
 theme_override_styles/hover_pressed = SubResource("Empty")
 theme_override_styles/disabled = SubResource("Empty")
-theme_override_styles/focus = SubResource("Focus")
+theme_override_styles/focus = SubResource("Empty")
 mouse_default_cursor_shape = 2
 script = ExtResource("touch_input")
 
 [node name="Caption" type="Label" parent="Margin/Column/Views/Overview/Tabs/Bar/Recommend"]
-self_modulate = Color(0.16, 0.13, 0.09, 1)
+self_modulate = Color(0.10, 0.09, 0.07, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -496,12 +344,12 @@ theme_override_styles/hover = SubResource("Empty")
 theme_override_styles/pressed = SubResource("Empty")
 theme_override_styles/hover_pressed = SubResource("Empty")
 theme_override_styles/disabled = SubResource("Empty")
-theme_override_styles/focus = SubResource("Focus")
+theme_override_styles/focus = SubResource("Empty")
 mouse_default_cursor_shape = 2
 script = ExtResource("touch_input")
 
 [node name="Caption" type="Label" parent="Margin/Column/Views/Overview/Tabs/Bar/Hero"]
-self_modulate = Color(0.9, 0.82, 0.63, 1)
+self_modulate = Color(0.87, 0.80, 0.61, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -529,12 +377,12 @@ theme_override_styles/hover = SubResource("Empty")
 theme_override_styles/pressed = SubResource("Empty")
 theme_override_styles/hover_pressed = SubResource("Empty")
 theme_override_styles/disabled = SubResource("Empty")
-theme_override_styles/focus = SubResource("Focus")
+theme_override_styles/focus = SubResource("Empty")
 mouse_default_cursor_shape = 2
 script = ExtResource("touch_input")
 
 [node name="Caption" type="Label" parent="Margin/Column/Views/Overview/Tabs/Bar/Minion"]
-self_modulate = Color(0.16, 0.13, 0.09, 1)
+self_modulate = Color(0.10, 0.09, 0.07, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -562,12 +410,12 @@ theme_override_styles/hover = SubResource("Empty")
 theme_override_styles/pressed = SubResource("Empty")
 theme_override_styles/hover_pressed = SubResource("Empty")
 theme_override_styles/disabled = SubResource("Empty")
-theme_override_styles/focus = SubResource("Focus")
+theme_override_styles/focus = SubResource("Empty")
 mouse_default_cursor_shape = 2
 script = ExtResource("touch_input")
 
 [node name="Caption" type="Label" parent="Margin/Column/Views/Overview/Tabs/Bar/Item"]
-self_modulate = Color(0.16, 0.13, 0.09, 1)
+self_modulate = Color(0.10, 0.09, 0.07, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -595,12 +443,12 @@ theme_override_styles/hover = SubResource("Empty")
 theme_override_styles/pressed = SubResource("Empty")
 theme_override_styles/hover_pressed = SubResource("Empty")
 theme_override_styles/disabled = SubResource("Empty")
-theme_override_styles/focus = SubResource("Focus")
+theme_override_styles/focus = SubResource("Empty")
 mouse_default_cursor_shape = 2
 script = ExtResource("touch_input")
 
 [node name="Caption" type="Label" parent="Margin/Column/Views/Overview/Tabs/Bar/Relic"]
-self_modulate = Color(0.16, 0.13, 0.09, 1)
+self_modulate = Color(0.10, 0.09, 0.07, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -83,6 +83,24 @@ msgstr "系统未能启动战斗。"
 msgid "ui.adventure.victory"
 msgstr "胜利"
 
+msgid "ui.audio.effects"
+msgstr "音效"
+
+msgid "ui.audio.music"
+msgstr "音乐"
+
+msgid "ui.audio.preference_recovered"
+msgstr "已从备份恢复音频设置。"
+
+msgid "ui.audio.preference_unreadable"
+msgstr "音频设置文件无法读取，原文件已保留；本次音量调整不会保存。"
+
+msgid "ui.audio.save_failed"
+msgstr "音频设置保存失败，请重试。"
+
+msgid "ui.audio.title"
+msgstr "声音"
+
 msgid "ui.aurora.amount"
 msgstr "{name} ×{amount}"
 
@@ -103,9 +121,6 @@ msgstr "强化"
 
 msgid "ui.aurora.upgrade_target"
 msgstr "{name} · 强化 +{level} → +{next}"
-
-msgid "ui.backpack.actions_unavailable"
-msgstr "使用与分解尚未开放。"
 
 msgid "ui.catalog.empty"
 msgstr "暂无可用内容"
@@ -152,9 +167,6 @@ msgstr "遗物"
 msgid "ui.category.team"
 msgstr "队伍"
 
-msgid "ui.collection.change_title"
-msgstr "更换英雄"
-
 msgid "ui.collection.change_warning"
 msgstr "更换英雄会结束当前章节构筑，清空本章随从、遗物、星能和进度；保留固定路线、永久天赋与账号资产。"
 
@@ -169,24 +181,6 @@ msgstr "已拥有"
 
 msgid "ui.collection.permanent_stats"
 msgstr "账号永久成长 · 不含本章强化与遗物"
-
-msgid "ui.collection.select_hero"
-msgstr "选择此英雄"
-
-msgid "ui.collection.star_confirm"
-msgstr "为{name}消耗 {cost} 片专属碎片，升至 ★{star}？\n剩余 {remaining} 片会保留。升星后永久强度为初始值的 {strength}%。\n进行中的章节不受影响。"
-
-msgid "ui.collection.star_max"
-msgstr "已达五星上限"
-
-msgid "ui.collection.star_success"
-msgstr "升星成功，多余碎片已保留。"
-
-msgid "ui.collection.star_unavailable"
-msgstr "尚未满足升星条件，碎片未消耗。"
-
-msgid "ui.collection.star_upgrade"
-msgstr "升星"
 
 msgid "ui.collection.unowned"
 msgstr "未获得"
@@ -223,9 +217,6 @@ msgstr "{status} · {count} 主能力"
 
 msgid "ui.combat.passive"
 msgstr "无主能力"
-
-msgid "ui.combat.poison"
-msgstr "中毒已入体：后获得的护盾不能抵挡"
 
 msgid "ui.combat.shield"
 msgstr " 盾{amount}"
@@ -266,9 +257,6 @@ msgstr "效果"
 msgid "ui.detail.ammo"
 msgstr "行动次数"
 
-msgid "ui.detail.fragments"
-msgstr "升星碎片"
-
 msgid "ui.detail.main_ability_clock"
 msgstr "{stat_cooldown_seconds} {remaining} / {cooldown} 秒{haste}"
 
@@ -281,8 +269,113 @@ msgstr "购买信息"
 msgid "ui.detail.stack_limit"
 msgstr "堆叠上限"
 
-msgid "ui.detail.usage"
-msgstr "用途"
+msgid "ui.event.encounter.accept"
+msgstr "接受契约"
+
+msgid "ui.event.encounter.cost_card"
+msgstr "失去 1 份：{name}"
+
+msgid "ui.event.encounter.cost_debuff"
+msgstr "本章全队 {stat} -{amount}"
+
+msgid "ui.event.encounter.cost_die"
+msgstr "失去 1 个未使用骰子"
+
+msgid "ui.event.encounter.cost_heading"
+msgstr "代价"
+
+msgid "ui.event.encounter.cost_no_card"
+msgstr "没有可失去的非英雄卡牌，不额外扣除"
+
+msgid "ui.event.encounter.cost_no_die"
+msgstr "没有可失去的骰子，不额外扣除"
+
+msgid "ui.event.encounter.cost_stamina"
+msgstr "消耗 {amount} 点体力"
+
+msgid "ui.event.encounter.leave"
+msgstr "放弃并离开"
+
+msgid "ui.event.encounter.refresh"
+msgstr "换一个组合"
+
+msgid "ui.event.encounter.replace"
+msgstr "替换 {name}"
+
+msgid "ui.event.encounter.replacement_prompt"
+msgstr "战场已满，选择一张非英雄卡牌替换。"
+
+msgid "ui.event.encounter.reward_card"
+msgstr "获得章节卡牌：{name}"
+
+msgid "ui.event.encounter.reward_dice"
+msgstr "获得 1 个额外骰子"
+
+msgid "ui.event.encounter.reward_heading"
+msgstr "收获"
+
+msgid "ui.event.encounter.reward_relic"
+msgstr "获得遗物：{name}"
+
+msgid "ui.event.encounter.reward_stone"
+msgstr "获得 {amount} 星石"
+
+msgid "ui.event.encounter.unknown_cost"
+msgstr "未知代价"
+
+msgid "ui.event.encounter.unknown_reward"
+msgstr "未知收获"
+
+msgid "ui.event.market.completed"
+msgstr "已完成"
+
+msgid "ui.event.market.confirm_leave"
+msgstr "确认离开"
+
+msgid "ui.event.market.continue"
+msgstr "继续逛"
+
+msgid "ui.event.market.exchange"
+msgstr "{cost} {cost_currency} → {reward} {reward_currency}"
+
+msgid "ui.event.market.exchange_action"
+msgstr "兑换"
+
+msgid "ui.event.market.exchanges"
+msgstr "货币兑换"
+
+msgid "ui.event.market.fragment"
+msgstr "{name}碎片 ×{amount}"
+
+msgid "ui.event.market.fragments"
+msgstr "卡牌碎片"
+
+msgid "ui.event.market.leave"
+msgstr "离开黑市"
+
+msgid "ui.event.market.leave_warning"
+msgstr "仍有未购买项目，离开后不能返回。"
+
+msgid "ui.event.market.once"
+msgstr "每项限购一次"
+
+msgid "ui.event.market.or"
+msgstr "或"
+
+msgid "ui.event.market.pay"
+msgstr "{amount} {currency}"
+
+msgid "ui.event.market.stamina"
+msgstr "体力 +{amount}"
+
+msgid "ui.event.market.supplies"
+msgstr "体力补给"
+
+msgid "ui.event.ruins.round"
+msgstr "本次第 {current}/{total} 轮"
+
+msgid "ui.event.ruins.trigger"
+msgstr "第 {count} 次星能"
 
 msgid "ui.filter.ability_facet"
 msgstr "能力效果"
@@ -292,6 +385,57 @@ msgstr "标签"
 
 msgid "ui.filter.output_type"
 msgstr "输出类型"
+
+msgid "ui.growth.balance"
+msgstr "星石 {amount}"
+
+msgid "ui.growth.maxed"
+msgstr "已达五星上限"
+
+msgid "ui.growth.progress"
+msgstr "培养进度 {current} / {total}"
+
+msgid "ui.growth.promote"
+msgstr "升星"
+
+msgid "ui.growth.promote_confirm"
+msgstr "将全部{category}升至 {star} 星？\n培养已完成，本次不消耗星石。进行中的冒险不受影响。"
+
+msgid "ui.growth.scope"
+msgstr "同类卡牌共享成长，新获得卡牌自动继承。"
+
+msgid "ui.growth.strength"
+msgstr "生命与输出基准 {value}%"
+
+msgid "ui.growth.success"
+msgstr "分类成长已保存。"
+
+msgid "ui.growth.title"
+msgstr "卡牌培养"
+
+msgid "ui.growth.train"
+msgstr "培养 · {cost} 星石"
+
+msgid "ui.growth.train_confirm"
+msgstr "消耗 {cost} 星石，为全部{category}培养一档？\n进行中的冒险保持开章时的成长。"
+
+msgid "ui.growth.unavailable"
+msgstr "当前无法培养或升星。"
+
+msgid "ui.hero.change"
+msgstr "更换出战英雄"
+
+msgid "ui.hero.confirm"
+msgstr "将出战英雄更换为{name}？"
+
+msgid "ui.hero.current"
+msgstr "当前出战：{name}"
+
+msgid "ui.hero.owned"
+msgstr "已拥有英雄"
+
+msgid "ui.hero.title"
+msgstr "出战英雄"
 
 msgid "ui.home.achievements"
 msgstr "成就"
@@ -322,9 +466,6 @@ msgstr "独立布局预览 · 完整游戏请运行 bootstrap/app.tscn"
 
 msgid "ui.home.mail"
 msgstr "邮箱"
-
-msgid "ui.home.no_hero_detail"
-msgstr "尚未选择英雄。"
 
 msgid "ui.home.preview_resources"
 msgstr "玩家名称\n金币 · 星石 · 体力"
@@ -505,9 +646,6 @@ msgstr "未使用的骰子不会消失，每次投掷时都会参与投掷。"
 
 msgid "ui.reward.choice_title"
 msgstr "选择奖励"
-
-msgid "ui.reward.choose_aurora"
-msgstr "领取奖励"
 
 msgid "ui.reward.complete_build"
 msgstr "继续冒险"
@@ -697,6 +835,9 @@ msgstr "已点亮"
 
 msgid "ui.talents.no_points"
 msgstr "暂无天赋点"
+
+msgid "ui.talents.permanent"
+msgstr "永久天赋"
 
 msgid "ui.talents.point_source"
 msgstr "每章首次通关获得 1 点"

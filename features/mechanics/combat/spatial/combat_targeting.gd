@@ -19,7 +19,7 @@ static func adjacent(left: CombatUnit, right: CombatUnit) -> bool:
 	return ((lb + 1 == right.row or rb + 1 == left.row) and left.column <= re and right.column <= le) or ((le + 1 == right.column or re + 1 == left.column) and left.row <= rb and right.row <= lb)
 
 ## 先筛选合法目标；最近敌人并列按稳定 ID 顺序交给本场随机源。
-static func select(cards: Array, random: DeterministicRandom, context: Dictionary, selector: int, source: CombatUnit, target: CombatUnit, tag_query: Dictionary = {}) -> Array:
+static func select(cards: Array, random: DeterministicRandom, context: Dictionary, selector: int, source: CombatUnit, target: CombatUnit, tag_query: Dictionary = {}, max_targets: int = 0) -> Array:
 	# 先筛选再寻敌，最近的不匹配卡不会挡住更远的合法目标。
 	cards = cards.filter(func(card): return CardTagQuery.matches(card.definition.get("card_tag_ids", []), tag_query))
 	var owner: CombatUnit = context.get("unit")
@@ -35,8 +35,8 @@ static func select(cards: Array, random: DeterministicRandom, context: Dictionar
 		T.Target.AllUnits:
 			var all_units = cards.filter(func(card): return card.alive())
 			all_units.sort_custom(func(a, b): return a.id < b.id)
-			return all_units
-		T.Target.AllEnemies: return enemies
+			return _limited(all_units, owner, random, max_targets)
+		T.Target.AllEnemies: return _limited(enemies, owner, random, max_targets)
 		T.Target.MarkedEnemy:
 			return enemies.filter(func(card): return card.mechanics.marked(context.team_id)).slice(0, 1)
 		T.Target.LinkedAlly:
@@ -71,3 +71,16 @@ static func select(cards: Array, random: DeterministicRandom, context: Dictionar
 		T.Target.RandomEnemy:
 			return [] if enemies.is_empty() else [enemies[random.next_int(enemies.size())]]
 	return []
+
+## 群攻先取最近的不同目标，同距使用本场随机源；无卡牌宿主的遗物在合法候选中随机抽取。
+static func _limited(candidates: Array, owner: CombatUnit, random: DeterministicRandom, limit: int) -> Array:
+	if limit <= 0: return candidates
+	var remaining: Array = candidates.duplicate()
+	var result: Array = []
+	while result.size() < limit and not remaining.is_empty():
+		var nearest: int = int(remaining.map(func(card): return distance_squared(owner, card)).min()) if owner != null else 0
+		var tied: Array = remaining.filter(func(card): return owner == null or distance_squared(owner, card) == nearest)
+		var chosen: CombatUnit = tied[0] if tied.size() == 1 else tied[random.next_int(tied.size())]
+		result.append(chosen)
+		remaining.erase(chosen)
+	return result

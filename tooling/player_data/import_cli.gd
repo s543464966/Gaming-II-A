@@ -2,7 +2,7 @@ extends SceneTree
 ## 旧本地存档导入的命令行入口；默认只预览，显式 import 才写空目标目录。
 
 const Catalog = preload("res://game_content/runtime/game_catalog.gd")
-const Importer = preload("res://features/player_session/legacy_import.gd")
+const Importer = preload("res://tooling/player_data/legacy_import.gd")
 const Repository = preload("res://services/save/json_repository.gd")
 
 ## 校验参数与完整源目录，只有显式 import 才发布到空目标。

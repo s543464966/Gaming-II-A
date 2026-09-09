@@ -3,7 +3,7 @@ extends RefCounted
 ## 一个账号的运行聚合与原子检查点；静态目录只注入、不复制进存档。
 
 signal changed
-const SCHEMA_VERSION = 25
+const SCHEMA_VERSION = 28
 const Format = preload("res://game_content/runtime/snapshot_format.gd")
 const Migration = preload("res://features/player_session/content_id_migration.gd")
 const DiceMigration = preload("res://features/player_session/dice_save_migration.gd")
@@ -165,6 +165,24 @@ func restore(saved: Dictionary) -> bool:
 		if not migration.error.is_empty():
 			error = migration.error
 			return false
+	if state.get("schema") == 25:
+		var migration = preload("res://features/player_session/adventure_event_save_migration.gd").new()
+		state = migration.convert(state)
+		if not migration.error.is_empty():
+			error = migration.error
+			return false
+	if state.get("schema") == 26:
+		var migration = preload("res://features/player_session/category_growth_migration.gd").new()
+		state = migration.convert(state, content)
+		if not migration.error.is_empty():
+			error = migration.error
+			return false
+	if state.get("schema") == 27:
+		var migration = preload("res://features/player_session/enemy_formation_save_migration.gd").new()
+		state = migration.convert(state, content)
+		if not migration.error.is_empty():
+			error = migration.error
+			return false
 	if state.get("schema") != SCHEMA_VERSION or state.get("user_id") != user_id:
 		error = "玩家存档版本或账号归属不匹配。"
 		return false
@@ -218,6 +236,16 @@ func restore(saved: Dictionary) -> bool:
 	if candidate_build.started and candidate_build.talents != candidate_talents.learned:
 		error = "章节天赋输入与账号永久选择不一致。"
 		return false
+	var active_route: RouteState = candidate_routes[state.selected_chapter]
+	if active_route.phase == Route.Phase.NodeInProgress:
+		var active_node: Dictionary = active_route.nodes[active_route.current]
+		var event_type: bool = active_node.type in [C.NodeType.BlackMarket, C.NodeType.Adventure]
+		if event_type != candidate_build.events.is_active() or (event_type and (candidate_build.events.node_index != active_route.current or candidate_build.events.node_type != active_node.type)):
+			error = "进行中节点与章节事件状态不一致。"
+			return false
+	elif candidate_build.events.is_active():
+		error = "非进行中路线夹带章节事件。"
+		return false
 	user = candidate_user
 	talents = candidate_talents
 	collection = candidate_collection
@@ -236,6 +264,14 @@ func unlock_talent(id: String, persist: Callable) -> String:
 		var message: String = talents.unlock(id)
 		if not message.is_empty(): return message
 		return build.update_talents(talents.learned, adventure), persist)
+
+## 分类培养只修改账号，不重算已开始的冒险；扣费、成长与落盘一起提交。
+func train_category(category: String, expected: Dictionary, persist: Callable) -> String:
+	return transact(func(): return collection.train(category, expected, assets), persist)
+
+## 满档晋升不再收费，保存失败恢复原星级与培养进度。
+func promote_category(category: String, expected: Dictionary, persist: Callable) -> String:
+	return transact(func(): return collection.promote(category, expected), persist)
 
 ## 商城只提供购买规则；整笔扣款、交付与保存复用会话唯一事务。
 func purchase(id: String, method: int, persist: Callable) -> int:

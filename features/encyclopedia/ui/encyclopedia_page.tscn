@@ -38,10 +38,7 @@ filter_clip = true
 [node name="EncyclopediaPage" instance=ExtResource("browser")]
 script = ExtResource("script")
 
-[node name="Caption" parent="Margin/Column/Header/ReturnArt" index="1"]
-text = "ui.page.encyclopedia"
-
-[node name="Tabs" parent="Margin/Column" index="5"]
+[node name="Tabs" parent="Margin/Column" index="4"]
 authored_buttons = Array[NodePath]([NodePath("Bar/Team"), NodePath("Bar/Monsters"), NodePath("Bar/ItemCard"), NodePath("Bar/Relic"), NodePath("Bar/InventoryProp"), NodePath("Bar/Aurora")])
 
 [node name="Team" parent="Margin/Column/Tabs/Bar" index="2" instance=ExtResource("tab")]

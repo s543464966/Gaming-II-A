@@ -107,6 +107,9 @@ msgstr "變形"
 msgid "rules.action.witchcraft"
 msgstr "巫術"
 
+msgid "rules.actions.card_output_points"
+msgstr "{type}屬性值"
+
 msgid "rules.actions.card_power_ratio"
 msgstr "卡牌{type}數值的 {percent}%"
 
@@ -134,9 +137,6 @@ msgstr "該傷害具有 {stat_lifesteal_ratio} {percent}%（不計算護盾損�
 msgid "rules.actions.physical_damage"
 msgstr "對{target}造成 {stat_physical_damage} {amount} 點"
 
-msgid "rules.actions.poison_penetration"
-msgstr "中毒期間受到的治療減少 20%，不疊加。施毒前已有的護盾可抵擋毒傷；無盾或舊盾耗盡後，該毒的傷害穿透後來獲得的護盾"
-
 msgid "rules.actions.pollution"
 msgstr "污染變化 {amount}"
 
@@ -149,11 +149,11 @@ msgstr "為{target}提供 {stat_shield_power} {amount} 點"
 msgid "rules.actions.status_control"
 msgstr "使{target}{status} {seconds} 秒"
 
-msgid "rules.actions.status_damage"
-msgstr "使{target}{status} {seconds} 秒（每秒 {amount} 傷害）"
+msgid "rules.actions.status_stacks"
+msgstr "對{target}施加 {amount} 層{status}"
 
 msgid "rules.actions.witchcraft"
-msgstr "對{target}造成 {stat_witchcraft_damage} {amount} 點（對護盾傷害提高 20%）"
+msgstr "對{target}造成 {stat_witchcraft_damage} {amount} 點"
 
 msgid "rules.card.ammo"
 msgstr "{stat_ammo_capacity} · 每場 {count} 次，主動發動消耗 1 次，耗盡不影響被動"
@@ -333,7 +333,7 @@ msgid "rules.mechanic.copy_main_ability"
 msgstr "{target}獲得預設主能力的{percent}%強度獨立快照，持續{seconds}秒"
 
 msgid "rules.mechanic.detonate"
-msgstr "消耗{target}的{count}層己方灼燒，造成剩餘基礎傷害的{percent}%"
+msgstr "消耗{target}的{count}層己方灼燒，造成消耗層數的{percent}%傷害"
 
 msgid "rules.mechanic.distinct"
 msgstr "不同來源"
@@ -360,7 +360,7 @@ msgid "rules.mechanic.sacrifice"
 msgstr "獻祭{target}的友方隨從後：{payload}"
 
 msgid "rules.mechanic.transfer"
-msgstr "將自身{amount}{resource}傳給{target}，保留現有時限"
+msgstr "將自身{amount}{resource}傳給{target}"
 
 msgid "rules.mechanic.transform"
 msgstr "{target}切換為預設主能力形態{seconds}秒；保留生命和彈藥"
@@ -419,9 +419,6 @@ msgstr "灼燒型"
 msgid "rules.output.healing"
 msgstr "治療型"
 
-msgid "rules.output.per_second"
-msgstr "{amount}/秒"
-
 msgid "rules.output.physical"
 msgstr "物理型"
 
@@ -433,6 +430,9 @@ msgstr "護盾型"
 
 msgid "rules.output.special"
 msgstr "特殊型"
+
+msgid "rules.output.stacks"
+msgstr "{amount} 層"
 
 msgid "rules.output.witchcraft"
 msgstr "巫術型"
@@ -450,7 +450,7 @@ msgid "rules.resource.health"
 msgstr "生命"
 
 msgid "rules.resource.poison"
-msgstr "份中毒"
+msgstr "層中毒"
 
 msgid "rules.resource.shield"
 msgstr "護盾"
@@ -586,6 +586,12 @@ msgstr "事件目標"
 
 msgid "rules.target.farthest_enemy"
 msgstr "最遠敵人"
+
+msgid "rules.target.limited_enemies"
+msgstr "最多{count}個敵人"
+
+msgid "rules.target.limited_units"
+msgstr "最多{count}個單位"
 
 msgid "rules.target.linked_ally"
 msgstr "已連接友軍"

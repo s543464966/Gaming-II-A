@@ -4,7 +4,7 @@ extends AbilitySchema
 
 ## 内容专属结构在此解释，战斗能力复用同一规范化入口。
 func decode(value: Variant, kind: String, owner: String, source_names_only: bool = true) -> Variant:
-	if not kind in ["innate_ability_ids", "card_tag_ids", "synergy_ids", "star_fragment_costs", "star_stat_multipliers", "activation_conditions", "applies_to_kinds", "required_outputs"]:
+	if not kind in ["innate_ability_ids", "card_tag_ids", "synergy_ids", "star_stone_step_costs", "star_stat_multipliers", "activation_conditions", "applies_to_kinds", "required_outputs"]:
 		return super.decode(value, kind, owner, source_names_only)
 	names_only = source_names_only
 	if not value is Array:
@@ -19,9 +19,9 @@ func decode(value: Variant, kind: String, owner: String, source_names_only: bool
 				else: result.append(value[i])
 			"star_stat_multipliers":
 				result.append(_number(value[i], label))
-			"star_fragment_costs":
+			"star_stone_step_costs":
 				if not (value[i] is int or value[i] is float) or not is_finite(float(value[i])) or value[i] != floorf(value[i]) or value[i] <= 0:
-					errors.append(label + " 碎片需求必须为正整数。")
+					errors.append(label + " 每档星石费用必须为正整数。")
 				else: result.append(int(value[i]))
 			"activation_conditions": result.append(_activation(value[i], label))
 			"required_outputs":

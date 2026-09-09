@@ -1,9 +1,8 @@
 extends "res://ui/components/content/catalog_page.gd"
-## 藏品与图鉴共用的浏览外观：搜索、快捷筛选、统一返回和底部分页动画。
+## 藏品与图鉴共用的浏览外观：搜索、快捷筛选和底部分页动画。
 
 const TAB_MOTION_SECONDS: float = 0.28
 enum FilterView { HIDDEN, OUTPUT_TYPE, ABILITY_FACET, ALL }
-var _return_button: Button
 var _tab_motion: Tween
 var _search_text: String = ""
 var _filter_view: FilterView = FilterView.HIDDEN
@@ -16,14 +15,6 @@ var _filter_available: Dictionary[String, bool] = {}
 @onready var _quick_primary: Button = %QuickPrimary
 @onready var _quick_secondary: Button = %QuickSecondary
 
-## 保留宿主关闭入口，只把热区对齐到模式选择与活动共用的菱形返回装饰。
-func bind_return_button(button: Button) -> void:
-	_return_button = button
-	for state: String in ["normal", "hover", "pressed", "disabled", "focus"]:
-		button.add_theme_stylebox_override(state, StyleBoxEmpty.new())
-	for event: Signal in [button.button_down, button.button_up, button.mouse_entered, button.mouse_exited, button.focus_entered, button.focus_exited]:
-		event.connect(_refresh_return_tint)
-
 ## Feature 先配置目录与操作，浏览层只连接输入和表现。
 func _ready() -> void:
 	_search.text_changed.connect(_search_changed)
@@ -31,41 +22,12 @@ func _ready() -> void:
 	_quick_all.pressed.connect(_select_quick_filter.bind(0))
 	_quick_primary.pressed.connect(_select_quick_filter.bind(1))
 	_quick_secondary.pressed.connect(_select_quick_filter.bind(2))
-	resized.connect(_layout_return_button)
 	super._ready()
 	tabs.get_node("Bar").resized.connect(_layout_category_tabs)
 	visibility_changed.connect(_layout_category_tabs)
 	_scroll.get_v_scroll_bar().modulate.a = 0.0
 	set_filters_expanded(false)
 	_refresh_category_tabs(false)
-	_layout_return_button()
-	_refresh_return_tint()
-
-## 返回热区覆盖装饰图标，标题与按钮沿用模式选择页面的同一排布关系。
-func _layout_return_button() -> void:
-	if not is_node_ready() or not is_instance_valid(_return_button): return
-	var icon_rect: Rect2 = %ReturnIcon.get_global_rect()
-	_return_button.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
-	_return_button.scale = Vector2.ONE
-	_return_button.size = Vector2(108, 108)
-	_return_button.global_position = icon_rect.get_center() - _return_button.size * 0.5
-	var bounds_control := _return_button.get_parent() as Control
-	if bounds_control == null: return
-	var bounds: Rect2 = bounds_control.get_global_rect()
-	var button_rect: Rect2 = _return_button.get_global_rect()
-	var safe_position := Vector2(
-		clampf(button_rect.position.x, bounds.position.x, bounds.end.x - button_rect.size.x),
-		clampf(button_rect.position.y, bounds.position.y, bounds.end.y - button_rect.size.y)
-	)
-	_return_button.global_position += safe_position - button_rect.position
-
-## 返回装饰只跟随宿主按钮明度，不复制另一套输入状态。
-func _refresh_return_tint() -> void:
-	if not is_node_ready() or not is_instance_valid(_return_button): return
-	var brightness: float = UI.tokens.entry_normal_brightness
-	if _return_button.is_pressed(): brightness = UI.tokens.entry_pressed_brightness
-	elif _return_button.is_hovered() or _return_button.has_focus(): brightness = UI.tokens.entry_hover_brightness
-	%ReturnArt.self_modulate = Color(brightness, brightness, brightness)
 
 ## 切换底部分类后回到目录顶部，并让唯一选中块平滑落位。
 func _select_tab(id: String) -> void:

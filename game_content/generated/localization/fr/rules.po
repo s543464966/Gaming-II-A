@@ -107,6 +107,9 @@ msgstr "Transformation"
 msgid "rules.action.witchcraft"
 msgstr "Sorcellerie"
 
+msgid "rules.actions.card_output_points"
+msgstr "la valeur {type} de la carte"
+
 msgid "rules.actions.card_power_ratio"
 msgstr "{percent}% de la puissance {type} de la carte"
 
@@ -134,9 +137,6 @@ msgstr "Ces dégâts ont {percent}% de {stat_lifesteal_ratio} (pertes de bouclie
 msgid "rules.actions.physical_damage"
 msgstr "Inflige {amount} {stat_physical_damage} à {target}"
 
-msgid "rules.actions.poison_penetration"
-msgstr "Sous poison, les soins reçus sont réduits de 20% (non cumulable). Les boucliers existants bloquent le poison jusqu’à épuisement ; il ignore ensuite les nouveaux boucliers"
-
 msgid "rules.actions.pollution"
 msgstr "Variation de pollution : {amount}"
 
@@ -149,11 +149,11 @@ msgstr "Accorde {amount} {stat_shield_power} à {target}"
 msgid "rules.actions.status_control"
 msgstr "Applique {status} pendant {seconds} s à la cible : {target}"
 
-msgid "rules.actions.status_damage"
-msgstr "Applique {status} pendant {seconds} s à la cible : {target} ({amount} dégâts par seconde)"
+msgid "rules.actions.status_stacks"
+msgstr "Applique {amount} charges de {status} à {target}"
 
 msgid "rules.actions.witchcraft"
-msgstr "Inflige {amount} {stat_witchcraft_damage} à {target} (+20% contre les boucliers)"
+msgstr "Inflige {amount} {stat_witchcraft_damage} à {target}"
 
 msgid "rules.card.ammo"
 msgstr "{stat_ammo_capacity} · {count} utilisations par combat ; chaque activation en consomme 1 ; les passifs restent actifs à vide"
@@ -333,7 +333,7 @@ msgid "rules.mechanic.copy_main_ability"
 msgstr "{target} reçoit une copie indépendante à {percent}% d’une capacité principale prédéfinie pendant {seconds} s"
 
 msgid "rules.mechanic.detonate"
-msgstr "Consomme {count} charges de Brûlure alliées sur {target} ; inflige {percent}% des dégâts de base restants"
+msgstr "Consomme {count} charges de brûlure alliées sur {target} et inflige des dégâts égaux à {percent}% des charges consommées"
 
 msgid "rules.mechanic.distinct"
 msgstr "sources distinctes"
@@ -360,7 +360,7 @@ msgid "rules.mechanic.sacrifice"
 msgstr "Sacrifie le serviteur allié {target}, puis : {payload}"
 
 msgid "rules.mechanic.transfer"
-msgstr "Transfère {amount} {resource} de soi à {target}, sans réinitialiser les durées"
+msgstr "Transfère {amount}{resource} de soi à {target}"
 
 msgid "rules.mechanic.transform"
 msgstr "{target} adopte une forme de capacité principale prédéfinie pendant {seconds} s ; vie et munitions conservées"
@@ -419,9 +419,6 @@ msgstr "Brûlure"
 msgid "rules.output.healing"
 msgstr "Soins"
 
-msgid "rules.output.per_second"
-msgstr "{amount}/s"
-
 msgid "rules.output.physical"
 msgstr "Physique"
 
@@ -433,6 +430,9 @@ msgstr "Bouclier"
 
 msgid "rules.output.special"
 msgstr "Spécial"
+
+msgid "rules.output.stacks"
+msgstr "{amount} charges"
 
 msgid "rules.output.witchcraft"
 msgstr "Sorcellerie"
@@ -450,7 +450,7 @@ msgid "rules.resource.health"
 msgstr "vie"
 
 msgid "rules.resource.poison"
-msgstr "instances de Poison"
+msgstr " charges de poison"
 
 msgid "rules.resource.shield"
 msgstr "bouclier"
@@ -586,6 +586,12 @@ msgstr "cible de l'événement"
 
 msgid "rules.target.farthest_enemy"
 msgstr "ennemi le plus éloigné"
+
+msgid "rules.target.limited_enemies"
+msgstr "jusqu’à {count} ennemis"
+
+msgid "rules.target.limited_units"
+msgstr "jusqu’à {count} unités"
 
 msgid "rules.target.linked_ally"
 msgstr "alliés liés"

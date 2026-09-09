@@ -12,7 +12,7 @@ msgid "content.adventure_node_rules.NR002.title"
 msgstr "星辉遗迹"
 
 msgid "content.adventure_node_rules.NR003.action_label"
-msgstr "交易并前进"
+msgstr "进入黑市"
 
 msgid "content.adventure_node_rules.NR003.description"
 msgstr "行商在岔路支起小摊，等候愿意交易的旅人。"
@@ -21,7 +21,7 @@ msgid "content.adventure_node_rules.NR003.title"
 msgstr "流动黑市"
 
 msgid "content.adventure_node_rules.NR004.action_label"
-msgstr "探索并前进"
+msgstr "查看奇遇"
 
 msgid "content.adventure_node_rules.NR004.description"
 msgstr "陌生旅人的委托，为这段道路带来意外收获。"
@@ -489,7 +489,7 @@ msgid "content.innate_abilities.EN011.name"
 msgstr "咒术连击"
 
 msgid "content.innate_abilities.EN012.name"
-msgstr "暴击加速"
+msgstr "暴击充能"
 
 msgid "content.innate_abilities.EN013.name"
 msgstr "蚀毒反击"

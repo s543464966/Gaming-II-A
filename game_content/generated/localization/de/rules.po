@@ -107,6 +107,9 @@ msgstr "Verwandlung"
 msgid "rules.action.witchcraft"
 msgstr "Hexerei"
 
+msgid "rules.actions.card_output_points"
+msgstr "der {type}-Wert der Karte"
+
 msgid "rules.actions.card_power_ratio"
 msgstr "{percent}% der {type}-Stärke der Karte"
 
@@ -134,9 +137,6 @@ msgstr "Dieser Schaden hat {percent}% {stat_lifesteal_ratio} (Schildverlust ausg
 msgid "rules.actions.physical_damage"
 msgstr "Fügt {target} {amount} {stat_physical_damage} zu"
 
-msgid "rules.actions.poison_penetration"
-msgstr "Vergiftung verringert erhaltene Heilung um 20% (nicht stapelbar). Vorhandene Schilde blockieren Giftschaden bis zur Erschöpfung; danach umgeht dieses Gift später erhaltene Schilde"
-
 msgid "rules.actions.pollution"
 msgstr "Verschmutzungsänderung: {amount}"
 
@@ -149,11 +149,11 @@ msgstr "Gewährt {target} {amount} {stat_shield_power}"
 msgid "rules.actions.status_control"
 msgstr "Fügt den Zustand {status} für {seconds} s zu. Ziel: {target}"
 
-msgid "rules.actions.status_damage"
-msgstr "Fügt den Zustand {status} für {seconds} s zu ({amount} Schaden pro Sekunde). Ziel: {target}"
+msgid "rules.actions.status_stacks"
+msgstr "Fügt {target} {amount} Stapel {status} zu"
 
 msgid "rules.actions.witchcraft"
-msgstr "Fügt {target} {amount} {stat_witchcraft_damage} zu (+20% gegen Schilde)"
+msgstr "Fügt {target} {amount} {stat_witchcraft_damage} zu"
 
 msgid "rules.card.ammo"
 msgstr "{stat_ammo_capacity} · {count} Einsätze pro Kampf; aktive Auslösungen verbrauchen 1; passive Effekte bleiben bei leerem Vorrat aktiv"
@@ -333,7 +333,7 @@ msgid "rules.mechanic.copy_main_ability"
 msgstr "{target} erhält für {seconds} s eine unabhängige Kopie einer vorgegebenen Hauptfähigkeit mit {percent}% Stärke"
 
 msgid "rules.mechanic.detonate"
-msgstr "Verbraucht {count} eigene Brandstapel auf {target}; verursacht {percent}% des verbleibenden Grundschadens"
+msgstr "Verbraucht {count} verbündete Brandstapel auf {target} und verursacht Schaden in Höhe von {percent}% der verbrauchten Stapel"
 
 msgid "rules.mechanic.distinct"
 msgstr "verschiedene Quellen"
@@ -360,7 +360,7 @@ msgid "rules.mechanic.sacrifice"
 msgstr "Opfert den verbündeten Diener {target}, dann: {payload}"
 
 msgid "rules.mechanic.transfer"
-msgstr "Überträgt {amount} vorhandene {resource} von sich auf {target}; Laufzeiten bleiben erhalten"
+msgstr "Überträgt {amount}{resource} von sich selbst auf {target}"
 
 msgid "rules.mechanic.transform"
 msgstr "{target} wechselt für {seconds} s in die Form einer vorgegebenen Hauptfähigkeit; Leben und Munition bleiben erhalten"
@@ -419,9 +419,6 @@ msgstr "Brand"
 msgid "rules.output.healing"
 msgstr "Heilung"
 
-msgid "rules.output.per_second"
-msgstr "{amount}/s"
-
 msgid "rules.output.physical"
 msgstr "Physisch"
 
@@ -433,6 +430,9 @@ msgstr "Schild"
 
 msgid "rules.output.special"
 msgstr "Spezial"
+
+msgid "rules.output.stacks"
+msgstr "{amount} Stapel"
 
 msgid "rules.output.witchcraft"
 msgstr "Hexerei"
@@ -450,7 +450,7 @@ msgid "rules.resource.health"
 msgstr "Leben"
 
 msgid "rules.resource.poison"
-msgstr "Giftinstanzen"
+msgstr " Giftstapel"
 
 msgid "rules.resource.shield"
 msgstr "Schild"
@@ -586,6 +586,12 @@ msgstr "Ereignisziel"
 
 msgid "rules.target.farthest_enemy"
 msgstr "entferntester Gegner"
+
+msgid "rules.target.limited_enemies"
+msgstr "bis zu {count} Gegner"
+
+msgid "rules.target.limited_units"
+msgstr "bis zu {count} Einheiten"
 
 msgid "rules.target.linked_ally"
 msgstr "verbundene Verbündete"

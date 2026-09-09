@@ -1,26 +1,14 @@
-[gd_scene load_steps=31 format=3]
+[gd_scene load_steps=28 format=3]
 
 [ext_resource type="Script" path="res://features/game_modes/ui/game_modes_page.gd" id="script"]
-
 [ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="theme"]
-
-
 [ext_resource type="Script" path="res://ui/components/fitted_label.gd" id="fit"]
-
 [ext_resource type="Script" path="res://ui/components/tab_group.gd" id="tabs"]
-
 [ext_resource type="Script" path="res://ui/components/icon_button.gd" id="icon"]
-
 [ext_resource type="Texture2D" path="res://features/game_modes/ui/art/mode_atlas.png" id="atlas"]
-
 [ext_resource type="PackedScene" path="res://features/game_modes/ui/chapter_card.tscn" id="card"]
-
 [ext_resource type="Shader" path="res://features/game_modes/ui/art/cut_corner.gdshader" id="cut"]
-
-[ext_resource type="Texture2D" path="res://ui/design_system/icons/common/immersive_back.png" id="immersive_back"]
-
 [ext_resource type="Texture2D" path="res://features/game_modes/ui/art/mode_selected_plaque.png" id="plaque"]
-
 [ext_resource type="PackedScene" path="res://ui/components/unavailable_view.tscn" id="unavailable"]
 
 [sub_resource type="AtlasTexture" id="mountain"]
@@ -68,10 +56,6 @@ void fragment() { float edge = abs(local_uv.x - 0.5) + abs(local_uv.y - 0.5); CO
 [sub_resource type="ShaderMaterial" id="diamond_material"]
 shader = SubResource("diamond")
 
-[sub_resource type="ShaderMaterial" id="return_material"]
-shader = SubResource("diamond")
-shader_parameter/extent = Vector2(111, 111)
-
 [sub_resource type="Shader" id="icon_mask"]
 code = "shader_type canvas_item;\nuniform bool dark_ink = true;\nvarying vec4 tint;\nvoid vertex() { tint = COLOR; }\nvoid fragment() { vec4 sample_color = texture(TEXTURE, UV); float luminance = dot(sample_color.rgb, vec3(0.299, 0.587, 0.114)); float coverage = dark_ink ? 1.0 - smoothstep(0.24, 0.53, luminance) : smoothstep(0.24, 0.57, luminance); COLOR = vec4(tint.rgb, tint.a * coverage); }"
 
@@ -93,8 +77,6 @@ code = "shader_type canvas_item;\nvarying vec2 plaque_uv;\nvoid vertex() { plaqu
 
 [sub_resource type="ShaderMaterial" id="plaque_clip_material"]
 shader = SubResource("plaque_clip")
-
-[sub_resource type="Theme" id="mode_theme"]
 
 [sub_resource type="ShaderMaterial" id="confirm_clip"]
 shader = ExtResource("cut")
@@ -120,9 +102,8 @@ layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 941.0
-offset_bottom = 1672.0
+offset_bottom = 1476.0
 mouse_filter = 2
-theme = SubResource("mode_theme")
 
 [node name="Neighbors" type="Control" parent="Chapter"]
 layout_mode = 1
@@ -134,27 +115,27 @@ clip_contents = true
 [node name="Previous" parent="Chapter/Neighbors" instance=ExtResource("card")]
 layout_mode = 0
 offset_left = -577.0
-offset_top = 258.64
+offset_top = 62.64
 offset_right = 148.0
-offset_bottom = 1302.64
+offset_bottom = 1106.64
 scale = Vector2(0.88, 0.88)
 modulate = Color(0.62, 0.62, 0.62, 1)
 
 [node name="Next" parent="Chapter/Neighbors" instance=ExtResource("card")]
 layout_mode = 0
 offset_left = 878.0
-offset_top = 258.64
+offset_top = 62.64
 offset_right = 1603.0
-offset_bottom = 1302.64
+offset_bottom = 1106.64
 scale = Vector2(0.88, 0.88)
 modulate = Color(0.62, 0.62, 0.62, 1)
 
 [node name="ArtStage" parent="Chapter" instance=ExtResource("card")]
 layout_mode = 0
 offset_left = 107.0
-offset_top = 196.0
+offset_top = 0.0
 offset_right = 832.0
-offset_bottom = 1240.0
+offset_bottom = 1044.0
 
 [node name="Chrome" type="Control" parent="Chapter"]
 layout_mode = 1
@@ -165,9 +146,9 @@ mouse_filter = 2
 [node name="Previous" type="Button" parent="Chapter/Chrome"]
 layout_mode = 0
 offset_left = -9.0
-offset_top = 646.0
+offset_top = 450.0
 offset_right = 135.0
-offset_bottom = 790.0
+offset_bottom = 594.0
 theme_type_variation = &"IconButton"
 script = ExtResource("icon")
 mouse_default_cursor_shape = 2
@@ -187,9 +168,9 @@ material = SubResource("diamond_material")
 [node name="Next" type="Button" parent="Chapter/Chrome"]
 layout_mode = 0
 offset_left = 806.0
-offset_top = 646.0
+offset_top = 450.0
 offset_right = 950.0
-offset_bottom = 790.0
+offset_bottom = 594.0
 theme_type_variation = &"IconButton"
 script = ExtResource("icon")
 mouse_default_cursor_shape = 2
@@ -209,9 +190,9 @@ material = SubResource("diamond_material")
 [node name="Indicators" type="Control" parent="Chapter/Chrome"]
 layout_mode = 0
 offset_left = 325.5
-offset_top = 1265.0
+offset_top = 1069.0
 offset_right = 615.5
-offset_bottom = 1289.0
+offset_bottom = 1093.0
 mouse_filter = 2
 
 [node name="Line" type="Line2D" parent="Chapter/Chrome/Indicators"]
@@ -229,9 +210,9 @@ mouse_filter = 2
 [node name="Confirm" type="Button" parent="Chapter/Chrome"]
 layout_mode = 0
 offset_left = 210.0
-offset_top = 1296.5
+offset_top = 1100.5
 offset_right = 731.0
-offset_bottom = 1440.5
+offset_bottom = 1244.5
 theme_type_variation = &"IconButton"
 script = ExtResource("icon")
 mouse_default_cursor_shape = 2
@@ -271,13 +252,12 @@ layout_mode = 1
 [node name="Tabs" type="ScrollContainer" parent="."]
 layout_mode = 0
 offset_left = 34.0
-offset_top = 1454.0
+offset_top = 1258.0
 offset_right = 905.0
-offset_bottom = 1641.0
+offset_bottom = 1445.0
 clip_contents = false
 script = ExtResource("tabs")
 presentation = 1
-theme = SubResource("mode_theme")
 authored_buttons = Array[NodePath]([NodePath("Bar/PveAdventure"), NodePath("Bar/Pvp"), NodePath("Bar/PvpChess"), NodePath("Bar/PveChallenge")])
 
 [node name="Bar" type="Control" parent="Tabs"]
@@ -487,42 +467,6 @@ theme_override_font_sizes/font_size = 34
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "ui.mode.challenge"
 horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ReturnArt" type="Control" parent="."]
-layout_mode = 0
-offset_left = 31.0
-offset_top = 40.0
-offset_right = 905.0
-offset_bottom = 151.0
-mouse_filter = 2
-theme = SubResource("mode_theme")
-
-[node name="Icon" type="TextureRect" parent="ReturnArt"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 111.0
-offset_bottom = 111.0
-mouse_filter = 2
-texture = ExtResource("immersive_back")
-expand_mode = 1
-material = SubResource("return_material")
-
-[node name="Caption" type="Label" parent="ReturnArt"]
-layout_mode = 0
-offset_left = 135.0
-offset_top = 19.5
-offset_right = 874.0
-offset_bottom = 91.5
-mouse_filter = 2
-script = ExtResource("fit")
-maximum_lines = 1
-minimum_font_size = 28
-theme_override_font_sizes/font_size = 40
-theme_override_colors/font_color = Color(0.87, 0.80, 0.61, 1)
-text = "ui.page.modes"
-horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="TransitionBlocker" type="ColorRect" parent="."]

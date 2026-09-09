@@ -13,24 +13,21 @@ func _init(units: Array, random_source: DeterministicRandom) -> void:
 	cards = units
 	random = random_source
 
-## 全部伤害共用暴击和吸血，毒入体后绕过护盾；战报分别记录护盾与生命损失。
-func damage(source: Variant, target: CombatUnit, amount: float, depth: int, publish: Callable, projectile: String = "", context: Dictionary = {}, bypass_shield: bool = false, lifesteal: float = 0, output: int = T.Output.Physical) -> float:
+## 全部伤害共用暴击、吸血与一比一扣盾顺序；战报分别记录护盾与生命损失。
+func damage(source: Variant, target: CombatUnit, amount: float, depth: int, publish: Callable, projectile: String = "", context: Dictionary = {}, lifesteal: float = 0, output: int = T.Output.Physical) -> float:
 	if not target.alive(): return 0.0
 	resolution_depth += 1
 	var stats: Dictionary = context.get("damage_stats", CombatAttributes.stats(source.definition if source != null else {"modifiers": context.get("modifiers", {})}))
 	var critical = amount > 0 and stats.crit_chance > 0 and random.next_unit() < stats.crit_chance
 	var pending = _points(amount * (stats.crit_multiplier if critical else 1.0), source, target, context, "damage", context.get("periodic", false))
 	var damage = pending
-	var shield_multiplier = 1.2 if output == T.Output.Witchcraft else 1.0
-	var absorbed = 0.0 if bypass_shield else minf(target.shield, CombatAttributes.points(pending * shield_multiplier))
+	var absorbed = minf(target.shield, pending)
 	target.shield = DeterministicMath.f32(target.shield - absorbed)
-	# 旧盾耗尽即确定已有毒的穿透，事件里补上的新盾不能倒转先后关系。
-	if target.shield <= 0: CombatStatuses.breach_poison(target)
-	pending = CombatAttributes.points(pending - absorbed / shield_multiplier)
+	pending = CombatAttributes.points(pending - absorbed)
 	var actual = minf(target.health, pending)
 	target.health = DeterministicMath.f32(target.health - actual)
 	publish.call(T.Event.DamageResolved, source, target, actual, "暴击" if critical else "造成伤害", depth, projectile, context,
-		{"output_type": output, "critical": critical, "damage": damage, "shield_damage": absorbed, "health_damage": actual, "bypassed_shield": bypass_shield})
+		{"output_type": output, "critical": critical, "damage": damage, "shield_damage": absorbed, "health_damage": actual})
 	if source != null and source != target and source.alive():
 		var healing = context.duplicate()
 		healing.accumulate = true
@@ -74,7 +71,7 @@ func intercept(source: Variant, target: CombatUnit, depth: int, publish: Callabl
 func heal(source: Variant, target: CombatUnit, amount: float, depth: int, publish: Callable, context: Dictionary) -> void:
 	if not target.alive(): return
 	var previous = target.health
-	var value = maxf(0, amount) * (0.8 if target.statuses.has(T.Status.Poison) else 1.0)
+	var value = maxf(0, amount)
 	var gained = _points(value, source, target, context, context.get("rounding_channel", "heal"), context.get("accumulate", false) or value < 1.0)
 	target.health = minf(target.maximum_health, target.health + gained)
 	var actual = DeterministicMath.f32(target.health - previous)

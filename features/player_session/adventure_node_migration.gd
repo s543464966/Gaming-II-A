@@ -25,7 +25,11 @@ func convert(saved: Dictionary, content: RefCounted) -> Dictionary:
 				node.type = C.NodeType.Relic
 				node.event_terms = content.node_terms(C.NodeType.Relic)
 			else: node.event_terms.erase("heal_percent")
-		var failure = Route.validate(route, content)
+		# 当前路线校验使用当前事件身份；原候选仍由事件版本迁移正式转换。
+		var projection: Dictionary = route.duplicate(true)
+		for node in projection.nodes:
+			if node != null and node.type in [C.NodeType.BlackMarket, C.NodeType.Adventure]: node.event_terms = content.node_terms(node.type)
+		var failure = Route.validate(projection, content)
 		if not failure.is_empty(): return _fail(failure)
 	result.schema = 19
 	return result
@@ -46,6 +50,11 @@ static func _validate_legacy_terms(value: Variant, type: int) -> String:
 	for key in ["effect_type", "cost_currency", "cost_amount", "reward_currency", "reward_amount"]:
 		if not value.get(key) is int: return "旧节点奖励参数损坏。"
 	var effects = {RETIRED_REST: RETIRED_HEAL, C.NodeType.Relic: C.NodeEffect.GrantCurrency, C.NodeType.BlackMarket: C.NodeEffect.ExchangeCurrency, C.NodeType.Adventure: C.NodeEffect.GrantCurrency}
+	# 无条款的更早导入由当前目录补齐空事件；它们没有历史交易可兑换。
+	if type in [C.NodeType.BlackMarket, C.NodeType.Adventure] and value.effect_type == (C.NodeEffect.BlackMarket if type == C.NodeType.BlackMarket else C.NodeEffect.Encounter):
+		var current: Dictionary = value.duplicate(true)
+		current.erase("heal_percent")
+		return Route.validate_terms(current, type) if value.heal_percent == null else "旧节点恢复参数损坏。"
 	if value.effect_type != effects.get(type) or not value.cost_currency in [C.Currency.Gold, C.Currency.StarStone] or not value.reward_currency in [C.Currency.Gold, C.Currency.StarStone]: return "旧节点枚举损坏。"
 	if value.cost_amount < 0 or value.reward_amount < 0: return "旧节点数量无效。"
 	if type == RETIRED_REST:

@@ -1,0 +1,1000 @@
+{
+  "description": "Processed SFX source provenance only; runtime keys remain exclusively in asset_registry.json. Music is not covered by these licenses.",
+  "author": "Kenney",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "packs": {
+    "casino": "https://kenney.nl/assets/casino-audio",
+    "interface": "https://kenney.nl/assets/interface-sounds",
+    "impact": "https://kenney.nl/assets/impact-sounds",
+    "rpg": "https://kenney.nl/assets/rpg-audio"
+  },
+  "processing": "Short excerpts, mono 32 kHz PCM16, broad EQ, soft peak reduction, fades, restrained layering and within-family level balancing. Dice roll contains one contact; runtime collisions determine timing.",
+  "sources": {
+    "interface/Audio/click_001.ogg": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9",
+    "casino/Audio/chips-collide-1.ogg": "f41b3d106360fc68ebc061a211d4265b4cb5fa1fbe86e4d57d3673510e2c3784",
+    "casino/Audio/chips-collide-2.ogg": "2a10c5ff4b2fbaa55a317fc258ddce3fec85bd26db2d3c2ad298b3b33ce23bc6",
+    "casino/Audio/chips-collide-3.ogg": "1c5e885f72b64c38fff7ef05579e49310e7acf026cf123ffb65fffb57fb06e1c",
+    "casino/Audio/chips-collide-4.ogg": "1ffa34af64adc62fce583c5aa9a3c98287b1673ef191576a5571f1ffd39529dd",
+    "rpg/Audio/cloth1.ogg": "ddb93a3671233f95da0e0b10367f082f7eb42fa6caaddcf776410aa8833c747d",
+    "casino/Audio/card-slide-4.ogg": "b9c82bcdbe6b7d00a06e2546bd2683a9ab082ca5fd090a42882f33eddd925b7f",
+    "rpg/Audio/cloth2.ogg": "8a7451193c38bc05483aec25dd193e163a15d44cf7fff04ac7912573231b0201",
+    "casino/Audio/card-slide-6.ogg": "be85da181ac879c20cb667d0f9f156dbdc236d3751737ad27359a15e946430a0",
+    "rpg/Audio/cloth3.ogg": "a48632d17a4f1416541d261a32a31612e01267144c407fa3ecab3ff410f0085b",
+    "casino/Audio/card-slide-7.ogg": "bda2040194f43484d03ee3c65ed6fff57251882ea7227abce4214bfa30bf2705",
+    "casino/Audio/card-place-1.ogg": "d8f26c33a665dcbdcc6f632f6050bc9dd548feb0d4942d4547615926d3926810",
+    "casino/Audio/card-place-2.ogg": "903d5050718595e87864dd755643b476ab1a5533080dcc2dddc72570d33ba9f8",
+    "rpg/Audio/cloth4.ogg": "e7ab9a6c4466dea874196c61f59bf1da05cfe58748f42fadd695d441a154a99b",
+    "casino/Audio/card-place-3.ogg": "1d988631a6e5201ed1bb0d728f2e43a3ec79401258426858793598044ac95841",
+    "impact/Audio/impactPlate_light_000.ogg": "6e797cf8a5bfc52d7ed5eb47c227974c1cf2a674954fec5b539cea7d62c7282c",
+    "impact/Audio/impactPlate_light_001.ogg": "947915c2eb6ac57ee08fd3a48b297fd108d69abc72076e79882c21cad0eef56e",
+    "impact/Audio/impactPlate_light_002.ogg": "8ac5869ea434cf0d364872774efe70b2d666a4f02ba35ddfc1e051d336721be8",
+    "impact/Audio/impactGlass_light_000.ogg": "d750cf88097d0c3e69920e6e14496e1444e1a9da01aa4cca8f5ec8cb44c57b4f",
+    "impact/Audio/impactGlass_light_001.ogg": "05e513fbd42829060eb37855f8c3866722ec5c39a8937c9bfde518cc609effa2",
+    "impact/Audio/impactGlass_light_002.ogg": "710db7451bb7857b9140dfe6afe4621ea2188ad65eda3919c569d1bb285b933d",
+    "casino/Audio/card-slide-8.ogg": "95d9aa26f8c63af9934f27a8e3b7e9b583f177640f0bbd6982f12dba52b9ae6b",
+    "casino/Audio/card-place-4.ogg": "18e3ba713b7259605fd27cdc048085ed56cf86b32403f070b6cb125019f77183",
+    "casino/Audio/die-throw-1.ogg": "b31d716165be60e442da3c1ca25a3968aad1e0851a7f0859f495aecc02fd9e13",
+    "casino/Audio/die-throw-2.ogg": "a2702cfe14d24aab302483a1499daa88474a4af4acd794b58d97f4af16333b3d",
+    "casino/Audio/die-throw-3.ogg": "52fc44c7bb89328a147738574c925508c34abf4c19a014575b37ffb8c6b02437",
+    "casino/Audio/die-throw-4.ogg": "6253cabcb10c4152548cbc9d3ea87c1bf1bd484f0bd8d6b73c542e690509c0fd",
+    "casino/Audio/dice-grab-1.ogg": "1952cf1987b2c1ebb035b30b5f0caf23604b6ce4c88b6a226fe6e6257ce730f3",
+    "casino/Audio/dice-grab-2.ogg": "4eb4940d1e71aa3f6ac5f865b6b47748a492adf6a83d622c8efe6284dbebbd2c",
+    "rpg/Audio/handleCoins.ogg": "8a91f969e932df709df80ee124d86a51389eed9b67f22e5e716bc2bbf60d8dab",
+    "rpg/Audio/handleCoins2.ogg": "4b857968d64f9ac9336a10ffac6694d7547e1f01566ad6857b30bc8db3ee6c32",
+    "casino/Audio/card-fan-1.ogg": "7a9758ccad8899baef1b9f60b4064e4baa724a548293832fdaea07e6e07e638d",
+    "casino/Audio/card-fan-2.ogg": "5743373c9dde00c6eee949a2c8e65d75946522768999167e1f5632451630e848",
+    "rpg/Audio/knifeSlice.ogg": "4cd96dc630bed9840c15f1dd2306da2cc56a4da26a5d3f1a03c5a7265ac5e54f",
+    "impact/Audio/impactGeneric_light_000.ogg": "f0e982611e97512fee5f777986b67e8b435434b601f94992ec044f7e89fb5acb",
+    "rpg/Audio/knifeSlice2.ogg": "6c2064d0ef988d1ec3d56868e823ea8823a5cac00f2742560052633529407def",
+    "impact/Audio/impactGeneric_light_001.ogg": "c3cd1c073d186ae8fa35788ba94de581f1826e7427a7bb26490b2695fac18efa",
+    "impact/Audio/impactGeneric_light_002.ogg": "d0bf60905b59ff630ffe01eb0edeeacd2504eaa8fb6523aeef7d2458b78264d3",
+    "casino/Audio/cards-pack-open-1.ogg": "1214059fdfbf1c396c0702244fc833739cc346d326a71e450b731f456e54d6fb",
+    "casino/Audio/cards-pack-open-2.ogg": "49e02479815c69cd303e0d8f12952c0492d5b3e555838f3485cc25a09818e6fb",
+    "rpg/Audio/handleSmallLeather.ogg": "ae3cbf695aa0a8b98b5a80a835be5a3ccbd5446a24db2235cd4c3cd6fc92ed96",
+    "rpg/Audio/handleSmallLeather2.ogg": "a66f6db5918ad016c28a9f2768f127a7f39b5fa04481e5a3b4e78ebe2a1c282d",
+    "casino/Audio/chips-stack-1.ogg": "12bf175b9afcea112175b241ad3336c6244ac5fdcdff8b5942ecc03f2225e0c4",
+    "casino/Audio/chips-stack-2.ogg": "9f985e766c3557eef1764240b48e30b2f0ffa870a99f05de85cd6bf0ea758ef5",
+    "casino/Audio/chips-stack-3.ogg": "48cc0f01e2b62be7677f2e8c02177906cab80e96fa8176fa05b3ced35bc2a9c2",
+    "impact/Audio/impactGlass_light_003.ogg": "765290ce32fa108c939a0dbd6fbacbcd05abde622b57b708eb8a64058ef4225a",
+    "impact/Audio/impactGlass_light_004.ogg": "f535b7cb7835400d8d28bcf9e1cf047ce3c0eb7a6456bdb1a4a27acbec1ed2cb"
+  },
+  "outputs": [
+    {
+      "path": "ui/design_system/audio/ui_confirm.wav",
+      "sources": [
+        "interface/Audio/click_001.ogg",
+        "casino/Audio/chips-collide-1.ogg"
+      ],
+      "sha256": "4c878de8788bcb490c19c1021079ddc0fdd9f30bbc20d723c83ec6fba347d751",
+      "duration": 0.055,
+      "peak_db": -15,
+      "rms_db": -30.82
+    },
+    {
+      "path": "ui/design_system/audio/ui_confirm_02.wav",
+      "sources": [
+        "interface/Audio/click_001.ogg",
+        "casino/Audio/chips-collide-2.ogg"
+      ],
+      "sha256": "8b1c609d28e55f6a2041b06a993bcfac6dedd25afabfc3d70f69b402ac204a37",
+      "duration": 0.055,
+      "peak_db": -15,
+      "rms_db": -30.97
+    },
+    {
+      "path": "ui/design_system/audio/ui_confirm_03.wav",
+      "sources": [
+        "interface/Audio/click_001.ogg",
+        "casino/Audio/chips-collide-3.ogg"
+      ],
+      "sha256": "a5cecad3ab17f25fb093750c57575f1b668dfce18dadb1ad4789d3ae625c4b9f",
+      "duration": 0.055,
+      "peak_db": -15,
+      "rms_db": -32.43
+    },
+    {
+      "path": "ui/design_system/audio/ui_confirm_04.wav",
+      "sources": [
+        "interface/Audio/click_001.ogg",
+        "casino/Audio/chips-collide-4.ogg"
+      ],
+      "sha256": "5c4ca1211958941611e75c53ffb4b6d399a1373f2284e3dc21a3699d7df28e8f",
+      "duration": 0.055,
+      "peak_db": -15,
+      "rms_db": -32.45
+    },
+    {
+      "path": "ui/design_system/audio/ui_open.wav",
+      "sources": [
+        "rpg/Audio/cloth1.ogg",
+        "casino/Audio/card-slide-4.ogg"
+      ],
+      "sha256": "c890ea3f00ea217d1969bad35a1800a919e31d259598b8fa8cec49b6d7fcbd6e",
+      "duration": 0.16,
+      "peak_db": -15,
+      "rms_db": -30.83
+    },
+    {
+      "path": "ui/design_system/audio/ui_open_02.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg",
+        "casino/Audio/card-slide-6.ogg"
+      ],
+      "sha256": "8dd959610888102def7bc6271d97f75181f395ce0e79f502781ac7b2e5446238",
+      "duration": 0.16,
+      "peak_db": -15,
+      "rms_db": -28.83
+    },
+    {
+      "path": "ui/design_system/audio/ui_open_03.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg",
+        "casino/Audio/card-slide-7.ogg"
+      ],
+      "sha256": "3117c1b358d7948a0914f2867431f4536a723dc6c72df0fa0a115b0ce4cd8cf9",
+      "duration": 0.16,
+      "peak_db": -15.77,
+      "rms_db": -27.83
+    },
+    {
+      "path": "ui/design_system/audio/ui_close.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg",
+        "casino/Audio/card-place-1.ogg"
+      ],
+      "sha256": "a9aa3ad61c707d0512a08044ac80563dd72ca876f3a27f774592f259434bc830",
+      "duration": 0.135,
+      "peak_db": -16,
+      "rms_db": -29.39
+    },
+    {
+      "path": "ui/design_system/audio/ui_close_02.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg",
+        "casino/Audio/card-place-2.ogg"
+      ],
+      "sha256": "4c5b79535ca6dd2ce10fcf048c893acb3057b21eaa717fb4a5e1db3aa2f363d4",
+      "duration": 0.135,
+      "peak_db": -16.18,
+      "rms_db": -28.39
+    },
+    {
+      "path": "ui/design_system/audio/ui_close_03.wav",
+      "sources": [
+        "rpg/Audio/cloth4.ogg",
+        "casino/Audio/card-place-3.ogg"
+      ],
+      "sha256": "fd1008a99e65af01c960664bc7cac711de28fb2877be21b28e56b78359f4f763",
+      "duration": 0.135,
+      "peak_db": -16,
+      "rms_db": -30.05
+    },
+    {
+      "path": "ui/design_system/audio/ui_error.wav",
+      "sources": [
+        "rpg/Audio/cloth1.ogg",
+        "impact/Audio/impactPlate_light_000.ogg"
+      ],
+      "sha256": "999e6bacd646b3e6a2308ca377b4492aaf2017800c2aedd79914447e0e56941c",
+      "duration": 0.115,
+      "peak_db": -14,
+      "rms_db": -29.56
+    },
+    {
+      "path": "ui/design_system/audio/ui_error_02.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg",
+        "impact/Audio/impactPlate_light_001.ogg"
+      ],
+      "sha256": "a85c9ea23c51bdc05c34f4e8f61d900836812b1cf9ffef3cdf71d330c5f5d052",
+      "duration": 0.115,
+      "peak_db": -14,
+      "rms_db": -29.04
+    },
+    {
+      "path": "ui/design_system/audio/ui_error_03.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg",
+        "impact/Audio/impactPlate_light_002.ogg"
+      ],
+      "sha256": "d47745423da8f1e53ad4d197a7c24a330ad684e1cb78317ab4b785df8355af9a",
+      "duration": 0.115,
+      "peak_db": -14.31,
+      "rms_db": -28.04
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/route_select.wav",
+      "sources": [
+        "casino/Audio/card-slide-4.ogg",
+        "impact/Audio/impactGlass_light_000.ogg"
+      ],
+      "sha256": "a5351432b4c7488ae07d9a4e2da78886496805d4a87af0db49e9f503ee349578",
+      "duration": 0.1,
+      "peak_db": -14.39,
+      "rms_db": -28.72
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/route_select_02.wav",
+      "sources": [
+        "casino/Audio/card-slide-6.ogg",
+        "impact/Audio/impactGlass_light_001.ogg"
+      ],
+      "sha256": "a7de63cb245636299d288612d8f466cf40025b2daf2ddee91f5701bde4f28349",
+      "duration": 0.1,
+      "peak_db": -14,
+      "rms_db": -30.73
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/route_select_03.wav",
+      "sources": [
+        "casino/Audio/card-slide-7.ogg",
+        "impact/Audio/impactGlass_light_002.ogg"
+      ],
+      "sha256": "a9b28dd7971b08d250230e4768bbd46e24f0ebb9b4aa3c6cb071f0793c5bf6a4",
+      "duration": 0.1,
+      "peak_db": -14,
+      "rms_db": -29.72
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/card_pickup.wav",
+      "sources": [
+        "casino/Audio/card-slide-4.ogg"
+      ],
+      "sha256": "390326e8374efd6e5de0e750ccf8e9fde1d339d9d0da9e83315d090de1a6a0fd",
+      "duration": 0.1,
+      "peak_db": -14.81,
+      "rms_db": -29.14
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/card_pickup_02.wav",
+      "sources": [
+        "casino/Audio/card-slide-6.ogg"
+      ],
+      "sha256": "f7dfa9a9d06da7401b1b78d6d4428212c9c976824ba91a4d1e1248c3a7f2ffda",
+      "duration": 0.1,
+      "peak_db": -14,
+      "rms_db": -31.4
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/card_pickup_03.wav",
+      "sources": [
+        "casino/Audio/card-slide-7.ogg"
+      ],
+      "sha256": "50bf88b95a232951a78029d1dea7f6edb5d4495785f3fd94c7a535dd170e7c6c",
+      "duration": 0.1,
+      "peak_db": -14,
+      "rms_db": -30.17
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/card_pickup_04.wav",
+      "sources": [
+        "casino/Audio/card-slide-8.ogg"
+      ],
+      "sha256": "ece1da391be2fff51f0026a7680579b103bf391e14ec6b7e8c84e93fd5ae33cd",
+      "duration": 0.1,
+      "peak_db": -14,
+      "rms_db": -30.11
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/card_place.wav",
+      "sources": [
+        "casino/Audio/card-place-1.ogg"
+      ],
+      "sha256": "6e9bc5b0a6608d8022f356997746ba38acd1bfd493639244f91b3775e9b8c05f",
+      "duration": 0.11,
+      "peak_db": -12,
+      "rms_db": -29.38
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/card_place_02.wav",
+      "sources": [
+        "casino/Audio/card-place-2.ogg"
+      ],
+      "sha256": "a3868f98ea4d982a510452c692a984bf38690ff13d1ff6a83b6dd16a3b74cc4a",
+      "duration": 0.11,
+      "peak_db": -12,
+      "rms_db": -28.48
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/card_place_03.wav",
+      "sources": [
+        "casino/Audio/card-place-3.ogg"
+      ],
+      "sha256": "0378493831555a6a8f2f74e81636e7f4f58033dca66ca80a7f27330baa48bae9",
+      "duration": 0.11,
+      "peak_db": -12,
+      "rms_db": -29.25
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/card_place_04.wav",
+      "sources": [
+        "casino/Audio/card-place-4.ogg"
+      ],
+      "sha256": "6178d10511f21df8239d5dd01425c19c000dcc242fb047d9361239227f587458",
+      "duration": 0.11,
+      "peak_db": -13.23,
+      "rms_db": -27.87
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/card_swap.wav",
+      "sources": [
+        "casino/Audio/card-slide-4.ogg",
+        "casino/Audio/card-slide-6.ogg"
+      ],
+      "sha256": "b6cb6894d3116b8bbac42aded566190626a603ccd577c01e2fbdad51b3a89cfd",
+      "duration": 0.17,
+      "peak_db": -14,
+      "rms_db": -29.59
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/card_swap_02.wav",
+      "sources": [
+        "casino/Audio/card-slide-6.ogg",
+        "casino/Audio/card-slide-7.ogg"
+      ],
+      "sha256": "282f12d69833325aaafc739e3520271882bd624660618379ebb8c45630722a03",
+      "duration": 0.17,
+      "peak_db": -14,
+      "rms_db": -31.3
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/card_swap_03.wav",
+      "sources": [
+        "casino/Audio/card-slide-7.ogg",
+        "casino/Audio/card-slide-8.ogg"
+      ],
+      "sha256": "d99defecae7af236019a5fa950c05148ca20dd04c10109fe744db51a817fa07d",
+      "duration": 0.17,
+      "peak_db": -14,
+      "rms_db": -30.54
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/dice_roll.wav",
+      "sources": [
+        "casino/Audio/die-throw-1.ogg",
+        "casino/Audio/chips-collide-1.ogg"
+      ],
+      "sha256": "06f788098019566178d18b6bf4782b3f47d90d97cb1ca2c931985a097bba3c1d",
+      "duration": 0.09,
+      "peak_db": -11,
+      "rms_db": -30.35
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/dice_roll_02.wav",
+      "sources": [
+        "casino/Audio/die-throw-2.ogg",
+        "casino/Audio/chips-collide-2.ogg"
+      ],
+      "sha256": "02ad4c7618276b94b32c560c255ebeba36e22494e63fedb684cc75b9f0653ae7",
+      "duration": 0.09,
+      "peak_db": -11,
+      "rms_db": -29.53
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/dice_roll_03.wav",
+      "sources": [
+        "casino/Audio/die-throw-3.ogg",
+        "casino/Audio/chips-collide-3.ogg"
+      ],
+      "sha256": "0cacc087313964a063e4f5c2064f8b1346d11f503d1227d1aa3071425ada9d1b",
+      "duration": 0.09,
+      "peak_db": -11,
+      "rms_db": -29.22
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/dice_roll_04.wav",
+      "sources": [
+        "casino/Audio/die-throw-4.ogg",
+        "casino/Audio/chips-collide-4.ogg"
+      ],
+      "sha256": "20c96b45330ed9328ec4d108e22987635d3d73099327a50dae1b5ed708980b55",
+      "duration": 0.09,
+      "peak_db": -11,
+      "rms_db": -29.79
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/dice_pickup.wav",
+      "sources": [
+        "casino/Audio/dice-grab-1.ogg"
+      ],
+      "sha256": "52137daf2a71a23ca472b1e2c14af288bc8f5a6897773684f9f18fcb82485bea",
+      "duration": 0.095,
+      "peak_db": -14,
+      "rms_db": -35.92
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/dice_pickup_02.wav",
+      "sources": [
+        "casino/Audio/dice-grab-2.ogg"
+      ],
+      "sha256": "25b381dc1b25bdb374e7121fdd016a324614274f9d5695ae5c8ed636d967fee6",
+      "duration": 0.095,
+      "peak_db": -14.11,
+      "rms_db": -34.92
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/dice_pickup_03.wav",
+      "sources": [
+        "casino/Audio/dice-grab-1.ogg"
+      ],
+      "sha256": "d7ab8f952e78cf943c29e1653d6d241211916d98f45fc605fec08926a0125fe8",
+      "duration": 0.095,
+      "peak_db": -14,
+      "rms_db": -36.35
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/dice_consume.wav",
+      "sources": [
+        "rpg/Audio/cloth1.ogg",
+        "impact/Audio/impactGlass_light_000.ogg",
+        "rpg/Audio/handleCoins.ogg"
+      ],
+      "sha256": "f2f6c40bfffc1a9cf9c5a8d727da61fdc49c54829872d779f7a9529485b2b6e9",
+      "duration": 0.29,
+      "peak_db": -13,
+      "rms_db": -29.77
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/dice_consume_02.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg",
+        "impact/Audio/impactGlass_light_001.ogg",
+        "rpg/Audio/handleCoins2.ogg"
+      ],
+      "sha256": "3f0122f0979894e145f67807001c743441e1417169ea8b2839fa7c22d413a0df",
+      "duration": 0.29,
+      "peak_db": -13,
+      "rms_db": -28.13
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/dice_consume_03.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg",
+        "impact/Audio/impactGlass_light_002.ogg",
+        "rpg/Audio/handleCoins.ogg"
+      ],
+      "sha256": "5b4b38e9d36ee80dc992c08d9f43cd810d6ffce68e95bfe77f6291fd484bb89e",
+      "duration": 0.29,
+      "peak_db": -13,
+      "rms_db": -27.8
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/reward.wav",
+      "sources": [
+        "rpg/Audio/cloth1.ogg",
+        "impact/Audio/impactGlass_light_000.ogg",
+        "rpg/Audio/handleCoins.ogg"
+      ],
+      "sha256": "11df4dde1c36fa8c26e0c9ffa27aa9c1edeae8b1b4c3b23142a8e3b2e163ba13",
+      "duration": 0.46,
+      "peak_db": -11,
+      "rms_db": -26.85
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/reward_02.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg",
+        "impact/Audio/impactGlass_light_001.ogg",
+        "rpg/Audio/handleCoins2.ogg"
+      ],
+      "sha256": "2040006d141759ca8cc1be8be0c588601bb24098db6f106b2952074e6207882f",
+      "duration": 0.46,
+      "peak_db": -11.64,
+      "rms_db": -25.85
+    },
+    {
+      "path": "features/game_modes_pve_adventure/ui/audio/reward_03.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg",
+        "impact/Audio/impactGlass_light_002.ogg",
+        "rpg/Audio/handleCoins.ogg"
+      ],
+      "sha256": "ed5c44f9cd5ad3808eb9a21d4cf802f33b58f8b1e4566257f95817a066948eca",
+      "duration": 0.46,
+      "peak_db": -11,
+      "rms_db": -28.09
+    },
+    {
+      "path": "features/combat/ui/audio/battle_start.wav",
+      "sources": [
+        "rpg/Audio/cloth1.ogg",
+        "casino/Audio/card-fan-1.ogg",
+        "impact/Audio/impactGlass_light_000.ogg"
+      ],
+      "sha256": "b8ec6e5f3f9f166ec98a17e8591d8965305dbe9158bd5a07725700101c8b6d96",
+      "duration": 0.34,
+      "peak_db": -12,
+      "rms_db": -27.15
+    },
+    {
+      "path": "features/combat/ui/audio/battle_start_02.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg",
+        "casino/Audio/card-fan-2.ogg",
+        "impact/Audio/impactGlass_light_001.ogg"
+      ],
+      "sha256": "7e08f37a005d12b84d5a71fb80144bfe4c7d67254485f73ec14d49f396f57071",
+      "duration": 0.34,
+      "peak_db": -12,
+      "rms_db": -26.71
+    },
+    {
+      "path": "features/combat/ui/audio/battle_start_03.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg",
+        "casino/Audio/card-fan-1.ogg",
+        "impact/Audio/impactGlass_light_002.ogg"
+      ],
+      "sha256": "1cd43448c8b6589dbef67d20af78feec511bb1319c8541920d033a8010fe6c33",
+      "duration": 0.34,
+      "peak_db": -12.04,
+      "rms_db": -25.71
+    },
+    {
+      "path": "features/combat/ui/audio/cast.wav",
+      "sources": [
+        "rpg/Audio/cloth1.ogg"
+      ],
+      "sha256": "de2c4e781be6abdad7f2173414631abd1e422923ff366b74633d4e7d9aa83b44",
+      "duration": 0.085,
+      "peak_db": -18,
+      "rms_db": -33.29
+    },
+    {
+      "path": "features/combat/ui/audio/cast_02.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg"
+      ],
+      "sha256": "2a28871f7608f55700889c4edb38f47a2323e4036798b8bbb50ea4415c0e7d8e",
+      "duration": 0.085,
+      "peak_db": -18.42,
+      "rms_db": -30.04
+    },
+    {
+      "path": "features/combat/ui/audio/cast_03.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg"
+      ],
+      "sha256": "9d56a94f986e1e6ce8880a01d1d6f1b236d18e8a0a1adbea98236ad2d25c400e",
+      "duration": 0.085,
+      "peak_db": -18,
+      "rms_db": -31.04
+    },
+    {
+      "path": "features/combat/ui/audio/physical.wav",
+      "sources": [
+        "rpg/Audio/knifeSlice.ogg",
+        "impact/Audio/impactGeneric_light_000.ogg"
+      ],
+      "sha256": "f46f90c81b88623e365eab3e3e8d5d8aa917d5fc18421100d6549ebe2decf247",
+      "duration": 0.125,
+      "peak_db": -11,
+      "rms_db": -22.99
+    },
+    {
+      "path": "features/combat/ui/audio/physical_02.wav",
+      "sources": [
+        "rpg/Audio/knifeSlice2.ogg",
+        "impact/Audio/impactGeneric_light_001.ogg"
+      ],
+      "sha256": "69fa2564a7d8249fdf91ff5dde2e1f34246fe62d8a89dafc429eb86e28203d61",
+      "duration": 0.125,
+      "peak_db": -11,
+      "rms_db": -24.41
+    },
+    {
+      "path": "features/combat/ui/audio/physical_03.wav",
+      "sources": [
+        "rpg/Audio/knifeSlice.ogg",
+        "impact/Audio/impactGeneric_light_002.ogg"
+      ],
+      "sha256": "54dc5d8c10acd181f2ef579935c86ad32358a53ccfc58f64b61e44620c0c7bd1",
+      "duration": 0.125,
+      "peak_db": -11,
+      "rms_db": -23.35
+    },
+    {
+      "path": "features/combat/ui/audio/witchcraft.wav",
+      "sources": [
+        "rpg/Audio/cloth1.ogg",
+        "impact/Audio/impactGlass_light_000.ogg"
+      ],
+      "sha256": "329fb6e17e702b45b547a511333bd897676a558d0ca8f434756ac4abd81f8bf3",
+      "duration": 0.2,
+      "peak_db": -13,
+      "rms_db": -29.81
+    },
+    {
+      "path": "features/combat/ui/audio/witchcraft_02.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg",
+        "impact/Audio/impactGlass_light_001.ogg"
+      ],
+      "sha256": "a93a73bfcb4b9b99461e50cc500018680e57f8e14d47042197d956735f842c57",
+      "duration": 0.2,
+      "peak_db": -13,
+      "rms_db": -29.3
+    },
+    {
+      "path": "features/combat/ui/audio/witchcraft_03.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg",
+        "impact/Audio/impactGlass_light_002.ogg"
+      ],
+      "sha256": "e8cc7363628f6ec01cd7f8d3d44d76d7f61308dc3c29861a8eec7d7f44b16770",
+      "duration": 0.2,
+      "peak_db": -16.53,
+      "rms_db": -28.3
+    },
+    {
+      "path": "features/combat/ui/audio/burn.wav",
+      "sources": [
+        "casino/Audio/cards-pack-open-1.ogg",
+        "rpg/Audio/cloth1.ogg"
+      ],
+      "sha256": "869794af158ac42fdbe7e4c34f3fba9ed8f1a2c8d0cc85c6c058d0e9c667b215",
+      "duration": 0.15,
+      "peak_db": -15,
+      "rms_db": -31.24
+    },
+    {
+      "path": "features/combat/ui/audio/burn_02.wav",
+      "sources": [
+        "casino/Audio/cards-pack-open-2.ogg",
+        "rpg/Audio/cloth2.ogg"
+      ],
+      "sha256": "a2b021d30464630d9f9cb8f4961dac9ac04e62f9d5d3af4b63a92ede3a81ca40",
+      "duration": 0.15,
+      "peak_db": -17.09,
+      "rms_db": -30.24
+    },
+    {
+      "path": "features/combat/ui/audio/burn_03.wav",
+      "sources": [
+        "casino/Audio/cards-pack-open-1.ogg",
+        "rpg/Audio/cloth3.ogg"
+      ],
+      "sha256": "0c5ea6529928239e9d0f2d8081b48ce1ed4b34711f42ab9d375f90727345527f",
+      "duration": 0.15,
+      "peak_db": -15,
+      "rms_db": -31.5
+    },
+    {
+      "path": "features/combat/ui/audio/poison.wav",
+      "sources": [
+        "rpg/Audio/handleSmallLeather.ogg",
+        "rpg/Audio/cloth1.ogg"
+      ],
+      "sha256": "4afece4d052c6e0b108e93d8490fc32189e642513dd5e2c325afd01b341fea43",
+      "duration": 0.15,
+      "peak_db": -16,
+      "rms_db": -31.02
+    },
+    {
+      "path": "features/combat/ui/audio/poison_02.wav",
+      "sources": [
+        "rpg/Audio/handleSmallLeather2.ogg",
+        "rpg/Audio/cloth2.ogg"
+      ],
+      "sha256": "aee4cea4508761cb5b5d15935ec73305ee42831a44281689e299f0f98757de77",
+      "duration": 0.15,
+      "peak_db": -16,
+      "rms_db": -30.69
+    },
+    {
+      "path": "features/combat/ui/audio/poison_03.wav",
+      "sources": [
+        "rpg/Audio/handleSmallLeather.ogg",
+        "rpg/Audio/cloth3.ogg"
+      ],
+      "sha256": "a7f58832a632668608acbe91f4a3eb12603f3010b118865a4d0791b6d4d50044",
+      "duration": 0.15,
+      "peak_db": -16,
+      "rms_db": -31.35
+    },
+    {
+      "path": "features/combat/ui/audio/healing.wav",
+      "sources": [
+        "rpg/Audio/cloth1.ogg",
+        "impact/Audio/impactGlass_light_000.ogg"
+      ],
+      "sha256": "d59e8f142be57505b92db00bdfb8c3b243d9c15302b9a9190fc2d59f9af48141",
+      "duration": 0.27,
+      "peak_db": -14,
+      "rms_db": -31.78
+    },
+    {
+      "path": "features/combat/ui/audio/healing_02.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg",
+        "impact/Audio/impactGlass_light_001.ogg"
+      ],
+      "sha256": "b450aa597562fb33af3f3551696c8be21340039bd40a7172ab5ca1c9ffc15491",
+      "duration": 0.27,
+      "peak_db": -14,
+      "rms_db": -31.45
+    },
+    {
+      "path": "features/combat/ui/audio/healing_03.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg",
+        "impact/Audio/impactGlass_light_002.ogg"
+      ],
+      "sha256": "531a34a2168a3df2a87bb58964481b04326b1c53174b94f1e5eae3d4fcac6ee2",
+      "duration": 0.27,
+      "peak_db": -16.09,
+      "rms_db": -30.45
+    },
+    {
+      "path": "features/combat/ui/audio/shield.wav",
+      "sources": [
+        "impact/Audio/impactPlate_light_000.ogg",
+        "impact/Audio/impactGlass_light_000.ogg"
+      ],
+      "sha256": "590e3bdcdcdc935e61dfb2b52dc329d5793cd74ae8744a0b92f2e62b34afc850",
+      "duration": 0.17,
+      "peak_db": -13,
+      "rms_db": -28.37
+    },
+    {
+      "path": "features/combat/ui/audio/shield_02.wav",
+      "sources": [
+        "impact/Audio/impactPlate_light_001.ogg",
+        "impact/Audio/impactGlass_light_001.ogg"
+      ],
+      "sha256": "93ef05ef815012a16dcb1ce5ab0b29143b54884d95f15739b34283b2ca4bcb77",
+      "duration": 0.17,
+      "peak_db": -13,
+      "rms_db": -27.87
+    },
+    {
+      "path": "features/combat/ui/audio/shield_03.wav",
+      "sources": [
+        "impact/Audio/impactPlate_light_002.ogg",
+        "impact/Audio/impactGlass_light_002.ogg"
+      ],
+      "sha256": "520bb0975ea3ee03ddfa4ca22f76ee62ac15017c85a8bd65d209ecf6d5ae032d",
+      "duration": 0.17,
+      "peak_db": -13,
+      "rms_db": -29.04
+    },
+    {
+      "path": "features/combat/ui/audio/critical.wav",
+      "sources": [
+        "impact/Audio/impactGeneric_light_000.ogg",
+        "rpg/Audio/knifeSlice2.ogg",
+        "rpg/Audio/handleCoins.ogg"
+      ],
+      "sha256": "4d03ffe6e829e6d923deebb06d356b94ef43eb10a0d548415e31ae88e944d29c",
+      "duration": 0.18,
+      "peak_db": -10,
+      "rms_db": -20.44
+    },
+    {
+      "path": "features/combat/ui/audio/critical_02.wav",
+      "sources": [
+        "impact/Audio/impactGeneric_light_001.ogg",
+        "rpg/Audio/knifeSlice2.ogg",
+        "rpg/Audio/handleCoins2.ogg"
+      ],
+      "sha256": "799a02644ea2dd98fb9873657df0a81b5dba6ef4f73dd25a62b773ec14595594",
+      "duration": 0.18,
+      "peak_db": -10,
+      "rms_db": -21.25
+    },
+    {
+      "path": "features/combat/ui/audio/critical_03.wav",
+      "sources": [
+        "impact/Audio/impactGeneric_light_002.ogg",
+        "rpg/Audio/knifeSlice2.ogg",
+        "rpg/Audio/handleCoins.ogg"
+      ],
+      "sha256": "7a4f54db81386735718494150ba5a80e8e89ac2b1147c7d2c3b364ecba66e74e",
+      "duration": 0.18,
+      "peak_db": -10,
+      "rms_db": -20.8
+    },
+    {
+      "path": "features/combat/ui/audio/status.wav",
+      "sources": [
+        "rpg/Audio/cloth1.ogg",
+        "casino/Audio/card-slide-4.ogg"
+      ],
+      "sha256": "b9c881f25d8264498be00c379ea65839964cdf881aaca421c8f5a3bbcd39335d",
+      "duration": 0.09,
+      "peak_db": -18,
+      "rms_db": -32.89
+    },
+    {
+      "path": "features/combat/ui/audio/status_02.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg",
+        "casino/Audio/card-slide-6.ogg"
+      ],
+      "sha256": "a6a7a0bf1a713832965458b7c96b605728f6221fd9e84ec39a0b153d9ba6f977",
+      "duration": 0.09,
+      "peak_db": -18.19,
+      "rms_db": -31.14
+    },
+    {
+      "path": "features/combat/ui/audio/status_03.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg",
+        "casino/Audio/card-slide-7.ogg"
+      ],
+      "sha256": "1498b06aa53357f0f00682603d34e1b9a9ffa73c8cfda305e95c423e3e69d145",
+      "duration": 0.09,
+      "peak_db": -18,
+      "rms_db": -32.14
+    },
+    {
+      "path": "features/combat/ui/audio/unit_defeat.wav",
+      "sources": [
+        "rpg/Audio/cloth1.ogg",
+        "impact/Audio/impactPlate_light_000.ogg"
+      ],
+      "sha256": "df8e8fb6e714030705f9fe8e3b4402babbde465b6a69046a58fbc6899551afda",
+      "duration": 0.21,
+      "peak_db": -14,
+      "rms_db": -29.83
+    },
+    {
+      "path": "features/combat/ui/audio/unit_defeat_02.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg",
+        "impact/Audio/impactPlate_light_001.ogg"
+      ],
+      "sha256": "2fbe8dc063e84e9054fd235a0bea123b01cce5a9744b060aec614364f9fe9af6",
+      "duration": 0.21,
+      "peak_db": -14,
+      "rms_db": -29.16
+    },
+    {
+      "path": "features/combat/ui/audio/unit_defeat_03.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg",
+        "impact/Audio/impactPlate_light_002.ogg"
+      ],
+      "sha256": "5195d267f37c9cf5ed8f9990d266b6668ae70c7caee2deb928e113cf194a6679",
+      "duration": 0.21,
+      "peak_db": -15.09,
+      "rms_db": -28.16
+    },
+    {
+      "path": "features/combat/ui/audio/core_damage.wav",
+      "sources": [
+        "impact/Audio/impactPlate_light_000.ogg",
+        "rpg/Audio/cloth1.ogg"
+      ],
+      "sha256": "8a3ede4cd8e7ee3c2e4b6f32c6a0de3b84b5a2363bd88c79167c06c5464f3ca5",
+      "duration": 0.19,
+      "peak_db": -11.15,
+      "rms_db": -26.56
+    },
+    {
+      "path": "features/combat/ui/audio/core_damage_02.wav",
+      "sources": [
+        "impact/Audio/impactPlate_light_001.ogg",
+        "rpg/Audio/cloth2.ogg"
+      ],
+      "sha256": "24507937b1c16c1007590007a59e2f44468c7f85f31f7b443a9495bc2e093844",
+      "duration": 0.19,
+      "peak_db": -11,
+      "rms_db": -27.66
+    },
+    {
+      "path": "features/combat/ui/audio/core_damage_03.wav",
+      "sources": [
+        "impact/Audio/impactPlate_light_002.ogg",
+        "rpg/Audio/cloth3.ogg"
+      ],
+      "sha256": "304c13d7ce83445e9921de17d1624f1c36ca008a63d5c25c3fd3700eff9a76bb",
+      "duration": 0.19,
+      "peak_db": -11,
+      "rms_db": -27.56
+    },
+    {
+      "path": "features/combat/ui/audio/time_warning.wav",
+      "sources": [
+        "casino/Audio/chips-stack-1.ogg"
+      ],
+      "sha256": "23d64c33280ef809360258834ebf2e69a3617ae7d78c53285740ab2e88bc3859",
+      "duration": 0.05,
+      "peak_db": -15,
+      "rms_db": -29.54
+    },
+    {
+      "path": "features/combat/ui/audio/time_warning_02.wav",
+      "sources": [
+        "casino/Audio/chips-stack-2.ogg"
+      ],
+      "sha256": "6fb8f4b6e1a281a1072ca5ecd80c1e4954b5ad4ec522ed32acd5663e6e32973f",
+      "duration": 0.05,
+      "peak_db": -15,
+      "rms_db": -33.6
+    },
+    {
+      "path": "features/combat/ui/audio/time_warning_03.wav",
+      "sources": [
+        "casino/Audio/chips-stack-3.ogg"
+      ],
+      "sha256": "1426825307c2111b0a5a9440b39b71e71ad5b1606b253cb6c33125c9429a710d",
+      "duration": 0.05,
+      "peak_db": -16.37,
+      "rms_db": -28.54
+    },
+    {
+      "path": "features/combat/ui/audio/victory.wav",
+      "sources": [
+        "rpg/Audio/cloth1.ogg",
+        "impact/Audio/impactGlass_light_000.ogg",
+        "rpg/Audio/handleCoins.ogg",
+        "impact/Audio/impactGlass_light_002.ogg"
+      ],
+      "sha256": "4c89002e8b3750023b78fbb9507a0778dee6c048fc5576a8c15da16ee5e14a43",
+      "duration": 0.65,
+      "peak_db": -10,
+      "rms_db": -26.63
+    },
+    {
+      "path": "features/combat/ui/audio/victory_02.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg",
+        "impact/Audio/impactGlass_light_001.ogg",
+        "rpg/Audio/handleCoins2.ogg",
+        "impact/Audio/impactGlass_light_003.ogg"
+      ],
+      "sha256": "6b58f5bdf836dced29d547e21b008805e01c0578bd1f348001b63d41b3a59c47",
+      "duration": 0.65,
+      "peak_db": -10.37,
+      "rms_db": -25.63
+    },
+    {
+      "path": "features/combat/ui/audio/victory_03.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg",
+        "impact/Audio/impactGlass_light_002.ogg",
+        "rpg/Audio/handleCoins.ogg",
+        "impact/Audio/impactGlass_light_004.ogg"
+      ],
+      "sha256": "768ab12ac63cd58c3843dfce4e423c16f6f72b4ad1b67bc12858fd6b8746e249",
+      "duration": 0.65,
+      "peak_db": -10,
+      "rms_db": -27.31
+    },
+    {
+      "path": "features/combat/ui/audio/defeat.wav",
+      "sources": [
+        "rpg/Audio/cloth1.ogg",
+        "impact/Audio/impactPlate_light_000.ogg"
+      ],
+      "sha256": "6b431a6c4d736068b202e336c345218c1a668b98e13d1019e9013bd6a501b7b6",
+      "duration": 0.32,
+      "peak_db": -13,
+      "rms_db": -31.19
+    },
+    {
+      "path": "features/combat/ui/audio/defeat_02.wav",
+      "sources": [
+        "rpg/Audio/cloth2.ogg",
+        "impact/Audio/impactPlate_light_001.ogg"
+      ],
+      "sha256": "b88fe291e90bd488acdc375db667427e045b87affc230acf881a9eef70fc24e4",
+      "duration": 0.32,
+      "peak_db": -13,
+      "rms_db": -29.99
+    },
+    {
+      "path": "features/combat/ui/audio/defeat_03.wav",
+      "sources": [
+        "rpg/Audio/cloth3.ogg",
+        "impact/Audio/impactPlate_light_002.ogg"
+      ],
+      "sha256": "1e4f0c6db8b1fc90bdfab199235462c6afc53af551f51cda7b0392ba212c257e",
+      "duration": 0.32,
+      "peak_db": -14.63,
+      "rms_db": -28.99
+    }
+  ]
+}

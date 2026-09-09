@@ -5,15 +5,14 @@ signal return_requested
 
 const Preview = preload("res://ui/components/content/content_preview.gd")
 const C = preload("res://game_content/runtime/content_types.gd")
-const TAB_MOTION_DURATION := 0.22
-const TAB_IDLE_COLOR := Color(0.16, 0.13, 0.09, 1.0)
-const TAB_SELECTED_COLOR := Color(0.90, 0.82, 0.63, 1.0)
+const TAB_MOTION_DURATION := 0.28
+const TAB_IDLE_COLOR := Color(0.10, 0.09, 0.07, 1.0)
+const TAB_SELECTED_COLOR := Color(0.87, 0.80, 0.61, 1.0)
 
 var session: PlayerSessionState
 var persist: Callable
 var _visible_rows: Array = []
 var _detail_index: int = -1
-var _resource_clock: float = 0.0
 var _tabs_initialized: bool = false
 var _tab_motion: Tween
 @onready var _overview: Control = $Margin/Column/Views/Overview
@@ -37,8 +36,7 @@ func _ready() -> void:
 	$Margin/Column/Views/Detail/Scroll/Column/Carousel/Previous.pressed.connect(_move_detail.bind(-1))
 	$Margin/Column/Views/Detail/Scroll/Column/Carousel/Next.pressed.connect(_move_detail.bind(1))
 	$Margin/Column/Views/Detail/Scroll/Column/Carousel/Center.resized.connect(_layout_showcase)
-	for label: Label in [$Margin/Column/Header/Resources/Row/Gold/Value, $Margin/Column/Header/Resources/Row/StarStone/Value,
-		$Margin/Column/Header/Resources/Row/Stamina/Value, $Margin/Column/Views/Detail/Scroll/Column/Indicator,
+	for label: Label in [$Margin/Column/Views/Detail/Scroll/Column/Indicator,
 		$Margin/Column/Views/Detail/Scroll/Column/Name, $Margin/Column/Views/Detail/Scroll/Column/Summary]:
 		label.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	super._ready()
@@ -46,20 +44,10 @@ func _ready() -> void:
 	tabs.get_node("Bar").resized.connect(_queue_tab_layout)
 	_tabs_initialized = true
 	_queue_tab_layout()
-	_refresh_resources()
-
-## 可见商城每秒同步账号资源，不为展示推进体力或复制业务状态。
-func _process(delta: float) -> void:
-	if session == null or not is_visible_in_tree(): return
-	_resource_clock += delta
-	if _resource_clock < 1.0: return
-	_resource_clock = 0.0
-	_refresh_resources()
 
 ## 页面重开或交易完成后重查真实目录，详情仍绑定同一商品身份。
 func refresh() -> void:
 	if not is_node_ready() or session == null: return
-	_refresh_resources()
 	_update_tab_selection(tabs.selected_id, false)
 	var selected_id: String = _detail_id
 	var detail_offset: int = _detail_scroll.scroll_vertical
@@ -100,14 +88,15 @@ func _select_tab(id: String) -> void:
 	super._select_tab(id)
 	_update_tab_selection(id, _tabs_initialized)
 
-## 分类切换时让单格黑牌、定位菱形和文字共同移动状态。
+## 分类切换时让图鉴同款黑牌与文字共同移动状态。
 func _update_tab_selection(id: String, animate: bool) -> void:
 	if not is_node_ready(): return
 	var active: Button = tabs.get_node_or_null("Bar/" + id)
 	if active == null: return
 	_stop_tab_motion()
-	var target_x: float = active.position.x
-	var target_width: float = active.size.x
+	var tab_bar: Control = tabs.get_node("Bar")
+	var target_x: float = maxf(0.0, active.position.x - 1.0)
+	var target_width: float = minf(tab_bar.size.x, active.position.x + active.size.x + 1.0) - target_x
 	var duration: float = TAB_MOTION_DURATION if animate and is_visible_in_tree() else 0.0
 	if duration <= 0.0:
 		_tab_selection.position.x = target_x
@@ -224,13 +213,6 @@ func _show_overview(restore_focus: bool = true) -> void:
 			child.grab_focus.call_deferred()
 			return
 
-## 账号资源条与 Home 使用同一图标和完整数值口径。
-func _refresh_resources() -> void:
-	if session == null or not is_node_ready(): return
-	$Margin/Column/Header/Resources/Row/Gold/Value.text = str(session.assets.gold)
-	$Margin/Column/Header/Resources/Row/StarStone/Value.text = str(session.assets.star_stone)
-	$Margin/Column/Header/Resources/Row/Stamina/Value.text = "%d/%d" % [session.user.stamina, session.user.STAMINA_MAX]
-
 ## 商品来自真实目录，未报价项仍可查看但不能购买。
 func _rows(id: String) -> Array:
 	var rows: Array = []
@@ -251,7 +233,7 @@ func _description(row: Dictionary) -> Dictionary:
 	if not offer.is_empty():
 		for method: int in [C.Payment.Gold, C.Payment.StarStone]:
 			var original: Variant = offer.account_gold_price if method == C.Payment.Gold else offer.account_star_stone_price
-			if original != null:
+			if original != null and session.shop.price(row.id, method) != null:
 				prices.append({"body": ContentText.format_key("ui.shop.price_detail", {"currency": _currency(method), "original": original, "amount": session.shop.price(row.id, method)})})
 		if not offer.fragment_item_id.is_empty():
 			var fragment: Dictionary = session.content.get_record("items", offer.fragment_item_id)

@@ -6,6 +6,8 @@ var content: RefCounted
 ## 借用账号天赋 Owner，只读取已提交的永久能力。
 var talents: TalentState
 var cards: Dictionary = {}
+const CATEGORIES = ["Hero", "Minion", "Item"]
+var category_growth: Dictionary = fresh_growth()
 var relics: Dictionary = {}
 var dices: Dictionary = {}
 ## 旧存档未启用的 rank/grade 原值仅作迁移凭据，不参与新成长。
@@ -20,6 +22,7 @@ func _init(catalog: RefCounted) -> void:
 ## 新账号按静态内容的初始解锁配置建立收藏，不直接创建章节实例。
 func initialize_new() -> void:
 	cards.clear()
+	category_growth = fresh_growth()
 	relics.clear()
 	dices.clear()
 	migration_receipt.clear()
@@ -37,7 +40,7 @@ func unlock(id: String) -> bool:
 	var row: Dictionary = content.get_record("cards", id)
 	if not row.is_empty() and row.card_kind in [CardTypes.Kind.CoreHero, CardTypes.Kind.Minion, CardTypes.Kind.ItemCard]:
 		if cards.has(id): return false
-		cards[id] = {"health_ratio": 1.0, "star_level": 1}
+		cards[id] = {"health_ratio": 1.0}
 		return true
 	if relics.has(id) or not _is_relic(id): return false
 	relics[id] = 1
@@ -53,43 +56,61 @@ func fragment_id(id: String) -> String:
 		if offer.reward_id == id and not offer.fragment_item_id.is_empty(): return offer.fragment_item_id
 	return ""
 
-## 账号即时成长只保存星级，碎片档位始终读取资产事实。
-func growth(id: String, assets: RefCounted) -> Dictionary:
-	var star = int(cards.get(id, {}).get("star_level", 1))
-	var quantity = int(assets.items.get(fragment_id(id), 0)) if cards.has(id) else 0
-	return {"star_level": star, "fragment_steps": CardGrowth.fragment_steps(quantity, star, content.data.growth_rules[0])}
+## 每类仅保存一份成长，新解锁卡牌自然继承，不逐张同步。
+static func fresh_growth() -> Dictionary:
+	var result: Dictionary = {}
+	for category: String in CATEGORIES: result[category] = {"star_level": 1, "training_steps": 0}
+	return result
+
+## 分类使用稳定保存键，不把敌人或遗物纳入账号培养。
+func category_for(id: String) -> String:
+	return {CardTypes.Kind.CoreHero: "Hero", CardTypes.Kind.Minion: "Minion", CardTypes.Kind.ItemCard: "Item"}.get(content.get_record("cards", id).get("card_kind", -1), "")
+
+## 读取已支付的分类成长，不受专属碎片或星石余额影响。
+func growth(id: String) -> Dictionary:
+	return category_growth.get(category_for(id), {"star_level": 1, "training_steps": 0}).duplicate(true)
 
 ## 开章锁定所有可用卡牌的成长事实，途中获得同名卡也使用这份记录。
-func growth_snapshot(assets: RefCounted) -> Dictionary:
+func growth_snapshot() -> Dictionary:
 	var result: Dictionary = {}
 	for row in content.data.cards:
-		if row.card_kind != CardTypes.Kind.Monster: result[row.id] = growth(row.id, assets)
+		if row.card_kind != CardTypes.Kind.Monster: result[row.id] = growth(row.id)
 	return result
 
 ## 收藏与 Home 读取永久投影，不混入遗物和章节强化。
-func definition(id: String, assets: RefCounted) -> Dictionary:
-	return BattleAssembly.new(content).permanent_definition(id, growth(id, assets), talents.learned if talents != null else [])
+func definition(id: String) -> Dictionary:
+	return BattleAssembly.new(content).permanent_definition(id, growth(id), talents.learned if talents != null else [])
 
-## 账号只记录生命比例，碎片或星级变化后不会保留过时的生命上限。
-func current_health(id: String, assets: RefCounted) -> float:
-	return CombatAttributes.points(float(cards.get(id, {}).get("health_ratio", 0)) * CombatAttributes.max_health(definition(id, assets)))
+## 账号只记录生命比例，培养或星级变化后不会保留过时的生命上限。
+func current_health(id: String) -> float:
+	return CombatAttributes.points(float(cards.get(id, {}).get("health_ratio", 0)) * CombatAttributes.max_health(definition(id)))
 
-## 升星状态供收藏 UI 和提交前复核，满星没有新的碎片进度。
-func star_status(id: String, assets: RefCounted) -> Dictionary:
-	var fact = growth(id, assets)
-	var item = fragment_id(id)
-	var cost = CardGrowth.fragment_cost(fact.star_level, content.data.growth_rules[0])
-	var quantity = int(assets.items.get(item, 0))
-	return {"star": fact.star_level, "steps": fact.fragment_steps, "fragment_id": item, "quantity": quantity, "cost": cost,
-		"can_upgrade": cards.has(id) and cost > 0 and quantity >= cost,
-		"progress_percent": float(fact.fragment_steps) * 100 / content.data.growth_rules[0].fragment_step_count, "multiplier": CardGrowth.permanent_multiplier(fact, content.data.growth_rules[0]) * (1 + fact.fragment_steps * content.data.growth_rules[0].fragment_step_bonus_ratio)}
+## 天赋培养页读取状态；满档升星免费，满星不能继续培养。
+func training_status(category: String, assets: RefCounted) -> Dictionary:
+	if not category_growth.has(category): return {}
+	var fact: Dictionary = category_growth[category]
+	var policy: Dictionary = content.data.growth_rules[0]
+	var cost: int = CardGrowth.training_cost(fact.star_level, policy)
+	var full: bool = fact.training_steps == policy.training_step_count
+	return {"star": fact.star_level, "steps": fact.training_steps, "step_count": policy.training_step_count,
+		"cost": cost, "can_train": cost > 0 and not full and assets.star_stone >= cost,
+		"can_promote": cost > 0 and full, "maxed": cost == 0,
+		"multiplier": CardGrowth.permanent_multiplier(fact, policy) * (1 + fact.training_steps * policy.training_step_bonus_ratio)}
 
-## 手动升星由账号事务调用，失败不扣碎片；升星消耗策略按已确认规则执行。
-func upgrade(id: String, assets: RefCounted) -> String:
-	var status = star_status(id, assets)
-	if not status.can_upgrade: return "ui.collection.star_unavailable"
-	if not assets.remove_item(status.fragment_id, status.cost): return "ui.collection.star_unavailable"
-	cards[id].star_level += 1
+## 事务内只支付一档并保存进度；预期状态阻止重复或迟到提交。
+func train(category: String, expected: Dictionary, assets: RefCounted) -> String:
+	if category_growth.get(category) != expected: return "ui.growth.unavailable"
+	var status: Dictionary = training_status(category, assets)
+	if not status.get("can_train", false): return "ui.growth.unavailable"
+	if not assets.spend(ContentTypes.Currency.StarStone, status.cost): return "ui.growth.unavailable"
+	category_growth[category].training_steps += 1
+	return ""
+
+## 满十档手动晋升，已支付的培养不会被二次收费。
+func promote(category: String, expected: Dictionary) -> String:
+	if category_growth.get(category) != expected or not CardGrowth.validate(expected, content.data.growth_rules[0]): return "ui.growth.unavailable"
+	if expected.training_steps != content.data.growth_rules[0].training_step_count or CardGrowth.training_cost(expected.star_level, content.data.growth_rules[0]) == 0: return "ui.growth.unavailable"
+	category_growth[category] = {"star_level": expected.star_level + 1, "training_steps": 0}
 	return ""
 
 ## 未获得内容不属于拥有状态，仍可在目录查看。
@@ -108,19 +129,21 @@ func select(id: String, position: int) -> String:
 
 ## 返回紧凑收藏快照。
 func capture() -> Dictionary:
-	return {"cards": cards.duplicate(true), "relics": relics.duplicate(true), "dices": dices.duplicate(true),
+	return {"cards": cards.duplicate(true), "category_growth": category_growth.duplicate(true), "relics": relics.duplicate(true), "dices": dices.duplicate(true),
 		"selected_hero": selected_hero, "hero_position": hero_position, "migration_receipt": migration_receipt.duplicate(true)}
 
 ## 恢复时拒绝损坏定义，不静默删除已有收藏。
 func restore(state: Dictionary) -> String:
-	for key in ["cards", "relics", "dices", "migration_receipt"]:
+	for key in ["cards", "relics", "dices", "migration_receipt", "category_growth"]:
 		if not state.get(key) is Dictionary: return "收藏格式损坏。"
+	if state.category_growth.size() != CATEGORIES.size(): return "分类成长格式损坏。"
+	for category: String in CATEGORIES:
+		if not CardGrowth.validate(state.category_growth.get(category), content.data.growth_rules[0]): return "分类成长格式损坏。"
 	for id in state.cards:
 		var row: Dictionary = content.get_record("cards", id)
 		var saved: Variant = state.cards[id]
-		if row.is_empty() or not row.card_kind in [CardTypes.Kind.CoreHero, CardTypes.Kind.Minion, CardTypes.Kind.ItemCard] or not saved is Dictionary or saved.size() != 2: return "收藏卡牌定义损坏。"
+		if row.is_empty() or not row.card_kind in [CardTypes.Kind.CoreHero, CardTypes.Kind.Minion, CardTypes.Kind.ItemCard] or not saved is Dictionary or saved.size() != 1: return "收藏卡牌定义损坏。"
 		if not (saved.get("health_ratio") is int or saved.get("health_ratio") is float) or not is_finite(float(saved.health_ratio)) or saved.health_ratio < 0 or saved.health_ratio > 1: return "收藏生命比例损坏。"
-		if not saved.get("star_level") is int or saved.star_level < 1 or saved.star_level > content.data.growth_rules[0].star_fragment_costs.size() + 1: return "收藏星级损坏。"
 	for id in state.migration_receipt:
 		var receipt: Variant = state.migration_receipt[id]
 		if not state.cards.has(id) or not receipt is Dictionary or receipt.size() != 2: return "收藏迁移凭据损坏。"
@@ -135,6 +158,7 @@ func restore(state: Dictionary) -> String:
 	var hero: Dictionary = content.get_record("cards", state.selected_hero)
 	if hero.is_empty() or hero.card_kind != CardTypes.Kind.CoreHero or not state.cards.has(state.selected_hero) or BattleGrid.footprint_mask(state.hero_position, hero.footprint_width, hero.footprint_height) == 0: return "英雄选择无效。"
 	cards = state.cards.duplicate(true)
+	category_growth = state.category_growth.duplicate(true)
 	# JSON 整数归一化不应改变领域生命字段的浮点类型。
 	for card in cards.values(): card.health_ratio = float(card.health_ratio)
 	relics = state.relics.duplicate(true)

@@ -14,7 +14,7 @@ static func seed_for(chapter_id: String, node_index: int) -> int:
 func create(build: RefCounted, enemies: Array, catalog: RefCounted, seed: int, chapter: Dictionary = {}) -> Dictionary:
 	error = build.validate_board()
 	if not error.is_empty(): return {}
-	var assembled = catalog.assembly.assemble(build, 0, AdventureBattleRules.assembly_options(build.core().id, build.cards))
+	var assembled = catalog.assemble_player(build, 0, AdventureBattleRules.assembly_options(build.core().id, build.cards))
 	if assembled.is_empty():
 		error = catalog.assembly.error
 		return {}

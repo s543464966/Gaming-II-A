@@ -31,6 +31,7 @@ func products(tab: int) -> Array:
 func price(id: String, method: int) -> Variant:
 	var offer: Dictionary = offers.get(id, {})
 	if offer.is_empty(): return null
+	if method == C.Payment.StarStone and content.get_record("cards", id).get("card_kind") == CardTypes.Kind.CoreHero: return null
 	if method == C.Payment.Fragments: return offer.fragment_amount if not offer.fragment_item_id.is_empty() else null
 	if not method in [C.Payment.Gold, C.Payment.StarStone]: return null
 	var original: Variant = offer.account_gold_price if method == C.Payment.Gold else offer.account_star_stone_price

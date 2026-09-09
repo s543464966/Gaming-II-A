@@ -3,7 +3,7 @@ extends Control
 
 signal finished(success: bool)
 var delivery: Node
-var keys: Array = []
+var keys: Variant = null
 var platform: Node
 var _finished: bool = false
 
@@ -15,7 +15,7 @@ func _ready() -> void:
 	$SafeArea/Center/Panel/Column/Actions/Retry.pressed.connect(_start)
 	_start.call_deferred()
 
-## 重试复用已经校验的包，不重新下载完成部分。
+## 重试复用已校验的包；失败正文始终附诊断，详情缺失也保留可辨认的错误码。
 func _start() -> void:
 	$SafeArea/Center/Panel/Column/Error.hide()
 	$SafeArea/Center/Panel/Column/Actions/Retry.hide()
@@ -25,6 +25,9 @@ func _start() -> void:
 		_finished = true
 		finished.emit(true)
 	else:
+		var details: String = delivery.diagnostic
+		if details.is_empty(): details = "CDN-D1 stage=unknown\nreason=missing_details"
+		$SafeArea/Center/Panel/Column/Error.text = "%s\n\n%s" % [tr("ui.startup.content_failed"), details]
 		$SafeArea/Center/Panel/Column/Error.show()
 		$SafeArea/Center/Panel/Column/Actions/Retry.show()
 

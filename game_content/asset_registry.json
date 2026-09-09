@@ -1,4 +1,140 @@
 {
+  "music.home": {
+    "kind": "Audio",
+    "path": "res://game_content/audio/music/home.ogg"
+  },
+  "music.route.rock": {
+    "kind": "Audio",
+    "path": "res://game_content/audio/music/rock_route.ogg"
+  },
+  "music.battle.rock": {
+    "kind": "Audio",
+    "path": "res://game_content/audio/music/rock_battle.ogg"
+  },
+  "music.route.blood": {
+    "kind": "Audio",
+    "path": "res://game_content/audio/music/blood_route.ogg"
+  },
+  "music.battle.blood": {
+    "kind": "Audio",
+    "path": "res://game_content/audio/music/blood_battle.ogg"
+  },
+  "music.route.ice": {
+    "kind": "Audio",
+    "path": "res://game_content/audio/music/ice_route.ogg"
+  },
+  "music.battle.ice": {
+    "kind": "Audio",
+    "path": "res://game_content/audio/music/ice_battle.ogg"
+  },
+  "sfx.ui.confirm": {
+    "kind": "Audio",
+    "path": "res://ui/design_system/audio/ui_confirm.tres"
+  },
+  "sfx.ui.open": {
+    "kind": "Audio",
+    "path": "res://ui/design_system/audio/ui_open.tres"
+  },
+  "sfx.ui.close": {
+    "kind": "Audio",
+    "path": "res://ui/design_system/audio/ui_close.tres"
+  },
+  "sfx.ui.error": {
+    "kind": "Audio",
+    "path": "res://ui/design_system/audio/ui_error.tres"
+  },
+  "sfx.adventure.route_select": {
+    "kind": "Audio",
+    "path": "res://features/game_modes_pve_adventure/ui/audio/route_select.tres"
+  },
+  "sfx.adventure.card_pickup": {
+    "kind": "Audio",
+    "path": "res://features/game_modes_pve_adventure/ui/audio/card_pickup.tres"
+  },
+  "sfx.adventure.card_place": {
+    "kind": "Audio",
+    "path": "res://features/game_modes_pve_adventure/ui/audio/card_place.tres"
+  },
+  "sfx.adventure.card_swap": {
+    "kind": "Audio",
+    "path": "res://features/game_modes_pve_adventure/ui/audio/card_swap.tres"
+  },
+  "sfx.adventure.dice_roll": {
+    "kind": "Audio",
+    "path": "res://features/game_modes_pve_adventure/ui/audio/dice_roll.tres"
+  },
+  "sfx.adventure.dice_pickup": {
+    "kind": "Audio",
+    "path": "res://features/game_modes_pve_adventure/ui/audio/dice_pickup.tres"
+  },
+  "sfx.adventure.dice_consume": {
+    "kind": "Audio",
+    "path": "res://features/game_modes_pve_adventure/ui/audio/dice_consume.tres"
+  },
+  "sfx.adventure.reward": {
+    "kind": "Audio",
+    "path": "res://features/game_modes_pve_adventure/ui/audio/reward.tres"
+  },
+  "sfx.combat.start": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/battle_start.tres"
+  },
+  "sfx.combat.cast": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/cast.tres"
+  },
+  "sfx.combat.physical": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/physical.tres"
+  },
+  "sfx.combat.witchcraft": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/witchcraft.tres"
+  },
+  "sfx.combat.burn": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/burn.tres"
+  },
+  "sfx.combat.poison": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/poison.tres"
+  },
+  "sfx.combat.healing": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/healing.tres"
+  },
+  "sfx.combat.shield": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/shield.tres"
+  },
+  "sfx.combat.critical": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/critical.tres"
+  },
+  "sfx.combat.status": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/status.tres"
+  },
+  "sfx.combat.unit_defeat": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/unit_defeat.tres"
+  },
+  "sfx.combat.core_damage": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/core_damage.tres"
+  },
+  "sfx.combat.time_warning": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/time_warning.tres"
+  },
+  "sfx.combat.victory": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/victory.tres"
+  },
+  "sfx.combat.defeat": {
+    "kind": "Audio",
+    "path": "res://features/combat/ui/audio/defeat.tres"
+  },
   "dice.reward_surface": {
     "kind": "Texture",
     "path": "res://game_content/dice/art/faces/reward_faces.png"
@@ -43,113 +179,49 @@
     "kind": "Texture",
     "path": "res://ui/design_system/icons/elements/fire.png"
   },
-  "ability.SK001.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/ab001/ab001_effect_frames.tres"
-  },
-  "ability.SK002.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/ab016/ab016_effect_frames.tres"
-  },
-  "ability.SK003.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0002/s0002_effect_frames.tres"
-  },
-  "ability.SK004.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0003/s0003_effect_frames.tres"
-  },
   "ability.SK004.sprite": {
     "kind": "Texture",
     "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0003.png"
-  },
-  "ability.SK005.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0004/s0004_effect_frames.tres"
   },
   "ability.SK005.sprite": {
     "kind": "Texture",
     "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0004.png"
   },
-  "ability.SK006.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0005/s0005_effect_frames.tres"
-  },
   "ability.SK006.sprite": {
     "kind": "Texture",
     "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0005.png"
-  },
-  "ability.SK007.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0006/s0006_effect_frames.tres"
   },
   "ability.SK007.sprite": {
     "kind": "Texture",
     "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0006.png"
   },
-  "ability.SK008.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0007/s0007_effect_frames.tres"
-  },
   "ability.SK008.sprite": {
     "kind": "Texture",
     "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0007.png"
-  },
-  "ability.SK009.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0008/s0008_effect_frames.tres"
   },
   "ability.SK009.sprite": {
     "kind": "Texture",
     "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0008.png"
   },
-  "ability.SK010.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0009/s0009_effect_frames.tres"
-  },
   "ability.SK010.sprite": {
     "kind": "Texture",
     "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0009.png"
-  },
-  "ability.SK011.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0010/s0010_effect_frames.tres"
   },
   "ability.SK011.sprite": {
     "kind": "Texture",
     "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0010.png"
   },
-  "ability.SK012.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0011/s0011_effect_frames.tres"
-  },
   "ability.SK012.sprite": {
     "kind": "Texture",
     "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0011.png"
-  },
-  "ability.SK013.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0012/s0012_effect_frames.tres"
   },
   "ability.SK013.sprite": {
     "kind": "Texture",
     "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0012.png"
   },
-  "ability.SK014.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0013/s0013_effect_frames.tres"
-  },
   "ability.SK014.sprite": {
     "kind": "Texture",
     "path": "res://game_content/abilities/main_abilities/art/ability_card/img_s0013.png"
-  },
-  "ability.SK015.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0014/s0014_effect_frames.tres"
-  },
-  "ability.SK016.effect": {
-    "kind": "Effect",
-    "path": "res://game_content/abilities/main_abilities/art/ability_card/s0015/s0015_effect_frames.tres"
   },
   "ability.SK016.sprite": {
     "kind": "Texture",
@@ -549,7 +621,7 @@
   },
   "chapter.CH001.background.locked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter00101/bg_chapter_0.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_locked.png"
   },
   "chapter.CH001.background.unlocked": {
     "kind": "Texture",
@@ -573,107 +645,51 @@
   },
   "chapter.CH004.background.locked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0201/bg_chapter_0.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_locked.png"
   },
   "chapter.CH004.background.unlocked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0201/bg_chapter_1.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_unlocked.png"
   },
   "chapter.CH005.background.locked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0202/bg_chapter_0.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_locked.png"
   },
   "chapter.CH005.background.unlocked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0202/bg_chapter_1.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_unlocked.png"
   },
   "chapter.CH006.background.locked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0203/bg_chapter_0.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_locked.png"
   },
   "chapter.CH006.background.unlocked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0203/bg_chapter_1.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_unlocked.png"
   },
   "chapter.CH007.background.locked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0301/bg_chapter_0.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_locked.png"
   },
   "chapter.CH007.background.unlocked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0301/bg_chapter_1.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_unlocked.png"
   },
   "chapter.CH008.background.locked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0302/bg_chapter_0.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_locked.png"
   },
   "chapter.CH008.background.unlocked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0302/bg_chapter_1.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_unlocked.png"
   },
   "chapter.CH009.background.locked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0303/bg_chapter_0.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_locked.png"
   },
   "chapter.CH009.background.unlocked": {
     "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/chapter0303/bg_chapter_1.png"
-  },
-  "chapter_node.path_straight_idle": {
-    "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_connect_line_x_off.png"
-  },
-  "chapter_node.path_straight_selected": {
-    "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_connect_line_x_on.png"
-  },
-  "chapter_node.path_diagonal_idle": {
-    "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_connect_line_xy_off.png"
-  },
-  "chapter_node.path_diagonal_selected": {
-    "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_connect_line_xy_on.png"
-  },
-  "chapter_node.node_locked": {
-    "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_monster_not.png"
-  },
-  "chapter_node.node_completed": {
-    "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_monster_pass.png"
-  },
-  "chapter_node.node_ready": {
-    "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_monster_ready.png"
-  },
-  "chapter_node.node_unknown": {
-    "kind": "Texture",
-    "path": "res://game_content/progression/pve_adventure/art/route_nodes/level_unknown.png"
-  },
-  "dice.DI001.face.0": {
-    "kind": "Texture",
-    "path": "res://game_content/dice/art/faces/img_df1.png"
-  },
-  "dice.DI001.face.1": {
-    "kind": "Texture",
-    "path": "res://game_content/dice/art/faces/img_df2.png"
-  },
-  "dice.DI001.face.2": {
-    "kind": "Texture",
-    "path": "res://game_content/dice/art/faces/img_df3.png"
-  },
-  "dice.DI001.face.3": {
-    "kind": "Texture",
-    "path": "res://game_content/dice/art/faces/img_df4.png"
-  },
-  "dice.DI001.face.4": {
-    "kind": "Texture",
-    "path": "res://game_content/dice/art/faces/img_df5.png"
-  },
-  "dice.DI001.face.5": {
-    "kind": "Texture",
-    "path": "res://game_content/dice/art/faces/img_df6.png"
+    "path": "res://game_content/progression/pve_adventure/art/chapter_backgrounds/shared_unlocked.png"
   },
   "relic.GA001.sprite": {
     "kind": "Texture",
@@ -795,6 +811,30 @@
     "kind": "Texture",
     "path": "res://game_content/items/art/coin_energy.png"
   },
+  "effect.combat.impact.physical.v1": {
+    "kind": "Effect",
+    "path": "res://game_content/effects/combat/impact_physical/impact_physical_frames.tres"
+  },
+  "effect.combat.impact.witchcraft.v1": {
+    "kind": "Effect",
+    "path": "res://game_content/effects/combat/impact_witchcraft/impact_witchcraft_frames.tres"
+  },
+  "effect.combat.impact.burn.v1": {
+    "kind": "Effect",
+    "path": "res://game_content/effects/combat/impact_burn/impact_burn_frames.tres"
+  },
+  "effect.combat.impact.poison.v1": {
+    "kind": "Effect",
+    "path": "res://game_content/effects/combat/impact_poison/impact_poison_frames.tres"
+  },
+  "effect.combat.impact.healing.v1": {
+    "kind": "Effect",
+    "path": "res://game_content/effects/combat/impact_healing/impact_healing_frames.tres"
+  },
+  "effect.combat.impact.shield.v1": {
+    "kind": "Effect",
+    "path": "res://game_content/effects/combat/impact_shield/impact_shield_frames.tres"
+  },
   "projectile.default": {
     "kind": "Projectile",
     "path": "res://game_content/projectiles/projectile_default.tres",
@@ -804,38 +844,38 @@
   "projectile.physical": {
     "kind": "Projectile",
     "path": "res://game_content/projectiles/projectile_physical.tres",
-    "width": 60,
-    "height": 25
+    "width": 76,
+    "height": 76
   },
   "projectile.witchcraft": {
     "kind": "Projectile",
     "path": "res://game_content/projectiles/projectile_witchcraft.tres",
-    "width": 48,
-    "height": 30
+    "width": 68,
+    "height": 40.8
   },
   "projectile.burn": {
     "kind": "Projectile",
     "path": "res://game_content/projectiles/projectile_burn.tres",
-    "width": 48,
-    "height": 30
+    "width": 76,
+    "height": 45.6
   },
   "projectile.poison": {
     "kind": "Projectile",
     "path": "res://game_content/projectiles/projectile_poison.tres",
-    "width": 48,
-    "height": 30
+    "width": 64,
+    "height": 64
   },
   "projectile.healing": {
     "kind": "Projectile",
     "path": "res://game_content/projectiles/projectile_healing.tres",
-    "width": 60,
-    "height": 25
+    "width": 72,
+    "height": 43.2
   },
   "projectile.shield": {
     "kind": "Projectile",
     "path": "res://game_content/projectiles/projectile_shield.tres",
-    "width": 48,
-    "height": 30
+    "width": 64,
+    "height": 38.4
   },
   "dice.relic_surface": {
     "kind": "Texture",

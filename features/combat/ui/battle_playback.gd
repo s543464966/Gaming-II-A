@@ -3,17 +3,21 @@ extends RefCounted
 ## 确定性战报的只读回放时钟；不在动画回调中结算伤害。
 
 signal projectile_launched(event: Dictionary)
+signal event_cued(event: Dictionary)
 signal event_played(event: Dictionary)
 signal frame_played(frame: Dictionary)
 signal cooldowns_sampled(progress: Dictionary)
 signal completed(result: Dictionary)
 const T = preload("res://features/mechanics/contracts/combat_types.gd")
 const FLIGHT_SECONDS = 0.24
+const DEFEAT_TAIL_SECONDS = 0.42
+const EFFECT_TAIL_SECONDS = 0.82
 var result: Dictionary = {}
 var presentation_time: float = 0
 var playback_time: float = 0
 var running: bool = false
 var impact_delay: float = 0
+var tail_delay: float = 0
 var _event: int = 0
 var _frame: int = 0
 var _projectile: int = 0
@@ -26,6 +30,11 @@ func start(completed_battle: Dictionary) -> String:
 	if not completed_battle.get("reason") in T.Completion.values() or not completed_battle.get("events") is Array or not completed_battle.get("frames") is Array or not (completed_battle.get("duration") is float or completed_battle.get("duration") is int): return "回放需要完整的已结算战报。"
 	result = completed_battle if completed_battle.is_read_only() else BattleReport.seal(completed_battle.duplicate(true))
 	impact_delay = FLIGHT_SECONDS if result.events.any(func(event): return not event.projectile.is_empty()) else 0.0
+	for event in result.events:
+		var kind := int(event.get("kind", -1))
+		var tail := DEFEAT_TAIL_SECONDS if kind == T.Event.UnitDefeated else 0.0
+		if kind in [T.Event.ActionReleased, T.Event.DamageResolved, T.Event.HealingResolved, T.Event.ShieldGained, T.Event.StatusApplied]: tail = EFFECT_TAIL_SECONDS
+		tail_delay = maxf(tail_delay, float(event.time) + tail - float(result.duration))
 	running = true
 	return ""
 
@@ -34,12 +43,15 @@ func tick(delta: float) -> void:
 	if not running or delta <= 0: return
 	var identity = result
 	var advanced = presentation_time + delta
-	var reached_end = advanced >= result.duration + impact_delay
-	presentation_time = result.duration + impact_delay if reached_end else advanced
-	playback_time = result.duration if reached_end else maxf(0, presentation_time - impact_delay)
+	var presentation_duration: float = result.duration + impact_delay + tail_delay
+	var reached_end = advanced >= presentation_duration
+	presentation_time = presentation_duration if reached_end else advanced
+	playback_time = minf(float(result.duration), maxf(0, presentation_time - impact_delay))
 	while _projectile < result.events.size() and result.events[_projectile].time <= presentation_time:
 		var event: Dictionary = result.events[_projectile]
 		_projectile += 1
+		event_cued.emit(event)
+		if not is_same(identity, result) or not running: return
 		if not event.projectile.is_empty() and presentation_time < event.time + impact_delay: projectile_launched.emit(event)
 		if not is_same(identity, result) or not running: return
 	if presentation_time < impact_delay: return
@@ -112,6 +124,7 @@ func reset() -> void:
 	playback_time = 0
 	running = false
 	impact_delay = 0
+	tail_delay = 0
 	_event = 0
 	_frame = 0
 	_projectile = 0

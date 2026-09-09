@@ -134,7 +134,7 @@ func _prefix(table: String, row: Dictionary) -> String:
 		if row.card_kind == CardTypes.Kind.Monster: return {C.MonsterRole.Normal: "M", C.MonsterRole.Elite: "ME", C.MonsterRole.Boss: "MB"}.get(row.monster_role, "INVALID")
 		return {CardTypes.Kind.CoreHero: "H", CardTypes.Kind.Minion: "HS", CardTypes.Kind.ItemCard: "PC" if row.id.begins_with("PC") else "IC"}.get(row.card_kind, "INVALID")
 	if table == "items": return "FR" if row.item_kind == C.Item.Material else "IT"
-	return {"main_abilities": "SK", "innate_abilities": "EN", "talents": "TA", "synergies": "SY", "aurora_rewards": "AR", "aurora_reward_rules": "AS", "relics": "GA", "monster_sets": "MS", "chapters": "CH", "reward_dice": "DI", "dice_reward_rules": "DR", "dice_reward_pools": "DP", "shop_offers": "SH", "adventure_node_rules": "NR"}.get(table, "INVALID")
+	return {"main_abilities": "SK", "innate_abilities": "EN", "talents": "TA", "synergies": "SY", "aurora_rewards": "AR", "aurora_reward_rules": "AS", "black_market_rules": "BM", "adventure_encounter_rules": "EC", "relics": "GA", "monster_sets": "MS", "chapters": "CH", "reward_dice": "DI", "dice_reward_rules": "DR", "dice_reward_pools": "DP", "shop_offers": "SH", "adventure_node_rules": "NR"}.get(table, "INVALID")
 
 ## 阶段曲线与碎片档位分别校验，升星不能使满档属性倒退。
 func _growth_rules(rows: Array) -> void:
@@ -142,21 +142,24 @@ func _growth_rules(rows: Array) -> void:
 		errors.append("成长规则必须且只能包含一行。")
 		return
 	var row: Dictionary = rows[0]
-	for key in ["chapter_level_bonus_ratio", "fragment_step_bonus_ratio"]:
+	for key in ["chapter_level_bonus_ratio", "training_step_bonus_ratio"]:
 		_positive(row[key], "成长规则 " + key)
-	if row.fragment_step_count < 1:
-		errors.append("碎片档数必须为正整数。")
+	var hero_bonus: Variant = row.hero_damage_bonus_ratio_per_star
+	if not (hero_bonus is int or hero_bonus is float) or not is_finite(float(hero_bonus)) or hero_bonus < 0:
+		errors.append("英雄每星伤害加值必须为有限非负比例。")
+	if row.training_step_count < 1:
+		errors.append("培养档数必须为正整数。")
 		return
-	if row.star_fragment_costs.size() != 4 or row.star_stat_multipliers.size() != 5:
+	if row.star_stone_step_costs.size() != 4 or row.star_stat_multipliers.size() != 5:
 		errors.append("五星成长必须包含四次需求和五个星级系数。")
 		return
 	var previous = 0
-	for cost in row.star_fragment_costs:
-		if not cost is int or cost <= previous or cost % row.fragment_step_count != 0: errors.append("碎片需求必须递增且能划分完整档位。")
+	for cost in row.star_stone_step_costs:
+		if not cost is int or cost <= previous: errors.append("每档星石费用必须为递增正整数。")
 		previous = int(cost)
 	if row.star_stat_multipliers[0] != 1: errors.append("一星基准必须为1。")
 	for index in range(1, row.star_stat_multipliers.size()):
-		if row.star_stat_multipliers[index] < row.star_stat_multipliers[index - 1] * (1 + row.fragment_step_count * row.fragment_step_bonus_ratio): errors.append("升星系数不能低于前一星满碎片基准。")
+		if row.star_stat_multipliers[index] < row.star_stat_multipliers[index - 1] * (1 + row.training_step_count * row.training_step_bonus_ratio): errors.append("升星系数不能低于前一星满培养基准。")
 
 ## 分类前缀之后为三至六位正序号，零号不发布。
 func _short_id(id: String, prefix: String) -> void:
@@ -179,6 +182,7 @@ func _card(card: Dictionary) -> void:
 	if monster != (card.monster_role != C.MonsterRole.None): errors.append("只有怪物必须声明普通、精英或首领职责: " + card.id)
 	_positive(card.max_health, card.id + " 生命")
 	errors.append_array(CombatAttributes.validation_errors(card))
+	if (card.crit_chance != 0 and not (card.id == "H004" and is_equal_approx(card.crit_chance, 0.15))) or not is_equal_approx(card.crit_multiplier, 1.5) or card.haste_ratio != 0 or card.lifesteal_ratio != 0: errors.append("卡牌不配置百分比能力；仅保留待确认的德里暴击率及通用暴击倍率: " + card.id)
 	if BattleGrid.footprint_mask(0, card.footprint_width, card.footprint_height) == 0: errors.append("卡牌占位无效: " + card.id)
 	if monster and card.monster_role in [C.MonsterRole.Elite, C.MonsterRole.Boss] and (card.footprint_width != 2 or card.footprint_height != 1): errors.append("精英与首领必须横向占用两格: " + card.id)
 	_asset(card.texture_key, "Texture", card.id, item)
@@ -202,11 +206,11 @@ func _card(card: Dictionary) -> void:
 func _ability(row: Dictionary, table: String) -> void:
 	_asset(row.texture_key, "Texture", row.id)
 	if table == "main_abilities":
-		if row.multicast_count < 1 or row.multicast_count > AbilitySchema.MAX_MULTICAST: errors.append("多重施法总次数必须为 1～8: " + row.id)
+		if row.multicast_count != 1: errors.append("当前正式内容只允许单次施法，multicast_count 必须为 1: " + row.id)
 		_actions(row.actions, row.id)
 		if row.actions.is_empty(): errors.append("主能力必须包含实际效果动作: " + row.id)
 		for action in row.actions:
-			if T.output_kind(action) != T.Output.Special and (action.get("power_multiplier", 0) <= 0 or action.amount != 0): errors.append("主动数值必须引用对应输出属性倍率，不再保存第二份固定强度: " + row.id)
+			if T.output_kind(action) != T.Output.Special and action.get("amount_source", T.AmountSource.Fixed) == T.AmountSource.Fixed: errors.append("主能力数值必须直接读取卡牌输出或配置追加效果整数基数: " + row.id)
 		_positive(row.cooldown_seconds, row.id + " 冷却")
 		return
 	var codec = Codec.new()
@@ -294,6 +298,8 @@ func _chapter(chapter: Dictionary) -> void:
 	for field in ["chapter_index", "stamina_cost", "enemy_health_multiplier", "enemy_power_multiplier", "elite_guard_health_multiplier", "boss_guard_health_multiplier"]: _positive(chapter[field], chapter.id + "." + field)
 	_asset(chapter.unlocked_background_key, "Texture", chapter.id, false)
 	_asset(chapter.locked_background_key, "Texture", chapter.id, false)
+	_asset(chapter.route_music_key, "Audio", chapter.id, false)
+	_asset(chapter.battle_music_key, "Audio", chapter.id, false)
 	var layer_count = 2
 	var elites = 0
 	if chapter.sections.is_empty(): errors.append("章节缺少路线段: " + chapter.id)
@@ -368,10 +374,10 @@ func _monster_pool_requirements(chapters: Array) -> void:
 		else:
 			pools[chapter.chapter_index] = normal_ids
 
-## 三种事件各自绑定唯一效果，遗迹只提供星能选择。
+## 三种事件各自绑定唯一效果，具体随机条款在进入节点时锁定。
 func _node_rules(rules: Array) -> void:
 	var seen: Array = []
-	var actions = {C.NodeType.Relic: C.NodeEffect.AuroraChoice, C.NodeType.BlackMarket: C.NodeEffect.ExchangeCurrency, C.NodeType.Adventure: C.NodeEffect.GrantCurrency}
+	var actions = {C.NodeType.Relic: C.NodeEffect.AuroraChoice, C.NodeType.BlackMarket: C.NodeEffect.BlackMarket, C.NodeType.Adventure: C.NodeEffect.Encounter}
 	for rule in rules:
 		if rule.node_type in seen or not actions.has(rule.node_type): errors.append("节点规则类型重复或无效: " + rule.id)
 		if rule.effect_type != actions.get(rule.node_type): errors.append("节点效果与关卡类型不符: " + rule.id)
@@ -379,19 +385,13 @@ func _node_rules(rules: Array) -> void:
 		for field in ["title_key", "description_key", "action_label_key"]:
 			if rule[field].strip_edges().is_empty(): errors.append("节点文案为空: " + rule.id)
 		if rule.cost_currency not in [C.Currency.Gold, C.Currency.StarStone] or rule.reward_currency not in [C.Currency.Gold, C.Currency.StarStone]: errors.append("节点只支持账号金币或星石: " + rule.id)
-		if rule.effect_type != C.NodeEffect.ExchangeCurrency and (rule.cost_amount != 0 or rule.cost_currency != C.Currency.Gold): errors.append("非兑换节点不能填写无效花费: " + rule.id)
-		if rule.effect_type == C.NodeEffect.AuroraChoice and (rule.reward_amount != 0 or rule.reward_currency != C.Currency.Gold): errors.append("星辉遗迹不能填写货币奖励: " + rule.id)
+		if rule.cost_amount != 0 or rule.reward_amount != 0 or rule.cost_currency != C.Currency.Gold or rule.reward_currency != C.Currency.Gold: errors.append("事件节点固定条款必须留空，实际结果由专用规则生成: " + rule.id)
 		if rule.cost_amount < 0 or rule.reward_amount < 0: errors.append("节点数值不能为负: " + rule.id)
-		match rule.effect_type:
-			C.NodeEffect.AuroraChoice: pass
-			C.NodeEffect.GrantCurrency, C.NodeEffect.ExchangeCurrency:
-				_positive(rule.reward_amount, rule.id + " 奖励")
-				if rule.effect_type == C.NodeEffect.ExchangeCurrency: _positive(rule.cost_amount, rule.id + " 花费")
-			_: errors.append("节点缺少实际效果: " + rule.id)
+		if not rule.effect_type in [C.NodeEffect.AuroraChoice, C.NodeEffect.BlackMarket, C.NodeEffect.Encounter]: errors.append("节点缺少实际效果: " + rule.id)
 	if seen.size() != 3: errors.append("必须覆盖三种非战斗节点。")
 
 
-## 遗物只包含全队整数加成或开战一次性效果；不再接受卡牌附着条件。
+## 遗物允许全队固定点数与加法比例池，或开战一次性效果。
 func _relic(row: Dictionary) -> void:
 	_asset(row.texture_key, "Texture", row.id)
 	var parts: Array = _parts(row.ability_parts, row.id)
@@ -405,14 +405,16 @@ func _relic(row: Dictionary) -> void:
 			return
 		var expected: Dictionary = AbilitySchema.new().decode({}, "modifiers", row.id, false)
 		expected.team_bonuses = part.modifiers.team_bonuses
-		if expected.team_bonuses.is_empty() or expected != part.modifiers: errors.append("常驻遗物只支持固定队伍数值: " + row.id)
+		expected.stat_bonus_ratios = part.modifiers.stat_bonus_ratios
+		for key in ["crit_chance", "crit_multiplier", "haste_ratio", "lifesteal_ratio"]: expected[key] = part.modifiers[key]
+		if not AbilitySchema.has_contribution(expected) or expected != part.modifiers: errors.append("常驻遗物只支持全队固定输出或属性比例修正: " + row.id)
 	else:
 		if part.execution_kind != T.AbilityExecution.TriggeredPassive:
 			errors.append("一次性遗物必须使用触发能力: " + row.id)
 			return
 		if part.trigger_event != T.Event.BattleStarted or part.max_triggers_per_battle != 1 or part.actions.size() != 1 or not part.conditions.is_empty(): errors.append("一次性遗物必须是无条件开战单次效果: " + row.id)
 		for action in part.actions:
-			if action.target not in [T.Target.AllAllies, T.Target.AllEnemies] or action.kind not in [T.CombatAction.PhysicalDamage, T.CombatAction.Witchcraft, T.CombatAction.GrantShield, T.CombatAction.ApplyStatus, T.CombatAction.Charge] or action.power_multiplier != 0: errors.append("一次性遗物必须是独立固定数值的队伍效果: " + row.id)
+			if action.target not in [T.Target.AllAllies, T.Target.AllEnemies] or action.kind not in [T.CombatAction.PhysicalDamage, T.CombatAction.Witchcraft, T.CombatAction.GrantShield, T.CombatAction.ApplyStatus, T.CombatAction.Charge, T.CombatAction.Haste] or action.power_multiplier != 0 or action.amount_source != T.AmountSource.Fixed: errors.append("一次性遗物必须是独立队伍效果，不能读取卡牌输出: " + row.id)
 
 ## 能力局部 ID、执行定义与引用只校验一份，适用类别不能绕过机制限制。
 func _parts(values: Array, owner: String, kinds: Array = []) -> Array:
@@ -434,7 +436,8 @@ func _parts(values: Array, owner: String, kinds: Array = []) -> Array:
 				_asset(part.modifiers.projectile_key, "Projectile", owner)
 				multicast = part.modifiers.multicast_bonus != 0
 				if part.modifiers.ammo_capacity != 0 and not kinds.is_empty() and kinds != [CardTypes.Kind.ItemCard]: errors.append("弹药扩充修正只能绑定道具: " + owner)
-		if multicast and kinds.any(func(kind): return not kind in [CardTypes.Kind.CoreHero, CardTypes.Kind.Minion]): errors.append("多重施法只属于英雄或随从: " + owner)
+		if not indices.relics.has(owner): _card_percentage_policy(part, owner)
+		if multicast: errors.append("当前正式内容不启用双重或多重施法，也不允许增加施法次数: " + owner)
 	return decoded
 
 ## 账号商城只解锁一份收藏，价格与章节奖励相互独立。
@@ -447,6 +450,7 @@ func _shop(offers: Array) -> void:
 		if offer.reward_id in rewards: errors.append("商城奖励重复报价: " + offer.id)
 		rewards.append(offer.reward_id)
 		if offer.purchase_limit != 1: errors.append("账号收藏必须限购一份: " + offer.id)
+		if record.get("card_kind") == CardTypes.Kind.CoreHero and offer.account_star_stone_price != null: errors.append("英雄仅支持金币购买与专属碎片解锁: " + offer.id)
 		for key in ["account_gold_price", "account_star_stone_price"]:
 			if offer[key] != null and offer[key] < 0: errors.append("商城价格不能为负: " + offer.id)
 		if offer.payable_percent < 1 or offer.payable_percent > 100: errors.append("商城支付比例无效: " + offer.id)
@@ -469,6 +473,11 @@ func _actions(value: Variant, owner: String) -> void:
 	errors.append_array(codec.errors)
 	if actions.is_empty(): errors.append(owner + " 缺少效果。")
 	for action in MechanicSchema.flatten(actions):
+		if action.target in [T.Target.AllEnemies, T.Target.AllUnits] and not action.max_targets in [3, 4, 5]:
+			errors.append("正式群攻必须显式限制目标：默认3个，少数4或5个，禁止全场攻击: " + owner)
+		if not indices.relics.has(owner):
+			if action.power_multiplier != 0 or action.lifesteal_ratio != 0 or action.kind in [T.CombatAction.Haste, T.CombatAction.Empower] or (action.kind == T.CombatAction.ApplyStatus and action.status == T.Status.Slow) or action.parameters.has("multiplier"):
+				errors.append("卡牌能力禁止百分比强度、急速、缓速及比例派生，改用点数或固定秒数: " + owner)
 		_asset(action.projectile_key, "Projectile", owner)
 		if action.kind == T.CombatAction.GrantMainAbility or not action.main_ability_id.is_empty(): _main_ability(action.main_ability_id, owner)
 		if action.kind in [T.CombatAction.CopyMainAbility, T.CombatAction.Transform] and not MechanicSchema.snapshot_supported(action.kind, indices.main_abilities.get(action.main_ability_id, {}).get("actions", [])): errors.append(owner + " 复制或形态预设不能包含主能力授予链或回放副本。")
@@ -487,11 +496,11 @@ func _asset(key: String, kind: String, owner: String, optional: bool = true) -> 
 		if not optional: errors.append(owner + " 的资源键为空。")
 	elif not assets.has(key) or not assets[key] is Dictionary or assets[key].get("kind") != kind: errors.append(owner + " 的资源键不存在或类别错误: " + key)
 
-## 制作阶段就拒绝类别不符、空动画和不可播放帧，避免到攻击时才失败。
+## 制作阶段就拒绝类别不符、不可播放音频、空动画和无效帧，避免运行时才失败。
 func _resources(deferred_assets: Dictionary = {}) -> void:
 	for key in assets:
 		var entry: Variant = assets[key]
-		if not entry is Dictionary or not entry.get("path") is String or not entry.get("kind") in ["Texture", "Effect", "Projectile"]:
+		if not entry is Dictionary or not entry.get("path") is String or not entry.get("kind") in ["Texture", "Audio", "Effect", "Projectile"]:
 			errors.append("资源登记格式错误: " + str(key))
 			continue
 		if deferred_assets.has(key):
@@ -504,6 +513,9 @@ func _resources(deferred_assets: Dictionary = {}) -> void:
 		var resource = load(entry.path)
 		if entry.kind == "Texture":
 			if not resource is Texture2D: errors.append("静态图登记必须指向 Texture2D: " + key)
+			continue
+		if entry.kind == "Audio":
+			if not resource is AudioStream: errors.append("音频登记必须指向 AudioStream: " + key)
 			continue
 		if not resource is SpriteFrames:
 			errors.append("特效或弹道必须指向 SpriteFrames: " + key)
@@ -533,10 +545,25 @@ func _sources(metadata: Dictionary) -> void:
 		if pattern.search(source.sha256) == null: errors.append("来源文件指纹格式无效。")
 
 
-## 星能固定覆盖八种奖励，碎片按真实商品关系分类，数值来自唯一策划表。
+## 星能、黑市与奇遇规则保持唯一，所有随机权重和数量均为正数。
 func _adventure_requirements(document: Dictionary) -> void:
-	if document.aurora_reward_rules.size() != 1 or document.aurora_reward_rules[0].max_triggers != 5:
+	if document.aurora_reward_rules.size() != 1 or document.aurora_reward_rules[0].max_triggers != 5 or document.aurora_reward_rules[0].offer_count != 3:
 		errors.append("星能每章触发上限必须为五次。")
+	if document.black_market_rules.size() != 1: errors.append("黑市规则必须且只能包含一行。")
+	else:
+		var market: Dictionary = document.black_market_rules[0]
+		for field in Schema.fields("black_market_rules"):
+			if field != "id": _positive(market[field], market.id + "." + field)
+		if market.fragment_offer_count != 3 or market.fragment_amount != 10 or market.minion_weight + market.item_weight + market.hero_weight != 100: errors.append("黑市必须提供三件十片碎片商品，分类权重合计一百。")
+	if document.adventure_encounter_rules.size() != 1: errors.append("奇遇规则必须且只能包含一行。")
+	else:
+		var encounter: Dictionary = document.adventure_encounter_rules[0]
+		for field in Schema.fields("adventure_encounter_rules"):
+			if field != "id": _positive(encounter[field], encounter.id + "." + field)
+		if encounter.refresh_count != 1 or encounter.star_stone_max < encounter.star_stone_min: errors.append("奇遇必须允许一次刷新并使用有效星石区间。")
+		if encounter.dice_reward_weight + encounter.star_stone_reward_weight + encounter.relic_reward_weight + encounter.card_reward_weight != 100: errors.append("奇遇收获权重合计必须为一百。")
+		if encounter.stamina_cost_weight + encounter.team_debuff_cost_weight + encounter.card_cost_weight + encounter.die_cost_weight != 100: errors.append("奇遇代价权重合计必须为一百。")
+		if encounter.card_minion_weight + encounter.card_item_weight != 100: errors.append("奇遇卡牌类别权重合计必须为一百。")
 	var kinds: Array = []
 	for row: Dictionary in document.aurora_rewards:
 		if row.aurora_reward_kind in kinds: errors.append("星能奖励类别重复。")
@@ -589,3 +616,16 @@ func _card_kit(card: Dictionary, main_abilities: Array) -> void:
 	for stat: String in values:
 		if values[stat] < (3 if self_only else 1) or values[stat] > (5 if self_only else 2): errors.append("卡牌常驻奖励要求自身3～5、全队1～2点: " + card.id)
 		if card.card_kind == CardTypes.Kind.CoreHero and stat in ["healing_power", "shield_power"]: errors.append("英雄常驻奖励不承担治疗或护盾强化: " + card.id)
+
+## 非遗物不新增百分比修正；仅精确保留待玩家确认的暴击与低生命门槛。
+func _card_percentage_policy(part: Dictionary, owner: String) -> void:
+	var modifiers: Dictionary = part.get("modifiers", {})
+	if not modifiers.get("stat_bonus_ratios", {}).is_empty() or modifiers.get("haste_ratio", 0) != 0 or modifiers.get("lifesteal_ratio", 0) != 0 or modifiers.get("crit_multiplier", 0) != 0:
+		errors.append("非遗物能力必须使用固定点数或秒数，禁止百分比修正: " + owner)
+	if modifiers.get("crit_chance", 0) != 0 and not (owner == "EN014" and part.id == "precision" and part.target == T.Target.Self and is_equal_approx(modifiers.crit_chance, 0.15)):
+		errors.append("非遗物不新增暴击概率；现有精准瞄准为待确认例外: " + owner)
+	for action in modifiers.get("action_modifiers", []):
+		if action.kind == T.CombatAction.Haste: errors.append("非遗物不允许通过效果修正增加百分比急速: " + owner)
+	for condition in part.get("conditions", []):
+		if condition.kind == T.Condition.OwnerHealthAtMostPercent and not (owner == "EN004" and part.id == "resolve" and condition.threshold == 50):
+			errors.append("非遗物不新增百分比生命条件；绝境咒能门槛为待确认例外: " + owner)

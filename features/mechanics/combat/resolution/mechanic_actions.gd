@@ -22,8 +22,8 @@ static func execute(executor: Variant, context: Dictionary, target: CombatUnit, 
 		T.CombatAction.Detonate:
 			var consumed: Array = CombatStatuses.take(target, T.Status.Burn, int(parameters.count), owner.team_id)
 			if consumed.is_empty(): return
-			var burst: float = CombatStatuses.remaining_damage(consumed) * float(parameters.multiplier)
-			executor.health.damage(owner, target, burst, depth, publish, "", context, false, 0, T.Output.Burn)
+			var burst: float = int(parameters.count) * float(parameters.multiplier)
+			executor.health.damage(owner, target, burst, depth, publish, "", context, 0, T.Output.Burn)
 		T.CombatAction.Mark:
 			target.mechanics.marks[str(owner.team_id) + ":" + parameters.key] = {"team": owner.team_id, "key": parameters.key, "remaining": duration}
 			publish.call(T.Event.MarkApplied, owner, target, duration, "标记", depth, "", context, {"mark_key": parameters.key})
@@ -40,7 +40,6 @@ static func execute(executor: Variant, context: Dictionary, target: CombatUnit, 
 		T.CombatAction.Convert:
 			var previous: int = int(target.mechanics.counters.get(parameters.key, 0))
 			if target.team_id != owner.team_id or not _pay(target, parameters.resource, parameters.key, int(amount)): return
-			if parameters.resource == "Shield" and target.shield <= 0: CombatStatuses.breach_poison(target)
 			if parameters.resource == "Counter": _counter_event(context, target, parameters.key, previous, depth, publish)
 			_payload(executor, context, parameters.payload, owner, target, depth, publish, refresh, complete, activation)
 		T.CombatAction.Transfer:
@@ -100,7 +99,7 @@ static func _pay(target: CombatUnit, resource: String, key: String, cost: int) -
 		_: return false
 	return true
 
-## 传递现有资源或完整状态层，不新建强度、不刷新计时；容量不足整次取消。
+## 传递现有资源或指定状态层数，不复制资源；数量不足整次取消。
 static func _transfer(owner: CombatUnit, target: CombatUnit, parameters: Dictionary, amount: int) -> bool:
 	if owner == target: return false
 	var resource: String = parameters.resource
@@ -109,20 +108,10 @@ static func _transfer(owner: CombatUnit, target: CombatUnit, parameters: Diction
 		if target.team_id != owner.team_id or not _pay(owner, resource, parameters.key, amount): return false
 		if resource == "Shield":
 			target.shield += amount
-			if owner.shield <= 0: CombatStatuses.breach_poison(owner)
 		else: target.mechanics.counters[parameters.key] = int(target.mechanics.counters.get(parameters.key, 0)) + amount
 		return true
 	var status: int = T.Status.Burn if resource == "Burn" else T.Status.Poison
-	var existing: Dictionary = target.statuses.get(status, {}).get("sources", {})
-	if status == T.Status.Burn and existing.size() + amount > MechanicSchema.MAX_BURN_STACKS: return false
-	var layers: Array = CombatStatuses.take(owner, status, amount, -1)
-	if layers.is_empty(): return false
-	if not target.statuses.has(status): target.statuses[status] = {"sources": {}}
-	for layer in layers:
-		target.mechanics.status_sequence += 1
-		if status == T.Status.Poison: layer.penetrated = target.shield <= 0
-		target.statuses[status].sources["transfer:%s:%d" % [owner.id, target.mechanics.status_sequence]] = layer
-	return true
+	return CombatStatuses.transfer(owner, target, status, amount)
 
 ## 连锁每跳只找目标同队的未命中单位，按直线距离及 ID 排序并逐跳衰减。
 static func _chain(executor: Variant, context: Dictionary, first: CombatUnit, parameters: Dictionary, depth: int, publish: Callable, activation: bool, tag_query: Dictionary = {}) -> void:
@@ -160,6 +149,7 @@ static func _copy(executor: Variant, owner: CombatUnit, target: CombatUnit, acti
 		if T.output_kind(child) != T.Output.Special:
 			child.amount = CombatAttributes.action_amount(owner.definition, child, float(owner.definition.get("main_ability_strength_multiplier", 1))) * float(action.parameters.multiplier)
 			child.power_multiplier = 0.0
+			child.amount_source = T.AmountSource.Fixed
 			child.snapshot_amount = child.amount
 	main_ability.multicast_count = 1
 	target.main_abilities.grant(main_ability, origin, float(action.duration_seconds))

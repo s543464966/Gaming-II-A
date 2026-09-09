@@ -8,6 +8,8 @@ signal player_selected(identity: String)
 var accounts: PlayerSessionController
 var platform: Node
 var localization: LocalizationService
+## App 显式提供内容交付的脱敏诊断，不直接展示账号的内部启动错误。
+var content_diagnostic: String = ""
 @onready var _body: VBoxContainer = $SafeArea/Margin/Column/Scroll/Body
 
 ## 注入只读启动状态和安全区服务，恢复操作通过信号交还 App。
@@ -36,6 +38,10 @@ func _ready() -> void:
 func refresh() -> void:
 	UI.clear(_body)
 	_body.add_child(UI.bound_label(_startup_text))
+	if accounts.startup_error == "ui.startup.content_failed" and not content_diagnostic.is_empty():
+		var detail: Label = UI.label(content_diagnostic, 22)
+		detail.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+		_body.add_child(detail)
 	for profile in accounts.legacy_profiles:
 		var button = UI.button(profile.label, func(): player_selected.emit(profile.user_id))
 		button.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED

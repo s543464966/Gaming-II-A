@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="96" viewBox="0 0 640 96">
+<!-- 原创四帧弹体：固定头部锚点，逐帧改变尾部形态；按 24 FPS 循环。 -->
+<defs>
+<linearGradient id="body" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#124761"/><stop offset=".55" stop-color="#72dff7"/><stop offset="1" stop-color="#fff1bd"/></linearGradient>
+<linearGradient id="tail"><stop stop-color="#72dff7" stop-opacity="0"/><stop offset=".65" stop-color="#72dff7" stop-opacity=".6"/><stop offset="1" stop-color="#fff1bd"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#fff1bd" stop-opacity=".65"/><stop offset=".35" stop-color="#72dff7" stop-opacity=".3"/><stop offset="1" stop-color="#72dff7" stop-opacity="0"/></radialGradient>
+</defs>
+<g transform="translate(0 0)">
+<ellipse cx="104" cy="48" rx="44" ry="32" fill="url(#glow)"/>
+<path d="M16 50 Q52 33 98 48 Q52 66 16 50" fill="url(#tail)"/>
+<path d="M92 27 L128 34 L139 48 L122 66 L91 63 L80 48 Z" fill="url(#body)" stroke="#e9db9d" stroke-width="1.8"/>
+<path d="M92 27 L106 47 L128 34 M106 47 L122 66 M80 48 L106 47 L139 48" fill="none" stroke="#dbfbff" stroke-width="1.5"/>
+<path d="M106 47 L128 34 L139 48 Z" fill="#d5faff" opacity=".75"/>
+<path d="M46 30 L72 34 L82 42 L60 39 Z M32 61 L61 57 L71 65 L50 71 Z" fill="#88dff2" opacity=".7"/>
+<circle cx="57" cy="22" r="1.3" fill="#fff1bd" opacity=".8"/>
+<circle cx="28" cy="68" r="1" fill="#72dff7" opacity=".7"/>
+</g>
+<g transform="translate(160 0)">
+<ellipse cx="104" cy="48" rx="44" ry="32" fill="url(#glow)"/>
+<path d="M16 55 Q52 39 98 48 Q52 61 16 55" fill="url(#tail)"/>
+<path d="M92 27 L128 34 L139 48 L122 66 L91 63 L80 48 Z" fill="url(#body)" stroke="#e9db9d" stroke-width="1.8"/>
+<path d="M92 27 L106 47 L128 34 M106 47 L122 66 M80 48 L106 47 L139 48" fill="none" stroke="#dbfbff" stroke-width="1.5"/>
+<path d="M106 47 L128 34 L139 48 Z" fill="#d5faff" opacity=".75"/>
+<path d="M50 35 L72 34 L82 42 L60 39 Z M37 67 L61 57 L71 65 L50 71 Z" fill="#88dff2" opacity=".7"/>
+<circle cx="50" cy="27" r="1.3" fill="#fff1bd" opacity=".8"/>
+<circle cx="32" cy="74" r="1" fill="#72dff7" opacity=".7"/>
+</g>
+<g transform="translate(320 0)">
+<ellipse cx="104" cy="48" rx="44" ry="32" fill="url(#glow)"/>
+<path d="M16 47 Q52 43 98 48 Q52 69 16 47" fill="url(#tail)"/>
+<path d="M92 27 L128 34 L139 48 L122 66 L91 63 L80 48 Z" fill="url(#body)" stroke="#e9db9d" stroke-width="1.8"/>
+<path d="M92 27 L106 47 L128 34 M106 47 L122 66 M80 48 L106 47 L139 48" fill="none" stroke="#dbfbff" stroke-width="1.5"/>
+<path d="M106 47 L128 34 L139 48 Z" fill="#d5faff" opacity=".75"/>
+<path d="M54 27 L72 34 L82 42 L60 39 Z M42 71 L61 57 L71 65 L50 71 Z" fill="#88dff2" opacity=".7"/>
+<circle cx="43" cy="19" r="1.3" fill="#fff1bd" opacity=".8"/>
+<circle cx="36" cy="78" r="1" fill="#72dff7" opacity=".7"/>
+</g>
+<g transform="translate(480 0)">
+<ellipse cx="104" cy="48" rx="44" ry="32" fill="url(#glow)"/>
+<path d="M16 52 Q52 37 98 48 Q52 64 16 52" fill="url(#tail)"/>
+<path d="M92 27 L128 34 L139 48 L122 66 L91 63 L80 48 Z" fill="url(#body)" stroke="#e9db9d" stroke-width="1.8"/>
+<path d="M92 27 L106 47 L128 34 M106 47 L122 66 M80 48 L106 47 L139 48" fill="none" stroke="#dbfbff" stroke-width="1.5"/>
+<path d="M106 47 L128 34 L139 48 Z" fill="#d5faff" opacity=".75"/>
+<path d="M58 32 L72 34 L82 42 L60 39 Z M47 65 L61 57 L71 65 L50 71 Z" fill="#88dff2" opacity=".7"/>
+<circle cx="36" cy="24" r="1.3" fill="#fff1bd" opacity=".8"/>
+<circle cx="40" cy="72" r="1" fill="#72dff7" opacity=".7"/>
+</g>
+</svg>

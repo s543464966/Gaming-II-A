@@ -48,13 +48,14 @@ static func team_contributions(contributions: Array, bonus: int) -> Array:
 			remaining[stat] = int(remaining.get(stat, bonus)) - change
 	return result
 
-## 碎片只提升本星基准，避免升星清空档位时削减装备固定收益。
-static func attribute_points(definition: Dictionary, key: String) -> float:
-	var base = float(definition.get(key, 0))
+## 分类培养只提升本星基准；队伍固定加减点最后应用并保持非负。
+static func attribute_points(definition: Dictionary, key: String, base_override: float = -1.0) -> float:
+	var base = base_override if base_override >= 0 else float(definition.get(key, 0))
 	var flat = float(definition.get("modifiers", {}).get(key, 0))
 	var ratio = bonus_ratio(definition, key)
+	var damage_growth: float = float(definition.get("base_damage_growth_ratio", 0)) if key in CombatTypes.DAMAGE_STATS else 0.0
 	var team: int = int(definition.get("modifiers", {}).get("team_bonuses", {}).get(key, 0)) if key in CombatTypes.OUTPUT_STATS else 0
-	return points(base * (1 + ratio) + flat * (1 + ratio - float(definition.get("fragment_bonus_ratio", 0)))) + team
+	return maxf(0.0, points(base * (1 + ratio + damage_growth) + flat * (1 + ratio - float(definition.get("training_bonus_ratio", 0)))) + team)
 
 ## 点数在结算边界四舍五入，不将秒数、概率或系数误作整数。
 static func points(value: float) -> float:
@@ -70,14 +71,23 @@ static func ammo_capacity(definition: Dictionary) -> int:
 	if definition.get("kind") != CardTypes.Kind.ItemCard or int(definition.get("ammo_capacity", 0)) <= 0: return 0
 	return maxi(1, int(definition.ammo_capacity) + int(definition.get("modifiers", {}).get("ammo_capacity", 0)))
 
-## 主动强度随卡牌成长；伤害直接读已成长的卡牌属性，不重复乘成长倍率。
+## 主效一比一读取属性，追加效果用独立整数基数；同类固定增益不再被动作倍率折算。
 static func action_amount(definition: Dictionary, action: Dictionary, strength_multiplier: float = 1.0) -> float:
 	var bonus = 0.0
 	for entry in definition.get("modifiers", {}).get("action_modifiers", []):
 		if ratio_applies(entry, action):
 			bonus = DeterministicMath.f32(bonus + float(entry.amount))
-	var discrete = int(action.kind) in [CombatTypes.CombatAction.GrantMainAbility, CombatTypes.CombatAction.RefillAmmo, CombatTypes.CombatAction.ExpandAmmo]
-	var base = stats(definition).get(CombatTypes.output_stat(CombatTypes.output_kind(action)), 0.0) * float(action.power_multiplier) if action.get("power_multiplier", 0) > 0 else float(action.get("amount", 0)) * (1.0 if discrete else strength_multiplier)
+	var base: float = 0.0
+	var stat: String = CombatTypes.output_stat(CombatTypes.output_kind(action))
+	match int(action.get("amount_source", CombatTypes.AmountSource.Fixed)):
+		CombatTypes.AmountSource.CardOutput:
+			base = attribute_points(definition, stat)
+		CombatTypes.AmountSource.CardBase:
+			base = attribute_points(definition, stat, float(action.amount) * float(definition.get("base_point_multiplier", 1.0)))
+		_:
+			var discrete = int(action.kind) in [CombatTypes.CombatAction.GrantMainAbility, CombatTypes.CombatAction.RefillAmmo, CombatTypes.CombatAction.ExpandAmmo]
+			# 历史锁定请求可读旧系数，正式内容在发布校验时拒绝重新配置。
+			base = attribute_points(definition, stat) * float(action.power_multiplier) if action.get("power_multiplier", 0) > 0 else float(action.get("amount", 0)) * (1.0 if discrete else strength_multiplier)
 	var value = DeterministicMath.f32(base + bonus)
 	if int(action.kind) == CombatTypes.CombatAction.Haste: return clampf(value, 0.0, AbilitySchema.MAX_HASTE)
 	return value if int(action.kind) == CombatTypes.CombatAction.ChangePollution else maxf(0.0, value)

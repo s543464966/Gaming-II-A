@@ -9,7 +9,7 @@
 | 左下 | 星石 | D4，绿色石材、三角嵌框、小星石纹章，中央偏下留给动态金额 |
 | 右下 | 宝物 | D8，金色三角底材与晶体星纹封印；不提前承诺碎片或金额 |
 
-`dice.relic_surface` 仍为遗物定义的稳定资源键，现在通过 `art/faces/relic_surface.tres` 取新版图集左上块；不在源码中维护另一张遗物运行贴图。旧 `reward_surface.png`、`relic_surface.svg` 与 `img_df*.png` 仅保留原始美术，不再作为三维骰子的显示入口。
+`dice.relic_surface` 为遗物定义的稳定资源键，通过 `art/faces/relic_surface.tres` 取图集左上块；微信导出器标识也复用这个切片，不维护另一张遗物贴图或旧骰面副本。
 
 `features/game_modes_pve_adventure/ui/reward_die_mesh.gd` 构造实际凸多面体、共享面材质与合并金属棱框。三角面按真实顶角建立完整 UV，不再扩放、裁掉图案；碰撞体的原始顶点不变。骰面和面数不参与抽奖。
 

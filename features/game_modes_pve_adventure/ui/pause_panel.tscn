@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://features/game_modes_pve_adventure/ui/pause_panel.gd" id="1"]
 [ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="2"]
 [ext_resource type="Script" path="res://ui/components/safe_area.gd" id="3"]
 [ext_resource type="PackedScene" path="res://ui/components/button.tscn" id="4"]
 [ext_resource type="Script" path="res://ui/components/touch_scroll_container.gd" id="5"]
+[ext_resource type="PackedScene" path="res://ui/components/audio_settings.tscn" id="6"]
 
 [node name="PausePanel" type="PanelContainer"]
 process_mode = 3
@@ -46,6 +47,9 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "ui.adventure.restart_notice"
 autowrap_mode = 3
+
+[node name="AudioSettings" parent="SafeArea/Margin/Content/Scroll/Body" instance=ExtResource("6")]
+layout_mode = 2
 
 [node name="RelicTitle" type="Label" parent="SafeArea/Margin/Content/Scroll/Body"]
 layout_mode = 2

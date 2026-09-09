@@ -3,19 +3,32 @@ extends "res://ui/components/content/card_face.gd"
 ## 单张战斗卡的只读表现；不拥有生命、占位和拖拽提交逻辑。
 
 signal pressed(id: String)
+signal defeat_finished(id: String)
 const Text = preload("res://features/combat/ui/combat_text.gd")
 var snapshot: Dictionary = {}
-var view_team: int = 0
 var frame: Dictionary = {}
+## 切换观察方只刷新敌我表现，保留原始队伍和已结算生命值。
+var view_team: int = 0:
+	set(value):
+		view_team = value
+		if not frame.is_empty(): set_stats(frame, view_team)
+		queue_redraw()
 var conflicted: bool = false
 var selected: bool = false
 var _status: Label
 var _cooldown_scan: ColorRect
 var _scan_material: ShaderMaterial
+var _impact_flash: ColorRect
+var _flash_material: ShaderMaterial
 var _state_outline: Control
 var _description: String = ""
 var _name_key: String = ""
 var _cooldown_enabled: bool = false
+var _rest_position: Vector2 = Vector2.ZERO
+var _motion_tween: Tween
+var _lunge_tween: Tween
+var _flash_tween: Tween
+var _defeating: bool = false
 
 ## 准备与战斗共用卡框、插画与输出生命双区徽章，初值仅消费装配预览帧。
 func configure(value: Dictionary, content: RefCounted, perspective: int = 0, columns: int = BattleGrid.COLUMNS) -> void:
@@ -27,10 +40,14 @@ func configure(value: Dictionary, content: RefCounted, perspective: int = 0, col
 	if not _state_outline.draw.is_connected(_draw_state): _state_outline.draw.connect(_draw_state)
 	_status = $Status
 	_cooldown_scan = $CooldownScan
-	move_child(_stats_badge, _cooldown_scan.get_index())
+	_impact_flash = $ImpactFlash
+	move_child(_stats_badge, _impact_flash.get_index() + 1)
 	_scan_material = _cooldown_scan.material
+	_flash_material = _impact_flash.material
 	if not _cooldown_scan.resized.is_connected(_sync_scan_size): _cooldown_scan.resized.connect(_sync_scan_size)
+	if not resized.is_connected(_sync_pivot): resized.connect(_sync_pivot)
 	_sync_scan_size()
+	_sync_pivot()
 	_name_key = row.name_key
 	_refresh_identity()
 	apply_frame(BattleAssembly.preview_frame(value, columns))
@@ -53,7 +70,8 @@ func _refresh_identity() -> void:
 func apply_frame(value: Dictionary) -> void:
 	frame = value
 	visible = not frame.defeated
-	set_stats(frame)
+	if not frame.defeated: _defeating = false
+	set_stats(frame, view_team)
 	var statuses: Array = Text.status_labels(frame)
 	if frame.get("ammo_capacity", 0) > 0 and frame.ammo_remaining == 0: statuses.append(tr("ui.combat.ammo_empty"))
 	_status.text = "·".join(statuses)
@@ -61,6 +79,119 @@ func apply_frame(value: Dictionary) -> void:
 	_update_cooldown_scan()
 	tooltip_text = _description + "\n" + Text.battle_card(snapshot.definition, frame)
 	queue_redraw()
+
+## 棋盘布局更新静止坐标；在途前冲会从最新位置开始并最终回到这里。
+func set_board_position(value: Vector2) -> void:
+	_rest_position = value
+	if _lunge_tween != null and _lunge_tween.is_valid(): _lunge_tween.kill()
+	position = value
+
+## 棋盘只用此状态避免在退场卡牌上继续绘制常驻状态循环。
+func is_defeating() -> bool:
+	return _defeating
+
+## 主动技能用压缩、抬升和有色光芯衔接既有冷却扫光的完成时刻。
+func play_cast(output: int) -> void:
+	if _defeating: return
+	_reset_motion()
+	_flash(DesignTokens.output_color(output), 0.92, 0.28)
+	_motion_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_STOP)
+	_motion_tween.tween_property(self, "scale", Vector2(0.94, 1.04), 0.055).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	_motion_tween.parallel().tween_property(self, "rotation", -0.018, 0.055)
+	_motion_tween.tween_property(self, "scale", Vector2(1.08, 0.96), 0.085).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_motion_tween.parallel().tween_property(self, "rotation", 0.012, 0.085)
+	_motion_tween.tween_property(self, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_motion_tween.parallel().tween_property(self, "rotation", 0.0, 0.14)
+
+## 效果发射只做短距离定向前冲，结算目标仍来自战报而非卡牌坐标。
+func play_release(direction: Vector2) -> void:
+	if _defeating: return
+	if _lunge_tween != null and _lunge_tween.is_valid(): _lunge_tween.kill()
+	position = _rest_position
+	var offset := direction.normalized() * clampf(minf(size.x, size.y) * 0.10, 5.0, 10.0) if not direction.is_zero_approx() else Vector2(0, -7)
+	_lunge_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_STOP)
+	_lunge_tween.tween_property(self, "position", _rest_position + offset, 0.075).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_lunge_tween.tween_interval(0.035)
+	_lunge_tween.tween_property(self, "position", _rest_position, 0.13).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+## 受击使用横向压缩、偏转和闪白，暴击增加停留与回弹幅度。
+func play_hit(output: int, critical: bool = false, direction_sign: float = 1.0) -> void:
+	if _defeating: return
+	_reset_motion()
+	_flash(Color("fff7dc") if critical else DesignTokens.output_color(output), 1.0, 0.24 if critical else 0.18)
+	var squash := Vector2(1.12, 0.88) if critical else Vector2(1.07, 0.93)
+	var angle := (0.035 if critical else 0.022) * direction_sign
+	_motion_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_STOP)
+	_motion_tween.tween_property(self, "scale", squash, 0.045).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_motion_tween.parallel().tween_property(self, "rotation", angle, 0.045)
+	_motion_tween.tween_interval(0.04 if critical else 0.015)
+	_motion_tween.tween_property(self, "scale", Vector2(0.98, 1.03), 0.08).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	_motion_tween.parallel().tween_property(self, "rotation", -angle * 0.35, 0.08)
+	_motion_tween.tween_property(self, "scale", Vector2.ONE, 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_motion_tween.parallel().tween_property(self, "rotation", 0.0, 0.12)
+
+## 恢复与护盾采用向外舒展的回弹，避免沿用伤害的压缩方向。
+func play_restore(output: int) -> void:
+	if _defeating: return
+	_reset_motion()
+	_flash(DesignTokens.output_color(output), 0.86, 0.32)
+	_motion_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_STOP)
+	_motion_tween.tween_property(self, "scale", Vector2(1.055, 1.055), 0.11).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_motion_tween.tween_property(self, "scale", Vector2.ONE, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+## 死亡帧先显示零生命，再经闪白、偏转和缩暗退场后通知棋盘移除。
+func play_defeat(value: Dictionary) -> void:
+	if _defeating: return
+	_defeating = true
+	frame = value
+	set_stats(frame, view_team)
+	_status.hide()
+	_cooldown_scan.hide()
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	visible = true
+	_reset_motion()
+	if _lunge_tween != null and _lunge_tween.is_valid(): _lunge_tween.kill()
+	position = _rest_position
+	_flash(Color("fff1cf"), 1.0, 0.34)
+	_motion_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_STOP)
+	_motion_tween.tween_property(self, "scale", Vector2(1.08, 0.94), 0.065).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_motion_tween.tween_interval(0.045)
+	_motion_tween.tween_property(self, "scale", Vector2(0.72, 1.12), 0.27).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	_motion_tween.parallel().tween_property(self, "rotation", 0.10 if int(snapshot.get("position", 0)) % 2 == 0 else -0.10, 0.27)
+	_motion_tween.parallel().tween_property(self, "modulate", Color(0.42, 0.29, 0.24, 0.0), 0.27)
+	_motion_tween.tween_callback(func(): defeat_finished.emit(str(snapshot.get("id", ""))))
+
+## 离开战斗或重建棋盘时停止局部动画并还原卡牌静止外观。
+func reset_presentation() -> void:
+	_reset_motion()
+	if _lunge_tween != null and _lunge_tween.is_valid(): _lunge_tween.kill()
+	if _flash_tween != null and _flash_tween.is_valid(): _flash_tween.kill()
+	position = _rest_position
+	modulate = Color.WHITE
+	_defeating = false
+	if _flash_material != null: _flash_material.set_shader_parameter("amount", 0.0)
+	visible = frame.is_empty() or not frame.get("defeated", false)
+
+## 每次尺寸变化同步变换中心，宽卡仍绕完整卡身蓄力和受击。
+func _sync_pivot() -> void:
+	pivot_offset = size * 0.5
+
+## 新动作接管缩放与旋转前回到稳定姿态，位置前冲由独立轨道管理。
+func _reset_motion() -> void:
+	if _motion_tween != null and _motion_tween.is_valid(): _motion_tween.kill()
+	scale = Vector2.ONE
+	rotation = 0.0
+	modulate = Color.WHITE
+
+## 闪光材质独立计时，连续命中只重启本卡强度而不串到其他实例。
+func _flash(color: Color, strength: float, duration: float) -> void:
+	if _flash_material == null: return
+	if _flash_tween != null and _flash_tween.is_valid(): _flash_tween.kill()
+	_flash_material.set_shader_parameter("flash_color", color.lerp(Color("fff6dc"), 0.42))
+	_flash_material.set_shader_parameter("amount", 0.0)
+	_flash_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_STOP)
+	_flash_tween.tween_property(_flash_material, "shader_parameter/amount", strength, minf(0.055, duration * 0.25)).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_flash_tween.tween_property(_flash_material, "shader_parameter/amount", 0.0, maxf(0.01, duration - minf(0.055, duration * 0.25))).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 
 ## 外层战斗阶段显式开启扫描；预览默认关闭，切换不改变冷却事实。
 func set_cooldown_enabled(value: bool) -> void:

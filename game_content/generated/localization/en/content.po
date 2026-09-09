@@ -12,7 +12,7 @@ msgid "content.adventure_node_rules.NR002.title"
 msgstr "Starlit Ruins"
 
 msgid "content.adventure_node_rules.NR003.action_label"
-msgstr "Trade and Continue"
+msgstr "Enter the Black Market"
 
 msgid "content.adventure_node_rules.NR003.description"
 msgstr "A traveling merchant has set up a stall at the fork, waiting for travelers willing to trade."
@@ -21,7 +21,7 @@ msgid "content.adventure_node_rules.NR003.title"
 msgstr "Wandering Black Market"
 
 msgid "content.adventure_node_rules.NR004.action_label"
-msgstr "Explore and Continue"
+msgstr "View Encounter"
 
 msgid "content.adventure_node_rules.NR004.description"
 msgstr "A request from an unfamiliar traveler brings unexpected rewards along the way."
@@ -489,7 +489,7 @@ msgid "content.innate_abilities.EN011.name"
 msgstr "Arcane Follow-up"
 
 msgid "content.innate_abilities.EN012.name"
-msgstr "Critical Haste"
+msgstr "Critical Charge"
 
 msgid "content.innate_abilities.EN013.name"
 msgstr "Venom Retaliation"

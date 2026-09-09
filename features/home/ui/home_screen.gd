@@ -2,10 +2,11 @@ extends Control
 ## Home 导航宿主；功能页面按需缓存，账号设置以局部小弹窗覆盖主页。
 
 const UI = preload("res://ui/components/ui.gd")
-const Preview = preload("res://ui/components/content/content_preview.gd")
+const ActiveHeroPage = "res://features/collection/ui/active_hero_page.tscn"
 const CollectionPage = "res://features/collection/ui/collection_page.tscn"
 const EncyclopediaPage = "res://features/encyclopedia/ui/encyclopedia_page.tscn"
 const ShopPage = "res://features/shop/ui/shop_page.tscn"
+const ShopResources = "res://features/shop/ui/shop_resources.tscn"
 const AssetsPage = "res://features/backpack/ui/assets_page.tscn"
 const TalentPage = "res://features/talents/ui/talent_page.tscn"
 const ModesPage = "res://features/game_modes/ui/game_modes_page.tscn"
@@ -22,18 +23,21 @@ var overlays: CanvasLayer
 var platform: Node
 var ranking: Callable
 var localization: LocalizationService
+var audio: AudioService
 
 ## 宿主接收当前会话及用例；导航交回应用主场景。
-func configure(player: RefCounted, flow: RefCounted, save: Callable, overlay: CanvasLayer, host: Node) -> void:
+func configure(player: RefCounted, flow: RefCounted, save: Callable, overlay: CanvasLayer, host: Node, sound: AudioService = null) -> void:
 	session = player
 	progression = flow
 	persist = save
 	overlays = overlay
 	platform = host
+	audio = sound
 
 const PAGES = {
 	"GameModes": "ui.page.modes",
 	"Collection": "ui.page.collection",
+	"ActiveHero": "ui.hero.title",
 	"Talents": "ui.page.talents",
 	"Encyclopedia": "ui.page.encyclopedia",
 	"PlayerAssets": "ui.page.assets",
@@ -81,6 +85,7 @@ func _ready() -> void:
 		dynamic_text.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	$SafeArea.configure(platform)
 	if session == null: return
+	if audio != null: audio.play_music("music.home")
 	for button in _home.find_children("*", "Button", true, false):
 		if button.has_meta("page_id"): button.pressed.connect(_open_entry.bind(button))
 	_home.get_node("Actions/Start").pressed.connect(_enter_adventure)
@@ -100,13 +105,7 @@ func _process(delta: float) -> void:
 
 ## 同页再次点击关闭，打开其他页会关闭旧页及未提交模态。
 func open_page(id: String) -> void:
-	if (id == "Hero" or PAGES.has(id)) and not await _prepare_assets(): return
-	if id == "Hero":
-		if session.content.get_record("cards", session.collection.selected_hero).is_empty():
-			overlays.toast("ui.home.no_hero_detail")
-			return
-		overlays.open_content(_hero_detail)
-		return
+	if PAGES.has(id) and not await _prepare_assets(_page_resource_keys(id)): return
 	if id == "AccountSettings":
 		_open_settings()
 		return
@@ -128,6 +127,8 @@ func open_page(id: String) -> void:
 func close_page() -> void:
 	overlays.close_modal()
 	_close_settings()
+	if _mode_frame_transition != null and _mode_frame_transition.is_valid(): _mode_frame_transition.kill()
+	_mode_frame_transition = null
 	$ImmersiveShade.hide()
 	$ImmersiveShade.modulate.a = 0
 	for page in _pages.values():
@@ -144,10 +145,9 @@ func _create_page(id: String) -> void:
 	root.name = id
 	root.title = PAGES[id]
 	root.configure(platform)
-	if id in ["Collection", "Encyclopedia"]:
+	if id in ["Collection", "Encyclopedia", "ActiveHero"]:
 		root.background_texture = load("res://ui/design_system/themes/immersive_background.png")
 		root.background_shade = Color(0, 0, 0, 0.14)
-	if id in ["GameModes", "Collection", "Encyclopedia", "Talents", "Mall", "Social", "AccountNotice", "Achievements"] or Activities.TITLES.has(id): root.layout_style = root.Layout.IMMERSIVE
 	root.close_requested.connect(close_page)
 	add_child(root)
 	root.hide()
@@ -156,13 +156,17 @@ func _create_page(id: String) -> void:
 	match id:
 		"Collection":
 			body = load(CollectionPage).instantiate()
-			body.bind_player(session, progression, overlays, persist)
-			body.bind_return_button(root.close_button)
+			body.bind_player(session, overlays)
+		"ActiveHero":
+			body = load(ActiveHeroPage).instantiate()
+			body.bind_player(session, progression, overlays)
 		"Encyclopedia":
 			body = load(EncyclopediaPage).instantiate()
 			body.catalog = session.content
-			body.bind_return_button(root.close_button)
 		"Mall":
+			var resources = load(ShopResources).instantiate()
+			resources.bind_player(session)
+			root.add_header_content(resources)
 			body = load(ShopPage).instantiate()
 			body.bind_player(session, persist, overlays)
 			body.return_requested.connect(close_page)
@@ -172,12 +176,10 @@ func _create_page(id: String) -> void:
 		"Talents":
 			body = load(TalentPage).instantiate()
 			body.bind_player(session, persist, overlays)
-			body.bind_return_button(root.close_button)
 		"GameModes":
 			body = load(ModesPage).instantiate()
 			body.bind_player(session, progression, overlays)
 			body.bind_background(root.background)
-			body.bind_return_button(root.close_button)
 			body.chapter_confirmed.connect(close_page)
 			body.return_requested.connect(close_page)
 			body.transition_started.connect(_mode_transition_started.bind(root))
@@ -185,7 +187,6 @@ func _create_page(id: String) -> void:
 		"Activity", "ActivityContractSummon", "ActivityLegendRoad", "ActivityDailyTask", "ActivitySevenSign":
 			body = load(ActivityPage).instantiate()
 			body.page_id = id
-			body.bind_return_button(root.close_button)
 			body.navigation_requested.connect(open_page)
 		_: body = VBoxContainer.new()
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -194,36 +195,29 @@ func _create_page(id: String) -> void:
 	if id in ["GameModes", "Mall"]: root.close_requested.disconnect(close_page)
 	if id in ["GameModes", "Mall"]: root.close_requested.connect(body.request_return)
 	_pages[id] = {"root": root, "body": body}
-	if id not in ["Collection", "Encyclopedia", "Mall", "PlayerAssets", "GameModes", "Talents"] and not Activities.TITLES.has(id): _populate_static(id, body)
+	if id not in ["Collection", "Encyclopedia", "Mall", "PlayerAssets", "GameModes", "Talents", "ActiveHero"] and not Activities.TITLES.has(id): _populate_static(id, body)
 
-## 模式推拉时让外层关闭按钮与页面控件一起淡入淡出，不悬浮在过渡画面上。
+## 模式推拉时统一页头与内容一起淡入淡出，页头布局始终由框架维护。
 func _mode_transition_started(expanded: bool, duration: float, root: Control) -> void:
 	if _mode_frame_transition != null and _mode_frame_transition.is_valid(): _mode_frame_transition.kill()
 	var close: Button = root.close_button
 	if not expanded:
-		close.modulate.a = 0
+		root.header.modulate.a = 0
 		$ImmersiveShade.modulate.a = 0
 	$ImmersiveShade.show()
 	close.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_mode_frame_transition = root.create_tween().set_parallel(true).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
-	_mode_frame_transition.tween_property(close, "modulate:a", 0.0 if expanded else 1.0, duration * 0.72)
+	_mode_frame_transition.tween_property(root.header, "modulate:a", 0.0 if expanded else 1.0, duration * 0.72)
 	_mode_frame_transition.tween_property($ImmersiveShade, "modulate:a", 0.0 if expanded else 1.0, duration)
 
-## 模式页完成内缩后恢复关闭按钮交互；外扩完成会立即由页面信号关闭。
+## 模式页完成内缩后恢复页头与返回交互；外扩完成由页面信号关闭。
 func _mode_transition_finished(expanded: bool, root: Control) -> void:
 	if expanded:
 		$ImmersiveShade.hide()
 		return
 	var close: Button = root.close_button
-	close.modulate.a = 1
+	root.header.modulate.a = 1
 	close.mouse_filter = Control.MOUSE_FILTER_STOP
-
-## 主页英雄使用账号永久投影，展示外壳与其他卡牌详情一致。
-func _hero_detail() -> Dictionary:
-	var hero: Dictionary = session.content.get_record("cards", session.collection.selected_hero)
-	if hero.is_empty(): return {}
-	return {"entry": Preview.entry(session.content, "cards", hero), "detail": Preview.permanent_detail(
-		session.collection.definition(hero.id, session.assets), session.collection.star_status(hero.id, session.assets))}
 
 ## 本机排行保留真实记录；未开放页面共用模式选择的黑金提示。
 func _populate_static(id: String, body: Control) -> void:
@@ -249,39 +243,59 @@ func _open_settings() -> void:
 	var popup: AccountSettingsPopup = load(SettingsPopup).instantiate()
 	popup.localization = localization
 	popup.platform = platform
+	popup.audio = audio
 	popup.close_requested.connect(_close_settings.bind(popup))
 	_settings_popup = popup
 	add_child(popup)
+	if audio != null: audio.play_ui_cue("sfx.ui.open", -6.0)
 
 ## 关闭设置只释放当前弹窗，并把键盘焦点归还给原设置入口。
 func _close_settings(popup: AccountSettingsPopup = _settings_popup) -> void:
 	if not is_instance_valid(popup) or _settings_popup != popup: return
 	_settings_popup = null
+	if audio != null: audio.play_ui_cue("sfx.ui.close", -6.0)
 	UI.dismiss(popup)
 	var entry: Button = _home.get_node("TopBar/Settings")
 	if is_instance_valid(entry) and entry.is_visible_in_tree(): entry.grab_focus()
 
 ## 主页开始沿用当前已确认章节，不重新抽取现有路线。
 func _enter_adventure() -> void:
-	if not await _prepare_assets(): return
-	if not _pages.has("GameModes"): _create_page("GameModes")
-	var mode: String = _pages.GameModes.body.tabs.selected_id
+	if session == null: return
+	var mode: String = _pages.GameModes.body.tabs.selected_id if _pages.has("GameModes") else "PveAdventure"
 	if mode != "PveAdventure":
 		open_page("GameModes")
 		overlays.toast("ui.mode.unavailable" if not mode.is_empty() else "ui.mode.empty")
 		return
+	if not await _prepare_assets(progression.required_resource_keys()): return
 	var error: String = progression.ensure_started(int(Time.get_unix_time_from_system()))
 	if error.is_empty(): navigation_requested.emit("adventure")
 	else: overlays.toast(error)
 
 ## 在创建内容页面或提交冒险开始前准备资源，取消下载不改变游戏进度。
-func _prepare_assets() -> bool:
+func _prepare_assets(keys: Array[String]) -> bool:
 	if _preparing_assets: return false
 	if session == null: return false
 	_preparing_assets = true
-	var ready: bool = await overlays.prepare_content(session.content.delivery)
+	var ready: bool = await overlays.prepare_content(session.content.delivery, keys)
 	_preparing_assets = false
 	return ready and is_inside_tree()
+
+## 各入口只声明其展示集合，未开放页面没有资源需求，不触发全量下载。
+func _page_resource_keys(id: String) -> Array[String]:
+	if session == null: return []
+	var tables: Array = {
+		"GameModes": ["chapters"], "Collection": ["cards", "relics"], "ActiveHero": ["cards"],
+		"Encyclopedia": ["cards", "relics", "items", "aurora_rewards"],
+		"Mall": ["cards", "relics", "items"], "PlayerAssets": ["items"], "Talents": ["cards", "talents"]
+	}.get(id, [])
+	var records: Array = []
+	for table: String in tables:
+		var rows: Array = session.content.data.get(table, [])
+		if table == "cards" and id != "Encyclopedia":
+			rows = rows.filter(func(row: Dictionary) -> bool:
+				return row.card_kind == CardTypes.Kind.CoreHero if id == "ActiveHero" else row.card_kind != CardTypes.Kind.Monster)
+		records.append(rows)
+	return session.content.resource_keys(records)
 
 ## 当前英雄肖像和章节背景随真实选择更新。
 func _refresh_header() -> void:

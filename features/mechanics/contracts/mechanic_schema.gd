@@ -4,7 +4,6 @@ extends RefCounted
 
 const T = preload("res://features/mechanics/contracts/combat_types.gd")
 const MAX_NESTING = 4
-const MAX_BURN_STACKS = 10
 const MAIN_ABILITY_REFERENCES = [T.CombatAction.GrantMainAbility, T.CombatAction.CopyMainAbility, T.CombatAction.Transform]
 
 ## 十二类基础效果之外的机制使用受限参数对象。

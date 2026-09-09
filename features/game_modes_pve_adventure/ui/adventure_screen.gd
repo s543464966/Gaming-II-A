@@ -1,5 +1,5 @@
 extends Control
-## 冒险流程的唯一表现协调器：路线、部署、战斗、结果与战后构筑。
+## 冒险流程的唯一表现协调器：路线、事件、部署、战斗、结果与战后构筑。
 
 const UI = preload("res://ui/components/ui.gd")
 const T = preload("res://features/mechanics/contracts/combat_types.gd")
@@ -8,9 +8,11 @@ const Generator = preload("res://features/game_modes_pve_adventure/domain/route_
 const RouteView = preload("res://features/game_modes_pve_adventure/ui/route_view.gd")
 const ROUTE_THEME = preload("res://ui/design_system/themes/adventure_route.tres")
 const RewardPage = preload("res://features/game_modes_pve_adventure/ui/reward_page.tscn")
+const EventPage = preload("res://features/game_modes_pve_adventure/ui/event_page.tscn")
 const Request = preload("res://features/game_modes_pve_adventure/domain/battle_request.gd")
 const DeploymentClock = preload("res://features/game_modes_pve_adventure/domain/deployment_timer.gd")
 const Playback = preload("res://features/combat/ui/battle_playback.gd")
+const BattleAudio = preload("res://features/combat/ui/battle_audio.gd")
 const PausePanel = preload("res://features/game_modes_pve_adventure/ui/pause_panel.tscn")
 signal navigation_requested(id: String)
 var session: PlayerSessionState
@@ -18,22 +20,26 @@ var progression: AdventureProgression
 var persist: Callable
 var overlays: CanvasLayer
 var platform: Node
+var audio: AudioService
 
 ## 场景只接收本章状态与用例，不向全局查找应用或存储。
-func configure(player: PlayerSessionState, flow: AdventureProgression, save: Callable, overlay: CanvasLayer, host: Node) -> void:
+func configure(player: PlayerSessionState, flow: AdventureProgression, save: Callable, overlay: CanvasLayer, host: Node, sound: AudioService = null) -> void:
 	session = player
 	progression = flow
 	persist = save
 	overlays = overlay
 	platform = host
+	audio = sound
 
-enum State { Route, Deployment, Fighting, Result, Reward }
+enum State { Route, Event, Deployment, Fighting, Result, Reward }
 var state: int = State.Route
 var timer: DeploymentTimer = DeploymentClock.new()
 var playback: BattlePlayback = Playback.new()
+var battle_audio: BattleAudioPresenter = BattleAudio.new()
 var board: BattleBoard
 var route_view: AdventureRouteView
 var reward_page: AdventureRewardPage
+var event_page: AdventureEventPage
 var _content: VBoxContainer
 var _header: Label
 var _settings_button: Button
@@ -62,6 +68,8 @@ var _settled: bool = false
 var _start_error: String = ""
 var _result_error: String = ""
 var _route_position_request: int = 0
+var _last_judgment_second: int = -1
+var _battle_background_material: ShaderMaterial
 
 ## 绑定场景中的稳定布局，运行脚本只负责状态投射与业务交互。
 func _ready() -> void:
@@ -84,7 +92,11 @@ func _ready() -> void:
 	_judgment_title = _judgment_hud.get_node("Title")
 	_judgment_health = _judgment_hud.get_node("Health")
 	board = _battle_root.get_node("Board")
+	board.audio = audio
+	battle_audio.configure(audio)
 	board.get_node("Effects").board = board
+	board.get_node("FeedbackEffects").board = board
+	_battle_background_material = $BattleBackground.material
 	_result_root = _content.get_node("Result")
 	_result_summary = _result_root.get_node("Summary")
 	_result_feedback = _result_root.get_node("Feedback")
@@ -102,7 +114,13 @@ func _ready() -> void:
 	reward_page.hide()
 	$RewardOverlay/SafeArea/Margin/Content.add_child(reward_page)
 	reward_page.finished.connect(_reward_finished)
+	reward_page.settings_requested.connect(open_settings)
 	reward_page.get_node("DiceTray").prepare_visuals.call_deferred(session.content.resource("dice.reward_surface"))
+	event_page = EventPage.instantiate()
+	event_page.hide()
+	_content.add_child(event_page)
+	event_page.finished.connect(_event_finished)
+	event_page.settings_requested.connect(open_settings)
 	_settings_button.pressed.connect(open_settings)
 	_content.get_node("Header/Back").pressed.connect(request_navigation.bind("home"))
 	session.changed.connect(_refresh_session_view)
@@ -116,6 +134,7 @@ func _ready() -> void:
 	board.card_clicked.connect(open_card_details)
 	timer.completed.connect(_start_battle)
 	playback.projectile_launched.connect(board.launch)
+	playback.event_cued.connect(board.cue_event)
 	playback.frame_played.connect(board.apply_frame)
 	playback.frame_played.connect(_relic_strip.apply_frame)
 	_relic_strip.inspected.connect(_inspect_relic)
@@ -140,6 +159,7 @@ func _ready() -> void:
 		_route_status.add_child(UI.button("ui.adventure.return_home", request_navigation.bind("home")))
 		return
 	if session.build.pending_reward: _show_reward()
+	elif progression.has_active_event(): _show_event()
 	elif session.current_route().completed:
 		_show_route()
 		_route_status.show()
@@ -160,12 +180,17 @@ func _process(delta: float) -> void:
 			if not progression.advance_battle() or not _begin_playback(): return
 		playback.tick(delta)
 		board.advance(playback.presentation_time)
+		_battle_background_material.set_shader_parameter("battle_time", playback.presentation_time)
 		_refresh_judgment()
 
 ## 最后十秒复用准备按钮所在空间，不挤压棋盘或增加独立时钟。
 func _refresh_judgment() -> void:
 	_judgment_hud.visible = state == State.Fighting and not playback.judgment_status().is_empty()
 	if not _judgment_hud.visible: return
+	var remaining := int(playback.judgment_status().get("remaining", -1))
+	if remaining != _last_judgment_second:
+		_last_judgment_second = remaining
+		if audio != null and remaining >= 0 and remaining <= 5: audio.play_sfx("sfx.combat.time_warning", -3.0)
 	_judgment_title.text = _judgment_title_text()
 	_judgment_health.text = _judgment_health_text()
 
@@ -217,6 +242,7 @@ func suspend_presentation() -> void:
 func _show_route() -> void:
 	timer.cancel()
 	playback.reset()
+	battle_audio.reset()
 	board.clear_effects()
 	_node_popup.close()
 	UI.clear(_node_info)
@@ -252,6 +278,7 @@ func _layout_route_header() -> void:
 func _refresh_session_view() -> void:
 	_refresh_route_header()
 	if state == State.Reward: _relic_strip.configure(session.content, session.build.relics)
+	elif state == State.Event and is_instance_valid(event_page): event_page.refresh()
 
 ## 顶栏读取已提交账号值；路线内交易和奖励返回时保持同步。
 func _refresh_route_header() -> void:
@@ -275,6 +302,7 @@ func inspect_node(index: int) -> void:
 		return
 	var route: RouteState = session.current_route()
 	if index >= route.nodes.size() or route.nodes[index] == null: return
+	if audio != null: audio.play_ui_cue("sfx.adventure.route_select", -5.0)
 	var node: Dictionary = route.nodes[index]
 	var is_battle = Generator.is_battle(node.type)
 	var rule: Dictionary = session.content.node_definition(node)
@@ -306,6 +334,7 @@ func enter_node(index: int) -> void:
 		var error: String = progression.execute_node(index)
 		if error.is_empty():
 			if session.build.pending_reward: _show_reward()
+			elif progression.has_active_event(): _show_event()
 			else: _show_route()
 		else: overlays.toast(error)
 		return
@@ -326,11 +355,11 @@ func _refresh_board() -> void:
 	var player: PlayerSessionState = session
 	var values: Array = []
 	for card in player.build.cards:
-		var definition: Dictionary = player.adventure.assembly.definition(player.build, card, 0, AdventureBattleRules.assembly_options(player.build.core().id))
+		var definition: Dictionary = player.adventure.player_definition(player.build, card, 0, AdventureBattleRules.assembly_options(player.build.core().id))
 		values.append(BattleAssembly.snapshot(card.id, definition, card.position, card.health))
 	for enemy in _enemies:
 		values.append(BattleAssembly.snapshot(enemy.id, player.adventure.enemy_definition(enemy.card_id, player.content.get_record("chapters", player.selected_chapter), enemy.get("layer_index", -1), enemy.get("encounter_type", ContentTypes.NodeType.NormalBattle)), enemy.position))
-	var assembled: Dictionary = player.adventure.assembly.assemble(player.build, 0, AdventureBattleRules.assembly_options(player.build.core().id))
+	var assembled: Dictionary = player.adventure.assemble_player(player.build, 0, AdventureBattleRules.assembly_options(player.build.core().id))
 	_relic_strip.configure(session.content, player.build.relics)
 	board.configure(session.content, values, {"ability_hosts": assembled.get("ability_hosts", []), "resources": {"pollution": {"scope": "battle", "values": {"battle": player.build.pollution}}}})
 	if board.selected.is_empty(): board.select_card(player.build.core().id)
@@ -339,6 +368,7 @@ func _refresh_board() -> void:
 func _swap_cards(first_id: String, second_id: String) -> void:
 	if state != State.Deployment or not _start_error.is_empty() or get_tree().paused: return
 	var error: String = progression.swap_cards(first_id, second_id)
+	if audio != null: audio.play_ui_cue("sfx.adventure.card_swap" if error.is_empty() else "sfx.ui.error", -3.0)
 	_refresh_board()
 	_refresh_deployment()
 	if not error.is_empty(): overlays.toast(error)
@@ -347,6 +377,7 @@ func _swap_cards(first_id: String, second_id: String) -> void:
 func _move_card(id: String, position: int) -> void:
 	if state != State.Deployment or not _start_error.is_empty(): return
 	var error: String = progression.place_card(id, position)
+	if audio != null: audio.play_ui_cue("sfx.adventure.card_place" if error.is_empty() else "sfx.ui.error", -3.0)
 	_refresh_board()
 	_refresh_deployment()
 	if not error.is_empty(): overlays.toast(error)
@@ -383,18 +414,24 @@ func _retry_start_rollback() -> void:
 	var error: String = progression.reject_battle_start()
 	if error.is_empty():
 		_show_route()
-		overlays.toast(func(): return tr("ui.adventure.start_failed") + "\n" + tr("ui.adventure.rolled_back"))
+		overlays.toast(Callable(get_script(), "_start_failure_text"))
 	else:
 		_refresh_deployment()
 
 ## 语义事件按回放命中时刻驱动棋盘飘字，不追加文字日志。
 func _play_event(event: Dictionary) -> void:
+	battle_audio.play_event(event)
 	board.clock_time = playback.presentation_time
 	board.play_event(event, event.time + playback.impact_delay)
+
+## 轻提示可能跨页面存活，翻译回调只依赖脚本资源，避免引用已释放的冒险实例。
+static func _start_failure_text() -> String:
+	return ContentText.text("ui.adventure.start_failed") + "\n" + ContentText.text("ui.adventure.rolled_back")
 
 ## 最后一次命中结束后提交胜负，胜利保存成功便直接展示骰子和结果。
 func _battle_completed(result: Dictionary) -> void:
 	if state != State.Fighting: return
+	battle_audio.play_completion(result)
 	_set_state(State.Result)
 	board.clear_effects()
 	_result_summary.text = _result_text()
@@ -430,9 +467,22 @@ func _result_action() -> void:
 
 ## 新胜利附带本场结果；重进及非战斗奖励只恢复已保存候选。
 func _show_reward(victory_seconds: float = -1.0) -> void:
-	reward_page.configure(session, progression, victory_seconds)
+	reward_page.configure(session, progression, victory_seconds, audio)
 	board.clear_effects()
 	_set_state(State.Reward)
+
+## 黑市与奇遇共享事件页，页面只读取进入节点时已经保存的随机结果。
+func _show_event() -> void:
+	event_page.configure(session, progression, audio)
+	board.clear_effects()
+	_set_state(State.Event)
+
+## 事件完成后按实际结果进入额外骰奖励或返回路线。
+func _event_finished() -> void:
+	if state != State.Event: return
+	if session.build.pending_reward: _show_reward()
+	elif session.current_route().completed: navigation_requested.emit("home")
+	else: _show_route()
 
 ## 奖励页整章只连接一次，保存完成后进入下一段路线或返回首页。
 func _reward_finished() -> void:
@@ -444,14 +494,22 @@ func _reward_finished() -> void:
 func _set_state(value: int) -> void:
 	if value != State.Route: _node_popup.close()
 	state = value
+	_last_judgment_second = -1
 	if value != State.Fighting: _relic_strip.configure(session.content, session.build.relics)
 	if value == State.Route: _refresh_route_header()
+	$EventBackground.visible = value == State.Event
+	if value == State.Event:
+		$EventBackground.texture = preload("res://features/game_modes_pve_adventure/ui/art/black_market_background.png") if session.build.events.node_type == ContentTypes.NodeType.BlackMarket else preload("res://features/game_modes_pve_adventure/ui/art/encounter_background.png")
+	$RewardOverlay/RuinsBackground.visible = value == State.Reward and progression.is_aurora_node()
+	$RewardOverlay/Shade.visible = not $RewardOverlay/RuinsBackground.visible
+	$RewardOverlay/SafeArea/Margin.add_theme_constant_override("margin_top", 24 if $RewardOverlay/RuinsBackground.visible else 48)
 	$RouteBackground.visible = value == State.Route
 	var showing_battle: bool = value in [State.Deployment, State.Fighting, State.Result] or (value == State.Reward and not progression.is_aurora_node() and not board.snapshots.is_empty())
 	$BattleBackground.visible = showing_battle
-	$Background.visible = value != State.Route and not showing_battle
+	$Background.visible = value not in [State.Route, State.Event] and not showing_battle
 	_content.get_node("RouteProfile").visible = value == State.Route
 	_content.get_node("Header/Back").visible = value == State.Route
+	_content.get_node("Header").visible = value != State.Event
 	_content.get_node("Header").theme = ROUTE_THEME if value == State.Route else null
 	_settings_button.theme = ROUTE_THEME
 	_header.visible = value == State.Route
@@ -460,6 +518,7 @@ func _set_state(value: int) -> void:
 	$SafeArea/Margin.add_theme_constant_override("margin_bottom", 0 if value == State.Route else 24)
 	_route_root.visible = value == State.Route
 	_battle_root.visible = showing_battle
+	if is_instance_valid(event_page): event_page.visible = value == State.Event
 	$RewardOverlay.visible = value == State.Reward
 	_result_root.visible = value == State.Result
 	# 结算保留顶部占位，避免遮罩下的最后战斗帧重新排版。
@@ -472,6 +531,16 @@ func _set_state(value: int) -> void:
 	if is_instance_valid(reward_page): reward_page.visible = value == State.Reward
 	board.set_interactive(value == State.Deployment)
 	board.set_cooldown_enabled(value == State.Fighting)
+	_refresh_music()
+
+## 当前章节显式提供路线与战斗音乐键，页面阶段只选择对应表现。
+func _refresh_music() -> void:
+	if audio == null or session == null: return
+	var chapter: Dictionary = session.content.get_record("chapters", session.selected_chapter)
+	var route_phase: bool = state in [State.Route, State.Event] or (state == State.Reward and progression.is_aurora_node())
+	var key := str(chapter.get("route_music_key" if route_phase else "battle_music_key", ""))
+	if key.is_empty(): audio.stop_music()
+	else: audio.play_music(key)
 
 ## 设置自身保持输入，游戏树暂停会冻结部署、弹道、状态帧和反馈。
 func open_settings() -> void:
@@ -502,23 +571,27 @@ func _card_detail_closed() -> void:
 
 ## 设置拥有独立操作面板，不能叠在卡牌详情上改变暂停所有权。
 func _create_pause_panel(title: String) -> AdventurePausePanel:
-	if not state in [State.Route, State.Deployment, State.Fighting] or is_instance_valid(_settings) or is_instance_valid(_card_popup): return null
+	var event_settings: bool = state == State.Event or (state == State.Reward and progression.is_aurora_node())
+	if (not event_settings and not state in [State.Route, State.Deployment, State.Fighting]) or is_instance_valid(_settings) or is_instance_valid(_card_popup): return null
 	_node_popup.close()
 	board.cancel_drag()
 	_pause_before = get_tree().paused
 	get_tree().paused = true
 	_settings = PausePanel.instantiate()
+	_settings.audio = audio
 	add_child(_settings)
-	_settings.configure(title, platform)
+	_settings.configure(title, platform, audio, not event_settings)
 	_settings.show_relics(session.content, _relic_strip.records if state == State.Fighting else session.build.relics)
 	_settings.continued.connect(close_settings)
 	_settings.reload_requested.connect(request_navigation.bind("adventure"))
 	_settings.exit_requested.connect(request_navigation.bind("home"))
+	if audio != null: audio.play_ui_cue("sfx.ui.open", -6.0)
 	return _settings
 
 ## 关闭设置恢复之前的暂停状态，不强制修改全局时间倍率。
 func close_settings() -> void:
 	if not is_instance_valid(_settings): return
+	if audio != null: audio.play_ui_cue("sfx.ui.close", -6.0)
 	UI.dismiss(_settings)
 	_settings = null
 	get_tree().paused = _pause_before
@@ -543,6 +616,7 @@ func _exit_tree() -> void:
 	if is_instance_valid(_card_popup): overlays.close_modal()
 	timer.cancel()
 	playback.reset()
+	battle_audio.reset()
 	if progression != null: progression.interrupt_battle()
 	if is_instance_valid(board): board.clear_effects()
 	if is_instance_valid(_settings): get_tree().paused = _pause_before

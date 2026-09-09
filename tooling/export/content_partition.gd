@@ -4,6 +4,7 @@ extends SceneTree
 const Reader = preload("res://tooling/export/pck_reader.gd")
 const Manifest = preload("res://game_content/runtime/delivery_manifest.gd")
 const Deduplicate = preload("res://tooling/export/pck_deduplicate.gd")
+const Cards = preload("res://game_content/runtime/card_types.gd")
 const TARGET_BYTES: int = 1024 * 1024
 
 ## 只写新的隔离候选目录，不移动或修改源素材；调用方决定何时交付完整制品。
@@ -17,6 +18,13 @@ static func build(source: String, output: String, target: String, base_url: Stri
 	if not registry is Dictionary: return {"error": "资源登记表损坏。"}
 	var protected: Dictionary = {}
 	_protected_images("res://", protected)
+	# 首页可切换的英雄肖像留在核心；章节动画及其静态依赖由上面的直连扫描保护。
+	var snapshot: Variant = JSON.parse_string(archive.read_file("game_content/generated/game_data_snapshot.json").get_string_from_utf8())
+	if not snapshot is Dictionary or not snapshot.get("cards") is Array: return {"error": "拆包缺少同批卡牌定义。"}
+	for card: Dictionary in snapshot.cards:
+		if card.get("card_kind") == Cards.Kind.CoreHero:
+			var asset: Dictionary = registry.get(card.get("texture_key", ""), {})
+			if not asset.is_empty(): protected[asset.path] = true
 	var selected: Dictionary = {}
 	var keys: Array = registry.keys()
 	keys.sort()
@@ -28,7 +36,7 @@ static func build(source: String, output: String, target: String, base_url: Stri
 		if config.parse(archive.read_file(path.trim_prefix("res://") + ".import").get_string_from_utf8()) != OK: return {"error": "导入映射不存在: " + path}
 		var imported: String = str(config.get_value("remap", "path", "")).trim_prefix("res://")
 		if not imported in archive.get_files() or not imported.ends_with(".ctex"): return {"error": "不支持的贴图导入变体: " + path}
-		if not selected.has(imported): selected[imported] = {"keys": [], "bytes": archive.read_file(imported)}
+		if not selected.has(imported): selected[imported] = {"keys": [], "bytes": archive.read_file(imported), "group": path.get_base_dir()}
 		selected[imported].keys.append(key)
 	if selected.is_empty(): return {"error": "未找到可安全延迟的登记贴图。"}
 	if DirAccess.make_dir_recursive_absolute(output.path_join("remote")) != OK: return {"error": "无法创建拆包输出目录。"}
@@ -36,14 +44,16 @@ static func build(source: String, output: String, target: String, base_url: Stri
 		"registry_sha256": _hash(registry_bytes), "packs": {}, "assets": {}}
 	var group: Dictionary = {}
 	var size: int = 0
+	var group_name: String = ""
 	for path: String in selected:
 		var entry: Dictionary = selected[path]
 		if entry.bytes.size() > TARGET_BYTES: return {"error": "单张延迟贴图超过 1 MiB，需先评估分辨率: " + path}
-		if size + entry.bytes.size() > TARGET_BYTES:
+		if not group.is_empty() and (size + entry.bytes.size() > TARGET_BYTES or group_name != entry.group):
 			var message: String = _write_group(output, group, document, registry)
 			if not message.is_empty(): return {"error": message}
 			group = {}; size = 0
 		group[path] = entry
+		group_name = entry.group
 		size += entry.bytes.size()
 	if not group.is_empty():
 		var message: String = _write_group(output, group, document, registry)

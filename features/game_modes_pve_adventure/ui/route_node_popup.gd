@@ -27,9 +27,11 @@ func _ready() -> void:
 func _center_text(node: Node) -> void:
 	if node is Label:
 		node.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		node.add_theme_color_override("font_color", get_theme_color("ink", "RoutePopup"))
+		node.theme_type_variation = &"RoutePopupTitle" if node.get_index() == 0 else &"RoutePopupBody"
+		node.remove_theme_font_size_override("font_size")
 	elif node is Button:
-		node.theme = theme
+		node.theme_type_variation = &"DetailDarkActionButton"
+		node.compact = true
 
 ## 注入唯一底层滚动容器，位置守卫也阻止惯性和键盘带来的残余滚动。
 func bind_route(scroll: ScrollContainer) -> void:
@@ -78,9 +80,13 @@ func _layout_popup() -> void:
 	var inverse = get_global_transform().affine_inverse()
 	var bounds: Rect2 = (inverse * _route_scroll.get_global_rect()).grow(-12)
 	var anchor_rect: Rect2 = inverse * _anchor.get_global_rect()
-	var width = minf(520, bounds.size.x)
+	var width = minf(get_theme_constant("maximum_width", "RoutePopup"), bounds.size.x)
+	# 紧凑按钮在手机缩放后仍保留至少 44 像素的触摸区域。
+	var touch_height: float = ceilf(44.0 / maxf(0.01, get_viewport().get_final_transform().get_scale().y))
+	for child: Node in content.get_children():
+		if child is Button: child.custom_minimum_size.y = maxf(child.tokens.detail_action_height, touch_height)
 	var style = panel.get_theme_stylebox("panel")
-	var height = minf(content.get_combined_minimum_size().y + style.get_minimum_size().y, minf(440, bounds.size.y))
+	var height = minf(content.get_combined_minimum_size().y + style.get_minimum_size().y, minf(get_theme_constant("maximum_height", "RoutePopup"), bounds.size.y))
 	panel.size = Vector2(width, height)
 	var x = clampf(anchor_rect.get_center().x - panel.size.x / 2, bounds.position.x, bounds.end.x - panel.size.x)
 	var y = anchor_rect.position.y - panel.size.y - 16
@@ -88,10 +94,6 @@ func _layout_popup() -> void:
 	if not above: y = anchor_rect.end.y + 16
 	y = clampf(y, bounds.position.y, bounds.end.y - panel.size.y)
 	_target_position = Vector2(x, y)
-	var arrow: Polygon2D = $Panel/Arrow
-	arrow.color = get_theme_color("paper", "RoutePopup")
-	arrow.position = Vector2(clampf(anchor_rect.get_center().x - x, 16, panel.size.x - 16), panel.size.y if above else 0)
-	arrow.scale.y = 1 if above else -1
 	_reveal(_reveal_progress)
 
 ## 内容重排时继续同一次浮出动画，不因翻译或换行重新播放。

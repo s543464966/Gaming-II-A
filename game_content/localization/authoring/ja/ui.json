@@ -1,4 +1,76 @@
 {
+  "ui.talents.permanent": {
+    "text": "恒久タレント",
+    "source_hash": "23200a77d2aba24140df602f7081be269b5e29fc222739184c11ba6e8e9b16e7"
+  },
+  "ui.growth.title": {
+    "text": "カード育成",
+    "source_hash": "bf676315b01985fcf4dba5d3387c8b00d7bc1f8b52513fc2f96bb8ad794b3884"
+  },
+  "ui.growth.balance": {
+    "text": "星石 {amount}",
+    "source_hash": "1e5fd3cb307597b065325ab4ff367c7dc16172b42888ed922c862da04f19873d"
+  },
+  "ui.growth.scope": {
+    "text": "同じ種類の全カードで成長を共有し、新たに解放したカードにも適用されます。",
+    "source_hash": "77ae0d25e5dc6954b585bdf9eef862fc1543c0514675c35970bb8cd3387a89f4"
+  },
+  "ui.growth.strength": {
+    "text": "HP・出力基準 {value}%",
+    "source_hash": "9ad43cdae419f41f02a610fb0277accd5bc5204d9d019f501e9962c2b08aff6f"
+  },
+  "ui.growth.progress": {
+    "text": "育成進度 {current} / {total}",
+    "source_hash": "c176c41111ab6790207201382d624df9ba6ccc1b7bf7589848647815bda0fcbe"
+  },
+  "ui.growth.train": {
+    "text": "育成 · 星石 {cost}",
+    "source_hash": "9189b7730b48900e70954c35aee0f47cd8bc00df7af9d7274a423c5c8aa59410"
+  },
+  "ui.growth.promote": {
+    "text": "昇星",
+    "source_hash": "d5c33f2f99552dc4245c119abae4191aa31ee90edf7c841158c0ae24cbd5c0d8"
+  },
+  "ui.growth.maxed": {
+    "text": "星5上限に到達",
+    "source_hash": "a13e7cf266ca6ee7fb3082fcf3b63419d76383d766c2caa5ed020c9f0de4992e"
+  },
+  "ui.growth.unavailable": {
+    "text": "現在、育成または昇星できません。",
+    "source_hash": "5bb407b1e4331a020d16e91a9a9bd9778f2fe45c343197e0f0103088ff5c96fe"
+  },
+  "ui.growth.success": {
+    "text": "種類別の成長を保存しました。",
+    "source_hash": "ebdd53af883d58a439f3398529850ce77fa1d9bdcf6af09b82703ee530732ed2"
+  },
+  "ui.growth.train_confirm": {
+    "text": "星石 {cost} を消費して、すべての{category}を1段階育成しますか？\n進行中の冒険には開始時の成長が適用されます。",
+    "source_hash": "9635eead04fd413132d346426f7e8a43c874085548eb82cb07f67720202bd0f2"
+  },
+  "ui.growth.promote_confirm": {
+    "text": "すべての{category}を星{star}に昇星しますか？\n育成完了のため星石は消費しません。進行中の冒険には影響しません。",
+    "source_hash": "7aa1d0c00b362f3f69c16557ebacead322ab5fe056c3420af002d932179ecc96"
+  },
+  "ui.hero.title": {
+    "text": "出撃英雄",
+    "source_hash": "4114d2a019d63720f20efbd509c714a5ff60fef41f43c4f61f7332e4da6eca83"
+  },
+  "ui.hero.current": {
+    "text": "現在の出撃英雄：{name}",
+    "source_hash": "ea9b0f34fc0c44b3849196303415497552ea0ac1cf145bbda8ba996fe2d70374"
+  },
+  "ui.hero.owned": {
+    "text": "所有英雄",
+    "source_hash": "2ed3f192ac2350e690261d9aca39fe4cd2545d0b89dafeade9c8212ccac67973"
+  },
+  "ui.hero.change": {
+    "text": "出撃英雄を変更",
+    "source_hash": "b543c85312bf8b7192e54e1c0a91e55b19ec3a945b28637afd0289b27320857f"
+  },
+  "ui.hero.confirm": {
+    "text": "出撃英雄を{name}に変更しますか？",
+    "source_hash": "ffbd2180b9891010ec5a226407cc9f6b7e8300a6c29fb082158df16f3e2a767a"
+  },
   "ui.detail.main_ability_clock": {
     "text": "{stat_cooldown_seconds} {remaining} / {cooldown} 秒{haste}",
     "source_hash": "b4ea55c1c856579beca12937a36dbe06517194d5e502899408cfcd58f1e28cd7"
@@ -131,6 +203,30 @@
     "text": "言語",
     "source_hash": "9f6fee1aba17a56586bf16a77b07b1a76d8c4e867430c6ee6abfa3128b55fa98"
   },
+  "ui.audio.title": {
+    "text": "サウンド",
+    "source_hash": "473400815c0f687da9d51a61e214975ee2e3a78ffadd5dfc961246f0b715cc94"
+  },
+  "ui.audio.music": {
+    "text": "音楽",
+    "source_hash": "db95142124934467ce25ba303416ab0a336497c498e709e2f522d789b76fb030"
+  },
+  "ui.audio.effects": {
+    "text": "効果音",
+    "source_hash": "5e9d80d0e3c3953a8a5bc76ad143ed44ff5d0d3efab74de5bb49209c63373f2b"
+  },
+  "ui.audio.save_failed": {
+    "text": "オーディオ設定を保存できませんでした。もう一度お試しください。",
+    "source_hash": "65502280cc165bc17b3ee60f195caee0bc653ce5f733cdcb0b5879c13670a9cd"
+  },
+  "ui.audio.preference_unreadable": {
+    "text": "オーディオ設定ファイルを読み込めません。元のファイルは保持され、このセッションの音量変更は保存されません。",
+    "source_hash": "6adbb6cd41ba9e903d3f164d984fdbe953b789af2b4f7352bd4283d31a5459df"
+  },
+  "ui.audio.preference_recovered": {
+    "text": "バックアップからオーディオ設定を復元しました。",
+    "source_hash": "78c913ef6af70bf6f980a1902b528b91e7970a9bc084dbd9222774e026a0f1d8"
+  },
   "ui.language.unavailable": {
     "text": "この言語は利用できません。",
     "source_hash": "b7d7728749ba4906697220995f88ff9f816f1f2f52fbd51e80d68744c5f58ae1"
@@ -215,25 +311,13 @@
     "text": "現在の英雄",
     "source_hash": "16304d1ece44ded1baf8e8a3be74a38cb84fa31f6e81c832a4fd22c26dbecaea"
   },
-  "ui.collection.select_hero": {
-    "text": "この英雄を選択",
-    "source_hash": "d31cfe93b0c3c4cbc7b0ce0a15d2ad004dd544d0a2840982a0a7ff167b02a7ec"
-  },
   "ui.collection.change_warning": {
     "text": "英雄を変更すると現在の章の編成が終了し、この章の従者、遺物、星能、進行状況がリセットされます。固定ルート、恒久才能、アカウント資産は保持されます。",
     "source_hash": "6e98fd44cad09e00180e71028a6c266d7293d1c1ae6688c7a17b89c040e801f0"
   },
-  "ui.collection.change_title": {
-    "text": "英雄を変更",
-    "source_hash": "1c142561ead7472a1b58f3401a100211e08b389fe7a75104d19f4e2fd91db889"
-  },
   "ui.collection.changed": {
     "text": "英雄を変更しました",
     "source_hash": "225760fb2ac5a467f6ee8af072e55022fd821e8a5fef064e2968426f5de05baa"
-  },
-  "ui.backpack.actions_unavailable": {
-    "text": "使用・分解機能はまだ利用できません。",
-    "source_hash": "14e55bed1a44406e750cdce4616d0dc07753533ff0d5c29f35ec5e1e9b8fd7ad"
   },
   "ui.mode.adventure": {
     "text": "冒険",
@@ -366,10 +450,6 @@
   "ui.home.layout_preview": {
     "text": "単独レイアウトプレビュー · ゲーム全体はbootstrap/app.tscnを実行",
     "source_hash": "c2d79980b02bd8e6eeb50918dfca4b3a0be3b319ab5e488ff29010e649deb600"
-  },
-  "ui.home.no_hero_detail": {
-    "text": "英雄が選択されていません。",
-    "source_hash": "6ffab406011a949b6d8b140f7bd3530065fea2aa04d6d50fc61382aabefa3d59"
   },
   "ui.home.resources": {
     "text": "{name}\nゴールド {gold} · 星石 {star_stone} · スタミナ {stamina}/{maximum}",
@@ -551,10 +631,6 @@
     "text": "{status} · {count}回",
     "source_hash": "32387001b90ddbd8bb255af5132e664aec37f571c0f4bd471ddf0ce91acb86d0"
   },
-  "ui.combat.poison": {
-    "text": "毒が浸透済み：後から得たシールドでは防げません",
-    "source_hash": "356fa2d8a70333edda12a4bd94af50a2c547c31cecdcebe7f5d4bbf60ff32ef3"
-  },
   "ui.combat.blocked": {
     "text": "シールドで防御",
     "source_hash": "95d09d1dc8bc42acc0b457fbfe8ba7d100da84413a7cd863dfc12fc53f8bf140"
@@ -703,10 +779,6 @@
     "text": "冒険を続ける",
     "source_hash": "b8a50e3317185eb5b371783cc1461e884585c0c73a3a37d4acd00a4fe86665fe"
   },
-  "ui.reward.choose_aurora": {
-    "text": "報酬を受け取る",
-    "source_hash": "ea96728e2f6e4198881a0bd59602593f459e7c05a0f809c5033a37fcd0423dc6"
-  },
   "ui.reward.layout_preview": {
     "text": "戦闘後報酬 · 単独レイアウトプレビュー",
     "source_hash": "4a59b18a1c6a9bbb01b6d75cee350783aa5c5128643f07e921c618204100f6d0"
@@ -751,26 +823,6 @@
     "text": "アカウントの恒久成長 · 章内強化と遺物を除く",
     "source_hash": "cc590027c9fb42910691d3b1ec844fce2ff70a496745d366cda79c7c36518f1d"
   },
-  "ui.collection.star_unavailable": {
-    "text": "昇星条件を満たしていません。欠片は消費されていません。",
-    "source_hash": "dce31f626827ad79bc85042d78b0405a16638a4b1fbd86dde68b5b72816b3998"
-  },
-  "ui.collection.star_upgrade": {
-    "text": "昇星",
-    "source_hash": "d5c33f2f99552dc4245c119abae4191aa31ee90edf7c841158c0ae24cbd5c0d8"
-  },
-  "ui.collection.star_max": {
-    "text": "最大の5つ星です",
-    "source_hash": "a13e7cf266ca6ee7fb3082fcf3b63419d76383d766c2caa5ed020c9f0de4992e"
-  },
-  "ui.collection.star_success": {
-    "text": "昇星しました。余分な欠片は保持されます。",
-    "source_hash": "6eaa325c3d975422979d60fe4a9be08235c47965fd6f9dd2a3b7239800ea972f"
-  },
-  "ui.collection.star_confirm": {
-    "text": "専用欠片 {cost} 個を使い、{name}を ★{star} に昇星しますか？\n残り {remaining} 個は保持され、永続強度は初期値の {strength}% になります。\n進行中の章には影響しません。",
-    "source_hash": "de18c6e7b0791e23e65c7dfb46ef76160134ea1332040f431c33a9fd78d0e4a9"
-  },
   "ui.reward.kind.hero_growth": {
     "text": "現在の英雄を強化",
     "source_hash": "33e3caa2b08217698364eef3236ef01bd0295a2615213d815520a715436908af"
@@ -798,14 +850,6 @@
   "ui.detail.actions": {
     "text": "効果",
     "source_hash": "86a00cf74253c265263db3745b475c524e605565f746ef833690cf5af3784e98"
-  },
-  "ui.detail.fragments": {
-    "text": "星ランクアップの欠片",
-    "source_hash": "7bb7a8124bd0ed7c163fbf71709bcc1ba99d19d35c0b8cfd71f9cac2db7dbcea"
-  },
-  "ui.detail.usage": {
-    "text": "用途",
-    "source_hash": "05b36669c4ad9a73e6a79e10ae97bdec1a313ea498fcac491e3c0fd3a1c1ab13"
   },
   "ui.detail.purchase": {
     "text": "購入情報",
@@ -950,5 +994,149 @@
   "ui.reward.reroll": {
     "text": "振り直し",
     "source_hash": "8ba3ca4cdcad6582e1487e36a4e6084b3a80795cdf243ec66d372ad8cb834a48"
+  },
+  "ui.event.market.completed": {
+    "text": "完了",
+    "source_hash": "f28461bb49c8564716309d575f90f72cf15b5c4667e40c2d037434bedb54a01a"
+  },
+  "ui.event.market.fragment": {
+    "text": "{name}の欠片 ×{amount}",
+    "source_hash": "1b23427d5d2b8b81683154dbf0fc504c1a32b2eb6c0e729a6bd1633e3bcc6bff"
+  },
+  "ui.event.market.stamina": {
+    "text": "スタミナ +{amount}",
+    "source_hash": "edfb500c986cb4a885eaa492c009f277e60acfe4a25bf50e85cfe9d78d43f6f5"
+  },
+  "ui.event.market.exchange": {
+    "text": "{cost} {cost_currency} → {reward} {reward_currency}",
+    "source_hash": "fe8ffd79d775f1883b7921258a8e5c3592043cc6c85fe4812433d0ccc36d4861"
+  },
+  "ui.event.market.pay": {
+    "text": "{amount} {currency}",
+    "source_hash": "01b90de73b99c7b77511ea078ea22f666cc2cf6edcc2bdda5f366f7fcbefb5b1"
+  },
+  "ui.event.market.exchange_action": {
+    "text": "交換",
+    "source_hash": "d094e6cb7e78c3676df093b57271c68c1ed4e71e498a613bf50450442b6a125f"
+  },
+  "ui.event.market.leave_warning": {
+    "text": "未購入の品があります。離れると戻れません。",
+    "source_hash": "3f08633f6e0bc7c0df788f1876dca36769c0944157f74d32c0519dc98be21eab"
+  },
+  "ui.event.market.continue": {
+    "text": "買い物を続ける",
+    "source_hash": "a0d3a05b75796a5aec1823dd9dd8c3d997d5cba5c75856d632e8e18cfd41be7c"
+  },
+  "ui.event.market.confirm_leave": {
+    "text": "退出を確認",
+    "source_hash": "de37806110a43e3d4fe760877885b4bebadeddfc11cc2955babdfe7e4609231f"
+  },
+  "ui.event.market.leave": {
+    "text": "闇市を離れる",
+    "source_hash": "d4e2038fd3983b8b12b8b8afa099566d1e7b359b7f07489fc43efc83e627aa63"
+  },
+  "ui.event.encounter.reward_heading": {
+    "text": "報酬",
+    "source_hash": "f2c44edc322aefc36d3a387ed281a20563e4bda5197254966646d5d05146e85d"
+  },
+  "ui.event.encounter.cost_heading": {
+    "text": "代償",
+    "source_hash": "20cfb027827a43998f97d4a062b618dbfb21663a7e924fe5bbfb62421a863e89"
+  },
+  "ui.event.encounter.accept": {
+    "text": "契約を結ぶ",
+    "source_hash": "d387a5a105d352960e163f8d37906eaaa2395cb1830c2464bd3e2dcbf3cca50e"
+  },
+  "ui.event.encounter.refresh": {
+    "text": "別の組み合わせ",
+    "source_hash": "c6a0e8a7aa7d171bddba263f2f5043c7b97cb9f992a90bd0b3c78da15cd7d01b"
+  },
+  "ui.event.encounter.leave": {
+    "text": "断って離れる",
+    "source_hash": "2fca0cd375162360f751516e8847092bdf980153a46a6dc22c7c5db73822c518"
+  },
+  "ui.event.encounter.replacement_prompt": {
+    "text": "盤面が満杯です。入れ替える英雄以外のカードを選んでください。",
+    "source_hash": "81d76f50daece7d77ba49cf548f9c4c8050d07d47e9466f3d7b9a10ef2c0f4cb"
+  },
+  "ui.event.encounter.replace": {
+    "text": "{name}と入れ替える",
+    "source_hash": "26f66e3e5381c4fa7510d932e8bea80e9cfaf6ac8fcf27e5f76607a99908a4fd"
+  },
+  "ui.event.encounter.reward_dice": {
+    "text": "追加ダイスを1個獲得",
+    "source_hash": "ab605163d4f3fe7af8e86cd07f4b06e2fe10febe669c219c4aaad3f41c486d8c"
+  },
+  "ui.event.encounter.reward_stone": {
+    "text": "星石を{amount}個獲得",
+    "source_hash": "47d5345aebdce9709282b60678502538631135d303abe9d50902675f71141065"
+  },
+  "ui.event.encounter.reward_relic": {
+    "text": "遺物を獲得：{name}",
+    "source_hash": "9bfadbd089676f71e86c8c4302e859a890d3de67c9bf2dab7dc3e42c596ffe05"
+  },
+  "ui.event.encounter.reward_card": {
+    "text": "章限定カードを獲得：{name}",
+    "source_hash": "6708ebfadcd3b6961f64c2c0241f473011095163d79cd07e0f0120eb08a13e28"
+  },
+  "ui.event.encounter.unknown_reward": {
+    "text": "不明な報酬",
+    "source_hash": "bba95616ccf19303e27b018a1cbed03244bbd1c5b03a62f7973dcce3293aac61"
+  },
+  "ui.event.encounter.cost_stamina": {
+    "text": "スタミナを{amount}消費",
+    "source_hash": "000206113293c0b72a72754059692a6c3e2b1477c41eeb9d2b2be0862fe087dd"
+  },
+  "ui.event.encounter.cost_debuff": {
+    "text": "この章の全カード：{stat} -{amount}",
+    "source_hash": "c543b8c553fffc623931e6ee16f80a9740c799793c7ace6ee2ccfbe98d88332b"
+  },
+  "ui.event.encounter.cost_no_card": {
+    "text": "失う英雄以外のカードがないため、追加の消費なし",
+    "source_hash": "5bec7f657ca0719ab58544ff763fa7b7af9a0aa6b851a87af8eac087556e2600"
+  },
+  "ui.event.encounter.cost_card": {
+    "text": "1枚失う：{name}",
+    "source_hash": "ef71cdf9461130d4c8b187e04383233c6b65e7e2b9911078d046a77fa5ec74de"
+  },
+  "ui.event.encounter.cost_no_die": {
+    "text": "失うダイスがないため、追加の消費なし",
+    "source_hash": "65e19977a767a4afd04e8d345db70fb383b658d787ececcb9079b55a7dbcce37"
+  },
+  "ui.event.encounter.cost_die": {
+    "text": "未使用ダイスを1個失う",
+    "source_hash": "fb8268810cbc1dc5a9c2c715306a2edd51ee55246096b985872acebd42d2c44b"
+  },
+  "ui.event.encounter.unknown_cost": {
+    "text": "不明な代償",
+    "source_hash": "462b9e1189ab235368d3741911a9de45c68bd03b399e90ccd3341b238b7b0ac2"
+  },
+  "ui.event.market.fragments": {
+    "text": "カードの欠片",
+    "source_hash": "29a82d2008614f3fd32d9e260f84c36cd11d2bc01266102ada0d5699ac2efb9b"
+  },
+  "ui.event.market.exchanges": {
+    "text": "通貨交換",
+    "source_hash": "ef244430924c2b0296ea9c6f303a7915f45581f69b13d9e79b21a18009d0c3fb"
+  },
+  "ui.event.market.supplies": {
+    "text": "スタミナ補給",
+    "source_hash": "e1fca66220ed042b7780b4c2238edaee1bc46e7a62910a6de11075b44d26ce3a"
+  },
+  "ui.event.market.or": {
+    "text": "または",
+    "source_hash": "a2123d69506f51ff112bad06f9c997cb4fa8b854ecce191a5204861bbb1ee732"
+  },
+  "ui.event.market.once": {
+    "text": "各商品は1回限り",
+    "source_hash": "1dcafd7fd002cf10753b8223c4d75bdd470b54d28ffbe9f88ae12e6997568fd2"
+  },
+  "ui.event.ruins.trigger": {
+    "text": "星の力・第{count}回",
+    "source_hash": "950119bc32b0e3658f2197daf5ff0a3887bb93377b1abc00b6227929f0074d67"
+  },
+  "ui.event.ruins.round": {
+    "text": "今回の選択 {current}/{total}",
+    "source_hash": "61ced15d8d6c8a7f1f44c2b8851b33eb8c10fa65d44e03c00eb740dbe354d398"
   }
 }

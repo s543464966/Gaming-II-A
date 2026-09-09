@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://features/game_modes_pve_adventure/ui/reward_page.gd" id="1"]
 [ext_resource type="PackedScene" path="res://ui/components/button.tscn" id="2"]
@@ -24,6 +24,8 @@
 [ext_resource type="Material" path="res://features/game_modes_pve_adventure/ui/art/victory_cutout.tres" id="victory_cutout"]
 [ext_resource type="Script" path="res://ui/components/fitted_label.gd" id="fit"]
 
+[ext_resource type="PackedScene" path="res://features/game_modes_pve_adventure/ui/event_header.tscn" id="event_header"]
+
 [sub_resource type="StyleBoxEmpty" id="Empty"]
 
 [node name="AdventureRewardPage" type="VBoxContainer"]
@@ -32,6 +34,36 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 script = ExtResource("1")
+
+[node name="AuroraHeader" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Header" parent="AuroraHeader" instance=ExtResource("event_header")]
+layout_mode = 2
+
+[node name="Hero" type="Control" parent="AuroraHeader"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 270)
+mouse_filter = 2
+
+[node name="Trigger" type="Label" parent="AuroraHeader"]
+layout_mode = 2
+theme_type_variation = &"GrowthLabel"
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+
+[node name="Stars" type="HBoxContainer" parent="AuroraHeader"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="Round" type="Label" parent="AuroraHeader"]
+layout_mode = 2
+theme_type_variation = &"GrowthLabel"
+theme_override_font_sizes/font_size = 23
+horizontal_alignment = 1
 
 [node name="VictoryHeader" type="Control" parent="."]
 layout_mode = 2

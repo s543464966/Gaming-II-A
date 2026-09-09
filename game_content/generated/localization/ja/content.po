@@ -12,7 +12,7 @@ msgid "content.adventure_node_rules.NR002.title"
 msgstr "星輝の遺跡"
 
 msgid "content.adventure_node_rules.NR003.action_label"
-msgstr "取引して進む"
+msgstr "闇市に入る"
 
 msgid "content.adventure_node_rules.NR003.description"
 msgstr "行商人が分かれ道に小さな店を構え、取引を望む旅人を待っている。"
@@ -21,7 +21,7 @@ msgid "content.adventure_node_rules.NR003.title"
 msgstr "旅の闇市"
 
 msgid "content.adventure_node_rules.NR004.action_label"
-msgstr "探索して進む"
+msgstr "出会いを見る"
 
 msgid "content.adventure_node_rules.NR004.description"
 msgstr "見知らぬ旅人からの依頼が、この道に思いがけない収穫をもたらす。"
@@ -489,7 +489,7 @@ msgid "content.innate_abilities.EN011.name"
 msgstr "呪術の連撃"
 
 msgid "content.innate_abilities.EN012.name"
-msgstr "会心加速"
+msgstr "会心チャージ"
 
 msgid "content.innate_abilities.EN013.name"
 msgstr "毒の反撃"

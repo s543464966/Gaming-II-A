@@ -6,6 +6,7 @@ const UI = preload("res://ui/components/ui.gd")
 signal continued
 signal reload_requested
 signal exit_requested
+var audio: AudioService
 
 ## 稳定按钮只发送动作，不自行保存、放弃战斗或修改场景树暂停状态。
 func _ready() -> void:
@@ -16,9 +17,13 @@ func _ready() -> void:
 	_apply_tokens()
 
 ## 设置只绑定标题和安全区，不再承担卡牌详情排版。
-func configure(title: String, platform: Node) -> void:
+func configure(title: String, platform: Node, sound: AudioService = null, navigation_allowed: bool = true) -> void:
+	$SafeArea/Margin/Content/Actions.visible = navigation_allowed
+	$SafeArea/Margin/Content/Scroll/Body/Notice.visible = navigation_allowed
+	audio = sound
 	$SafeArea.configure(platform)
 	$SafeArea/Margin/Content/Title.text = title
+	$SafeArea/Margin/Content/Scroll/Body/AudioSettings.configure(audio)
 
 ## 边距随共享令牌变化，不在运行脚本里重建另一套业务布局。
 func _apply_tokens() -> void:

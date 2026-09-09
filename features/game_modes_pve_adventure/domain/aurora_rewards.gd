@@ -1,11 +1,13 @@
 class_name AuroraRewards
 extends RefCounted
-## 本章星能触发次数与锁定的八项奖励；账号入账和强化由冒险事务执行。
+## 本章星能触发次数、锁定奖励与逐轮三选一；账号入账和强化由冒险事务执行。
 
 const C = preload("res://game_content/runtime/content_types.gd")
 var trigger_count: int = 0
 var offers: Array = []
 var selected: Array = []
+var choice_seed: int = 0
+var active_offer_ids: Array = []
 
 ## 当前触发可选数量随本章次数递增，已领取选项不重复消费。
 func remaining() -> int:
@@ -35,11 +37,13 @@ func begin(seed: int, catalog: AdventureCatalog, build: MechanicBuild) -> String
 	trigger_count += 1
 	offers = candidates
 	selected.clear()
+	choice_seed = seed
+	_refresh_choices(catalog.content.data.aurora_reward_rules[0].offer_count)
 	return ""
 
 ## 返回尚可领取的锁定选项，拒绝候选外身份和同次重复选择。
 func available(id: String) -> Dictionary:
-	if remaining() <= 0 or id in selected: return {}
+	if remaining() <= 0 or id in selected or not id in active_offer_ids: return {}
 	for offer: Dictionary in offers:
 		if offer.id == id: return offer
 	return {}
@@ -48,12 +52,26 @@ func available(id: String) -> Dictionary:
 func claim(id: String) -> String:
 	if available(id).is_empty(): return "该星能奖励不可领取。"
 	selected.append(id)
+	_refresh_choices(active_offer_ids.size())
 	return ""
+
+## 每轮从尚未领取的类别中锁定三个，领取后才推进到下一轮。
+func _refresh_choices(count: int) -> void:
+	active_offer_ids.clear()
+	if remaining() <= 0: return
+	var pool: Array = offers.map(func(offer): return offer.id).filter(func(id): return not id in selected)
+	var random := DeterministicRandom.new((choice_seed ^ ((selected.size() + 1) * 486187739)) & 0xffffffff)
+	for _index in range(mini(count, pool.size())):
+		var chosen: int = random.next_int(pool.size())
+		active_offer_ids.append(pool[chosen])
+		pool.remove_at(chosen)
 
 ## 本轮完成只清理候选，章节累计次数继续保留。
 func complete() -> void:
 	offers.clear()
 	selected.clear()
+	choice_seed = 0
+	active_offer_ids.clear()
 
 ## 结束章节时清除本次奖励与触发次数，不撤回已入账的永久资产。
 func clear() -> void:
@@ -62,11 +80,12 @@ func clear() -> void:
 
 ## 存档锁定实际金额、碎片和遗物，不保存第二份静态规则。
 func capture() -> Dictionary:
-	return {"trigger_count": trigger_count, "offers": offers.duplicate(true), "selected": selected.duplicate()}
+	return {"trigger_count": trigger_count, "offers": offers.duplicate(true), "selected": selected.duplicate(),
+		"choice_seed": choice_seed, "active_offer_ids": active_offer_ids.duplicate()}
 
 ## 完整验证次数、类别、去重与来源后才替换状态。
 func restore(state: Variant, content: RefCounted) -> String:
-	if not state is Dictionary or state.size() != 3 or not state.get("trigger_count") is int or not state.get("offers") is Array or not state.get("selected") is Array: return "星能奖励存档格式损坏。"
+	if not state is Dictionary or state.size() != 5 or not state.get("trigger_count") is int or not state.get("offers") is Array or not state.get("selected") is Array or not state.get("choice_seed") is int or not state.get("active_offer_ids") is Array: return "星能奖励存档格式损坏。"
 	if state.trigger_count < 0 or state.trigger_count > content.data.aurora_reward_rules[0].max_triggers: return "星能触发次数越界。"
 	if not state.offers.size() in [0, C.AuroraReward.size()]: return "星能八项候选不完整。"
 	if (state.offers.is_empty() and not state.selected.is_empty()) or (not state.offers.is_empty() and state.trigger_count == 0): return "星能候选与触发状态不一致。"
@@ -92,9 +111,18 @@ func restore(state: Variant, content: RefCounted) -> String:
 		if not id is String or not id in ids or id in chosen: return "星能已领取选项损坏。"
 		chosen.append(id)
 	if chosen.size() > state.trigger_count: return "星能领取数量超出本次额度。"
+	var active: Array = []
+	for id: Variant in state.active_offer_ids:
+		if not id is String or not id in ids or id in chosen or id in active: return "星能三选一候选损坏。"
+		active.append(id)
+	var remaining_count: int = 0 if state.offers.is_empty() else state.trigger_count - chosen.size()
+	var expected: int = mini(content.data.aurora_reward_rules[0].offer_count, ids.size() - chosen.size()) if remaining_count > 0 else 0
+	if active.size() != expected: return "星能三选一候选数量无效。"
 	trigger_count = state.trigger_count
 	offers = state.offers.duplicate(true)
 	selected = chosen
+	choice_seed = state.choice_seed
+	active_offer_ids = active
 	return ""
 
 ## 专属碎片仅由商城的内容关系分类，不根据名称或 FR 编号推断。

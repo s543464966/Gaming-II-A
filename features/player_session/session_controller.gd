@@ -6,6 +6,7 @@ const Repository = preload("res://services/save/json_repository.gd")
 const Account = preload("res://features/player_session/legacy_account_codec.gd")
 const Session = preload("res://features/player_session/player_session.gd")
 const Progression = preload("res://features/game_modes_pve_adventure/application/adventure_progression.gd")
+const Generator = preload("res://features/game_modes_pve_adventure/domain/route_generator.gd")
 const PROFILE_FILE = "local_player.json"
 var content: GameCatalog
 var repository: JsonRepository
@@ -81,7 +82,7 @@ func load_player(selected_identity: String = "") -> bool:
 	var previous_progression = progression
 	session = candidate
 	progression = Progression.new(session, save_player)
-	if session.current_route().phase == 0:
+	if session.current_route().phase == 0 and Generator.is_battle(session.current_route().nodes[session.current_route().current].type):
 		var recovery = progression.abandon()
 		if not recovery.is_empty():
 			session = previous_session

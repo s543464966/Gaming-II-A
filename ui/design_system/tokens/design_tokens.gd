@@ -39,6 +39,11 @@ extends Resource
 	set(value):
 		health_color = value
 		emit_changed()
+## 敌方生命使用独立红色令牌，不改变六类输出色与我方健康色。
+@export var enemy_health_color: Color = Color(0.75, 0.23, 0.21, 1):
+	set(value):
+		enemy_health_color = value
+		emit_changed()
 @export var card_value_color: Color = Color("f7edcf"):
 	set(value):
 		card_value_color = value

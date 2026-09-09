@@ -83,6 +83,24 @@ msgstr "The battle could not be started."
 msgid "ui.adventure.victory"
 msgstr "Victory"
 
+msgid "ui.audio.effects"
+msgstr "Sound effects"
+
+msgid "ui.audio.music"
+msgstr "Music"
+
+msgid "ui.audio.preference_recovered"
+msgstr "Audio settings were restored from a backup."
+
+msgid "ui.audio.preference_unreadable"
+msgstr "The audio settings file could not be read. The original file was preserved; volume changes will not be saved this session."
+
+msgid "ui.audio.save_failed"
+msgstr "Could not save audio settings. Please retry."
+
+msgid "ui.audio.title"
+msgstr "Sound"
+
 msgid "ui.aurora.amount"
 msgstr "{name} ×{amount}"
 
@@ -103,9 +121,6 @@ msgstr "Upgrade"
 
 msgid "ui.aurora.upgrade_target"
 msgstr "{name} · Upgrade +{level} → +{next}"
-
-msgid "ui.backpack.actions_unavailable"
-msgstr "Using and dismantling items are not available yet."
 
 msgid "ui.catalog.empty"
 msgstr "No content available"
@@ -152,9 +167,6 @@ msgstr "Relic"
 msgid "ui.category.team"
 msgstr "Team"
 
-msgid "ui.collection.change_title"
-msgstr "Change hero"
-
 msgid "ui.collection.change_warning"
 msgstr "Changing heroes ends the current chapter build and clears its minions, relics, auroras, and progress. The fixed route, permanent talents, and account assets are kept."
 
@@ -169,24 +181,6 @@ msgstr "Owned"
 
 msgid "ui.collection.permanent_stats"
 msgstr "Permanent account growth · Excludes chapter upgrades and relics"
-
-msgid "ui.collection.select_hero"
-msgstr "Select this hero"
-
-msgid "ui.collection.star_confirm"
-msgstr "Spend {cost} dedicated fragments to raise {name} to ★{star}?\nKeep {remaining} fragments. Permanent strength becomes {strength}% of base.\nThe current chapter is unchanged."
-
-msgid "ui.collection.star_max"
-msgstr "Maximum: 5 stars"
-
-msgid "ui.collection.star_success"
-msgstr "Star-up complete. Extra fragments retained."
-
-msgid "ui.collection.star_unavailable"
-msgstr "Star-up requirements not met. No fragments consumed."
-
-msgid "ui.collection.star_upgrade"
-msgstr "Star up"
 
 msgid "ui.collection.unowned"
 msgstr "Not acquired"
@@ -223,9 +217,6 @@ msgstr "{status} · main abilities: {count}"
 
 msgid "ui.combat.passive"
 msgstr "No main abilities"
-
-msgid "ui.combat.poison"
-msgstr "Poison has penetrated: shields gained afterward cannot block it"
 
 msgid "ui.combat.shield"
 msgstr " Shield {amount}"
@@ -266,9 +257,6 @@ msgstr "Effects"
 msgid "ui.detail.ammo"
 msgstr "Action capacity"
 
-msgid "ui.detail.fragments"
-msgstr "Star-up fragments"
-
 msgid "ui.detail.main_ability_clock"
 msgstr "{stat_cooldown_seconds} {remaining} / {cooldown} s{haste}"
 
@@ -281,8 +269,113 @@ msgstr "Purchase details"
 msgid "ui.detail.stack_limit"
 msgstr "Stack limit"
 
-msgid "ui.detail.usage"
-msgstr "Usage"
+msgid "ui.event.encounter.accept"
+msgstr "Accept pact"
+
+msgid "ui.event.encounter.cost_card"
+msgstr "Lose 1 copy: {name}"
+
+msgid "ui.event.encounter.cost_debuff"
+msgstr "All cards in this chapter: {stat} -{amount}"
+
+msgid "ui.event.encounter.cost_die"
+msgstr "Lose 1 unused die"
+
+msgid "ui.event.encounter.cost_heading"
+msgstr "Cost"
+
+msgid "ui.event.encounter.cost_no_card"
+msgstr "No non-hero card to lose; nothing else is deducted"
+
+msgid "ui.event.encounter.cost_no_die"
+msgstr "No die to lose; nothing else is deducted"
+
+msgid "ui.event.encounter.cost_stamina"
+msgstr "Spend {amount} Stamina"
+
+msgid "ui.event.encounter.leave"
+msgstr "Decline and leave"
+
+msgid "ui.event.encounter.refresh"
+msgstr "New combination"
+
+msgid "ui.event.encounter.replace"
+msgstr "Replace {name}"
+
+msgid "ui.event.encounter.replacement_prompt"
+msgstr "The board is full. Choose a non-hero card to replace."
+
+msgid "ui.event.encounter.reward_card"
+msgstr "Gain chapter card: {name}"
+
+msgid "ui.event.encounter.reward_dice"
+msgstr "Gain 1 extra die"
+
+msgid "ui.event.encounter.reward_heading"
+msgstr "Reward"
+
+msgid "ui.event.encounter.reward_relic"
+msgstr "Gain relic: {name}"
+
+msgid "ui.event.encounter.reward_stone"
+msgstr "Gain {amount} Starstones"
+
+msgid "ui.event.encounter.unknown_cost"
+msgstr "Unknown cost"
+
+msgid "ui.event.encounter.unknown_reward"
+msgstr "Unknown reward"
+
+msgid "ui.event.market.completed"
+msgstr "Completed"
+
+msgid "ui.event.market.confirm_leave"
+msgstr "Confirm leave"
+
+msgid "ui.event.market.continue"
+msgstr "Keep browsing"
+
+msgid "ui.event.market.exchange"
+msgstr "{cost} {cost_currency} → {reward} {reward_currency}"
+
+msgid "ui.event.market.exchange_action"
+msgstr "Exchange"
+
+msgid "ui.event.market.exchanges"
+msgstr "Currency exchange"
+
+msgid "ui.event.market.fragment"
+msgstr "{name} fragments ×{amount}"
+
+msgid "ui.event.market.fragments"
+msgstr "Card fragments"
+
+msgid "ui.event.market.leave"
+msgstr "Leave Market"
+
+msgid "ui.event.market.leave_warning"
+msgstr "Unpurchased offers remain. You cannot return after leaving."
+
+msgid "ui.event.market.once"
+msgstr "Each offer once"
+
+msgid "ui.event.market.or"
+msgstr "or"
+
+msgid "ui.event.market.pay"
+msgstr "{amount} {currency}"
+
+msgid "ui.event.market.stamina"
+msgstr "Stamina +{amount}"
+
+msgid "ui.event.market.supplies"
+msgstr "Stamina supplies"
+
+msgid "ui.event.ruins.round"
+msgstr "Round {current}/{total}"
+
+msgid "ui.event.ruins.trigger"
+msgstr "Astral blessing {count}"
 
 msgid "ui.filter.ability_facet"
 msgstr "Ability Effects"
@@ -292,6 +385,57 @@ msgstr "Tags"
 
 msgid "ui.filter.output_type"
 msgstr "Output Type"
+
+msgid "ui.growth.balance"
+msgstr "Star stones: {amount}"
+
+msgid "ui.growth.maxed"
+msgstr "Maximum: 5 stars"
+
+msgid "ui.growth.progress"
+msgstr "Training: {current} / {total}"
+
+msgid "ui.growth.promote"
+msgstr "Raise star"
+
+msgid "ui.growth.promote_confirm"
+msgstr "Raise all {category} cards to {star} stars?\nTraining is complete; no star stones are required. The current adventure is unaffected."
+
+msgid "ui.growth.scope"
+msgstr "Growth is shared by each card category, including newly unlocked cards."
+
+msgid "ui.growth.strength"
+msgstr "Health and output baseline: {value}%"
+
+msgid "ui.growth.success"
+msgstr "Category growth saved."
+
+msgid "ui.growth.title"
+msgstr "Card training"
+
+msgid "ui.growth.train"
+msgstr "Train · {cost} star stones"
+
+msgid "ui.growth.train_confirm"
+msgstr "Spend {cost} star stones to train all {category} cards by one step?\nThe current adventure keeps its starting growth."
+
+msgid "ui.growth.unavailable"
+msgstr "Training or promotion is unavailable."
+
+msgid "ui.hero.change"
+msgstr "Change active hero"
+
+msgid "ui.hero.confirm"
+msgstr "Set {name} as your active hero?"
+
+msgid "ui.hero.current"
+msgstr "Active hero: {name}"
+
+msgid "ui.hero.owned"
+msgstr "Owned heroes"
+
+msgid "ui.hero.title"
+msgstr "Active hero"
 
 msgid "ui.home.achievements"
 msgstr "Awards"
@@ -322,9 +466,6 @@ msgstr "Standalone layout preview · Run bootstrap/app.tscn for the full game"
 
 msgid "ui.home.mail"
 msgstr "Mail"
-
-msgid "ui.home.no_hero_detail"
-msgstr "No hero selected."
 
 msgid "ui.home.preview_resources"
 msgstr "Player name\nGold · Star Stones · Stamina"
@@ -505,9 +646,6 @@ msgstr "Unused dice remain and join every roll."
 
 msgid "ui.reward.choice_title"
 msgstr "Choose a reward"
-
-msgid "ui.reward.choose_aurora"
-msgstr "Claim Reward"
 
 msgid "ui.reward.complete_build"
 msgstr "Continue Adventure"
@@ -697,6 +835,9 @@ msgstr "Unlocked"
 
 msgid "ui.talents.no_points"
 msgstr "No talent points"
+
+msgid "ui.talents.permanent"
+msgstr "Permanent talents"
 
 msgid "ui.talents.point_source"
 msgstr "First clear of each chapter: +1 point"

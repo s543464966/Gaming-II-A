@@ -1,7 +1,7 @@
 shader_type canvas_item;
 render_mode unshaded;
 
-uniform vec2 badge_size = vec2(76.0, 18.0);
+uniform vec2 badge_size = vec2(76.0, 20.0);
 uniform float output_share = 0.4;
 uniform float inner_edge = 1.5;
 uniform float corner_radius = 3.0;
@@ -41,7 +41,7 @@ void fragment() {
 	float peak = max(output_color.r, max(output_color.g, output_color.b));
 	vec3 vivid_output = max(mix(vec3(peak), output_color.rgb, 1.10), vec3(0.0));
 	vec3 left_color = unavailable ? output_color.rgb * 0.52 : vivid_output * 0.59;
-	// 仅缩短右区绿色填充，深色空槽、文字和外框不随生命值移动。
+	// 仅缩短右区敌我生命填充，深色空槽、文字和外框不随生命值移动。
 	float ratio = clamp(health_ratio, 0.0, 1.0);
 	float fill_end = mix(divider, extent.x - inner_edge, ratio);
 	float filled = 1.0 - smoothstep(fill_end - 0.45, fill_end + 0.45, point.x);

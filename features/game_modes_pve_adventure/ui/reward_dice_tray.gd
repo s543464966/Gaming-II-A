@@ -12,9 +12,11 @@ const REST_LINEAR_SPEED: float = 0.08
 const REST_ANGULAR_SPEED: float = 0.12
 ## 仅用上方七成容纳滚动范围，底部留给铭牌和领取区。
 const VIEW_REGION := Rect2(0.04, 0.035, 0.92, 0.66)
+var audio: AudioService
 var _entries: Array[Dictionary] = []
 var _roll_revision: int = -1
 var _elapsed: float = 0.0
+var _last_contact_msec: int = -100
 var _dragged: int = -1
 var _pointer: int = -2
 var _hovering: bool = false
@@ -96,7 +98,9 @@ func configure(dice: Array, roll_revision: int, atlas: Texture2D) -> void:
 		_world.remove_child(entry.body)
 		entry.body.queue_free()
 		_entries.remove_at(index)
-	if replay: _elapsed = 0.0
+	if replay:
+		_elapsed = 0.0
+		_silence_contacts()
 	for index in range(dice.size()):
 		var die: Dictionary = dice[index]
 		if _entries.any(func(entry): return entry.id == die.id): continue
@@ -112,6 +116,7 @@ func configure(dice: Array, roll_revision: int, atlas: Texture2D) -> void:
 		for point: Vector3 in points: radius = maxf(radius, point.length() + 0.04)
 		_entries.append({"id": die.id, "kind": die.kind, "body": body, "home": Transform3D.IDENTITY, "title": die.title,
 			"settled": false, "launched": false, "quiet": 0.0, "points": points, "radius": radius,
+			"audio_impulse": 0.0, "audio_at": -100,
 			"paid": die.get("paid", false), "amount": die.get("amount", 0)})
 	_resize_view()
 	_visibility_changed()
@@ -131,8 +136,40 @@ func _physics_process(delta: float) -> void:
 			and body.linear_velocity.length() < REST_LINEAR_SPEED and body.angular_velocity.length() < REST_ANGULAR_SPEED)
 		entry.quiet = entry.quiet + delta if quiet else 0.0
 		entry.settled = entry.quiet >= REST_SECONDS
+		_play_contact(entry, delta)
 		if entry.settled: entry.home = body.transform
 	_redraw()
+
+## 读取真实接触冲量并扣除静态支撑，只为明显碰撞播放一个短采样，不施加物理力。
+func _play_contact(entry: Dictionary, delta: float) -> void:
+	if not is_instance_valid(audio): return
+	var body: RigidBody3D = entry.body
+	if body.sleeping or body.freeze or entry.settled:
+		entry.audio_impulse = 0.0
+		return
+	var state := PhysicsServer3D.body_get_direct_state(body.get_rid())
+	if state == null: return
+	var impulse := 0.0
+	for index: int in range(state.get_contact_count()): impulse += state.get_contact_impulse(index).length()
+	impulse = maxf(0.0, impulse - state.total_gravity.length() * body.mass * delta * 1.4)
+	var previous: float = entry.audio_impulse
+	entry.audio_impulse = impulse
+	var now := Time.get_ticks_msec()
+	if impulse < 0.45 or impulse < previous * 1.2 or now - entry.audio_at < 85 or now - _last_contact_msec < 45: return
+	entry.audio_at = now
+	_last_contact_msec = now
+	var strength := clampf((impulse - 0.45) / 4.0, 0.0, 1.0)
+	audio.play_sfx("sfx.adventure.dice_roll", lerpf(-16.0, -4.0, sqrt(strength)))
+
+## 骰盘离场、重投或暂停时截断局部尾音，并丢弃上次接触记录。
+func _silence_contacts() -> void:
+	if is_instance_valid(audio): audio.stop_sfx("sfx.adventure.dice_roll")
+	_last_contact_msec = Time.get_ticks_msec()
+	for entry: Dictionary in _entries: entry.audio_impulse = 0.0
+
+## 节点移除不留下脱离画面的骰子声。
+func _exit_tree() -> void:
+	_silence_contacts()
 
 ## 从边缘横向投出而不瞄准中心；检查出生间距，避免重叠造成爆炸式弹开。
 func _launch(entry: Dictionary, index: int) -> void:
@@ -213,6 +250,7 @@ func _begin_drag(point: Vector2, pointer: int) -> void:
 	if _dragged >= 0 or _consuming or not is_settled(): return
 	var picked: int = _pick_die(point)
 	if picked < 0: return
+	if audio != null: audio.play_ui_cue("sfx.adventure.dice_pickup", -5.0)
 	_dragged = picked
 	var entry: Dictionary = _entries[_dragged]
 	entry.home = entry.body.transform
@@ -263,6 +301,7 @@ func _end_drag(point: Vector2) -> void:
 	if not use:
 		_cancel_drag()
 		return
+	if audio != null: audio.play_ui_cue("sfx.adventure.dice_consume", -4.0)
 	_consuming = true
 	_pointer = -2
 	var body: RigidBody3D = _entries[_dragged].body
@@ -294,13 +333,16 @@ func _cancel_drag() -> void:
 
 ## 暂停或失焦立即归还骰子，恢复后不等待已丢失的松手事件。
 func _notification(what: int) -> void:
-	if what in [NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_PAUSED]: _cancel_drag()
+	if what in [NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_PAUSED]:
+		_cancel_drag()
+		_silence_contacts()
 	elif what == NOTIFICATION_TRANSLATION_CHANGED: _redraw()
 
 ## 隐藏后停止三维渲染和物理，避免奖励选择期间继续占用。
 func _visibility_changed() -> void:
 	if not is_node_ready(): return
 	_cancel_drag()
+	if not is_visible_in_tree(): _silence_contacts()
 	_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS if is_visible_in_tree() else SubViewport.UPDATE_DISABLED
 	_world.process_mode = Node.PROCESS_MODE_INHERIT if is_visible_in_tree() else Node.PROCESS_MODE_DISABLED
 

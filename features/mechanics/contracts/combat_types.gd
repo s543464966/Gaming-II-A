@@ -18,6 +18,8 @@ enum TriggerKeyword { BattleStart, Kill, Deathrattle }
 ## 队伍常驻贡献随成员资格保留，战场光环仍依赖存活与范围。
 enum ContributionLifetime { Battlefield, TeamMembership }
 enum CombatAction { PhysicalDamage, Heal, GrantShield, ApplyStatus, ChangePollution, Charge, DelayCooldown, GrantMainAbility, Haste, RefillAmmo, ExpandAmmo, Witchcraft, Accumulate, Detonate, Mark, Empower, Guard, Link, Convert, Transfer, CopyMainAbility, Transform, Overload, Chain, Echo, Sacrifice }
+## 固定量用于秒数与独立效果；卡牌主效读取属性，追加效果配置自己的成长基数。
+enum AmountSource { Fixed, CardOutput, CardBase }
 enum Status { None, Burn, Poison, Freeze, Slow, Stun }
 enum Target { Self, EventSource, EventTarget, NearestEnemy, FarthestEnemy, LowestHealthAlly, AllEnemies, AllAllies, AdjacentAllies, RandomEnemy, AllUnits, NearestAlly, MarkedEnemy, LinkedAlly, AlliedMinion }
 enum Condition { Always, OwnerHealthAtMostPercent, PollutionAtLeast, PollutionAtMost, EventSourceIsOwner, EventTargetIsOwner, EventSourceIsMinion, EventTargetIsCore, OwnerHasStatus, EventSourceIsAdjacent, EventSourceIsAlly, EventSourceIsEnemy, EventIsCritical, EventSourceHasAmmo, OwnerCounterAtLeast, EventCounterKey, EventTargetMarked, EventSourceIsLinked, EventTargetStatusStacksAtLeast, OwnerHasTags, EventSourceHasTags, EventTargetHasTags, EventIsPrimary, EventTargetIsEnemy, EventHasKillCredit }
@@ -26,6 +28,8 @@ enum Completion { Victory, Defeat, Timeout, InvalidRequest, Draw }
 ## 六种数值输出与无顶部数值的特殊类；不决定能力的触发方式。
 enum Output { Physical, Witchcraft, Burn, Poison, Healing, Shield, Special }
 const OUTPUT_STATS = ["physical_damage", "witchcraft_damage", "burn_damage", "poison_damage", "healing_power", "shield_power"]
+## 伤害成长只影响四种伤害属性，不增加生命、恢复或控制参数。
+const DAMAGE_STATS = ["physical_damage", "witchcraft_damage", "burn_damage", "poison_damage"]
 
 ## 主能力由冷却驱动，事件和条件归被动，独立常驻数值归增益。
 static func ability_category(execution_kind: int) -> int:

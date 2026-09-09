@@ -14,10 +14,24 @@ const BOARD_THEME = preload("res://features/combat/ui/battle_theme.tres")
 const T = preload("res://features/mechanics/contracts/combat_types.gd")
 const CardView = preload("res://features/combat/ui/combat_card.tscn")
 const Playback = preload("res://features/combat/ui/battle_playback.gd")
+const Vfx = preload("res://features/combat/ui/battle_vfx_renderer.gd")
+const IMPACT_SECONDS = 0.58
+const FEEDBACK_SECONDS = 0.82
+const LINK_SECONDS = 0.38
+const MAX_BURSTS = 24
+const IMPACT_EFFECT_KEYS = {
+	T.Output.Physical: "effect.combat.impact.physical.v1",
+	T.Output.Witchcraft: "effect.combat.impact.witchcraft.v1",
+	T.Output.Burn: "effect.combat.impact.burn.v1",
+	T.Output.Poison: "effect.combat.impact.poison.v1",
+	T.Output.Healing: "effect.combat.impact.healing.v1",
+	T.Output.Shield: "effect.combat.impact.shield.v1",
+}
 var columns: int = BattleGrid.COLUMNS
 var rows: int = BattleGrid.ROWS
 var view_team: int = 0
 var content: RefCounted
+var audio: AudioService
 var snapshots: Array = []
 var cards: Dictionary = {}
 var selected: String = ""
@@ -28,6 +42,11 @@ var clock_time: float = 0
 var projectiles: Array = []
 var feedback: Array = []
 var impacts: Array = []
+var passive_links: Array = []
+var _impact_sequences: Dictionary = {}
+var _projectile_sequences: Dictionary = {}
+var _pending_defeats: Dictionary = {}
+var _board_tween: Tween
 ## 按下候选也用于区分轻点；敌方卡只能查看，不能拖动。
 var _drag: String = ""
 var _drag_origin: Vector2
@@ -60,15 +79,20 @@ func configure(catalog: RefCounted, values: Array, configuration: Dictionary = {
 	rows = int(configuration.get("rows", BattleGrid.ROWS))
 	view_team = int(configuration.get("view_team", 0))
 	snapshots = values.duplicate(true)
+	clear_effects()
+	_load_impact_sequences()
+	_projectile_sequences.clear()
 	cancel_drag()
 	for card in cards.values():
 		remove_child(card)
 		card.queue_free()
 	cards.clear()
+	_pending_defeats.clear()
 	for snapshot in snapshots:
 		var card = CardView.instantiate()
 		card.configure(snapshot, content, view_team, columns)
 		card.pressed.connect(_card_pressed)
+		card.defeat_finished.connect(_card_defeat_finished)
 		cards[snapshot.id] = card
 		add_child(card)
 	apply_frame(BattleAssembly.preview_frames(snapshots, columns, configuration.get("resources", {}), configuration.get("ability_hosts", [])))
@@ -129,13 +153,14 @@ func select_card(id: String) -> void:
 	selected = id
 	_layout()
 
-## 归零、暂停或场景退出时还原最后一次已提交位置。
-func cancel_drag() -> void:
+## 归零、暂停或场景退出时立即撤销输入，通知期间可延后卡面复位。
+func cancel_drag(defer_layout: bool = false) -> void:
 	_clear_swap_hover()
 	_drag = ""
 	_drag_moved = false
 	set_process(false)
-	_layout()
+	if defer_layout: _layout.call_deferred()
+	else: _layout()
 
 ## 状态投射不改写原始输入，所有卡面消费同一帧。
 func apply_frame(frame: Dictionary) -> void:
@@ -144,43 +169,97 @@ func apply_frame(frame: Dictionary) -> void:
 		if not value.defeated:
 			cards[value.id].apply_frame(value)
 			continue
-		var view: Control = cards[value.id]
-		remove_child(view)
-		view.queue_free()
-		cards.erase(value.id)
+		if not _pending_defeats.has(value.id):
+			_pending_defeats[value.id] = true
+			cards[value.id].play_defeat(value)
 		if selected == value.id:
 			selected = ""
+
+## 死亡动画完成后才移除卡面，原始快照仍负责定位残留飘字。
+func _card_defeat_finished(id: String) -> void:
+	if not cards.has(id): return
+	var view: Control = cards[id]
+	remove_child(view)
+	view.queue_free()
+	cards.erase(id)
+	_pending_defeats.erase(id)
 
 ## 连续扫描只更新仍在场的卡面材质，逐帧采样不重放伤害或重建卡牌。
 func sample_cooldowns(values: Dictionary) -> void:
 	for id in values:
 		if cards.has(id): cards[id].sample_cooldown(values[id])
 
-## 弹道与普通命中反馈分开管理，图像由资源注册表严格分类。
+## 弹道采用事件已解析的资源键，保留默认、强化替换与单次覆盖的真实外观。
 func launch(event: Dictionary) -> void:
 	if not cards.has(event.source) or not cards.has(event.target): return
-	var frames: SpriteFrames = content.resource(event.projectile, "Projectile")
-	if frames == null: return
+	if content == null or not content.assets.has(event.projectile): return
 	var appearance: Dictionary = content.assets[event.projectile]
-	projectiles.append({"source": event.source, "target": event.target, "start": event.time, "frames": frames,
-		"size": Vector2(appearance.width, appearance.height), "output_type": event.get("output_type", T.Output.Physical)})
+	if str(appearance.get("kind", "")) != "Projectile": return
+	var output := int(event.get("output_type", T.Output.Physical))
+	var duration := ProjectileMotion.flight_duration(output)
+	var key := str(event.projectile)
+	if not _projectile_sequences.has(key):
+		_projectile_sequences[key] = content.resource(key, "Projectile")
+	var frames: SpriteFrames = _projectile_sequences[key]
+	if frames == null: return
+	var animations := frames.get_animation_names()
+	if animations.is_empty(): return
+	var animation: StringName = &"flight" if frames.has_animation(&"flight") else StringName(animations[0])
+	projectiles.append({"source": event.source, "target": event.target, "start": event.time + Playback.FLIGHT_SECONDS - duration, "duration": duration,
+		"size": Vector2(appearance.width, appearance.height), "output_type": output, "frames": frames, "animation": animation})
+	while projectiles.size() > MAX_BURSTS: projectiles.pop_front()
+	queue_redraw()
+
+## 原始事件时刻只启动蓄力、前冲和被动连线，命中仍等待回放延迟。
+func cue_event(event: Dictionary) -> void:
+	var kind := int(event.get("kind", -1))
+	var source := str(event.get("source", ""))
+	var target := str(event.get("target", ""))
+	var output := int(event.get("output_type", _card_output(source)))
+	if kind == T.Event.BeforeMainAbilityCast and cards.has(source):
+		cards[source].play_cast(output)
+	elif kind == T.Event.ActionReleased and cards.has(source):
+		cards[source].play_release(card_center(target) - card_center(source))
+		if str(event.get("main_ability_id", "")).is_empty():
+			passive_links.append({"source": source, "target": target, "start": float(event.get("time", 0.0)), "duration": LINK_SECONDS, "output_type": output})
+	_trim_bursts()
 	queue_redraw()
 
 ## 只根据语义事件创建局部飘字，不触发任何游戏效果。
 func play_event(event: Dictionary, impact_time: float) -> void:
-	if not cards.has(event.target): return
-	if event.kind == T.Event.ActionReleased:
-		impacts.append({"target": event.target, "output_type": event.output_type, "start": impact_time})
+	var target := str(event.get("target", ""))
+	if target.is_empty(): return
+	var kind := int(event.get("kind", -1))
+	var output := int(event.get("output_type", _card_output(target)))
+	if kind == T.Event.ActionReleased:
+		_append_impact(target, output, impact_time, IMPACT_SECONDS, false)
+	elif kind == T.Event.DamageResolved and cards.has(target):
+		var source_center := card_center(str(event.get("source", "")))
+		var direction_sign := -1.0 if source_center.x > card_center(target).x else 1.0
+		cards[target].play_hit(output, event.get("critical", false), direction_sign)
+		if event.get("critical", false):
+			_append_impact(target, output, impact_time, IMPACT_SECONDS, true)
+		_pulse_board(event.get("critical", false))
+	elif kind == T.Event.HealingResolved and cards.has(target):
+		cards[target].play_restore(T.Output.Healing)
+	elif kind in [T.Event.ShieldGained, T.Event.DamageGuarded] and cards.has(target):
+		cards[target].play_restore(T.Output.Shield)
+		if kind == T.Event.DamageGuarded: _append_impact(target, T.Output.Shield, impact_time, IMPACT_SECONDS, false)
+	elif kind in [T.Event.AdjacentMainAbilityCast, T.Event.LinkedMainAbilityCast]:
+		passive_links.append({"source": str(event.get("source", "")), "target": target, "start": impact_time, "duration": LINK_SECONDS, "output_type": output})
 	var text: String = _feedback_text(event)
 	var color = Color.WHITE
-	match int(event.kind):
+	match kind:
 		T.Event.DamageResolved:
 			color = DesignTokens.output_color(event.get("output_type", T.Output.Physical))
 		T.Event.HealingResolved:
 			color = DesignTokens.output_color(T.Output.Healing)
 		T.Event.ShieldGained:
 			color = DesignTokens.output_color(T.Output.Shield)
-	if not text.is_empty(): feedback.append({"target": event.target, "text": text, "event": event.duplicate(true), "color": color, "start": impact_time})
+	if not text.is_empty():
+		feedback.append({"target": target, "text": text, "event": event.duplicate(true), "color": color, "start": impact_time,
+			"duration": FEEDBACK_SECONDS, "critical": event.get("critical", false)})
+	_trim_bursts()
 	queue_redraw()
 
 ## 飘字仅从语义事件翻译，诊断字符串不当作玩家文案。
@@ -188,7 +267,7 @@ func _feedback_text(event: Dictionary) -> String:
 	match int(event.kind):
 		T.Event.DamageResolved:
 			var text = tr("ui.combat.blocked") if event.value <= 0 else "−" + RuleText.number(event.value)
-			return ContentText.format_key("ui.combat.critical", {"text": text}) if event.get("critical", false) else text
+			return text
 		T.Event.HealingResolved: return "+" + RuleText.number(event.value)
 		T.Event.ShieldGained: return ContentText.format_key("ui.combat.shield_gained", {"amount": RuleText.number(event.value)})
 		T.Event.HasteGained: return ContentText.text("rules.trigger.haste_gained")
@@ -197,7 +276,7 @@ func _feedback_text(event: Dictionary) -> String:
 
 ## 已出现的反馈切语言不重放事件、不重置动画计时。
 func _notification(what: int) -> void:
-	if what in [NOTIFICATION_PAUSED, NOTIFICATION_APPLICATION_FOCUS_OUT]: cancel_drag()
+	if what in [NOTIFICATION_PAUSED, NOTIFICATION_APPLICATION_FOCUS_OUT] and is_node_ready(): cancel_drag(true)
 	if what != NOTIFICATION_TRANSLATION_CHANGED or not is_node_ready(): return
 	for item in feedback: item.text = _feedback_text(item.event)
 	queue_redraw()
@@ -205,9 +284,10 @@ func _notification(what: int) -> void:
 ## 所有局部表现跟随唯一回放时钟，暂停不推进动画。
 func advance(time: float) -> void:
 	clock_time = time
-	projectiles = projectiles.filter(func(item): return time < item.start + Playback.FLIGHT_SECONDS)
-	feedback = feedback.filter(func(item): return time < item.start + 0.7)
-	impacts = impacts.filter(func(item): return time < item.start + 0.32)
+	projectiles = projectiles.filter(func(item): return time < item.start + item.duration)
+	feedback = feedback.filter(func(item): return time < item.start + item.duration)
+	impacts = impacts.filter(func(item): return time < item.start + item.duration)
+	passive_links = passive_links.filter(func(item): return time < item.start + item.duration)
 	queue_redraw()
 
 ## 重开或离开战斗清理所有单场表现。
@@ -215,6 +295,13 @@ func clear_effects() -> void:
 	projectiles.clear()
 	feedback.clear()
 	impacts.clear()
+	passive_links.clear()
+	if _board_tween != null and _board_tween.is_valid(): _board_tween.kill()
+	scale = Vector2.ONE
+	rotation = 0.0
+	for card in cards.values(): card.reset_presentation()
+	for id in _pending_defeats.keys(): _card_defeat_finished(id)
+	_pending_defeats.clear()
 	clock_time = 0
 	queue_redraw()
 
@@ -228,6 +315,7 @@ func card_center(id: String) -> Vector2:
 ## 按下先记录卡牌候选，轻点和拖拽在释放时互斥处理。
 func _card_pressed(id: String) -> void:
 	if not interactive or not cards.has(id): return
+	if audio != null: audio.play_ui_cue("sfx.adventure.card_pickup", -6.0)
 	cancel_drag()
 	select_card(id)
 	_drag = id
@@ -302,7 +390,7 @@ func _layout() -> void:
 		var view = cards[id]
 		var item: Dictionary = view.snapshot
 		var rect = slot_rect(item.position, item.definition.width, item.definition.height)
-		view.position = rect.position
+		view.set_board_position(rect.position)
 		view.size = rect.size
 		view.mouse_filter = Control.MOUSE_FILTER_STOP if interactive else Control.MOUSE_FILTER_IGNORE
 		view.z_index = 1 if item.definition.team_id == view_team else 0
@@ -312,6 +400,7 @@ func _layout() -> void:
 	# Control 命中按子节点顺序而非 z_index；冲突时可见在前的我方卡也必须先接收输入。
 	for view in cards.values():
 		if view.snapshot.definition.team_id == view_team: move_child(view, get_child_count() - 1)
+	pivot_offset = size * 0.5
 	queue_redraw()
 
 ## 统一细框与低对比凹槽仅绘在卡面下方；部署和战斗共用相同几何。
@@ -322,35 +411,119 @@ func _draw() -> void:
 	for i in range(columns * rows):
 		draw_texture_rect(SLOT_TEXTURE, slot_rect(i), false, BOARD_THEME.get_color("slot_tint", "BattleBoard"))
 
-## 前景专用绘制入口供唯一效果层调用，不创建碰撞或模拟对象。
-func draw_effects(layer: Control) -> void:
-	# 就绪框放在卡面上方的格子外缘，拖动卡覆盖目标时仍能辨识交换反馈。
-	if cards.has(_swap_target) and _swap_elapsed >= SWAP_HOVER_SECONDS:
-		var target: Dictionary = cards[_swap_target].snapshot
-		layer.draw_rect(cell_rect(target.position, target.definition.width, target.definition.height).grow(-1), Color("fff0c4"), false, 1.5, true)
+## 前景分成透明特效与清晰文字两层，不创建碰撞或模拟对象。
+func draw_effects(layer: Control, feedback_only: bool = false) -> void:
+	if feedback_only:
+		# 就绪框放在卡面上方的格子外缘，拖动卡覆盖目标时仍能辨识交换反馈。
+		if cards.has(_swap_target) and _swap_elapsed >= SWAP_HOVER_SECONDS:
+			var target: Dictionary = cards[_swap_target].snapshot
+			layer.draw_rect(cell_rect(target.position, target.definition.width, target.definition.height).grow(-1), Color("fff0c4"), false, 1.5, true)
+		var font := get_theme_default_font()
+		for item in feedback:
+			var progress := clampf((clock_time - item.start) / item.duration, 0.0, 1.0)
+			Vfx.draw_feedback(layer, font, card_center(item.target), item.text, item.color, progress, item.critical)
+		return
+	Vfx.draw_ambient(layer, grid_rect(), clock_time)
+	for view in cards.values():
+		if view.frame.is_empty() or view.is_defeating(): continue
+		Vfx.draw_statuses(layer, Rect2(view.position, view.size), view.frame.get("statuses", []), clock_time, _impact_sequences)
+	for item in passive_links:
+		var progress := clampf((clock_time - item.start) / item.duration, 0.0, 1.0)
+		Vfx.draw_link(layer, card_center(item.source), card_center(item.target), progress, item.output_type)
 	for item in projectiles:
-		var elapsed = maxf(0, clock_time - item.start)
-		var origin = card_center(item.source)
-		var target = card_center(item.target)
-		var progress = clampf(elapsed / Playback.FLIGHT_SECONDS, 0, 1)
+		var elapsed: float = clock_time - item.start
+		if elapsed < 0.0: continue
+		var origin := _card_anchor(item.source)
+		var target := _card_anchor(item.target)
+		var progress := clampf(elapsed / item.duration, 0.0, 1.0)
 		var frames: SpriteFrames = item.frames
-		var animation: StringName = frames.get_animation_names()[0]
-		var index = _frame_at(frames, animation, elapsed)
-		ProjectileMotion.draw_flight(layer, frames.get_frame_texture(animation, index), item.output_type, origin, target, progress, item.size, DesignTokens.output_color(item.output_type))
+		var texture := frames.get_frame_texture(item.animation, _frame_at(frames, item.animation, elapsed))
+		ProjectileMotion.draw_flight(layer, item.output_type, origin, target, progress, item.size, DesignTokens.output_color(item.output_type), texture, float(frames.get_meta(&"tip_ratio", 0.67)))
 	layer.draw_set_transform(Vector2.ZERO)
 	for item in impacts:
-		ProjectileMotion.draw_impact(layer, item.output_type, card_center(item.target), clampf((clock_time - item.start) / 0.32, 0, 1), DesignTokens.output_color(item.output_type))
-	var font = get_theme_default_font()
-	for item in feedback:
-		var point = card_center(item.target) + Vector2(-22, -35 * (clock_time - item.start))
-		layer.draw_string(font, point, item.text, HORIZONTAL_ALIGNMENT_LEFT, -1, 22, item.color)
+		var progress := clampf((clock_time - item.start) / item.duration, 0.0, 1.0)
+		_draw_impact_sequence(layer, item, progress)
+	layer.draw_set_transform(Vector2.ZERO)
 
-## 按 SpriteFrames 的逐帧时长和循环设置读取静态或动态图，而非假定等长帧。
+## 卡面当前输出为缺省表现类型，事件显式类型始终优先。
+func _card_output(id: String) -> int:
+	if cards.has(id) and not cards[id].frame.is_empty(): return int(cards[id].frame.get("output_type", T.Output.Special))
+	return T.Output.Special
+
+## 配置阶段预热逐帧命中图集，战斗首次爆发不在回放中同步读取磁盘。
+func _load_impact_sequences() -> void:
+	_impact_sequences.clear()
+	if content == null: return
+	for output in IMPACT_EFFECT_KEYS:
+		var frames: SpriteFrames = content.resource(IMPACT_EFFECT_KEYS[output], "Effect")
+		if frames == null or not frames.has_animation(&"impact") or frames.get_frame_count(&"impact") == 0: continue
+		_impact_sequences[output] = frames
+
+## 命中记录只绑定事件语义，逐帧资源由已预热的分类图集统一采样。
+func _append_impact(target: String, output: int, start: float, duration: float, critical: bool) -> void:
+	# 同一次释放和暴击结算共用一个落点爆发，避免两套图集叠成白块。
+	for item in impacts:
+		if item.target == target and item.output_type == output and is_equal_approx(item.start, start):
+			item.critical = item.critical or critical
+			return
+	impacts.append({"target": target, "output_type": output, "start": start, "duration": duration, "critical": critical})
+
+## 逐帧图集保持原画比例；正面斩痕与腐蚀以卡面中心为支点，不套用地面偏移。
+func _draw_impact_sequence(layer: Control, item: Dictionary, progress: float) -> bool:
+	var frames: SpriteFrames = _impact_sequences.get(int(item.output_type))
+	if frames == null: return false
+	var frame_index := _frame_at(frames, &"impact", progress * float(item.duration))
+	var texture := frames.get_frame_texture(&"impact", frame_index)
+	if texture == null: return false
+	var center := _card_anchor(item.target)
+	var card_size: Vector2 = cards[item.target].size if cards.has(item.target) else Vector2(100, 118)
+	var target_extent := clampf(minf(card_size.x, card_size.y) * 1.38, 72.0, 148.0)
+	if int(item.output_type) in [T.Output.Physical, T.Output.Poison]:
+		target_extent = minf(card_size.x, card_size.y) * 1.02
+	if item.critical: target_extent *= 1.12
+	if int(item.output_type) == T.Output.Burn: center.y -= target_extent * 0.26
+	var natural := texture.get_size()
+	var display_scale := target_extent / maxf(natural.x, natural.y)
+	var display_size := natural * display_scale
+	layer.draw_set_transform(center)
+	var alpha := 1.0 - smoothstep(0.72, 1.0, progress)
+	layer.draw_texture_rect(texture, Rect2(-display_size * 0.5, display_size), false, Color(1, 1, 1, alpha))
+	layer.draw_set_transform(Vector2.ZERO)
+	return true
+
+## 弹道和命中固定在卡牌静止占位中心，受击回弹不会拖动落点或弯折在途轨迹。
+func _card_anchor(id: String) -> Vector2:
+	for snapshot in snapshots:
+		if snapshot.id == id: return cell_rect(snapshot.position, snapshot.definition.width, snapshot.definition.height).get_center()
+	return card_center(id)
+
+## 并发爆发保留最新高价值反馈，限制极端连锁造成的分配与遮挡。
+func _trim_bursts() -> void:
+	while impacts.size() > MAX_BURSTS: impacts.pop_front()
+	while passive_links.size() > MAX_BURSTS: passive_links.pop_front()
+	while feedback.size() > MAX_BURSTS: feedback.pop_front()
+
+## 棋盘只做轻微整体脉冲，常规伤害克制、暴击增强，避免连续镜头晃动眩晕。
+func _pulse_board(critical: bool) -> void:
+	if not critical: return
+	if _board_tween != null and _board_tween.is_valid(): _board_tween.kill()
+	scale = Vector2.ONE
+	rotation = 0.0
+	var strength := 0.006
+	var angle := strength * (1.0 if int(clock_time * 1000.0) % 2 == 0 else -1.0)
+	_board_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_STOP)
+	_board_tween.tween_property(self, "scale", Vector2.ONE * (1.0 + strength), 0.035).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_board_tween.parallel().tween_property(self, "rotation", angle, 0.035)
+	_board_tween.tween_property(self, "scale", Vector2.ONE, 0.11).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_board_tween.parallel().tween_property(self, "rotation", 0.0, 0.11)
+
+## 按逐帧权重采样，循环弹道可重复播放，单次命中到末帧停止。
 static func _frame_at(frames: SpriteFrames, animation: StringName, elapsed: float) -> int:
-	var total = 0.0
-	var count = frames.get_frame_count(animation)
+	var total := 0.0
+	var count := frames.get_frame_count(animation)
+	if count == 0: return -1
 	for index in range(count): total += frames.get_frame_duration(animation, index)
-	var position = elapsed * frames.get_animation_speed(animation)
+	var position := elapsed * frames.get_animation_speed(animation)
 	position = fmod(position, total) if frames.get_animation_loop(animation) else minf(position, total)
 	for index in range(count):
 		position -= frames.get_frame_duration(animation, index)

@@ -3,8 +3,7 @@ extends Control
 
 signal navigation_requested(id: String)
 
-const UI = preload("res://ui/components/ui.gd")
-const DESIGN_SIZE := Vector2(941, 1672)
+const DESIGN_SIZE := Vector2(941, 1476)
 const TAB_WIDTH := 217.75
 const TAB_IDS: Array[String] = [
 	"ActivityContractSummon",
@@ -23,17 +22,8 @@ const TITLES := {
 @export_enum("Activity", "ActivityContractSummon", "ActivityLegendRoad", "ActivityDailyTask", "ActivitySevenSign") var page_id: String = "Activity"
 
 var _active_id: String
-var _return_button: Button
 var _tab_motion: Tween
 @onready var tabs: StandardTabGroup = $Canvas/Tabs
-
-## 关闭按钮沿用宿主输入，只替换为活动页内的菱形返回表现。
-func bind_return_button(button: Button) -> void:
-	_return_button = button
-	for state: String in ["normal", "hover", "pressed", "disabled", "focus"]:
-		button.add_theme_stylebox_override(state, StyleBoxEmpty.new())
-	for event: Signal in [button.button_down, button.button_up, button.mouse_entered, button.mouse_exited, button.focus_entered, button.focus_exited]:
-		event.connect(_refresh_return_tint)
 
 ## 首次进入按页面身份选择页签；活动总入口默认落在契约召唤。
 func _ready() -> void:
@@ -78,13 +68,11 @@ func _browse(direction: int) -> void:
 
 ## 当前占位只展示身份和未开放状态，不伪造活动数据或操作。
 func _render_page(animate: bool) -> void:
-	$Canvas/ReturnArt/Caption.text = TITLES[page_id]
 	$Unavailable.present(TITLES[_active_id])
 	var index := TAB_IDS.find(_active_id)
 	$Canvas/Previous.visible = index > 0
 	$Canvas/Next.visible = index < TAB_IDS.size() - 1
 	_update_tab_art(_active_id, animate)
-	_refresh_return_tint()
 
 ## 黑牌位置、图标和文字颜色共同表达唯一选中项。
 func _update_tab_art(id: String, animate: bool) -> void:
@@ -105,7 +93,7 @@ func _update_tab_art(id: String, animate: bool) -> void:
 			button.get_node("Icon").self_modulate = color
 			button.get_node("Caption").self_modulate = color
 
-## 方案画布等比落在安全区，宿主关闭热区对齐左上角的菱形装饰。
+## 活动内容等比落在框架页头下方，不参与返回入口排版。
 func _layout_art() -> void:
 	if not is_node_ready(): return
 	var ratio := minf(size.x / DESIGN_SIZE.x, size.y / DESIGN_SIZE.y)
@@ -113,19 +101,7 @@ func _layout_art() -> void:
 	var origin := (size - DESIGN_SIZE * ratio) * 0.5
 	$Canvas.position = origin
 	$Canvas.scale = Vector2.ONE * ratio
-	if is_instance_valid(_return_button):
-		_return_button.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
-		_return_button.size = Vector2(144, 144)
-		_return_button.scale = Vector2.ONE * ratio
-		_return_button.global_position = $Canvas/ReturnArt/Icon.get_global_rect().get_center() - _return_button.size * ratio * 0.5
-
-## 返回装饰只跟随宿主按钮明度，不改变透明度或输入范围。
-func _refresh_return_tint() -> void:
-	if not is_node_ready() or not is_instance_valid(_return_button): return
-	var brightness := UI.tokens.entry_normal_brightness
-	if _return_button.is_pressed(): brightness = UI.tokens.entry_pressed_brightness
-	elif _return_button.is_hovered() or _return_button.has_focus(): brightness = UI.tokens.entry_hover_brightness
-	$Canvas/ReturnArt.modulate = Color(brightness, brightness, brightness)
+	$Canvas/Tabs.position.y = (size.y - origin.y) / ratio - 218
 
 ## 活动总入口与四个直达入口最终都映射到真实子页身份。
 func _resolved_page_id() -> String:

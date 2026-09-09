@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://bootstrap/app.gd" id="1"]
 [ext_resource type="Script" path="res://features/player_session/session_controller.gd" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://services/localization/localization_service.gd" id="5"]
 [ext_resource type="PackedScene" path="res://ui/overlays/orientation_guard.tscn" id="6"]
 [ext_resource type="Script" path="res://services/content_delivery/content_delivery.gd" id="7"]
+[ext_resource type="Script" path="res://services/audio/audio_service.gd" id="8"]
 
 [node name="App" type="Node"]
 process_mode = 3
@@ -16,6 +17,10 @@ script = ExtResource("1")
 
 [node name="Localization" type="Node" parent="Services"]
 script = ExtResource("5")
+
+[node name="Audio" type="Node" parent="Services"]
+process_mode = 3
+script = ExtResource("8")
 
 [node name="PlayerSession" type="Node" parent="Services"]
 script = ExtResource("2")

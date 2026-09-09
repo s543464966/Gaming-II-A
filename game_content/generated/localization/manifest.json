@@ -1,24 +1,24 @@
 {
-  "content_hash": "f4a8d50277affba0412e97aacb7e9df8ca321973db3fb446ab8f63e204205a8a",
+  "content_hash": "afa9eee8f58d652313cd51565f57a4f1c93b878960a1ed8dabe2243e80af2db3",
   "default_locale": "zh_Hans",
   "disabled_locales": [],
   "inputs": {
     "Cards/translations.csv": "35e1122543dcb82cdc1d2830cb3e4fcd859090a2d293de7830c31cd858c79ada",
-    "Combat/translations.csv": "981e9acf46e52dcdec313a49483616447e5296ba55e78907eea6695f161c891b",
+    "Combat/translations.csv": "073aeb20df40f54f511c8ef7d7c9ad0d88d6cb5971d1292ed2f2d8bd8f612a32",
     "Inventory/translations.csv": "6fc166361de789e6520994b66945cba02f75cdab044eaa11c48b7acf7e6cddcb",
-    "Progression/translations.csv": "ccaa74ee1cc4366192b28d5a0eb351a229953f59e41cce7f3158eb2eda0e3f0a",
-    "res://game_content/localization/authoring/de/rules.json": "f3667debf076d4c48ed20a13e4813d18fa26b61f57cd7b35eac5655c97c4e3c7",
-    "res://game_content/localization/authoring/de/ui.json": "e879a39393da85bc4a356cf7f41805a0814f66e33239dd1aff701e5c11f9b387",
-    "res://game_content/localization/authoring/en/rules.json": "0d0dbd6d3ba511b7b0c8becb289ebfff5a382a878062cf5118530873ecacb378",
-    "res://game_content/localization/authoring/en/ui.json": "df7ab1fa24f49383e567cc701b2d18d78e1d257d7d9ab1896692c772edb07128",
-    "res://game_content/localization/authoring/fr/rules.json": "4f09c53b31f32ddaa70720d1ae6fd4572312b467b49c4867f0d42d3f54a3be8a",
-    "res://game_content/localization/authoring/fr/ui.json": "a6c639130cc07f75179fb385e61d35b68f3be9f84b61fd433f6f2e85fa5e551c",
-    "res://game_content/localization/authoring/ja/rules.json": "cef944b0886d8d269d3fd41f7ebdd30f6f4f06769708e9103c00996606db083e",
-    "res://game_content/localization/authoring/ja/ui.json": "8e10cc166e63a5cc348b6af21719daca881f23c4377c5d2e6d297814c9422f94",
-    "res://game_content/localization/authoring/zh_hans/rules.json": "5f5aabad5d85466c03c4e60daa9529575587a16ccbe6e8e602b83ba4ffab1dcc",
-    "res://game_content/localization/authoring/zh_hans/ui.json": "c0a2ff4540e263034128b10ac6dadfba2d39271fc4bf87a47559bae885f4e8ee",
-    "res://game_content/localization/authoring/zh_hant/rules.json": "16cec958318732e455f4c3309259c539f48a2289a0126c82e65c835d07466828",
-    "res://game_content/localization/authoring/zh_hant/ui.json": "d0932309774c16e5ae5e73703256e0658b9c94a61094e40885c9ab3745435d61",
+    "Progression/translations.csv": "1964d6eb98daf789546951e98c8725039c62c01e114251511c1f38259037b8f6",
+    "res://game_content/localization/authoring/de/rules.json": "233839804f57bbb0c1989f0a49590c2443b439339e071b2f97d84902a5c01b7a",
+    "res://game_content/localization/authoring/de/ui.json": "0735740bce622f171e2534cbbfa26c2a96b82b05e654e38bdbab656142f1617a",
+    "res://game_content/localization/authoring/en/rules.json": "a3af6688152cc0d3f7e1e5220fcb9d3c1b7afaacbc82c90ad2e6842cb0579adb",
+    "res://game_content/localization/authoring/en/ui.json": "3b172a150dfcb5bf1b303a43595cbc4945ef972aef28f5a99a13b60ac2a20b24",
+    "res://game_content/localization/authoring/fr/rules.json": "04e2ac50cfa123ae5ea8637d9784de476e8dfd8d7ed84f647600c6062f79c08f",
+    "res://game_content/localization/authoring/fr/ui.json": "0823d5f798d6ab300e56e76a110fc5d2118153787b352a10dcba1978108abfd9",
+    "res://game_content/localization/authoring/ja/rules.json": "1378f0b319900396a53126531948c36cc366cfe3236e75d5685ca22784bcad19",
+    "res://game_content/localization/authoring/ja/ui.json": "7ea4d6b3ae5c3231c3d602940f8a87608491aba75dbec874ef3329152462fa06",
+    "res://game_content/localization/authoring/zh_hans/rules.json": "18b89ee4430e71a86623b2ee65e1784844d46681f450f6f28e25b79ef5b65bd4",
+    "res://game_content/localization/authoring/zh_hans/ui.json": "94ae85ab057e335cb4cbc46b25da4fd8f851777c3da7730bbce3754e41a7c9ad",
+    "res://game_content/localization/authoring/zh_hant/rules.json": "b40adeb7144d8d256c21d110546ca79e4dd6d7e8a04eaa91fac8493b8acad730",
+    "res://game_content/localization/authoring/zh_hant/ui.json": "1c0c703d9792293176cd8fb90772a501b649a81b589d8377ebfa3a1283de5004",
     "res://game_content/localization/locale_registry.json": "03f0f951fd4891ceda706c9e3f75e2736f8d056de7549ab53e3cd5445b1beb0c",
     "res://ui/design_system/typography/LICENSE.txt": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2",
     "res://ui/design_system/typography/latin/LICENSE.txt": "7a083b136e64d064794c3419751e5c7dd10d2f64c108fe5ba161eae5e5958a93",
@@ -29,9 +29,9 @@
     {
       "directory": "zh_hans",
       "files": {
-        "localization/zh_hans/content.po": "5e087d4747e528d8d82bd40458e765580b236a928bc13cede911e57d520433b1",
-        "localization/zh_hans/rules.po": "c6a233d23d560c397272d32c68658d556b693ab06eec45f41f989231837301d3",
-        "localization/zh_hans/ui.po": "10d291ddd43fb6a533add3aae91f66190def0136c80526efec4178d8a7a2e592"
+        "localization/zh_hans/content.po": "08fa8b2f9707f50d14ff2ba981d51f2cb8949a7e001cae9ecc5143995f0b7c73",
+        "localization/zh_hans/rules.po": "0122a01af2175596bb61ab774c1b9b9c4355e9d18bc4bffe93d3c38f652d9c37",
+        "localization/zh_hans/ui.po": "aa6b0a7314929ed9378e6c555894ff57253c0b8d38f477cba193d0e49c76f473"
       },
       "font": {
         "license_path": "res://ui/design_system/typography/LICENSE.txt",
@@ -47,9 +47,9 @@
     {
       "directory": "en",
       "files": {
-        "localization/en/content.po": "6feaeda582123db724a7629455c52c227d42e0ecb379f7538f1d40a701f60c73",
-        "localization/en/rules.po": "0cf5523d569bfb61539003c32f7852a0c43b55b3ee6d8628d2ff05d6f1d477ce",
-        "localization/en/ui.po": "31cc4d0ad972f13f9bd5410f7e0fd0b7fa5a393a53acd450808e0d162a88bfb8"
+        "localization/en/content.po": "1351f7c589935f951f756c8da9fac84b2e1bdd1dd2d2a38210a88342c20bda9b",
+        "localization/en/rules.po": "8913fee0281d27e49307263cb03925881758078cbba94b5429dbaac93384deb5",
+        "localization/en/ui.po": "3a7e74f8d87341ee25e9c74003a8be0899a4dc9f3bd3e0408d8872b475001ea3"
       },
       "font": {
         "license_path": "res://ui/design_system/typography/latin/LICENSE.txt",
@@ -65,9 +65,9 @@
     {
       "directory": "ja",
       "files": {
-        "localization/ja/content.po": "211660167a2bf3232c6f2b8a7d2045c6938cc6a281974df71cab5dc80d3fb262",
-        "localization/ja/rules.po": "338576c19fb8a07fe51d916f042cdb5eef1ceb955e4a2a9f259b7568fb28bcd1",
-        "localization/ja/ui.po": "6dd369bd2e3da4dbe61f6a11cdc543a0faac14f31ff165ee1ad24969d2f2bff3"
+        "localization/ja/content.po": "083f6ec33c3f0e9d163a953751ce8b98f28f70f91be9393f20bb201379076640",
+        "localization/ja/rules.po": "c5f8afd16ec4df54de17d78af6f0e4546469378557482a4e153b3217af456513",
+        "localization/ja/ui.po": "e4e58edae2208649a7a65af15dfc038f3b0ce05542ca2da53031565336c690c6"
       },
       "font": {
         "license_path": "res://ui/design_system/typography/LICENSE.txt",
@@ -83,9 +83,9 @@
     {
       "directory": "zh_hant",
       "files": {
-        "localization/zh_hant/content.po": "53843057cafc3f56c393283966494d41a12045de91f144d9e155d6fc01f32e8c",
-        "localization/zh_hant/rules.po": "dc25c0b6ae4e36198b62dabd38e5559c86489013945e5253ca0ebb4454c7f4fb",
-        "localization/zh_hant/ui.po": "59d8c8ffb178841b51abb7b414fc506f282b237f4f1735c80239083cb7399f2a"
+        "localization/zh_hant/content.po": "d1951015f538e6d25d445313b1e62de8fff8e7fda0974c4f7d760389a19d4441",
+        "localization/zh_hant/rules.po": "3989ab66d842a462e024845beba3090c5acbee6cde2ba941b2f557d35acf670b",
+        "localization/zh_hant/ui.po": "b3e84f705ebdabba52d16829353c062c055844ce2f6cbfb0e99cc43b64695156"
       },
       "font": {
         "license_path": "res://ui/design_system/typography/LICENSE.txt",
@@ -101,9 +101,9 @@
     {
       "directory": "fr",
       "files": {
-        "localization/fr/content.po": "7fba594866370680c192037eba86166a5bb9338a5635e1acef5337750a3051d1",
-        "localization/fr/rules.po": "9789fda502b99da7c45f90575022e1e7909ce017227144a34ddd397d416117ea",
-        "localization/fr/ui.po": "b62a4dd13dcdab4b5bfe4de9d5bcf5458f4e6e9aa01f5f31435d23a9cfe5faf3"
+        "localization/fr/content.po": "44222edad07086cf001cf6ce5fd0678321644add634be195797f810123d6f563",
+        "localization/fr/rules.po": "5c3444beff763a6565813909323e98d2a9c5dabaeb5800ec3b408d7318fdb294",
+        "localization/fr/ui.po": "f78f291bab3ca2ad7bf5a0192d13cc9ed43fe70b2a8773449e45663bef93daed"
       },
       "font": {
         "license_path": "res://ui/design_system/typography/latin/LICENSE.txt",
@@ -119,9 +119,9 @@
     {
       "directory": "de",
       "files": {
-        "localization/de/content.po": "9dd5d5034511043396de04df8d8efe460d08d26873185a08d79bb77e6fcf375c",
-        "localization/de/rules.po": "e0e2fe53ad6a583695e6bdb4876a305cafe91ca8bcd4e638919089b634d409df",
-        "localization/de/ui.po": "775cdf80724a87816196b4021971c995f0fe6f4851616ec9643e0a36502a9f27"
+        "localization/de/content.po": "ca96f5128ac6cd5540b5fed286296d6ad9fcb74b1c958d12c6077127bd0bd3b6",
+        "localization/de/rules.po": "834c9fc6cb398577d349c87e7aa7719389e98f07f0ff6192a249f4c08b752956",
+        "localization/de/ui.po": "e992e3f902b8b3424099b2509b41c42d00064a4defba905c6ee34fd74db7289b"
       },
       "font": {
         "license_path": "res://ui/design_system/typography/latin/LICENSE.txt",

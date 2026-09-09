@@ -65,11 +65,16 @@ func _number(value: Variant, owner: String, negative: bool = false) -> float:
 
 ## 六类数值效果可声明弹道，功能效果与状态每跳不伪造发射。
 func _action(value: Variant, owner: String) -> Dictionary:
-	var result = _object(value, {"kind": "PhysicalDamage", "target": "Self", "target_tags": {}, "amount": 0.0, "power_multiplier": 0.0, "status": "None", "duration_seconds": 0.0, "projectile_key": "", "main_ability_id": "", "lifesteal_ratio": 0.0, "parameters": {}}, ["kind", "target", "amount"], owner)
+	var result = _object(value, {"kind": "PhysicalDamage", "target": "Self", "target_tags": {}, "max_targets": 0, "amount": 0.0, "amount_source": "Fixed", "power_multiplier": 0.0, "status": "None", "duration_seconds": 0.0, "projectile_key": "", "main_ability_id": "", "lifesteal_ratio": 0.0, "parameters": {}}, ["kind", "target", "amount"], owner)
 	result.target_tags = _tag_query(result.target_tags, owner + ".target_tags")
 	result.kind = _enum(result.kind, T.CombatAction, owner + ".kind")
 	result.target = _enum(result.target, T.Target, owner + ".target")
+	result.max_targets = _number(result.max_targets, owner + ".max_targets")
+	if result.max_targets != floorf(result.max_targets) or result.max_targets > 5 or (result.max_targets > 0 and not result.target in [T.Target.AllEnemies, T.Target.AllUnits]):
+		errors.append(owner + " 群攻上限必须为1～5整数且使用敌群或全体候选；0仅供未限人数的兼容输入。")
+	result.max_targets = int(result.max_targets)
 	result.status = _enum(result.status, T.Status, owner + ".status")
+	result.amount_source = _enum(result.amount_source, T.AmountSource, owner + ".amount_source")
 	result.amount = _number(result.amount, owner + ".amount", result.kind == T.CombatAction.ChangePollution)
 	result.power_multiplier = _number(result.power_multiplier, owner + ".power_multiplier")
 	result.duration_seconds = _number(result.duration_seconds, owner + ".duration_seconds")
@@ -82,6 +87,11 @@ func _action(value: Variant, owner: String) -> Dictionary:
 		return result
 	if result.parameters != {}: errors.append(owner + " 基础效果不能夹带组合机制参数。")
 	if names_only and (T.output_kind(result) != T.Output.Special or result.kind == T.CombatAction.ChangePollution) and result.amount != floorf(result.amount): errors.append(owner + " 固定点数必须为整数，系数与秒数独立配置。")
+	if result.amount_source != T.AmountSource.Fixed:
+		if T.output_kind(result) == T.Output.Special or result.power_multiplier != 0:
+			errors.append(owner + " 卡牌点数来源只用于六类输出，不能混用倍率。")
+		if (result.amount_source == T.AmountSource.CardOutput and result.amount != 0) or (result.amount_source == T.AmountSource.CardBase and (result.amount <= 0 or result.amount != floorf(result.amount))):
+			errors.append(owner + " 主效直接读取属性且 amount 为 0；追加效果必须配置正整数基数。")
 	if result.power_multiplier > 0:
 		if T.output_kind(result) == T.Output.Special or result.amount != 0:
 			errors.append(owner + " 数值倍率必须匹配六类输出，且不能同时保存固定强度。")
@@ -93,9 +103,11 @@ func _action(value: Variant, owner: String) -> Dictionary:
 		errors.append(owner + " 弹道键必须是字符串。")
 		result.projectile_key = ""
 	if result.kind == T.CombatAction.ApplyStatus:
-		if result.status == T.Status.None or result.duration_seconds <= 0.0:
-			errors.append(owner + " 施加状态必须提供状态和正持续时间。")
-		if result.status in [T.Status.Freeze, T.Status.Slow, T.Status.Stun] and (result.amount != 0):
+		if result.status in [T.Status.Burn, T.Status.Poison]:
+			if result.duration_seconds != 0: errors.append(owner + " 灼烧与中毒只配置层数，不接受持续时间。")
+		elif result.status == T.Status.None or result.duration_seconds <= 0.0:
+			errors.append(owner + " 控制状态必须提供状态和正持续时间。")
+		elif result.amount != 0:
 			errors.append(owner + " 控制状态只配置时长，不接受无效强度。")
 	elif result.kind == T.CombatAction.GrantMainAbility:
 		if not result.main_ability_id is String or result.main_ability_id.is_empty() or result.amount != 0 or result.status != T.Status.None:
@@ -114,7 +126,7 @@ func _action(value: Variant, owner: String) -> Dictionary:
 
 ## 组合机制不伪装成输出属性；身份、费用和时限在入场前校验。
 func _mechanic_action(value: Dictionary, owner: String) -> void:
-	if value.power_multiplier != 0 or value.status != T.Status.None or value.lifesteal_ratio != 0 or value.projectile_key != "": errors.append(owner + " 组合机制不能夹带主效倍率、状态、吸血或弹道。")
+	if value.amount_source != T.AmountSource.Fixed or value.power_multiplier != 0 or value.status != T.Status.None or value.lifesteal_ratio != 0 or value.projectile_key != "": errors.append(owner + " 组合机制不能夹带主效倍率、状态、吸血或弹道。")
 	if value.kind in [T.CombatAction.CopyMainAbility, T.CombatAction.Transform]:
 		if not value.main_ability_id is String or value.main_ability_id.is_empty() or value.duration_seconds <= 0: errors.append(owner + " 主能力复制或形态需要预设主能力及正持续时间。")
 	elif value.main_ability_id != "": errors.append(owner + " 此机制不接受主能力引用。")
@@ -297,7 +309,7 @@ func _part(value: Variant, owner: String) -> Dictionary:
 			result.target_tags = _tag_query(result.target_tags, owner + ".target_tags")
 			result.target = _enum(result.target, T.Target, owner + ".target")
 			if not result.modifiers.team_bonuses.is_empty() and not result.target in [T.Target.Self, T.Target.AllAllies, T.Target.AdjacentAllies, T.Target.LinkedAlly]: errors.append(owner + " 固定输出增益必须作用于自身或友军范围。")
-			if result.target != T.Target.Self and not result.modifiers.stat_bonus_ratios.is_empty(): errors.append(owner + " 百分比属性修正只能作用于自身，队伍增益必须使用整数点数。")
+			if not result.target in [T.Target.Self, T.Target.AllAllies] and not result.modifiers.stat_bonus_ratios.is_empty(): errors.append(owner + " 百分比属性修正只能作用于自身或全队，正式内容仅遗物可配置。")
 			if result.target != T.Target.Self and result.modifiers.team_bonus_add != 0: errors.append(owner + " 队伍增益强化只能作用于自身，不能递归增强队伍。")
 			if not result.target in [T.Target.Self, T.Target.AllAllies, T.Target.AllEnemies, T.Target.AllUnits, T.Target.AdjacentAllies, T.Target.LinkedAlly]: errors.append(owner + " 持续修正必须指定稳定宿主或队伍范围。")
 			var numeric: Dictionary = result.modifiers.duplicate(true)

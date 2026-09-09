@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://ui/components/touch_button.gd" id="touch_input"]
 
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://ui/components/language_selector.tscn" id="language"]
 [ext_resource type="Texture2D" path="res://features/home/ui/art/settings_icon.png" id="settings_icon"]
 [ext_resource type="Texture2D" path="res://ui/design_system/themes/detail_paper.png" id="action_paper"]
+[ext_resource type="PackedScene" path="res://ui/components/audio_settings.tscn" id="audio_settings"]
 
 [sub_resource type="StyleBoxFlat" id="player_card"]
 content_margin_left = 14.0
@@ -72,7 +73,7 @@ mouse_filter = 2
 [node name="Panel" type="Control" parent="SafeArea/Bounds"]
 layout_mode = 0
 offset_right = 468.0
-offset_bottom = 548.0
+offset_bottom = 824.0
 mouse_filter = 0
 focus_mode = 2
 
@@ -80,7 +81,7 @@ focus_mode = 2
 layout_mode = 0
 offset_top = 84.0
 offset_right = 468.0
-offset_bottom = 548.0
+offset_bottom = 824.0
 mouse_filter = 2
 theme_type_variation = &"DetailPaper"
 
@@ -88,7 +89,7 @@ theme_type_variation = &"DetailPaper"
 layout_mode = 0
 offset_top = 96.0
 offset_right = 468.0
-offset_bottom = 540.0
+offset_bottom = 816.0
 mouse_filter = 2
 theme_override_constants/margin_left = 34
 theme_override_constants/margin_top = 16
@@ -102,6 +103,9 @@ theme_override_constants/separation = 14
 [node name="LanguageSelector" parent="SafeArea/Bounds/Panel/Content/Column" instance=ExtResource("language")]
 layout_mode = 2
 theme_override_constants/separation = 8
+
+[node name="AudioSettings" parent="SafeArea/Bounds/Panel/Content/Column" instance=ExtResource("audio_settings")]
+layout_mode = 2
 
 [node name="PlayerInfo" type="PanelContainer" parent="SafeArea/Bounds/Panel/Content/Column"]
 custom_minimum_size = Vector2(0, 154)

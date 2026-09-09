@@ -8,9 +8,12 @@ enum Payment { Gold, StarStone, Fragments }
 enum BuyResult { Success, SoldOut, NotEnoughCurrency, InventoryFull, ItemNotFound, PaymentUnavailable, AlreadyOwned, SaveFailed, Busy }
 enum Item { None, Material, Prop }
 # 旧治疗效果的整数 1 已退役，不能复用为新效果。
-enum NodeEffect { None = 0, GrantCurrency = 2, ExchangeCurrency = 3, AuroraChoice = 4 }
+enum NodeEffect { None = 0, GrantCurrency = 2, ExchangeCurrency = 3, AuroraChoice = 4, BlackMarket = 5, Encounter = 6 }
 ## 星能奖励类别独立于战斗能力与骰子奖励。
 enum AuroraReward { StarStone, MinionFragments, RelicFragments, HeroFragment, Stamina, Gold, CardUpgrade, Relic }
+## 奇遇收获与代价分别保存，随机组合不依赖玩家当前资格。
+enum EncounterReward { Dice, StarStone, Relic, Card }
+enum EncounterCost { Stamina, TeamDebuff, Card, Dice }
 enum MonsterRole { None, Normal, Elite, Boss }
 enum DiceKind { Relic = 0, Card = 1, StarStone = 2, Treasure = 3 }
 ## 已退役奖励的整数身份留空，不复用于新内容。

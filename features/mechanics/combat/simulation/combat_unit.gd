@@ -81,21 +81,20 @@ func capture() -> Dictionary:
 		"card_tag_ids": definition.get("card_tag_ids", []).duplicate(),
 		"main_abilities": active_main_abilities, "cooldown": first.get("cooldown"), "remaining": first.get("remaining", 0.0), "defeated": not alive(), "statuses": kinds,
 		"output_type": definition.get("output_type", T.Output.Special), "stats": CombatAttributes.stats(definition), "modifiers": definition.modifiers.duplicate(true), "ammo_capacity": ammo_capacity, "ammo_remaining": ammo_remaining,
-		"modifier_sources": modifiers.capture(), "poison_penetrated": poison_penetrated(), "mechanics": mechanics.capture(),
+		"modifier_sources": modifiers.capture(), "mechanics": mechanics.capture(),
 		"status_stacks": status_stacks()}
 
-## 状态数量来自实际存续来源，灼烧层数不由界面另行累计。
+## 持续伤害汇总实际层数，控制状态显示一次；来源批数不是层数。
 func status_stacks() -> Dictionary:
 	var result: Dictionary = {}
 	for status in statuses:
-		result[status] = statuses[status].get("sources", {"control": true}).size()
+		if not status in [T.Status.Burn, T.Status.Poison]:
+			result[status] = 1
+			continue
+		var count: int = 0
+		for source: Dictionary in statuses[status].sources.values(): count += int(source.stacks)
+		result[status] = count
 	return result
-
-## 卡面摘要只读现有状态，不反向依赖执行状态生命周期的解析器。
-func poison_penetrated() -> bool:
-	for source in statuses.get(T.Status.Poison, {}).get("sources", {}).values():
-		if source.penetrated: return true
-	return false
 
 ## 卡牌上下文携带来源与分类，队伍规则无需伪造一张英雄卡。
 func ability_context(source_id: String = "") -> Dictionary:

@@ -107,6 +107,9 @@ msgstr "変身"
 msgid "rules.action.witchcraft"
 msgstr "呪術"
 
+msgid "rules.actions.card_output_points"
+msgstr "カードの{type}値"
+
 msgid "rules.actions.card_power_ratio"
 msgstr "カードの{type}値の {percent}%"
 
@@ -134,9 +137,6 @@ msgstr "このダメージの {stat_lifesteal_ratio} {percent}%（シールド�
 msgid "rules.actions.physical_damage"
 msgstr "{target}に {stat_physical_damage} {amount}点"
 
-msgid "rules.actions.poison_penetration"
-msgstr "毒の間、受ける回復量が20%減少（重複なし）。付与前のシールドは毒ダメージを防ぐが、無盾または盾が尽きると、その毒は後から得た盾を貫通する"
-
 msgid "rules.actions.pollution"
 msgstr "汚染変化：{amount}"
 
@@ -149,11 +149,11 @@ msgstr "{target}に {stat_shield_power} {amount}点"
 msgid "rules.actions.status_control"
 msgstr "{target}に{status}を{seconds}秒付与"
 
-msgid "rules.actions.status_damage"
-msgstr "{target}に{status}を{seconds}秒付与（毎秒{amount}ダメージ）"
+msgid "rules.actions.status_stacks"
+msgstr "{target}に{status}を{amount}層付与"
 
 msgid "rules.actions.witchcraft"
-msgstr "{target}に {stat_witchcraft_damage} {amount}点（シールドへのダメージ +20%）"
+msgstr "{target}に {stat_witchcraft_damage} {amount}点"
 
 msgid "rules.card.ammo"
 msgstr "{stat_ammo_capacity} · 1戦 {count}回、能動発動ごとに1回消費。枯渇してもパッシブは有効"
@@ -333,7 +333,7 @@ msgid "rules.mechanic.copy_main_ability"
 msgstr "{target}にプリセット主能力の威力{percent}%の独立コピーを{seconds}秒付与"
 
 msgid "rules.mechanic.detonate"
-msgstr "{target}の味方由来の火傷を{count}層消費し、残り基礎ダメージの{percent}%を与える"
+msgstr "{target}の味方由来の火傷を{count}層消費し、消費した層数の{percent}%のダメージを与える"
 
 msgid "rules.mechanic.distinct"
 msgstr "異なる発生源"
@@ -360,7 +360,7 @@ msgid "rules.mechanic.sacrifice"
 msgstr "味方従者{target}を生贄に捧げ：{payload}"
 
 msgid "rules.mechanic.transfer"
-msgstr "自身の{resource}を{amount}、残り時間を維持して{target}へ移す"
+msgstr "自身の{amount}{resource}を{target}に移す"
 
 msgid "rules.mechanic.transform"
 msgstr "{target}を{seconds}秒、プリセット主能力形態へ変更。HPと弾薬は維持"
@@ -419,9 +419,6 @@ msgstr "火傷型"
 msgid "rules.output.healing"
 msgstr "治療型"
 
-msgid "rules.output.per_second"
-msgstr "{amount}/秒"
-
 msgid "rules.output.physical"
 msgstr "物理型"
 
@@ -433,6 +430,9 @@ msgstr "シールド型"
 
 msgid "rules.output.special"
 msgstr "特殊型"
+
+msgid "rules.output.stacks"
+msgstr "{amount}層"
 
 msgid "rules.output.witchcraft"
 msgstr "妖術型"
@@ -450,7 +450,7 @@ msgid "rules.resource.health"
 msgstr "HP"
 
 msgid "rules.resource.poison"
-msgstr "毒の付与"
+msgstr "層の中毒"
 
 msgid "rules.resource.shield"
 msgstr "シールド"
@@ -586,6 +586,12 @@ msgstr "イベント対象"
 
 msgid "rules.target.farthest_enemy"
 msgstr "最も遠い敵"
+
+msgid "rules.target.limited_enemies"
+msgstr "最大{count}体の敵"
+
+msgid "rules.target.limited_units"
+msgstr "最大{count}体のユニット"
 
 msgid "rules.target.linked_ally"
 msgstr "リンクした味方"

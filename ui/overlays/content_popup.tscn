@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://ui/components/touch_button.gd" id="touch_input"]
 
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" path="res://ui/components/content/content_detail.tscn" id="4"]
 [ext_resource type="Script" path="res://ui/components/touch_scroll_container.gd" id="5"]
 
-[ext_resource type="PackedScene" path="res://ui/components/content/content_growth.tscn" id="6"]
 [ext_resource type="Shader" path="res://ui/design_system/themes/detail_supplement.gdshader" id="7"]
 
 [sub_resource type="StyleBoxEmpty" id="StackStyle"]
@@ -113,10 +112,6 @@ theme_type_variation = &"DetailSupplement"
 [node name="Column" type="VBoxContainer" parent="SafeArea/Bounds/Panel/Column/Supplement"]
 layout_mode = 2
 theme_override_constants/separation = 12
-
-[node name="Growth" parent="SafeArea/Bounds/Panel/Column/Supplement/Column" instance=ExtResource("6")]
-visible = false
-layout_mode = 2
 
 [node name="Actions" type="VBoxContainer" parent="SafeArea/Bounds/Panel/Column/Supplement/Column"]
 visible = false

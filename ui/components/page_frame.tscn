@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/components/page_frame.gd" id="1"]
 [ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="2"]
-[ext_resource type="PackedScene" path="res://ui/components/close_button.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://ui/components/page_header.tscn" id="3"]
 [ext_resource type="Script" path="res://ui/components/safe_area.gd" id="safe"]
 
 [node name="PageFrame" type="Control"]
@@ -50,38 +50,15 @@ layout_mode = 2
 layout_mode = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 48
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_type_variation = &"PageMargin"
 
 [node name="Column" type="VBoxContainer" parent="SafeArea/Bounds/Margin"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Header" type="HBoxContainer" parent="SafeArea/Bounds/Margin/Column"]
-custom_minimum_size = Vector2(0, 108)
-layout_mode = 2
-
-[node name="Title" type="Label" parent="SafeArea/Bounds/Margin/Column/Header"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 34
-text = "页面"
-
-[node name="CloseSpace" type="Control" parent="SafeArea/Bounds/Margin/Column/Header"]
-custom_minimum_size = Vector2(108, 0)
+[node name="Header" parent="SafeArea/Bounds/Margin/Column" instance=ExtResource("3")]
 layout_mode = 2
 
 [node name="Content" type="VBoxContainer" parent="SafeArea/Bounds/Margin/Column"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Close" parent="SafeArea/Bounds" instance=ExtResource("3")]
-layout_mode = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -132.0
-offset_top = 48.0
-offset_right = -24.0
-offset_bottom = 156.0

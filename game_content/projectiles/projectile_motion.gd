@@ -1,68 +1,70 @@
 class_name ProjectileMotion
 extends RefCounted
-## 六类弹道与命中形态只消费回放进度，颜色和轨迹不参与战斗判定。
+## 弹道只采样只读飞行进度，绘制连续拖尾和已登记的逐帧弹体。
 
 const T = preload("res://features/mechanics/contracts/combat_types.gd")
 
-## 各类轨迹保持独立轮廓；相同进度始终得到相同位置。
-static func point(output: int, start: Vector2, finish: Vector2, progress: float) -> Vector2:
-	var p = clampf(progress, 0, 1)
-	var delta = finish - start
-	var side = delta.normalized().orthogonal()
-	var arc = sin(p * PI)
-	var reach = minf(delta.length() * 0.2, 50.0)
+## 可见飞行段留出短促起手，六类弹体均在统一命中窗口内到达。
+static func flight_duration(output: int) -> float:
 	match output:
-		T.Output.Witchcraft: return start.lerp(finish, p) + side * sin(p * TAU) * arc * 13
+		T.Output.Physical: return 0.18
+		T.Output.Witchcraft: return 0.22
+		T.Output.Burn: return 0.23
+		T.Output.Poison: return 0.24
+		T.Output.Healing: return 0.23
+		T.Output.Shield: return 0.20
+	return 0.22
+
+## 路径只受已确定的起终点和进度影响；中毒沿卡面侧向弯曲，没有屏幕固定重力。
+static func point(output: int, start: Vector2, finish: Vector2, progress: float) -> Vector2:
+	var p := clampf(progress, 0.0, 1.0)
+	var delta := finish - start
+	var side := delta.normalized().orthogonal()
+	var arc := sin(p * PI)
+	var reach := minf(delta.length() * 0.16, 42.0)
+	match output:
+		T.Output.Witchcraft: return start.lerp(finish, p) + side * arc * reach * 0.45
 		T.Output.Burn: return start.lerp(finish, p) + Vector2(0, -reach * arc)
-		T.Output.Poison: return start.lerp(finish, p * p) + Vector2(0, reach * arc)
-		T.Output.Healing: return start.lerp(finish, p) + side * arc * reach * 0.65
-		T.Output.Shield: return start.lerp(finish, 1.0 - pow(1.0 - p, 2))
+		T.Output.Poison: return start.lerp(finish, smoothstep(0.0, 1.0, p)) + side * arc * reach * 0.22
+		T.Output.Healing: return start.lerp(finish, p) + side * arc * reach * 0.7
+		T.Output.Shield: return start.lerp(finish, 1.0 - pow(1.0 - p, 1.5))
 	return start.lerp(finish, p)
 
-## 弹体、拖尾和旋转按输出类型分配，不用换色复用一种飞行效果。
-static func draw_flight(layer: Control, texture: Texture2D, output: int, start: Vector2, finish: Vector2, progress: float, size: Vector2, color: Color) -> void:
-	var center = point(output, start, finish, progress)
-	var angle = (finish - start).angle()
-	match output:
-		T.Output.Physical:
-			layer.draw_line(point(output, start, finish, maxf(0, progress - 0.18)), center, Color(color, 0.65), 3, true)
-		T.Output.Witchcraft: angle += progress * TAU
-		T.Output.Burn:
-			for index in range(3):
-				layer.draw_circle(point(output, start, finish, maxf(0, progress - index * 0.055)), 4.0 - index, Color(color, 0.5))
-		T.Output.Poison:
-			for index in range(1, 4):
-				layer.draw_circle(point(output, start, finish, maxf(0, progress - index * 0.08)) + Vector2(0, index * 2), 3.5 - index * 0.5, Color(color, 0.7))
-		T.Output.Healing:
-			var ribbon = PackedVector2Array()
-			for index in range(9): ribbon.append(point(output, start, finish, maxf(0, progress - 0.32 + index * 0.04)))
-			layer.draw_polyline(ribbon, Color(color, 0.45), 7, true)
-			layer.draw_polyline(ribbon, Color("b8f7cc"), 2, true)
-		T.Output.Shield:
-			angle = 0
-			for sign_value in [-1, 1]:
-				var offset = Vector2(0, sign_value * 20 * (1.0 - progress))
-				layer.draw_texture_rect(texture, Rect2(center + offset - size * 0.3, size * 0.6), false, Color(1, 1, 1, 0.6))
-	layer.draw_set_transform(center, angle)
-	layer.draw_texture_rect(texture, Rect2(-size / 2, size), false)
+## 原画尖端由资源定义，拖尾沿历史路径收尖，保证替换弹体仍准确接触目标。
+static func draw_flight(layer: Control, output: int, start: Vector2, finish: Vector2, progress: float, size: Vector2, color: Color, texture: Texture2D, tip_ratio: float = 0.67) -> void:
+	if start.is_equal_approx(finish) or texture == null: return
+	var p := clampf(progress, 0.0, 1.0)
+	var center := point(output, start, finish, p)
+	var tangent := (point(output, start, finish, minf(1.0, p + 0.015)) - point(output, start, finish, maxf(0.0, p - 0.015))).normalized()
+	var core := color.lerp(Color("fff7df"), 0.78)
+	var reach := minf(0.52, 110.0 / maxf(start.distance_to(finish), 1.0))
+	var width := 3.5 if output == T.Output.Physical else 4.5 if output == T.Output.Poison else 11.0
+	var tail := PackedVector2Array()
+	for index in range(25):
+		var t := lerpf(maxf(0.0, p - reach), p, float(index) / 24.0)
+		tail.append(point(output, start, finish, t))
+	_draw_ribbon(layer, tail, width * 1.65, Color(color, 0.10))
+	_draw_ribbon(layer, tail, width * 0.62, Color(color, 0.55))
+	_draw_ribbon(layer, tail, width * 0.16, Color(core, 0.78))
+	layer.draw_set_transform(center, tangent.angle())
+	layer.draw_texture_rect(texture, Rect2(Vector2(-size.x * tip_ratio, -size.y * 0.5), size), false)
 	layer.draw_set_transform(Vector2.ZERO)
 
-## 每跳伤害不再发射弹道；首次施加和自疗自盾也有可辨认的局部反馈。
-static func draw_impact(layer: Control, output: int, center: Vector2, progress: float, color: Color) -> void:
-	color.a = 1.0 - progress
-	var radius = 10 + progress * 22
-	match output:
-		T.Output.Physical:
-			layer.draw_line(center + Vector2(-radius, radius * 0.6), center + Vector2(radius, -radius * 0.6), color, 4, true)
-		T.Output.Witchcraft:
-			layer.draw_polyline(PackedVector2Array([center + Vector2(0, -radius), center + Vector2(radius, 0), center + Vector2(0, radius), center + Vector2(-radius, 0), center + Vector2(0, -radius)]), color, 2, true)
-		T.Output.Burn:
-			for index in range(3): layer.draw_line(center + Vector2(index * 8 - 8, 8), center + Vector2(index * 8 - 8, -radius), color, 3, true)
-		T.Output.Poison:
-			for index in range(4): layer.draw_circle(center + Vector2.from_angle(index * PI * 0.5) * radius * 0.55, 4 * (1.0 - progress), color)
-		T.Output.Healing:
-			center.y -= progress * 15
-			layer.draw_line(center + Vector2(-8, 0), center + Vector2(8, 0), color, 4, true)
-			layer.draw_line(center + Vector2(0, -8), center + Vector2(0, 8), color, 4, true)
-		T.Output.Shield:
-			layer.draw_arc(center, radius, PI * 0.1, PI * 0.9, 16, color, 3, true)
+## 逐段四边形使用顶点透明度渐变，尾端收窄且没有硬切圆点。
+static func _draw_ribbon(layer: Control, points: PackedVector2Array, width: float, color: Color) -> void:
+	for index in range(1, points.size()):
+		var from := points[index - 1]
+		var to := points[index]
+		if from.distance_squared_to(to) < 0.04: continue
+		var normal := (to - from).normalized().orthogonal()
+		var a := float(index - 1) / float(points.size() - 1)
+		var b := float(index) / float(points.size() - 1)
+		var before := normal * width * a * 0.5
+		var after := normal * width * b * 0.5
+		var c0 := Color(color, color.a * a * a)
+		var c1 := Color(color, color.a * b * b)
+		# 带状片始终是凸形，直接绘制基本图元，避免极细尖端的通用三角化误差。
+		if index == 1:
+			layer.draw_primitive(PackedVector2Array([from, to - after, to + after]), PackedColorArray([c0, c1, c1]), PackedVector2Array())
+		else:
+			layer.draw_primitive(PackedVector2Array([from - before, to - after, to + after, from + before]), PackedColorArray([c0, c1, c1, c0]), PackedVector2Array())

@@ -15,10 +15,11 @@ void fragment() {
 	vec2 pixels = max(card_size, vec2(1.0));
 	float y = (UV.y - progress) * pixels.y;
 	float distance_to_line = abs(y);
-	float core = 1.0 - smoothstep(1.2, 2.5, distance_to_line);
+	float completion = smoothstep(0.72, 1.0, progress);
+	float core = (1.0 - smoothstep(1.2, 2.5, distance_to_line)) * (1.0 + completion * 0.28);
 	// 亮芯之外保留宽柔光和更远的薄雾，让外发光有面积而不是只有硬线。
-	float glow = exp(-distance_to_line / 12.0) * 0.74;
-	float haze = exp(-distance_to_line / 28.0) * 0.24;
+	float glow = exp(-distance_to_line / (12.0 + completion * 6.0)) * (0.74 + completion * 0.22);
+	float haze = exp(-distance_to_line / 28.0) * (0.24 + completion * 0.12);
 
 	float columns = max(4.0, floor(pixels.x / 17.0));
 	float column = floor(UV.x * columns);
@@ -33,7 +34,7 @@ void fragment() {
 	shade *= step(0.04, inset.x) * step(0.035, inset.y);
 	float light = clamp(core + glow + haze + sparkle, 0.0, 1.0);
 	float alpha = max(shade, light);
-	vec3 light_color = mix(scan_color.rgb, vec3(0.88, 1.0, 0.98), core);
+	vec3 light_color = mix(scan_color.rgb, vec3(0.96, 1.0, 0.96), clamp(core + completion * 0.22, 0.0, 1.0));
 	float radius = min(pixels.x, pixels.y) * 0.055;
 	vec2 corner = abs((UV - vec2(0.5)) * pixels) - (pixels * 0.5 - vec2(radius));
 	float edge = length(max(corner, vec2(0.0))) + min(max(corner.x, corner.y), 0.0) - radius;

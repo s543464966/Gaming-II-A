@@ -83,6 +83,24 @@ msgstr "戦闘を開始できませんでした。"
 msgid "ui.adventure.victory"
 msgstr "勝利"
 
+msgid "ui.audio.effects"
+msgstr "効果音"
+
+msgid "ui.audio.music"
+msgstr "音楽"
+
+msgid "ui.audio.preference_recovered"
+msgstr "バックアップからオーディオ設定を復元しました。"
+
+msgid "ui.audio.preference_unreadable"
+msgstr "オーディオ設定ファイルを読み込めません。元のファイルは保持され、このセッションの音量変更は保存されません。"
+
+msgid "ui.audio.save_failed"
+msgstr "オーディオ設定を保存できませんでした。もう一度お試しください。"
+
+msgid "ui.audio.title"
+msgstr "サウンド"
+
 msgid "ui.aurora.amount"
 msgstr "{name} ×{amount}"
 
@@ -103,9 +121,6 @@ msgstr "強化"
 
 msgid "ui.aurora.upgrade_target"
 msgstr "{name} · 強化 +{level} → +{next}"
-
-msgid "ui.backpack.actions_unavailable"
-msgstr "使用・分解機能はまだ利用できません。"
 
 msgid "ui.catalog.empty"
 msgstr "表示できるコンテンツはありません"
@@ -152,9 +167,6 @@ msgstr "遺物"
 msgid "ui.category.team"
 msgstr "チーム"
 
-msgid "ui.collection.change_title"
-msgstr "英雄を変更"
-
 msgid "ui.collection.change_warning"
 msgstr "英雄を変更すると現在の章の編成が終了し、この章の従者、遺物、星能、進行状況がリセットされます。固定ルート、恒久才能、アカウント資産は保持されます。"
 
@@ -169,24 +181,6 @@ msgstr "所持済み"
 
 msgid "ui.collection.permanent_stats"
 msgstr "アカウントの恒久成長 · 章内強化と遺物を除く"
-
-msgid "ui.collection.select_hero"
-msgstr "この英雄を選択"
-
-msgid "ui.collection.star_confirm"
-msgstr "専用欠片 {cost} 個を使い、{name}を ★{star} に昇星しますか？\n残り {remaining} 個は保持され、永続強度は初期値の {strength}% になります。\n進行中の章には影響しません。"
-
-msgid "ui.collection.star_max"
-msgstr "最大の5つ星です"
-
-msgid "ui.collection.star_success"
-msgstr "昇星しました。余分な欠片は保持されます。"
-
-msgid "ui.collection.star_unavailable"
-msgstr "昇星条件を満たしていません。欠片は消費されていません。"
-
-msgid "ui.collection.star_upgrade"
-msgstr "昇星"
 
 msgid "ui.collection.unowned"
 msgstr "未獲得"
@@ -223,9 +217,6 @@ msgstr "{status} · 主能力{count}個"
 
 msgid "ui.combat.passive"
 msgstr "主能力なし"
-
-msgid "ui.combat.poison"
-msgstr "毒が浸透済み：後から得たシールドでは防げません"
 
 msgid "ui.combat.shield"
 msgstr " 盾{amount}"
@@ -266,9 +257,6 @@ msgstr "効果"
 msgid "ui.detail.ammo"
 msgstr "行動回数"
 
-msgid "ui.detail.fragments"
-msgstr "星ランクアップの欠片"
-
 msgid "ui.detail.main_ability_clock"
 msgstr "{stat_cooldown_seconds} {remaining} / {cooldown} 秒{haste}"
 
@@ -281,8 +269,113 @@ msgstr "購入情報"
 msgid "ui.detail.stack_limit"
 msgstr "スタック上限"
 
-msgid "ui.detail.usage"
-msgstr "用途"
+msgid "ui.event.encounter.accept"
+msgstr "契約を結ぶ"
+
+msgid "ui.event.encounter.cost_card"
+msgstr "1枚失う：{name}"
+
+msgid "ui.event.encounter.cost_debuff"
+msgstr "この章の全カード：{stat} -{amount}"
+
+msgid "ui.event.encounter.cost_die"
+msgstr "未使用ダイスを1個失う"
+
+msgid "ui.event.encounter.cost_heading"
+msgstr "代償"
+
+msgid "ui.event.encounter.cost_no_card"
+msgstr "失う英雄以外のカードがないため、追加の消費なし"
+
+msgid "ui.event.encounter.cost_no_die"
+msgstr "失うダイスがないため、追加の消費なし"
+
+msgid "ui.event.encounter.cost_stamina"
+msgstr "スタミナを{amount}消費"
+
+msgid "ui.event.encounter.leave"
+msgstr "断って離れる"
+
+msgid "ui.event.encounter.refresh"
+msgstr "別の組み合わせ"
+
+msgid "ui.event.encounter.replace"
+msgstr "{name}と入れ替える"
+
+msgid "ui.event.encounter.replacement_prompt"
+msgstr "盤面が満杯です。入れ替える英雄以外のカードを選んでください。"
+
+msgid "ui.event.encounter.reward_card"
+msgstr "章限定カードを獲得：{name}"
+
+msgid "ui.event.encounter.reward_dice"
+msgstr "追加ダイスを1個獲得"
+
+msgid "ui.event.encounter.reward_heading"
+msgstr "報酬"
+
+msgid "ui.event.encounter.reward_relic"
+msgstr "遺物を獲得：{name}"
+
+msgid "ui.event.encounter.reward_stone"
+msgstr "星石を{amount}個獲得"
+
+msgid "ui.event.encounter.unknown_cost"
+msgstr "不明な代償"
+
+msgid "ui.event.encounter.unknown_reward"
+msgstr "不明な報酬"
+
+msgid "ui.event.market.completed"
+msgstr "完了"
+
+msgid "ui.event.market.confirm_leave"
+msgstr "退出を確認"
+
+msgid "ui.event.market.continue"
+msgstr "買い物を続ける"
+
+msgid "ui.event.market.exchange"
+msgstr "{cost} {cost_currency} → {reward} {reward_currency}"
+
+msgid "ui.event.market.exchange_action"
+msgstr "交換"
+
+msgid "ui.event.market.exchanges"
+msgstr "通貨交換"
+
+msgid "ui.event.market.fragment"
+msgstr "{name}の欠片 ×{amount}"
+
+msgid "ui.event.market.fragments"
+msgstr "カードの欠片"
+
+msgid "ui.event.market.leave"
+msgstr "闇市を離れる"
+
+msgid "ui.event.market.leave_warning"
+msgstr "未購入の品があります。離れると戻れません。"
+
+msgid "ui.event.market.once"
+msgstr "各商品は1回限り"
+
+msgid "ui.event.market.or"
+msgstr "または"
+
+msgid "ui.event.market.pay"
+msgstr "{amount} {currency}"
+
+msgid "ui.event.market.stamina"
+msgstr "スタミナ +{amount}"
+
+msgid "ui.event.market.supplies"
+msgstr "スタミナ補給"
+
+msgid "ui.event.ruins.round"
+msgstr "今回の選択 {current}/{total}"
+
+msgid "ui.event.ruins.trigger"
+msgstr "星の力・第{count}回"
 
 msgid "ui.filter.ability_facet"
 msgstr "能力効果"
@@ -292,6 +385,57 @@ msgstr "タグ"
 
 msgid "ui.filter.output_type"
 msgstr "出力タイプ"
+
+msgid "ui.growth.balance"
+msgstr "星石 {amount}"
+
+msgid "ui.growth.maxed"
+msgstr "星5上限に到達"
+
+msgid "ui.growth.progress"
+msgstr "育成進度 {current} / {total}"
+
+msgid "ui.growth.promote"
+msgstr "昇星"
+
+msgid "ui.growth.promote_confirm"
+msgstr "すべての{category}を星{star}に昇星しますか？\n育成完了のため星石は消費しません。進行中の冒険には影響しません。"
+
+msgid "ui.growth.scope"
+msgstr "同じ種類の全カードで成長を共有し、新たに解放したカードにも適用されます。"
+
+msgid "ui.growth.strength"
+msgstr "HP・出力基準 {value}%"
+
+msgid "ui.growth.success"
+msgstr "種類別の成長を保存しました。"
+
+msgid "ui.growth.title"
+msgstr "カード育成"
+
+msgid "ui.growth.train"
+msgstr "育成 · 星石 {cost}"
+
+msgid "ui.growth.train_confirm"
+msgstr "星石 {cost} を消費して、すべての{category}を1段階育成しますか？\n進行中の冒険には開始時の成長が適用されます。"
+
+msgid "ui.growth.unavailable"
+msgstr "現在、育成または昇星できません。"
+
+msgid "ui.hero.change"
+msgstr "出撃英雄を変更"
+
+msgid "ui.hero.confirm"
+msgstr "出撃英雄を{name}に変更しますか？"
+
+msgid "ui.hero.current"
+msgstr "現在の出撃英雄：{name}"
+
+msgid "ui.hero.owned"
+msgstr "所有英雄"
+
+msgid "ui.hero.title"
+msgstr "出撃英雄"
 
 msgid "ui.home.achievements"
 msgstr "実績"
@@ -322,9 +466,6 @@ msgstr "単独レイアウトプレビュー · ゲーム全体はbootstrap/app.
 
 msgid "ui.home.mail"
 msgstr "メール"
-
-msgid "ui.home.no_hero_detail"
-msgstr "英雄が選択されていません。"
 
 msgid "ui.home.preview_resources"
 msgstr "プレイヤー名\nゴールド · 星石 · スタミナ"
@@ -505,9 +646,6 @@ msgstr "未使用のダイスは残り、次のロールでも一緒に振られ
 
 msgid "ui.reward.choice_title"
 msgstr "報酬を選択"
-
-msgid "ui.reward.choose_aurora"
-msgstr "報酬を受け取る"
 
 msgid "ui.reward.complete_build"
 msgstr "冒険を続ける"
@@ -697,6 +835,9 @@ msgstr "解放済み"
 
 msgid "ui.talents.no_points"
 msgstr "天賦ポイント不足"
+
+msgid "ui.talents.permanent"
+msgstr "恒久タレント"
 
 msgid "ui.talents.point_source"
 msgstr "各章の初回クリアで1ポイント獲得"

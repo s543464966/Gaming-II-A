@@ -1,0 +1,83 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://ui/components/audio_settings.gd" id="1"]
+[ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="2"]
+
+[node name="AudioSettings" type="VBoxContainer"]
+theme = ExtResource("2")
+theme_override_constants/separation = 8
+script = ExtResource("1")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+theme_type_variation = &"DetailHeading"
+theme_override_font_sizes/font_size = 24
+text = "ui.audio.title"
+
+[node name="Music" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Music"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+theme_type_variation = &"DetailBody"
+theme_override_font_sizes/font_size = 20
+text = "ui.audio.music"
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Music"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"AudioSlider"
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Value" type="Label" parent="Music"]
+custom_minimum_size = Vector2(58, 0)
+layout_mode = 2
+theme_type_variation = &"DetailCaption"
+text = "100%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Effects" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Effects"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+theme_type_variation = &"DetailBody"
+theme_override_font_sizes/font_size = 20
+text = "ui.audio.effects"
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Effects"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"AudioSlider"
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Value" type="Label" parent="Effects"]
+custom_minimum_size = Vector2(58, 0)
+layout_mode = 2
+theme_type_variation = &"DetailCaption"
+text = "100%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Feedback" type="Label" parent="."]
+layout_mode = 2
+theme_type_variation = &"DetailCaption"
+text = "ui.audio.save_failed"
+autowrap_mode = 3

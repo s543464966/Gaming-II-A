@@ -1,6 +1,6 @@
 class_name RunBuildCodec
 extends RefCounted
-## 通用构筑恢复完成后，仅校验章节阶段、分类骰子、遗物记录及部署约束。
+## 通用构筑恢复完成后，校验章节阶段、事件、减益、分类骰子、遗物及部署约束。
 
 const C = preload("res://game_content/runtime/content_types.gd")
 const Build = preload("res://features/game_modes_pve_adventure/domain/run_build.gd")
@@ -17,12 +17,18 @@ func restore(state: Dictionary, catalog: RefCounted) -> RefCounted:
 	if state.has("aurora_counts") or state.has("pending_auroras"): return _fail("退役星能能力必须先迁移。")
 	var aurora_error: String = result.aurora_rewards.restore(state.get("aurora_rewards"), catalog.content)
 	if not aurora_error.is_empty(): return _fail(aurora_error)
+	var event_error: String = result.events.restore(state.get("events"), catalog.content)
+	if not event_error.is_empty(): return _fail(event_error)
+	if not state.get("event_debuffs") is Dictionary: return _fail("奇遇全队减益格式损坏。")
+	for stat in state.event_debuffs:
+		if stat not in ["physical_damage", "witchcraft_damage", "burn_damage", "poison_damage"] or not state.event_debuffs[stat] is int or state.event_debuffs[stat] <= 0: return _fail("奇遇全队减益数值损坏。")
 	if state.has("faction"): return _fail("当前构筑不能包含退役阵营字段。")
 	if state.get("started") == false:
 		if not state.get("cards") is Array or not state.cards.is_empty() or state.get("pending_reward") != false: return _fail("未开始章节夹带构筑或奖励。")
 		for key in ["relics", "talents"]:
 			if not state.get(key, []) is Array or not state.get(key, []).is_empty(): return _fail("未开始章节夹带遗物或天赋。")
 		if result.aurora_rewards.trigger_count != 0: return _fail("未开始章节包含星能奖励。")
+		if result.events.is_active() or not state.event_debuffs.is_empty(): return _fail("未开始章节包含事件或全队减益。")
 		return result
 	if state.get("started") != true: return _fail("构筑开始状态无效。")
 	for key in ["pollution", "reward_seed"]:
@@ -40,10 +46,12 @@ func restore(state: Dictionary, catalog: RefCounted) -> RefCounted:
 	if result.cards.any(func(card): return card.kind == CardTypes.Kind.Monster): return _fail("章节玩家构筑不允许怪物载体。")
 	if result.core().is_empty(): return _fail("章节缺少英雄。")
 	if not state.pending_reward and (not result.aurora_rewards.offers.is_empty() or state.reward_seed != 0): return _fail("非奖励阶段保存了待处理候选。")
+	if state.pending_reward and result.events.is_active(): return _fail("奖励阶段不能同时保留活动事件。")
 	result.started = true
 	result.pollution = state.pollution
 	result.pending_reward = state.pending_reward
 	result.reward_seed = state.reward_seed
+	result.event_debuffs = state.event_debuffs.duplicate()
 	var dice_codec = DiceCodec.new()
 	result.rewards = dice_codec.restore(state.rewards, catalog)
 	if result.rewards == null: return _fail(dice_codec.error)

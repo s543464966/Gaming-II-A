@@ -28,16 +28,13 @@ filter_clip = true
 [node name="CollectionPage" instance=ExtResource("browser")]
 script = ExtResource("script")
 
-[node name="Caption" parent="Margin/Column/Header/ReturnArt" index="1"]
-text = "ui.page.collection"
-
 [node name="QuickPrimary" parent="Margin/Column/QuickFilters/Row" index="2"]
 text = "ui.collection.owned"
 
 [node name="QuickSecondary" parent="Margin/Column/QuickFilters/Row" index="4"]
 text = "ui.collection.unowned"
 
-[node name="Tabs" parent="Margin/Column" index="5"]
+[node name="Tabs" parent="Margin/Column" index="4"]
 authored_buttons = Array[NodePath]([NodePath("Bar/Hero"), NodePath("Bar/Minion"), NodePath("Bar/Item"), NodePath("Bar/Relic")])
 
 [node name="Hero" parent="Margin/Column/Tabs/Bar" index="2" instance=ExtResource("tab")]

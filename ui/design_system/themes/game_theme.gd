@@ -33,9 +33,10 @@ func rebuild() -> void:
 	set_constant("h_separation", "GridContainer", tokens.space_small)
 	set_constant("v_separation", "GridContainer", tokens.space_small)
 	_build_artwork_variations()
-	_build_close_variation()
+	_build_page_variations()
 	_build_icon_variations()
 	_build_detail_variations()
+	_build_audio_variations()
 	_build_unavailable_variations()
 	_build_card_variations()
 
@@ -50,6 +51,7 @@ func _build_card_variations() -> void:
 	set_constant("embolden_percent", "CardStatValue", 65)
 	set_font_size("font_size", "CardStatValue", tokens.body_font_size - 8)
 	set_color("health_surface", "CardStatsBadge", tokens.health_color.darkened(0.20))
+	set_color("enemy_health_surface", "CardStatsBadge", tokens.enemy_health_color.darkened(0.20))
 	set_color("rim_color", "CardStatsBadge", tokens.card_badge_rim_color)
 	set_constant("corner_radius", "CardStatsBadge", 3)
 
@@ -106,11 +108,6 @@ func _build_detail_variations() -> void:
 		set_font_size("normal_font_size", type, {"DetailRichBody": 20, "DetailRichCaption": 17, "DetailRichValue": 22}[type])
 		set_color("default_color", type, tokens.detail_caption_color if type == "DetailRichCaption" else tokens.detail_ink_color)
 		set_constant("line_separation", type, 5)
-	for type in ["GrowthLabel", "GrowthValue"]:
-		set_type_variation(type, "Label")
-		set_font_size("font_size", type, 20)
-		set_color("font_color", type, tokens.detail_gold_color)
-		set_constant("line_spacing", type, 3)
 	set_type_variation("DetailProgress", "ProgressBar")
 	var track := _box(Color("111312"), Color(tokens.detail_gold_color, 0.28), 1, 1)
 	track.set_content_margin_all(0)
@@ -118,19 +115,8 @@ func _build_detail_variations() -> void:
 	var fill := _box(tokens.detail_gold_color.darkened(0.12), Color.TRANSPARENT, 0, 1)
 	fill.set_content_margin_all(0)
 	set_stylebox("fill", "DetailProgress", fill)
-	set_type_variation("DetailActionButton", "Button")
-	set_font_size("font_size", "DetailActionButton", 22)
-	set_constant("embolden_percent", "DetailActionButton", 65)
-	for state in ["normal", "hover", "pressed", "disabled"]:
-		var button := _detail_texture(preload("res://ui/design_system/themes/detail_paper.png"))
-		button.set_content_margin_all(14)
-		var brightness: float = 1.05 if state == "hover" else 0.88 if state == "pressed" else 0.96 if state == "disabled" else 1.0
-		button.modulate_color = Color(brightness, brightness, brightness)
-		set_stylebox(state, "DetailActionButton", button)
-	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
-		set_color(state, "DetailActionButton", tokens.detail_ink_color)
-	set_color("font_disabled_color", "DetailActionButton", tokens.detail_caption_color)
-	set_stylebox("focus", "DetailActionButton", _box(Color.TRANSPARENT, tokens.detail_caption_color, 2, 0))
+	_build_detail_action("DetailActionButton", false)
+	_build_detail_action("DetailDarkActionButton", true)
 	set_type_variation("DetailCloseButton", "Button")
 	set_font_size("font_size", "DetailCloseButton", 28)
 	for state in ["normal", "hover", "pressed", "disabled"]:
@@ -138,6 +124,47 @@ func _build_detail_variations() -> void:
 	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
 		set_color(state, "DetailCloseButton", tokens.detail_gold_color.lightened(0.2) if state == "font_hover_color" else tokens.detail_gold_color)
 	set_stylebox("focus", "DetailCloseButton", _box(Color.TRANSPARENT, tokens.detail_gold_color, 1, 0))
+
+## 明暗动作共用原始切角与包边，只改变材质明度和文字，焦点也沿用相同轮廓。
+func _build_detail_action(type: String, dark: bool) -> void:
+	set_type_variation(type, "Button")
+	set_font_size("font_size", type, 22)
+	set_constant("embolden_percent", type, 65)
+	set_constant("dark_surface", type, int(dark))
+	var ink: Color = tokens.detail_gold_color if dark else tokens.detail_ink_color
+	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+		var button := _detail_texture(preload("res://ui/design_system/themes/detail_paper.png"))
+		button.set_content_margin_all(14)
+		var brightness: float = 1.05 if state == "hover" else 0.88 if state == "pressed" else 0.96 if state == "disabled" else 1.0
+		button.modulate_color = Color(brightness, brightness, brightness)
+		if state == "focus":
+			button.draw_center = false
+			button.modulate_color = Color(1.15, 1.15, 1.15, 0.5)
+		set_stylebox(state, type, button)
+	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
+		set_color(state, type, ink)
+	set_color("font_disabled_color", type, Color(ink, 0.4) if dark else tokens.detail_caption_color)
+
+## 游戏音量滑杆使用暖纸弹窗的墨金轨道，输入值仍保持线性百分比。
+func _build_audio_variations() -> void:
+	set_type_variation("AudioSlider", "HSlider")
+	var track := _box(Color(0.18, 0.15, 0.11, 0.52), Color(tokens.detail_caption_color, 0.72), 1, 4)
+	track.content_margin_top = 5
+	track.content_margin_bottom = 5
+	var fill := _box(tokens.detail_gold_color.darkened(0.28), Color(tokens.detail_caption_color, 0.82), 1, 4)
+	fill.content_margin_top = 5
+	fill.content_margin_bottom = 5
+	var highlight := fill.duplicate() as StyleBoxFlat
+	highlight.bg_color = tokens.detail_gold_color.darkened(0.12)
+	set_stylebox("slider", "AudioSlider", track)
+	set_stylebox("grabber_area", "AudioSlider", fill)
+	set_stylebox("grabber_area_highlight", "AudioSlider", highlight)
+	var grabber: Texture2D = preload("res://ui/design_system/icons/common/home_gold.png")
+	set_icon("grabber", "AudioSlider", grabber)
+	set_icon("grabber_highlight", "AudioSlider", grabber)
+	set_icon("grabber_disabled", "AudioSlider", grabber)
+	set_constant("center_grabber", "AudioSlider", 1)
+	set_stylebox("focus", "AudioSlider", _box(Color.TRANSPARENT, tokens.detail_gold_color, 2, 4))
 
 ## 未开放提示沿用黑金牌，文字继承当前语言字体，不创建第二份完整字库。
 func _build_unavailable_variations() -> void:
@@ -151,7 +178,7 @@ func _build_unavailable_variations() -> void:
 	set_stylebox("panel", "UnavailablePanel", panel)
 	for type in ["UnavailableTitle", "UnavailableBody"]:
 		set_type_variation(type, "Label")
-		set_font_size("font_size", type, 19 if type == "UnavailableTitle" else 15)
+		set_font_size("font_size", type, 22 if type == "UnavailableTitle" else 18)
 		set_color("font_color", type, Color("efefec"))
 		set_constant("line_spacing", type, 3)
 
@@ -204,18 +231,19 @@ func _build_artwork_variations() -> void:
 		set_stylebox("focus", type, _box(Color.TRANSPARENT, tokens.focus_color, 2, 0))
 		set_font_size("font_size", type, tokens.body_font_size)
 
-## 返回旗牌直接绘制透明素材，各交互状态只改变材质明度。
-func _build_close_variation() -> void:
-	set_type_variation("CloseButton", "Button")
-	var texture: Texture2D = preload("res://ui/design_system/icons/common/com_btn/btn_page_return.png")
-	for state: String in ["normal", "hover", "pressed", "hover_pressed", "disabled"]:
-		var style := _texture_box(texture)
-		var brightness: float = tokens.entry_normal_brightness
-		if state == "hover": brightness = tokens.entry_hover_brightness
-		elif state in ["pressed", "hover_pressed"]: brightness = tokens.entry_pressed_brightness
-		style.modulate_color = Color(brightness, brightness, brightness, 0.45 if state == "disabled" else 1.0)
-		set_stylebox(state, "CloseButton", style)
-	set_stylebox("focus", "CloseButton", _box(Color.TRANSPARENT, tokens.focus_color, 2, tokens.corner_radius))
+## 标准页面共用安全区边距和暖金页名，按钮沿用图标组件的触摸与明度反馈。
+func _build_page_variations() -> void:
+	set_type_variation("PageMargin", "MarginContainer")
+	for side in ["left", "right", "bottom"]: set_constant("margin_" + side, "PageMargin", tokens.page_margin)
+	set_constant("margin_top", "PageMargin", tokens.space_small)
+	set_type_variation("PageTitle", "Label")
+	set_color("font_color", "PageTitle", tokens.detail_gold_color)
+	set_constant("outline_size", "PageTitle", 0)
+	set_font_size("font_size", "PageTitle", tokens.body_font_size + 6)
+	set_type_variation("PageResourceValue", "Label")
+	set_color("font_color", "PageResourceValue", tokens.detail_gold_color)
+	set_constant("outline_size", "PageResourceValue", 0)
+	set_font_size("font_size", "PageResourceValue", tokens.body_font_size - 8)
 
 ## 图标操作共用无底色反馈，Home 入口继承同一组明度令牌。
 func _build_icon_variations() -> void:

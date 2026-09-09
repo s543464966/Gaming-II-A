@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Script" path="res://features/talents/ui/talent_page.gd" id="1"]
 [ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="2"]
@@ -7,14 +7,12 @@
 [ext_resource type="Texture2D" path="res://ui/design_system/themes/detail_title.png" id="6"]
 [ext_resource type="Texture2D" path="res://ui/design_system/themes/detail_rule.png" id="7"]
 [ext_resource type="Script" path="res://ui/components/fitted_label.gd" id="8"]
-[ext_resource type="Texture2D" path="res://ui/design_system/icons/common/immersive_back.png" id="9"]
+[ext_resource type="Script" path="res://ui/components/tab_group.gd" id="tabs"]
+[ext_resource type="PackedScene" path="res://features/talents/ui/card_growth_page.tscn" id="growth"]
+[ext_resource type="Texture2D" path="res://ui/design_system/themes/detail_paper.png" id="paper_tabs"]
+[ext_resource type="Script" path="res://ui/components/touch_button.gd" id="touch"]
 
-[sub_resource type="Shader" id="return_clip"]
-code = "shader_type canvas_item;\nuniform vec2 extent = vec2(111.0, 111.0);\nvarying vec2 local_uv;\nvoid vertex() { local_uv = VERTEX / extent; }\nvoid fragment() { float edge = abs(local_uv.x - 0.5) + abs(local_uv.y - 0.5); COLOR.a *= 1.0 - smoothstep(0.48, 0.50, edge); }"
-
-[sub_resource type="ShaderMaterial" id="return_material"]
-shader = SubResource("return_clip")
-shader_parameter/extent = Vector2(111, 111)
+[sub_resource type="StyleBoxEmpty" id="EmptyTab"]
 
 [node name="TalentPage" type="Control"]
 layout_mode = 2
@@ -24,50 +22,117 @@ clip_contents = true
 theme = ExtResource("2")
 script = ExtResource("1")
 
+[node name="Tabs" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+offset_bottom = 72.0
+script = ExtResource("tabs")
+authored_buttons = Array[NodePath]([NodePath("Bar/Talents"), NodePath("Bar/Growth")])
+
+[node name="Bar" type="Control" parent="Tabs"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Art" type="NinePatchRect" parent="Tabs/Bar"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("paper_tabs")
+patch_margin_left = 18
+patch_margin_top = 10
+patch_margin_right = 18
+patch_margin_bottom = 10
+
+[node name="Selection" type="NinePatchRect" parent="Tabs/Bar"]
+layout_mode = 0
+offset_bottom = 72.0
+mouse_filter = 2
+texture = ExtResource("6")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Talents" type="Button" parent="Tabs/Bar"]
+layout_mode = 1
+anchor_right = 0.5
+anchor_bottom = 1.0
+theme_override_styles/normal = SubResource("EmptyTab")
+theme_override_styles/hover = SubResource("EmptyTab")
+theme_override_styles/pressed = SubResource("EmptyTab")
+theme_override_styles/hover_pressed = SubResource("EmptyTab")
+script = ExtResource("touch")
+
+[node name="Caption" type="Label" parent="Tabs/Bar/Talents"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -12.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "ui.talents.permanent"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8")
+minimum_font_size = 18
+maximum_lines = 1
+
+[node name="Growth" type="Button" parent="Tabs/Bar"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/normal = SubResource("EmptyTab")
+theme_override_styles/hover = SubResource("EmptyTab")
+theme_override_styles/pressed = SubResource("EmptyTab")
+theme_override_styles/hover_pressed = SubResource("EmptyTab")
+script = ExtResource("touch")
+
+[node name="Caption" type="Label" parent="Tabs/Bar/Growth"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -12.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "ui.growth.title"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8")
+minimum_font_size = 18
+maximum_lines = 1
+
+[node name="Growth" parent="." instance=ExtResource("growth")]
+visible = false
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 84.0
+
 [node name="Design" type="Control" parent="."]
 layout_mode = 0
 offset_right = 941.0
-offset_bottom = 1672.0
+offset_bottom = 1412.0
 mouse_filter = 2
 
 [node name="Header" type="Control" parent="Design"]
 layout_mode = 0
 offset_right = 941.0
-offset_bottom = 435.0
+offset_bottom = 175.0
 mouse_filter = 2
-
-[node name="TitleArt" type="TextureRect" parent="Design/Header"]
-layout_mode = 0
-offset_left = 190.0
-offset_top = 115.0
-offset_right = 750.0
-offset_bottom = 294.0
-mouse_filter = 2
-texture = ExtResource("6")
-expand_mode = 1
-
-[node name="Title" type="Label" parent="Design/Header"]
-layout_mode = 0
-offset_left = 226.0
-offset_top = 150.0
-offset_right = 715.0
-offset_bottom = 260.0
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.87, 0.8, 0.61, 1)
-theme_override_font_sizes/font_size = 54
-text = "ui.page.talents"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("8")
-minimum_font_size = 32
-maximum_lines = 1
 
 [node name="PointsArt" type="TextureRect" parent="Design/Header"]
 layout_mode = 0
 offset_left = 319.0
-offset_top = 276.0
+offset_top = 16.0
 offset_right = 622.0
-offset_bottom = 373.0
+offset_bottom = 113.0
 mouse_filter = 2
 texture = ExtResource("6")
 expand_mode = 1
@@ -75,9 +140,9 @@ expand_mode = 1
 [node name="Points" type="Label" parent="Design/Header"]
 layout_mode = 0
 offset_left = 344.0
-offset_top = 291.0
+offset_top = 31.0
 offset_right = 597.0
-offset_bottom = 351.0
+offset_bottom = 91.0
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.87, 0.8, 0.61, 1)
 theme_override_font_sizes/font_size = 32
@@ -91,9 +156,9 @@ maximum_lines = 1
 [node name="Source" type="Label" parent="Design/Header"]
 layout_mode = 0
 offset_left = 170.0
-offset_top = 366.0
+offset_top = 106.0
 offset_right = 771.0
-offset_bottom = 406.0
+offset_bottom = 146.0
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.71, 0.65, 0.5, 1)
 theme_override_font_sizes/font_size = 28
@@ -107,18 +172,18 @@ maximum_lines = 1
 [node name="Rule" type="TextureRect" parent="Design/Header"]
 layout_mode = 0
 offset_left = 321.0
-offset_top = 410.0
+offset_top = 150.0
 offset_right = 620.0
-offset_bottom = 435.0
+offset_bottom = 175.0
 mouse_filter = 2
 texture = ExtResource("7")
 expand_mode = 1
 
 [node name="Shrine" type="Control" parent="Design"]
 layout_mode = 0
-offset_top = 435.0
+offset_top = 175.0
 offset_right = 941.0
-offset_bottom = 1170.0
+offset_bottom = 910.0
 mouse_filter = 2
 
 [node name="LineGlow" type="ColorRect" parent="Design/Shrine"]
@@ -180,9 +245,9 @@ expand_mode = 1
 [node name="Detail" type="Control" parent="Design"]
 layout_mode = 0
 offset_left = 66.0
-offset_top = 1170.0
+offset_top = 910.0
 offset_right = 875.0
-offset_bottom = 1634.0
+offset_bottom = 1374.0
 mouse_filter = 2
 
 [node name="Paper" type="Panel" parent="Design/Detail"]
@@ -262,36 +327,3 @@ theme_type_variation = &"DetailActionButton"
 theme_override_font_sizes/font_size = 38
 disabled = true
 text = "ui.talents.unlock"
-
-[node name="ReturnArt" type="Control" parent="Design"]
-layout_mode = 0
-offset_left = 799.0
-offset_top = 40.0
-offset_right = 910.0
-offset_bottom = 195.0
-mouse_filter = 2
-
-[node name="Icon" type="TextureRect" parent="Design/ReturnArt"]
-layout_mode = 0
-offset_right = 111.0
-offset_bottom = 111.0
-mouse_filter = 2
-texture = ExtResource("9")
-expand_mode = 1
-material = SubResource("return_material")
-
-[node name="Caption" type="Label" parent="Design/ReturnArt"]
-layout_mode = 0
-offset_left = -16.0
-offset_top = 106.0
-offset_right = 128.0
-offset_bottom = 150.0
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.87, 0.8, 0.61, 1)
-theme_override_font_sizes/font_size = 28
-text = "ui.common.back"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("8")
-minimum_font_size = 24
-maximum_lines = 1

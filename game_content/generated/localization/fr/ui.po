@@ -83,6 +83,24 @@ msgstr "Le combat n'a pas pu démarrer."
 msgid "ui.adventure.victory"
 msgstr "Victoire"
 
+msgid "ui.audio.effects"
+msgstr "Effets sonores"
+
+msgid "ui.audio.music"
+msgstr "Musique"
+
+msgid "ui.audio.preference_recovered"
+msgstr "Les paramètres audio ont été restaurés depuis une sauvegarde."
+
+msgid "ui.audio.preference_unreadable"
+msgstr "Impossible de lire le fichier des paramètres audio. Le fichier d’origine a été conservé ; les réglages de volume de cette session ne seront pas enregistrés."
+
+msgid "ui.audio.save_failed"
+msgstr "Impossible d’enregistrer les paramètres audio. Réessayez."
+
+msgid "ui.audio.title"
+msgstr "Son"
+
 msgid "ui.aurora.amount"
 msgstr "{name} ×{amount}"
 
@@ -103,9 +121,6 @@ msgstr "Améliorer"
 
 msgid "ui.aurora.upgrade_target"
 msgstr "{name} · Amélioration +{level} → +{next}"
-
-msgid "ui.backpack.actions_unavailable"
-msgstr "L'utilisation et le démantèlement ne sont pas encore disponibles."
 
 msgid "ui.catalog.empty"
 msgstr "Aucun contenu disponible"
@@ -152,9 +167,6 @@ msgstr "Relique"
 msgid "ui.category.team"
 msgstr "Équipe"
 
-msgid "ui.collection.change_title"
-msgstr "Changer de héros"
-
 msgid "ui.collection.change_warning"
 msgstr "Changer de héros met fin à la composition du chapitre et efface ses serviteurs, reliques, aurores et sa progression. Le parcours fixe, les talents permanents et les ressources du compte sont conservés."
 
@@ -169,24 +181,6 @@ msgstr "Possédé"
 
 msgid "ui.collection.permanent_stats"
 msgstr "Progression permanente du compte · Hors améliorations et reliques du chapitre"
-
-msgid "ui.collection.select_hero"
-msgstr "Choisir ce héros"
-
-msgid "ui.collection.star_confirm"
-msgstr "Dépenser {cost} fragments dédiés pour monter {name} à ★{star} ?\n{remaining} fragments conservés. Puissance permanente : {strength}% de la base.\nLe chapitre en cours reste inchangé."
-
-msgid "ui.collection.star_max"
-msgstr "Maximum : 5 étoiles"
-
-msgid "ui.collection.star_success"
-msgstr "Montée en étoiles réussie. Fragments excédentaires conservés."
-
-msgid "ui.collection.star_unavailable"
-msgstr "Conditions non remplies. Aucun fragment consommé."
-
-msgid "ui.collection.star_upgrade"
-msgstr "Monter en étoiles"
 
 msgid "ui.collection.unowned"
 msgstr "Non acquis"
@@ -223,9 +217,6 @@ msgstr "{status} · Compétences : {count}"
 
 msgid "ui.combat.passive"
 msgstr "Aucune capacité principale"
-
-msgid "ui.combat.poison"
-msgstr "Le poison a pénétré : les boucliers obtenus ensuite ne peuvent pas le bloquer"
 
 msgid "ui.combat.shield"
 msgstr " Bouclier {amount}"
@@ -266,9 +257,6 @@ msgstr "Effets"
 msgid "ui.detail.ammo"
 msgstr "Nombre d’actions"
 
-msgid "ui.detail.fragments"
-msgstr "Fragments d’évolution"
-
 msgid "ui.detail.main_ability_clock"
 msgstr "{stat_cooldown_seconds} {remaining} / {cooldown} s{haste}"
 
@@ -281,8 +269,113 @@ msgstr "Informations d’achat"
 msgid "ui.detail.stack_limit"
 msgstr "Limite par pile"
 
-msgid "ui.detail.usage"
-msgstr "Utilisation"
+msgid "ui.event.encounter.accept"
+msgstr "Accepter le pacte"
+
+msgid "ui.event.encounter.cost_card"
+msgstr "Perdre 1 exemplaire : {name}"
+
+msgid "ui.event.encounter.cost_debuff"
+msgstr "Toutes les cartes de ce chapitre : {stat} -{amount}"
+
+msgid "ui.event.encounter.cost_die"
+msgstr "Perdre 1 dé inutilisé"
+
+msgid "ui.event.encounter.cost_heading"
+msgstr "Coût"
+
+msgid "ui.event.encounter.cost_no_card"
+msgstr "Aucune carte autre que le héros à perdre ; aucun autre coût"
+
+msgid "ui.event.encounter.cost_no_die"
+msgstr "Aucun dé à perdre ; aucun autre coût"
+
+msgid "ui.event.encounter.cost_stamina"
+msgstr "Dépenser {amount} points d’endurance"
+
+msgid "ui.event.encounter.leave"
+msgstr "Refuser et partir"
+
+msgid "ui.event.encounter.refresh"
+msgstr "Nouvelle combinaison"
+
+msgid "ui.event.encounter.replace"
+msgstr "Remplacer {name}"
+
+msgid "ui.event.encounter.replacement_prompt"
+msgstr "Le plateau est plein. Choisissez une carte autre que le héros à remplacer."
+
+msgid "ui.event.encounter.reward_card"
+msgstr "Gagner la carte de chapitre : {name}"
+
+msgid "ui.event.encounter.reward_dice"
+msgstr "Gagner 1 dé supplémentaire"
+
+msgid "ui.event.encounter.reward_heading"
+msgstr "Gain"
+
+msgid "ui.event.encounter.reward_relic"
+msgstr "Gagner la relique : {name}"
+
+msgid "ui.event.encounter.reward_stone"
+msgstr "Gagner {amount} pierres stellaires"
+
+msgid "ui.event.encounter.unknown_cost"
+msgstr "Coût inconnu"
+
+msgid "ui.event.encounter.unknown_reward"
+msgstr "Gain inconnu"
+
+msgid "ui.event.market.completed"
+msgstr "Terminé"
+
+msgid "ui.event.market.confirm_leave"
+msgstr "Confirmer le départ"
+
+msgid "ui.event.market.continue"
+msgstr "Continuer les achats"
+
+msgid "ui.event.market.exchange"
+msgstr "{cost} {cost_currency} → {reward} {reward_currency}"
+
+msgid "ui.event.market.exchange_action"
+msgstr "Échanger"
+
+msgid "ui.event.market.exchanges"
+msgstr "Change de devises"
+
+msgid "ui.event.market.fragment"
+msgstr "Fragments de {name} ×{amount}"
+
+msgid "ui.event.market.fragments"
+msgstr "Fragments de cartes"
+
+msgid "ui.event.market.leave"
+msgstr "Quitter le marché"
+
+msgid "ui.event.market.leave_warning"
+msgstr "Des offres restent disponibles. Vous ne pourrez pas revenir après votre départ."
+
+msgid "ui.event.market.once"
+msgstr "Chaque offre une fois"
+
+msgid "ui.event.market.or"
+msgstr "ou"
+
+msgid "ui.event.market.pay"
+msgstr "{amount} {currency}"
+
+msgid "ui.event.market.stamina"
+msgstr "Endurance +{amount}"
+
+msgid "ui.event.market.supplies"
+msgstr "Ravitaillement"
+
+msgid "ui.event.ruins.round"
+msgstr "Choix {current}/{total}"
+
+msgid "ui.event.ruins.trigger"
+msgstr "Bénédiction astrale {count}"
 
 msgid "ui.filter.ability_facet"
 msgstr "Effets des capacités"
@@ -292,6 +385,57 @@ msgstr "Étiquettes"
 
 msgid "ui.filter.output_type"
 msgstr "Type de sortie"
+
+msgid "ui.growth.balance"
+msgstr "Pierres stellaires : {amount}"
+
+msgid "ui.growth.maxed"
+msgstr "Maximum : 5 étoiles"
+
+msgid "ui.growth.progress"
+msgstr "Entraînement : {current} / {total}"
+
+msgid "ui.growth.promote"
+msgstr "Augmenter les étoiles"
+
+msgid "ui.growth.promote_confirm"
+msgstr "Faire passer toutes les cartes {category} à {star} étoiles ?\nL'entraînement est terminé : aucune pierre requise. L'aventure en cours reste inchangée."
+
+msgid "ui.growth.scope"
+msgstr "La progression est partagée par catégorie, y compris les nouvelles cartes débloquées."
+
+msgid "ui.growth.strength"
+msgstr "Base de vie et de puissance : {value}%"
+
+msgid "ui.growth.success"
+msgstr "Progression de catégorie enregistrée."
+
+msgid "ui.growth.title"
+msgstr "Entraînement des cartes"
+
+msgid "ui.growth.train"
+msgstr "Entraîner · {cost} pierres"
+
+msgid "ui.growth.train_confirm"
+msgstr "Dépenser {cost} pierres pour entraîner d'un palier toutes les cartes {category} ?\nL'aventure en cours conserve sa progression initiale."
+
+msgid "ui.growth.unavailable"
+msgstr "Entraînement ou promotion indisponible."
+
+msgid "ui.hero.change"
+msgstr "Changer de héros actif"
+
+msgid "ui.hero.confirm"
+msgstr "Choisir {name} comme héros actif ?"
+
+msgid "ui.hero.current"
+msgstr "Héros actif : {name}"
+
+msgid "ui.hero.owned"
+msgstr "Héros possédés"
+
+msgid "ui.hero.title"
+msgstr "Héros actif"
 
 msgid "ui.home.achievements"
 msgstr "Succès"
@@ -322,9 +466,6 @@ msgstr "Aperçu de mise en page · Lancez bootstrap/app.tscn pour le jeu complet
 
 msgid "ui.home.mail"
 msgstr "Courrier"
-
-msgid "ui.home.no_hero_detail"
-msgstr "Aucun héros sélectionné."
 
 msgid "ui.home.preview_resources"
 msgstr "Nom du joueur\nOr · Pierres astrales · Endurance"
@@ -505,9 +646,6 @@ msgstr "Les dés inutilisés sont conservés et participent à chaque lancer."
 
 msgid "ui.reward.choice_title"
 msgstr "Choisir une récompense"
-
-msgid "ui.reward.choose_aurora"
-msgstr "Recevoir la récompense"
 
 msgid "ui.reward.complete_build"
 msgstr "Continuer l’aventure"
@@ -697,6 +835,9 @@ msgstr "Débloqué"
 
 msgid "ui.talents.no_points"
 msgstr "Aucun point de talent"
+
+msgid "ui.talents.permanent"
+msgstr "Talents permanents"
 
 msgid "ui.talents.point_source"
 msgstr "Premier achèvement de chaque chapitre : +1 point"

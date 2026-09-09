@@ -1,4 +1,7 @@
 {
+  "rules.target.limited_units": {"text": "bis zu {count} Einheiten", "source_hash": "03500b4fce21d0cd5ae22f144e51d2eeb5053718e02cbfab415a845be8fbb83f"},
+  "rules.target.limited_enemies": {"text": "bis zu {count} Gegner", "source_hash": "7ce7218da71a28838cde65c8129b27a60781646fe75f8355c806345bd53f97bc"},
+  "rules.actions.card_output_points": {"text": "der {type}-Wert der Karte", "source_hash": "88285556ae6e22249f8b97068c3a698721890d6a2e6bbab8a9ef39ea41c4d356"},
   "rules.condition.event_target_is_enemy": {
     "text": "das Ziel ist ein Gegner",
     "source_hash": "8ed6263a411fcba20cccc733633d86df9f1fa677c9359130f7a705b6074a237e"
@@ -24,8 +27,8 @@
     "source_hash": "9fa1cdae4b80c572710835c9154619712ce8b9580d3eb9f8b47f20e24f37630e"
   },
   "rules.mechanic.detonate": {
-    "text": "Verbraucht {count} eigene Brandstapel auf {target}; verursacht {percent}% des verbleibenden Grundschadens",
-    "source_hash": "d80634c76f3d4d83f06f14cdab4d4f5cc7043e45d5aa19fa182a9c16b40cf546"
+    "text": "Verbraucht {count} verbündete Brandstapel auf {target} und verursacht Schaden in Höhe von {percent}% der verbrauchten Stapel",
+    "source_hash": "f478c6913679ee1d74398a203fbfb3c88c2117ff8c43a5e5fed7274ef9f28c82"
   },
   "rules.mechanic.mark": {
     "text": "Markiert {target} für {seconds}s",
@@ -48,8 +51,8 @@
     "source_hash": "2ce956e291274693f91255f3a03a11ed2c1188e21b52b89eefce6fb2a5022f2b"
   },
   "rules.mechanic.transfer": {
-    "text": "Überträgt {amount} vorhandene {resource} von sich auf {target}; Laufzeiten bleiben erhalten",
-    "source_hash": "345f94029c0cf4061df6de66a5516794e451ac62834bb232374af06994f17c91"
+    "text": "Überträgt {amount}{resource} von sich selbst auf {target}",
+    "source_hash": "b38d3ba890bf30a9a2caf2acf29fd520df25c44219f2a6d75c74ee45fe9abcef"
   },
   "rules.mechanic.overload": {
     "text": "{target}: +{amount} Hitze; bei {limit} Stillstand für {recovery}s. Effekt: {payload}",
@@ -100,8 +103,8 @@
     "source_hash": "7fd2ee9edc47ca53900ee2ff881a6bc2d08b2b4dcf0a2393bb84e3577ea64e54"
   },
   "rules.resource.poison": {
-    "text": "Giftinstanzen",
-    "source_hash": "accd7c0564386b5fd00e413ce1ff45beaea0e405204e0c3653b96d2079b9f2e7"
+    "text": " Giftstapel",
+    "source_hash": "d3c68f520c1c2634873092e68750e949ec204497c53a96f4dbdf296d9b0e460e"
   },
   "rules.modifier.stat_ratio": {
     "text": "{stat} um {percent}% erhöht (additiv)",
@@ -179,17 +182,9 @@
     "text": "Gewährt {target} {amount} {stat_shield_power}",
     "source_hash": "bc7010156fcf905b59a533ca2bd29d061ae15d29c10d88b88a0971b7ed9ba3c3"
   },
-  "rules.actions.status_damage": {
-    "text": "Fügt den Zustand {status} für {seconds} s zu ({amount} Schaden pro Sekunde). Ziel: {target}",
-    "source_hash": "10d1c9fbbaa9e5b83cc6d91cc6bbd2495ff7f64e53c5369b12e2fce33bcf148e"
-  },
   "rules.actions.status_control": {
     "text": "Fügt den Zustand {status} für {seconds} s zu. Ziel: {target}",
     "source_hash": "053f16dccd1ebfd8846da9040a8063948c8354431e5f03283a2d45221c9a7061"
-  },
-  "rules.actions.poison_penetration": {
-    "text": "Vergiftung verringert erhaltene Heilung um 20% (nicht stapelbar). Vorhandene Schilde blockieren Giftschaden bis zur Erschöpfung; danach umgeht dieses Gift später erhaltene Schilde",
-    "source_hash": "34501bbe8b60f666b6fa515fc03b39426fa36edf3fd163037296139fb3d94492"
   },
   "rules.actions.pollution": {
     "text": "Verschmutzungsänderung: {amount}",
@@ -619,17 +614,13 @@
     "text": "Hexerei",
     "source_hash": "38ea011a2abfbfb01ff133887109c18aebe1c16e1184106b71fc7ba21fbedc39"
   },
-  "rules.output.per_second": {
-    "text": "{amount}/s",
-    "source_hash": "671c7966a86b471d6ffe911e05d1bb5aa65b96baaf1a0d5f6ca033734e48c2ac"
-  },
   "rules.actions.card_power_ratio": {
     "text": "{percent}% der {type}-Stärke der Karte",
     "source_hash": "3c1382a0d282a2faea0834686876172fef88fc799157181e08c2f9e7f700001a"
   },
   "rules.actions.witchcraft": {
-    "text": "Fügt {target} {amount} {stat_witchcraft_damage} zu (+20% gegen Schilde)",
-    "source_hash": "50cd87e4c4d59ac02b50a51660587a6df9cb839e1501d395e08d5a1aa79ecb71"
+    "text": "Fügt {target} {amount} {stat_witchcraft_damage} zu",
+    "source_hash": "7c1674ad1877fcfbfefd3a556ed7835c0ed3331d5a810db11cd24765e14a2a34"
   },
   "rules.synergy.outputs": {
     "text": "Das Team enthält: {groups}",
@@ -918,5 +909,13 @@
   "rules.main_ability.specific": {
     "text": "die angegebene Hauptfähigkeit",
     "source_hash": "6d6da1495ced2ebdc869be7364036a1dd980136de58e348f57aaf0eed21e2ba9"
+  },
+  "rules.actions.status_stacks": {
+    "text": "Fügt {target} {amount} Stapel {status} zu",
+    "source_hash": "a6a162d171f2941b5dfad2dda108a7d8102a928daaea82a7e12936d60f67eaed"
+  },
+  "rules.output.stacks": {
+    "text": "{amount} Stapel",
+    "source_hash": "4e2123d78919b1b4bb1abb3acfe6202542d8cd196d5c659c9e60ecb5120940b6"
   }
 }

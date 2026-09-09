@@ -36,17 +36,9 @@ func convert(saved: Dictionary, content: RefCounted) -> Dictionary:
 		build = project_build(build)
 		if not error.is_empty(): return {}
 		result.build = build
-		var state = CollectionState.new(content)
-		var assets = PlayerAssets.new(content)
-		# 当前收藏仅用于推导成长；历史候选保留旧字段直到遗物版本迁移。
-		var projection: Dictionary = collection.duplicate(true)
-		projection.relics = projection.equipment
-		projection.erase("equipment")
-		error = state.restore(projection)
-		if not error.is_empty(): return {}
-		error = assets.restore(result.assets)
-		if not error.is_empty(): return {}
-		build.permanent_growth = state.growth_snapshot(assets)
+		var legacy = preload("res://features/player_session/category_growth_migration.gd").new()
+		build.permanent_growth = legacy.legacy_snapshot(collection.cards, result.assets, content)
+		if not legacy.error.is_empty(): return _fail(legacy.error)
 	result.schema = 18
 	return result
 

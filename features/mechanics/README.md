@@ -69,7 +69,7 @@ mechanics/
 | 固有能力、天赋、羁绊 | 各自唯一内容表；素材有实际需求时归对应能力类别 | 筛选、激活或成长策略，然后交给同一能力投影 |
 | 遗物 | `relics` 表与 `game_content/relics/` | 独立实例、全队宿主与消耗事实；不伪造成单位 |
 | 效果、条件、修正 | 所属主能力或能力项的内联结构 | 契约校验与共享算法；不建立大量复制的全局“伤害效果表” |
-| 灼伤、中毒、冻结等状态 | 能力项声明类型、强度、时长 | 单场状态实例、周期与到期；与施加状态的那次效果分开 |
+| 灼烧、中毒、冻结等状态 | 能力项声明层数或控制时长 | 单场层数、每秒跳点与控制到期；与施加状态的那次动作分开 |
 | 污染 | 模式显式提供初始资源与作用域 | 当前值、阈值、变化与继承计算，不属于能力来源 |
 | 弹道、命中动画 | `game_content/projectiles/` 或实际内容的 `art/` | 只在战报声明表现键，不控制结算 |
 
@@ -77,7 +77,7 @@ mechanics/
 
 内容能力统一为 `CombatTypes.AbilityCategory.Main / Passive / Bonus`：主能力是冷却驱动的主动；事件和条件均归被动，即便只改变数值；独立常驻个人或群体数值归增益。`ability_category()` 从执行方式派生分类，UI不另维护一套范围猜测，也不显示分类标题。
 
-四种执行方式为 CooldownMain、TriggeredPassive、PersistentBonus、ConditionalPassive；它们不是四类内容能力。来源回答“从哪里来”，执行方式回答“什么时候生效”，CombatAction 回答“执行什么”，宿主和目标分别回答“由谁承载”和“影响谁”。被动 `internal_cooldown_seconds` 默认0，由触发账本按宿主、来源、局部能力单独维护，不接入主能力冷却槽。`trigger_keyword` 仅在创作时展开成事件与必要过滤，不在运行时建立第二个执行器；完整定义见[能力分类](../../../../Designing/battle_design/content_and_builds.md#ability-categories)与[触发词条](../../../../Designing/battle_design/triggers_and_combinations.md#trigger-keywords)。
+四种执行方式为 CooldownMain、TriggeredPassive、PersistentBonus、ConditionalPassive；它们不是四类内容能力。来源回答“从哪里来”，执行方式回答“什么时候生效”，CombatAction 回答“执行什么”，宿主和目标分别回答“由谁承载”和“影响谁”。被动 `internal_cooldown_seconds` 默认0，由触发账本按宿主、来源、局部能力单独维护，不接入主能力冷却槽。`trigger_keyword` 仅在创作时展开成事件与必要过滤，不在运行时建立第二个执行器；完整定义见[能力分类](../../../../Designing/battle_design/1-content_definitions.md#ability-categories)与[触发词条](../../../../Designing/battle_design/4-triggers_and_combinations.md#trigger-keywords)。
 
 卡牌原生输出使用 CombatTypes.Output 的六种数值类型与特殊类；OUTPUT_STATS 明确对应属性。输出类型不替代载体、来源和执行方式；元素仅作为卡牌 Tag，不恢复旧阵营、职业、战术定位或元素伤害系统。遗物直接贡献全队能力，不依赖单卡类型或附着资格。羁绊只装配 cards.synergy_ids 明确引用的内容，并归属提供者；标签查询复用既有执行链，不能代替事件和目标范围。
 

@@ -16,7 +16,6 @@ var _reading_fonts: Dictionary = {}
 @onready var panel: PanelContainer = $SafeArea/Bounds/Panel
 @onready var card_panel: PanelContainer = $SafeArea/Bounds/Panel/Column/Card
 @onready var supplement: PanelContainer = $SafeArea/Bounds/Panel/Column/Supplement
-@onready var growth: ContentGrowth = $SafeArea/Bounds/Panel/Column/Supplement/Column/Growth
 @onready var title: Label = $SafeArea/Bounds/Panel/Column/Card/Column/Title
 
 ## 静态场景负责遮罩、标题、关闭和滚动区，不创建另一份内容状态。
@@ -47,7 +46,6 @@ func refresh() -> void:
 	var offset: int = scroll.scroll_vertical
 	title.text = value.entry.name
 	detail.present(value.entry, value.detail)
-	growth.present(value.detail.get("growth", {}))
 	GameUI.clear(action_bar)
 	if actions.is_valid(): actions.call(value.entry, action_bar)
 	for button in action_bar.get_children():
@@ -57,7 +55,7 @@ func refresh() -> void:
 			if "compact" in button: button.compact = true
 			else: button.custom_minimum_size.y = maxf(button.custom_minimum_size.y, GameUI.tokens.detail_action_height)
 	action_bar.visible = action_bar.get_child_count() > 0
-	supplement.visible = growth.visible or action_bar.visible
+	supplement.visible = action_bar.visible
 	_layout()
 	scroll.set_deferred("scroll_vertical", offset)
 
@@ -90,7 +88,7 @@ func _reading_font(source: Font) -> Font:
 	font.fallbacks = fallbacks
 	return font
 
-## 两个独立面板整体居中限高；卡牌正文滚动，成长与操作位于其下方的可选面板。
+## 两个独立面板整体居中限高；卡牌正文滚动，业务操作位于其下方的可选面板。
 func _layout() -> void:
 	_layout_queued = false
 	if not is_inside_tree() or is_queued_for_deletion() or not is_node_ready(): return

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3]
+[gd_scene load_steps=25 format=3]
 
 [ext_resource type="Script" path="res://ui/components/touch_button.gd" id="touch_input"]
 
@@ -18,12 +18,22 @@
 [ext_resource type="Texture2D" path="res://features/game_modes_pve_adventure/ui/art/route_background.png" id="route_bg"]
 [ext_resource type="Texture2D" path="res://ui/design_system/icons/common/home_settings.png" id="settings_icon"]
 [ext_resource type="Texture2D" path="res://features/combat/ui/art/battle_background.png" id="battle_bg"]
+[ext_resource type="Shader" path="res://features/combat/ui/battle_background.gdshader" id="battle_bg_shader"]
 [ext_resource type="Theme" path="res://features/combat/ui/battle_theme.tres" id="battle_theme"]
 [ext_resource type="Texture2D" path="res://features/combat/ui/art/battle_countdown.png" id="countdown_art"]
 
 [ext_resource type="Script" path="res://features/game_modes_pve_adventure/ui/route_heading.gd" id="route_heading"]
 
 [ext_resource type="Script" path="res://features/game_modes_pve_adventure/ui/relic_strip.gd" id="relic_strip"]
+
+[ext_resource type="Texture2D" path="res://features/game_modes_pve_adventure/ui/art/ruins_background.png" id="ruins_bg"]
+
+[sub_resource type="ShaderMaterial" id="BattleBackgroundMaterial"]
+resource_local_to_scene = true
+shader = ExtResource("battle_bg_shader")
+
+[sub_resource type="CanvasItemMaterial" id="BattleEffectsMaterial"]
+blend_mode = 0
 
 [node name="AdventureScreen" type="Control"]
 layout_mode = 3
@@ -49,6 +59,7 @@ modulate = Color(0.40, 0.40, 0.48, 1)
 
 [node name="BattleBackground" type="TextureRect" parent="."]
 visible = false
+material = SubResource("BattleBackgroundMaterial")
 layout_mode = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -67,6 +78,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("route_bg")
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="EventBackground" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 6
@@ -208,6 +228,7 @@ script = ExtResource("6")
 
 [node name="Effects" type="Control" parent="SafeArea/Margin/Content/Battle/Board"]
 z_index = 10
+material = SubResource("BattleEffectsMaterial")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -216,6 +237,18 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("7")
+
+[node name="FeedbackEffects" type="Control" parent="SafeArea/Margin/Content/Battle/Board"]
+z_index = 12
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7")
+feedback_only = true
 
 [node name="Relics" type="ScrollContainer" parent="SafeArea/Margin/Content/Battle"]
 visible = false
@@ -325,6 +358,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
+
+[node name="RuinsBackground" type="TextureRect" parent="RewardOverlay"]
+visible = false
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("ruins_bg")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Shade" type="ColorRect" parent="RewardOverlay"]
 layout_mode = 1

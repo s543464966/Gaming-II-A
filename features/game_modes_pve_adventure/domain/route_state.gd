@@ -153,10 +153,8 @@ static func validate_terms(value: Variant, type: int) -> String:
 	if Generator.is_battle(type): return "" if value.is_empty() else "战斗节点夹带事件奖励。"
 	for key in ["effect_type", "cost_currency", "cost_amount", "reward_currency", "reward_amount"]:
 		if not value.get(key) is int: return "节点奖励参数损坏。"
-	var effects = {C.NodeType.Relic: C.NodeEffect.AuroraChoice, C.NodeType.BlackMarket: C.NodeEffect.ExchangeCurrency, C.NodeType.Adventure: C.NodeEffect.GrantCurrency}
+	var effects = {C.NodeType.Relic: C.NodeEffect.AuroraChoice, C.NodeType.BlackMarket: C.NodeEffect.BlackMarket, C.NodeType.Adventure: C.NodeEffect.Encounter}
 	if value.size() != 5 or value.effect_type != effects.get(type) or not value.cost_currency in [C.Currency.Gold, C.Currency.StarStone] or not value.reward_currency in [C.Currency.Gold, C.Currency.StarStone]: return "节点奖励枚举损坏。"
 	if value.cost_amount < 0 or value.reward_amount < 0: return "节点奖励数量无效。"
-	if type == C.NodeType.Relic and (value.cost_amount != 0 or value.reward_amount != 0): return "星辉遗迹不能夹带货币交易。"
-	if type == C.NodeType.BlackMarket and (value.cost_amount <= 0 or value.reward_amount <= 0): return "黑市交易数量无效。"
-	if type == C.NodeType.Adventure and (value.cost_amount != 0 or value.reward_amount <= 0): return "奇遇奖励数量无效。"
+	if value.cost_amount != 0 or value.reward_amount != 0 or value.cost_currency != C.Currency.Gold or value.reward_currency != C.Currency.Gold: return "事件节点不能夹带旧货币条款。"
 	return ""

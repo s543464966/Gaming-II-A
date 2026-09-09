@@ -19,11 +19,12 @@ func set_appearance(texture: Texture2D, chapter_level: int, columns: int) -> voi
 	_bind_nodes()
 	_layout_card()
 
-## 所有数字由业务方的装配帧提供，特殊牌只显示等宽生命条。
-func set_stats(state: Dictionary) -> void:
+## 数字与队伍由装配帧提供；按观察方区分生命底色，不按卡牌类型判断敌我。
+func set_stats(state: Dictionary, perspective: int = 0) -> void:
 	_bind_nodes()
 	var output: int = state.output_type
-	_stats_badge.set_values(output, state.stats.get(CombatTypes.output_stat(output), 0), state.health, state.maximum_health)
+	var enemy: bool = int(state.get("team_id", perspective)) != perspective
+	_stats_badge.set_values(output, state.stats.get(CombatTypes.output_stat(output), 0), state.health, state.maximum_health, enemy)
 	_layout_card()
 
 ## 缩略图宿主按完整可见范围适配，避免突出卡身的徽章被裁掉。
@@ -42,7 +43,7 @@ func _refresh_availability() -> void:
 	_bind_nodes()
 	_stats_badge.set_unavailable(_unavailable)
 
-## 徽章降低高度，宽度由数字与生命条余量决定；多格卡仍按单格基准排版。
+## 徽章宽度由数字与生命条余量决定；多格卡仍按单格基准排版。
 func _layout_card() -> void:
 	var cell_width: float = size.x / _columns
 	_stats_badge.fit_to_card(cell_width, size.x)

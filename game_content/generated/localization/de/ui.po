@@ -83,6 +83,24 @@ msgstr "Der Kampf konnte nicht gestartet werden."
 msgid "ui.adventure.victory"
 msgstr "Sieg"
 
+msgid "ui.audio.effects"
+msgstr "Soundeffekte"
+
+msgid "ui.audio.music"
+msgstr "Musik"
+
+msgid "ui.audio.preference_recovered"
+msgstr "Die Audioeinstellungen wurden aus einer Sicherung wiederhergestellt."
+
+msgid "ui.audio.preference_unreadable"
+msgstr "Die Datei mit den Audioeinstellungen konnte nicht gelesen werden. Die Originaldatei wurde beibehalten; Lautstärkeänderungen werden in dieser Sitzung nicht gespeichert."
+
+msgid "ui.audio.save_failed"
+msgstr "Die Audioeinstellungen konnten nicht gespeichert werden. Bitte versuche es erneut."
+
+msgid "ui.audio.title"
+msgstr "Ton"
+
 msgid "ui.aurora.amount"
 msgstr "{name} ×{amount}"
 
@@ -103,9 +121,6 @@ msgstr "Verstärken"
 
 msgid "ui.aurora.upgrade_target"
 msgstr "{name} · Verstärkung +{level} → +{next}"
-
-msgid "ui.backpack.actions_unavailable"
-msgstr "Verwenden und Zerlegen sind noch nicht verfügbar."
 
 msgid "ui.catalog.empty"
 msgstr "Keine Inhalte verfügbar"
@@ -152,9 +167,6 @@ msgstr "Relikt"
 msgid "ui.category.team"
 msgstr "Team"
 
-msgid "ui.collection.change_title"
-msgstr "Helden wechseln"
-
 msgid "ui.collection.change_warning"
 msgstr "Ein Heldenwechsel beendet die aktuelle Kapitelzusammenstellung und entfernt ihre Begleiter, Relikte, Sternenkräfte und ihren Fortschritt. Die feste Route, permanente Talente und Kontowerte bleiben erhalten."
 
@@ -169,24 +181,6 @@ msgstr "Im Besitz"
 
 msgid "ui.collection.permanent_stats"
 msgstr "Permanenter Kontofortschritt · Ohne Kapitelverbesserungen und Relikte"
-
-msgid "ui.collection.select_hero"
-msgstr "Diesen Helden wählen"
-
-msgid "ui.collection.star_confirm"
-msgstr "{cost} Kartenfragmente ausgeben, um {name} auf ★{star} anzuheben?\n{remaining} Fragmente bleiben. Permanente Stärke: {strength}% der Basis.\nDas laufende Kapitel bleibt unverändert."
-
-msgid "ui.collection.star_max"
-msgstr "Maximum: 5 Sterne"
-
-msgid "ui.collection.star_success"
-msgstr "Sternaufstieg abgeschlossen. Übrige Fragmente bleiben erhalten."
-
-msgid "ui.collection.star_unavailable"
-msgstr "Voraussetzungen nicht erfüllt. Keine Fragmente verbraucht."
-
-msgid "ui.collection.star_upgrade"
-msgstr "Sternaufstieg"
 
 msgid "ui.collection.unowned"
 msgstr "Nicht erworben"
@@ -223,9 +217,6 @@ msgstr "{status} · Hauptfähigkeiten: {count}"
 
 msgid "ui.combat.passive"
 msgstr "Keine Hauptfähigkeiten"
-
-msgid "ui.combat.poison"
-msgstr "Gift ist eingedrungen: Später erhaltene Schilde blockieren es nicht"
 
 msgid "ui.combat.shield"
 msgstr " Schild {amount}"
@@ -266,9 +257,6 @@ msgstr "Effekte"
 msgid "ui.detail.ammo"
 msgstr "Aktionskapazität"
 
-msgid "ui.detail.fragments"
-msgstr "Sternaufstiegsfragmente"
-
 msgid "ui.detail.main_ability_clock"
 msgstr "{stat_cooldown_seconds} {remaining} / {cooldown} s{haste}"
 
@@ -281,8 +269,113 @@ msgstr "Kaufinformationen"
 msgid "ui.detail.stack_limit"
 msgstr "Stapellimit"
 
-msgid "ui.detail.usage"
-msgstr "Verwendung"
+msgid "ui.event.encounter.accept"
+msgstr "Pakt annehmen"
+
+msgid "ui.event.encounter.cost_card"
+msgstr "1 Exemplar verlieren: {name}"
+
+msgid "ui.event.encounter.cost_debuff"
+msgstr "Alle Karten dieses Kapitels: {stat} -{amount}"
+
+msgid "ui.event.encounter.cost_die"
+msgstr "1 unbenutzten Würfel verlieren"
+
+msgid "ui.event.encounter.cost_heading"
+msgstr "Kosten"
+
+msgid "ui.event.encounter.cost_no_card"
+msgstr "Keine Nicht-Heldenkarte zum Verlieren; kein weiterer Abzug"
+
+msgid "ui.event.encounter.cost_no_die"
+msgstr "Kein Würfel zum Verlieren; kein weiterer Abzug"
+
+msgid "ui.event.encounter.cost_stamina"
+msgstr "{amount} Ausdauer verbrauchen"
+
+msgid "ui.event.encounter.leave"
+msgstr "Ablehnen und gehen"
+
+msgid "ui.event.encounter.refresh"
+msgstr "Neue Kombination"
+
+msgid "ui.event.encounter.replace"
+msgstr "{name} ersetzen"
+
+msgid "ui.event.encounter.replacement_prompt"
+msgstr "Das Spielfeld ist voll. Wähle eine Nicht-Heldenkarte zum Ersetzen."
+
+msgid "ui.event.encounter.reward_card"
+msgstr "Kapitelkarte erhalten: {name}"
+
+msgid "ui.event.encounter.reward_dice"
+msgstr "1 zusätzlichen Würfel erhalten"
+
+msgid "ui.event.encounter.reward_heading"
+msgstr "Gewinn"
+
+msgid "ui.event.encounter.reward_relic"
+msgstr "Relikt erhalten: {name}"
+
+msgid "ui.event.encounter.reward_stone"
+msgstr "{amount} Sternsteine erhalten"
+
+msgid "ui.event.encounter.unknown_cost"
+msgstr "Unbekannte Kosten"
+
+msgid "ui.event.encounter.unknown_reward"
+msgstr "Unbekannter Gewinn"
+
+msgid "ui.event.market.completed"
+msgstr "Abgeschlossen"
+
+msgid "ui.event.market.confirm_leave"
+msgstr "Verlassen bestätigen"
+
+msgid "ui.event.market.continue"
+msgstr "Weiter einkaufen"
+
+msgid "ui.event.market.exchange"
+msgstr "{cost} {cost_currency} → {reward} {reward_currency}"
+
+msgid "ui.event.market.exchange_action"
+msgstr "Tauschen"
+
+msgid "ui.event.market.exchanges"
+msgstr "Währungstausch"
+
+msgid "ui.event.market.fragment"
+msgstr "{name}-Fragmente ×{amount}"
+
+msgid "ui.event.market.fragments"
+msgstr "Kartenfragmente"
+
+msgid "ui.event.market.leave"
+msgstr "Markt verlassen"
+
+msgid "ui.event.market.leave_warning"
+msgstr "Es sind noch Angebote verfügbar. Nach dem Verlassen kannst du nicht zurückkehren."
+
+msgid "ui.event.market.once"
+msgstr "Jedes Angebot einmal"
+
+msgid "ui.event.market.or"
+msgstr "oder"
+
+msgid "ui.event.market.pay"
+msgstr "{amount} {currency}"
+
+msgid "ui.event.market.stamina"
+msgstr "Ausdauer +{amount}"
+
+msgid "ui.event.market.supplies"
+msgstr "Ausdauer"
+
+msgid "ui.event.ruins.round"
+msgstr "Runde {current}/{total}"
+
+msgid "ui.event.ruins.trigger"
+msgstr "Sternensegen {count}"
 
 msgid "ui.filter.ability_facet"
 msgstr "Fähigkeitseffekte"
@@ -292,6 +385,57 @@ msgstr "Tags"
 
 msgid "ui.filter.output_type"
 msgstr "Ausgabetyp"
+
+msgid "ui.growth.balance"
+msgstr "Sternsteine: {amount}"
+
+msgid "ui.growth.maxed"
+msgstr "Maximum: 5 Sterne"
+
+msgid "ui.growth.progress"
+msgstr "Training: {current} / {total}"
+
+msgid "ui.growth.promote"
+msgstr "Stern erhöhen"
+
+msgid "ui.growth.promote_confirm"
+msgstr "Alle Karten der Kategorie {category} auf {star} Sterne erhöhen?\nDas Training ist abgeschlossen; keine Sternsteine nötig. Das laufende Abenteuer bleibt unverändert."
+
+msgid "ui.growth.scope"
+msgstr "Alle Karten einer Kategorie teilen ihren Fortschritt, auch neu freigeschaltete Karten."
+
+msgid "ui.growth.strength"
+msgstr "Basis für Leben und Leistung: {value}%"
+
+msgid "ui.growth.success"
+msgstr "Kategoriefortschritt gespeichert."
+
+msgid "ui.growth.title"
+msgstr "Kartentraining"
+
+msgid "ui.growth.train"
+msgstr "Trainieren · {cost} Sternsteine"
+
+msgid "ui.growth.train_confirm"
+msgstr "Für {cost} Sternsteine alle Karten der Kategorie {category} um eine Stufe trainieren?\nDas laufende Abenteuer behält seinen Startfortschritt."
+
+msgid "ui.growth.unavailable"
+msgstr "Training oder Aufstieg ist derzeit nicht möglich."
+
+msgid "ui.hero.change"
+msgstr "Aktiven Helden wechseln"
+
+msgid "ui.hero.confirm"
+msgstr "{name} als aktiven Helden einsetzen?"
+
+msgid "ui.hero.current"
+msgstr "Aktiver Held: {name}"
+
+msgid "ui.hero.owned"
+msgstr "Eigene Helden"
+
+msgid "ui.hero.title"
+msgstr "Aktiver Held"
 
 msgid "ui.home.achievements"
 msgstr "Erfolge"
@@ -322,9 +466,6 @@ msgstr "Einzelne Layoutvorschau · Für das vollständige Spiel bootstrap/app.ts
 
 msgid "ui.home.mail"
 msgstr "Post"
-
-msgid "ui.home.no_hero_detail"
-msgstr "Kein Held ausgewählt."
 
 msgid "ui.home.preview_resources"
 msgstr "Spielername\nGold · Sternsteine · Ausdauer"
@@ -505,9 +646,6 @@ msgstr "Unbenutzte Würfel bleiben erhalten und werden bei jedem Wurf mitgewürf
 
 msgid "ui.reward.choice_title"
 msgstr "Belohnung wählen"
-
-msgid "ui.reward.choose_aurora"
-msgstr "Belohnung erhalten"
 
 msgid "ui.reward.complete_build"
 msgstr "Abenteuer fortsetzen"
@@ -697,6 +835,9 @@ msgstr "Freigeschaltet"
 
 msgid "ui.talents.no_points"
 msgstr "Keine Talentpunkte"
+
+msgid "ui.talents.permanent"
+msgstr "Permanente Talente"
 
 msgid "ui.talents.point_source"
 msgstr "Erster Kapitelabschluss: +1 Punkt"

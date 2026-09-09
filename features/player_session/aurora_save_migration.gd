@@ -31,11 +31,17 @@ func convert(saved: Dictionary, catalog: RefCounted) -> Dictionary:
 		var relics = preload("res://features/player_session/relic_save_migration.gd").new()
 		var projection: Dictionary = relics.project_build(build, catalog)
 		if not relics.error.is_empty(): return _fail(relics.error)
+		var growth = preload("res://features/player_session/category_growth_migration.gd").new()
+		projection = growth.project_build(projection)
+		if not growth.error.is_empty(): return _fail(growth.error)
 		var restored: MechanicBuild = restorer.restore(projection, catalog.content, {"mechanisms": AdventureBattleRules.MECHANISMS})
 		if restored == null: return _fail(restorer.error)
 		error = rewards.begin(build.reward_seed ^ 0x51F15E, catalog, restored)
 		if not error.is_empty(): return {}
 	build.aurora_rewards = rewards.capture()
+	# 中间版本必须保留当时的三字段协议，事件迁移统一补齐后续字段。
+	build.aurora_rewards.erase("choice_seed")
+	build.aurora_rewards.erase("active_offer_ids")
 	result.schema = 24
 	return result
 

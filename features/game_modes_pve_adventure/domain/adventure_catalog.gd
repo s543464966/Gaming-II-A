@@ -11,6 +11,28 @@ func _init(catalog: RefCounted) -> void:
 	content = catalog
 	assembly = BattleAssembly.new(catalog)
 
+## 冒险卡牌定义在共享装配完成后叠加本章奇遇减益，预览与战斗读取同一结果。
+func player_definition(build: RefCounted, card: Dictionary, team_id: int, options: Dictionary) -> Dictionary:
+	var result: Dictionary = assembly.definition(build, card, team_id, options)
+	if result.is_empty(): return {}
+	_apply_event_debuffs(result, build.event_debuffs)
+	return result
+
+## 整队装配保留共享能力宿主，只调整每张玩家卡牌的最终固定输出点数。
+func assemble_player(build: RefCounted, team_id: int, options: Dictionary) -> Dictionary:
+	var result: Dictionary = assembly.assemble(build, team_id, options)
+	if result.is_empty(): return {}
+	for snapshot: Dictionary in result.cards: _apply_event_debuffs(snapshot.definition, build.event_debuffs)
+	return result
+
+## 减益进入队伍固定点数层，成长比例不会放大或缩小明确的负一点代价。
+func _apply_event_debuffs(definition: Dictionary, debuffs: Dictionary) -> void:
+	var modifiers: Dictionary = definition.get("modifiers", {})
+	var team: Dictionary = modifiers.get("team_bonuses", {})
+	for stat in debuffs: team[stat] = int(team.get(stat, 0)) - int(debuffs[stat])
+	modifiers.team_bonuses = team
+	definition.modifiers = modifiers
+
 ## 按真实节点类别查询发放数量；非战斗节点不发骰子。
 func dice_count(node_type: int) -> int:
 	var rule: Dictionary = content.data.dice_reward_rules[0]
@@ -138,5 +160,6 @@ func enemy_definition(id: String, chapter: Dictionary = {}, layer_index: int = -
 	if content.get_record("cards", id).monster_role == C.MonsterRole.Normal:
 		if encounter_type == C.NodeType.EliteBattle: definition.max_health *= float(chapter.get("elite_guard_health_multiplier", 1.0))
 		elif encounter_type == C.NodeType.BossBattle: definition.max_health *= float(chapter.get("boss_guard_health_multiplier", 1.0))
-	for key in CombatTypes.OUTPUT_STATS: definition[key] *= float(chapter.get("enemy_power_multiplier", 1.0)) * float(layer.get("enemy_power_multiplier", 1.0))
+	definition.base_point_multiplier = float(chapter.get("enemy_power_multiplier", 1.0)) * float(layer.get("enemy_power_multiplier", 1.0))
+	for key in CombatTypes.OUTPUT_STATS: definition[key] *= definition.base_point_multiplier
 	return definition

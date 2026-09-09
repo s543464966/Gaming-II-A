@@ -1,5 +1,14 @@
 {
   "engine": "4.5.1",
+  "audio_encoder": {
+    "host": "darwin-arm64",
+    "name": "imageio_ffmpeg-0.6.0-macos-arm64.whl",
+    "url": "https://files.pythonhosted.org/packages/40/5c/f3d8a657d362cc93b81aab8feda487317da5b5d31c0e1fdfd5e986e55d17/imageio_ffmpeg-0.6.0-py3-none-macosx_11_0_arm64.whl",
+    "sha256": "b1ae3173414b5fc5f538a726c4e48ea97edc0d2cdc11f103afee655c463fa742",
+    "entry": "imageio_ffmpeg/binaries/ffmpeg-macos-aarch64-v7.1",
+    "binary": "ffmpeg-macos-aarch64-v7.1",
+    "binary_sha256": "6d175a4743ca50256e89a8cdd731100f9cee33bd79aeea46894d209410dc6617"
+  },
   "files": [
     {
       "target": "wechat",

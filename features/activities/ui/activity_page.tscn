@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="Script" path="res://features/activities/ui/activity_page.gd" id="1"]
 [ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="2"]
@@ -11,8 +11,6 @@
 [ext_resource type="Texture2D" path="res://features/activities/ui/art/legend_icon.png" id="13"]
 [ext_resource type="Texture2D" path="res://features/activities/ui/art/daily_icon.png" id="14"]
 [ext_resource type="Texture2D" path="res://features/activities/ui/art/sign_in_icon.png" id="15"]
-[ext_resource type="Texture2D" path="res://ui/design_system/icons/common/immersive_back.png" id="16"]
-
 [ext_resource type="PackedScene" path="res://ui/components/unavailable_view.tscn" id="unavailable"]
 
 [sub_resource type="StyleBoxFlat" id="diamond_outer"]
@@ -37,12 +35,6 @@ code = "shader_type canvas_item;\nvarying vec4 tint;\nvoid vertex() { tint = COL
 [sub_resource type="ShaderMaterial" id="icon_mask_material"]
 shader = SubResource("icon_mask")
 
-[sub_resource type="Shader" id="diamond_clip"]
-code = "shader_type canvas_item;\nuniform vec2 extent = vec2(111.0, 111.0);\nvarying vec2 local_uv;\nvoid vertex() { local_uv = VERTEX / extent; }\nvoid fragment() { float edge = abs(local_uv.x - 0.5) + abs(local_uv.y - 0.5); COLOR.a *= 1.0 - smoothstep(0.48, 0.50, edge); }"
-
-[sub_resource type="ShaderMaterial" id="return_material"]
-shader = SubResource("diamond_clip")
-
 [node name="ActivityPage" type="Control"]
 texture_filter = 2
 layout_mode = 1
@@ -58,15 +50,15 @@ layout_mode = 1
 [node name="Canvas" type="Control" parent="."]
 layout_mode = 0
 offset_right = 941.0
-offset_bottom = 1672.0
+offset_bottom = 1476.0
 mouse_filter = 2
 
 [node name="Previous" type="Button" parent="Canvas"]
 layout_mode = 0
 offset_left = 20.0
-offset_top = 724.0
+offset_top = 681.0
 offset_right = 134.0
-offset_bottom = 838.0
+offset_bottom = 795.0
 theme_type_variation = &"IconButton"
 mouse_default_cursor_shape = 2
 tooltip_text = "ui.mode.previous"
@@ -109,9 +101,9 @@ vertical_alignment = 1
 [node name="Next" type="Button" parent="Canvas"]
 layout_mode = 0
 offset_left = 807.0
-offset_top = 724.0
+offset_top = 681.0
 offset_right = 921.0
-offset_bottom = 838.0
+offset_bottom = 795.0
 theme_type_variation = &"IconButton"
 mouse_default_cursor_shape = 2
 tooltip_text = "ui.mode.next"
@@ -154,9 +146,9 @@ vertical_alignment = 1
 [node name="Tabs" type="ScrollContainer" parent="Canvas"]
 layout_mode = 0
 offset_left = 35.0
-offset_top = 1454.0
+offset_top = 1258.0
 offset_right = 906.0
-offset_bottom = 1641.0
+offset_bottom = 1445.0
 clip_contents = false
 script = ExtResource("5")
 presentation = 1
@@ -366,38 +358,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4")
 minimum_font_size = 20
-maximum_lines = 1
-
-[node name="ReturnArt" type="Control" parent="Canvas"]
-layout_mode = 0
-offset_left = 31.0
-offset_top = 40.0
-offset_right = 905.0
-offset_bottom = 151.0
-mouse_filter = 2
-
-[node name="Icon" type="TextureRect" parent="Canvas/ReturnArt"]
-layout_mode = 0
-offset_right = 111.0
-offset_bottom = 111.0
-mouse_filter = 2
-texture = ExtResource("16")
-expand_mode = 1
-material = SubResource("return_material")
-
-[node name="Caption" type="Label" parent="Canvas/ReturnArt"]
-layout_mode = 0
-offset_left = 135.0
-offset_top = 19.5
-offset_right = 874.0
-offset_bottom = 91.5
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.87, 0.80, 0.61, 1)
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 40
-text = "ui.page.activity"
-horizontal_alignment = 0
-vertical_alignment = 1
-script = ExtResource("4")
-minimum_font_size = 28
 maximum_lines = 1

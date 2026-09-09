@@ -633,7 +633,7 @@ offset_bottom = 1428
 theme_type_variation = &"HomeEntryButton"
 script = ExtResource("button")
 mouse_default_cursor_shape = 2
-metadata/page_id = "Hero"
+metadata/page_id = "ActiveHero"
 hit_polygon = PackedVector2Array(0, 29, 14, 29, 14, 15, 24, 12, 28, 1, 209, 1, 213, 12, 223, 15, 223, 181, 213, 185, 209, 195, 28, 195, 24, 185, 14, 182, 14, 173, 0, 173)
 
 [node name="Portrait" type="TextureRect" parent="SafeArea/Content/Home/Actions/Hero"]

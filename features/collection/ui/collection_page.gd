@@ -1,25 +1,21 @@
 extends "res://ui/components/content/catalog_browser.gd"
-## 收藏展示账号永久成长；升星与英雄切换分别确认并事务保存。
+## 收藏只读展示账号永久卡牌与拥有状态；培养和出战管理各有独立入口。
 
 const Preview = preload("res://ui/components/content/content_preview.gd")
 enum Ownership { ALL, OWNED, UNOWNED }
 
 var session: RefCounted
-var progression: RefCounted
-var persist: Callable
 var _ownership: Ownership = Ownership.ALL
 
-## 注入账号、英雄切换用例及保存入口，不创建第二套成长状态。
-func bind_player(player: RefCounted, flow: RefCounted, overlay: CanvasLayer, save: Callable = Callable()) -> void:
+## 收藏只注入只读会话与详情浮层，不持有培养或切换英雄操作。
+func bind_player(player: RefCounted, overlay: CanvasLayer) -> void:
 	session = player
-	progression = flow
 	overlays = overlay
-	persist = save
 
 ## 收藏类别与图鉴独立，不收录敌方卡牌。
 func _ready() -> void:
 	configure([{"id": "Hero", "label": "ui.category.hero"}, {"id": "Minion", "label": "ui.category.minion"},
-		{"id": "Item", "label": "ui.category.item_card"}, {"id": "Relic", "label": "ui.category.relic"}], _rows, _description, _actions)
+		{"id": "Item", "label": "ui.category.item_card"}, {"id": "Relic", "label": "ui.category.relic"}], _rows, _description)
 	super._ready()
 
 ## 藏品快捷栏只切换拥有状态，保留独立的名称与卡牌属性条件。
@@ -55,7 +51,7 @@ func _rows(id: String) -> Array:
 	for row in rows:
 		row.owned = session.collection.owns(row.id)
 		if row.table == "cards" and row.owned:
-			row.face = Preview.card_face(session.collection.definition(row.id, session.assets))
+			row.face = Preview.card_face(session.collection.definition(row.id))
 		row.caption = "ui.collection.owned" if row.owned else "ui.collection.unowned"
 		if row.id == session.collection.selected_hero: row.caption = "ui.collection.current_hero"
 	return rows
@@ -63,44 +59,6 @@ func _rows(id: String) -> Array:
 ## 收藏读取账号永久成长；没有拥有的内容继续使用静态图鉴预览。
 func _description(row: Dictionary) -> Dictionary:
 	if row.table == "cards" and session.collection.owns(row.id):
-		var definition: Dictionary = session.collection.definition(row.id, session.assets)
-		var status: Dictionary = session.collection.star_status(row.id, session.assets)
-		return Preview.permanent_detail(definition, status)
+		var definition: Dictionary = session.collection.definition(row.id)
+		return Preview.permanent_detail(definition)
 	return Preview.describe(session.content, row)
-
-## 未满星卡牌提供升星动作，满星提示由成长模块呈现；英雄另有身份切换入口。
-func _actions(row: Dictionary, parent: BoxContainer) -> void:
-	if row.table == "cards":
-		var status: Dictionary = session.collection.star_status(row.id, session.assets)
-		if status.cost > 0:
-			var upgrade = UI.button("ui.collection.star_upgrade", _confirm_upgrade.bind(row))
-			upgrade.name = "StarUpgrade"
-			upgrade.disabled = not status.can_upgrade or not persist.is_valid()
-			parent.add_child(upgrade)
-	if row.table != "cards" or row.record.card_kind != CardTypes.Kind.CoreHero: return
-	var selected: bool = session.collection.selected_hero == row.id
-	var button = UI.button("ui.collection.current_hero" if selected else "ui.collection.select_hero", func():
-		overlays.confirm("ui.collection.change_warning", func():
-			var error: String = progression.change_hero(row.id)
-			overlays.toast("ui.collection.changed" if error.is_empty() else error)
-			refresh(), "ui.collection.change_title"))
-	button.disabled = selected or not session.collection.owns(row.id)
-	parent.add_child(button)
-
-## 确认展示实际扣除和余量；事务回滚后继续显示当前卡牌详情。
-func _confirm_upgrade(row: Dictionary) -> void:
-	var status: Dictionary = session.collection.star_status(row.id, session.assets)
-	if not status.can_upgrade: return
-	var next = {"star_level": status.star + 1, "fragment_steps": CardGrowth.fragment_steps(status.quantity - status.cost, status.star + 1, session.content.data.growth_rules[0])}
-	var strength = CardGrowth.permanent_multiplier(next, session.content.data.growth_rules[0])
-	overlays.confirm(func(): return ContentText.format_key("ui.collection.star_confirm", {"name": ContentText.field(row.record), "cost": status.cost,
-		"remaining": status.quantity - status.cost, "star": next.star_level, "strength": RuleText.number(strength * 100)}), func():
-			var error: String = session.transact(func(): return session.collection.upgrade(row.id, session.assets), persist)
-			overlays.toast("ui.collection.star_success" if error.is_empty() else error)
-			_render(_apply_filters(query.call(_current_tab)))
-			_open_detail(row), "ui.collection.star_upgrade")
-
-## 离开分类先关闭升星或换英雄确认，避免隐藏页面继续提交旧操作。
-func _select_tab(id: String) -> void:
-	if overlays != null: overlays.close_modal()
-	super._select_tab(id)

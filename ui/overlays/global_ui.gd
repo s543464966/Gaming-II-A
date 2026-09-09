@@ -9,6 +9,7 @@ var modal: Control
 var _underlay: ContentPopup
 var toast_root: Control
 var _platform: Node
+var _audio: AudioService
 var _preparing_content: bool = false
 
 ## 全局层在场景暂停时仍可关闭设置或取消对话框。
@@ -16,12 +17,13 @@ func _ready() -> void:
 	layer = 100
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-## 平台依赖由主场景显式注入，不依赖父节点的脚本字段。
-func configure(platform: Node) -> void:
+## 平台与音频依赖由主场景显式注入，不依赖父节点的脚本字段。
+func configure(platform: Node, audio: AudioService = null) -> void:
 	_platform = platform
+	_audio = audio
 
 ## 完整包或已缓存资源立即通过，下载等待只覆盖现有页面，不制造第二个应用入口。
-func prepare_content(delivery: Node, keys: Array = []) -> bool:
+func prepare_content(delivery: Node, keys: Variant = null) -> bool:
 	if delivery == null or delivery.pending(keys).is_empty(): return true
 	if delivery.busy or _preparing_content: return false
 	_preparing_content = true
@@ -32,6 +34,7 @@ func prepare_content(delivery: Node, keys: Array = []) -> bool:
 	panel.platform = _platform
 	modal = panel
 	add_child(panel)
+	if _audio != null: _audio.play_ui_cue("sfx.ui.open", -6.0)
 	var ready: bool = await panel.finished
 	_preparing_content = false
 	if modal == panel: close_modal()
@@ -54,6 +57,7 @@ func confirm(message: Variant, accepted: Callable, title: Variant = "ui.common.c
 		if accepted.is_valid(): accepted.call())
 	modal = dialog
 	add_child(dialog)
+	if _audio != null: _audio.play_ui_cue("sfx.ui.open", -6.0)
 
 ## 所有内容详情共用小弹窗，Feature 只提供查询与动作，不改变页面路由。
 func open_content(presentation: Callable, actions: Callable = Callable()) -> ContentPopup:
@@ -65,10 +69,12 @@ func open_content(presentation: Callable, actions: Callable = Callable()) -> Con
 	popup.close_requested.connect(close_modal)
 	modal = popup
 	add_child(popup)
+	if _audio != null: _audio.play_ui_cue("sfx.ui.open", -6.0)
 	return popup
 
 ## 取消或完成确认恢复原详情；导航使用 close_modal 一次撤销整组浮层。
 func _close_confirmation() -> void:
+	if _audio != null: _audio.play_ui_cue("sfx.ui.close", -6.0)
 	if is_instance_valid(modal):
 		GameUI.dismiss(modal)
 	modal = _underlay
@@ -80,12 +86,14 @@ func _close_confirmation() -> void:
 ## 关闭模态不会隐式提交业务动作。
 func close_modal() -> void:
 	var closing: Array = [modal, _underlay]
+	var had_open_overlay: bool = closing.any(func(node): return is_instance_valid(node))
 	modal = null
 	_underlay = null
 	for node in closing:
 		if not is_instance_valid(node): continue
 		GameUI.dismiss(node)
 		if node is ContentPopup: node.closed.emit()
+	if had_open_overlay and _audio != null: _audio.play_ui_cue("sfx.ui.close", -6.0)
 
 ## 错误或成功反馈不接收输入，不阻挡后续业务操作。
 func toast(message: Variant, duration: float = 3.5) -> void:

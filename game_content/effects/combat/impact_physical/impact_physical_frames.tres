@@ -1,0 +1,106 @@
+[gd_resource type="SpriteFrames" load_steps=18 format=3]
+
+[ext_resource type="Texture2D" path="res://game_content/effects/combat/impact_physical/impact_physical_painted.png" id="1_atlas"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 0, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02"]
+atlas = ExtResource("1_atlas")
+region = Rect2(256, 0, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03"]
+atlas = ExtResource("1_atlas")
+region = Rect2(512, 0, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04"]
+atlas = ExtResource("1_atlas")
+region = Rect2(768, 0, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 256, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06"]
+atlas = ExtResource("1_atlas")
+region = Rect2(256, 256, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07"]
+atlas = ExtResource("1_atlas")
+region = Rect2(512, 256, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08"]
+atlas = ExtResource("1_atlas")
+region = Rect2(768, 256, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_09"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 512, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = ExtResource("1_atlas")
+region = Rect2(256, 512, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = ExtResource("1_atlas")
+region = Rect2(512, 512, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = ExtResource("1_atlas")
+region = Rect2(768, 512, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = ExtResource("1_atlas")
+region = Rect2(0, 768, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = ExtResource("1_atlas")
+region = Rect2(256, 768, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = ExtResource("1_atlas")
+region = Rect2(512, 768, 256, 256)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = ExtResource("1_atlas")
+region = Rect2(768, 768, 256, 256)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{"duration": 0.4, "texture": SubResource("AtlasTexture_01")},
+{"duration": 0.4, "texture": SubResource("AtlasTexture_02")},
+{"duration": 0.4, "texture": SubResource("AtlasTexture_03")},
+{"duration": 0.4, "texture": SubResource("AtlasTexture_04")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_05")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_06")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_07")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_08")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_09")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_10")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_11")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_12")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_13")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_14")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_15")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_16")}],
+"loop": false,
+"name": &"impact",
+"speed": 32.0
+}]

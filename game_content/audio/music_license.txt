@@ -1,0 +1,27 @@
+MagicA background music attribution
+
+Music by Of Far Different Nature (https://fardifferent.carrd.co/).
+From "Essentials Pack for Fantasy Games - LOOP BOX #3:
+Orchestral soundtracks for RPGs and Adventures".
+
+Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+
+Source:
+https://opengameart.org/content/essentials-pack-for-fantasy-games-loop-box-3-orchestral-soundtracks-for-rpgs-and-adventures
+
+Tracks used:
+Adventure Begins - home.ogg
+Epic Departure v2 - rock_route.ogg
+Clash - rock_battle.ogg
+In Darkness v2 - blood_route.ogg
+Obscurium - blood_battle.ogg
+Zwischenwelt - ice_route.ogg
+Ship In A Storm - ice_battle.ogg
+
+The source OGG audio is unchanged; files are renamed for stable game resources.
+Runtime playback loops the tracks and applies volume adjustment and crossfades.
+Mini-game export transcodes copies to 64 kbps, 32 kHz stereo Ogg Vorbis;
+track duration and loop settings are preserved. Original source files are retained.
+No endorsement of MagicA by the music author is implied.
+This notice covers these music tracks only, not the game's other assets.

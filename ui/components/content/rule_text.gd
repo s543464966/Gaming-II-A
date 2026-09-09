@@ -54,7 +54,7 @@ static func card_sections(definition: Dictionary, state: Dictionary = {}, iconic
 		var stat: String = T.OUTPUT_STATS[index]
 		if stats.get(stat, 0) <= 0: continue
 		var value = number(stats[stat])
-		if index in [T.Output.Burn, T.Output.Poison]: value = _tr("output.per_second", {"amount": value}, iconic)
+		if index in [T.Output.Burn, T.Output.Poison]: value = _tr("output.stacks", {"amount": value}, iconic)
 		core_attributes.append({"stat": stat, "label": enum_label("output", T.Output, index, iconic), "value": value})
 		lines.append(enum_label("output", T.Output, index, iconic) + " " + value)
 	if definition.main_abilities.size() == 1:
@@ -132,11 +132,13 @@ static func actions(values: Array, definition: Dictionary = {}, strength_multipl
 			lines.append(_mechanic_description(action, definition, strength_multiplier, iconic))
 			continue
 		var strength = CombatAttributes.action_amount(definition, action, strength_multiplier)
-		if action.kind in [T.CombatAction.PhysicalDamage, T.CombatAction.Witchcraft] or (action.kind in [T.CombatAction.Heal, T.CombatAction.GrantShield] and strength >= 1): strength = CombatAttributes.points(strength)
+		if T.output_kind(action) in [T.Output.Physical, T.Output.Witchcraft, T.Output.Burn, T.Output.Poison] or (action.kind in [T.CombatAction.Heal, T.CombatAction.GrantShield] and strength >= 1): strength = CombatAttributes.points(strength)
 		var duration = float(action.duration_seconds)
 		var args = {"target": target_label(action), "amount": number(strength), "seconds": number(duration),
 			"main_ability": _main_ability_reference(str(action.get("main_ability_id", "")), iconic)}
-		if action.get("power_multiplier", 0) > 0 and not definition.has(T.output_stat(T.output_kind(action))):
+		if action.get("amount_source", T.AmountSource.Fixed) == T.AmountSource.CardOutput and not definition.has(T.output_stat(T.output_kind(action))):
+			args.amount = _tr("actions.card_output_points", {"type": enum_label("output", T.Output, T.output_kind(action), iconic)}, iconic)
+		elif action.get("power_multiplier", 0) > 0 and not definition.has(T.output_stat(T.output_kind(action))):
 			args.amount = _tr("actions.card_power_ratio", {"percent": number(action.power_multiplier * 100), "type": enum_label("output", T.Output, T.output_kind(action), iconic)}, iconic)
 		match int(action.kind):
 			T.CombatAction.PhysicalDamage: lines.append(_tr("actions.physical_damage", args, iconic))
@@ -145,8 +147,7 @@ static func actions(values: Array, definition: Dictionary = {}, strength_multipl
 			T.CombatAction.GrantShield: lines.append(_tr("actions.shield", args, iconic))
 			T.CombatAction.ApplyStatus:
 				args.status = enum_label("status", T.Status, action.status, iconic)
-				lines.append(_tr("actions.status_damage" if action.status in [T.Status.Burn, T.Status.Poison] else "actions.status_control", args, iconic))
-				if action.status == T.Status.Poison: lines.append(_tr("actions.poison_penetration", {}, iconic))
+				lines.append(_tr("actions.status_stacks" if action.status in [T.Status.Burn, T.Status.Poison] else "actions.status_control", args, iconic))
 			T.CombatAction.ChangePollution: lines.append(_tr("actions.pollution", args, iconic))
 			T.CombatAction.Charge: lines.append(_tr("actions.charge", args, iconic))
 			T.CombatAction.DelayCooldown: lines.append(_tr("actions.delay", args, iconic))
@@ -220,6 +221,8 @@ static func tag_query(query: Dictionary) -> String:
 ## 先说明目标范围，再说明标签限制，避免让友敌或位置条件消失。
 static func target_label(value: Dictionary) -> String:
 	var label: String = enum_label("target", T.Target, value.target)
+	if int(value.get("max_targets", 0)) > 0:
+		label = _tr("target.limited_enemies" if value.target == T.Target.AllEnemies else "target.limited_units", {"count": value.max_targets})
 	var query: Dictionary = value.get("target_tags", {})
 	return _tr("tags.target", {"target": label, "tags": tag_query(query)}) if CardTagQuery.restricted(query) else label
 

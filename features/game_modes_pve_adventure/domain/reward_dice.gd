@@ -32,6 +32,30 @@ func grant(total: int, treasure: int, new_seed: int) -> void:
 		settlement_ids.append(next_id)
 		next_id += 1
 
+## 奇遇新增一颗普通待投骰并只把它计入本轮结算。
+func grant_extra(new_seed: int) -> void:
+	seed = (seed ^ new_seed) & 0xffffffff
+	var id: int = next_id
+	dice.append({"id": id, "kind": -1, "guaranteed": false, "status": Status.Unrolled, "face": 0, "reward": {}})
+	settlement_ids = [id]
+	next_id += 1
+
+## 奇遇代价只列出尚未消费的骰子，已领取历史不能再次失去。
+func unused_ids() -> Array:
+	return dice.filter(func(die): return die.status != Status.Used).map(func(die): return die.id)
+
+## 锁定目标为空时不扣其他骰子；存在目标只移除一次且不触发奖励。
+func remove_unused(id: int) -> String:
+	if id < 0: return ""
+	if not choice.is_empty(): return "当前有正在选择的骰子。"
+	for index: int in range(dice.size()):
+		if dice[index].id != id: continue
+		if dice[index].status == Status.Used: return "奇遇锁定的骰子已经使用。"
+		dice.remove_at(index)
+		settlement_ids.erase(id)
+		return ""
+	return "奇遇锁定的骰子不存在。"
+
 ## 待投的新旧骰一次投出，星石立即进入本次事务的发奖清单。
 func roll(catalog: RefCounted, build: RefCounted, collection: RefCounted, payouts: Array) -> String:
 	if not choice.is_empty(): return "请先完成当前骰子的选择。"

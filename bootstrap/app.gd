@@ -16,6 +16,7 @@ var content: GameCatalog = Catalog.new()
 @onready var accounts: PlayerSessionController = $Services/PlayerSession
 @onready var platform: GamePlatform = $Services/PlatformService
 @onready var localization: LocalizationService = $Services/Localization
+@onready var audio: AudioService = $Services/Audio
 @onready var delivery: Node = $Services/ContentDelivery
 @onready var overlays: CanvasLayer = $Overlay
 @onready var scene_container: Control = $SceneContainer
@@ -34,7 +35,9 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	platform.suspended_changed.connect(_platform_suspended)
 	get_viewport().size_changed.connect(_refresh_environment)
-	overlays.configure(platform)
+	overlays.configure(platform, audio)
+	audio.bind_ui(scene_container)
+	audio.bind_ui(overlays)
 	var directory = OS.get_environment("MAGICA_DATA_DIR")
 	var repository = Repository.new(directory if not directory.is_empty() else "user://MagicA")
 	_delivery_directory = directory if not directory.is_empty() else "user://MagicA"
@@ -58,6 +61,7 @@ func _retry_startup(identity: String = "") -> void:
 		accounts.startup_error = "ui.startup.content_failed"
 		accounts.startup_diagnostic = delivery.error
 	elif content.load_content():
+		audio.initialize(content, repository)
 		if accounts.content == null: accounts.initialize(content, repository)
 		else: accounts.load_player(identity)
 	else:
@@ -97,10 +101,11 @@ func navigate(id: String) -> void:
 ## 新页面在入树前得到所需依赖；旧页面的局部状态随场景释放。
 func _replace_screen(id: String) -> void:
 	if not is_inside_tree(): return
-	if id == "adventure" and not await overlays.prepare_content(delivery):
+	if id == "adventure" and accounts.session != null and not await overlays.prepare_content(delivery, accounts.progression.required_resource_keys()):
 		_transitioning = false
 		return
 	if id != "startup" and accounts.session == null: id = "startup"
+	if id == "startup": audio.stop_music(0.0)
 	if not is_inside_tree(): return
 	var scene: PackedScene = load(SCENES[id])
 	if scene == null or not scene.can_instantiate():
@@ -117,10 +122,11 @@ func _replace_screen(id: String) -> void:
 	if id in ["startup", "home"]: candidate.localization = localization
 	if id == "startup":
 		candidate.configure(accounts, platform)
+		candidate.content_diagnostic = delivery.diagnostic
 		candidate.retry_requested.connect(_retry_startup)
 		candidate.player_selected.connect(_retry_startup)
 	else:
-		candidate.configure(accounts.session, accounts.progression, accounts.save_player, overlays, platform)
+		candidate.configure(accounts.session, accounts.progression, accounts.save_player, overlays, platform, audio)
 		if id == "home": candidate.ranking = _ranking_rows
 	candidate.navigation_requested.connect(navigate)
 	current_screen = candidate
@@ -151,6 +157,7 @@ func _refresh_environment() -> void:
 	var landscape = extent.x > extent.y
 	overlays.get_node("OrientationGuard").visible = landscape
 	var blocked = platform.suspended or landscape
+	audio.set_suspended(blocked)
 	if blocked == _environment_blocked: return
 	_environment_blocked = blocked
 	if blocked:

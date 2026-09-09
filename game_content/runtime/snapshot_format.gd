@@ -2,10 +2,10 @@ class_name SnapshotFormat
 extends RefCounted
 ## 快照格式、确定性指纹和只读数据的公共契约。
 
-const VERSION = 36
+const VERSION = 42
 const PATH = "res://game_content/generated/game_data_snapshot.json"
 const ASSETS = "res://game_content/asset_registry.json"
-const TABLES = ["cards", "card_tags", "monster_sets", "main_abilities", "growth_rules", "innate_abilities", "talents", "synergies", "aurora_rewards", "aurora_reward_rules", "ability_aliases", "reward_dice", "dice_reward_rules", "dice_reward_pools", "chapters", "adventure_node_rules", "items", "relics", "shop_offers"]
+const TABLES = ["cards", "card_tags", "monster_sets", "main_abilities", "growth_rules", "innate_abilities", "talents", "synergies", "aurora_rewards", "aurora_reward_rules", "black_market_rules", "adventure_encounter_rules", "ability_aliases", "reward_dice", "dice_reward_rules", "dice_reward_pools", "chapters", "adventure_node_rules", "items", "relics", "shop_offers"]
 
 ## SHA-256 不包含自身；使用有类型、长度边界及游戏数值位表示的规范串。
 static func content_hash(document: Dictionary) -> String:

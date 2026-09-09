@@ -36,11 +36,17 @@ func _export_begin(_features: PackedStringArray, _debug: bool, _path: String, _f
 	for path in _profile.files: add_file(Profile.ROOT + path, FileAccess.get_file_as_bytes(Profile.ROOT + path), false)
 	for path in _profile.assets: add_file(path, FileAccess.get_file_as_bytes(path), false)
 
-## 原生成清单被本次注入替代；作者目录和未选语言一律不导出。
+## 语言文件由清单注入；额外包含的纯文本按原字节打包，不交给资源定制器加载。
 func _export_file(path: String, _type: String, _features: PackedStringArray) -> void:
-	if path.begins_with("res://game_content/localization/") or path.begins_with(Profile.ROOT + "localization/") or path == Profile.ROOT + "bundle.json": skip()
-	if path.begins_with(LanguageManifest.FONT_ROOT): skip()
-	if _profile == null or not _profile.errors.is_empty(): skip()
+	if _profile == null or not _profile.errors.is_empty():
+		skip()
+		return
+	if path.begins_with("res://game_content/localization/") or path.begins_with(Profile.ROOT + "localization/") or path == Profile.ROOT + "bundle.json" or path.begins_with(LanguageManifest.FONT_ROOT):
+		skip()
+		return
+	if path.get_extension().to_lower() == "txt":
+		add_file(path, FileAccess.get_file_as_bytes(path), false)
+		skip()
 
 ## 开发 Theme 的中文预览字体不能成为所有发行包的强制依赖。
 func _begin_customize_resources(_platform: EditorExportPlatform, _features: PackedStringArray) -> bool:

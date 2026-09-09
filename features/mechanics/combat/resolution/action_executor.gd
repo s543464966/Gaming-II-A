@@ -20,24 +20,32 @@ func _init(units: Array, random_source: DeterministicRandom, resource: Pollution
 
 ## 每段效果重新解析目标，多目标分别执行完整强度。
 func execute(context: Dictionary, actions: Array, source: Variant, target: Variant, depth: int, publish: Callable, refresh: Callable, complete: Callable, activation: bool = false) -> void:
+	# 组合中的单体与群攻共用本次敌方目标预算，击杀后重寻敌也不能绕过上限。
+	var target_budget: int = 0
+	for action: Dictionary in actions: target_budget = maxi(target_budget, int(action.get("max_targets", 0)))
+	var affected_enemies: Dictionary = {}
 	for index in range(actions.size()):
 		if not CombatConditions.host_alive(context, cards) or complete.call(): return
 		var action: Dictionary = actions[index]
-		var targets = CombatTargeting.select(cards, random, context, int(action.target), source, target, action.get("target_tags", {}))
+		var targets = CombatTargeting.select(cards, random, context, int(action.target), source, target, action.get("target_tags", {}), int(action.get("max_targets", 0)))
 		for recipient in targets:
 			if not recipient.alive(): continue
+			if target_budget > 0 and recipient.team_id != context.team_id:
+				if not affected_enemies.has(recipient.id) and affected_enemies.size() >= target_budget: continue
 			var specific: Dictionary = context.duplicate()
 			specific.action_index = index
+			var affected: CombatUnit = recipient
 			if MechanicSchema.is_mechanic(int(action.kind)):
 				MechanicActions.execute(self, specific, recipient, action, depth, publish, refresh, complete, activation)
 			else:
 				specific.single_target = not int(action.target) in [T.Target.AllAllies, T.Target.AllEnemies, T.Target.AllUnits, T.Target.AdjacentAllies, T.Target.LinkedAlly]
-				apply_action(specific, recipient, action, depth, activation, index, publish)
+				affected = apply_action(specific, recipient, action, depth, activation, index, publish)
+			if target_budget > 0 and affected != null and affected.team_id != context.team_id: affected_enemies[affected.id] = true
 			refresh.call()
 
-## 原子效果只改变单场状态，主能力授予也沿用独立来源和时限。
-func apply_action(context: Dictionary, target: CombatUnit, action: Dictionary, depth: int, activation: bool, index: int, publish: Callable) -> void:
-	if not CardTagQuery.matches(target.definition.get("card_tag_ids", []), action.get("target_tags", {})): return
+## 原子效果只改变单场状态并返回实际接收者，使守护转移也计入目标预算。
+func apply_action(context: Dictionary, target: CombatUnit, action: Dictionary, depth: int, activation: bool, index: int, publish: Callable) -> CombatUnit:
+	if not CardTagQuery.matches(target.definition.get("card_tag_ids", []), action.get("target_tags", {})): return null
 	if context.unit != null:
 		context.unit.refresh_modifiers()
 		context.modifiers = context.unit.definition.modifiers
@@ -65,7 +73,7 @@ func apply_action(context: Dictionary, target: CombatUnit, action: Dictionary, d
 		publish.call(T.Event.ActionReleased, source, target, amount, "效果发动", depth, projectile, context, {"output_type": output, "action_index": index})
 	match int(action.kind):
 		T.CombatAction.PhysicalDamage, T.CombatAction.Witchcraft:
-			health.damage(source, target, amount, depth, publish, "", context, false, float(action.get("lifesteal_ratio", 0)), output)
+			health.damage(source, target, amount, depth, publish, "", context, float(action.get("lifesteal_ratio", 0)), output)
 		T.CombatAction.Heal:
 			health.heal(source, target, amount, depth, publish, context)
 		T.CombatAction.GrantShield:
@@ -73,14 +81,15 @@ func apply_action(context: Dictionary, target: CombatUnit, action: Dictionary, d
 		T.CombatAction.ApplyStatus:
 			var duration = float(action.get("duration_seconds", 0))
 			var status = int(action.get("status", T.Status.None))
-			if status != T.Status.None and duration > 0:
+			if status != T.Status.None:
 				var origin = context.duplicate(true)
 				origin.erase("unit")
 				origin.action_index = index
 				origin.damage_stats = CombatAttributes.stats(source.definition if source != null else {"modifiers": context.modifiers})
 				origin.lifesteal_ratio = float(action.get("lifesteal_ratio", 0))
 				if CombatStatuses.apply(target, status, maxf(0, amount), duration, origin):
-					publish.call(T.Event.StatusApplied, source, target, duration, T.Status.keys()[status], depth, "", context, {"status": status, "stacks": target.status_stacks().get(status, 0)})
+					var value: float = CombatAttributes.points(amount) if status in [T.Status.Burn, T.Status.Poison] else duration
+					publish.call(T.Event.StatusApplied, source, target, value, T.Status.keys()[status], depth, "", context, {"status": status, "stacks": target.status_stacks().get(status, 0)})
 		T.CombatAction.ChangePollution:
 			var change = pollution.change(target.team_id, amount)
 			if change.delta != 0:
@@ -104,3 +113,4 @@ func apply_action(context: Dictionary, target: CombatUnit, action: Dictionary, d
 			granted.source = context.get("source", {}).duplicate(true)
 			granted.source.action_index = index
 			target.main_abilities.grant(granted, origin, float(action.get("duration_seconds", 0)))
+	return target

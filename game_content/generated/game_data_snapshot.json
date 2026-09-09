@@ -125,6 +125,26 @@
       "alias_id": "TS_WITHER_TRINITY"
     }
   ],
+  "adventure_encounter_rules": [
+    {
+      "card_cost_weight": 25,
+      "card_item_weight": 40,
+      "card_minion_weight": 60,
+      "card_reward_weight": 25,
+      "dice_reward_weight": 25,
+      "die_cost_weight": 25,
+      "id": "EC001",
+      "refresh_count": 1,
+      "relic_reward_weight": 25,
+      "stamina_cost_amount": 10,
+      "stamina_cost_weight": 25,
+      "star_stone_max": 500,
+      "star_stone_min": 300,
+      "star_stone_reward_weight": 25,
+      "team_debuff_amount": 1,
+      "team_debuff_cost_weight": 25
+    }
+  ],
   "adventure_node_rules": [
     {
       "action_label_key": "content.adventure_node_rules.NR002.action_label",
@@ -140,14 +160,14 @@
     },
     {
       "action_label_key": "content.adventure_node_rules.NR003.action_label",
-      "cost_amount": 100,
+      "cost_amount": 0,
       "cost_currency": 0,
       "description_key": "content.adventure_node_rules.NR003.description",
-      "effect_type": 3,
+      "effect_type": 5,
       "id": "NR003",
       "node_type": 6,
-      "reward_amount": 10,
-      "reward_currency": 1,
+      "reward_amount": 0,
+      "reward_currency": 0,
       "title_key": "content.adventure_node_rules.NR003.title"
     },
     {
@@ -155,10 +175,10 @@
       "cost_amount": 0,
       "cost_currency": 0,
       "description_key": "content.adventure_node_rules.NR004.description",
-      "effect_type": 2,
+      "effect_type": 6,
       "id": "NR004",
       "node_type": 7,
-      "reward_amount": 100,
+      "reward_amount": 0,
       "reward_currency": 0,
       "title_key": "content.adventure_node_rules.NR004.title"
     }
@@ -166,7 +186,8 @@
   "aurora_reward_rules": [
     {
       "id": "AS001",
-      "max_triggers": 5
+      "max_triggers": 5,
+      "offer_count": 3
     }
   ],
   "aurora_rewards": [
@@ -249,6 +270,26 @@
       "id": "AR008",
       "name_key": "content.aurora_rewards.AR008.name",
       "sort_order": 7
+    }
+  ],
+  "black_market_rules": [
+    {
+      "fragment_amount": 10,
+      "fragment_offer_count": 3,
+      "gold_to_star_cost": 5,
+      "gold_to_star_reward": 450,
+      "hero_weight": 10,
+      "id": "BM001",
+      "item_weight": 40,
+      "minion_weight": 50,
+      "stamina_large_amount": 50,
+      "stamina_large_gold_price": 4,
+      "stamina_large_star_stone_price": 400,
+      "stamina_small_amount": 20,
+      "stamina_small_gold_price": 2,
+      "stamina_small_star_stone_price": 200,
+      "star_to_gold_cost": 550,
+      "star_to_gold_reward": 5
     }
   ],
   "card_tags": [
@@ -367,11 +408,11 @@
         "EN003"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 24,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H001.name",
       "output_type": 0,
-      "physical_damage": 6,
+      "physical_damage": 10,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 0,
@@ -446,7 +487,7 @@
         "EN011"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 24,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H002.name",
       "output_type": 1,
@@ -460,7 +501,7 @@
         "SY003"
       ],
       "texture_key": "card.H002.image",
-      "witchcraft_damage": 8
+      "witchcraft_damage": 10
     },
     {
       "ability_parts": [
@@ -505,7 +546,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 3,
+      "burn_damage": 8,
       "card_kind": 0,
       "card_tag_ids": [
         "TG010",
@@ -525,7 +566,7 @@
         "EN006"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 24,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H003.name",
       "output_type": 2,
@@ -604,11 +645,11 @@
         "EN012"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 23,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H004.name",
       "output_type": 0,
-      "physical_damage": 4,
+      "physical_damage": 8,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 3,
@@ -683,11 +724,11 @@
         "EN008"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 28,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H005.name",
       "output_type": 0,
-      "physical_damage": 7,
+      "physical_damage": 10,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 4,
@@ -763,7 +804,7 @@
         "EN002"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 26,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H006.name",
       "output_type": 6,
@@ -842,7 +883,7 @@
         "EN005"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 25,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H007.name",
       "output_type": 1,
@@ -856,7 +897,7 @@
         "SY003"
       ],
       "texture_key": "card.H007.image",
-      "witchcraft_damage": 9
+      "witchcraft_damage": 5
     },
     {
       "ability_parts": [
@@ -921,7 +962,7 @@
         "EN009"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 23,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H008.name",
       "output_type": 1,
@@ -935,7 +976,7 @@
         "SY003"
       ],
       "texture_key": "card.H008.image",
-      "witchcraft_damage": 9
+      "witchcraft_damage": 10
     },
     {
       "ability_parts": [
@@ -1000,11 +1041,11 @@
         "EN014"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 22,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H009.name",
       "output_type": 0,
-      "physical_damage": 9,
+      "physical_damage": 10,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 8,
@@ -1079,12 +1120,12 @@
         "EN013"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 26,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H010.name",
       "output_type": 3,
       "physical_damage": 0,
-      "poison_damage": 3,
+      "poison_damage": 1,
       "shield_power": 0,
       "sort_order": 9,
       "synergy_ids": [
@@ -1158,12 +1199,12 @@
         "EN001"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 30,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H011.name",
       "output_type": 3,
       "physical_damage": 0,
-      "poison_damage": 3,
+      "poison_damage": 1,
       "shield_power": 0,
       "sort_order": 10,
       "synergy_ids": [
@@ -1237,7 +1278,7 @@
         "EN004"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 23,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H012.name",
       "output_type": 1,
@@ -1251,7 +1292,7 @@
         "SY003"
       ],
       "texture_key": "card.H012.image",
-      "witchcraft_damage": 7
+      "witchcraft_damage": 10
     },
     {
       "ability_parts": [
@@ -1296,7 +1337,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 5,
+      "burn_damage": 4,
       "card_kind": 0,
       "card_tag_ids": [
         "TG010",
@@ -1316,7 +1357,7 @@
         "EN015"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 26,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H013.name",
       "output_type": 2,
@@ -1395,11 +1436,11 @@
         "EN016"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 24,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H014.name",
       "output_type": 0,
-      "physical_damage": 6,
+      "physical_damage": 10,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 13,
@@ -1474,11 +1515,11 @@
         "EN010"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 30,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H015.name",
       "output_type": 0,
-      "physical_damage": 10,
+      "physical_damage": 6,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 14,
@@ -1553,7 +1594,7 @@
         "EN007"
       ],
       "lifesteal_ratio": 0.0,
-      "max_health": 26,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.H016.name",
       "output_type": 1,
@@ -1567,7 +1608,7 @@
         "SY003"
       ],
       "texture_key": "card.H016.image",
-      "witchcraft_damage": 5
+      "witchcraft_damage": 6
     },
     {
       "ability_parts": [
@@ -1630,13 +1671,13 @@
       "initially_unlocked": 1,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 14,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS001.name",
       "output_type": 5,
       "physical_damage": 0,
       "poison_damage": 0,
-      "shield_power": 6,
+      "shield_power": 8,
       "sort_order": 16,
       "synergy_ids": [],
       "texture_key": "card.HS001.image",
@@ -1698,12 +1739,12 @@
       "footprint_height": 1,
       "footprint_width": 1,
       "haste_ratio": 0.0,
-      "healing_power": 6,
+      "healing_power": 8,
       "id": "HS002",
       "initially_unlocked": 1,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 16,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS002.name",
       "output_type": 4,
@@ -1758,7 +1799,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 3,
+      "burn_damage": 8,
       "card_kind": 1,
       "card_tag_ids": [
         "TG010",
@@ -1776,7 +1817,7 @@
       "initially_unlocked": 1,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 12,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS003.name",
       "output_type": 2,
@@ -1849,11 +1890,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 17,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS004.name",
       "output_type": 0,
-      "physical_damage": 5,
+      "physical_damage": 9,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 19,
@@ -1882,7 +1923,7 @@
             "haste_ratio": 0.0,
             "healing_power": 0.0,
             "lifesteal_ratio": 0.0,
-            "max_health": 0.0,
+            "max_health": 6.0,
             "multicast_bonus": 0,
             "physical_damage": 0.0,
             "poison_damage": 0.0,
@@ -1922,13 +1963,13 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 24,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS005.name",
       "output_type": 5,
       "physical_damage": 0,
       "poison_damage": 0,
-      "shield_power": 7,
+      "shield_power": 10,
       "sort_order": 20,
       "synergy_ids": [],
       "texture_key": "card.HS005.image",
@@ -1940,10 +1981,12 @@
           "actions": [
             {
               "amount": 0.0,
+              "amount_source": 0,
               "duration_seconds": 0.400000005960464478,
               "kind": 3,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -2044,7 +2087,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 12,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS006.name",
       "output_type": 6,
@@ -2117,7 +2160,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 12,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS007.name",
       "output_type": 1,
@@ -2127,7 +2170,7 @@
       "sort_order": 22,
       "synergy_ids": [],
       "texture_key": "card.HS007.image",
-      "witchcraft_damage": 7
+      "witchcraft_damage": 9
     },
     {
       "ability_parts": [
@@ -2185,12 +2228,12 @@
       "footprint_height": 1,
       "footprint_width": 1,
       "haste_ratio": 0.0,
-      "healing_power": 9,
+      "healing_power": 4,
       "id": "HS008",
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 14,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS008.name",
       "output_type": 4,
@@ -2263,11 +2306,11 @@
       "initially_unlocked": 1,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 12,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS009.name",
       "output_type": 0,
-      "physical_damage": 7,
+      "physical_damage": 10,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 24,
@@ -2336,12 +2379,12 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 14,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS010.name",
       "output_type": 3,
       "physical_damage": 0,
-      "poison_damage": 3,
+      "poison_damage": 1,
       "shield_power": 0,
       "sort_order": 25,
       "synergy_ids": [],
@@ -2409,7 +2452,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 14,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS011.name",
       "output_type": 1,
@@ -2419,7 +2462,7 @@
       "sort_order": 26,
       "synergy_ids": [],
       "texture_key": "card.HS011.image",
-      "witchcraft_damage": 8
+      "witchcraft_damage": 10
     },
     {
       "ability_parts": [
@@ -2482,7 +2525,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 13,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS012.name",
       "output_type": 1,
@@ -2492,7 +2535,7 @@
       "sort_order": 27,
       "synergy_ids": [],
       "texture_key": "card.HS012.image",
-      "witchcraft_damage": 9
+      "witchcraft_damage": 13
     },
     {
       "ability_parts": [
@@ -2537,7 +2580,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 3,
+      "burn_damage": 6,
       "card_kind": 1,
       "card_tag_ids": [
         "TG010",
@@ -2555,7 +2598,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 12,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS013.name",
       "output_type": 2,
@@ -2628,11 +2671,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 17,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS014.name",
       "output_type": 0,
-      "physical_damage": 8,
+      "physical_damage": 4,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 29,
@@ -2701,13 +2744,13 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 22,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS015.name",
       "output_type": 5,
       "physical_damage": 0,
       "poison_damage": 0,
-      "shield_power": 9,
+      "shield_power": 4,
       "sort_order": 30,
       "synergy_ids": [],
       "texture_key": "card.HS015.image",
@@ -2719,10 +2762,12 @@
           "actions": [
             {
               "amount": 0.150000005960464478,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 6,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -2814,7 +2859,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 12,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.HS016.name",
       "output_type": 6,
@@ -2853,11 +2898,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 80,
+      "max_health": 220,
       "monster_role": 3,
       "name_key": "content.cards.MB001.name",
       "output_type": 0,
-      "physical_damage": 8,
+      "physical_damage": 20,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 32,
@@ -2892,11 +2937,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 55,
+      "max_health": 135,
       "monster_role": 2,
       "name_key": "content.cards.ME001.name",
       "output_type": 0,
-      "physical_damage": 8,
+      "physical_damage": 18,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 33,
@@ -2931,7 +2976,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 48,
+      "max_health": 120,
       "monster_role": 2,
       "name_key": "content.cards.ME002.name",
       "output_type": 1,
@@ -2941,7 +2986,7 @@
       "sort_order": 34,
       "synergy_ids": [],
       "texture_key": "card.ME002.image",
-      "witchcraft_damage": 8
+      "witchcraft_damage": 18
     },
     {
       "ability_parts": [
@@ -2970,7 +3015,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 50,
+      "max_health": 125,
       "monster_role": 2,
       "name_key": "content.cards.ME003.name",
       "output_type": 1,
@@ -2980,7 +3025,7 @@
       "sort_order": 35,
       "synergy_ids": [],
       "texture_key": "card.ME003.image",
-      "witchcraft_damage": 7
+      "witchcraft_damage": 17
     },
     {
       "ability_parts": [
@@ -3009,7 +3054,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 12,
+      "max_health": 30,
       "monster_role": 1,
       "name_key": "content.cards.M001.name",
       "output_type": 1,
@@ -3019,7 +3064,7 @@
       "sort_order": 36,
       "synergy_ids": [],
       "texture_key": "card.M001.image",
-      "witchcraft_damage": 4
+      "witchcraft_damage": 10
     },
     {
       "ability_parts": [
@@ -3048,11 +3093,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 13,
+      "max_health": 32,
       "monster_role": 1,
       "name_key": "content.cards.M002.name",
       "output_type": 0,
-      "physical_damage": 4,
+      "physical_damage": 11,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 37,
@@ -3087,13 +3132,13 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 13,
+      "max_health": 32,
       "monster_role": 1,
       "name_key": "content.cards.M003.name",
       "output_type": 5,
       "physical_damage": 0,
       "poison_damage": 0,
-      "shield_power": 3,
+      "shield_power": 8,
       "sort_order": 38,
       "synergy_ids": [],
       "texture_key": "card.M003.image",
@@ -3125,7 +3170,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 17,
+      "max_health": 42,
       "monster_role": 1,
       "name_key": "content.cards.M004.name",
       "output_type": 0,
@@ -3159,12 +3204,12 @@
       "footprint_height": 1,
       "footprint_width": 1,
       "haste_ratio": 0.0,
-      "healing_power": 3,
+      "healing_power": 8,
       "id": "M005",
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 10,
+      "max_health": 26,
       "monster_role": 1,
       "name_key": "content.cards.M005.name",
       "output_type": 4,
@@ -3203,11 +3248,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 12,
+      "max_health": 28,
       "monster_role": 1,
       "name_key": "content.cards.M006.name",
       "output_type": 0,
-      "physical_damage": 5,
+      "physical_damage": 12,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 41,
@@ -3242,11 +3287,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 80,
+      "max_health": 220,
       "monster_role": 3,
       "name_key": "content.cards.MB002.name",
       "output_type": 0,
-      "physical_damage": 8,
+      "physical_damage": 20,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 42,
@@ -3281,11 +3326,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 55,
+      "max_health": 135,
       "monster_role": 2,
       "name_key": "content.cards.ME004.name",
       "output_type": 0,
-      "physical_damage": 8,
+      "physical_damage": 18,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 43,
@@ -3320,7 +3365,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 48,
+      "max_health": 120,
       "monster_role": 2,
       "name_key": "content.cards.ME005.name",
       "output_type": 1,
@@ -3330,7 +3375,7 @@
       "sort_order": 44,
       "synergy_ids": [],
       "texture_key": "card.ME005.image",
-      "witchcraft_damage": 8
+      "witchcraft_damage": 18
     },
     {
       "ability_parts": [
@@ -3359,7 +3404,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 50,
+      "max_health": 125,
       "monster_role": 2,
       "name_key": "content.cards.ME006.name",
       "output_type": 1,
@@ -3369,7 +3414,7 @@
       "sort_order": 45,
       "synergy_ids": [],
       "texture_key": "card.ME006.image",
-      "witchcraft_damage": 7
+      "witchcraft_damage": 17
     },
     {
       "ability_parts": [
@@ -3398,11 +3443,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 80,
+      "max_health": 220,
       "monster_role": 3,
       "name_key": "content.cards.MB003.name",
       "output_type": 0,
-      "physical_damage": 8,
+      "physical_damage": 20,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 52,
@@ -3437,11 +3482,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 55,
+      "max_health": 135,
       "monster_role": 2,
       "name_key": "content.cards.ME007.name",
       "output_type": 0,
-      "physical_damage": 8,
+      "physical_damage": 18,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 53,
@@ -3476,7 +3521,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 48,
+      "max_health": 120,
       "monster_role": 2,
       "name_key": "content.cards.ME008.name",
       "output_type": 1,
@@ -3486,7 +3531,7 @@
       "sort_order": 54,
       "synergy_ids": [],
       "texture_key": "card.ME008.image",
-      "witchcraft_damage": 8
+      "witchcraft_damage": 18
     },
     {
       "ability_parts": [
@@ -3515,7 +3560,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 50,
+      "max_health": 125,
       "monster_role": 2,
       "name_key": "content.cards.ME009.name",
       "output_type": 1,
@@ -3525,7 +3570,7 @@
       "sort_order": 55,
       "synergy_ids": [],
       "texture_key": "card.ME009.image",
-      "witchcraft_damage": 7
+      "witchcraft_damage": 17
     },
     {
       "ability_parts": [
@@ -3536,7 +3581,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 3,
+      "burn_damage": 18,
       "card_kind": 4,
       "card_tag_ids": [
         "TG010",
@@ -3554,7 +3599,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 105,
+      "max_health": 260,
       "monster_role": 3,
       "name_key": "content.cards.MB004.name",
       "output_type": 2,
@@ -3593,12 +3638,12 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 48,
+      "max_health": 120,
       "monster_role": 2,
       "name_key": "content.cards.ME010.name",
       "output_type": 3,
       "physical_damage": 0,
-      "poison_damage": 3,
+      "poison_damage": 2,
       "shield_power": 0,
       "sort_order": 63,
       "synergy_ids": [],
@@ -3614,7 +3659,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 3,
+      "burn_damage": 15,
       "card_kind": 4,
       "card_tag_ids": [
         "TG010",
@@ -3632,7 +3677,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 55,
+      "max_health": 135,
       "monster_role": 2,
       "name_key": "content.cards.ME011.name",
       "output_type": 2,
@@ -3671,7 +3716,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 50,
+      "max_health": 125,
       "monster_role": 2,
       "name_key": "content.cards.ME012.name",
       "output_type": 1,
@@ -3681,7 +3726,7 @@
       "sort_order": 65,
       "synergy_ids": [],
       "texture_key": "card.ME012.image",
-      "witchcraft_damage": 7
+      "witchcraft_damage": 18
     },
     {
       "ability_parts": [
@@ -3692,7 +3737,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 2,
+      "burn_damage": 8,
       "card_kind": 4,
       "card_tag_ids": [
         "TG010",
@@ -3710,7 +3755,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 12,
+      "max_health": 30,
       "monster_role": 1,
       "name_key": "content.cards.M019.name",
       "output_type": 2,
@@ -3749,12 +3794,12 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 13,
+      "max_health": 32,
       "monster_role": 1,
       "name_key": "content.cards.M020.name",
       "output_type": 3,
       "physical_damage": 0,
-      "poison_damage": 2,
+      "poison_damage": 1,
       "shield_power": 0,
       "sort_order": 67,
       "synergy_ids": [],
@@ -3788,11 +3833,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 14,
+      "max_health": 35,
       "monster_role": 1,
       "name_key": "content.cards.M021.name",
       "output_type": 0,
-      "physical_damage": 4,
+      "physical_damage": 11,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 68,
@@ -3827,11 +3872,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 17,
+      "max_health": 42,
       "monster_role": 1,
       "name_key": "content.cards.M022.name",
       "output_type": 0,
-      "physical_damage": 3,
+      "physical_damage": 2,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 69,
@@ -3848,7 +3893,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 2,
+      "burn_damage": 8,
       "card_kind": 4,
       "card_tag_ids": [
         "TG010",
@@ -3866,7 +3911,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 12,
+      "max_health": 30,
       "monster_role": 1,
       "name_key": "content.cards.M023.name",
       "output_type": 2,
@@ -3904,11 +3949,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 14,
+      "max_health": 35,
       "monster_role": 1,
       "name_key": "content.cards.M024.name",
       "output_type": 0,
-      "physical_damage": 5,
+      "physical_damage": 12,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 71,
@@ -3925,7 +3970,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 3,
+      "burn_damage": 18,
       "card_kind": 4,
       "card_tag_ids": [
         "TG010",
@@ -3943,7 +3988,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 105,
+      "max_health": 260,
       "monster_role": 3,
       "name_key": "content.cards.MB005.name",
       "output_type": 2,
@@ -3982,12 +4027,12 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 48,
+      "max_health": 120,
       "monster_role": 2,
       "name_key": "content.cards.ME013.name",
       "output_type": 3,
       "physical_damage": 0,
-      "poison_damage": 3,
+      "poison_damage": 2,
       "shield_power": 0,
       "sort_order": 73,
       "synergy_ids": [],
@@ -4003,7 +4048,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 3,
+      "burn_damage": 15,
       "card_kind": 4,
       "card_tag_ids": [
         "TG010",
@@ -4021,7 +4066,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 55,
+      "max_health": 135,
       "monster_role": 2,
       "name_key": "content.cards.ME014.name",
       "output_type": 2,
@@ -4060,7 +4105,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 50,
+      "max_health": 125,
       "monster_role": 2,
       "name_key": "content.cards.ME015.name",
       "output_type": 1,
@@ -4070,7 +4115,7 @@
       "sort_order": 75,
       "synergy_ids": [],
       "texture_key": "card.ME015.image",
-      "witchcraft_damage": 7
+      "witchcraft_damage": 18
     },
     {
       "ability_parts": [
@@ -4081,7 +4126,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 3,
+      "burn_damage": 18,
       "card_kind": 4,
       "card_tag_ids": [
         "TG010",
@@ -4099,7 +4144,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 105,
+      "max_health": 260,
       "monster_role": 3,
       "name_key": "content.cards.MB006.name",
       "output_type": 2,
@@ -4138,12 +4183,12 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 48,
+      "max_health": 120,
       "monster_role": 2,
       "name_key": "content.cards.ME016.name",
       "output_type": 3,
       "physical_damage": 0,
-      "poison_damage": 3,
+      "poison_damage": 2,
       "shield_power": 0,
       "sort_order": 83,
       "synergy_ids": [],
@@ -4159,7 +4204,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 3,
+      "burn_damage": 15,
       "card_kind": 4,
       "card_tag_ids": [
         "TG010",
@@ -4177,7 +4222,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 55,
+      "max_health": 135,
       "monster_role": 2,
       "name_key": "content.cards.ME017.name",
       "output_type": 2,
@@ -4216,7 +4261,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 50,
+      "max_health": 125,
       "monster_role": 2,
       "name_key": "content.cards.ME018.name",
       "output_type": 1,
@@ -4226,7 +4271,7 @@
       "sort_order": 85,
       "synergy_ids": [],
       "texture_key": "card.ME018.image",
-      "witchcraft_damage": 7
+      "witchcraft_damage": 18
     },
     {
       "ability_parts": [
@@ -4255,7 +4300,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 95,
+      "max_health": 210,
       "monster_role": 3,
       "name_key": "content.cards.MB007.name",
       "output_type": 1,
@@ -4265,7 +4310,7 @@
       "sort_order": 92,
       "synergy_ids": [],
       "texture_key": "card.MB007.image",
-      "witchcraft_damage": 7
+      "witchcraft_damage": 18
     },
     {
       "ability_parts": [
@@ -4294,11 +4339,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 48,
+      "max_health": 120,
       "monster_role": 2,
       "name_key": "content.cards.ME019.name",
       "output_type": 0,
-      "physical_damage": 9,
+      "physical_damage": 20,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 93,
@@ -4333,7 +4378,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 52,
+      "max_health": 130,
       "monster_role": 2,
       "name_key": "content.cards.ME020.name",
       "output_type": 1,
@@ -4343,7 +4388,7 @@
       "sort_order": 94,
       "synergy_ids": [],
       "texture_key": "card.ME020.image",
-      "witchcraft_damage": 10
+      "witchcraft_damage": 22
     },
     {
       "ability_parts": [
@@ -4372,7 +4417,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 55,
+      "max_health": 140,
       "monster_role": 2,
       "name_key": "content.cards.ME021.name",
       "output_type": 1,
@@ -4382,7 +4427,7 @@
       "sort_order": 95,
       "synergy_ids": [],
       "texture_key": "card.ME021.image",
-      "witchcraft_damage": 8
+      "witchcraft_damage": 19
     },
     {
       "ability_parts": [
@@ -4411,11 +4456,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 14,
+      "max_health": 35,
       "monster_role": 1,
       "name_key": "content.cards.M037.name",
       "output_type": 0,
-      "physical_damage": 4,
+      "physical_damage": 11,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 96,
@@ -4450,7 +4495,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 13,
+      "max_health": 32,
       "monster_role": 1,
       "name_key": "content.cards.M038.name",
       "output_type": 1,
@@ -4460,7 +4505,7 @@
       "sort_order": 97,
       "synergy_ids": [],
       "texture_key": "card.M038.image",
-      "witchcraft_damage": 3
+      "witchcraft_damage": 10
     },
     {
       "ability_parts": [
@@ -4489,7 +4534,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 15,
+      "max_health": 38,
       "monster_role": 1,
       "name_key": "content.cards.M039.name",
       "output_type": 1,
@@ -4499,7 +4544,7 @@
       "sort_order": 98,
       "synergy_ids": [],
       "texture_key": "card.M039.image",
-      "witchcraft_damage": 4
+      "witchcraft_damage": 11
     },
     {
       "ability_parts": [
@@ -4528,13 +4573,13 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 16,
+      "max_health": 40,
       "monster_role": 1,
       "name_key": "content.cards.M040.name",
       "output_type": 5,
       "physical_damage": 0,
       "poison_damage": 0,
-      "shield_power": 3,
+      "shield_power": 8,
       "sort_order": 99,
       "synergy_ids": [],
       "texture_key": "card.M040.image",
@@ -4567,7 +4612,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 12,
+      "max_health": 30,
       "monster_role": 1,
       "name_key": "content.cards.M041.name",
       "output_type": 1,
@@ -4577,7 +4622,7 @@
       "sort_order": 100,
       "synergy_ids": [],
       "texture_key": "card.M041.image",
-      "witchcraft_damage": 3
+      "witchcraft_damage": 10
     },
     {
       "ability_parts": [
@@ -4606,11 +4651,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 15,
+      "max_health": 38,
       "monster_role": 1,
       "name_key": "content.cards.M042.name",
       "output_type": 0,
-      "physical_damage": 5,
+      "physical_damage": 12,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 101,
@@ -4645,7 +4690,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 95,
+      "max_health": 210,
       "monster_role": 3,
       "name_key": "content.cards.MB008.name",
       "output_type": 1,
@@ -4655,7 +4700,7 @@
       "sort_order": 102,
       "synergy_ids": [],
       "texture_key": "card.MB008.image",
-      "witchcraft_damage": 7
+      "witchcraft_damage": 18
     },
     {
       "ability_parts": [
@@ -4684,11 +4729,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 48,
+      "max_health": 120,
       "monster_role": 2,
       "name_key": "content.cards.ME022.name",
       "output_type": 0,
-      "physical_damage": 9,
+      "physical_damage": 20,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 103,
@@ -4723,7 +4768,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 52,
+      "max_health": 130,
       "monster_role": 2,
       "name_key": "content.cards.ME023.name",
       "output_type": 1,
@@ -4733,7 +4778,7 @@
       "sort_order": 104,
       "synergy_ids": [],
       "texture_key": "card.ME023.image",
-      "witchcraft_damage": 10
+      "witchcraft_damage": 22
     },
     {
       "ability_parts": [
@@ -4762,7 +4807,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 55,
+      "max_health": 140,
       "monster_role": 2,
       "name_key": "content.cards.ME024.name",
       "output_type": 1,
@@ -4772,7 +4817,7 @@
       "sort_order": 105,
       "synergy_ids": [],
       "texture_key": "card.ME024.image",
-      "witchcraft_damage": 8
+      "witchcraft_damage": 19
     },
     {
       "ability_parts": [
@@ -4801,7 +4846,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 95,
+      "max_health": 210,
       "monster_role": 3,
       "name_key": "content.cards.MB009.name",
       "output_type": 1,
@@ -4811,7 +4856,7 @@
       "sort_order": 112,
       "synergy_ids": [],
       "texture_key": "card.MB009.image",
-      "witchcraft_damage": 7
+      "witchcraft_damage": 18
     },
     {
       "ability_parts": [
@@ -4840,11 +4885,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 48,
+      "max_health": 120,
       "monster_role": 2,
       "name_key": "content.cards.ME025.name",
       "output_type": 0,
-      "physical_damage": 9,
+      "physical_damage": 20,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 113,
@@ -4879,7 +4924,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 52,
+      "max_health": 130,
       "monster_role": 2,
       "name_key": "content.cards.ME026.name",
       "output_type": 1,
@@ -4889,7 +4934,7 @@
       "sort_order": 114,
       "synergy_ids": [],
       "texture_key": "card.ME026.image",
-      "witchcraft_damage": 10
+      "witchcraft_damage": 22
     },
     {
       "ability_parts": [
@@ -4918,7 +4963,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 55,
+      "max_health": 140,
       "monster_role": 2,
       "name_key": "content.cards.ME027.name",
       "output_type": 1,
@@ -4928,7 +4973,7 @@
       "sort_order": 115,
       "synergy_ids": [],
       "texture_key": "card.ME027.image",
-      "witchcraft_damage": 8
+      "witchcraft_damage": 19
     },
     {
       "ability_parts": [
@@ -4991,11 +5036,11 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 6,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.IC001.name",
       "output_type": 0,
-      "physical_damage": 2,
+      "physical_damage": 6,
       "poison_damage": 0,
       "shield_power": 0,
       "sort_order": 122,
@@ -5064,7 +5109,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 12,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.IC002.name",
       "output_type": 1,
@@ -5074,7 +5119,7 @@
       "sort_order": 123,
       "synergy_ids": [],
       "texture_key": "card.IC002.image",
-      "witchcraft_damage": 6
+      "witchcraft_damage": 10
     },
     {
       "ability_parts": [
@@ -5143,7 +5188,7 @@
       "output_type": 5,
       "physical_damage": 0,
       "poison_damage": 0,
-      "shield_power": 4,
+      "shield_power": 6,
       "sort_order": 124,
       "synergy_ids": [],
       "texture_key": "card.IC003.image",
@@ -5205,12 +5250,12 @@
       "footprint_height": 1,
       "footprint_width": 1,
       "haste_ratio": 0.0,
-      "healing_power": 4,
+      "healing_power": 6,
       "id": "IC004",
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 7,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.IC004.name",
       "output_type": 4,
@@ -5265,7 +5310,7 @@
         }
       ],
       "ammo_capacity": 0,
-      "burn_damage": 1,
+      "burn_damage": 6,
       "card_kind": 2,
       "card_tag_ids": [
         "TG010",
@@ -5283,7 +5328,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 6,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.IC005.name",
       "output_type": 2,
@@ -5356,7 +5401,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 8,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.IC006.name",
       "output_type": 3,
@@ -5374,10 +5419,12 @@
           "actions": [
             {
               "amount": 0.0,
+              "amount_source": 0,
               "duration_seconds": 1.5,
               "kind": 3,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -5459,7 +5506,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 7,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.IC007.name",
       "output_type": 6,
@@ -5477,10 +5524,12 @@
           "actions": [
             {
               "amount": 0.150000005960464478,
-              "duration_seconds": 1.0,
-              "kind": 8,
+              "amount_source": 0,
+              "duration_seconds": 0.0,
+              "kind": 5,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -5496,7 +5545,16 @@
           "conditions": [
             {
               "key": "",
-              "kind": 5,
+              "kind": 9,
+              "status": 0,
+              "tag_query": {
+
+              },
+              "threshold": 0.0
+            },
+            {
+              "key": "",
+              "kind": 10,
               "status": 0,
               "tag_query": {
 
@@ -5516,7 +5574,7 @@
             "unique_sources": false,
             "window_seconds": 0.0
           },
-          "trigger_event": 17
+          "trigger_event": 3
         },
         {
           "execution_kind": 2,
@@ -5572,7 +5630,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 9,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.IC008.name",
       "output_type": 6,
@@ -5590,10 +5648,12 @@
           "actions": [
             {
               "amount": 0.5,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 5,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -5676,7 +5736,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 6,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.IC009.name",
       "output_type": 6,
@@ -5694,10 +5754,12 @@
           "actions": [
             {
               "amount": 2.0,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 4,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -5789,7 +5851,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 8,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.IC010.name",
       "output_type": 6,
@@ -5807,10 +5869,12 @@
           "actions": [
             {
               "amount": -2.0,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 4,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -5902,7 +5966,7 @@
       "initially_unlocked": 0,
       "innate_ability_ids": [],
       "lifesteal_ratio": 0.0,
-      "max_health": 8,
+      "max_health": 10,
       "monster_role": 0,
       "name_key": "content.cards.IC011.name",
       "output_type": 6,
@@ -5920,10 +5984,12 @@
           "actions": [
             {
               "amount": 1.0,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 9,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -6040,42 +6106,43 @@
   ],
   "chapters": [
     {
+      "battle_music_key": "music.battle.rock",
       "boss_guard_health_multiplier": 1.29999995231628418,
       "chapter_index": 1,
       "difficulty": 1,
       "elite_guard_health_multiplier": 1.14999997615814209,
-      "enemy_health_multiplier": 3.0,
-      "enemy_power_multiplier": 1.0,
+      "enemy_health_multiplier": 1.20000004768371582,
+      "enemy_power_multiplier": 1.14999997615814209,
       "flavor_text_key": "content.chapters.CH001.flavor_text",
       "id": "CH001",
       "layers": [
         {
           "enemy_health_multiplier": 0.349999994039535522,
-          "enemy_power_multiplier": 0.959999978542327881,
+          "enemy_power_multiplier": 0.60000002384185791,
           "layer_index": 0,
           "normal_monster_count": 1
         },
         {
           "enemy_health_multiplier": 0.449999988079071045,
-          "enemy_power_multiplier": 1.00800001621246338,
+          "enemy_power_multiplier": 0.660000026226043701,
           "layer_index": 1,
           "normal_monster_count": 2
         },
         {
           "enemy_health_multiplier": 0.540000021457672119,
-          "enemy_power_multiplier": 1.0559999942779541,
+          "enemy_power_multiplier": 0.720000028610229492,
           "layer_index": 2,
           "normal_monster_count": 2
         },
         {
           "enemy_health_multiplier": 0.629999995231628418,
-          "enemy_power_multiplier": 1.10399997234344482,
+          "enemy_power_multiplier": 0.85000002384185791,
           "layer_index": 3,
           "normal_monster_count": 2
         },
         {
           "enemy_health_multiplier": 0.720000028610229492,
-          "enemy_power_multiplier": 1.15199995040893555,
+          "enemy_power_multiplier": 1.0,
           "layer_index": 4,
           "normal_monster_count": 3
         },
@@ -6161,6 +6228,7 @@
       "locked_background_key": "chapter.CH001.background.locked",
       "monster_set_id": "MS001",
       "name_key": "content.chapters.CH001.name",
+      "route_music_key": "music.route.rock",
       "sections": [
         {
           "adventure_count": 0,
@@ -6216,12 +6284,13 @@
       "unlocked_background_key": "chapter.CH001.background.unlocked"
     },
     {
+      "battle_music_key": "music.battle.blood",
       "boss_guard_health_multiplier": 1.29999995231628418,
       "chapter_index": 2,
       "difficulty": 1,
       "elite_guard_health_multiplier": 1.14999997615814209,
-      "enemy_health_multiplier": 5.0,
-      "enemy_power_multiplier": 2.79999995231628418,
+      "enemy_health_multiplier": 2.0,
+      "enemy_power_multiplier": 1.79999995231628418,
       "flavor_text_key": "content.chapters.CH002.flavor_text",
       "id": "CH002",
       "layers": [
@@ -6337,6 +6406,7 @@
       "locked_background_key": "chapter.CH002.background.locked",
       "monster_set_id": "MS004",
       "name_key": "content.chapters.CH002.name",
+      "route_music_key": "music.route.blood",
       "sections": [
         {
           "adventure_count": 0,
@@ -6392,12 +6462,13 @@
       "unlocked_background_key": "chapter.CH002.background.unlocked"
     },
     {
+      "battle_music_key": "music.battle.ice",
       "boss_guard_health_multiplier": 1.29999995231628418,
       "chapter_index": 3,
       "difficulty": 1,
       "elite_guard_health_multiplier": 1.14999997615814209,
-      "enemy_health_multiplier": 6.0,
-      "enemy_power_multiplier": 4.40000009536743164,
+      "enemy_health_multiplier": 3.20000004768371582,
+      "enemy_power_multiplier": 2.59999990463256836,
       "flavor_text_key": "content.chapters.CH003.flavor_text",
       "id": "CH003",
       "layers": [
@@ -6513,6 +6584,7 @@
       "locked_background_key": "chapter.CH003.background.locked",
       "monster_set_id": "MS007",
       "name_key": "content.chapters.CH003.name",
+      "route_music_key": "music.route.ice",
       "sections": [
         {
           "adventure_count": 0,
@@ -6568,12 +6640,13 @@
       "unlocked_background_key": "chapter.CH003.background.unlocked"
     },
     {
+      "battle_music_key": "music.battle.rock",
       "boss_guard_health_multiplier": 1.29999995231628418,
       "chapter_index": 1,
       "difficulty": 2,
       "elite_guard_health_multiplier": 1.14999997615814209,
-      "enemy_health_multiplier": 7.0,
-      "enemy_power_multiplier": 6.5,
+      "enemy_health_multiplier": 3.0,
+      "enemy_power_multiplier": 3.0,
       "flavor_text_key": "content.chapters.CH004.flavor_text",
       "id": "CH004",
       "layers": [
@@ -6689,6 +6762,7 @@
       "locked_background_key": "chapter.CH004.background.locked",
       "monster_set_id": "MS002",
       "name_key": "content.chapters.CH004.name",
+      "route_music_key": "music.route.rock",
       "sections": [
         {
           "adventure_count": 0,
@@ -6744,12 +6818,13 @@
       "unlocked_background_key": "chapter.CH004.background.unlocked"
     },
     {
+      "battle_music_key": "music.battle.blood",
       "boss_guard_health_multiplier": 1.29999995231628418,
       "chapter_index": 2,
       "difficulty": 2,
       "elite_guard_health_multiplier": 1.14999997615814209,
-      "enemy_health_multiplier": 9.0,
-      "enemy_power_multiplier": 8.0,
+      "enemy_health_multiplier": 4.5,
+      "enemy_power_multiplier": 4.5,
       "flavor_text_key": "content.chapters.CH005.flavor_text",
       "id": "CH005",
       "layers": [
@@ -6865,6 +6940,7 @@
       "locked_background_key": "chapter.CH005.background.locked",
       "monster_set_id": "MS005",
       "name_key": "content.chapters.CH005.name",
+      "route_music_key": "music.route.blood",
       "sections": [
         {
           "adventure_count": 0,
@@ -6920,12 +6996,13 @@
       "unlocked_background_key": "chapter.CH005.background.unlocked"
     },
     {
+      "battle_music_key": "music.battle.blood",
       "boss_guard_health_multiplier": 1.29999995231628418,
       "chapter_index": 2,
       "difficulty": 3,
       "elite_guard_health_multiplier": 1.14999997615814209,
-      "enemy_health_multiplier": 18.0,
-      "enemy_power_multiplier": 16.0,
+      "enemy_health_multiplier": 9.0,
+      "enemy_power_multiplier": 9.0,
       "flavor_text_key": "content.chapters.CH006.flavor_text",
       "id": "CH006",
       "layers": [
@@ -7041,6 +7118,7 @@
       "locked_background_key": "chapter.CH006.background.locked",
       "monster_set_id": "MS006",
       "name_key": "content.chapters.CH006.name",
+      "route_music_key": "music.route.blood",
       "sections": [
         {
           "adventure_count": 0,
@@ -7096,12 +7174,13 @@
       "unlocked_background_key": "chapter.CH006.background.unlocked"
     },
     {
+      "battle_music_key": "music.battle.rock",
       "boss_guard_health_multiplier": 1.29999995231628418,
       "chapter_index": 1,
       "difficulty": 3,
       "elite_guard_health_multiplier": 1.14999997615814209,
-      "enemy_health_multiplier": 14.0,
-      "enemy_power_multiplier": 13.0,
+      "enemy_health_multiplier": 6.0,
+      "enemy_power_multiplier": 6.0,
       "flavor_text_key": "content.chapters.CH007.flavor_text",
       "id": "CH007",
       "layers": [
@@ -7217,6 +7296,7 @@
       "locked_background_key": "chapter.CH007.background.locked",
       "monster_set_id": "MS003",
       "name_key": "content.chapters.CH007.name",
+      "route_music_key": "music.route.rock",
       "sections": [
         {
           "adventure_count": 0,
@@ -7272,12 +7352,13 @@
       "unlocked_background_key": "chapter.CH007.background.unlocked"
     },
     {
+      "battle_music_key": "music.battle.ice",
       "boss_guard_health_multiplier": 1.29999995231628418,
       "chapter_index": 3,
       "difficulty": 2,
       "elite_guard_health_multiplier": 1.14999997615814209,
-      "enemy_health_multiplier": 11.0,
-      "enemy_power_multiplier": 10.0,
+      "enemy_health_multiplier": 6.0,
+      "enemy_power_multiplier": 6.0,
       "flavor_text_key": "content.chapters.CH008.flavor_text",
       "id": "CH008",
       "layers": [
@@ -7393,6 +7474,7 @@
       "locked_background_key": "chapter.CH008.background.locked",
       "monster_set_id": "MS008",
       "name_key": "content.chapters.CH008.name",
+      "route_music_key": "music.route.ice",
       "sections": [
         {
           "adventure_count": 0,
@@ -7448,12 +7530,13 @@
       "unlocked_background_key": "chapter.CH008.background.unlocked"
     },
     {
+      "battle_music_key": "music.battle.ice",
       "boss_guard_health_multiplier": 1.29999995231628418,
       "chapter_index": 3,
       "difficulty": 3,
       "elite_guard_health_multiplier": 1.14999997615814209,
-      "enemy_health_multiplier": 22.0,
-      "enemy_power_multiplier": 20.0,
+      "enemy_health_multiplier": 12.0,
+      "enemy_power_multiplier": 12.0,
       "flavor_text_key": "content.chapters.CH009.flavor_text",
       "id": "CH009",
       "layers": [
@@ -7569,6 +7652,7 @@
       "locked_background_key": "chapter.CH009.background.locked",
       "monster_set_id": "MS009",
       "name_key": "content.chapters.CH009.name",
+      "route_music_key": "music.route.ice",
       "sections": [
         {
           "adventure_count": 0,
@@ -7712,22 +7796,23 @@
   "growth_rules": [
     {
       "chapter_level_bonus_ratio": 0.300000011920928955,
-      "fragment_step_bonus_ratio": 0.100000001490116119,
-      "fragment_step_count": 10,
+      "hero_damage_bonus_ratio_per_star": 0.0500000007450580597,
       "id": "GR001",
-      "star_fragment_costs": [
-        10,
-        20,
-        40,
-        80
-      ],
       "star_stat_multipliers": [
         1.0,
         2.20000004768371582,
         4.84000015258789062,
         10.6479997634887695,
         23.4256000518798828
-      ]
+      ],
+      "star_stone_step_costs": [
+        10,
+        20,
+        40,
+        80
+      ],
+      "training_step_bonus_ratio": 0.100000001490116119,
+      "training_step_count": 10
     }
   ],
   "innate_abilities": [
@@ -7737,10 +7822,12 @@
           "actions": [
             {
               "amount": 0.150000005960464478,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 5,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -7796,15 +7883,17 @@
         {
           "actions": [
             {
-              "amount": 0.0,
-              "duration_seconds": 2.0,
+              "amount": 4.0,
+              "amount_source": 2,
+              "duration_seconds": 0.0,
               "kind": 3,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
-              "power_multiplier": 0.5,
+              "power_multiplier": 0.0,
               "projectile_key": "",
               "status": 1,
               "target": 3,
@@ -7857,10 +7946,12 @@
           "actions": [
             {
               "amount": 0.0,
+              "amount_source": 0,
               "duration_seconds": 0.60000002384185791,
               "kind": 3,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -7916,15 +8007,17 @@
         {
           "actions": [
             {
-              "amount": 0.0,
+              "amount": 3.0,
+              "amount_source": 2,
               "duration_seconds": 0.0,
               "kind": 0,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
-              "power_multiplier": 0.25,
+              "power_multiplier": 0.0,
               "projectile_key": "",
               "status": 0,
               "target": 1,
@@ -7977,10 +8070,12 @@
           "actions": [
             {
               "amount": 0.200000002980232239,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 5,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -8036,15 +8131,17 @@
         {
           "actions": [
             {
-              "amount": 0.0,
+              "amount": 2.0,
+              "amount_source": 2,
               "duration_seconds": 0.0,
               "kind": 11,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 3,
               "parameters": {
 
               },
-              "power_multiplier": 0.150000005960464478,
+              "power_multiplier": 0.0,
               "projectile_key": "",
               "status": 0,
               "target": 6,
@@ -8106,10 +8203,12 @@
           "actions": [
             {
               "amount": 0.0,
+              "amount_source": 0,
               "duration_seconds": 0.5,
               "kind": 3,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -8193,13 +8292,13 @@
             "projectile_key": "",
             "shield_power": 0.0,
             "stat_bonus_ratios": {
-              "witchcraft_damage": 0.150000005960464478
+
             },
             "team_bonus_add": 0,
             "team_bonuses": {
 
             },
-            "witchcraft_damage": 0.0
+            "witchcraft_damage": 2.0
           },
           "target": 0,
           "target_tags": {
@@ -8224,15 +8323,17 @@
         {
           "actions": [
             {
-              "amount": 0.0,
-              "duration_seconds": 2.0,
+              "amount": 1.0,
+              "amount_source": 2,
+              "duration_seconds": 0.0,
               "kind": 3,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
-              "power_multiplier": 0.5,
+              "power_multiplier": 0.0,
               "projectile_key": "",
               "status": 2,
               "target": 3,
@@ -8285,10 +8386,12 @@
           "actions": [
             {
               "amount": 0.25,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 5,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -8344,15 +8447,17 @@
         {
           "actions": [
             {
-              "amount": 0.0,
+              "amount": 3.0,
+              "amount_source": 2,
               "duration_seconds": 0.0,
               "kind": 11,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
-              "power_multiplier": 0.25,
+              "power_multiplier": 0.0,
               "projectile_key": "",
               "status": 0,
               "target": 3,
@@ -8405,10 +8510,12 @@
           "actions": [
             {
               "amount": 0.150000005960464478,
-              "duration_seconds": 1.0,
-              "kind": 8,
+              "amount_source": 0,
+              "duration_seconds": 0.0,
+              "kind": 5,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -8473,15 +8580,17 @@
         {
           "actions": [
             {
-              "amount": 0.0,
-              "duration_seconds": 2.0,
+              "amount": 1.0,
+              "amount_source": 2,
+              "duration_seconds": 0.0,
               "kind": 3,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
-              "power_multiplier": 0.25,
+              "power_multiplier": 0.0,
               "projectile_key": "",
               "status": 2,
               "target": 1,
@@ -8582,15 +8691,17 @@
         {
           "actions": [
             {
-              "amount": 0.0,
-              "duration_seconds": 2.0,
+              "amount": 3.0,
+              "amount_source": 2,
+              "duration_seconds": 0.0,
               "kind": 3,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 3,
               "parameters": {
 
               },
-              "power_multiplier": 0.25,
+              "power_multiplier": 0.0,
               "projectile_key": "",
               "status": 1,
               "target": 6,
@@ -8633,10 +8744,12 @@
           "actions": [
             {
               "amount": 0.150000005960464478,
-              "duration_seconds": 1.0,
-              "kind": 8,
+              "amount_source": 0,
+              "duration_seconds": 0.0,
+              "kind": 5,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -9208,14 +9321,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9224,7 +9339,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.79999995231628418,
+      "cooldown_seconds": 3.0,
       "id": "SK001",
       "multicast_count": 1,
       "priority": 0,
@@ -9235,14 +9350,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9251,17 +9368,19 @@
           }
         },
         {
-          "amount": 0.0,
-          "duration_seconds": 0.60000002384185791,
-          "kind": 3,
+          "amount": 0.300000011920928955,
+          "amount_source": 0,
+          "duration_seconds": 0.0,
+          "kind": 6,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 3,
           "parameters": {
 
           },
           "power_multiplier": 0.0,
           "projectile_key": "",
-          "status": 4,
+          "status": 0,
           "target": 6,
           "target_tags": {
 
@@ -9279,14 +9398,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9306,14 +9427,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 1,
           "target": 3,
@@ -9333,14 +9456,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9349,7 +9474,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.0,
+      "cooldown_seconds": 2.59999990463256836,
       "id": "SK005",
       "multicast_count": 1,
       "priority": 0,
@@ -9360,14 +9485,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9386,17 +9513,19 @@
     {
       "actions": [
         {
-          "amount": 0.0,
-          "duration_seconds": 1.5,
-          "kind": 3,
+          "amount": 0.75,
+          "amount_source": 0,
+          "duration_seconds": 0.0,
+          "kind": 6,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
           "power_multiplier": 0.0,
           "projectile_key": "",
-          "status": 4,
+          "status": 0,
           "target": 3,
           "target_tags": {
 
@@ -9414,14 +9543,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 3,
           "parameters": {
 
           },
-          "power_multiplier": 0.5,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 6,
@@ -9430,7 +9561,7 @@
           }
         }
       ],
-      "cooldown_seconds": 3.0,
+      "cooldown_seconds": 3.20000004768371582,
       "id": "SK008",
       "multicast_count": 1,
       "priority": 0,
@@ -9441,14 +9572,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9468,14 +9601,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9495,14 +9630,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 2,
           "target": 3,
@@ -9522,14 +9659,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 2,
           "target": 3,
@@ -9549,14 +9688,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9576,14 +9717,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 3,
           "parameters": {
 
           },
-          "power_multiplier": 0.400000005960464478,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 1,
           "target": 6,
@@ -9603,14 +9746,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9619,7 +9764,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.0,
+      "cooldown_seconds": 3.0,
       "id": "SK015",
       "multicast_count": 1,
       "priority": 0,
@@ -9630,14 +9775,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 3,
           "parameters": {
 
           },
-          "power_multiplier": 0.400000005960464478,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 6,
@@ -9657,14 +9804,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 2,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 5,
@@ -9673,7 +9822,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.59999990463256836,
+      "cooldown_seconds": 2.79999995231628418,
       "id": "SK017",
       "multicast_count": 1,
       "priority": 0,
@@ -9684,14 +9833,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 1,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 5,
@@ -9711,14 +9862,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 0.75,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 1,
           "target": 3,
@@ -9738,14 +9891,35 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
+          "projectile_key": "",
+          "status": 0,
+          "target": 3,
+          "target_tags": {
+
+          }
+        },
+        {
+          "amount": 0.25,
+          "amount_source": 0,
+          "duration_seconds": 0.0,
+          "kind": 6,
+          "lifesteal_ratio": 0.0,
+          "main_ability_id": "",
+          "max_targets": 0,
+          "parameters": {
+
+          },
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9754,9 +9928,9 @@
           }
         }
       ],
-      "cooldown_seconds": 2.0,
+      "cooldown_seconds": 3.20000004768371582,
       "id": "SK020",
-      "multicast_count": 2,
+      "multicast_count": 1,
       "priority": 0,
       "sort_order": 50,
       "texture_key": ""
@@ -9765,14 +9939,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 2,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 0,
@@ -9792,41 +9968,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 1.5,
-          "kind": 3,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 0.0,
-          "projectile_key": "",
-          "status": 4,
-          "target": 6,
-          "target_tags": {
-
-          }
-        }
-      ],
-      "cooldown_seconds": 3.0,
-      "id": "SK022",
-      "multicast_count": 1,
-      "priority": 0,
-      "sort_order": 52,
-      "texture_key": ""
-    },
-    {
-      "actions": [
-        {
-          "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9846,14 +9997,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 1,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 0.5,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 8,
@@ -9862,7 +10015,7 @@
           }
         }
       ],
-      "cooldown_seconds": 3.20000004768371582,
+      "cooldown_seconds": 3.40000009536743164,
       "id": "SK024",
       "multicast_count": 1,
       "priority": 0,
@@ -9873,14 +10026,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9900,14 +10055,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 0.75,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 2,
           "target": 3,
@@ -9927,14 +10084,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9943,7 +10102,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.79999995231628418,
+      "cooldown_seconds": 3.0,
       "id": "SK027",
       "multicast_count": 1,
       "priority": 0,
@@ -9954,14 +10113,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -9970,7 +10131,7 @@
           }
         }
       ],
-      "cooldown_seconds": 3.20000004768371582,
+      "cooldown_seconds": 3.59999990463256836,
       "id": "SK028",
       "multicast_count": 1,
       "priority": 0,
@@ -9981,14 +10142,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 0.75,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 1,
           "target": 3,
@@ -9997,7 +10160,7 @@
           }
         }
       ],
-      "cooldown_seconds": 3.0,
+      "cooldown_seconds": 2.59999990463256836,
       "id": "SK029",
       "multicast_count": 1,
       "priority": 0,
@@ -10008,14 +10171,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 3,
           "parameters": {
 
           },
-          "power_multiplier": 0.449999988079071045,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 6,
@@ -10035,14 +10200,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 2,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 0.5,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 8,
@@ -10061,11 +10228,61 @@
     {
       "actions": [
         {
-          "amount": 0.60000002384185791,
+          "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
-          "kind": 6,
+          "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
+          "parameters": {
+
+          },
+          "power_multiplier": 0.0,
+          "projectile_key": "",
+          "status": 0,
+          "target": 3,
+          "target_tags": {
+
+          }
+        },
+        {
+          "amount": 3.0,
+          "amount_source": 2,
+          "duration_seconds": 0.0,
+          "kind": 0,
+          "lifesteal_ratio": 0.0,
+          "main_ability_id": "",
+          "max_targets": 4,
+          "parameters": {
+
+          },
+          "power_multiplier": 0.0,
+          "projectile_key": "",
+          "status": 0,
+          "target": 6,
+          "target_tags": {
+
+          }
+        }
+      ],
+      "cooldown_seconds": 3.79999995231628418,
+      "id": "SK033",
+      "multicast_count": 1,
+      "priority": 0,
+      "sort_order": 63,
+      "texture_key": ""
+    },
+    {
+      "actions": [
+        {
+          "amount": 0.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
+          "kind": 0,
+          "lifesteal_ratio": 0.0,
+          "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
@@ -10078,78 +10295,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.79999995231628418,
-      "id": "SK032",
-      "multicast_count": 1,
-      "priority": 0,
-      "sort_order": 62,
-      "texture_key": ""
-    },
-    {
-      "actions": [
-        {
-          "amount": 0.0,
-          "duration_seconds": 0.0,
-          "kind": 0,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 1.0,
-          "projectile_key": "",
-          "status": 0,
-          "target": 3,
-          "target_tags": {
-
-          }
-        },
-        {
-          "amount": 0.0,
-          "duration_seconds": 0.0,
-          "kind": 0,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 0.150000005960464478,
-          "projectile_key": "",
-          "status": 0,
-          "target": 6,
-          "target_tags": {
-
-          }
-        }
-      ],
-      "cooldown_seconds": 2.79999995231628418,
-      "id": "SK033",
-      "multicast_count": 1,
-      "priority": 0,
-      "sort_order": 63,
-      "texture_key": ""
-    },
-    {
-      "actions": [
-        {
-          "amount": 0.0,
-          "duration_seconds": 0.0,
-          "kind": 0,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 1.0,
-          "projectile_key": "",
-          "status": 0,
-          "target": 3,
-          "target_tags": {
-
-          }
-        }
-      ],
-      "cooldown_seconds": 2.79999995231628418,
+      "cooldown_seconds": 3.59999990463256836,
       "id": "SK034",
       "multicast_count": 1,
       "priority": 0,
@@ -10160,14 +10306,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10176,7 +10324,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.79999995231628418,
+      "cooldown_seconds": 3.79999995231628418,
       "id": "SK035",
       "multicast_count": 1,
       "priority": 0,
@@ -10187,14 +10335,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10203,7 +10353,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.84999990463256836,
+      "cooldown_seconds": 3.40000009536743164,
       "id": "SK036",
       "multicast_count": 1,
       "priority": 0,
@@ -10214,14 +10364,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10230,7 +10382,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.40000009536743164,
+      "cooldown_seconds": 3.40000009536743164,
       "id": "SK037",
       "multicast_count": 1,
       "priority": 0,
@@ -10241,14 +10393,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10257,7 +10411,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.54999995231628418,
+      "cooldown_seconds": 3.59999990463256836,
       "id": "SK038",
       "multicast_count": 1,
       "priority": 0,
@@ -10268,14 +10422,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 2,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 5,
@@ -10284,7 +10440,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.70000004768371582,
+      "cooldown_seconds": 3.59999990463256836,
       "id": "SK039",
       "multicast_count": 1,
       "priority": 0,
@@ -10295,14 +10451,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 3,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 6,
@@ -10322,14 +10480,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 1,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 5,
@@ -10338,7 +10498,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.40000009536743164,
+      "cooldown_seconds": 3.40000009536743164,
       "id": "SK041",
       "multicast_count": 1,
       "priority": 0,
@@ -10349,14 +10509,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10365,7 +10527,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.54999995231628418,
+      "cooldown_seconds": 3.79999995231628418,
       "id": "SK042",
       "multicast_count": 1,
       "priority": 0,
@@ -10376,14 +10538,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 1,
           "target": 3,
@@ -10392,15 +10556,17 @@
           }
         },
         {
-          "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount": 2.0,
+          "amount_source": 2,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 4,
           "parameters": {
 
           },
-          "power_multiplier": 0.100000001490116119,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 1,
           "target": 6,
@@ -10409,7 +10575,7 @@
           }
         }
       ],
-      "cooldown_seconds": 3.0,
+      "cooldown_seconds": 4.0,
       "id": "SK043",
       "multicast_count": 1,
       "priority": 0,
@@ -10420,14 +10586,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 2,
           "target": 3,
@@ -10436,7 +10604,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.54999995231628418,
+      "cooldown_seconds": 4.0,
       "id": "SK044",
       "multicast_count": 1,
       "priority": 0,
@@ -10447,14 +10615,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 1,
           "target": 3,
@@ -10463,7 +10633,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.70000004768371582,
+      "cooldown_seconds": 3.79999995231628418,
       "id": "SK045",
       "multicast_count": 1,
       "priority": 0,
@@ -10474,14 +10644,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10490,7 +10662,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.84999990463256836,
+      "cooldown_seconds": 3.59999990463256836,
       "id": "SK046",
       "multicast_count": 1,
       "priority": 0,
@@ -10501,14 +10673,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 1,
           "target": 3,
@@ -10517,7 +10691,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.40000009536743164,
+      "cooldown_seconds": 3.40000009536743164,
       "id": "SK047",
       "multicast_count": 1,
       "priority": 0,
@@ -10528,14 +10702,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 2,
           "target": 3,
@@ -10544,7 +10720,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.54999995231628418,
+      "cooldown_seconds": 3.79999995231628418,
       "id": "SK048",
       "multicast_count": 1,
       "priority": 0,
@@ -10555,14 +10731,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10571,7 +10749,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.70000004768371582,
+      "cooldown_seconds": 3.59999990463256836,
       "id": "SK049",
       "multicast_count": 1,
       "priority": 0,
@@ -10582,14 +10760,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 3,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 6,
@@ -10609,14 +10789,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 1,
           "target": 3,
@@ -10625,7 +10807,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.40000009536743164,
+      "cooldown_seconds": 3.59999990463256836,
       "id": "SK051",
       "multicast_count": 1,
       "priority": 0,
@@ -10636,14 +10818,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10652,7 +10836,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.54999995231628418,
+      "cooldown_seconds": 3.79999995231628418,
       "id": "SK052",
       "multicast_count": 1,
       "priority": 0,
@@ -10663,14 +10847,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10679,15 +10865,17 @@
           }
         },
         {
-          "amount": 0.0,
+          "amount": 2.0,
+          "amount_source": 2,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 5,
           "parameters": {
 
           },
-          "power_multiplier": 0.100000001490116119,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 6,
@@ -10696,7 +10884,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.40000009536743164,
+      "cooldown_seconds": 3.79999995231628418,
       "id": "SK053",
       "multicast_count": 1,
       "priority": 0,
@@ -10707,14 +10895,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10723,7 +10913,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.54999995231628418,
+      "cooldown_seconds": 3.59999990463256836,
       "id": "SK054",
       "multicast_count": 1,
       "priority": 0,
@@ -10734,14 +10924,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10751,10 +10943,12 @@
         },
         {
           "amount": 0.300000011920928955,
+          "amount_source": 0,
           "duration_seconds": 0.0,
           "kind": 6,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
@@ -10767,7 +10961,7 @@
           }
         }
       ],
-      "cooldown_seconds": 3.20000004768371582,
+      "cooldown_seconds": 4.0,
       "id": "SK055",
       "multicast_count": 1,
       "priority": 0,
@@ -10778,14 +10972,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10794,7 +10990,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.84999990463256836,
+      "cooldown_seconds": 3.79999995231628418,
       "id": "SK056",
       "multicast_count": 1,
       "priority": 0,
@@ -10805,14 +11001,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10821,7 +11019,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.40000009536743164,
+      "cooldown_seconds": 3.40000009536743164,
       "id": "SK057",
       "multicast_count": 1,
       "priority": 0,
@@ -10832,14 +11030,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10848,24 +11048,26 @@
           }
         },
         {
-          "amount": 0.0,
-          "duration_seconds": 0.800000011920928955,
-          "kind": 3,
+          "amount": 0.400000005960464478,
+          "amount_source": 0,
+          "duration_seconds": 0.0,
+          "kind": 6,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
           "power_multiplier": 0.0,
           "projectile_key": "",
-          "status": 4,
+          "status": 0,
           "target": 3,
           "target_tags": {
 
           }
         }
       ],
-      "cooldown_seconds": 2.79999995231628418,
+      "cooldown_seconds": 3.79999995231628418,
       "id": "SK058",
       "multicast_count": 1,
       "priority": 0,
@@ -10876,81 +11078,12 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 1.0,
-          "projectile_key": "",
-          "status": 0,
-          "target": 3,
-          "target_tags": {
-
-          }
-        }
-      ],
-      "cooldown_seconds": 2.70000004768371582,
-      "id": "SK059",
-      "multicast_count": 1,
-      "priority": 0,
-      "sort_order": 89,
-      "texture_key": ""
-    },
-    {
-      "actions": [
-        {
-          "amount": 0.0,
-          "duration_seconds": 0.0,
-          "kind": 2,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 1.0,
-          "projectile_key": "",
-          "status": 0,
-          "target": 0,
-          "target_tags": {
-
-          }
-        }
-      ],
-      "cooldown_seconds": 2.84999990463256836,
-      "id": "SK060",
-      "multicast_count": 1,
-      "priority": 0,
-      "sort_order": 90,
-      "texture_key": ""
-    },
-    {
-      "actions": [
-        {
-          "amount": 0.0,
-          "duration_seconds": 0.0,
-          "kind": 11,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 1.0,
-          "projectile_key": "",
-          "status": 0,
-          "target": 3,
-          "target_tags": {
-
-          }
-        },
-        {
-          "amount": 0.300000011920928955,
-          "duration_seconds": 0.0,
-          "kind": 6,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
@@ -10963,7 +11096,84 @@
           }
         }
       ],
-      "cooldown_seconds": 2.79999995231628418,
+      "cooldown_seconds": 3.59999990463256836,
+      "id": "SK059",
+      "multicast_count": 1,
+      "priority": 0,
+      "sort_order": 89,
+      "texture_key": ""
+    },
+    {
+      "actions": [
+        {
+          "amount": 0.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
+          "kind": 2,
+          "lifesteal_ratio": 0.0,
+          "main_ability_id": "",
+          "max_targets": 0,
+          "parameters": {
+
+          },
+          "power_multiplier": 0.0,
+          "projectile_key": "",
+          "status": 0,
+          "target": 0,
+          "target_tags": {
+
+          }
+        }
+      ],
+      "cooldown_seconds": 3.79999995231628418,
+      "id": "SK060",
+      "multicast_count": 1,
+      "priority": 0,
+      "sort_order": 90,
+      "texture_key": ""
+    },
+    {
+      "actions": [
+        {
+          "amount": 0.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
+          "kind": 11,
+          "lifesteal_ratio": 0.0,
+          "main_ability_id": "",
+          "max_targets": 0,
+          "parameters": {
+
+          },
+          "power_multiplier": 0.0,
+          "projectile_key": "",
+          "status": 0,
+          "target": 3,
+          "target_tags": {
+
+          }
+        },
+        {
+          "amount": 0.300000011920928955,
+          "amount_source": 0,
+          "duration_seconds": 0.0,
+          "kind": 6,
+          "lifesteal_ratio": 0.0,
+          "main_ability_id": "",
+          "max_targets": 0,
+          "parameters": {
+
+          },
+          "power_multiplier": 0.0,
+          "projectile_key": "",
+          "status": 0,
+          "target": 3,
+          "target_tags": {
+
+          }
+        }
+      ],
+      "cooldown_seconds": 3.79999995231628418,
       "id": "SK061",
       "multicast_count": 1,
       "priority": 0,
@@ -10974,14 +11184,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -10990,7 +11202,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.54999995231628418,
+      "cooldown_seconds": 3.79999995231628418,
       "id": "SK062",
       "multicast_count": 1,
       "priority": 0,
@@ -11001,14 +11213,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 0,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -11017,7 +11231,7 @@
           }
         }
       ],
-      "cooldown_seconds": 1.39999997615814209,
+      "cooldown_seconds": 2.40000009536743164,
       "id": "SK063",
       "multicast_count": 1,
       "priority": 0,
@@ -11028,14 +11242,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 11,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 3,
@@ -11055,14 +11271,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 2,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 5,
@@ -11071,7 +11289,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.59999990463256836,
+      "cooldown_seconds": 3.0,
       "id": "SK065",
       "multicast_count": 1,
       "priority": 0,
@@ -11082,14 +11300,16 @@
       "actions": [
         {
           "amount": 0.0,
+          "amount_source": 1,
           "duration_seconds": 0.0,
           "kind": 1,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 0,
           "target": 5,
@@ -11098,7 +11318,7 @@
           }
         }
       ],
-      "cooldown_seconds": 3.0,
+      "cooldown_seconds": 3.20000004768371582,
       "id": "SK066",
       "multicast_count": 1,
       "priority": 0,
@@ -11109,14 +11329,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 3.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 0,
           "parameters": {
 
           },
-          "power_multiplier": 1.0,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 1,
           "target": 3,
@@ -11125,7 +11347,7 @@
           }
         }
       ],
-      "cooldown_seconds": 2.20000004768371582,
+      "cooldown_seconds": 2.59999990463256836,
       "id": "SK067",
       "multicast_count": 1,
       "priority": 0,
@@ -11136,14 +11358,16 @@
       "actions": [
         {
           "amount": 0.0,
-          "duration_seconds": 2.0,
+          "amount_source": 1,
+          "duration_seconds": 0.0,
           "kind": 3,
           "lifesteal_ratio": 0.0,
           "main_ability_id": "",
+          "max_targets": 3,
           "parameters": {
 
           },
-          "power_multiplier": 0.400000005960464478,
+          "power_multiplier": 0.0,
           "projectile_key": "",
           "status": 2,
           "target": 6,
@@ -11158,173 +11382,11 @@
       "priority": 0,
       "sort_order": 98,
       "texture_key": ""
-    },
-    {
-      "actions": [
-        {
-          "amount": 0.0,
-          "duration_seconds": 1.0,
-          "kind": 3,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 0.0,
-          "projectile_key": "",
-          "status": 3,
-          "target": 3,
-          "target_tags": {
-
-          }
-        }
-      ],
-      "cooldown_seconds": 4.0,
-      "id": "SK069",
-      "multicast_count": 1,
-      "priority": 0,
-      "sort_order": 99,
-      "texture_key": ""
-    },
-    {
-      "actions": [
-        {
-          "amount": 0.0,
-          "duration_seconds": 2.0,
-          "kind": 3,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 0.0,
-          "projectile_key": "",
-          "status": 4,
-          "target": 6,
-          "target_tags": {
-
-          }
-        }
-      ],
-      "cooldown_seconds": 4.0,
-      "id": "SK070",
-      "multicast_count": 1,
-      "priority": 0,
-      "sort_order": 100,
-      "texture_key": ""
-    },
-    {
-      "actions": [
-        {
-          "amount": 0.5,
-          "duration_seconds": 0.0,
-          "kind": 5,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 0.0,
-          "projectile_key": "",
-          "status": 0,
-          "target": 8,
-          "target_tags": {
-
-          }
-        }
-      ],
-      "cooldown_seconds": 2.5,
-      "id": "SK071",
-      "multicast_count": 1,
-      "priority": 0,
-      "sort_order": 101,
-      "texture_key": ""
-    },
-    {
-      "actions": [
-        {
-          "amount": 3.0,
-          "duration_seconds": 0.0,
-          "kind": 4,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 0.0,
-          "projectile_key": "",
-          "status": 0,
-          "target": 0,
-          "target_tags": {
-
-          }
-        }
-      ],
-      "cooldown_seconds": 3.0,
-      "id": "SK072",
-      "multicast_count": 1,
-      "priority": 0,
-      "sort_order": 102,
-      "texture_key": ""
-    },
-    {
-      "actions": [
-        {
-          "amount": -3.0,
-          "duration_seconds": 0.0,
-          "kind": 4,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 0.0,
-          "projectile_key": "",
-          "status": 0,
-          "target": 0,
-          "target_tags": {
-
-          }
-        }
-      ],
-      "cooldown_seconds": 3.0,
-      "id": "SK073",
-      "multicast_count": 1,
-      "priority": 0,
-      "sort_order": 103,
-      "texture_key": ""
-    },
-    {
-      "actions": [
-        {
-          "amount": 1.0,
-          "duration_seconds": 0.0,
-          "kind": 9,
-          "lifesteal_ratio": 0.0,
-          "main_ability_id": "",
-          "parameters": {
-
-          },
-          "power_multiplier": 0.0,
-          "projectile_key": "",
-          "status": 0,
-          "target": 7,
-          "target_tags": {
-
-          }
-        }
-      ],
-      "cooldown_seconds": 5.0,
-      "id": "SK074",
-      "multicast_count": 1,
-      "priority": 0,
-      "sort_order": 104,
-      "texture_key": ""
     }
   ],
   "metadata": {
-    "content_hash": "f4a8d50277affba0412e97aacb7e9df8ca321973db3fb446ab8f63e204205a8a",
-    "schema_version": 36,
+    "content_hash": "afa9eee8f58d652313cd51565f57a4f1c93b878960a1ed8dabe2243e80af2db3",
+    "schema_version": 42,
     "sources": [
       {
         "file": "Combat/ability_aliases.csv",
@@ -11332,13 +11394,18 @@
         "table": "ability_aliases"
       },
       {
+        "file": "Progression/adventure_encounter_rules.csv",
+        "sha256": "f32c34ad41e6aa2f384e297fa1e60a60317f69072942e184f96d428f4f2beb07",
+        "table": "adventure_encounter_rules"
+      },
+      {
         "file": "Progression/adventure_node_rules.csv",
-        "sha256": "c8a8f0c1c9f6aa13d594b57252b8d916dff43b75d3e6fb5a34b3d04c50ff6555",
+        "sha256": "0369b1d0fb879d1c64bdacae0a26ac4380b093c77413006eb0dcd89442c284cd",
         "table": "adventure_node_rules"
       },
       {
         "file": "Progression/aurora_reward_rules.csv",
-        "sha256": "33183dd1ee418614c85e9260fa9b4aac807cd89d388d3faee268a8e7fcd8f4a4",
+        "sha256": "e497209d3e024e7bfa3dd72a417aba1fc048924313a8d2e35cc034f3f3b7f150",
         "table": "aurora_reward_rules"
       },
       {
@@ -11347,23 +11414,28 @@
         "table": "aurora_rewards"
       },
       {
+        "file": "Progression/black_market_rules.csv",
+        "sha256": "9963466d58a9de833ed35f665f0a0a3e8ee269bef62e4c62a965199b696c66fd",
+        "table": "black_market_rules"
+      },
+      {
         "file": "Cards/card_tags.csv",
         "sha256": "fc759b6d5d01b07ed3a98534ff909d6622d5758fde239e7b64ed3d638e88ca36",
         "table": "card_tags"
       },
       {
         "file": "Cards/cards.csv",
-        "sha256": "79380b00a37f5975b3720ad0a2d0e82d91666baaaf0fd06705f9e2ad6f59029d",
+        "sha256": "44ba743c2a5daa1727decccaf629031811f404a3602437613afe2b0734268547",
         "table": "cards"
       },
       {
         "file": "Progression/chapters.csv",
-        "sha256": "02a34924b4e2f97b503ef2109c46bf842228a611490729feca8b672477722f4a",
+        "sha256": "fd6feb9cd341e74bebf2c87aee56bacd0dcb747917202c45fe9e6184d8d18cdf",
         "table": "chapters"
       },
       {
         "file": "Progression/chapter_layers.csv",
-        "sha256": "d17489b416a7c7b6500e2f652e7d8546b3d70a093e8af9ff67e9d58d03a03ae2",
+        "sha256": "1101a1511b75c8b9fedffe3de6306d16d795e0b895bfbd19fbabb026bb5bb01c",
         "table": "chapters.layers"
       },
       {
@@ -11383,12 +11455,12 @@
       },
       {
         "file": "Combat/growth_rules.csv",
-        "sha256": "7cff6b504c28f81ca78fdc50d22e553f5f8325e94c97408bf502ba9fd4991c11",
+        "sha256": "d469270bea7135e95af99066a7a349f016424d75a669ab2f5fb87409516c099c",
         "table": "growth_rules"
       },
       {
         "file": "Combat/innate_abilities.csv",
-        "sha256": "eab710f5f97e537f3e18ca9c96055ecd1515691fb7bc714a24ab07999245679c",
+        "sha256": "fbef7eb62f0804794ca76029192fa90d8a36c9dd1b276c07e224f1a5491c7536",
         "table": "innate_abilities"
       },
       {
@@ -11398,7 +11470,7 @@
       },
       {
         "file": "Combat/main_abilities.csv",
-        "sha256": "a3e3f17a2ea5e32c020b432df903f3902de8a2182a94fa6368b32ef7ee2646a9",
+        "sha256": "07385f6127dc4b9443e74bc88f7217d69f0b8b5c6078a0802a6e6450c3dbc117",
         "table": "main_abilities"
       },
       {
@@ -11413,7 +11485,7 @@
       },
       {
         "file": "Inventory/relics.csv",
-        "sha256": "9fb332b35eb4abdfb30beef8749d726b2b2bbbb9f2ef4357ed92d5311fe57b9a",
+        "sha256": "3a028050362dbdb130d60d94ae5c67f182702952a3eb42bee6d9b4a91aea3e03",
         "table": "relics"
       },
       {
@@ -11423,7 +11495,7 @@
       },
       {
         "file": "Shop/shop_offers.csv",
-        "sha256": "504b2922bd7e20e6b743e7e1e2266394bbc640bb76f2fd0b3309e66e32655aa5",
+        "sha256": "98222e6906ee88baae5ca1f18550b3949d71384126390e42132934ed911b6e52",
         "table": "shop_offers"
       },
       {
@@ -11670,10 +11742,12 @@
           "actions": [
             {
               "amount": 0.5,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 5,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -11984,10 +12058,12 @@
           "actions": [
             {
               "amount": 1.0,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 5,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -12116,11 +12192,13 @@
         {
           "actions": [
             {
-              "amount": 2.0,
-              "duration_seconds": 4.0,
+              "amount": 8.0,
+              "amount_source": 0,
+              "duration_seconds": 0.0,
               "kind": 3,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 3,
               "parameters": {
 
               },
@@ -12162,10 +12240,12 @@
           "actions": [
             {
               "amount": 8.0,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 2,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -12251,10 +12331,12 @@
           "actions": [
             {
               "amount": 6.0,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 11,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 3,
               "parameters": {
 
               },
@@ -12296,10 +12378,12 @@
           "actions": [
             {
               "amount": 5.0,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 0,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 3,
               "parameters": {
 
               },
@@ -12385,10 +12469,12 @@
           "actions": [
             {
               "amount": 12.0,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 2,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -12430,10 +12516,12 @@
           "actions": [
             {
               "amount": 10.0,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 2,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -12519,10 +12607,12 @@
           "actions": [
             {
               "amount": 1.5,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 5,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -12564,10 +12654,12 @@
           "actions": [
             {
               "amount": 16.0,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 2,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -12909,7 +13001,7 @@
   "shop_offers": [
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR001",
       "id": "SH001",
@@ -12921,7 +13013,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR002",
       "id": "SH002",
@@ -12933,7 +13025,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR003",
       "id": "SH003",
@@ -12945,7 +13037,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR004",
       "id": "SH004",
@@ -12957,7 +13049,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR005",
       "id": "SH005",
@@ -12969,7 +13061,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR006",
       "id": "SH006",
@@ -12981,7 +13073,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR007",
       "id": "SH007",
@@ -12993,7 +13085,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR008",
       "id": "SH008",
@@ -13005,7 +13097,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR009",
       "id": "SH009",
@@ -13017,7 +13109,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR010",
       "id": "SH010",
@@ -13029,7 +13121,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR011",
       "id": "SH011",
@@ -13041,7 +13133,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR012",
       "id": "SH012",
@@ -13053,7 +13145,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR013",
       "id": "SH013",
@@ -13065,7 +13157,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR014",
       "id": "SH014",
@@ -13077,7 +13169,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR015",
       "id": "SH015",
@@ -13089,7 +13181,7 @@
     },
     {
       "account_gold_price": 10,
-      "account_star_stone_price": 1000,
+      "account_star_stone_price": null,
       "fragment_amount": 100,
       "fragment_item_id": "FR016",
       "id": "SH016",
@@ -13587,10 +13679,12 @@
           "actions": [
             {
               "amount": 0.25,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 5,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -13648,10 +13742,12 @@
           "actions": [
             {
               "amount": 3.0,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 2,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },
@@ -13710,10 +13806,12 @@
           "actions": [
             {
               "amount": 10.0,
+              "amount_source": 0,
               "duration_seconds": 0.0,
               "kind": 4,
               "lifesteal_ratio": 0.0,
               "main_ability_id": "",
+              "max_targets": 0,
               "parameters": {
 
               },

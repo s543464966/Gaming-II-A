@@ -20,7 +20,7 @@ func definition(build: MechanicBuild, card: Dictionary, team_id: int, options: D
 		return {}
 	var selected: Array = options.mechanisms
 	if "growth" in selected:
-		result = CardGrowth.project(result, build.permanent_growth.get(card.definition_id, {"star_level": 1, "fragment_steps": 0}), card.copies, content.data.growth_rules[0])
+		result = CardGrowth.project(result, build.permanent_growth.get(card.definition_id, {"star_level": 1, "training_steps": 0}), card.copies, content.data.growth_rules[0])
 	if "talents" in selected: _append_talents(result, build.talents)
 	if "innate_abilities" in selected:
 		for id in result.innate_ability_ids:

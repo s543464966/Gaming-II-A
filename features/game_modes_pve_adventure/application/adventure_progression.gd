@@ -32,6 +32,14 @@ func _init(player: PlayerSessionState, save: Callable, time_source: Callable = C
 	clock = time_source
 	_simulation = simulation if simulation != null else CombatSimulator.new()
 
+## 冒险奖励可取得公共卡牌与遗物，但章节背景只准备当前章；下载前不生成路线或扣体力。
+func required_resource_keys() -> Array[String]:
+	var records: Array = []
+	for table: String in ["cards", "relics", "items", "reward_dice", "aurora_rewards", "main_abilities", "innate_abilities", "talents", "synergies"]:
+		records.append(session.content.data.get(table, []))
+	records.append(session.content.get_record("chapters", session.selected_chapter))
+	return session.content.resource_keys(records)
+
 ## 进入塔前只生成缺失路线，并持久保存完整敌方坐标。
 func ensure_started(seed: int) -> String:
 	return session.transact(func():
@@ -46,15 +54,11 @@ func ensure_started(seed: int) -> String:
 		if not session.build.started:
 			var hero: String = session.collection.selected_hero
 			if session.collection.cards[hero].health_ratio <= 0: return "英雄生命为零，无法开始章节。"
-			var growth: Dictionary = session.collection.growth_snapshot(session.assets)
-			var definition: Dictionary = session.collection.definition(hero, session.assets)
-			var error: String = session.build.start(definition, session.collection.current_health(hero, session.assets), session.collection.hero_position, growth, session.talents.learned)
+			var growth: Dictionary = session.collection.growth_snapshot()
+			var definition: Dictionary = session.collection.definition(hero)
+			var error: String = session.build.start(definition, session.collection.current_health(hero), session.collection.hero_position, growth, session.talents.learned)
 			if not error.is_empty(): return error
-			if definition.output_type in [CombatTypes.Output.Healing, CombatTypes.Output.Shield, CombatTypes.Output.Special]: return _starting_companion()
-			return ""
-		if session.build.cards.size() == 1:
-			var definition = session.adventure.assembly.base_definition(session.build.core().definition_id)
-			if definition.output_type in [CombatTypes.Output.Healing, CombatTypes.Output.Shield, CombatTypes.Output.Special]: return _starting_companion()
+			return _starting_companion()
 		return "", persist)
 
 ## 确认章节是显式动作，浏览不会改变实际挑战章节。
@@ -391,7 +395,7 @@ func _apply_battle_result(result: Dictionary) -> String:
 			error = _unlock_next()
 		return error, persist)
 
-## 非战斗节点直接执行配置效果，不另开战斗准备场景。
+## 遗迹直接进入奖励；黑市与奇遇保存活动事件，等待页面逐项操作或离开。
 func execute_node(index: int) -> String:
 	return session.transact(func():
 		var route: RouteState = session.current_route()
@@ -409,15 +413,126 @@ func execute_node(index: int) -> String:
 				if not error.is_empty(): return error
 				error = session.build.aurora_rewards.begin(reward_seed ^ 0x51F15E, session.adventure, session.build)
 				if not error.is_empty(): return error
-			C.NodeEffect.GrantCurrency:
-				if not session.assets.grant(rule.reward_currency, rule.reward_amount): return "节点奖励参数无效。"
-			C.NodeEffect.ExchangeCurrency:
-				if not session.assets.spend(rule.cost_currency, rule.cost_amount): return "账号货币不足。"
-				if not session.assets.grant(rule.reward_currency, rule.reward_amount): return "节点兑换参数无效。"
+			C.NodeEffect.BlackMarket, C.NodeEffect.Encounter:
+				var event_seed: int = (route.seed * 31 + index * 131 + session.build.rewards.roll_index + 1) & 0xffffffff
+				error = session.build.events.begin(index, node.type, event_seed, session.adventure, session.build)
+				return error
 			_: return "节点效果未实现。"
 		error = route.resolve(true)
 		if error.is_empty():
 			error = _unlock_next()
+		return error, persist)
+
+## 恢复页面前核对活动事件与当前进行中节点完全一致。
+func has_active_event() -> bool:
+	var route: RouteState = session.current_route()
+	return route != null and route.phase == Route.Phase.NodeInProgress and session.build.events.is_active() and route.current == session.build.events.node_index and route.nodes[route.current].type == session.build.events.node_type
+
+## 黑市项目各自只结算一次；碎片和体力可任选金币或星石支付。
+func market_purchase(id: String, payment: int = -1) -> String:
+	return session.transact(func():
+		if not has_active_event() or session.build.events.node_type != C.NodeType.BlackMarket: return "当前不在流动黑市。"
+		var action: Dictionary = session.build.events.available_market_action(id)
+		if action.is_empty(): return "该项目已经完成或不存在。"
+		var error: String = ""
+		match int(action.kind):
+			AdventureEvents.MarketKind.Fragment, AdventureEvents.MarketKind.Stamina:
+				if payment not in [C.Currency.Gold, C.Currency.StarStone]: return "请选择金币或星石支付。"
+				var price: int = action.gold_price if payment == C.Currency.Gold else action.stone_price
+				if not session.assets.spend(payment, price): return "账号货币不足。"
+				if action.kind == AdventureEvents.MarketKind.Fragment:
+					if not session.assets.add_item(action.content_id, action.amount): return "碎片商品交付失败。"
+				elif not session.user.grant_stamina(action.amount, int(current_time())): return "体力商品交付失败。"
+			AdventureEvents.MarketKind.Exchange:
+				if not session.assets.spend(action.cost_currency, action.cost_amount): return "账号货币不足。"
+				if not session.assets.grant(action.reward_currency, action.reward_amount): return "货币兑换交付失败。"
+			_: return "黑市项目类别无效。"
+		error = session.build.events.mark_purchased(id)
+		return error, persist)
+
+## 页面离开前可据此提示尚有未购买项目，但不强迫玩家消费。
+func market_has_unpurchased() -> bool:
+	if not has_active_event() or session.build.events.node_type != C.NodeType.BlackMarket: return false
+	return session.build.events.market.actions.any(func(action): return not action.purchased)
+
+## 奇遇刷新只替换一次锁定组合，不结算被放弃的收获或代价。
+func refresh_encounter() -> String:
+	return session.transact(func():
+		if not has_active_event() or session.build.events.node_type != C.NodeType.Adventure: return "当前不在旅途奇遇。"
+		return session.build.events.refresh_encounter(session.adventure, session.build), persist)
+
+## 需要腾出位置时列出可替换的非英雄实例，并预先计入锁定卡牌代价可能释放的位置。
+func encounter_replacement_candidates() -> Array:
+	if not has_active_event() or session.build.events.node_type != C.NodeType.Adventure: return []
+	var pair: Dictionary = session.build.events.encounter
+	if pair.reward.kind != C.EncounterReward.Card: return []
+	var definition: Dictionary = session.adventure.assembly.base_definition(pair.reward.content_id)
+	if session.build.can_add_card(definition): return []
+	var cost_target: String = pair.cost.target_id if pair.cost.kind == C.EncounterCost.Card else ""
+	var locked: Dictionary = session.build.find_card(cost_target)
+	var projected_removals: Array = [cost_target] if not locked.is_empty() and locked.copies == 1 else []
+	if session.build.can_add_after_removing(definition, projected_removals): return []
+	return session.build.cards.filter(func(card): return card.kind in [CardTypes.Kind.Minion, CardTypes.Kind.ItemCard] and session.build.can_add_after_removing(definition, projected_removals + [card.id]))
+
+## 接受时先结算锁定代价，再发放收获；体力不足时保持原组合供刷新或离开。
+func accept_encounter(replacement_id: String = "") -> String:
+	return session.transact(func():
+		if not has_active_event() or session.build.events.node_type != C.NodeType.Adventure: return "当前不在旅途奇遇。"
+		var pair: Dictionary = session.build.events.encounter
+		var candidates: Array = encounter_replacement_candidates()
+		if not candidates.is_empty() and (replacement_id.is_empty() or not candidates.any(func(card): return card.id == replacement_id)): return "请选择一张非英雄卡牌替换。"
+		var error: String = _apply_encounter_cost(pair.cost)
+		if not error.is_empty(): return error
+		if pair.reward.kind == C.EncounterReward.Card:
+			var definition: Dictionary = session.adventure.assembly.base_definition(pair.reward.content_id)
+			if not session.build.can_add_card(definition):
+				error = session.build.replace_event_card(replacement_id)
+				if not error.is_empty(): return error
+		error = _apply_encounter_reward(pair.reward)
+		if not error.is_empty(): return error
+		session.build.events.clear()
+		error = session.current_route().resolve(true)
+		if error.is_empty(): error = _unlock_next()
+		return error, persist)
+
+## 代价目标为空代表无操作，不能改扣英雄、其他卡牌或其他骰子。
+func _apply_encounter_cost(cost: Dictionary) -> String:
+	match int(cost.kind):
+		C.EncounterCost.Stamina:
+			return "" if session.user.spend(cost.amount, int(current_time())) else "体力不足，无法接受这次奇遇。"
+		C.EncounterCost.TeamDebuff:
+			return session.build.add_event_debuff(cost.stat, cost.amount)
+		C.EncounterCost.Card:
+			return session.build.remove_event_card(cost.target_id, session.adventure)
+		C.EncounterCost.Dice:
+			return session.build.rewards.remove_unused(int(cost.target_id) if cost.target_id.is_valid_int() else -1)
+	return "奇遇代价类别无效。"
+
+## 收获在同一事务发放；额外骰子立即进入无倒计时的正常奖励流程。
+func _apply_encounter_reward(reward: Dictionary) -> String:
+	match int(reward.kind):
+		C.EncounterReward.Dice:
+			var reward_seed: int = (session.build.events.seed ^ 0x34A71C) & 0xffffffff
+			session.build.rewards.grant_extra(reward_seed)
+			var error: String = session.build.begin_reward(reward_seed)
+			return error if not error.is_empty() else _roll_new_dice()
+		C.EncounterReward.StarStone:
+			return "" if session.assets.grant(C.Currency.StarStone, reward.amount) else "奇遇星石入账失败。"
+		C.EncounterReward.Relic:
+			var pools: Array = session.content.data.dice_reward_pools.filter(func(pool): return pool.reward_kind == C.DiceReward.Relic)
+			if pools.is_empty(): return "奇遇遗物缺少正式奖励来源。"
+			return session.build.receive({"pool_id": pools[0].id, "kind": C.DiceReward.Relic, "content_id": reward.content_id, "amount": 1}, session.adventure, session.collection)
+		C.EncounterReward.Card:
+			return session.build.receive_event_card(reward.content_id, session.adventure, session.collection)
+	return "奇遇收获类别无效。"
+
+## 主动离开只放弃当前事件内容，已提交的黑市购买保持有效并推进路线。
+func leave_event() -> String:
+	return session.transact(func():
+		if not has_active_event(): return "当前没有可离开的事件。"
+		session.build.events.clear()
+		var error: String = session.current_route().resolve(true)
+		if error.is_empty(): error = _unlock_next()
 		return error, persist)
 
 ## 只把生命比例映射回账号永久上限，章节加成不泄漏到收藏基础数值。
@@ -441,11 +556,11 @@ func _unlock_next() -> String:
 			break
 	return ""
 
-## 纯支援英雄开章搭配已拥有的输出随从，避免专一化后首战无法造成伤害。
+## 同基准英雄开章搭配一名已拥有的输出随从，队伍成长从首战开始。
 func _starting_companion() -> String:
 	var candidates: Array = session.content.data.cards.filter(func(row): return row.card_kind == CardTypes.Kind.Minion and row.output_type in [CombatTypes.Output.Physical, CombatTypes.Output.Witchcraft, CombatTypes.Output.Burn, CombatTypes.Output.Poison] and session.collection.owns(row.id))
 	candidates.sort_custom(func(a, b): return a.output_type < b.output_type if a.output_type != b.output_type else a.sort_order < b.sort_order)
-	if candidates.is_empty(): return "支援英雄开章需要一名已解锁的输出随从。"
+	if candidates.is_empty(): return "开章需要一名已解锁的输出随从。"
 	var pools: Array = session.content.data.dice_reward_pools.filter(func(pool): return pool.reward_kind == C.DiceReward.Minion)
 	if pools.is_empty(): return "开章随从缺少正式奖励来源。"
 	var error: String = session.build.receive({"pool_id": pools[0].id, "kind": C.DiceReward.Minion, "content_id": candidates[0].id, "amount": 1}, session.adventure, session.collection)

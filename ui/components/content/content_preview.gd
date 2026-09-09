@@ -112,8 +112,7 @@ static func card_face(definition: Dictionary, state: Dictionary = {}) -> Diction
 	return {"definition": definition, "state": frame}
 
 ## 账号成长由业务方注入，不在静态预览中查询拥有状态或碎片资产。
-static func permanent_detail(definition: Dictionary, status: Dictionary) -> Dictionary:
+static func permanent_detail(definition: Dictionary) -> Dictionary:
 	var result = card_detail(definition)
 	result.scope = ContentText.text("ui.collection.permanent_stats")
-	result.growth = status
 	return result

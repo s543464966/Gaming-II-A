@@ -107,6 +107,9 @@ msgstr "Transform"
 msgid "rules.action.witchcraft"
 msgstr "Witchcraft"
 
+msgid "rules.actions.card_output_points"
+msgstr "the card’s {type} value"
+
 msgid "rules.actions.card_power_ratio"
 msgstr "{percent}% of the card’s {type} power"
 
@@ -134,9 +137,6 @@ msgstr "This damage has {percent}% {stat_lifesteal_ratio} (shield loss excluded)
 msgid "rules.actions.physical_damage"
 msgstr "Deal {amount} {stat_physical_damage} to {target}"
 
-msgid "rules.actions.poison_penetration"
-msgstr "While poisoned, healing received is reduced by 20% (non-stacking). Existing shields block poison damage until depleted; poison then bypasses later shields"
-
 msgid "rules.actions.pollution"
 msgstr "Pollution change: {amount}"
 
@@ -149,11 +149,11 @@ msgstr "Provide {amount} {stat_shield_power} to {target}"
 msgid "rules.actions.status_control"
 msgstr "Apply {status} to {target} for {seconds}s"
 
-msgid "rules.actions.status_damage"
-msgstr "Apply {status} to {target} for {seconds}s ({amount} damage per second)"
+msgid "rules.actions.status_stacks"
+msgstr "Apply {amount} stacks of {status} to {target}"
 
 msgid "rules.actions.witchcraft"
-msgstr "Deal {amount} {stat_witchcraft_damage} to {target} (+20% against shields)"
+msgstr "Deal {amount} {stat_witchcraft_damage} to {target}"
 
 msgid "rules.card.ammo"
 msgstr "{stat_ammo_capacity} · {count} uses per battle; active casts consume 1; passives remain when empty"
@@ -333,7 +333,7 @@ msgid "rules.mechanic.copy_main_ability"
 msgstr "{target} gains an independent {percent}%-strength snapshot of a preset main ability for {seconds}s"
 
 msgid "rules.mechanic.detonate"
-msgstr "Consume {count} allied Burn stacks on {target}; deal {percent}% of remaining base damage"
+msgstr "Consume {count} allied Burn stacks on {target}; deal damage equal to {percent}% of the consumed stacks"
 
 msgid "rules.mechanic.distinct"
 msgstr "distinct sources"
@@ -360,7 +360,7 @@ msgid "rules.mechanic.sacrifice"
 msgstr "Sacrifice the allied minion {target}, then: {payload}"
 
 msgid "rules.mechanic.transfer"
-msgstr "Transfer {amount} existing {resource} from self to {target}, preserving timers"
+msgstr "Transfer {amount}{resource} from self to {target}"
 
 msgid "rules.mechanic.transform"
 msgstr "{target} switches to a preset main ability form for {seconds}s; health and ammo are preserved"
@@ -419,9 +419,6 @@ msgstr "Burn"
 msgid "rules.output.healing"
 msgstr "Healing"
 
-msgid "rules.output.per_second"
-msgstr "{amount}/s"
-
 msgid "rules.output.physical"
 msgstr "Physical"
 
@@ -433,6 +430,9 @@ msgstr "Shield"
 
 msgid "rules.output.special"
 msgstr "Special"
+
+msgid "rules.output.stacks"
+msgstr "{amount} stacks"
 
 msgid "rules.output.witchcraft"
 msgstr "Witchcraft"
@@ -450,7 +450,7 @@ msgid "rules.resource.health"
 msgstr "health"
 
 msgid "rules.resource.poison"
-msgstr "Poison instances"
+msgstr " Poison stacks"
 
 msgid "rules.resource.shield"
 msgstr "shield"
@@ -586,6 +586,12 @@ msgstr "the event target"
 
 msgid "rules.target.farthest_enemy"
 msgstr "the farthest enemy"
+
+msgid "rules.target.limited_enemies"
+msgstr "up to {count} enemies"
+
+msgid "rules.target.limited_units"
+msgstr "up to {count} units"
 
 msgid "rules.target.linked_ally"
 msgstr "linked allies"

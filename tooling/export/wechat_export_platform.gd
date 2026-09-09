@@ -16,7 +16,7 @@ func _get_os_name() -> String:
 
 ## 编辑器列表复用项目已有图标，不引入额外资源依赖。
 func _get_logo() -> Texture2D:
-	return load("res://game_content/dice/art/faces/img_df1.png")
+	return load("res://game_content/dice/art/faces/relic_surface.tres")
 
 ## 导出路径指向小游戏配置文件，其他文件写入同级目录。
 func _get_binary_extensions(_preset: EditorExportPreset) -> PackedStringArray:

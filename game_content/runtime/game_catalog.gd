@@ -59,7 +59,7 @@ func node_definition(node: Dictionary) -> Dictionary:
 	if not rule.is_empty(): rule.merge(node.event_terms, true)
 	return rule
 
-## 按声明类别加载纹理、特效或弹道，资源只缓存一份。
+## 按声明类别加载纹理、音频、特效或弹道，资源只缓存一份。
 func resource(key: String, kind: String = "Texture") -> Resource:
 	if key.is_empty(): return null
 	var entry: Dictionary = assets.get(key, {})
@@ -68,3 +68,21 @@ func resource(key: String, kind: String = "Texture") -> Resource:
 		return null
 	if not _resources.has(key): _resources[key] = load(entry.path)
 	return _resources[key]
+
+## 从调用方实际需要的静态记录提取登记资源键，不把内容分类或页面规则写进下载服务。
+func resource_keys(records: Variant) -> Array[String]:
+	var found: Dictionary = {}
+	_collect_resource_keys(records, found)
+	var keys: Array[String] = []
+	keys.assign(found.keys())
+	keys.sort()
+	return keys
+
+## 递归检查结构化字段，只接纳注册表中的完整资源身份，不依赖字段名或 ID 前缀。
+func _collect_resource_keys(value: Variant, found: Dictionary) -> void:
+	if value is String:
+		if assets.has(value): found[value] = true
+	elif value is Array:
+		for item: Variant in value: _collect_resource_keys(item, found)
+	elif value is Dictionary:
+		for item: Variant in value.values(): _collect_resource_keys(item, found)

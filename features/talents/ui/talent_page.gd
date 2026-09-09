@@ -1,8 +1,7 @@
 extends Control
 ## Home 永久天赋页：以纵向圣坛展示串行节点，并在底部纸面提交学习。
 
-const UI = preload("res://ui/components/ui.gd")
-const DESIGN_SIZE := Vector2(941, 1672)
+const DESIGN_SIZE := Vector2(941, 1412)
 const NODE_SIZE := Vector2(170, 170)
 const NODE_BOTTOM_Y := 535.0
 const NODE_STEP_Y := 255.0
@@ -19,7 +18,7 @@ var overlays: CanvasLayer
 var selected_id: String = ""
 var _buttons: Dictionary = {}
 var _rows: Array = []
-var _return_button: Button
+var _tab_motion: Tween
 @onready var _design: Control = $Design
 @onready var _nodes: Control = $Design/Shrine/Nodes
 @onready var _unlock: Button = $Design/Detail/Margin/Column/Unlock
@@ -30,20 +29,16 @@ func bind_player(player: PlayerSessionState, save: Callable, overlay: CanvasLaye
 	persist = save
 	overlays = overlay
 
-## 宿主关闭按钮保留命中与焦点，只把外观和位置交给沉浸式返回标识。
-func bind_return_button(button: Button) -> void:
-	_return_button = button
-	for state: String in ["normal", "hover", "pressed", "hover_pressed", "disabled", "focus"]:
-		button.add_theme_stylebox_override(state, StyleBoxEmpty.new())
-	for event: Signal in [button.button_down, button.button_up, button.mouse_entered, button.mouse_exited, button.focus_entered, button.focus_exited]:
-		event.connect(_refresh_return_tint)
-
 ## 稳定骨架由场景持有，运行时只生成当前策划数据声明的节点。
 func _ready() -> void:
 	resized.connect(_layout_art)
+	$Tabs/Bar.resized.connect(_layout_tabs)
 	_layout_art()
-	_refresh_return_tint()
+	$Tabs.configure([{"id": "Talents", "label": "ui.talents.permanent"}, {"id": "Growth", "label": "ui.growth.title"}])
+	$Tabs.selected.connect(_select_section)
+	_select_section($Tabs.selected_id)
 	if session == null: return
+	$Growth.bind_player(session, persist, overlays)
 	for label: Label in [$Design/Header/Points, $Design/Detail/Margin/Column/Scroll/Text/Title,
 		$Design/Detail/Margin/Column/Scroll/Text/Effect, $Design/Detail/Margin/Column/Scroll/Text/Requirement]:
 		label.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
@@ -55,26 +50,39 @@ func _ready() -> void:
 	if not _rows.is_empty(): selected_id = _rows[0].id
 	refresh()
 
-## 画布完整等比放入安全区，并让宿主命中区对齐页面内返回标识。
+## 天赋画布完整等比放入页头下方，保留节点与详情的相对位置。
 func _layout_art() -> void:
-	var ratio: float = minf(size.x / DESIGN_SIZE.x, size.y / DESIGN_SIZE.y)
+	var available := Vector2(size.x, maxf(0, size.y - 84))
+	var ratio: float = minf(available.x / DESIGN_SIZE.x, available.y / DESIGN_SIZE.y)
 	if ratio <= 0: return
 	_design.size = DESIGN_SIZE
 	_design.scale = Vector2.ONE * ratio
-	_design.position = (size - DESIGN_SIZE * ratio) * 0.5
-	if is_instance_valid(_return_button):
-		_return_button.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
-		_return_button.size = Vector2(146, 146)
-		_return_button.scale = Vector2.ONE * ratio
-		_return_button.global_position = global_position + _design.position + Vector2(782.5, 23.5) * ratio
+	_design.position = Vector2(0, 84) + (available - DESIGN_SIZE * ratio) * 0.5
 
-## 返回标识沿用 Home 入口的明度反馈，不额外绘制第二个可点击控件。
-func _refresh_return_tint() -> void:
-	if not is_node_ready() or not is_instance_valid(_return_button): return
-	var brightness: float = UI.tokens.entry_normal_brightness
-	if _return_button.is_pressed(): brightness = UI.tokens.entry_pressed_brightness
-	elif _return_button.is_hovered() or _return_button.has_focus(): brightness = UI.tokens.entry_hover_brightness
-	$Design/ReturnArt.self_modulate = Color(brightness, brightness, brightness)
+## 永久天赋与分类培养互斥，切页关闭未提交确认。
+func _select_section(id: String) -> void:
+	if overlays != null: overlays.close_modal()
+	$Design.visible = id == "Talents"
+	$Growth.visible = id == "Growth"
+	$Growth.refresh()
+	_layout_tabs(true)
+
+## 奶白整底上只移动一块暗色选中面，沿用模式选择的缓动与金属配色。
+func _layout_tabs(animate: bool = false) -> void:
+	if not is_node_ready() or $Tabs.selected_id.is_empty(): return
+	if _tab_motion != null and _tab_motion.is_valid(): _tab_motion.kill()
+	var selected: Button = $Tabs/Bar.get_node($Tabs.selected_id)
+	var selection: Control = $Tabs/Bar/Selection
+	if animate and is_visible_in_tree():
+		_tab_motion = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+		_tab_motion.tween_property(selection, "position:x", selected.position.x, 0.28)
+		_tab_motion.tween_property(selection, "size:x", selected.size.x, 0.28)
+	else:
+		selection.position.x = selected.position.x
+		selection.size.x = selected.size.x
+	for id: String in ["Talents", "Growth"]:
+		$Tabs/Bar.get_node(id).get_node("Caption").self_modulate = GOLD if id == $Tabs.selected_id else INK
+		$Tabs/Bar.get_node(id).accessibility_name = ContentText.text("ui.talents.permanent" if id == "Talents" else "ui.growth.title")
 
 ## 每个数据节点只创建一个原生按钮，位置由策划顺序投影到圣坛中轴。
 func _create_node(row: Dictionary, index: int) -> void:

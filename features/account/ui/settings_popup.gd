@@ -1,11 +1,12 @@
 class_name AccountSettingsPopup
 extends Control
-## Home 设置小弹窗；只绑定语言服务与本机玩家说明，不持有账号状态。
+## Home 设置小弹窗；绑定语言与游戏音量偏好，不持有玩家进度。
 
 signal close_requested
-const PANEL_SIZE := Vector2(468, 548)
+const PANEL_SIZE := Vector2(468, 824)
 var localization: LocalizationService
 var platform: Node
+var audio: AudioService
 @onready var panel: Control = $SafeArea/Bounds/Panel
 @onready var language_selector: Control = $SafeArea/Bounds/Panel/Content/Column/LanguageSelector
 
@@ -13,6 +14,7 @@ var platform: Node
 func _enter_tree() -> void:
 	var selector: Control = $SafeArea/Bounds/Panel/Content/Column/LanguageSelector
 	selector.service = localization
+	$SafeArea/Bounds/Panel/Content/Column/AudioSettings.service = audio
 	selector.get_node("Title").theme_type_variation = &"DetailHeading"
 	selector.get_node("Title").add_theme_font_size_override("font_size", 24)
 	var picker: OptionButton = selector.get_node("Picker")
@@ -22,7 +24,7 @@ func _enter_tree() -> void:
 	_add_picker_arrow(picker)
 	selector.get_node("Feedback").theme_type_variation = &"DetailCaption"
 
-## 场景只连接关闭、遮罩和自适应布局，不提交玩家数据。
+## 场景只连接关闭、遮罩和自适应布局，音量写入仍由应用音频服务负责。
 func _ready() -> void:
 	$Shade.color = GameUI.tokens.modal_shade
 	$SafeArea.configure(platform)
@@ -62,7 +64,7 @@ func _set_done_pressed(pressed: bool) -> void:
 func _layout() -> void:
 	if not is_node_ready(): return
 	var available: Vector2 = $SafeArea/Bounds.size
-	var factor: float = minf(1.0, minf(available.x * 0.86 / PANEL_SIZE.x, available.y * 0.72 / PANEL_SIZE.y))
+	var factor: float = minf(1.0, minf(available.x * 0.86 / PANEL_SIZE.x, available.y * 0.82 / PANEL_SIZE.y))
 	panel.size = PANEL_SIZE
 	panel.scale = Vector2.ONE * factor
 	panel.position = (available - PANEL_SIZE * factor) * 0.5
