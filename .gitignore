@@ -1,24 +1,63 @@
-# Godot-generated cache and local export artifacts
-/.godot/
-/exports/
-/build/
-/builds/
-/dist/
-/temp/
-/tmp/
-.runtime/
-node_modules/
-.dy-game-cache/
-*.translation
-*.tmp
+# 工作区根目录统一维护忽略规则，覆盖 Coding/godot 及外层工具和资料。
 
-# Local export credentials, signing material and developer-tool preferences
-export_credentials.cfg
-project.private.config.json
+# 操作系统生成文件
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# Godot 导入缓存与各类隔离运行目录
+.godot/
+.runtime/
+.dy-game-cache/
+
+# 可重新安装的依赖与 Python 缓存
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# 导出制品；保留构建目录说明
+/Archive/Builds/*
+!/Archive/Builds/README.md
+!/Archive/Builds/.gitkeep
+!/Archive/Builds/douyin/
+/Archive/Builds/douyin/*
+!/Archive/Builds/douyin/.gitkeep
+/Coding/godot/exports/
+/Coding/godot/build/
+/Coding/godot/builds/
+/Coding/godot/dist/
+
+# 本机编辑器与 agent 配置；.agents/ 技能和 AGENTS.md 保留
+.codex/
+.idea/
+.fleet/
+.vscode/
+
+# 日志、崩溃诊断与临时文件
+*.log
+*.stacktrace
+*.tmp
+*.swp
+*.swo
+*~
+/Coding/godot/temp/
+/Coding/godot/tmp/
+/Coding/godot/mono_crash*
+/Coding/godot/crash_dump*
+
+# 环境变量实值与本机导出配置；可提交不含秘密的配置示例
 .env
 .env.*
 !.env.example
 !.env.sample
+!.env.*.example
+export_credentials.cfg
+project.private.config.json
+
+# 私钥与签名文件
 *.p12
 *.pfx
 *.keystore
@@ -26,20 +65,5 @@ project.private.config.json
 *.pem
 *.key
 
-# Local editor and agent state
-.vscode/
-.idea/
-.fleet/
-.agent/
-.agents/
-.codex/
-*.log
-*.stacktrace
-/mono_crash*
-/crash_dump*
-
-# Operating system files
-.DS_Store
-._*
-Thumbs.db
-Desktop.ini
+# 不整体忽略 Archive、Testing、Tooling 或游戏素材目录。
+# .gd、.tscn、.tres、.uid、源素材旁的 .import、CSV 和正式生成资源均保留。
