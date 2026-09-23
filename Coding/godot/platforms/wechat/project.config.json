@@ -1,0 +1,14 @@
+{
+  "appid": "wxcc827d83f6ca0202",
+  "projectname": "donut_sort_wechat",
+  "description": "甜甜圈小铺微信小游戏测试工程",
+  "compileType": "game",
+  "libVersion": "latest",
+  "setting": {
+    "es6": true,
+    "minified": true,
+    "urlCheck": true,
+    "uploadWithSourceMap": false
+  },
+  "packOptions": { "ignore": [], "include": [] }
+}

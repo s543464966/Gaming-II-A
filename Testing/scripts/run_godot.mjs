@@ -6,11 +6,11 @@ import { selectEngine } from '../../Tooling/environment/engine.mjs';
 
 const workspace = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const requested = process.argv.slice(2);
-const suites = requested.length ? [...new Set(requested)] : ['architecture', 'home'];
+const suites = requested.length ? [...new Set(requested)] : ['architecture', 'home', 'donut'];
 const errorPattern = /SCRIPT ERROR:|(?:^|\n)ERROR:|Parse Error:|ObjectDB instances leaked|resources still in use/i;
 
-if (suites.some(suite => !['architecture', 'home'].includes(suite))) {
-  console.error('Usage: node Testing/scripts/run_godot.mjs [architecture] [home]');
+if (suites.some(suite => !['architecture', 'home', 'donut'].includes(suite))) {
+  console.error('Usage: node Testing/scripts/run_godot.mjs [architecture] [home] [donut]');
   process.exitCode = 2;
 } else {
   let run;
@@ -42,8 +42,14 @@ if (suites.some(suite => !['architecture', 'home'].includes(suite))) {
     }
 
     await execute('import', ['--editor', '--import', '--quit']);
-    await execute('skeleton', ['--script', join(workspace, 'Testing/integration/architecture/skeleton_test.gd'), '--', ...suites],
-      suites.map(suite => `PASS: ${suite}`));
+    const sceneSuites = suites.filter(suite => suite !== 'donut');
+    if (sceneSuites.length) {
+      await execute('skeleton', ['--script', join(workspace, 'Testing/integration/architecture/skeleton_test.gd'), '--', ...sceneSuites],
+        sceneSuites.map(suite => `PASS: ${suite}`));
+    }
+    if (suites.includes('donut')) {
+      await execute('donut', ['--script', join(workspace, 'Testing/integration/donut_sort/donut_test.gd')], ['PASS: donut']);
+    }
     await rm(run, { recursive: true });
     console.log(`PASS: ${suites.join(', ')}; isolated project and logs removed.`);
   } catch (error) {

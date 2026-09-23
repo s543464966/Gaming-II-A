@@ -1,0 +1,1139 @@
+[gd_scene load_steps=36 format=3]
+
+[ext_resource type="Script" path="res://features/donut_sort/ui/donut_sort_screen.gd" id="script"]
+
+[ext_resource type="Script" path="res://features/donut_sort/ui/donut_board_input.gd" id="board_input"]
+
+[ext_resource type="Theme" path="res://ui/design_system/themes/game_theme.tres" id="theme"]
+
+[ext_resource type="PackedScene" path="res://features/donut_sort/ui/donut_box.tscn" id="box"]
+
+[ext_resource type="FontVariation" path="res://features/donut_sort/ui/donut_display_font.tres" id="display_font"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/scene/background_shop.tres" id="background"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/scene/board_wood.tres" id="board"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/header_level.tres" id="level"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/badge_orders.tres" id="progress"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/panel_orders.tres" id="orders"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/card_order_open.tres" id="open_card"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/icons/icon_lock.tres" id="lock"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/icons/icon_clipboard.tres" id="clipboard"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/panel_next.tres" id="next"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/scene/dispense_back.tres" id="dispense_back"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/scene/dispense_front.tres" id="dispense_front"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/effects/chevrons_up.tres" id="arrows"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/button_blue.tres" id="blue"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/button_green.tres" id="green"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/button_purple.tres" id="purple"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/badge_count.tres" id="count_badge"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/icons/icon_undo.tres" id="undo"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/icons/icon_add_box.tres" id="add"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/icons/icon_top.tres" id="top"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/icons/coin.tres" id="coin_icon"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/icons/diamond.tres" id="diamond_icon"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/props/prop_chalkboard.tres" id="chalkboard"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/props/prop_pink_box.tres" id="pink_box"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/props/plant_potted.tres" id="plant"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/props/plant_foreground.tres" id="leaves"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/props/prop_card.tres" id="card"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/props/prop_coffee.tres" id="coffee"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/props/sprinkle_neutral.tres" id="sprinkle"]
+
+[ext_resource type="FontFile" path="res://ui/design_system/fonts/lilita_one.ttf" id="rounded"]
+
+[ext_resource type="FontFile" path="res://ui/design_system/fonts/lobster_two_italic.ttf" id="hand"]
+
+[node name="DonutSortScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+clip_contents = true
+theme = ExtResource("theme")
+script = ExtResource("script")
+
+[node name="Backdrop" type="TextureRect" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Stage" type="Control" parent="."]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1024.0
+offset_bottom = 1536.0
+mouse_filter = 2
+
+[node name="Chalkboard" type="TextureRect" parent="Stage"]
+offset_left = -51.0
+offset_top = 84.0
+offset_right = 209.0
+offset_bottom = 374.0
+mouse_filter = 2
+texture = ExtResource("chalkboard")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="PinkBox" type="TextureRect" parent="Stage"]
+offset_left = 909.0
+offset_top = 222.0
+offset_right = 1135.0
+offset_bottom = 496.0
+mouse_filter = 2
+texture = ExtResource("pink_box")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Plant" type="TextureRect" parent="Stage"]
+offset_left = -110.0
+offset_top = 332.0
+offset_right = 82.0
+offset_bottom = 582.0
+mouse_filter = 2
+texture = ExtResource("plant")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Board" type="TextureRect" parent="Stage"]
+offset_left = 22.0
+offset_top = 350.0
+offset_right = 1002.0
+offset_bottom = 1089.8114689709348
+mouse_filter = 2
+texture = ExtResource("board")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="LevelPlate" type="TextureRect" parent="Stage"]
+offset_left = 318.0
+offset_top = 28.0
+offset_right = 708.0
+offset_bottom = 126.0
+mouse_filter = 2
+texture = ExtResource("level")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Title" type="Label" parent="Stage"]
+offset_left = 385.0
+offset_top = 34.0
+offset_right = 636.0
+offset_bottom = 113.0
+mouse_filter = 2
+text = "Level 1"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 66
+theme_override_colors/font_color = Color(1, 0.98, 0.96, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_constants/outline_size = 5
+theme_override_colors/font_outline_color = Color(0.61, 0.20, 0.30, 1)
+theme_override_colors/font_shadow_color = Color(0.48, 0.15, 0.20, 0.5)
+theme_override_constants/shadow_offset_y = 4
+
+[node name="ProgressPlate" type="TextureRect" parent="Stage"]
+offset_left = 730.0
+offset_top = 68.0
+offset_right = 974.0
+offset_bottom = 128.0
+mouse_filter = 2
+texture = ExtResource("progress")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Clipboard" type="TextureRect" parent="Stage"]
+offset_left = 752.0
+offset_top = 78.0
+offset_right = 786.0
+offset_bottom = 118.0
+mouse_filter = 2
+texture = ExtResource("clipboard")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Progress" type="Label" parent="Stage"]
+offset_left = 790.0
+offset_top = 79.0
+offset_right = 963.0
+offset_bottom = 117.0
+mouse_filter = 2
+text = "0/18 Orders"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 29
+theme_override_colors/font_color = Color(0.40, 0.19, 0.08, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="Pause" type="Button" parent="Stage"]
+offset_left = 944.0
+offset_top = 13.0
+offset_right = 992.0
+offset_bottom = 56.0
+text = "Ⅱ"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+tooltip_text = "暂停与选择关卡"
+theme_override_font_sizes/font_size = 25
+modulate = Color(1, 1, 1, 0.75)
+
+[node name="OrdersPanel" type="TextureRect" parent="Stage"]
+offset_left = 199.0
+offset_top = 134.0
+offset_right = 826.0
+offset_bottom = 327.0
+mouse_filter = 2
+texture = ExtResource("orders")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Order0" type="Control" parent="Stage"]
+offset_left = 217.0
+offset_top = 151.0
+offset_right = 356.0
+offset_bottom = 313.0
+mouse_filter = 2
+
+[node name="Plate" type="TextureRect" parent="Stage/Order0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 139.0
+offset_bottom = 162.0
+mouse_filter = 2
+texture = ExtResource("open_card")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Food" type="TextureRect" parent="Stage/Order0"]
+offset_left = 19.0
+offset_top = 15.0
+offset_right = 121.0
+offset_bottom = 114.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Lock" type="TextureRect" parent="Stage/Order0"]
+offset_left = 49.0
+offset_top = 32.0
+offset_right = 93.0
+offset_bottom = 92.0
+mouse_filter = 2
+texture = ExtResource("lock")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Count" type="Label" parent="Stage/Order0"]
+offset_left = 6.0
+offset_top = 116.0
+offset_right = 133.0
+offset_bottom = 150.0
+mouse_filter = 2
+text = "×4"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 37
+theme_override_colors/font_color = Color(0.40, 0.19, 0.08, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="Order1" type="Control" parent="Stage"]
+offset_left = 367.0
+offset_top = 151.0
+offset_right = 506.0
+offset_bottom = 313.0
+mouse_filter = 2
+
+[node name="Plate" type="TextureRect" parent="Stage/Order1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 139.0
+offset_bottom = 162.0
+mouse_filter = 2
+texture = ExtResource("open_card")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Food" type="TextureRect" parent="Stage/Order1"]
+offset_left = 19.0
+offset_top = 15.0
+offset_right = 121.0
+offset_bottom = 114.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Lock" type="TextureRect" parent="Stage/Order1"]
+offset_left = 49.0
+offset_top = 32.0
+offset_right = 93.0
+offset_bottom = 92.0
+mouse_filter = 2
+texture = ExtResource("lock")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Count" type="Label" parent="Stage/Order1"]
+offset_left = 6.0
+offset_top = 116.0
+offset_right = 133.0
+offset_bottom = 150.0
+mouse_filter = 2
+text = "×4"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 37
+theme_override_colors/font_color = Color(0.40, 0.19, 0.08, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="Order2" type="Control" parent="Stage"]
+offset_left = 519.0
+offset_top = 151.0
+offset_right = 658.0
+offset_bottom = 313.0
+mouse_filter = 2
+
+[node name="Plate" type="TextureRect" parent="Stage/Order2"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 139.0
+offset_bottom = 162.0
+mouse_filter = 2
+texture = ExtResource("open_card")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Food" type="TextureRect" parent="Stage/Order2"]
+offset_left = 19.0
+offset_top = 15.0
+offset_right = 121.0
+offset_bottom = 114.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Lock" type="TextureRect" parent="Stage/Order2"]
+offset_left = 49.0
+offset_top = 32.0
+offset_right = 93.0
+offset_bottom = 92.0
+mouse_filter = 2
+texture = ExtResource("lock")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Count" type="Label" parent="Stage/Order2"]
+offset_left = 6.0
+offset_top = 116.0
+offset_right = 133.0
+offset_bottom = 150.0
+mouse_filter = 2
+text = "×4"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 37
+theme_override_colors/font_color = Color(0.40, 0.19, 0.08, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="Order3" type="Control" parent="Stage"]
+offset_left = 668.0
+offset_top = 151.0
+offset_right = 807.0
+offset_bottom = 313.0
+mouse_filter = 2
+
+[node name="Plate" type="TextureRect" parent="Stage/Order3"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 139.0
+offset_bottom = 162.0
+mouse_filter = 2
+texture = ExtResource("open_card")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Food" type="TextureRect" parent="Stage/Order3"]
+offset_left = 19.0
+offset_top = 15.0
+offset_right = 121.0
+offset_bottom = 114.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Lock" type="TextureRect" parent="Stage/Order3"]
+offset_left = 49.0
+offset_top = 32.0
+offset_right = 93.0
+offset_bottom = 92.0
+mouse_filter = 2
+texture = ExtResource("lock")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Count" type="Label" parent="Stage/Order3"]
+offset_left = 6.0
+offset_top = 116.0
+offset_right = 133.0
+offset_bottom = 150.0
+mouse_filter = 2
+text = "×4"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 37
+theme_override_colors/font_color = Color(0.40, 0.19, 0.08, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="Boxes" type="Control" parent="Stage"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1024.0
+offset_bottom = 1159.0
+mouse_filter = 2
+
+[node name="Box0" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(0.9, 0.9)
+offset_left = 142.0
+offset_top = 378.0
+offset_right = 342.0
+offset_bottom = 535.0
+
+[node name="Box1" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(0.9, 0.9)
+offset_left = 332.0
+offset_top = 378.0
+offset_right = 532.0
+offset_bottom = 535.0
+
+[node name="Box2" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(0.9, 0.9)
+offset_left = 522.0
+offset_top = 378.0
+offset_right = 722.0
+offset_bottom = 535.0
+
+[node name="Box3" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(0.9, 0.9)
+offset_left = 712.0
+offset_top = 378.0
+offset_right = 912.0
+offset_bottom = 535.0
+
+[node name="Box4" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(0.933333, 0.933333)
+offset_left = 126.0
+offset_top = 548.0
+offset_right = 326.0
+offset_bottom = 705.0
+
+[node name="Box5" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(0.933333, 0.933333)
+offset_left = 324.0
+offset_top = 548.0
+offset_right = 524.0
+offset_bottom = 705.0
+
+[node name="Box6" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(0.933333, 0.933333)
+offset_left = 522.0
+offset_top = 548.0
+offset_right = 722.0
+offset_bottom = 705.0
+
+[node name="Box7" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(0.933333, 0.933333)
+offset_left = 720.0
+offset_top = 548.0
+offset_right = 920.0
+offset_bottom = 705.0
+
+[node name="Box8" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(0.966667, 0.966667)
+offset_left = 110.0
+offset_top = 718.0
+offset_right = 310.0
+offset_bottom = 875.0
+
+[node name="Box9" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(0.966667, 0.966667)
+offset_left = 316.0
+offset_top = 718.0
+offset_right = 516.0
+offset_bottom = 875.0
+
+[node name="Box10" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(0.966667, 0.966667)
+offset_left = 522.0
+offset_top = 718.0
+offset_right = 722.0
+offset_bottom = 875.0
+
+[node name="Box11" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(0.966667, 0.966667)
+offset_left = 728.0
+offset_top = 718.0
+offset_right = 928.0
+offset_bottom = 875.0
+
+[node name="Box12" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 94.0
+offset_top = 888.0
+offset_right = 294.0
+offset_bottom = 1045.0
+
+[node name="Box13" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 308.0
+offset_top = 888.0
+offset_right = 508.0
+offset_bottom = 1045.0
+
+[node name="Box14" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 522.0
+offset_top = 888.0
+offset_right = 722.0
+offset_bottom = 1045.0
+
+[node name="Box15" parent="Stage/Boxes" instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 736.0
+offset_top = 888.0
+offset_right = 936.0
+offset_bottom = 1045.0
+
+[node name="Dispatch" type="Control" parent="Stage"]
+offset_left = 0.0
+offset_top = 1110.0
+offset_right = 1024.0
+offset_bottom = 1318.0
+mouse_filter = 2
+
+[node name="Back" type="TextureRect" parent="Stage/Dispatch"]
+offset_left = 77.0
+offset_top = 0.0
+offset_right = 313.0
+offset_bottom = 203.41337907375643
+mouse_filter = 2
+texture = ExtResource("dispense_back")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Arrows" type="TextureRect" parent="Stage/Dispatch"]
+offset_left = 177.0
+offset_top = -35.0
+offset_right = 228.0
+offset_bottom = 48.0
+mouse_filter = 2
+texture = ExtResource("arrows")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="NextPlate" type="TextureRect" parent="Stage/Dispatch"]
+offset_left = 331.0
+offset_top = 8.0
+offset_right = 944.0
+offset_bottom = 187.01769911504425
+mouse_filter = 2
+texture = ExtResource("next")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="PreviewLabel" type="Label" parent="Stage/Dispatch"]
+offset_left = 462.0
+offset_top = 23.0
+offset_right = 808.0
+offset_bottom = 56.0
+mouse_filter = 2
+text = "Next Boxes"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 27
+theme_override_colors/font_color = Color(0.40, 0.19, 0.08, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="Preview0" parent="Stage/Dispatch" instance=ExtResource("box")]
+offset_left = 421.0
+offset_top = 58.0
+offset_right = 621.0
+offset_bottom = 215.0
+mouse_filter = 2
+scale = Vector2(0.75, 0.75)
+supply_preview = true
+custom_minimum_size = Vector2(200, 157)
+
+[node name="Preview1" parent="Stage/Dispatch" instance=ExtResource("box")]
+offset_left = 698.0
+offset_top = 58.0
+offset_right = 898.0
+offset_bottom = 215.0
+mouse_filter = 2
+scale = Vector2(0.75, 0.75)
+supply_preview = true
+custom_minimum_size = Vector2(200, 157)
+
+[node name="Supply" type="Label" parent="Stage/Dispatch"]
+offset_left = 793.0
+offset_top = 22.0
+offset_right = 912.0
+offset_bottom = 51.0
+mouse_filter = 2
+text = "剩余 5 盒"
+theme_override_fonts/font = ExtResource("display_font")
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.60, 0.35, 0.19, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
+
+[node name="Effects" type="Control" parent="Stage"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1024.0
+offset_bottom = 1536.0
+mouse_filter = 2
+
+[node name="DispenseFront" type="TextureRect" parent="Stage"]
+offset_left = 77.0
+offset_top = 1110.0
+offset_right = 313.0
+offset_bottom = 1313.4133790737565
+mouse_filter = 2
+texture = ExtResource("dispense_front")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="DispenseText" type="Label" parent="Stage"]
+offset_left = 110.0
+offset_top = 1208.0
+offset_right = 281.0
+offset_bottom = 1292.0
+mouse_filter = 2
+text = "Fresh\nDonuts\nBetter Days"
+theme_override_fonts/font = ExtResource("hand")
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.79, 0.24, 0.36, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_constants/line_spacing = -7
+
+[node name="Undo" type="TextureButton" parent="Stage"]
+offset_left = 328.0
+offset_top = 1362.0
+offset_right = 512.0
+offset_bottom = 1446.0
+texture_normal = ExtResource("blue")
+ignore_texture_size = true
+stretch_mode = 5
+mouse_default_cursor_shape = 2
+focus_mode = 0
+
+[node name="Icon" type="TextureRect" parent="Stage/Undo"]
+offset_left = 62.0
+offset_top = 7.0
+offset_right = 122.0
+offset_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource("undo")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Text" type="Label" parent="Stage/Undo"]
+offset_left = 7.0
+offset_top = 47.0
+offset_right = 177.0
+offset_bottom = 79.0
+mouse_filter = 2
+text = "Undo"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 27
+theme_override_colors/font_color = Color(1, 1, 0.96, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_constants/outline_size = 3
+theme_override_colors/font_outline_color = Color(0.17, 0.26, 0.35, 0.85)
+
+[node name="Badge" type="TextureRect" parent="Stage/Undo"]
+offset_left = 147.0
+offset_top = -10.0
+offset_right = 193.0
+offset_bottom = 36.0
+mouse_filter = 2
+texture = ExtResource("count_badge")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Count" type="Label" parent="Stage/Undo"]
+offset_left = 148.0
+offset_top = -10.0
+offset_right = 192.0
+offset_bottom = 32.0
+mouse_filter = 2
+text = "3"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 33
+theme_override_colors/font_color = Color(1,1,1,1)
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_constants/outline_size = 3
+theme_override_colors/font_outline_color = Color(0.67,0.18,0.29,1)
+
+[node name="AddBox" type="TextureButton" parent="Stage"]
+offset_left = 536.0
+offset_top = 1362.0
+offset_right = 720.0
+offset_bottom = 1446.0
+texture_normal = ExtResource("green")
+ignore_texture_size = true
+stretch_mode = 5
+mouse_default_cursor_shape = 2
+focus_mode = 0
+
+[node name="Icon" type="TextureRect" parent="Stage/AddBox"]
+offset_left = 62.0
+offset_top = 7.0
+offset_right = 122.0
+offset_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource("add")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Text" type="Label" parent="Stage/AddBox"]
+offset_left = 7.0
+offset_top = 47.0
+offset_right = 177.0
+offset_bottom = 79.0
+mouse_filter = 2
+text = "Add Box"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 27
+theme_override_colors/font_color = Color(1, 1, 0.96, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_constants/outline_size = 3
+theme_override_colors/font_outline_color = Color(0.17, 0.26, 0.35, 0.85)
+
+[node name="Badge" type="TextureRect" parent="Stage/AddBox"]
+offset_left = 147.0
+offset_top = -10.0
+offset_right = 193.0
+offset_bottom = 36.0
+mouse_filter = 2
+texture = ExtResource("count_badge")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Count" type="Label" parent="Stage/AddBox"]
+offset_left = 148.0
+offset_top = -10.0
+offset_right = 192.0
+offset_bottom = 32.0
+mouse_filter = 2
+text = "3"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 33
+theme_override_colors/font_color = Color(1,1,1,1)
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_constants/outline_size = 3
+theme_override_colors/font_outline_color = Color(0.67,0.18,0.29,1)
+
+[node name="Top" type="TextureButton" parent="Stage"]
+offset_left = 744.0
+offset_top = 1362.0
+offset_right = 928.0
+offset_bottom = 1446.0
+texture_normal = ExtResource("purple")
+ignore_texture_size = true
+stretch_mode = 5
+mouse_default_cursor_shape = 2
+focus_mode = 0
+
+[node name="Icon" type="TextureRect" parent="Stage/Top"]
+offset_left = 62.0
+offset_top = 7.0
+offset_right = 122.0
+offset_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource("top")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Text" type="Label" parent="Stage/Top"]
+offset_left = 7.0
+offset_top = 47.0
+offset_right = 177.0
+offset_bottom = 79.0
+mouse_filter = 2
+text = "Top"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 27
+theme_override_colors/font_color = Color(1, 1, 0.96, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_constants/outline_size = 3
+theme_override_colors/font_outline_color = Color(0.17, 0.26, 0.35, 0.85)
+
+[node name="Badge" type="TextureRect" parent="Stage/Top"]
+offset_left = 147.0
+offset_top = -10.0
+offset_right = 193.0
+offset_bottom = 36.0
+mouse_filter = 2
+texture = ExtResource("count_badge")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Count" type="Label" parent="Stage/Top"]
+offset_left = 148.0
+offset_top = -10.0
+offset_right = 192.0
+offset_bottom = 32.0
+mouse_filter = 2
+text = "3"
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 33
+theme_override_colors/font_color = Color(1,1,1,1)
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_constants/outline_size = 3
+theme_override_colors/font_outline_color = Color(0.67,0.18,0.29,1)
+
+[node name="FooterDecor" type="Control" parent="Stage"]
+offset_left = 0.0
+offset_top = 1354.0
+offset_right = 1024.0
+offset_bottom = 1536.0
+mouse_filter = 2
+
+[node name="Card" type="TextureRect" parent="Stage/FooterDecor"]
+offset_left = 72.0
+offset_top = 10.0
+offset_right = 319.0
+offset_bottom = 245.0
+mouse_filter = 2
+texture = ExtResource("card")
+expand_mode = 1
+stretch_mode = 5
+rotation = -0.25
+pivot_offset = Vector2(123, 117)
+
+[node name="Coffee" type="TextureRect" parent="Stage/FooterDecor"]
+offset_left = 922.0
+offset_top = 50.0
+offset_right = 1167.0
+offset_bottom = 285.0
+mouse_filter = 2
+texture = ExtResource("coffee")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Leaves" type="TextureRect" parent="Stage/FooterDecor"]
+offset_left = -121.0
+offset_top = -95.0
+offset_right = 133.0
+offset_bottom = 212.0
+mouse_filter = 2
+texture = ExtResource("leaves")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Sprinkle0" type="TextureRect" parent="Stage/FooterDecor"]
+offset_left = 376.0
+offset_top = 151.0
+offset_right = 394.0
+offset_bottom = 165.0
+mouse_filter = 2
+texture = ExtResource("sprinkle")
+expand_mode = 1
+stretch_mode = 5
+rotation = -0.5
+modulate = Color(1,0.74,0.1,1)
+
+[node name="Sprinkle1" type="TextureRect" parent="Stage/FooterDecor"]
+offset_left = 408.0
+offset_top = 172.0
+offset_right = 426.0
+offset_bottom = 186.0
+mouse_filter = 2
+texture = ExtResource("sprinkle")
+expand_mode = 1
+stretch_mode = 5
+rotation = 0.4
+modulate = Color(1,0.35,0.58,1)
+
+[node name="Sprinkle2" type="TextureRect" parent="Stage/FooterDecor"]
+offset_left = 684.0
+offset_top = 164.0
+offset_right = 702.0
+offset_bottom = 178.0
+mouse_filter = 2
+texture = ExtResource("sprinkle")
+expand_mode = 1
+stretch_mode = 5
+rotation = -0.5
+modulate = Color(0.19,0.75,1,1)
+
+[node name="Sprinkle3" type="TextureRect" parent="Stage/FooterDecor"]
+offset_left = 747.0
+offset_top = 151.0
+offset_right = 765.0
+offset_bottom = 165.0
+mouse_filter = 2
+texture = ExtResource("sprinkle")
+expand_mode = 1
+stretch_mode = 5
+rotation = 0.6
+modulate = Color(1,0.6,0.26,1)
+
+[node name="Sprinkle4" type="TextureRect" parent="Stage/FooterDecor"]
+offset_left = 819.0
+offset_top = 163.0
+offset_right = 837.0
+offset_bottom = 177.0
+mouse_filter = 2
+texture = ExtResource("sprinkle")
+expand_mode = 1
+stretch_mode = 5
+rotation = -0.4
+modulate = Color(1,0.84,0.13,1)
+
+[node name="Earnings" type="Control" parent="Stage"]
+offset_left = 113.0
+offset_top = 44.0
+offset_right = 292.0
+offset_bottom = 81.0
+mouse_filter = 2
+visible = false
+
+[node name="Coin" type="TextureRect" parent="Stage/Earnings"]
+offset_left = 0.0
+offset_top = 1.0
+offset_right = 28.0
+offset_bottom = 29.0
+mouse_filter = 2
+texture = ExtResource("coin_icon")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Coins" type="Label" parent="Stage/Earnings"]
+offset_left = 31.0
+offset_top = 0.0
+offset_right = 80.0
+offset_bottom = 30.0
+mouse_filter = 2
+text = "0"
+theme_override_fonts/font = ExtResource("display_font")
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.40, 0.19, 0.08, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="Gem" type="TextureRect" parent="Stage/Earnings"]
+offset_left = 91.0
+offset_top = 1.0
+offset_right = 119.0
+offset_bottom = 29.0
+mouse_filter = 2
+texture = ExtResource("diamond_icon")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Diamonds" type="Label" parent="Stage/Earnings"]
+offset_left = 121.0
+offset_top = 0.0
+offset_right = 173.0
+offset_bottom = 30.0
+mouse_filter = 2
+text = "0"
+theme_override_fonts/font = ExtResource("display_font")
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.40, 0.19, 0.08, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="Toast" type="PanelContainer" parent="Stage"]
+z_index = 40
+offset_left = 225.0
+offset_top = 1095.0
+offset_right = 800.0
+offset_bottom = 1144.0
+visible = false
+mouse_filter = 2
+
+[node name="Message" type="Label" parent="Stage/Toast"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 573.0
+offset_bottom = 47.0
+mouse_filter = 2
+text = ""
+theme_override_font_sizes/font_size = 22
+theme_override_fonts/font = ExtResource("display_font")
+theme_override_colors/font_color = Color(0.43, 0.22, 0.12, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ToastTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="Modal" type="ColorRect" parent="Stage"]
+z_index = 50
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1024.0
+offset_bottom = 1536.0
+visible = false
+color = Color(0.25, 0.12, 0.08, 0.48)
+
+[node name="Card" type="Panel" parent="Stage/Modal"]
+offset_left = 112.0
+offset_top = 505.0
+offset_right = 911.0
+offset_bottom = 1015.0
+
+[node name="Heading" type="Label" parent="Stage/Modal/Card"]
+offset_left = 40.0
+offset_top = 30.0
+offset_right = 759.0
+offset_bottom = 109.0
+mouse_filter = 2
+text = "营业休息中"
+theme_override_font_sizes/font_size = 43
+theme_override_fonts/font = ExtResource("display_font")
+theme_override_colors/font_color = Color(0.43, 0.22, 0.12, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Detail" type="Label" parent="Stage/Modal/Card"]
+offset_left = 40.0
+offset_top = 110.0
+offset_right = 759.0
+offset_bottom = 174.0
+mouse_filter = 2
+text = ""
+theme_override_font_sizes/font_size = 28
+theme_override_fonts/font = ExtResource("display_font")
+theme_override_colors/font_color = Color(0.43, 0.22, 0.12, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Choices" type="HBoxContainer" parent="Stage/Modal/Card"]
+offset_left = 48.0
+offset_top = 184.0
+offset_right = 751.0
+offset_bottom = 347.0
+alignment = 1
+theme_override_constants/separation = 20
+
+[node name="Resume" type="Button" parent="Stage/Modal/Card"]
+offset_left = 52.0
+offset_top = 368.0
+offset_right = 379.0
+offset_bottom = 453.0
+text = "继续营业"
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+
+[node name="Restart" type="Button" parent="Stage/Modal/Card"]
+offset_left = 419.0
+offset_top = 368.0
+offset_right = 746.0
+offset_bottom = 453.0
+text = "重新开始"
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+
+[node name="BoardInput" type="Node" parent="."]
+script = ExtResource("board_input")

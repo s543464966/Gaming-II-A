@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://game_content/donuts/art/donut_matcha_drizzle.png" id="image"]
+
+[resource]
+atlas = ExtResource("image")
+region = Rect2(117, 136, 1020, 964)
+filter_clip = true

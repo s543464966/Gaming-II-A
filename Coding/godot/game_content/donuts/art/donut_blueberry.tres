@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://game_content/donuts/art/donut_blueberry.png" id="image"]
+
+[resource]
+atlas = ExtResource("image")
+region = Rect2(112, 141, 1031, 953)
+filter_clip = true

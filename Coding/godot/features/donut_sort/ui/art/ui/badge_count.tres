@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/badge_count.png" id="image"]
+
+[resource]
+atlas = ExtResource("image")
+region = Rect2(114, 111, 1025, 1022)
+filter_clip = true

@@ -1,0 +1,16 @@
+{
+  "levels": [
+    {
+      "title": "甜蜜开张",
+      "path": "res://game_content/donuts/levels/level_01.json"
+    },
+    {
+      "title": "惊喜餐盒",
+      "path": "res://game_content/donuts/levels/level_02.json"
+    },
+    {
+      "title": "忙碌午后",
+      "path": "res://game_content/donuts/levels/level_03.json"
+    }
+  ]
+}
