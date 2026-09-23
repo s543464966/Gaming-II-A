@@ -1,0 +1,533 @@
+{
+  "source_pack": "donut_game_assets_v1",
+  "assets": [
+    {
+      "id": "donut_blueberry",
+      "label": "蓝莓甜甜圈",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "cb77a7943d2a49ab96b07550ab85262daf1fd870fadcf45a81a11906ca842fe4",
+      "path": "res://game_content/donuts/art/donut_blueberry.png"
+    },
+    {
+      "id": "donut_chocolate_drizzle",
+      "label": "巧克力淋面甜甜圈",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "7803c07cbc7f6803bb7f09ab86194b04f18dcd289e75cbd58cfc5afae99a645b",
+      "path": "res://game_content/donuts/art/donut_chocolate_drizzle.png"
+    },
+    {
+      "id": "donut_chocolate_nuts",
+      "label": "巧克力坚果甜甜圈",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "5becbf4cb762d3eb163aa36483ab4e713d49dc02bcf609df6915d40f013d9165",
+      "path": "res://game_content/donuts/art/donut_chocolate_nuts.png"
+    },
+    {
+      "id": "donut_lemon_drizzle",
+      "label": "柠檬淋面甜甜圈",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ff2700ae40b97dfda3413b2c92b71ce6c631230179658beacecd832f415ac6c6",
+      "path": "res://game_content/donuts/art/donut_lemon_drizzle.png"
+    },
+    {
+      "id": "donut_matcha_drizzle",
+      "label": "抹茶淋面甜甜圈",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "e5c950999d09f91e781632671023d6feea76dd6235e8093baa71e695a649d755",
+      "path": "res://game_content/donuts/art/donut_matcha_drizzle.png"
+    },
+    {
+      "id": "donut_matcha_nuts",
+      "label": "抹茶坚果甜甜圈",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "7e5a31a453b708a234c8d0cc3f4a169ad3016ed05d476cde41eddb4fa26f1e54",
+      "path": "res://game_content/donuts/art/donut_matcha_nuts.png"
+    },
+    {
+      "id": "donut_pink_sprinkles",
+      "label": "粉色彩糖甜甜圈",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "58d859e1c5d9046b84523efd0464e894df2c4abec7e230eb21f432dafe8e9f5d",
+      "path": "res://game_content/donuts/art/donut_pink_sprinkles.png"
+    },
+    {
+      "id": "donut_purple_sprinkles",
+      "label": "紫色彩糖甜甜圈",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "96371542738e670d95006de8f2066c90b07e67b1d2a8115df18492d37b5cf5fb",
+      "path": "res://game_content/donuts/art/donut_purple_sprinkles.png"
+    },
+    {
+      "id": "donut_strawberry_hearts",
+      "label": "草莓爱心甜甜圈",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "73c26c1836cff29e0310c4cccb6bc7674260c5b0f34ce4d8fcf02a8ca3ede632",
+      "path": "res://game_content/donuts/art/donut_strawberry_hearts.png"
+    },
+    {
+      "id": "donut_vanilla_nuts",
+      "label": "香草坚果甜甜圈",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "7ee03871e305a289051908d468122dfdacf34d52565d424d77c9126a95a652e1",
+      "path": "res://game_content/donuts/art/donut_vanilla_nuts.png"
+    },
+    {
+      "id": "donut_vanilla_sprinkles",
+      "label": "香草彩糖甜甜圈",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "9754a2a80ae80590610885c15fea110b9343f584c9fe4bfc65d9ddc2791a9ff7",
+      "path": "res://game_content/donuts/art/donut_vanilla_sprinkles.png"
+    },
+    {
+      "id": "chevrons_up",
+      "label": "出餐上升箭头",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d56364a7ee544dc413059de5cc239c995ccc6ad22a6992b50f281e3780d2fea8",
+      "path": "res://features/donut_sort/ui/art/effects/chevrons_up.png"
+    },
+    {
+      "id": "explosion_debris",
+      "label": "爆炸碎片",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ef18218ab57093819c8d715d74f9084d6d2397fe8506ce025945f2d4cbb98237",
+      "path": "res://features/donut_sort/ui/art/effects/explosion_debris.png"
+    },
+    {
+      "id": "explosion_flash",
+      "label": "爆炸闪光",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "cdbc8aaddbed0f5024d258a4453dac6f2001e1068112feef1ab65069d527b7c6",
+      "path": "res://features/donut_sort/ui/art/effects/explosion_flash.png"
+    },
+    {
+      "id": "explosion_smoke",
+      "label": "爆炸烟雾",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "1b0a81c94aa8d392b989851582aa2532057eee96a669241ec6aa69785c3285fd",
+      "path": "res://features/donut_sort/ui/art/effects/explosion_smoke.png"
+    },
+    {
+      "id": "ice_cracks",
+      "label": "破冰裂纹过渡",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "967221fc7b325620cb48126fa7df07e9c9356d30d6a010b9e0f8ba6e7512a132",
+      "path": "res://features/donut_sort/ui/art/effects/ice_cracks.png"
+    },
+    {
+      "id": "ice_shards",
+      "label": "破冰碎片",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ebe227e824ea85dc14a02b11d8d1cd12bdb77aca721c9b579236b6b106aaae5c",
+      "path": "res://features/donut_sort/ui/art/effects/ice_shards.png"
+    },
+    {
+      "id": "invalid_cross",
+      "label": "无效操作标识",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "3215f28b1fb7b53a8da46ec56bbf9c7bb2ddb032b78a085c34cce637f03283c5",
+      "path": "res://features/donut_sort/ui/art/effects/invalid_cross.png"
+    },
+    {
+      "id": "selection_ring",
+      "label": "选中框",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "8b4942c38c3fa79b7ca87ec19d59395b4cbd722afb9193759eaa544295ae07a0",
+      "path": "res://features/donut_sort/ui/art/effects/selection_ring.png"
+    },
+    {
+      "id": "shadow_soft",
+      "label": "通用投影",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "0aca390ce2b344e61d61b9fdb63c281b319a52ca422a0b3ce8b705cff6e686ff",
+      "path": "res://features/donut_sort/ui/art/effects/shadow_soft.png"
+    },
+    {
+      "id": "sparkle",
+      "label": "成功闪光",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "0fba7abde9b7b1aadc9343b5e639bd6ef4ba2fa57338c101d6331f7a6d8238c8",
+      "path": "res://features/donut_sort/ui/art/effects/sparkle.png"
+    },
+    {
+      "id": "warning_ring",
+      "label": "炸弹警示框",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "88bd6860ac41d739b1e34ef9df07a512b2e007b2adf6cde7fecbe59565a1b22d",
+      "path": "res://features/donut_sort/ui/art/effects/warning_ring.png"
+    },
+    {
+      "id": "coin",
+      "label": "金币",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "3ed206f85d27a7b28ec7da2adc79224dde2ed86c5a36fe999e9f7616f3e6ffe6",
+      "path": "res://features/donut_sort/ui/art/icons/coin.png"
+    },
+    {
+      "id": "diamond",
+      "label": "钻石",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "feaeaea4823f62f2b81fff3134723f7dfcf89025fb002e5b52ae4e10728e0d5e",
+      "path": "res://features/donut_sort/ui/art/icons/diamond.png"
+    },
+    {
+      "id": "icon_add_box",
+      "label": "加餐盒",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "0483cdad21a3aa8d75c9aa371afd7b91319974a877211e43d9f8d1e40e089ee6",
+      "path": "res://features/donut_sort/ui/art/icons/icon_add_box.png"
+    },
+    {
+      "id": "icon_clipboard",
+      "label": "订单夹板",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "a50c0f34056b948f3d906e02207a06da5a61e4d70ddc70074a8f940f6060362b",
+      "path": "res://features/donut_sort/ui/art/icons/icon_clipboard.png"
+    },
+    {
+      "id": "icon_lock",
+      "label": "锁",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d586c9c866bed2022ff4b1afd643739f1b111ba20969321b9f779eff6105bb11",
+      "path": "res://features/donut_sort/ui/art/icons/icon_lock.png"
+    },
+    {
+      "id": "icon_top",
+      "label": "置顶箭头",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "7169fffa455fa31ddafe301f6065b58f3d51d17828e3eec05c6f5fdb07fabdae",
+      "path": "res://features/donut_sort/ui/art/icons/icon_top.png"
+    },
+    {
+      "id": "icon_undo",
+      "label": "撤回箭头",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "50d9815ba53e4bdd32b732e7ae4a7c4f92f68eda370778632c5ed6a0c18a21a3",
+      "path": "res://features/donut_sort/ui/art/icons/icon_undo.png"
+    },
+    {
+      "id": "plant_foreground",
+      "label": "前景绿叶",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "3edc996f4ddcfe55b2440280c6d6657f7efeef0efb498c2e562c9f135917550a",
+      "path": "res://features/donut_sort/ui/art/props/plant_foreground.png"
+    },
+    {
+      "id": "plant_potted",
+      "label": "盆栽",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "9de6d281e61aa9fe0a4fd79ad6f33baba000b79b308c9cf932d07845a493d078",
+      "path": "res://features/donut_sort/ui/art/props/plant_potted.png"
+    },
+    {
+      "id": "prop_card",
+      "label": "格纹卡片",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ca7798e183045ef5f2233dc9ae13a88a35ef214516901db9ab99e6e46c441363",
+      "path": "res://features/donut_sort/ui/art/props/prop_card.png"
+    },
+    {
+      "id": "prop_chalkboard",
+      "label": "黑板",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d5045aaf8c1a25d05a9d64f337589acdbbc78a725813b80cecaa35109d20c706",
+      "path": "res://features/donut_sort/ui/art/props/prop_chalkboard.png"
+    },
+    {
+      "id": "prop_coffee",
+      "label": "咖啡",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "4898eea9621150f86b03058870d3d2e124529cb326bb02a2df6f41491c019fa2",
+      "path": "res://features/donut_sort/ui/art/props/prop_coffee.png"
+    },
+    {
+      "id": "prop_pink_box",
+      "label": "粉色包装盒",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d714c843f38a2dc9ead81f41b6477b65cf4d65e72d70cd6f75fbdec124bc85ab",
+      "path": "res://features/donut_sort/ui/art/props/prop_pink_box.png"
+    },
+    {
+      "id": "sprinkle_neutral",
+      "label": "可染色糖针",
+      "width": 1374,
+      "height": 1145,
+      "sha256": "c07d943d64dadc505a0c5c8c0f5b59aad1433a08c962da40d3b414fbf971ea85",
+      "path": "res://features/donut_sort/ui/art/props/sprinkle_neutral.png"
+    },
+    {
+      "id": "background_shop",
+      "label": "店铺背景（不透明）",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "98e8567a11e9d76f3ff0ba09c915fae8edbea91c7c1863bf80dadeefcddb4dc8",
+      "path": "res://features/donut_sort/ui/art/scene/background_shop.png"
+    },
+    {
+      "id": "board_wood",
+      "label": "木质棋盘",
+      "width": 1345,
+      "height": 1169,
+      "sha256": "979a0e15bf7fc1edb2fea54dc21f74c6ac542054ce72acbd7af8ae7bc45896c3",
+      "path": "res://features/donut_sort/ui/art/scene/board_wood.png"
+    },
+    {
+      "id": "dispense_back",
+      "label": "出餐纸盒后层",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "9128c67e94dce0deb64709d4c3a5284fb0283fa0df4f464780da45984ce4a982",
+      "path": "res://features/donut_sort/ui/art/scene/dispense_back.png"
+    },
+    {
+      "id": "dispense_box",
+      "label": "底部出餐纸盒",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "a9d05c4aeccdb99702a8c44110f05dc540893197ea0ec3764812e658278d52e7",
+      "path": "res://features/donut_sort/ui/art/scene/dispense_box.png"
+    },
+    {
+      "id": "dispense_front",
+      "label": "出餐纸盒前层",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "f6d9e9969addfce447d0be0c9b343d2619ba47afa275adc8251bae43ee7de329",
+      "path": "res://features/donut_sort/ui/art/scene/dispense_front.png"
+    },
+    {
+      "id": "bomb_icon",
+      "label": "炸弹标识",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "63a8892602a38eb4e37ff47cf46dee9381eee31a1fa68e6463a3b2682b6b3a22",
+      "path": "res://features/donut_sort/ui/art/special/bomb_icon.png"
+    },
+    {
+      "id": "color_ring",
+      "label": "固定口味色框",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "6782ff4c657a793f00f89a1201d55d7ed7c79517c0c0de1bd179459226fcdc8f",
+      "path": "res://features/donut_sort/ui/art/special/color_ring.png"
+    },
+    {
+      "id": "donut_hidden",
+      "label": "隐藏层甜甜圈",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "14e0ffad4ece18a533ce17412a429a73dc08e37dba126a873516108bcb8f72a5",
+      "path": "res://features/donut_sort/ui/art/special/donut_hidden.png"
+    },
+    {
+      "id": "ice_cover",
+      "label": "冰冻透明罩",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "a8a5b3a44eb1117d059194a752fa4189744e52950ff4909d9286ac5267875336",
+      "path": "res://features/donut_sort/ui/art/special/ice_cover.png"
+    },
+    {
+      "id": "icon_cycle",
+      "label": "底部置顶标识",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "c50f86439bb3a2cd7c45eadb43e886f96b907069999f5c1d6d03cd81372effab",
+      "path": "res://features/donut_sort/ui/art/special/icon_cycle.png"
+    },
+    {
+      "id": "icon_in_only",
+      "label": "只进不出标识",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "8568e6fa010b61474e8b5424f062e4ea958182ca5001eb0a0c3d0812f131120a",
+      "path": "res://features/donut_sort/ui/art/special/icon_in_only.png"
+    },
+    {
+      "id": "number_lid",
+      "label": "数字盖盒盖",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "33b1009ef94c1a4b682f25a2c44500235b87755b3aaa530383e026ba1168e17a",
+      "path": "res://features/donut_sort/ui/art/special/number_lid.png"
+    },
+    {
+      "id": "timer_plate",
+      "label": "倒计时底板",
+      "width": 1774,
+      "height": 887,
+      "sha256": "fa682577ad1e208ec66dc92a035023f0bc0ed1503e36fbaa1a8b7ef9a8a8d7e8",
+      "path": "res://features/donut_sort/ui/art/special/timer_plate.png"
+    },
+    {
+      "id": "tray_single",
+      "label": "单颗暂存盒",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "cdc810b7398b8e1f9cc6c7c7f994ac718f834cfdbca7ce773b352d90f52854f8",
+      "path": "res://features/donut_sort/ui/art/special/tray_single.png"
+    },
+    {
+      "id": "waiting_clock",
+      "label": "等待需求标识",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "f4a63a05f39953220a7ac93bf08866292bceaf5274b73fcd733f854cd7156057",
+      "path": "res://features/donut_sort/ui/art/special/waiting_clock.png"
+    },
+    {
+      "id": "package_closed",
+      "label": "打包完成盒",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "09504db31fb0e109224bd1a7a1fb01e8093d9effb80f3cda8c189c1f8cb5075a",
+      "path": "res://features/donut_sort/ui/art/trays/package_closed.png"
+    },
+    {
+      "id": "tray_back",
+      "label": "盒子后层",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "b0d142139ec75486600f123fb4686f44e5ad5bdaf89fa17bda8784077fff7586",
+      "path": "res://features/donut_sort/ui/art/trays/tray_back.png"
+    },
+    {
+      "id": "tray_empty",
+      "label": "完整空盒",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "0f8dd9f994cad4bdf7cd2fd66ff0d7b251125e625219b22e5f0d0e148886fc37",
+      "path": "res://features/donut_sort/ui/art/trays/tray_empty.png"
+    },
+    {
+      "id": "tray_front",
+      "label": "盒子前沿",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "e876382cf02dccf1bab3be7cd7ae4e57cc45522d80afe9db5c3fd344eb1fcb90",
+      "path": "res://features/donut_sort/ui/art/trays/tray_front.png"
+    },
+    {
+      "id": "tray_locked",
+      "label": "锁定盒底板",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "fc8a8fef37cc6741c23f2d1fbe5df457f75568d8345d6f1aca20ac6557024df9",
+      "path": "res://features/donut_sort/ui/art/trays/tray_locked.png"
+    },
+    {
+      "id": "badge_count",
+      "label": "次数角标",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "3a9f7c223cf14b5db08135195d7094f1b0fb9b4cfc869a6d22f7ea572b09c8b4",
+      "path": "res://features/donut_sort/ui/art/ui/badge_count.png"
+    },
+    {
+      "id": "badge_orders",
+      "label": "订单计数底板",
+      "width": 2172,
+      "height": 724,
+      "sha256": "7e5a55ee28ac717772423dcec6e198dc18e0772a7fdc7d1a39e26c22a404c5d6",
+      "path": "res://features/donut_sort/ui/art/ui/badge_orders.png"
+    },
+    {
+      "id": "button_blue",
+      "label": "蓝色按钮底板",
+      "width": 1586,
+      "height": 992,
+      "sha256": "8c18c4803566208ce1f5b764da6ea4859dafebde6bbb9b656dde1d6fc1e3859b",
+      "path": "res://features/donut_sort/ui/art/ui/button_blue.png"
+    },
+    {
+      "id": "button_green",
+      "label": "绿色按钮底板",
+      "width": 1586,
+      "height": 992,
+      "sha256": "221b28031f5a25180814b5d5c57dc215478a8e521f0d3fff840eff4ca973d243",
+      "path": "res://features/donut_sort/ui/art/ui/button_green.png"
+    },
+    {
+      "id": "button_purple",
+      "label": "紫色按钮底板",
+      "width": 1586,
+      "height": 992,
+      "sha256": "ec9e414a57381b2b59ef6e24f2ccbb3ca1fb1ce5c785124e3064e92d5826f851",
+      "path": "res://features/donut_sort/ui/art/ui/button_purple.png"
+    },
+    {
+      "id": "card_order_locked",
+      "label": "锁定订单卡片",
+      "width": 1156,
+      "height": 1360,
+      "sha256": "e9e85fa472d51c8801cdec6e0034ac74b259cfc367d99cb5391d80c2e7222027",
+      "path": "res://features/donut_sort/ui/art/ui/card_order_locked.png"
+    },
+    {
+      "id": "card_order_open",
+      "label": "开放订单卡片",
+      "width": 1157,
+      "height": 1360,
+      "sha256": "6695a804c398e8c12ef666f4e2a477a6b2f716de9212ea8ed3087e248292f673",
+      "path": "res://features/donut_sort/ui/art/ui/card_order_open.png"
+    },
+    {
+      "id": "header_level",
+      "label": "关卡底板",
+      "width": 2172,
+      "height": 724,
+      "sha256": "dc465d8ceac88b07873be8a98b7b6f5f4f0c862befe4d5fe6039741bd196d0fd",
+      "path": "res://features/donut_sort/ui/art/ui/header_level.png"
+    },
+    {
+      "id": "panel_next",
+      "label": "备货预览面板",
+      "width": 2098,
+      "height": 749,
+      "sha256": "7fc747eaa7f3657eec83c39ecd5353bcdc1ad5d9119d12040ce563b4a3aa8deb",
+      "path": "res://features/donut_sort/ui/art/ui/panel_next.png"
+    },
+    {
+      "id": "panel_orders",
+      "label": "订单大面板",
+      "width": 2021,
+      "height": 778,
+      "sha256": "c84160d17c4d91dc9ddcd00e4e1745270afac5f36d7bee2addea5c8c3163a75e",
+      "path": "res://features/donut_sort/ui/art/ui/panel_orders.png"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "deviceOrientation": "portrait",
+  "menuButtonStyle": "dark",
+  "enableWebGL2": true,
+  "enableIOSHighPerformanceMode": true,
+  "enableIOSHighPerformanceModePlus": false,
+  "subpackages": [{ "name": "godot", "root": "godot" }]
+}

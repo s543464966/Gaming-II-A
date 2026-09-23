@@ -1,0 +1,22 @@
+{
+  "engine": "4.5.1",
+  "sdkVersion": "1.0.4",
+  "sdkDocumentation": "https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/guide/game-engine/godot/sdk-usage-guide",
+  "settingsSource": "https://is.snssdk.com/service/settings/v3/?aid=247&caller_name=gameplus_uge&device_id=0",
+  "artifacts": [
+    {
+      "file": "web_release_4.5.1-rc-1.0.0.12.zip",
+      "url": "https://lf26-stark-cdn.bdgp.cc/obj/game-res-cn/godot/templates/web/4.5.1-rc-1.0.0.12/web_release.zip",
+      "sha256": "5c11f7379d2f79f99d58c6f4913cac139143e9c81bbd4b8bdca9492f09bea2a5",
+      "upstreamMd5": "da443fb53f59b365fd798429de5ff381"
+    },
+    {
+      "file": "godot_launcher_1.1.27.js",
+      "url": "https://lf26-stark-cdn.bdgp.cc/obj/game-res-cn/godot/js/engine-adapter/1.1/index.1954a1.js",
+      "sha256": "e3783a2d863f9b29a2c6994460eac02e383525dcb74791fbfbe01c71ab863c3b"
+    }
+  ],
+  "files": ["godot.js", "godot.wasm.br"],
+  "subpackages": ["godot"],
+  "budgets": { "main": 4194304, "subpackage": 20971520, "total": 20971520 }
+}

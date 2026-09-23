@@ -1,5 +1,5 @@
 extends SceneTree
-## 验证真实主场景装配、页面替换和无业务依赖的独立首页。
+## 验证真实主场景装配、页面替换和独立关卡首页。
 
 
 ## 等待场景树建立后执行请求的检查组。
@@ -54,7 +54,7 @@ func _check_architecture(app: Node) -> bool:
 		and container.get_child_count() == 1 and app == current_scene
 
 
-## 独立首页必须在无会话注入时显示有尺寸、有主题的可见内容。
+## 独立首页必须在无会话注入时显示完整棋盘和可见订单。
 func _check_home() -> bool:
 	var scene: PackedScene = load("res://features/home/ui/home_screen.tscn")
 	if scene == null or not scene.can_instantiate():
@@ -64,12 +64,14 @@ func _check_home() -> bool:
 		return false
 	root.add_child(page)
 	await process_frame
-	var title: Label = page.get_node_or_null("Title") as Label
+	var title: Label = page.get_node_or_null("Stage/Title") as Label
+	var boxes: Control = page.get_node_or_null("Stage/Boxes") as Control
 	var passed: bool = page.is_visible_in_tree() and page.theme != null \
 		and page.size.x > 0 and page.size.y > 0 and title != null
 	if passed:
 		passed = title.is_visible_in_tree() and not title.text.is_empty() \
-			and title.size.x > 0 and title.size.y > 0
+			and title.size.x > 0 and title.size.y > 0 and boxes != null \
+			and boxes.get_child_count() == 16 and page.session.slots.size() == 16 and page.session.demands.size() == 4
 	page.queue_free()
 	await process_frame
 	return passed

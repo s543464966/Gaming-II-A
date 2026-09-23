@@ -1,0 +1,9 @@
+{
+  "appid": "",
+  "projectname": "donut_sort_douyin",
+  "description": "甜甜圈小铺抖音小游戏测试工程",
+  "compileType": "game",
+  "setting": { "es6": true, "minified": true, "urlCheck": true, "autoCompile": false },
+  "packOptions": { "ignore": [], "include": [] },
+  "engineInfos": [{ "name": "godot", "version": "4.5.1" }]
+}

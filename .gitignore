@@ -22,9 +22,6 @@ __pycache__/
 /Archive/Builds/*
 !/Archive/Builds/README.md
 !/Archive/Builds/.gitkeep
-!/Archive/Builds/douyin/
-/Archive/Builds/douyin/*
-!/Archive/Builds/douyin/.gitkeep
 /Coding/godot/exports/
 /Coding/godot/build/
 /Coding/godot/builds/
