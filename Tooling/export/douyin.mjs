@@ -105,25 +105,21 @@ async function assemble({ game, platform, artifacts, lock }) {
   await writeFile(join(game, 'godot.config.js'), `module.exports = ${JSON.stringify(launcherConfig(lock.engine), null, 2)};\n`);
 }
 
-function deliveryBaseUrl(value) {
+function deliveryBaseUrl(value, localPreview = false) {
   let url;
   try { url = new URL(value); } catch { throw new Error('CDN 模式需要 HTTPS 资源目录地址。'); }
-  if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash
+  const local = localPreview && url.protocol === 'http:' && url.hostname === '127.0.0.1' && url.port;
+  if ((!local && url.protocol !== 'https:') || url.username || url.password || url.search || url.hash
       || !value.endsWith('/') || url.href !== value) {
     throw new Error('CDN 地址必须是以 / 结尾、不含凭据和查询参数的 HTTPS 目录。');
   }
   return value;
 }
 
-async function deliverySettings(args) {
-  const usage = 'Usage: node Tooling/export/douyin.mjs [--prepare] [--delivery embedded|cdn] [--cdn-base-url https://资源目录/]';
+export function deliverySettings(args, local = {}) {
+  const usage = 'Usage: node Tooling/export/douyin.mjs [--prepare] [--delivery auto|local-cdn|cloudflare-cdn|cdn|embedded] [--cdn-base-url https://资源目录/]';
   if (args.includes('--help')) return { help: usage };
-  const localPath = join(workspace, 'Tooling/export/douyin.local.json');
-  const local = await readFile(localPath, 'utf8').then(JSON.parse).catch(error => {
-    if (error.code === 'ENOENT') return {};
-    throw error;
-  });
-  let mode = local.delivery_mode ?? 'embedded';
+  let mode = local.delivery_mode ?? 'auto';
   let baseUrl = local.cdn_base_url ?? '';
   let prepareOnly = false;
   for (let index = 0; index < args.length; index++) {
@@ -133,7 +129,8 @@ async function deliverySettings(args) {
     else if (option === '--cdn-base-url' && args[index + 1]) baseUrl = args[++index];
     else throw new Error(usage);
   }
-  if (!['embedded', 'cdn'].includes(mode)) throw new Error('delivery_mode 必须为 embedded 或 cdn。');
+  if (!['auto', 'embedded', 'cdn', 'local-cdn', 'cloudflare-cdn'].includes(mode)) throw new Error('delivery_mode 必须为 auto、embedded、cdn、local-cdn 或 cloudflare-cdn。');
+  if (mode === 'auto') mode = baseUrl ? 'cdn' : 'local-cdn';
   if (mode === 'cdn') deliveryBaseUrl(baseUrl);
   return { mode, baseUrl, prepareOnly };
 }
@@ -147,39 +144,50 @@ async function partitionPack({ engine, project, run, rawPackPath }, baseUrl) {
     throw new Error(`Douyin CDN partition failed:\n${diagnostic}`);
   }
   const result = JSON.parse(diagnostic.slice(diagnostic.indexOf(marker) + marker.length).trim());
-  const remotePath = join(output, 'remote.pck');
   const corePath = join(output, 'core.pck');
-  const remote = await readFile(remotePath);
-  if (remote.length !== result.remote_bytes || sha256(remote) !== result.sha256) {
-    throw new Error('Douyin CDN remote resource checksum does not match its manifest.');
+  const packs = [];
+  for (const pack of result.packs) {
+    if (!/^[0-9a-f]{64}\.pck$/.test(pack.file) || pack.file !== pack.sha256 + '.pck') {
+      throw new Error('Douyin CDN partition returned an invalid resource name.');
+    }
+    const path = join(output, pack.file);
+    const bytes = await readFile(path);
+    if (bytes.length !== pack.bytes || sha256(bytes) !== pack.sha256) {
+      throw new Error('Douyin CDN remote resource checksum does not match its manifest.');
+    }
+    packs.push({ ...pack, path });
   }
   const core = await readFile(corePath);
   if (core.length !== result.core_bytes || core.subarray(0, 4).toString() !== 'GDPC') {
     throw new Error('Douyin CDN core pack does not match partition output.');
   }
-  console.log(execute(process.execPath, [join(workspace, 'Testing/scripts/check_cdn_pack.mjs'), corePath, remotePath]));
+  console.log(execute(process.execPath, [join(workspace, 'Testing/scripts/check_cdn_pack.mjs'), corePath, output]));
   return {
-    corePath, remotePath, sha256: result.sha256, bytes: remote.length,
-    report: { mode: 'cdn', baseUrl, remoteFile: `${result.sha256}.pck`,
-      remoteSha256: result.sha256, remoteBytes: remote.length, deferredPaths: result.deferred_paths },
+    corePath, packs,
+    report: { mode: 'cdn', baseUrl, packs: result.packs,
+      remoteBytes: result.remote_bytes, deferredPaths: result.deferred_paths },
   };
 }
 
 async function publishDelivery(delivery, directory) {
   await mkdir(directory, { recursive: true });
-  const destination = join(directory, `${delivery.sha256}.pck`);
+  for (const pack of delivery.packs) await publishPack(pack, directory);
+}
+
+async function publishPack(pack, directory) {
+  const destination = join(directory, pack.file);
   const previous = await readFile(destination).catch(error => {
     if (error.code === 'ENOENT') return null;
     throw error;
   });
   if (previous) {
-    if (sha256(previous) !== delivery.sha256) throw new Error(`CDN resource was modified: ${destination}`);
+    if (sha256(previous) !== pack.sha256) throw new Error(`CDN resource was modified: ${destination}`);
     return;
   }
   const temporary = join(directory, `.incoming-${randomUUID()}`);
   try {
-    await cp(delivery.remotePath, temporary);
-    if (sha256(await readFile(temporary)) !== delivery.sha256) throw new Error('CDN resource copy failed verification.');
+    await cp(pack.path, temporary);
+    if (sha256(await readFile(temporary)) !== pack.sha256) throw new Error('CDN resource copy failed verification.');
     await rename(temporary, destination);
   } finally { await rm(temporary, { force: true }); }
 }
@@ -187,8 +195,8 @@ async function publishDelivery(delivery, directory) {
 export async function createDouyinExport({ mode = 'embedded', baseUrl = '', prepareOnly = false, destination,
   testDomainBypass = false } = {}) {
   if (!['embedded', 'cdn'].includes(mode)) throw new Error('delivery mode must be embedded or cdn.');
-  if (mode === 'cdn') deliveryBaseUrl(baseUrl);
-  if (testDomainBypass && mode !== 'cdn') throw new Error('Domain bypass only applies to the local CDN test.');
+  if (mode === 'cdn') deliveryBaseUrl(baseUrl, testDomainBypass);
+  if (testDomainBypass && mode !== 'cdn') throw new Error('Domain bypass only applies to CDN development tests.');
   const assembleForMode = async input => {
     await assemble(input);
     if (!testDomainBypass) return;
@@ -207,11 +215,35 @@ export async function createDouyinExport({ mode = 'embedded', baseUrl = '', prep
 }
 
 async function main(args) {
-  const settings = await deliverySettings(args);
+  const local = await readFile(join(workspace, 'Tooling/export/douyin.local.json'), 'utf8').then(JSON.parse).catch(error => {
+    if (error.code === 'ENOENT') return {};
+    throw error;
+  });
+  const settings = deliverySettings(args, local);
   if (settings.help) { console.log(settings.help); return; }
-  await createDouyinExport({ mode: settings.mode, baseUrl: settings.baseUrl, prepareOnly: settings.prepareOnly });
+  if (settings.prepareOnly) {
+    await createDouyinExport({ prepareOnly: true });
+    return;
+  }
+  if (['local-cdn', 'cloudflare-cdn'].includes(settings.mode)) {
+    const transport = settings.mode === 'cloudflare-cdn' ? 'cloudflare' : 'local';
+    console.log(transport === 'cloudflare'
+      ? 'Cloudflare CDN 测试：资源通过临时 HTTPS 地址提供给手机，保持此窗口与电脑运行。'
+      : '自动 CDN 打包：启动或复用仅本机可访问的资源服务，并更新原有抖音项目。');
+    const { startDouyinCdnTest } = await import('./douyin_cdn_test.mjs');
+    await startDouyinCdnTest({ transport });
+    return;
+  }
+  try {
+    await createDouyinExport({ mode: settings.mode, baseUrl: settings.baseUrl });
+  } catch (error) {
+    if (settings.mode === 'embedded' && error.message.includes('exceeds project package budget')) {
+      throw new Error('当前选择了完整离线包，资源已超过 20 MiB。请用默认的 douyin.command，或添加 --delivery auto 使用 CDN；若本地配置显式指定 embedded，请改为 auto。\n' + error.message);
+    }
+    throw error;
+  }
   if (settings.mode === 'cdn' && !settings.prepareOnly) {
-    console.log(`CDN 资源：Archive/Builds/douyin.cdn/（请按 build_report.json 的 remoteFile 原名上传至 ${settings.baseUrl}，并配置 request 合法域名）`);
+    console.log(`CDN 资源：Archive/Builds/douyin.cdn/（请按 build_report.json 的 packs 清单原名上传至 ${settings.baseUrl}，并配置 request 合法域名）`);
   }
 }
 

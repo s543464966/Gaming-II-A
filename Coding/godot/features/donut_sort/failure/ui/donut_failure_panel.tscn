@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://features/donut_sort/failure/ui/donut_failure_panel.gd" id="script"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/panel_failure_blank.tres" id="panel"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/header_level_failed.tres" id="header"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/illustration_failure_scattered.tres" id="illustration"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/button_home.tres" id="home"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/button_try_again.tres" id="retry"]
+[ext_resource type="FontFile" path="res://design_system/fonts/lilita_one.ttf" id="font"]
+
+[node name="FailurePanel" type="ColorRect"]
+visible = false
+z_index = 60
+offset_right = 1024.0
+offset_bottom = 1536.0
+color = Color(0.16, 0.08, 0.035, 0.62)
+script = ExtResource("script")
+
+[node name="Card" type="Control" parent="."]
+layout_mode = 0
+offset_right = 840.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="Panel" type="TextureRect" parent="Card"]
+layout_mode = 0
+offset_top = 85.0
+offset_right = 840.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("panel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heading" type="TextureRect" parent="Card"]
+layout_mode = 0
+offset_left = 48.0
+offset_right = 792.0
+offset_bottom = 191.0
+mouse_filter = 2
+texture = ExtResource("header")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Subtitle" type="Label" parent="Card"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 207.0
+offset_right = 778.0
+offset_bottom = 285.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.27, 0.115, 0.035, 1)
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 58
+text = "Let’s try again!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Illustration" type="TextureRect" parent="Card"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 340.0
+offset_right = 720.0
+offset_bottom = 766.0
+mouse_filter = 2
+texture = ExtResource("illustration")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Home" type="TextureButton" parent="Card"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 798.0
+offset_right = 406.0
+offset_bottom = 1022.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("home")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TryAgain" type="TextureButton" parent="Card"]
+layout_mode = 0
+offset_left = 434.0
+offset_top = 798.0
+offset_right = 788.0
+offset_bottom = 1022.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("retry")
+ignore_texture_size = true
+stretch_mode = 5

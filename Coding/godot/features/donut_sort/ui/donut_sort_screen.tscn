@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="Script" path="res://features/donut_sort/ui/donut_sort_screen.gd" id="script"]
 [ext_resource type="Theme" path="res://design_system/themes/game_theme.tres" id="theme"]
@@ -10,11 +10,13 @@
 [ext_resource type="PackedScene" path="res://features/donut_sort/settings/ui/donut_settings_panel.tscn" id="settings_panel_scene"]
 [ext_resource type="PackedScene" path="res://features/donut_sort/orders/ui/donut_orders_view.tscn" id="orders_scene"]
 [ext_resource type="PackedScene" path="res://features/donut_sort/board/ui/donut_board_view.tscn" id="board_scene"]
-[ext_resource type="PackedScene" path="res://features/donut_sort/dispatch/ui/donut_dispatch_view.tscn" id="dispatch_scene"]
 [ext_resource type="PackedScene" path="res://features/donut_sort/presentation/ui/donut_event_player.tscn" id="event_player_scene"]
 [ext_resource type="PackedScene" path="res://features/donut_sort/tools/ui/donut_tools_view.tscn" id="tools_scene"]
 [ext_resource type="PackedScene" path="res://features/donut_sort/tools/top/ui/donut_top_choices.tscn" id="top_choices_scene"]
 [ext_resource type="PackedScene" path="res://features/donut_sort/board/ui/donut_board_input.tscn" id="board_input_scene"]
+[ext_resource type="PackedScene" path="res://features/donut_sort/failure/ui/donut_failure_panel.tscn" id="failure_scene"]
+
+[ext_resource type="PackedScene" path="res://features/donut_sort/completion/ui/donut_completion_view.tscn" id="completion_scene"]
 
 [node name="DonutSortScreen" type="Control"]
 layout_mode = 3
@@ -42,6 +44,7 @@ offset_bottom = 1536.0
 mouse_filter = 2
 
 [node name="CoinBalance" parent="Stage" instance=ExtResource("coin_scene")]
+visible = false
 layout_mode = 0
 offset_left = 32.0
 offset_top = 20.0
@@ -108,13 +111,6 @@ offset_top = 0.0
 offset_right = 1024.0
 offset_bottom = 1159.0
 
-[node name="Dispatch" parent="Stage" instance=ExtResource("dispatch_scene")]
-layout_mode = 0
-offset_left = 35
-offset_top = 1218
-offset_right = 270
-offset_bottom = 1420
-
 [node name="Effects" parent="Stage" instance=ExtResource("event_player_scene")]
 layout_mode = 0
 z_index = 30
@@ -158,79 +154,26 @@ autowrap_mode = 2
 wait_time = 2.5
 one_shot = true
 
-[node name="Modal" type="ColorRect" parent="Stage"]
-layout_mode = 0
-z_index = 50
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 1024.0
-offset_bottom = 1536.0
-visible = false
-color = Color(0.25, 0.12, 0.08, 0.48)
+[node name="AdvanceTimer" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
 
-[node name="Card" type="Panel" parent="Stage/Modal"]
+[node name="TopChoices" parent="Stage" instance=ExtResource("top_choices_scene")]
 layout_mode = 0
-offset_left = 112.0
-offset_top = 505.0
-offset_right = 911.0
-offset_bottom = 1015.0
+offset_left = 48
+offset_top = 1212
+offset_right = 976
+offset_bottom = 1432
 
-[node name="Heading" type="Label" parent="Stage/Modal/Card"]
+[node name="Completion" parent="Stage" instance=ExtResource("completion_scene")]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 30.0
-offset_right = 759.0
-offset_bottom = 109.0
-mouse_filter = 2
-text = "选择关卡"
-theme_override_font_sizes/font_size = 43
-theme_override_fonts/font = ExtResource("display_font")
-theme_override_colors/font_color = Color(0.43, 0.22, 0.12, 1)
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Detail" type="Label" parent="Stage/Modal/Card"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 110.0
-offset_right = 759.0
-offset_bottom = 174.0
-mouse_filter = 2
-text = ""
-theme_override_font_sizes/font_size = 28
-theme_override_fonts/font = ExtResource("display_font")
-theme_override_colors/font_color = Color(0.43, 0.22, 0.12, 1)
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Choices" parent="Stage/Modal/Card" instance=ExtResource("top_choices_scene")]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 184.0
-offset_right = 751.0
-offset_bottom = 347.0
-
-[node name="Resume" type="Button" parent="Stage/Modal/Card"]
-layout_mode = 0
-offset_left = 52
-offset_top = 368
-offset_right = 379
-offset_bottom = 488
-text = "返回餐台"
-focus_mode = 0
-theme_override_font_sizes/font_size = 32
-
-[node name="Restart" type="Button" parent="Stage/Modal/Card"]
-layout_mode = 0
-offset_left = 419
-offset_top = 368
-offset_right = 746
-offset_bottom = 488
-text = "重新开始"
-focus_mode = 0
-theme_override_font_sizes/font_size = 32
+offset_top = 1212
+offset_bottom = 1432
 
 [node name="SettingsPanel" parent="Stage" instance=ExtResource("settings_panel_scene")]
+layout_mode = 0
+
+[node name="FailurePanel" parent="Stage" instance=ExtResource("failure_scene")]
 layout_mode = 0
 
 [node name="BoardInput" parent="." instance=ExtResource("board_input_scene")]

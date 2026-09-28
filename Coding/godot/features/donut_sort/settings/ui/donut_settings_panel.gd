@@ -24,19 +24,19 @@ func _ready() -> void:
 
 
 ## 从关卡标题展示选关面板。
-func show_level_selection(coins: int, diamonds: int) -> void:
-	_open("选择关卡", coins, diamonds)
+func show_level_selection() -> void:
+	_open("选择关卡")
 
 
 ## 从齿轮展示设置面板。
-func show_settings(coins: int, diamonds: int) -> void:
-	_open("游戏设置", coins, diamonds)
+func show_settings() -> void:
+	_open("游戏设置")
 
 
-## 展示本关奖励与离开后果，按宿主能力配置侧边栏入口。
-func _open(heading: String, coins: int, diamonds: int) -> void:
+## 展示设置与选关操作，按宿主能力配置侧边栏入口。
+func _open(heading: String) -> void:
 	$Card/Heading.text = heading
-	$Card/Detail.text = "本关金币 %d · 钻石 %d\n切关或重开会清空本关奖励" % [coins, diamonds]
+	$Card/Detail.text = "切关或重开会清空当前进度"
 	var sidebar: Button = $Card/Sidebar
 	sidebar.visible = _sidebar_available()
 	if sidebar.visible:

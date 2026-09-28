@@ -8,7 +8,7 @@ fi
 node "$tool_directory/export/douyin.mjs" "$@"
 douyin_status=$?
 if (( douyin_status == 0 )); then
-  read '?抖音打包完成，文件已更新到固定目录。按回车关闭…'
+  read '?抖音工具已结束，打包结果见上方。按回车关闭…'
 else
   read '?打包失败，请查看上方诊断。按回车关闭…'
 fi

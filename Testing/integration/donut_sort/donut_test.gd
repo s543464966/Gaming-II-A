@@ -22,16 +22,20 @@ func _run() -> void:
 	_check_event_boundaries()
 	_check_turnover_and_single()
 	_check_tools_and_victory()
+	_check_failure_rules()
 	_check_reward_tiers()
 	await _check_currency_and_settings()
 	await _check_level_navigation()
+	await _check_failure_panel()
 	await _check_ui_lifecycle()
+	await _check_inline_actions()
 	await _check_group_flight()
 	await _check_drag_follow_flight()
 	await _check_pointer_input()
 	await _check_hit_area_and_no_hints()
 	await _check_early_level_drags()
 	await _check_portrait_layout()
+	await _check_side_refill()
 	await _check_order_card_layout()
 	await _check_host_safe_area()
 	if not _failures.is_empty():
@@ -577,6 +581,136 @@ func _check_tools_and_victory() -> void:
 		and session.tools == {"undo": 1, "add_box": 1, "top": 1}, "Restart did not reset level ledger and single tool charges")
 
 
+## 用一次真实搬运形成堵塞，避免直接改写会话的结束标记。
+func _failure_definition() -> Dictionary:
+	var boxes: Array = [_box([0, 1, 1, 1]), _box([0, 2, 2])]
+	for index: int in 12:
+		boxes.append(_box([2, 3, 4, 5]))
+	var definition: Dictionary = _definition(boxes)
+	definition.tools = {"undo": 0, "add_box": 0, "top": 0}
+	return definition
+
+
+## 无合法操作才判负，三种补救道具必须按实际可用性保留机会。
+func _check_failure_rules() -> void:
+	var definition: Dictionary = _failure_definition()
+	var session := DonutSession.new(definition)
+	_expect(not session.is_failed(), "Unstarted level was marked failed")
+	session.begin()
+	_expect(not session.is_failed() and session.move(0, 1), "Failure fixture has no opening move")
+	_expect(session.is_blocked() and session.is_failed() and not session.is_won(), "Dead end did not fail")
+	session.restart()
+	_expect(not session.is_failed() and session.moves == 0, "Restart retained failure")
+	for tool: String in ["undo", "add_box", "top"]:
+		definition = _failure_definition()
+		definition.tools[tool] = 1
+		session = DonutSession.new(definition)
+		session.begin()
+		session.move(0, 1)
+		_expect(session.is_blocked() and not session.is_failed(), "Usable %s tool did not prevent failure" % tool)
+		if tool == "undo":
+			_expect(session.undo() and not session.is_blocked(), "Undo did not recover from blockage")
+		elif tool == "add_box":
+			_expect(session.add_box() and not session.is_blocked(), "Additional box did not recover from blockage")
+		else:
+			_expect(session.bring_to_top(2, 1) and session.is_failed(), "Last ineffective top use did not produce failure")
+	definition = _failure_definition()
+	definition.tools = {"undo": 1, "add_box": 1, "top": 1}
+	for slot: Dictionary in definition.slots:
+		slot.box = _box([6, 6, 6, 6])
+		slot.kind = "regular"
+		slot.unlock_after = 0
+	session = DonutSession.new(definition)
+	session.begin()
+	_expect(session.is_failed(), "Unusable tool charges prevented failure despite no history, turnover or reorder")
+	print("PASS: failure only after no moves and no usable recovery tools")
+
+
+## 验证真实失败触发、遮罩、窄屏布局、取消恢复及主页接口和重试。
+func _check_failure_panel() -> void:
+	var viewport := SubViewport.new()
+	viewport.size = Vector2i(720, 1280)
+	root.add_child(viewport)
+	var page: Control = load("res://features/home/ui/home_screen.tscn").instantiate()
+	viewport.add_child(page)
+	await process_frame
+	await process_frame
+	page.initialize(DonutSession.new(_failure_definition()))
+	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+	await process_frame
+	page.session.move(0, 1)
+	_expect(not page.failure_panel.visible, "Failure opened before the last move finished presenting")
+	page.event_player._animation.custom_step(30.0)
+	await process_frame
+	var panel: DonutFailurePanel = page.failure_panel
+	var home_requests: Array = []
+	page.home_requested.connect(func() -> void: home_requests.append(true))
+	_expect(panel.visible and not page.completion_view.visible and not page._board_input_enabled(), "Failure did not lock underlying board input")
+	var failed_state: Dictionary = page.session.snapshot()
+	for dimensions: Vector2i in [Vector2i(360, 640), Vector2i(393, 852), Vector2i(1024, 1536)]:
+		viewport.size = dimensions
+		await process_frame
+		var bounds := Rect2(Vector2.ZERO, Vector2(dimensions))
+		var card: Rect2 = panel.get_node("Card").get_global_rect()
+		_expect(bounds.encloses(card) and card.get_center().distance_to(bounds.get_center()) < 1.0,
+			"Failure card clipped or not centered at %s" % dimensions)
+		for path: String in ["Home", "TryAgain"]:
+			var button: Rect2 = panel.get_node("Card/" + path).get_global_rect()
+			_expect(card.encloses(button) and button.size.y >= 44, "Failure button too small or clipped: " + path)
+		_expect(not panel.get_node("Card/Home").get_global_rect().intersects(panel.get_node("Card/TryAgain").get_global_rect()),
+			"Failure buttons overlap")
+		_check_art_aspect(panel)
+	await _mouse_button(viewport, Vector2(8, 8), true)
+	await _mouse_button(viewport, Vector2(8, 8), false)
+	var cancel := InputEventAction.new()
+	cancel.action = "ui_cancel"
+	cancel.pressed = true
+	page._unhandled_input(cancel)
+	page._on_box_pressed(0)
+	page._on_add_box_pressed()
+	_expect(panel.visible and page.session.snapshot() == failed_state, "Backdrop, back key or board input bypassed failure")
+	var retry: TextureButton = panel.get_node("Card/TryAgain")
+	var point: Vector2 = retry.get_global_rect().get_center()
+	await _touch(viewport, point, true, 0)
+	await _touch(viewport, point, false, 0, true)
+	await process_frame
+	_expect(panel.visible and page.session.snapshot() == failed_state and retry.self_modulate == Color.WHITE,
+		"Canceled retry touch restarted or left pressed feedback")
+	page.hide()
+	page.show()
+	paused = true
+	paused = false
+	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+	await process_frame
+	_expect(panel.visible and page.session.snapshot() == failed_state, "Hide/pause/focus interruption lost failure")
+	await _mouse_button(viewport, panel.get_node("Card/Home").get_global_rect().get_center(), true)
+	await _mouse_button(viewport, panel.get_node("Card/Home").get_global_rect().get_center(), false)
+	await process_frame
+	_expect(panel.visible and not page.settings_panel.visible and home_requests.size() == 1
+		and page.session.snapshot() == failed_state and not retry.disabled, "Home did not preserve failure and forward the reserved navigation signal")
+	await _touch(viewport, point, true, 0)
+	await _touch(viewport, point, false, 0)
+	await process_frame
+	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+	await process_frame
+	_expect(not panel.visible and page.session.moves == 0 and not page.session.is_failed()
+		and page.session.coins == 0 and page.session.tools == {"undo": 0, "add_box": 0, "top": 0}, "Retry did not restore the current level")
+	page.session.move(0, 1)
+	page.hide()
+	page.show()
+	await process_frame
+	_expect(panel.visible, "Interrupting the losing animation skipped failure")
+	page.session.load_level(1)
+	await process_frame
+	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+	await process_frame
+	_expect(page.session.level_index == 1 and not panel.visible and not page.settings_panel.visible
+		and page._board_input_enabled(), "Loading a fresh level did not clear failure and restore input")
+	viewport.queue_free()
+	await process_frame
+	print("PASS: failure panel layout, cancellation, lifecycle, reserved Home signal and Try Again")
+
+
 ## 验证二连、三连、四连及以上只结算对应最高奖励档位。
 func _check_reward_tiers() -> void:
 	for count: int in [2, 3, 4, 5]:
@@ -596,7 +730,7 @@ func _check_reward_tiers() -> void:
 		_expect(session.diamonds == (0 if count == 2 else (1 if count == 3 else 2)), "Diamond reward tier incorrect")
 
 
-## 用真实会话奖励与撤回验证常驻金币栏，并检查齿轮面板可操作。
+## 金币显示暂时隐藏，奖励与撤回仍可正确结算且设置保持可操作。
 func _check_currency_and_settings() -> void:
 	var definition: Dictionary = _definition([_box([0, 0, 0]), _box([0]), _box([3, 3, 3, 3]), _box([2, 2, 2, 2])])
 	definition.demands = [{"sequence": [0, 3, 2], "initially_open": true}, {"sequence": [1], "initially_open": true},
@@ -608,18 +742,27 @@ func _check_currency_and_settings() -> void:
 	await process_frame
 	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
 	var coin_balance: DonutCoinBalance = page.get_node("Stage/CoinBalance")
-	_expect(coin_balance.visible and coin_balance.get_node("Amount").text == "0", "Opening coin balance is missing or not zero")
+	_expect(not coin_balance.visible and coin_balance.get_node("Amount").text == "0", "Opening coin balance was not hidden")
 	coin_balance.present(1280)
 	_expect(coin_balance.get_node("Amount").text == "1,280", "Coin balance thousands separator is incorrect")
 	page._render()
 	_expect(coin_balance.get_node("Amount").text == "0", "Coin balance ignored the session snapshot")
+	var displayed_feedback: Array[String] = []
+	var toast: Control = page.get_node("Stage/Toast")
+	toast.visibility_changed.connect(func() -> void:
+		if toast.visible:
+			displayed_feedback.append(toast.get_node("Message").text))
 	_expect(page.session.move(1, 0) and page.session.coins == 10, "Reward fixture did not produce coins")
+	page.event_player._animation.custom_step(30.0)
+	_expect(displayed_feedback.has("3 连单！") and not coin_balance.visible,
+		"Combo feedback exposed hidden currency rewards")
 	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
 	_expect(coin_balance.get_node("Amount").text == "10", "Coin balance did not follow combo reward")
 	page.get_node("Stage/Settings").pressed.emit()
 	var panel: DonutSettingsPanel = page.get_node("Stage/SettingsPanel")
 	_expect(panel.visible and panel.get_node("Card/Heading").text == "游戏设置", "Gear did not open settings")
-	_expect(panel.get_node("Card/Detail").text.contains("金币 10"), "Settings did not show the real balance")
+	_expect(not panel.get_node("Card/Detail").text.contains("金币") and not panel.get_node("Card/Detail").text.contains("钻石"),
+		"Settings exposed hidden currency balances")
 	_expect(panel.get_node("Card/Choices").get_child_count() == 10, "Settings cannot select all ten levels")
 	panel.get_node("Card/Resume").pressed.emit()
 	_expect(not panel.visible, "Settings return did not close the panel")
@@ -633,7 +776,7 @@ func _check_currency_and_settings() -> void:
 	await process_frame
 	await process_frame
 	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
-	_expect(page.session.moves == 0 and page.session.coins == 0 and coin_balance.get_node("Amount").text == "0",
+	_expect(page.session.moves == 0 and page.session.coins == 0 and coin_balance.get_node("Amount").text == "0" and not coin_balance.visible,
 		"Settings restart did not reset the level and coin balance")
 	page.queue_free()
 	await process_frame
@@ -693,19 +836,117 @@ func _check_level_navigation() -> void:
 				page.event_player._animation.custom_step(30.0)
 			else:
 				page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
-		var next: Button = page.get_node("Stage/Modal/Card/Restart")
-		_expect(page.modal.visible and page.session.is_won(), "Victory modal did not open")
-		_expect(next.text == ("下一关" if index < 9 else "再玩一遍"), "Last-level navigation label is incorrect")
-		var point: Vector2 = next.get_global_rect().get_center()
-		await _mouse_button(viewport, point, true)
-		await _mouse_button(viewport, point, false)
+		var next: Button = page.get_node("Stage/Completion/Continue")
+		_expect(page.completion_view.visible and page.session.is_won() and not page.settings_panel.visible and not page.failure_panel.visible, "Completion did not stay inline on the table")
+		_expect(page.get_node_or_null("Stage/Modal") == null, "Normal gameplay modal returned")
+		_expect(next.visible == (index == 9) and next.text == "再玩一遍", "Only the final level should offer replay")
+		var completed: Dictionary = page.session.snapshot()
+		page.hide()
+		page.show()
+		page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+		_expect(page.completion_view.visible and page.session.snapshot() == completed and page.get_node("AdvanceTimer").is_stopped(), "Inactive page lost completion or retained automatic navigation")
+		page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_IN)
+		await process_frame
+		await process_frame
+		if index < 9:
+			_expect(not page.get_node("AdvanceTimer").is_stopped(), "Returning to completed level did not resume feedback")
+			page.settings_button.pressed.emit()
+			_expect(page.settings_panel.visible and page.get_node("AdvanceTimer").is_stopped(), "Settings did not suspend automatic advancement")
+			page.get_node("AdvanceTimer").timeout.emit()
+			await process_frame
+			_expect(page.session.snapshot() == completed, "Settings allowed a background level change")
+			page.settings_panel.close()
+			_expect(not page.get_node("AdvanceTimer").is_stopped(), "Closing settings did not resume feedback")
+			paused = true
+			_expect(page.get_node("AdvanceTimer").is_stopped(), "Pause retained automatic navigation")
+			paused = false
+			await process_frame
+			page.get_node("AdvanceTimer").timeout.emit()
+			page.hide()
+			await process_frame
+			_expect(page.session.snapshot() == completed, "Queued navigation ran after hiding the page")
+			page.show()
+			page.get_node("AdvanceTimer").timeout.emit()
+			page.get_node("AdvanceTimer").timeout.emit()
+		else:
+			_expect(page.get_node("AdvanceTimer").is_stopped(), "Last level automatically restarted")
+			var point: Vector2 = next.get_global_rect().get_center()
+			await _mouse_button(viewport, point, true)
+			await _mouse_button(viewport, point, false)
 		await process_frame
 		page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
 		_expect(page.session.level_index == mini(index + 1, 9) and page.session.moves == 0 and not page.session.is_won(),
 			"Next/replay navigation did not load the correct fresh level")
 	viewport.queue_free()
 	await process_frame
-	print("PASS: ten-level menu bounds, mouse selection, level 3/9 advance and level 10 replay")
+	print("PASS: ten-level menu, automatic level 3/9 advance, interrupted feedback and explicit level 10 replay")
+
+
+## 底部选择不遮挡餐台，支持切盒、取消、设置与生命周期中断且不误扣道具。
+func _check_inline_actions() -> void:
+	var viewport := SubViewport.new()
+	viewport.size = Vector2i(360, 640)
+	root.add_child(viewport)
+	var page: Control = load("res://features/home/ui/home_screen.tscn").instantiate()
+	viewport.add_child(page)
+	await process_frame
+	await process_frame
+	page._cancel_interaction()
+	var before: Dictionary = page.session.snapshot()
+	for dimensions: Vector2i in [Vector2i(360, 640), Vector2i(720, 1600), Vector2i(1024, 1536)]:
+		viewport.size = dimensions
+		await process_frame
+		page._cancel_interaction()
+		page.tools_view.get_node("Top").pressed.emit()
+		await _mouse_button(viewport, _box_point(page, 0), true)
+		await _mouse_button(viewport, _box_point(page, 0), false)
+		await process_frame
+		_expect(page.top_choices.visible and not page.tools_view.visible and page._board_input_enabled(), "Inline choice blocked the board or overlapped tools")
+		_expect(not page.settings_panel.visible and not page.failure_panel.visible and page.get_node_or_null("Stage/Modal") == null, "Top tool opened a gameplay popup")
+		var bounds := Rect2(Vector2.ZERO, Vector2(dimensions))
+		var row: HBoxContainer = page.top_choices.get_node("Row")
+		for choice: Button in row.get_children():
+			_expect(bounds.encloses(choice.get_global_rect()) and choice.get_global_rect().size.y >= 44, "Inline top choice clipped or too small")
+			for box: DonutBox in page.board.boxes:
+				_expect(not choice.get_global_rect().intersects(box.get_global_rect()), "Inline choices cover a table box")
+		await _mouse_button(viewport, _box_point(page, 4), true)
+		await _mouse_button(viewport, _box_point(page, 4), false)
+		await process_frame
+		_expect(page.selected_box == 4 and row.get_child(2).icon == DonutArt.HIDDEN, "Inline picker cannot switch to another box")
+		var cancel: Vector2 = row.get_node("Cancel").get_global_rect().get_center()
+		await _touch(viewport, cancel, true, 0)
+		await _touch(viewport, cancel, false, 0, true)
+		await process_frame
+		_expect(page.top_choices.visible and page.session.snapshot() == before, "Canceled touch dismissed picker or consumed a tool")
+		await _mouse_button(viewport, cancel, true)
+		await _mouse_button(viewport, cancel, false)
+		await process_frame
+		_expect(not page.top_choices.visible and page.tools_view.visible and page.session.snapshot() == before, "Cancel failed to restore tools without changing rules")
+	for interruption: String in ["hide", "pause", "focus", "settings", "back"]:
+		page.tools_view.get_node("Top").pressed.emit()
+		page._on_box_pressed(4)
+		match interruption:
+			"hide":
+				page.hide()
+				page.show()
+			"pause":
+				paused = true
+				paused = false
+			"focus":
+				page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+			"settings":
+				page.settings_button.pressed.emit()
+				_expect(page.settings_panel.visible, "Gear no longer opens its settings popup")
+				page.settings_panel.close()
+			"back":
+				var cancel := InputEventAction.new()
+				cancel.action = "ui_cancel"
+				cancel.pressed = true
+				page._unhandled_input(cancel)
+		_expect(not page.top_choices.visible and page.tools_view.visible and page.session.snapshot() == before, "Inline selection survived interruption: " + interruption)
+	viewport.queue_free()
+	await process_frame
+	print("PASS: inline top choices, responsive bounds, box switching, cancel and lifecycle")
 
 
 ## 通过场景交互验证开局、取消、隐藏、外部暂停、切关和完整界面操作。
@@ -746,8 +987,9 @@ func _check_ui_lifecycle() -> void:
 	_expect(page.selected_box == -1, "Hide retained selection")
 	page.get_node("Stage/Tools/Top").pressed.emit()
 	page.get_node("Stage/Boxes/Box0").pressed.emit()
-	_expect(page.get_node("Stage/Modal").visible, "Top choices missing")
-	page.get_node("Stage/Modal/Card/Resume").pressed.emit()
+	_expect(page.top_choices.visible, "Top choices missing")
+	page.get_node("Stage/TopChoices/Row/Cancel").pressed.emit()
+	await process_frame
 	_expect(page.session.tools.top == 1, "Cancel spent a top charge")
 	page.get_node("Stage/Boxes/Box0").pressed.emit()
 	page.get_node("Stage/Boxes/Box12").pressed.emit()
@@ -767,7 +1009,7 @@ func _check_ui_lifecycle() -> void:
 	cancel.action = "ui_cancel"
 	cancel.pressed = true
 	page._unhandled_input(cancel)
-	_expect(not page.get_node("Stage/Modal").visible, "Idle cancel still opens a pause menu")
+	_expect(not page.top_choices.visible, "Idle cancel still opens a pause menu")
 	var title_release := InputEventMouseButton.new()
 	title_release.button_index = MOUSE_BUTTON_LEFT
 	page.get_node("Stage/Title").gui_input.emit(title_release)
@@ -780,12 +1022,13 @@ func _check_ui_lifecycle() -> void:
 	_expect(page.session.tools == {"undo": 1, "add_box": 1, "top": 1}, "Changing level did not restore one charge per tool")
 	page.get_node("Stage/Tools/Top").pressed.emit()
 	page.get_node("Stage/Boxes/Box2").pressed.emit()
-	var hidden_choice: Button = page.get_node("Stage/Modal/Card/Choices").get_child(2)
-	_expect(not hidden_choice.disabled and hidden_choice.icon == DonutArt.HIDDEN, "Top modal did not offer a concealed layer")
+	var hidden_choice: Button = page.get_node("Stage/TopChoices/Row").get_child(2)
+	_expect(not hidden_choice.disabled and hidden_choice.icon == DonutArt.HIDDEN, "Inline top choices did not offer a concealed layer")
 	hidden_choice.pressed.emit()
+	await process_frame
 	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
 	_expect(page.session.slots[2].box.items[0].flavor == 3 and page.session.slots[2].box.items[0].revealed and
-		page.session.tools.top == 0, "Top modal did not reveal selected gray layer")
+		page.session.tools.top == 0, "Inline top choices did not reveal selected gray layer")
 	var revealed_box: DonutBox = page.board.boxes[2]
 	_expect(revealed_box.food_stack.food_at(0).texture == DonutArt.FOOD[3] and
 		revealed_box.food_stack.food_at(1).texture == DonutArt.FOOD[2] and
@@ -793,7 +1036,7 @@ func _check_ui_lifecycle() -> void:
 		"Board did not preserve a covered known flavor")
 	page.get_node("Stage/Tools/Top").pressed.emit()
 	page.get_node("Stage/Boxes/Box2").pressed.emit()
-	_expect(not page.get_node("Stage/Modal").visible and page.get_node("Stage/Tools/Top/Count").text == "0",
+	_expect(not page.top_choices.visible and page.get_node("Stage/Tools/Top/Count").text == "0",
 		"Exhausted top tool opened its picker or retained a stale badge")
 	_expect_exposed_tops_revealed(page.session, "UI blind top")
 	page._toast("上关反馈")
@@ -964,13 +1207,13 @@ func _check_pointer_input() -> void:
 	var effects_layer: CanvasItem = page.get_node("Stage/Effects")
 	var highest_static_z: int = 0
 	for layer: Node in page.get_node("Stage").get_children():
-		if layer is CanvasItem and layer != effects_layer and layer != page.get_node("Stage/Toast") and layer != page.get_node("Stage/Modal") and layer != page.get_node("Stage/SettingsPanel"):
+		if layer is CanvasItem and layer != effects_layer and layer != page.get_node("Stage/Toast") and layer != page.get_node("Stage/SettingsPanel") and layer != page.failure_panel:
 			highest_static_z = maxi(highest_static_z, _highest_z(layer as CanvasItem))
 	_expect(effects_layer.z_index > highest_static_z, "Moving donuts can be covered by a tray or other static art")
 	_expect(page.get_node("Stage/Toast").z_index > effects_layer.z_index
-		and page.get_node("Stage/Modal").z_index > page.get_node("Stage/Toast").z_index
-		and page.get_node("Stage/SettingsPanel").z_index > page.get_node("Stage/Modal").z_index,
+		and page.get_node("Stage/SettingsPanel").z_index > page.get_node("Stage/Toast").z_index,
 		"Board, effects, feedback and modal layers are out of order")
+	_expect(page.failure_panel.z_index > effects_layer.z_index, "Failure panel does not cover game effects")
 	var source: Vector2 = _box_point(page, 0)
 	var target: Vector2 = _box_point(page, 1)
 	var before: Dictionary = page.session.snapshot()
@@ -1270,11 +1513,7 @@ func _check_portrait_layout() -> void:
 				box.front.stretch_mode == TextureRect.STRETCH_KEEP_ASPECT_CENTERED, "Paper holder art is stretched")
 			_expect(box.back.texture.atlas.resource_path.ends_with("paper_holder_empty.png") and
 				box.front.texture.atlas.resource_path.ends_with("paper_holder_front.png"), "Approved paper holder assets are not displayed")
-		var dispatch: Control = page.get_node("Stage/Dispatch")
-		var paper_back: TextureRect = dispatch.get_node("Back")
-		_expect(dispatch.get_child_count() == 2 and paper_back.get_rect().is_equal_approx(dispatch.get_node("Front").get_rect()),
-			"Removed stock preview or labels returned, or paper box layers diverged")
-		_expect(bounds.encloses(paper_back.get_global_rect()), "Paper box is outside portrait viewport")
+		_expect(page.get_node_or_null("Stage/Dispatch") == null, "Bottom dispatch decoration returned")
 		var single_box: DonutBox = boxes[0]
 		var single_box_state: Dictionary = _box([0]).merged({"frozen": false})
 		single_box_state.items[0].revealed = true
@@ -1300,22 +1539,87 @@ func _check_portrait_layout() -> void:
 		for name: String in ["Undo", "AddBox", "Top"]:
 			var button: Control = page.get_node("Stage/Tools/" + name)
 			_expect(bounds.encloses(button.get_global_rect()), "Tool outside portrait viewport: " + name)
-			var button_center_y: float = button.get_global_rect().get_center().y
-			var paper_center_y: float = paper_back.get_global_rect().get_center().y
-			_expect(paper_center_y < button_center_y and
-				button_center_y - paper_center_y < button.get_global_rect().size.y * 0.25,
-				"Paper box is not aligned just above the tool row: " + name)
-			_expect(not button.get_global_rect().intersects(paper_back.get_global_rect()), "Tool overlaps paper box: " + name)
-	page.event_player._animation = page.event_player.create_tween()
-	page.event_player._append_box_flight(page.session.slots[0], 0, 0.2)
-	var flying_box: DonutBox = page.get_node("Stage/Effects").get_child(-1)
-	_expect((flying_box.position + flying_box.size * flying_box.scale * 0.5).is_equal_approx(page.dispatch.center_in_stage()),
-		"Initial/refill box does not emerge from the paper box")
-	page.event_player._animation.kill()
-	flying_box.queue_free()
+		var undo_rect: Rect2 = page.get_node("Stage/Tools/Undo").get_global_rect()
+		var top_rect: Rect2 = page.get_node("Stage/Tools/Top").get_global_rect()
+		var add_center: Vector2 = page.get_node("Stage/Tools/AddBox").get_global_rect().get_center()
+		_expect(absf(add_center.x - stage_rect.get_center().x) < 1.0 and
+			absf(undo_rect.get_center().x + top_rect.get_center().x - add_center.x * 2.0) < 1.0,
+			"Three tool buttons are not centered after removing the paper box")
+		for index: int in [0, 4, 10, 14, 15, 16]:
+			await _check_box_entry(page, index, bounds)
 	viewport.queue_free()
 	await process_frame
 	print("PASS: paper holder proportions, donut stack layers, portrait bounds and resize cancellation")
+
+
+## 从两侧视口外等比进入对应行，途中不改变规则状态，终点与实际盒位完全一致。
+func _check_box_entry(page: Control, index: int, bounds: Rect2) -> void:
+	var before: Dictionary = page.session.snapshot()
+	var effects: DonutEventPlayer = page.event_player
+	effects._animation = effects.create_tween()
+	effects._append_box_flight(before.slots[0], index, 1.0)
+	var flying: DonutBox = effects.get_child(-1)
+	var start: Rect2 = flying.get_global_rect()
+	var target: Rect2 = page.board.boxes[index].get_global_rect()
+	var from_left: bool = target.get_center().x <= page.board.get_global_rect().get_center().x
+	_expect(start.end.x < bounds.position.x if from_left else start.position.x > bounds.end.x,
+		"Incoming box does not begin outside the correct viewport edge: %d" % index)
+	_expect(start.size.is_equal_approx(target.size) and is_equal_approx(start.position.y, target.position.y),
+		"Incoming box size or row differs from its target")
+	effects._animation.custom_step(0.5)
+	var midway: Rect2 = flying.get_global_rect()
+	_expect(flying.visible and midway.position.x > start.position.x if from_left else flying.visible and midway.position.x < start.position.x,
+		"Incoming box did not travel toward its target")
+	_expect(is_equal_approx(midway.position.y, target.position.y) and midway.size.is_equal_approx(target.size),
+		"Incoming box changes row or scale in flight")
+	effects._animation.custom_step(0.5)
+	_expect(flying.get_global_rect().is_equal_approx(target), "Incoming box did not land on the exact target")
+	_expect(page.session.snapshot() == before, "Entry animation changed committed rules")
+	await process_frame
+	_expect(effects.get_child_count() == 0, "Landed box left duplicate flight art")
+
+
+## 真实左右两侧打包后原位补货，动画结束及缩放中断均保留唯一对应餐盒。
+func _check_side_refill() -> void:
+	var viewport := SubViewport.new()
+	viewport.size = Vector2i(720, 1280)
+	root.add_child(viewport)
+	var page: Control = load("res://features/home/ui/home_screen.tscn").instantiate()
+	viewport.add_child(page)
+	await process_frame
+	await process_frame
+	for index: int in [0, 4]:
+		var definition: Dictionary = _definition()
+		definition.slots[index].box = _box([0, 0, 0])
+		definition.slots[1].box = _box([0])
+		definition.stock = [_box([1, 2, 3, 4])]
+		page.initialize(DonutSession.new(definition))
+		page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+		await process_frame
+		_expect(page.session.move(1, index), "Side refill fixture could not dispatch")
+		var after: Dictionary = page.session.snapshot()
+		var arrivals: Array = page.event_player.get_children().filter(func(node: Node) -> bool: return node is DonutBox)
+		_expect(arrivals.size() == 1 and arrivals[0].box_index == index, "Refill animation used the wrong box position")
+		_expect(page.session.completed == 1 and page.session.remaining_stock() == 0,
+			"Side entry broke real dispatch or consumed extra stock")
+		page.event_player._animation.custom_step(10.0)
+		await process_frame
+		_expect(page.board.boxes[index].visible and page.board.boxes[index].food_stack.food_at(0).texture == DonutArt.FOOD[1],
+			"Refilled box did not render at its target after landing")
+		_expect(page.event_player.get_child_count() == 0 and page.session.snapshot() == after, "Refill animation duplicated state or art")
+		page.session.restart()
+		page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+		_expect(page.session.move(1, index), "Interrupted refill fixture could not dispatch")
+		after = page.session.snapshot()
+		viewport.size += Vector2i(10, 20)
+		await process_frame
+		await process_frame
+		_expect(not page.event_player.is_playing() and page.event_player.get_child_count() == 0 and page.session.snapshot() == after,
+			"Resize retained side-entry art or changed refill state")
+		_expect(page.board.boxes[index].visible, "Resize interruption left the refilled box hidden")
+	viewport.queue_free()
+	await process_frame
+	print("PASS: left/right offscreen entry, exact target, real dispatch/refill and resize cancellation")
 
 
 ## 对照底图卡槽像素边界，验证不同尺寸和状态下的图文居中与完整留白。
@@ -1340,7 +1644,7 @@ func _check_order_card_layout() -> void:
 			for flavor: int in [0, 4, 5, 6]:
 				demands.append({"open": status != "locked", "cursor": 1 if status == "complete" else 0,
 					"sequence": [flavor]})
-			page.orders.present(demands, 0, 8)
+			page.orders.present(demands)
 			await process_frame
 			await process_frame
 			var panel: TextureRect = page.orders.get_node("Panel")
@@ -1406,7 +1710,8 @@ func _check_host_safe_area() -> void:
 		for name: String in ["Tools/Undo", "Tools/AddBox", "Tools/Top"]:
 			var button: Control = page.get_node("Stage/" + name)
 			_expect(button.get_global_rect().size.y >= 44, "Touch target is shorter than 44 logical pixels: " + name)
-		_expect(page.get_node("Stage/Dispatch/Back").visible, "Paper box icon is hidden")
+		await _check_box_entry(page, 0, Rect2(Vector2.ZERO, Vector2(viewport.size)))
+		await _check_box_entry(page, 4, Rect2(Vector2.ZERO, Vector2(viewport.size)))
 		await _mouse_drag(viewport, _box_point(page, 0), _box_point(page, 1))
 		_expect(page.session.moves == 1, "Safe-area offset broke drag hit testing")
 	viewport.queue_free()

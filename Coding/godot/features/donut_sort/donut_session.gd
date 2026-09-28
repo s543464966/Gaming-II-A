@@ -403,7 +403,7 @@ func undo() -> bool:
 	return true
 
 
-## 无普通搬运时提示玩家使用仍可用的道具或重开，不强制判负。
+## 判断是否没有普通搬运路线，仍可使用道具的堵塞不等于失败。
 func is_blocked() -> bool:
 	if not started or is_won():
 		return false
@@ -411,4 +411,20 @@ func is_blocked() -> bool:
 		for target: int in slots.size():
 			if can_move(source, target):
 				return false
+	return true
+
+
+## 无搬运路线且没有实际可用的补救道具时判负，不保存第二份结束状态。
+func is_failed() -> bool:
+	if not is_blocked() or can_undo():
+		return false
+	if int(tools.add_box) > 0 and next_turnover() >= 0:
+		return false
+	if int(tools.top) > 0:
+		for index: int in slots.size():
+			if not can_handle(index):
+				continue
+			for item_index: int in slots[index].box.items.size():
+				if can_bring_to_top(index, item_index):
+					return false
 	return true

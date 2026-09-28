@@ -12,13 +12,11 @@ const DONUT_FLIGHT_STAGGER: float = 0.10 # 秒；拉开可见先后，同时保�
 
 var _animation: Tween
 var _board: DonutBoardView
-var _dispatch: DonutDispatchView
 
 
-## 显式接收页面拥有的棋盘和纸盒视图，不查找全局场景。
-func initialize(board: DonutBoardView, dispatch: DonutDispatchView) -> void:
+## 显式接收页面拥有的棋盘，入场路径从目标盒位与当前视口计算。
+func initialize(board: DonutBoardView) -> void:
 	_board = board
-	_dispatch = dispatch
 
 
 ## 把事务事件串成一条时间线，快照只交给页面渲染，不重新执行规则。
@@ -26,6 +24,7 @@ func play(events: Array, drop_origin: Variant, render_state: Callable, toast: Ca
 	stop()
 	_animation = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	_animation.tween_interval(0.01)
+	var reward_origin: Vector2 = _board.position + _board.size * 0.5
 	for event: Dictionary in events:
 		match event.kind:
 			"begin":
@@ -33,24 +32,25 @@ func play(events: Array, drop_origin: Variant, render_state: Callable, toast: Ca
 				for index: int in _board.boxes.size():
 					if event.state.slots[index].open and event.state.slots[index].box != null:
 						_board.boxes[index].hide()
-						_append_box_flight(event.state.slots[index], index, 0.035)
+						_append_box_flight(event.state.slots[index], index, 0.10)
 						_animation.tween_callback(_board.boxes[index].show)
 			"move":
 				_append_donut_flight(event, drop_origin)
 			"dispatch":
+				reward_origin = _board.origin(event.index) + _board.boxes[event.index].size * _board.boxes[event.index].scale * 0.5
 				_animation.tween_callback(_board.boxes[event.index].hide)
 				_append_flight(PARCEL, _board.origin(event.index), Vector2(_board.origin(event.index).x, -180),
 					_board.boxes[event.index].size * _board.boxes[event.index].scale, 0.18)
 			"refill":
-				_append_box_flight(event.state.slots[event.index], event.index, 0.15)
+				_append_box_flight(event.state.slots[event.index], event.index, 0.28)
 			"mechanism", "reveal", "unlock", "demand_unlock", "spare_return":
 				_animation.tween_interval(0.06)
 			"combo":
-				_animation.tween_callback(toast.bind("%d 连单！金币 +%d · 钻石 +%d" % [event.count, event.coins, event.diamonds]))
-				var sparkle_start: Vector2 = _dispatch.center_in_stage() - Vector2(37.5, 80)
+				_animation.tween_callback(toast.bind("%d 连单！" % event.count))
+				var sparkle_start: Vector2 = reward_origin - Vector2(37.5, 80)
 				_append_flight(SPARKLE, sparkle_start, sparkle_start + Vector2(0, -36), Vector2(75, 70), 0.32)
 			"undo":
-				_animation.tween_callback(toast.bind("已撤回，机关与奖励同步恢复"))
+				_animation.tween_callback(toast.bind("已撤回"))
 		_animation.tween_callback(render_state.bind(event.state))
 	_animation.finished.connect(playback_finished.emit)
 
@@ -112,20 +112,24 @@ func _position_donut(progress: float, sprite: TextureRect, start: Vector2, finis
 	sprite.position = start.lerp(finish, progress) - Vector2(0, sin(progress * PI) * 42.0 * sprite.scale.y)
 
 
-## 首批与补位盒都从常驻纸盒图标中心飞出。
+## 按目标盒位所在半区从视口外水平移入，保持与落点餐盒一致的尺寸和行高。
 func _append_box_flight(slot: Dictionary, index: int, duration: float) -> void:
 	var sprite: DonutBox = BOX_SCENE.instantiate()
 	sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	sprite.box_index = index
 	sprite.size = DonutBox.BOX_SIZE
-	sprite.scale = Vector2.ONE * 0.48
-	sprite.position = _dispatch.center_in_stage() - sprite.size * sprite.scale * 0.5
+	sprite.scale = _board.boxes[index].scale
+	var finish: Vector2 = _board.origin(index)
+	var viewport_bounds: Rect2 = get_global_transform_with_canvas().affine_inverse() * get_viewport_rect()
+	var box_width: float = sprite.size.x * sprite.scale.x
+	var from_left: bool = finish.x + box_width * 0.5 <= _board.position.x + _board.size.x * 0.5
+	var start_x: float = viewport_bounds.position.x - box_width - 24.0 if from_left else viewport_bounds.end.x + 24.0
+	sprite.position = Vector2(start_x, finish.y)
 	sprite.hide()
 	add_child(sprite)
 	sprite.present(slot)
 	_animation.tween_callback(sprite.show)
-	_animation.tween_property(sprite, "position", _board.origin(index), duration)
-	_animation.parallel().tween_property(sprite, "scale", _board.boxes[index].scale, duration)
+	_animation.tween_property(sprite, "position", finish, duration)
 	_animation.tween_callback(sprite.queue_free)
 
 

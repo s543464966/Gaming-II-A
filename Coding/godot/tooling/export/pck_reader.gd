@@ -57,6 +57,11 @@ func get_files() -> PackedStringArray:
 	return PackedStringArray(_entries.keys())
 
 
+## 返回已校验的条目体积，分块规划不重复读取整张贴图。
+func get_file_size(name: String) -> int:
+	return int(_entries.get(name, {}).get("size", 0))
+
+
 ## 按已校验偏移读取单个条目的原始字节。
 func read_file(name: String) -> PackedByteArray:
 	if _file == null or not _entries.has(name):

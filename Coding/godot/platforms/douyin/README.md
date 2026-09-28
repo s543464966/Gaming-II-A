@@ -26,23 +26,43 @@ node Tooling/export/douyin.mjs
 
 构建在 `Testing/.runtime/douyin-export-*/` 的工程副本中进行，使用 `Douyin Resources` 预设。打包前从当前工程的场景、脚本及其静态资源引用选择运行内容，排除不再使用的美术、平台配置、宿主 JS 与制作工具；共用 GDScript 适配器包含在 PCK 中，`host_viewport.js` 由主包加载。导出后检查 PCK 标识、官方 WASM、主场景、关卡数据、中文字体及包体预算；通过后才更新固定目录。替换发生错误时恢复上一版；成功清理临时文件，失败输出诊断位置。重复启动会被锁文件阻止，异常强制终止后按错误提示确认没有打包进程，再清除残留锁。
 
-项目按[抖音代码包限制](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/guide/basic-function/subpackages/introduction)的默认总包 20 MiB 打包，主包限制 4 MiB；不依赖开通虚拟支付后的 30 MiB 额度。`main.br` 由固定启动器解压，内容与原始 PCK 逐字节往返校验。常规双击 `douyin.command` 使用 `embedded` 模式，所有关卡资源随包，可离线启动。
+项目按[抖音代码包限制](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/guide/basic-function/subpackages/introduction)的默认总包 20 MiB 打包，主包限制 4 MiB；不依赖开通虚拟支付后的 30 MiB 额度。`main.br` 由固定启动器解压，内容与原始 PCK 逐字节往返校验。常规双击 `douyin.command` 默认使用 `auto`：配置了正式 HTTPS CDN 目录时生成对应 CDN 包，否则启动或复用本机 CDN 服务。
 
 ## 本机 CDN 预览
 
-没有正式 CDN 地址时，双击 `Tooling/douyin_cdn_test.command`，或执行 `node Tooling/export/douyin_cdn_test.mjs`。工具启动本机资源服务和临时 HTTPS 隧道，先从公网地址回下载并核对本次资源 SHA-256，再替换固定的 `Archive/Builds/douyin/`；**仍在原有抖音开发者工具项目点击“编译”**。这只用于本地模拟器预览，不创建第二个 IDE 项目，也不上传代码包。测试期间保持工具窗口运行；关掉后临时地址失效，可双击 `douyin.command` 恢复离线包。
+没有正式 CDN 地址时，直接双击 `Tooling/douyin.command` 即可。工具只监听电脑的 `127.0.0.1`，先从本机地址回下载并核对全部资源块，再替换固定的 `Archive/Builds/douyin/`；**仍在原有抖音开发者工具项目点击“编译”**。本机资源不通过公网隧道提供。测试期间保持服务窗口运行；关掉后重新双击同一工具会启动新服务并重新绑定包内地址。
 
-CDN 模式只把两张关卡背景贴图的导入载荷放进按内容摘要命名的远程 PCK，其余脚本、场景、字体和玩法数据留在小游戏包。App 先下载资源到 `user://cdn`，核对长度与 SHA-256 后挂载，失败时显示重试按钮；已校验的缓存供下次启动使用。`build_report.json` 的 `delivery` 字段记录 URL、文件名、摘要和体积。本机测试项目会关闭开发者工具的域名检查，仅用于这次模拟器预览；真实设备或正式环境需要可长期使用的 HTTPS 目录及抖音后台 request 合法域名配置。
+服务运行期间再次双击会通过独立的本机控制接口复用同模式的原服务并重新打包；进程已退出的残留锁会自动清理。切换本机与 Cloudflare 模式前先关闭原服务窗口，工具不会把本机地址误当成手机测试地址。资源更新失败时保留旧小游戏包。工具只在全部资源校验通过后更新固定项目，保留本地 IDE 配置；服务保留当前与上一批资源，避免正在运行的旧预览在更新时缺文件。
 
-有正式 CDN 目录后，可复制 `Tooling/export/douyin.local.example.json` 为被 Git 忽略的 `douyin.local.json`，设置 `delivery_mode` 为 `cdn` 和以 `/` 结尾的 `cdn_base_url`，然后照常双击 `douyin.command`。也可执行 `node Tooling/export/douyin.mjs --delivery cdn --cdn-base-url https://example.com/game/`。工具生成 `Archive/Builds/douyin.cdn/<摘要>.pck`，但不负责上传；必须按报告中的文件名上传资源，并在预览前确认 URL 返回相同字节。配置缺省为 `embedded`。
+CDN 模式从真实完整 PCK 的导入映射自动识别非启动贴图，包括以后新增的界面素材，按约 4 MiB 一块组织为内容摘要命名的 PCK。单个大贴图可独占一块，上限 32 MiB；超过时明确指出需要优化的素材。启动场景的递归依赖、脚本、字体、场景与玩法数据保留在小游戏包；不是只迁移固定的两张背景，也不改变原始贴图字节。小游戏包仍受 20 MiB 检查，不能保证引擎、代码或单张素材无限增长。
+
+App 按清单逐块下载到 `user://cdn`，核对长度与 SHA-256，全部就绪后挂载并进入关卡。损坏块会重新下载，重试保留已校验的块；加载页显示当前块数，失败可重试。`build_report.json` 的 `delivery.packs` 记录每块文件名、摘要、体积与资源路径。本机包允许电脑开发者工具跳过域名检查，并标记为模拟器专用；手机会给出明确提示，不会尝试把手机自身的 `127.0.0.1` 当成这台电脑。
+
+### Cloudflare 手机测试
+
+无正式 CDN 时可双击 `Tooling/douyin_cdn_test.command`，它委托同一导出入口的 `--delivery cloudflare-cdn`。若要日常双击 `douyin.command` 也使用手机测试，在被 Git 忽略的 `Tooling/export/douyin.local.json` 设置 `delivery_mode: cloudflare-cdn`。配置为 `local-cdn` 则只提供本机模拟器测试；无本机配置时仍默认 `auto`。
+
+工具校验固定版本 `cloudflared`，通过 Cloudflare Quick Tunnel 将本机资源服务映射为临时 `https://*.trycloudflare.com/`。只有随机路径下已登记的资源块和健康响应可读；控制接口使用另一个仅本机端口。Cloudflare 会转发游戏资源字节，持有完整资源 URL 的人可在服务运行期间下载。公网健康响应及每块资源的大小、SHA-256 校验通过后才更新固定项目。
+
+看到 `CDN TEST READY` 后，在原有项目编译并扫码测试。测试包设置 `setting.urlCheck=false`；[抖音官方说明](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/guide/basic-function/network)明确该设置适用于开发者工具与手机调试模式，普通预览和上传版本的实际域名行为仍需手机验收。上传测试通道不代表正式上线，不提交审核。
+
+保持电脑联网、不休眠及服务窗口运行。再次双击会复用原 HTTPS 地址重新打包；关闭服务后重启会换地址并重新导出，手机需加载新测试包。临时隧道仅用于开发测试，Cloudflare 不承诺其可用性；不能用它代替正式发行的稳定资源服务。公网检查失败时旧包保留，工具不会绕过 HTTPS 校验。
+
+### 正式 CDN 与离线模式
+
+有正式 CDN 目录后，可复制 `Tooling/export/douyin.local.example.json` 为被 Git 忽略的 `douyin.local.json`，填写以 `/` 结尾的 `cdn_base_url`，设置 `delivery_mode: auto`，然后照常双击 `douyin.command`。也可执行 `node Tooling/export/douyin.mjs --delivery cdn --cdn-base-url https://example.com/game/`。工具生成 `Archive/Builds/douyin.cdn/<摘要>.pck`，但不负责上传；必须按报告中的 `delivery.packs` 清单原名上传资源，并在预览前确认 URL 返回相同字节，同时配置抖音后台 request 合法域名。
+
+完整离线包只通过 `node Tooling/export/douyin.mjs --delivery embedded` 显式生成；全部资源必须满足 20 MiB 预算。当前美术规模已超过离线预算，日常使用默认 CDN 模式。`--prepare` 仅准备固定依赖，不启动服务或打包。
 
 ## 验证边界
 
 ```sh
-node --test Testing/integration/minigame/export_test.mjs Testing/integration/minigame/viewport_test.mjs Testing/integration/douyin/export_test.mjs
+node --test Testing/integration/minigame/export_test.mjs Testing/integration/douyin/export_test.mjs Testing/integration/douyin/cdn_test.mjs
 node Testing/scripts/check_minigame.mjs Archive/Builds/douyin/godot/main.br # 仅离线包
 ```
 
-CDN 导出时自动检查完整包、拆分后的文件集合与资源字节，以及已校验缓存挂载后的关卡加载；单独运行上述 `check_minigame.mjs` 只适用于离线包。资源检查由本机 Godot 执行，不能代替抖音运行环境验收。开发者工具 4.5.6 已将固定目录作为小游戏项目打开；此前离线包在 iPhone 15 Pro 模拟器进入过关卡。CDN 模式的 `tt.request` 下载仍须在抖音模拟器验证；真机还需检查冷启动、中文字体、竖屏布局、触摸操作与前后台恢复。扫码预览使用抖音 35.0.0 及以上版本。
+CDN 导出时自动检查完整包、启动依赖、多块挂载、新界面贴图、坏缓存修复与缓存复用；单独运行上述 `check_minigame.mjs` 只适用于离线包。资源检查由本机 Godot 执行，不能代替抖音运行环境验收。手机可使用 Cloudflare 临时 HTTPS 或正式 CDN，另验冷启动下载、中文字体、竖屏布局、触摸操作与前后台恢复。扫码预览使用抖音 35.0.0 及以上版本。
 
 2026-09-23 已用 iPhone 扫码确认游戏进入关卡；加入侧边栏入口后的 `0.0.2` 版已上传到 AppID `tt0da47b1993dcc5c602` 的默认测试通道。上传成功但审核预检仍提示未接入内购、广告等推荐能力；这些不是测试版上传阻断项，正式提审前应按游戏实际商业化方案决定是否接入。
+
+2026-09-28 的 `0.0.3` 已由开发者工具回执确认上传到同一 AppID 的默认测试通道。该包使用 Cloudflare 临时 HTTPS，小游戏包 8,785,393 字节，5 块远程贴图合计 17,296,940 字节；全部资源已完成公网回下载与摘要校验。开发者工具显示关卡正常，当前版本的 iPhone 下载与进入关卡仍待用户验收。预检继续提示内购、添加到桌面、订阅消息和广告等能力，上传已成功，未提交正式审核。

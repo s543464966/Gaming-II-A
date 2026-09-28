@@ -3,11 +3,11 @@ import { createServer } from 'node:http';
 
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 
-// The local origin serves only one verified, immutable content-addressed pack.
+// The local origin serves only registered, verified content-addressed packs.
 export async function startDouyinResourceServer({ onDownload = () => {} } = {}) {
   const prefix = `/${randomBytes(24).toString('hex')}/`;
   const challenge = randomBytes(24).toString('hex');
-  let asset = null;
+  const assets = new Map();
   const stats = { requests: 0, bytes: 0 };
   const server = createServer({ requestTimeout: 15000, headersTimeout: 10000, maxHeaderSize: 8192 }, (request, response) => {
     response.setHeader('Cache-Control', 'no-store');
@@ -15,7 +15,7 @@ export async function startDouyinResourceServer({ onDownload = () => {} } = {}) 
     response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
     const name = request.url?.startsWith(prefix) ? request.url.slice(prefix.length) : '';
-    const body = name === 'health' ? Buffer.from(challenge) : name === asset?.name ? asset.bytes : null;
+    const body = name === 'health' ? Buffer.from(challenge) : assets.get(name);
     if (!body) { response.writeHead(404); response.end(); return; }
     if (request.method === 'OPTIONS') { response.writeHead(204); response.end(); return; }
     if (!['GET', 'HEAD'].includes(request.method)) { response.writeHead(405); response.end(); return; }
@@ -40,20 +40,24 @@ export async function startDouyinResourceServer({ onDownload = () => {} } = {}) 
     origin: `http://127.0.0.1:${server.address().port}`, prefix, challenge, stats,
     install(name, bytes) {
       if (!/^[0-9a-f]{64}\.pck$/.test(name) || sha256(bytes) + '.pck' !== name
-          || bytes.length < 1 || bytes.length > 8 * 1024 * 1024) {
+          || bytes.length < 1 || bytes.length > 32 * 1024 * 1024) {
         throw new Error('The local CDN pack name, size or digest is invalid.');
       }
-      asset = { name, bytes: Buffer.from(bytes) };
+      assets.set(name, Buffer.from(bytes));
+    },
+    retain(names) {
+      const retained = new Set(names);
+      for (const name of assets.keys()) if (!retained.has(name)) assets.delete(name);
     },
     async close() {
       server.closeAllConnections();
       await new Promise(accept => server.close(accept));
-      asset = null;
+      assets.clear();
     },
   };
 }
 
-// Verify the public TLS route by consuming and hashing the exact pack bytes.
+// Verify the configured resource route by consuming and hashing the exact bytes.
 export async function verifyDouyinResource(baseUrl, name, expected, { signal } = {}) {
   const timeout = AbortSignal.timeout(30000);
   const response = await fetch(baseUrl + name, {

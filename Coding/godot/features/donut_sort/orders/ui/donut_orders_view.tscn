@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://features/donut_sort/orders/ui/donut_orders_view.gd" id="view"]
 [ext_resource type="PackedScene" path="res://features/donut_sort/orders/ui/donut_order_card.tscn" id="order_card"]
 
-[ext_resource type="FontVariation" path="res://features/donut_sort/ui/donut_display_font.tres" id="display_font"]
-[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/badge_orders.tres" id="progress"]
-[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/icons/icon_clipboard.tres" id="clipboard"]
 [ext_resource type="Texture2D" path="res://features/donut_sort/orders/ui/art/orders_panel_four_slots.png" id="order_panel"]
 
 [node name="Orders" type="Control"]
@@ -61,39 +58,3 @@ anchor_right = 0.9314
 anchor_bottom = 0.803867
 offset_right = 0.0
 offset_bottom = 0.0
-
-[node name="ProgressPlate" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 836
-offset_top = 129
-offset_right = 1004
-offset_bottom = 183
-mouse_filter = 2
-texture = ExtResource("progress")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Clipboard" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 844
-offset_top = 141
-offset_right = 870
-offset_bottom = 172
-mouse_filter = 2
-texture = ExtResource("clipboard")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Progress" type="Label" parent="."]
-layout_mode = 0
-offset_left = 871
-offset_top = 133
-offset_right = 999
-offset_bottom = 179
-mouse_filter = 2
-text = "0 / 8 单"
-theme_override_fonts/font = ExtResource("display_font")
-theme_override_font_sizes/font_size = 27
-theme_override_colors/font_color = Color(0.40, 0.19, 0.08, 1)
-horizontal_alignment = 1
-vertical_alignment = 1

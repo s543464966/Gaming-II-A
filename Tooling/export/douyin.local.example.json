@@ -1,4 +1,4 @@
 {
-  "delivery_mode": "embedded",
+  "delivery_mode": "auto",
   "cdn_base_url": ""
 }

@@ -5,7 +5,7 @@ if ! command -v node >/dev/null 2>&1; then
   read '?按回车关闭…'
   exit 1
 fi
-node "$tool_directory/export/douyin_cdn_test.mjs" "$@"
+node "$tool_directory/export/douyin.mjs" --delivery cloudflare-cdn "$@"
 cdn_status=$?
 if (( cdn_status != 0 )); then
   read '?CDN 测试失败，请查看上方诊断。按回车关闭…'

@@ -25,7 +25,7 @@ func _run() -> void:
 	if (page.get_node("Stage/Orders") as DonutOrdersView).cards.size() != 4:
 		_fail("Exported order cards are missing.")
 		return
-	for path: String in ["Stage/Dispatch/Back", "Stage/Tools/Undo", "Stage/Tools/AddBox",
+	for path: String in ["Stage/Tools/Undo", "Stage/Tools/AddBox",
 			"Stage/Tools/Top", "Stage/Boxes/Box0/Food"]:
 		if page.get_node_or_null(path) == null:
 			_fail("Exported UI component is missing: " + path)

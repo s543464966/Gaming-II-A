@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/panel_failure_blank.png" id="texture"]
+
+[resource]
+atlas = ExtResource("texture")
+region = Rect2(34, 54, 1081, 1280)
+filter_clip = true

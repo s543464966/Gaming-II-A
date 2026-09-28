@@ -14,24 +14,24 @@ script = ExtResource("view")
 
 [node name="Undo" parent="." instance=ExtResource("undo_scene")]
 layout_mode = 0
-offset_left = 332
-offset_right = 502
+offset_left = 214
+offset_right = 384
 offset_bottom = 170
 pivot_offset = Vector2(85, 85)
 scale = Vector2(1.1, 1.1)
 
 [node name="AddBox" parent="." instance=ExtResource("add_box_scene")]
 layout_mode = 0
-offset_left = 545
-offset_right = 715
+offset_left = 427
+offset_right = 597
 offset_bottom = 170
 pivot_offset = Vector2(85, 85)
 scale = Vector2(1.1, 1.1)
 
 [node name="Top" parent="." instance=ExtResource("top_scene")]
 layout_mode = 0
-offset_left = 758
-offset_right = 928
+offset_left = 640
+offset_right = 810
 offset_bottom = 170
 pivot_offset = Vector2(85, 85)
 scale = Vector2(1.1, 1.1)

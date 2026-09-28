@@ -7,7 +7,7 @@ import { selectEngine } from '../../Tooling/environment/engine.mjs';
 const workspace = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 let run;
 try {
-  if (process.argv.length !== 4) throw new Error('Usage: node Testing/scripts/check_cdn_pack.mjs <core-pck> <remote-pck>');
+  if (process.argv.length !== 4) throw new Error('Usage: node Testing/scripts/check_cdn_pack.mjs <core-pck> <remote-directory>');
   const core = resolve(process.argv[2]);
   const remote = resolve(process.argv[3]);
   const runtime = join(workspace, 'Testing/.runtime');

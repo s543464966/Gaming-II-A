@@ -2,7 +2,33 @@
 
 [ext_resource type="Script" path="res://features/donut_sort/tools/top/ui/donut_top_choices.gd" id="choices"]
 
-[node name="Choices" type="HBoxContainer"]
-alignment = 1
-theme_override_constants/separation = 20
+[node name="TopChoices" type="Control"]
+visible = false
+offset_right = 928
+offset_bottom = 220
+mouse_filter = 2
 script = ExtResource("choices")
+
+[node name="Heading" type="Label" parent="."]
+offset_right = 928
+offset_bottom = 54
+mouse_filter = 2
+text = "选择置顶"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 32
+
+[node name="Row" type="HBoxContainer" parent="."]
+offset_top = 64
+offset_right = 928
+offset_bottom = 220
+mouse_filter = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="Cancel" type="Button" parent="Row"]
+custom_minimum_size = Vector2(160, 155)
+layout_mode = 2
+focus_mode = 0
+text = "取消"
+theme_override_font_sizes/font_size = 32
