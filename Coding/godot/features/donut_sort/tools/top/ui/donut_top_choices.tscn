@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://features/donut_sort/tools/top/ui/donut_top_choices.gd" id="choices"]
+
+[node name="Choices" type="HBoxContainer"]
+alignment = 1
+theme_override_constants/separation = 20
+script = ExtResource("choices")

@@ -1,0 +1,26 @@
+{
+  "source_pack": "donut_game_assets_v7/containers",
+  "assets": [
+    {
+      "id": "paper_holder_empty",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "446ada472a67ca49d2d4f6b64e29cb7d97ac62373d98db2907ee5756ebe05684",
+      "path": "res://features/donut_sort/board/ui/art/paper_holder_empty.png"
+    },
+    {
+      "id": "paper_holder_front",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "c71987a7fa0123286eb670cfb50842746e491fd9e3316787254581e77de6191f",
+      "path": "res://features/donut_sort/board/ui/art/paper_holder_front.png"
+    },
+    {
+      "id": "paper_package_closed",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "0e59e0523733e5da5f2f986abc36007e8ca42281ef923e76f10806120169ec52",
+      "path": "res://features/donut_sort/board/ui/art/paper_package_closed.png"
+    }
+  ]
+}

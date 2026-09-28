@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "gamingii-douyin-js",
+  "version": "1.0.0",
+  "dependencies": {
+    "esbuild": "0.25.12"
+  }
+}

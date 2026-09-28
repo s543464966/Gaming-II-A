@@ -1,7 +1,7 @@
 {
-  "appid": "",
-  "projectname": "donut_sort_douyin",
-  "description": "甜甜圈小铺抖音小游戏测试工程",
+  "appid": "tt0da47b1993dcc5c602",
+  "projectname": "甜甜圈消消乐",
+  "description": "甜甜圈消消乐抖音小游戏测试工程",
   "compileType": "game",
   "setting": { "es6": true, "minified": true, "urlCheck": true, "autoCompile": false },
   "packOptions": { "ignore": [], "include": [] },

@@ -4,9 +4,6 @@ extends RefCounted
 
 signal changed(events: Array)
 
-const BOX_COUNT: int = 16
-const CAPACITY: int = 4
-
 var slots: Array = []
 var demands: Array = []
 var completed: int = 0
@@ -22,7 +19,7 @@ var title: String = ""
 var _definition: Dictionary = {}
 var _stock_cursor: int = 0
 var _next_box_id: int = 0
-var _history: Array[Dictionary] = []
+var _history: DonutUndoHistory = DonutUndoHistory.new()
 
 
 ## 正常启动读取内容目录；验证可显式注入独立定义而不修改运行配置。
@@ -90,30 +87,25 @@ func _prepare() -> void:
 		var threshold: int = int(entry.get("unlock_after", 0))
 		slots.append({"kind": entry.kind, "unlock_after": threshold, "open": threshold == 0,
 			"box": _make_box(entry.box) if entry.get("box") != null else null})
-	for entry: Dictionary in _definition.demands:
-		var threshold: int = int(entry.get("unlock_after", 0))
-		demands.append({"sequence": entry.sequence.map(func(value: Variant) -> int: return int(value)),
-			"cursor": 0, "unlock_after": threshold, "open": threshold == 0})
+	demands = DonutOrderRules.create_positions(_definition.demands)
 	for index: int in slots.size():
 		_reveal_top(index)
 
 
-## 创建带独立编号的餐盒，确保同一盒位的新盒不继承旧盒机关效果。
+## 按单盒配置初始化明暗，新盒不继承同一盒位旧盒的隐藏层或机关效果。
 func _make_box(definition: Dictionary) -> Dictionary:
 	_next_box_id += 1
+	var hidden_layers: bool = definition.get("hidden_layers", false)
 	var items: Array = []
 	for item: Dictionary in definition.items:
-		items.append({"flavor": int(item.flavor), "revealed": bool(item.revealed)})
+		items.append({"flavor": int(item.flavor), "revealed": not hidden_layers})
 	return {"id": _next_box_id, "kind": definition.get("kind", "normal"),
 		"lid": int(definition.get("lid", 0)), "frozen": definition.get("kind", "normal") == "frozen", "items": items}
 
 
 ## 返回本关全部需求数，包含锁定位置及各位置的后续需求。
 func total_orders() -> int:
-	var total: int = 0
-	for position: Dictionary in demands:
-		total += position.sequence.size()
-	return total
+	return DonutOrderRules.total_orders(demands)
 
 
 ## 返回尚未入场的整盒数，界面明确使用“盒”为单位。
@@ -150,45 +142,27 @@ func is_won() -> bool:
 
 ## 单颗暂存容量为一，其余盒子容量为四。
 func capacity(index: int) -> int:
-	return 1 if slots[index].kind == "single" else CAPACITY
+	return DonutMoveRules.capacity(slots, index)
 
 
 ## 判断实际容器存在且限制已解除，空盒位与锁定盒均不允许取放。
 func can_handle(index: int) -> bool:
-	if index < 0 or index >= slots.size():
-		return false
-	var slot: Dictionary = slots[index]
-	return slot.open and slot.box != null and int(slot.box.lid) == 0 and not slot.box.frozen
+	return DonutMoveRules.can_handle(slots, index)
 
 
-## 查询来源盒可拿起的连续明牌组，拖拽预览与实际搬运共用此边界。
-func top_group_size(source: int) -> int:
-	if not started or is_won() or not can_handle(source):
-		return 0
-	var items: Array = slots[source].box.items
-	if items.is_empty() or not items[0].revealed:
-		return 0
-	var flavor: int = int(items[0].flavor)
-	var count: int = 0
-	for item: Dictionary in items:
-		if not item.revealed or int(item.flavor) != flavor:
-			break
-		count += 1
-	return count
+## 仅允许从可操作餐盒的明牌顶层开始拿取。
+func can_pick_top(source: int) -> bool:
+	return DonutMoveRules.can_pick_top(slots, started, is_won(), source)
 
 
-## 计算目标实际可容纳的搬运数量，保留同味匹配与特殊盒限制。
+## 返回操作开始时可一起拿起的连续同味明牌数量。
+func pick_count(source: int) -> int:
+	return DonutMoveRules.pick_count(slots, started, is_won(), source)
+
+
+## 返回连续同味组中目标容量允许接收的实际数量。
 func move_count(source: int, target: int) -> int:
-	var count: int = top_group_size(source)
-	if count == 0 or source == target or not can_handle(target):
-		return 0
-	var destination: Array = slots[target].box.items
-	var space: int = capacity(target) - destination.size()
-	if space <= 0:
-		return 0
-	if not destination.is_empty() and (not destination[0].revealed or destination[0].flavor != slots[source].box.items[0].flavor):
-		return 0
-	return mini(count, space)
+	return DonutMoveRules.move_count(slots, started, is_won(), source, target)
 
 
 ## 为界面提供与正式执行完全一致的目标合法性判断。
@@ -196,7 +170,7 @@ func can_move(source: int, target: int) -> bool:
 	return move_count(source, target) > 0
 
 
-## 原子提交整组或拆分搬运，再揭示露顶食物并结算所有真实回收。
+## 整组搬运只记一步和一次撤回，移完才揭示露顶食物并结算回收。
 func move(source: int, target: int) -> bool:
 	var count: int = move_count(source, target)
 	if count == 0:
@@ -220,10 +194,7 @@ func move(source: int, target: int) -> bool:
 
 ## 返回下一个可由加餐盒道具启用的周转盒位。
 func next_turnover() -> int:
-	for index: int in slots.size():
-		if slots[index].kind == "turnover" and not slots[index].open:
-			return index
-	return -1
+	return DonutAddBoxRules.next_turnover(slots)
 
 
 ## 道具只解锁固定棋盘内的周转盒，并创建一个空盒，不消耗备货。
@@ -242,27 +213,21 @@ func add_box() -> bool:
 	return true
 
 
-## 置顶只能选择可操作盒中已揭示且确实改变顺序的食物。
+## 置顶可选已知下层或盲选未揭示下层，不提前显示未知口味。
 func can_bring_to_top(index: int, item_index: int) -> bool:
 	if not started or is_won() or not can_handle(index) or int(tools.top) <= 0:
 		return false
-	var items: Array = slots[index].box.items
-	if item_index <= 0 or item_index >= items.size() or not items[item_index].revealed:
-		return false
-	var next: Array = items.duplicate(true)
-	var item: Dictionary = next.pop_at(item_index)
-	next.push_front(item)
-	return next != items
+	return DonutTopRules.can_reorder(slots[index].box.items, item_index)
 
 
-## 置顶与后续回收形成同一可撤回事务，不揭露不可选的隐藏口味。
+## 置顶与后续回收形成同一可撤回事务，仅在选中层露顶后揭示。
 func bring_to_top(index: int, item_index: int) -> bool:
 	if not can_bring_to_top(index, item_index):
 		return false
 	_remember()
 	var before: int = completed
-	var item: Dictionary = slots[index].box.items.pop_at(item_index)
-	slots[index].box.items.push_front(item)
+	DonutTopRules.bring_to_top(slots[index].box.items, item_index)
+	_reveal_top(index)
 	tools.top -= 1
 	last_combo = 0
 	var events: Array = []
@@ -275,32 +240,41 @@ func bring_to_top(index: int, item_index: int) -> bool:
 
 ## 返回某需求位置当前口味；锁定或耗尽均返回负一，防止隐藏需求泄露。
 func demand_flavor(index: int) -> int:
-	var position: Dictionary = demands[index]
-	if not position.open or position.cursor >= position.sequence.size():
-		return -1
-	return int(position.sequence[position.cursor])
+	return DonutOrderRules.demand_flavor(demands, index)
+
+
+## 预留显式解锁入口；资格由未来调用方判定，开放及后续回收作为一次可撤回事务。
+func unlock_order_slot(index: int) -> bool:
+	if not started or is_won() or index < 0 or index >= demands.size() or demands[index].open:
+		return false
+	_remember()
+	DonutOrderRules.unlock_position(demands, index)
+	var before: int = completed
+	last_combo = 0
+	var events: Array = []
+	_event(events, "demand_unlock", {"index": index})
+	_settle(events)
+	_award_combo(completed - before, events)
+	changed.emit(events)
+	return true
 
 
 ## 判断凑齐但无需求的等待状态，不据此额外限制取放。
 func is_waiting(index: int) -> bool:
-	if not _packable(index):
+	if not DonutDispatchRules.packable(slots, index):
 		return false
-	return _matching_demand(int(slots[index].box.items[0].flavor)) < 0
+	return DonutOrderRules.matching_demand(demands, int(slots[index].box.items[0].flavor)) < 0
 
 
 ## 在确定的盒位顺序中逐次回收，每次都先影响旧盒，再原位补入一个新盒。
 func _settle(events: Array) -> void:
 	while true:
-		var match_index: int = -1
-		var demand_index: int = -1
-		for index: int in slots.size():
-			if _packable(index):
-				demand_index = _matching_demand(int(slots[index].box.items[0].flavor))
-				if demand_index >= 0:
-					match_index = index
-					break
-		if match_index < 0:
+		var match: Vector2i = DonutDispatchRules.next_match(slots, demands)
+		if match.x < 0:
+			_return_spare_boxes(events)
 			return
+		var match_index: int = match.x
+		var demand_index: int = match.y
 		var parcel: Dictionary = slots[match_index].box.duplicate(true)
 		slots[match_index].box = null
 		demands[demand_index].cursor += 1
@@ -315,20 +289,13 @@ func _settle(events: Array) -> void:
 			_event(events, "refill", {"index": match_index})
 
 
-## 仅普通容量且限制解除的同味整盒可打包，暂存盒不参加回收。
-func _packable(index: int) -> bool:
-	if not can_handle(index) or slots[index].kind == "single":
-		return false
-	var items: Array = slots[index].box.items
-	return items.size() == CAPACITY and items.all(func(item: Dictionary) -> bool: return item.flavor == items[0].flavor)
-
-
-## 同口味需求并存时优先匹配靠左的开放位置。
-func _matching_demand(flavor: int) -> int:
-	for index: int in demands.size():
-		if demand_flavor(index) == flavor:
-			return index
-	return -1
+## 通关后归还道具增添的空盒，不增加订单、机关或奖励，撤回随完整事务恢复。
+func _return_spare_boxes(events: Array) -> void:
+	if not is_won():
+		return
+	for index: int in DonutAddBoxRules.returnable_empty_boxes(slots):
+		slots[index].box = null
+		_event(events, "spare_return", {"index": index})
 
 
 ## 一次真实回收使已在场数字盖各减一，并按盒位顺序解冻一盒。
@@ -351,12 +318,8 @@ func _apply_mechanisms(events: Array) -> void:
 			_event(events, "mechanism", {"index": index})
 
 
-## 消除达到配置阈值时开放需求与常规盒位，刚入场盒不承接本次旧盒机关效果。
+## 消除达到配置阈值时只开放常规盒位，订单位等待显式解锁。
 func _unlock_positions(events: Array) -> void:
-	for index: int in demands.size():
-		if not demands[index].open and completed >= int(demands[index].unlock_after):
-			demands[index].open = true
-			_event(events, "demand_unlock", {"index": index})
 	for index: int in slots.size():
 		if not slots[index].open and slots[index].kind != "turnover" and completed >= int(slots[index].unlock_after):
 			slots[index].open = true
@@ -364,7 +327,7 @@ func _unlock_positions(events: Array) -> void:
 			_event(events, "unlock", {"index": index})
 
 
-## 只揭示当前露顶的一颗，调用方不会把它追加到已确定的搬运组。
+## 首次露顶时记住真实口味，后续堆叠不会抹去揭示状态。
 func _reveal_top(index: int) -> bool:
 	if not can_handle(index) or slots[index].box.items.is_empty() or slots[index].box.items[0].revealed:
 		return false
@@ -394,8 +357,7 @@ func snapshot() -> Dictionary:
 	return {"waiting": waiting, "slots": slots.duplicate(true), "demands": demands.duplicate(true), "completed": completed,
 		"moves": moves, "tools": tools.duplicate(), "coins": coins, "diamonds": diamonds,
 		"last_combo": last_combo, "best_combo": best_combo, "stock_cursor": _stock_cursor,
-		"next_box_id": _next_box_id, "started": started, "remaining_stock": remaining_stock(),
-		"stock_preview": _definition.stock.slice(_stock_cursor, _stock_cursor + 2).duplicate(true)}
+		"next_box_id": _next_box_id, "started": started, "won": is_won(), "remaining_stock": remaining_stock()}
 
 
 ## 记录一次事件之后的画面快照，避免动画完成时再次执行回收或发奖。
@@ -408,12 +370,12 @@ func _event(events: Array, kind: String, data: Dictionary = {}) -> void:
 
 ## 保存用户操作之前的完整状态，包括隐藏层、机关、备货、需求与奖励。
 func _remember() -> void:
-	_history.append(snapshot())
+	_history.remember(snapshot())
 
 
 ## 检查是否可撤回；撤回次数本身不会被旧快照补回。
 func can_undo() -> bool:
-	return not _history.is_empty() and int(tools.undo) > 0
+	return _history.has_entry() and int(tools.undo) > 0
 
 
 ## 原子恢复上一步全部结果并保留本次撤回消耗，不重播或重复结算历史事件。
@@ -421,7 +383,7 @@ func undo() -> bool:
 	if not can_undo():
 		return false
 	var remaining: int = int(tools.undo) - 1
-	var state: Dictionary = _history.pop_back()
+	var state: Dictionary = _history.take()
 	slots = state.slots
 	demands = state.demands
 	completed = state.completed

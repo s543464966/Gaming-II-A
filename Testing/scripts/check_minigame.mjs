@@ -1,5 +1,6 @@
 import { spawnSync } from 'node:child_process';
-import { mkdir, mkdtemp, readFile, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { brotliDecompressSync } from 'node:zlib';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { selectEngine } from '../../Tooling/environment/engine.mjs';
@@ -8,10 +9,16 @@ const workspace = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 let run;
 try {
   if (process.argv.length !== 3) throw new Error('Usage: node Testing/scripts/check_minigame.mjs <exported-pack-file>');
-  const pack = resolve(process.argv[2]);
+  let pack = resolve(process.argv[2]);
   const runtime = join(workspace, 'Testing/.runtime');
   await mkdir(runtime, { recursive: true });
   run = await mkdtemp(join(runtime, 'minigame-pack-test-'));
+  if (pack.endsWith('.br')) {
+    const unpacked = brotliDecompressSync(await readFile(pack));
+    if (unpacked.subarray(0, 4).toString() !== 'GDPC') throw new Error('Brotli resource pack has no Godot signature.');
+    pack = join(run, 'main.pck');
+    await writeFile(pack, unpacked);
+  }
   const engine = await selectEngine(workspace);
   const log = join(run, 'pack_test.log');
   const result = spawnSync(engine, [

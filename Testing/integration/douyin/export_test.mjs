@@ -4,8 +4,9 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 import vm from 'node:vm';
-import { launcherConfig, validateAppId } from '../../../Tooling/export/douyin.mjs';
+import { launcherConfig, patchLauncherViewport, validateAppId } from '../../../Tooling/export/douyin.mjs';
 import { packageSizes } from '../../../Tooling/export/minigame.mjs';
+import installHostViewport from '../../../Coding/godot/platforms/minigame/runtime/host_viewport.js';
 
 const root = resolve(import.meta.dirname, '../../..');
 const platform = join(root, 'Coding/godot/platforms/douyin');
@@ -23,9 +24,26 @@ test('official launcher paths and the declared subpackage agree', async () => {
   assert.deepEqual(lock.subpackages, game.subpackages.map(item => item.root));
   assert.equal(game.deviceOrientation, 'portrait');
   assert.equal(game.enableWebGL2, true);
-  assert.equal(config.mainPack, 'godot/main.bin');
+  assert.equal(config.mainPack, 'godot/main.br');
   assert.equal(config.mainWasm, 'godot/godot.wasm.br');
   assert.equal(config.godotModule, 'godot/godot.js');
+});
+
+test('pinned launcher uses actual window width instead of forming a square on portrait phones', () => {
+  const original = '(function(e){return {screenWidth:e.screenHeight,screenHeight:e.screenHeight,devicePixelRatio:e.pixelRatio}})(info)';
+  for (const info of [
+    { screenWidth: 393, screenHeight: 852, pixelRatio: 3 },
+    { screenWidth: 360, screenHeight: 800, pixelRatio: 2 },
+    { screenWidth: 768, screenHeight: 1024, windowWidth: 600, windowHeight: 900, pixelRatio: 2 },
+  ]) {
+    const broken = vm.runInNewContext(original, { info });
+    assert.equal(broken.screenWidth, broken.screenHeight, 'Regression fixture no longer reproduces the square canvas');
+    const fixed = vm.runInNewContext(patchLauncherViewport(original), { info });
+    assert.equal(fixed.screenWidth, info.windowWidth || info.screenWidth);
+    assert.equal(fixed.screenHeight, info.windowHeight || info.screenHeight);
+  }
+  assert.throws(() => patchLauncherViewport('changed upstream code'), /contract changed/);
+  assert.throws(() => patchLauncherViewport(original + original), /contract changed/);
 });
 
 test('launcher receives a pixel-sized canvas; startup errors and host focus are handled', async () => {
@@ -35,24 +53,32 @@ test('launcher receives a pixel-sized canvas; startup errors and host focus are 
     const handlers = {};
     const errors = [];
     const messages = [];
+    const navigations = [];
     const canvas = { dispatchEvent: event => events.push(event.type) };
+    const windowEvents = [];
+    let info = { screenWidth: 390, screenHeight: 844, pixelRatio: 3 };
     let startCount = 0;
     const scope = {
       console: { log: value => messages.push(value), error() {} },
+      window: { dispatchEvent: event => windowEvents.push(event.type) },
       tt: {
-        getSystemInfoSync: () => ({ screenWidth: 390, screenHeight: 844, pixelRatio: 3 }),
+        getSystemInfoSync: () => info,
         createCanvas: () => canvas,
         onHide: fn => { handlers.hide = fn; }, onShow: fn => { handlers.show = fn; },
+        onWindowResize: fn => { handlers.resize = fn; },
+        checkScene: options => options.success({ isExist: true }),
+        navigateToScene: options => navigations.push(options.scene),
         showModal: options => errors.push(options),
       },
       require(name) {
+        if (name === './host_viewport.js') return installHostViewport;
         if (name === './godot.config.js') return launcherConfig('4.5.1');
         assert.equal(name, './godot.launcher.js');
         return { start(options) {
           startCount++;
           assert.equal(options.canvas.width, 1170);
           assert.equal(options.canvas.height, 2532);
-          assert.equal(options.config.mainPack, 'godot/main.bin');
+          assert.equal(options.config.mainPack, 'godot/main.br');
           if (mode === 'throws') throw new Error('sync error');
           if (mode === 'rejects') return Promise.reject(new Error('async error'));
           if (mode === 'unsupported') return undefined;
@@ -65,6 +91,21 @@ test('launcher receives a pixel-sized canvas; startup errors and host focus are 
     assert.equal(startCount, 1);
     handlers.hide(); handlers.show();
     assert.deepEqual(events, ['blur', 'focus']);
+    assert.equal(scope.__donutDouyinSidebar.available, true);
+    assert.equal(scope.__donutDouyinSidebar.open(), true);
+    assert.deepEqual(navigations, ['sidebar']);
+    handlers.show({ launch_from: 'homepage', location: 'sidebar_card' });
+    assert.equal(scope.__donutDouyinSidebar.fromSidebar, true);
+    info = { screenWidth: 768, screenHeight: 1024, windowWidth: 600, windowHeight: 900, pixelRatio: 2 };
+    handlers.resize({ windowWidth: 600, windowHeight: 900 });
+    assert.equal(canvas.width, 1200);
+    assert.equal(canvas.height, 1800);
+    assert.equal(canvas.clientWidth, 600);
+    assert.equal(canvas.clientHeight, 900);
+    assert.equal(scope.window.innerWidth, 600);
+    assert.equal(scope.window.innerHeight, 900);
+    assert.equal(scope.window.devicePixelRatio, 2);
+    assert.ok(windowEvents.includes('resize'));
     assert.equal(errors.length, mode === 'success' ? 0 : 1, mode);
     assert.equal(messages.includes('[douyin] game started'), mode === 'success');
   }

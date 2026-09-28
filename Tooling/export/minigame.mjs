@@ -103,7 +103,7 @@ export async function updateProject(staged, destination, backup) {
 }
 
 // 两个平台共用资源导出、校验和固定目录更新；平台适配只负责组装宿主文件。
-export async function buildMinigame(profile, { prepareOnly = false } = {}) {
+export async function buildMinigame(profile, { prepareOnly = false, destinationOverride = null } = {}) {
   const { target, label } = profile;
   const lockPath = join(workspace, `Tooling/export/${target}_template.json`);
   const lock = JSON.parse(await readFile(lockPath, 'utf8'));
@@ -144,34 +144,57 @@ export async function buildMinigame(profile, { prepareOnly = false } = {}) {
     for (const name of ['game.json', 'project.config.json', 'third_party_notices.txt']) {
       await cp(join(platform, name), join(game, name));
     }
-    await cp(join(project, 'ui/design_system/fonts/LICENSE.txt'), join(game, 'font_license.txt'));
-    await profile.assemble({ game, platform, artifacts, lock });
+    await cp(join(project, 'design_system/fonts/LICENSE.txt'), join(game, 'font_license.txt'));
+    await profile.assemble({ game, platform, project, artifacts, lock });
+    if (profile.prepareProject) await profile.prepareProject(project);
 
+    // Godot 4.5.1 在 macOS 无界面并行导入字体时可能崩溃，导入阶段固定使用单线程场景树。
     for (const [phase, command] of [
-      ['import', ['--editor', '--import', '--quit']],
+      ['import', ['--single-threaded-scene', '--editor', '--import', '--quit']],
       ['pack', ['--export-pack', profile.preset, join(run, 'game.pck')]],
     ]) {
-      console.log(`${label} ${phase}: Godot ${version}`);
-      const log = join(run, `${phase}.log`);
-      const output = execute(engine, ['--headless', '--path', project, '--log-file', log, ...command]);
-      const diagnostic = output + await readFile(log, 'utf8').catch(() => '');
-      if (errors.test(diagnostic)) throw new Error(`${phase} reported a Godot error; inspect ${log}`);
+      for (let attempt = 1; attempt <= (phase === 'import' ? 3 : 1); attempt++) {
+        console.log(`${label} ${phase}: Godot ${version}${attempt > 1 ? ` (retry ${attempt})` : ''}`);
+        const log = join(run, `${phase}-${attempt}.log`);
+        let failure;
+        let output = '';
+        try { output = execute(engine, ['--headless', '--path', project, '--log-file', log, ...command]); }
+        catch (error) { failure = error; }
+        const diagnostic = output + (failure?.message ?? '') + await readFile(log, 'utf8').catch(() => '');
+        const retryable = phase === 'import' && attempt < 3
+          && /failed: exit null|Caller thread can't call this function/i.test(diagnostic);
+        if (retryable) { console.warn(`${label} import hit a Godot editor thread failure; retrying the same isolated project.`); continue; }
+        if (failure) throw failure;
+        if (errors.test(diagnostic)) throw new Error(`${phase} reported a Godot error; inspect ${log}`);
+        break;
+      }
     }
+    const rawPackPath = join(run, 'game.pck');
+    const fullPack = await readFile(rawPackPath);
+    if (fullPack.length < 32 || fullPack.subarray(0, 4).toString() !== 'GDPC') throw new Error('Missing or invalid Godot resource pack.');
+    console.log(execute(process.execPath, [join(workspace, 'Testing/scripts/check_minigame.mjs'), rawPackPath]));
+    const delivery = profile.partitionPack
+      ? await profile.partitionPack({ engine, project, run, rawPackPath }) : null;
+    const sourcePackPath = delivery?.corePath ?? rawPackPath;
+    const pack = delivery ? await readFile(sourcePackPath) : fullPack;
+    if (pack.length < 32 || pack.subarray(0, 4).toString() !== 'GDPC') throw new Error('Missing or invalid delivery core pack.');
     const packPath = join(game, profile.packPath);
-    await rename(join(run, 'game.pck'), packPath);
-    const pack = await readFile(packPath);
-    if (pack.length < 32 || pack.subarray(0, 4).toString() !== 'GDPC') throw new Error('Missing or invalid Godot resource pack.');
-    console.log(execute(process.execPath, [join(workspace, 'Testing/scripts/check_minigame.mjs'), packPath]));
+    if (profile.encodePack) await writeFile(packPath, profile.encodePack(pack));
+    else await rename(sourcePackPath, packPath);
+    const deliveredPack = await readFile(packPath);
     const fingerprint = createHash('sha256');
     for (const input of await filesIn(project)) fingerprint.update(relative(project, input)).update(await readFile(input));
-    for (const input of [fileURLToPath(import.meta.url), profile.entryPath, lockPath]) fingerprint.update(await readFile(input));
+    for (const input of [fileURLToPath(import.meta.url), profile.entryPath, lockPath, ...(profile.sourceFiles ?? [])]) {
+      fingerprint.update(await readFile(input));
+    }
     const report = {
       target, mode: 'local-test', appid: config.appid, appidConfigured: Boolean(config.appid),
       engine: version,
       dependencies: dependencies.map(({ file, sha256 }) => ({ file, sha256 })),
-      sourceSha256: fingerprint.digest('hex'), packSha256: digest(pack),
+      sourceSha256: fingerprint.digest('hex'), packSha256: digest(deliveredPack),
       createdAt: new Date().toISOString(),
     };
+    if (delivery) report.delivery = delivery.report;
     const reportPath = join(game, 'build_report.json');
     await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`);
     let sizes = await packageSizes(game, lock);
@@ -182,7 +205,8 @@ export async function buildMinigame(profile, { prepareOnly = false } = {}) {
       if (JSON.stringify(measured) === JSON.stringify(sizes)) break;
       sizes = measured;
     }
-    const destination = join(workspace, `Archive/Builds/${target}`);
+    const destination = destinationOverride ?? join(workspace, `Archive/Builds/${target}`);
+    if (delivery) await profile.publishDelivery(delivery, join(dirname(destination), `${target}.cdn`));
     await updateProject(game, destination, join(run, 'previous_project'));
     await rm(run, { recursive: true });
     retained = false;

@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://features/donut_sort/ui/donut_background.gd" id="script"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/scene/tabletop_light.png" id="tabletop"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/scene/shop_background_strip.tres" id="shop"]
+
+[node name="DonutBackground" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("script")
+
+[node name="Tabletop" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 941.0
+offset_bottom = 1672.0
+mouse_filter = 2
+texture = ExtResource("tabletop")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ShopClip" type="Control" parent="."]
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 360.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="Shop" type="TextureRect" parent="ShopClip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("shop")
+expand_mode = 1
+stretch_mode = 6

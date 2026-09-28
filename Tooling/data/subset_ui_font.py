@@ -33,7 +33,7 @@ options.recalc_timestamp = False
 subsetter = subset.Subsetter(options=options)
 subsetter.populate(unicodes={ord(char) for char in characters})
 subsetter.subset(font)
-output = ROOT / "Coding/godot/ui/design_system/fonts/donut_sans_sc.otf"
+output = ROOT / "Coding/godot/design_system/fonts/donut_sans_sc.otf"
 output.parent.mkdir(parents=True, exist_ok=True)
 font.save(output)
 print(f"Generated {output}: {output.stat().st_size} bytes")

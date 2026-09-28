@@ -1,5 +1,5 @@
 {
-  "source_pack": "donut_game_assets_v1",
+  "source_pack": "donut_game_assets_v1 + donut_game_assets_v7",
   "assets": [
     {
       "id": "donut_blueberry",
@@ -290,20 +290,20 @@
       "path": "res://features/donut_sort/ui/art/props/sprinkle_neutral.png"
     },
     {
-      "id": "background_shop",
-      "label": "店铺背景（不透明）",
-      "width": 1024,
-      "height": 1536,
-      "sha256": "98e8567a11e9d76f3ff0ba09c915fae8edbea91c7c1863bf80dadeefcddb4dc8",
-      "path": "res://features/donut_sort/ui/art/scene/background_shop.png"
+      "id": "shop_background_unified",
+      "label": "店铺背景",
+      "width": 853,
+      "height": 1844,
+      "sha256": "8a60c21329c7d300d5d00de788daf9a1fcd1af544308b19fc0c9aa008b744bd8",
+      "path": "res://features/donut_sort/ui/art/scene/shop_background_unified.png"
     },
     {
-      "id": "board_wood",
-      "label": "木质棋盘",
-      "width": 1345,
-      "height": 1169,
-      "sha256": "979a0e15bf7fc1edb2fea54dc21f74c6ac542054ce72acbd7af8ae7bc45896c3",
-      "path": "res://features/donut_sort/ui/art/scene/board_wood.png"
+      "id": "tabletop_light",
+      "label": "浅色木台背景",
+      "width": 941,
+      "height": 1672,
+      "sha256": "e23022d01bbd311a1db70fccfc9eb631638ef55463ebbf20345661b17af78c89",
+      "path": "res://features/donut_sort/ui/art/scene/tabletop_light.png"
     },
     {
       "id": "dispense_back",
@@ -528,6 +528,14 @@
       "height": 778,
       "sha256": "c84160d17c4d91dc9ddcd00e4e1745270afac5f36d7bee2addea5c8c3163a75e",
       "path": "res://features/donut_sort/ui/art/ui/panel_orders.png"
+    },
+    {
+      "id": "orders_panel_four_slots",
+      "label": "四订单位一体底板",
+      "width": 2172,
+      "height": 724,
+      "sha256": "8c4eb831e96a4523ad2b3201730ed00ca02fb0927a27437372ae0e168cf7479e",
+      "path": "res://features/donut_sort/orders/ui/art/orders_panel_four_slots.png"
     }
   ]
 }
