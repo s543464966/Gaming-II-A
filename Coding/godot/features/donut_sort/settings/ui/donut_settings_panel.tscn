@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://features/donut_sort/settings/ui/donut_settings_panel.gd" id="script"]
+[ext_resource type="FontVariation" path="res://features/donut_sort/ui/donut_display_font.tres" id="display_font"]
+
+[node name="SettingsPanel" type="ColorRect"]
+layout_mode = 0
+z_index = 60
+offset_right = 1024.0
+offset_bottom = 1536.0
+visible = false
+color = Color(0.25, 0.12, 0.08, 0.48)
+script = ExtResource("script")
+
+[node name="Card" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 288.0
+offset_right = 911.0
+offset_bottom = 1248.0
+
+[node name="Heading" type="Label" parent="Card"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 30.0
+offset_right = 759.0
+offset_bottom = 109.0
+mouse_filter = 2
+text = "游戏设置"
+theme_override_font_sizes/font_size = 43
+theme_override_fonts/font = ExtResource("display_font")
+theme_override_colors/font_color = Color(0.43, 0.22, 0.12, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Detail" type="Label" parent="Card"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 104.0
+offset_right = 759.0
+offset_bottom = 180.0
+mouse_filter = 2
+text = ""
+theme_override_font_sizes/font_size = 28
+theme_override_fonts/font = ExtResource("display_font")
+theme_override_colors/font_color = Color(0.43, 0.22, 0.12, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Choices" type="GridContainer" parent="Card"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 184.0
+offset_right = 751.0
+offset_bottom = 752.0
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 3
+
+[node name="Sidebar" type="Button" parent="Card"]
+visible = false
+layout_mode = 0
+offset_left = 528.0
+offset_top = 792.0
+offset_right = 746.0
+offset_bottom = 912.0
+text = "抖音侧边栏"
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+
+[node name="Resume" type="Button" parent="Card"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 792.0
+offset_right = 379.0
+offset_bottom = 912.0
+text = "返回餐台"
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+
+[node name="Restart" type="Button" parent="Card"]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 792.0
+offset_right = 746.0
+offset_bottom = 912.0
+text = "重新开始"
+focus_mode = 0
+theme_override_font_sizes/font_size = 32

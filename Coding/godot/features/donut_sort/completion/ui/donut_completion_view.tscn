@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://features/donut_sort/completion/ui/donut_completion_view.gd" id="script"]
+
+[node name="Completion" type="Control"]
+visible = false
+offset_right = 1024
+offset_bottom = 220
+mouse_filter = 2
+script = ExtResource("script")
+
+[node name="Heading" type="Label" parent="."]
+offset_right = 1024
+offset_bottom = 60
+mouse_filter = 2
+text = "本关完成"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 36
+
+[node name="Continue" type="Button" parent="."]
+offset_left = 332
+offset_top = 76
+offset_right = 692
+offset_bottom = 216
+focus_mode = 0
+text = "再玩一遍"
+theme_override_font_sizes/font_size = 40
+
+[node name="Detail" type="Label" parent="."]
+offset_top = 76
+offset_right = 1024
+offset_bottom = 166
+mouse_filter = 2
+text = "即将进入下一关"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 28

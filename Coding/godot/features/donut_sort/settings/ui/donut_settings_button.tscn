@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://features/donut_sort/settings/ui/donut_settings_button.gd" id="script"]
+[ext_resource type="Texture2D" path="res://design_system/art/button_cream.png" id="base"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/settings/ui/art/icon_settings_blue.png" id="icon"]
+
+[sub_resource type="StyleBoxEmpty" id="empty"]
+
+[sub_resource type="AtlasTexture" id="BaseArt"]
+atlas = ExtResource("base")
+region = Rect2(199, 223, 850, 828)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="SettingsArt"]
+atlas = ExtResource("icon")
+region = Rect2(164, 185, 926, 889)
+filter_clip = true
+
+[node name="Settings" type="Button"]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_default_cursor_shape = 2
+tooltip_text = "游戏设置"
+focus_mode = 0
+theme_override_styles/normal = SubResource("empty")
+theme_override_styles/hover = SubResource("empty")
+theme_override_styles/pressed = SubResource("empty")
+theme_override_styles/focus = SubResource("empty")
+script = ExtResource("script")
+
+[node name="Base" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+texture = SubResource("BaseArt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 81.0
+offset_bottom = 81.0
+mouse_filter = 2
+texture = SubResource("SettingsArt")
+expand_mode = 1
+stretch_mode = 5

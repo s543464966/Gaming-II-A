@@ -1,4 +1,5 @@
 import { spawn } from 'node:child_process';
+import { watch } from 'node:fs';
 import { mkdir, mkdtemp, readFile, rm } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -8,9 +9,18 @@ const workspace = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const args = process.argv.slice(2);
 const target = args.find(arg => !arg.startsWith('--')) ?? 'app';
 const usage = 'Usage: node Tooling/preview/preview.mjs [app|home] [--check]';
+const project = join(workspace, 'Coding/godot');
+const ignoredParts = new Set(['.godot', '.git', '.runtime', '.DS_Store', 'node_modules', 'exports']);
 let child;
 let interrupted = false;
 let killTimer;
+let watcher;
+let restartTimer;
+let changeWaiter;
+let changeVersion = 0;
+let previewVersion = 0;
+let phase = 'idle';
+let restartRequested = false;
 
 function terminateChild() {
   if (!child) return;
@@ -22,7 +32,37 @@ function terminateChild() {
 
 function stop() {
   interrupted = true;
+  watcher?.close();
+  watcher = undefined;
+  clearTimeout(restartTimer);
+  changeWaiter?.();
+  changeWaiter = undefined;
   terminateChild();
+}
+
+function sourceChanged(_event, filename) {
+  if (interrupted) return;
+  if (filename) {
+    const parts = String(filename).split(/[\\/]/);
+    if (parts.some(part => ignoredParts.has(part)) || /\.(?:uid|import|md)$/.test(parts.at(-1))) return;
+  }
+  changeVersion++;
+  changeWaiter?.();
+  changeWaiter = undefined;
+  clearTimeout(restartTimer);
+  restartTimer = setTimeout(() => {
+    restartTimer = undefined;
+    if (phase === 'preview' && changeVersion > previewVersion) {
+      restartRequested = true;
+      console.log('工程文件已更新，正在重新启动本地预览…');
+      terminateChild();
+    }
+  }, 900);
+}
+
+function waitForChange(version) {
+  if (interrupted || changeVersion > version) return Promise.resolve();
+  return new Promise(resolve => { changeWaiter = resolve; });
 }
 
 function launch(binary, command, timeout) {
@@ -69,33 +109,62 @@ if (args.includes('--help')) {
       process.exitCode = result.code ?? 1;
     } else {
       const engine = await selectEngine(workspace);
-      const project = join(workspace, 'Coding/godot');
       const runtime = join(workspace, 'Testing/.runtime');
       await mkdir(runtime, { recursive: true });
       run = await mkdtemp(join(runtime, 'preview-'));
-      console.log(`Project: ${project}\nEngine: ${engine}\nDiagnostics: ${run}`);
-      for (const phase of ['import', 'preview']) {
-        const log = join(run, `${phase}.log`);
-        const command = ['--path', project, '--log-file', log];
-        if (phase === 'import') command.push('--headless', '--editor', '--import', '--quit');
-        else if (target === 'home') command.push('res://features/home/ui/home_screen.tscn');
-        const result = await launch(engine, command, phase === 'import' ? 60_000 : undefined);
-        const diagnostic = await readFile(log, 'utf8').catch(() => '');
-        if (/SCRIPT ERROR:|(?:^|\n)ERROR:|Parse Error:|ObjectDB instances leaked|resources still in use/i.test(diagnostic)
-            || (result.code !== 0 && !interrupted)) throw new Error(`${phase} failed.`);
-        if (interrupted) {
-          process.exitCode = 130;
-          break;
+      watcher = watch(project, { recursive: true }, sourceChanged);
+      let retainDiagnostics = false;
+      console.log(`Project: ${project}\nEngine: ${engine}\nDiagnostics: ${run}\n正在监听本地工程；保存后自动重新启动预览。`);
+      for (let cycle = 1; !interrupted; cycle++) {
+        const importedVersion = changeVersion;
+        phase = 'import';
+        const importLog = join(run, `import-${cycle}.log`);
+        const imported = await launch(engine, ['--path', project, '--log-file', importLog,
+          '--headless', '--editor', '--import', '--quit'], 60_000);
+        phase = 'idle';
+        if (interrupted) break;
+        const importDiagnostic = await readFile(importLog, 'utf8').catch(() => '');
+        if (imported.code !== 0 || /SCRIPT ERROR:|(?:^|\n)ERROR:|Parse Error:/i.test(importDiagnostic)) {
+          retainDiagnostics = true;
+          console.error(`Godot 导入失败：${importLog}\n修复工程文件并保存后自动重试。`);
+          await waitForChange(importedVersion);
+          continue;
         }
+        if (changeVersion > importedVersion) continue;
+
+        const previewLog = join(run, `preview-${cycle}.log`);
+        const command = ['--path', project, '--log-file', previewLog];
+        if (target === 'home') command.push('res://features/home/ui/home_screen.tscn');
+        restartRequested = false;
+        previewVersion = changeVersion;
+        phase = 'preview';
+        const result = await launch(engine, command);
+        phase = 'idle';
+        if (interrupted) break;
+        if (restartRequested) continue;
+        const diagnostic = await readFile(previewLog, 'utf8').catch(() => '');
+        if (result.code !== 0 || /SCRIPT ERROR:|(?:^|\n)ERROR:|Parse Error:|ObjectDB instances leaked|resources still in use/i.test(diagnostic)) {
+          retainDiagnostics = true;
+          console.error(`本地预览出错：${previewLog}\n修复工程文件并保存后自动重试。`);
+          await waitForChange(previewVersion);
+          continue;
+        }
+        break;
       }
-      await rm(run, { recursive: true });
-      console.log('Preview stopped; temporary logs removed.');
+      if (interrupted) process.exitCode = 130;
+      if (retainDiagnostics) console.log(`Diagnostics retained: ${run}`);
+      else {
+        await rm(run, { recursive: true });
+        console.log('Preview stopped; temporary logs removed.');
+      }
     }
   } catch (error) {
     console.error(error.message);
     if (run) console.error(`Diagnostics: ${run}`);
     process.exitCode = 1;
   } finally {
+    watcher?.close();
+    clearTimeout(restartTimer);
     for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) process.off(signal, stop);
   }
 }

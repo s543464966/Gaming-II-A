@@ -3,7 +3,9 @@ extends RefCounted
 ## 加载并校验甜甜圈关卡的唯一 JSON 定义，不持有运行中的关卡状态。
 
 const CATALOG_PATH: String = "res://game_content/donuts/levels/catalog.json"
-const FLAVOR_COUNT: int = 4
+const SLOT_COUNT: int = 17
+const FLAVOR_COUNT: int = 7
+const MIN_LEVEL_FLAVORS: int = 7
 
 
 ## 读取可游玩的关卡列表，供会话切换与页面选关共用。
@@ -24,16 +26,18 @@ static func load_definition(path: String) -> Dictionary:
 ## 校验盒位、需求、逐盒备货及各口味数量，避免关卡静默进入不可完成状态。
 static func validate(definition: Dictionary) -> PackedStringArray:
 	var errors: PackedStringArray = []
-	if not definition.get("slots") is Array or definition.slots.size() != 16:
-		errors.append("slots must contain 16 positions")
+	if not definition.get("slots") is Array or definition.slots.size() != SLOT_COUNT:
+		errors.append("slots must contain %d positions" % SLOT_COUNT)
 	if not definition.get("demands") is Array or definition.demands.size() != 4:
 		errors.append("demands must contain 4 positions")
 	if not definition.get("stock") is Array:
 		errors.append("stock must be a finite array")
 	if not errors.is_empty():
 		return errors
-	var supply: Array[int] = [0, 0, 0, 0]
-	var demand: Array[int] = [0, 0, 0, 0]
+	var supply: Array[int] = []
+	var demand: Array[int] = []
+	supply.resize(FLAVOR_COUNT)
+	demand.resize(FLAVOR_COUNT)
 	var turnover_count: int = 0
 	for index: int in definition.slots.size():
 		var slot: Variant = definition.slots[index]
@@ -48,14 +52,16 @@ static func validate(definition: Dictionary) -> PackedStringArray:
 			errors.append("ordinary slot requires a nonnegative unlock threshold")
 		if slot.get("box") != null:
 			_check_box(slot.box, 1 if slot.kind == "single" else 4, supply, errors)
-	if turnover_count != 2:
-		errors.append("exactly two turnover slots required")
+	if turnover_count < 1 or turnover_count > 2:
+		errors.append("one or two turnover slots required")
 	for box: Variant in definition.stock:
 		_check_box(box, 4, supply, errors)
 	for position: Variant in definition.demands:
-		if not position is Dictionary or not position.get("sequence") is Array or int(position.get("unlock_after", 0)) < 0:
+		if not position is Dictionary or not position.get("sequence") is Array:
 			errors.append("invalid demand position")
 			continue
+		if not position.get("initially_open", true) is bool or position.has("unlock_after"):
+			errors.append("demand requires boolean initially_open; unlock_after is not supported")
 		for flavor: Variant in position.sequence:
 			if not _valid_flavor(flavor):
 				errors.append("invalid demand flavor")
@@ -63,6 +69,15 @@ static func validate(definition: Dictionary) -> PackedStringArray:
 				demand[int(flavor)] += 4
 	if supply != demand:
 		errors.append("flavor supply %s does not match demand %s" % [supply, demand])
+	if errors.is_empty():
+		var box_count: int = definition.stock.size()
+		for slot: Dictionary in definition.slots:
+			box_count += 1 if slot.box != null else 0
+		var spare_boxes: int = box_count - DonutOrderRules.total_orders(definition.demands)
+		if spare_boxes < 2 or spare_boxes > 3:
+			errors.append("level must finish with two or three base containers, got %d" % spare_boxes)
+	if supply.filter(func(amount: int) -> bool: return amount > 0).size() < MIN_LEVEL_FLAVORS:
+		errors.append("level must contain at least %d flavors" % MIN_LEVEL_FLAVORS)
 	if not definition.get("tools") is Dictionary:
 		errors.append("tools must be defined")
 	else:
@@ -81,16 +96,18 @@ static func validate(definition: Dictionary) -> PackedStringArray:
 	return errors
 
 
-## 校验单盒限制与食物明暗信息，并累积实际口味数量。
+## 校验单盒限制与食物口味，并累积实际口味数量；揭示历史由会话记录。
 static func _check_box(value: Variant, capacity: int, supply: Array[int], errors: PackedStringArray) -> void:
 	if not value is Dictionary or not value.get("items") is Array or value.items.size() > capacity:
 		errors.append("invalid box capacity or items")
 		return
 	if not value.get("kind", "normal") in ["normal", "lid", "frozen"] or int(value.get("lid", 0)) < 0:
 		errors.append("invalid box mechanism")
+	if not value.get("hidden_layers", false) is bool:
+		errors.append("hidden_layers must be a boolean")
 	for item: Variant in value.items:
-		if not item is Dictionary or not _valid_flavor(item.get("flavor")) or not item.get("revealed") is bool:
-			errors.append("invalid donut flavor or visibility")
+		if not item is Dictionary or not _valid_flavor(item.get("flavor")) or item.has("revealed"):
+			errors.append("invalid donut flavor or obsolete visibility field")
 		else:
 			supply[int(item.flavor)] += 1
 

@@ -1,0 +1,667 @@
+{
+  "id": 6,
+  "title": "双倍甜蜜",
+  "slots": [
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 5
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 1
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "lid",
+        "lid": 2,
+        "items": [
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 0
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "frozen",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 0
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 6
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 3
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 5
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 2
+          }
+        ],
+        "hidden_layers": true
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "frozen",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 4
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 1
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 2
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 6
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 3
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": []
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": []
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": []
+      }
+    },
+    {
+      "kind": "turnover",
+      "unlock_after": -1,
+      "box": null
+    }
+  ],
+  "demands": [
+    {
+      "sequence": [
+        2,
+        4,
+        5,
+        5,
+        1,
+        0,
+        2,
+        0,
+        1,
+        4,
+        1,
+        2,
+        1,
+        4
+      ],
+      "initially_open": true
+    },
+    {
+      "sequence": [
+        6,
+        6,
+        2,
+        5,
+        3,
+        3,
+        6,
+        0,
+        3,
+        4,
+        6,
+        3,
+        5,
+        0
+      ],
+      "initially_open": true
+    },
+    {
+      "sequence": [],
+      "initially_open": false
+    },
+    {
+      "sequence": [],
+      "initially_open": false
+    }
+  ],
+  "stock": [
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 4
+        },
+        {
+          "flavor": 2
+        },
+        {
+          "flavor": 0
+        },
+        {
+          "flavor": 6
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 2
+        },
+        {
+          "flavor": 5
+        },
+        {
+          "flavor": 2
+        },
+        {
+          "flavor": 0
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 6
+        },
+        {
+          "flavor": 6
+        },
+        {
+          "flavor": 3
+        },
+        {
+          "flavor": 0
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 5
+        },
+        {
+          "flavor": 3
+        },
+        {
+          "flavor": 5
+        },
+        {
+          "flavor": 5
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 3
+        },
+        {
+          "flavor": 3
+        },
+        {
+          "flavor": 0
+        },
+        {
+          "flavor": 3
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 5
+        },
+        {
+          "flavor": 5
+        },
+        {
+          "flavor": 3
+        },
+        {
+          "flavor": 2
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 4
+        },
+        {
+          "flavor": 6
+        },
+        {
+          "flavor": 0
+        },
+        {
+          "flavor": 1
+        }
+      ]
+    },
+    {
+      "kind": "lid",
+      "lid": 2,
+      "items": [
+        {
+          "flavor": 0
+        },
+        {
+          "flavor": 6
+        },
+        {
+          "flavor": 3
+        },
+        {
+          "flavor": 1
+        }
+      ]
+    },
+    {
+      "kind": "lid",
+      "lid": 2,
+      "items": [
+        {
+          "flavor": 2
+        },
+        {
+          "flavor": 0
+        },
+        {
+          "flavor": 1
+        },
+        {
+          "flavor": 4
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 4
+        },
+        {
+          "flavor": 1
+        },
+        {
+          "flavor": 4
+        },
+        {
+          "flavor": 4
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 6
+        },
+        {
+          "flavor": 4
+        },
+        {
+          "flavor": 6
+        },
+        {
+          "flavor": 1
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 6
+        },
+        {
+          "flavor": 2
+        },
+        {
+          "flavor": 5
+        },
+        {
+          "flavor": 4
+        }
+      ]
+    },
+    {
+      "kind": "lid",
+      "lid": 2,
+      "items": [
+        {
+          "flavor": 3
+        },
+        {
+          "flavor": 6
+        },
+        {
+          "flavor": 5
+        },
+        {
+          "flavor": 2
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 1
+        },
+        {
+          "flavor": 0
+        },
+        {
+          "flavor": 4
+        },
+        {
+          "flavor": 0
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 5
+        },
+        {
+          "flavor": 3
+        },
+        {
+          "flavor": 2
+        },
+        {
+          "flavor": 1
+        }
+      ]
+    }
+  ],
+  "tools": {
+    "undo": 1,
+    "add_box": 1,
+    "top": 1
+  },
+  "combo_rewards": [
+    {
+      "count": 2,
+      "coins": 5,
+      "diamonds": 0
+    },
+    {
+      "count": 3,
+      "coins": 10,
+      "diamonds": 1
+    },
+    {
+      "count": 4,
+      "coins": 20,
+      "diamonds": 2
+    }
+  ]
+}

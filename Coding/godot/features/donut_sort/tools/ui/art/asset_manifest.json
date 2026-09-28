@@ -1,0 +1,33 @@
+{
+  "source": "user_supplied_button_images",
+  "assets": [
+    {
+      "id": "icon_undo",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "a0cbcde64afd388cf45b833b8376a1eb08946f89cfe032559d855b73d6560cde",
+      "path": "res://features/donut_sort/tools/undo/ui/art/icon_undo.png"
+    },
+    {
+      "id": "icon_add_box",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "eaed33e670f3e7b0e898942d92d81b26058d9cae8f99f3b7fa85aeda2dbf44ba",
+      "path": "res://features/donut_sort/tools/add_box/ui/art/icon_add_box.png"
+    },
+    {
+      "id": "icon_top",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "c89e72a42c1d4fb788964a721356a192c5f7ae58a83350c13bf5453f93c83787",
+      "path": "res://features/donut_sort/tools/top/ui/art/icon_top.png"
+    },
+    {
+      "id": "count_badge",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "3a9f7c223cf14b5db08135195d7094f1b0fb9b4cfc869a6d22f7ea572b09c8b4",
+      "path": "res://features/donut_sort/tools/ui/art/count_badge.png"
+    }
+  ]
+}

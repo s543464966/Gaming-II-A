@@ -1,0 +1,40 @@
+{
+  "source": "donut_failure_popup_assets_v1",
+  "assets": [
+    {
+      "id": "button_home",
+      "width": 1575,
+      "height": 998,
+      "sha256": "dd462f825ee1c93b2464018bf31475796370f79b603f4675ed8112b57494072c",
+      "path": "res://features/donut_sort/failure/ui/art/button_home.png"
+    },
+    {
+      "id": "button_try_again",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "829cedd4d865380caed5b2ad126f8964e5716c1daff91f1f7ffb587ebca00700",
+      "path": "res://features/donut_sort/failure/ui/art/button_try_again.png"
+    },
+    {
+      "id": "header_level_failed",
+      "width": 2172,
+      "height": 724,
+      "sha256": "f87ee3b50feb114b435db2c2a30c484df881fc9d06e599dafbfd62bec566c527",
+      "path": "res://features/donut_sort/failure/ui/art/header_level_failed.png"
+    },
+    {
+      "id": "illustration_failure_scattered",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "cb71f9a4bbce2bfa9ad15199313440b1c05d269a16ce3d8a7184d06b17259a94",
+      "path": "res://features/donut_sort/failure/ui/art/illustration_failure_scattered.png"
+    },
+    {
+      "id": "panel_failure_blank",
+      "width": 1150,
+      "height": 1368,
+      "sha256": "8960f632ef7854f9b7d2fa1c7c92e1a2c31c59c9641d6945d09852174cea814d",
+      "path": "res://features/donut_sort/failure/ui/art/panel_failure_blank.png"
+    }
+  ]
+}

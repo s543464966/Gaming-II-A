@@ -10,20 +10,16 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 0,
-            "revealed": true
+            "flavor": 0
           },
           {
-            "flavor": 0,
-            "revealed": true
+            "flavor": 5
           },
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 0
           },
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 1
           }
         ]
       }
@@ -36,20 +32,39 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 1
           },
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 3
           },
           {
-            "flavor": 0,
-            "revealed": true
+            "flavor": 5
           },
           {
-            "flavor": 0,
-            "revealed": true
+            "flavor": 3
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "hidden_layers": true,
+        "items": [
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 3
           }
         ]
       }
@@ -62,20 +77,16 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 2,
-            "revealed": true
+            "flavor": 3
           },
           {
-            "flavor": 2,
-            "revealed": false
+            "flavor": 3
           },
           {
-            "flavor": 3,
-            "revealed": false
+            "flavor": 6
           },
           {
-            "flavor": 3,
-            "revealed": true
+            "flavor": 5
           }
         ]
       }
@@ -88,20 +99,16 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 3,
-            "revealed": true
+            "flavor": 4
           },
           {
-            "flavor": 3,
-            "revealed": false
+            "flavor": 3
           },
           {
-            "flavor": 2,
-            "revealed": false
+            "flavor": 0
           },
           {
-            "flavor": 2,
-            "revealed": true
+            "flavor": 0
           }
         ]
       }
@@ -114,46 +121,16 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 0,
-            "revealed": true
+            "flavor": 2
           },
           {
-            "flavor": 0,
-            "revealed": false
+            "flavor": 2
           },
           {
-            "flavor": 2,
-            "revealed": false
+            "flavor": 4
           },
           {
-            "flavor": 2,
-            "revealed": true
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 2,
-            "revealed": true
-          },
-          {
-            "flavor": 2,
-            "revealed": false
-          },
-          {
-            "flavor": 0,
-            "revealed": false
-          },
-          {
-            "flavor": 0,
-            "revealed": true
+            "flavor": 5
           }
         ]
       }
@@ -166,20 +143,16 @@
         "lid": 2,
         "items": [
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 1
           },
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 1
           },
           {
-            "flavor": 3,
-            "revealed": true
+            "flavor": 2
           },
           {
-            "flavor": 3,
-            "revealed": true
+            "flavor": 0
           }
         ]
       }
@@ -192,20 +165,16 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 3,
-            "revealed": true
+            "flavor": 3
           },
           {
-            "flavor": 3,
-            "revealed": true
+            "flavor": 4
           },
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 1
           },
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 6
           }
         ]
       }
@@ -218,20 +187,16 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 0,
-            "revealed": true
+            "flavor": 4
           },
           {
-            "flavor": 0,
-            "revealed": true
+            "flavor": 5
           },
           {
-            "flavor": 3,
-            "revealed": true
+            "flavor": 4
           },
           {
-            "flavor": 3,
-            "revealed": true
+            "flavor": 6
           }
         ]
       }
@@ -244,20 +209,16 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 3,
-            "revealed": true
+            "flavor": 3
           },
           {
-            "flavor": 3,
-            "revealed": true
+            "flavor": 4
           },
           {
-            "flavor": 0,
-            "revealed": true
+            "flavor": 0
           },
           {
-            "flavor": 0,
-            "revealed": true
+            "flavor": 6
           }
         ]
       }
@@ -270,20 +231,16 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 5
           },
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 1
           },
           {
-            "flavor": 2,
-            "revealed": true
+            "flavor": 1
           },
           {
-            "flavor": 2,
-            "revealed": true
+            "flavor": 0
           }
         ]
       }
@@ -296,20 +253,16 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 2,
-            "revealed": true
+            "flavor": 6
           },
           {
-            "flavor": 2,
-            "revealed": false
+            "flavor": 0
           },
           {
-            "flavor": 1,
-            "revealed": false
+            "flavor": 3
           },
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 1
           }
         ]
       }
@@ -322,12 +275,10 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 0,
-            "revealed": true
+            "flavor": 0
           },
           {
-            "flavor": 0,
-            "revealed": true
+            "flavor": 0
           }
         ]
       }
@@ -340,20 +291,31 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 5
           },
           {
-            "flavor": 1,
-            "revealed": true
+            "flavor": 5
           }
         ]
       }
     },
     {
-      "kind": "turnover",
-      "unlock_after": -1,
-      "box": null
+      "box": {
+        "items": [],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
     },
     {
       "kind": "turnover",
@@ -363,48 +325,46 @@
   ],
   "demands": [
     {
-      "unlock_after": 0,
       "sequence": [
         0,
         3,
+        3,
+        5,
+        4,
+        1,
         2,
+        6,
+        5,
         0,
+        6,
+        3,
+        4,
+        0,
+        5,
         1,
         0
-      ]
+      ],
+      "initially_open": true
     },
     {
-      "unlock_after": 0,
       "sequence": [
         1,
-        0,
-        3,
-        1,
-        0,
-        1
-      ]
-    },
-    {
-      "unlock_after": 0,
-      "sequence": [
+        4,
         2,
+        4,
         1,
-        0,
-        2,
-        1,
-        0
-      ]
+        5,
+        6
+      ],
+      "initially_open": true
     },
     {
-      "unlock_after": 2,
-      "sequence": [
-        3,
-        0,
-        1,
-        0,
-        1,
-        1
-      ]
+      "sequence": [],
+      "initially_open": false
+    },
+    {
+      "sequence": [],
+      "initially_open": false
     }
   ],
   "stock": [
@@ -413,20 +373,16 @@
       "lid": 0,
       "items": [
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 1
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 6
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 4
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 4
         }
       ]
     },
@@ -435,20 +391,16 @@
       "lid": 0,
       "items": [
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 0
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 6
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 0
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 1
         }
       ]
     },
@@ -457,20 +409,16 @@
       "lid": 0,
       "items": [
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 1
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 4
         },
         {
-          "flavor": 1,
-          "revealed": false
+          "flavor": 4
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 6
         }
       ]
     },
@@ -479,20 +427,16 @@
       "lid": 2,
       "items": [
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 5
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 0
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 1
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 4
         }
       ]
     },
@@ -501,20 +445,16 @@
       "lid": 0,
       "items": [
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 2
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 6
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 5
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 6
         }
       ]
     },
@@ -523,20 +463,16 @@
       "lid": 0,
       "items": [
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 4
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 1
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 1
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 4
         }
       ]
     },
@@ -545,20 +481,16 @@
       "lid": 0,
       "items": [
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 0
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 5
         },
         {
-          "flavor": 1,
-          "revealed": false
+          "flavor": 5
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 6
         }
       ]
     },
@@ -567,20 +499,16 @@
       "lid": 0,
       "items": [
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 2
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 0
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 4
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 3
         }
       ]
     },
@@ -589,20 +517,16 @@
       "lid": 0,
       "items": [
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 1
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 5
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 6
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 4
         }
       ]
     },
@@ -611,20 +535,16 @@
       "lid": 0,
       "items": [
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 4
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 5
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 3
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 5
         }
       ]
     },
@@ -633,28 +553,24 @@
       "lid": 0,
       "items": [
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 5
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 2
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 0
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 1
         }
       ]
     }
   ],
   "tools": {
-    "undo": 3,
-    "add_box": 2,
-    "top": 3
+    "undo": 1,
+    "add_box": 1,
+    "top": 1
   },
   "combo_rewards": [
     {

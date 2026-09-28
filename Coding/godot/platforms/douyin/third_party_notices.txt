@@ -7,8 +7,11 @@ Official export template: web_release 4.5.1-rc-1.0.0.12
 Official embedded launcher: 1.1.27, index.1954a1.js
 Distribution URLs and SHA-256 checksums are pinned in
 Tooling/export/douyin_template.json in the source workspace.
-The ByteDance launcher is distributed unchanged from the official SDK's
-runtime download source. It is third-party platform runtime code.
+The ByteDance launcher originates from the official SDK's runtime download
+source. The build fixes the pinned 1.1.27 screen-width mapping and transpiles
+the launcher and Godot JavaScript to ES2017 for platform compatibility.
+It remains third-party platform runtime code; original license notices are
+preserved. The upstream archive checksums are verified before transformation.
 
 Godot Engine 4.5.1
 https://godotengine.org/license/

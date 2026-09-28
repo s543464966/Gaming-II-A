@@ -1,0 +1,19 @@
+{
+  "source": "donut_game_assets_v7",
+  "assets": [
+    {
+      "id": "coin_balance_plate",
+      "width": 2041,
+      "height": 770,
+      "sha256": "4cc44f5f04e9871b6dcfd51472b7a34cd039890b34220a77482f35e94b046543",
+      "path": "res://features/donut_sort/currency/ui/art/coin_balance_plate.png"
+    },
+    {
+      "id": "coin",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "3ed206f85d27a7b28ec7da2adc79224dde2ed86c5a36fe999e9f7616f3e6ffe6",
+      "path": "res://features/donut_sort/currency/ui/art/coin.png"
+    }
+  ]
+}

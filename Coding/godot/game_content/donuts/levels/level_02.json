@@ -1,380 +1,477 @@
 {
-  "id": 2,
-  "title": "惊喜餐盒",
-  "slots": [
+  "combo_rewards": [
     {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 0,
-            "revealed": true
-          },
-          {
-            "flavor": 0,
-            "revealed": true
-          },
-          {
-            "flavor": 1,
-            "revealed": true
-          }
-        ]
-      }
+      "coins": 5,
+      "count": 2,
+      "diamonds": 0
     },
     {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 1,
-            "revealed": true
-          },
-          {
-            "flavor": 1,
-            "revealed": true
-          },
-          {
-            "flavor": 0,
-            "revealed": true
-          }
-        ]
-      }
+      "coins": 10,
+      "count": 3,
+      "diamonds": 1
     },
     {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 2,
-            "revealed": true
-          },
-          {
-            "flavor": 2,
-            "revealed": false
-          },
-          {
-            "flavor": 3,
-            "revealed": true
-          },
-          {
-            "flavor": 3,
-            "revealed": true
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 3,
-            "revealed": true
-          },
-          {
-            "flavor": 3,
-            "revealed": true
-          },
-          {
-            "flavor": 2,
-            "revealed": false
-          },
-          {
-            "flavor": 2,
-            "revealed": true
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 0,
-            "revealed": true
-          },
-          {
-            "flavor": 0,
-            "revealed": true
-          },
-          {
-            "flavor": 2,
-            "revealed": true
-          },
-          {
-            "flavor": 2,
-            "revealed": true
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 2,
-            "revealed": true
-          },
-          {
-            "flavor": 2,
-            "revealed": true
-          },
-          {
-            "flavor": 0,
-            "revealed": true
-          },
-          {
-            "flavor": 0,
-            "revealed": true
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 1,
-            "revealed": true
-          },
-          {
-            "flavor": 1,
-            "revealed": true
-          },
-          {
-            "flavor": 3,
-            "revealed": true
-          },
-          {
-            "flavor": 3,
-            "revealed": true
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 3,
-            "revealed": true
-          },
-          {
-            "flavor": 3,
-            "revealed": true
-          },
-          {
-            "flavor": 1,
-            "revealed": true
-          },
-          {
-            "flavor": 1,
-            "revealed": true
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 0,
-            "revealed": true
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 1,
-            "revealed": true
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": []
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": []
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": []
-      }
-    },
-    {
-      "kind": "single",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": []
-      }
-    },
-    {
-      "kind": "turnover",
-      "unlock_after": -1,
-      "box": null
-    },
-    {
-      "kind": "turnover",
-      "unlock_after": -1,
-      "box": null
+      "coins": 20,
+      "count": 4,
+      "diamonds": 2
     }
   ],
   "demands": [
     {
+      "initially_open": true,
       "sequence": [
         0,
-        0,
-        0
-      ],
-      "unlock_after": 0
-    },
-    {
-      "sequence": [
-        1,
-        1,
-        1
-      ],
-      "unlock_after": 0
-    },
-    {
-      "sequence": [
-        2,
-        2
-      ],
-      "unlock_after": 0
-    },
-    {
-      "sequence": [
         3,
+        5,
+        1,
+        6,
+        2,
+        3,
+        0,
+        2
+      ]
+    },
+    {
+      "initially_open": true,
+      "sequence": [
+        1,
+        3,
+        1,
+        4,
+        5,
+        0,
+        6,
+        4,
         3
-      ],
+      ]
+    },
+    {
+      "initially_open": false,
+      "sequence": []
+    },
+    {
+      "initially_open": false,
+      "sequence": []
+    }
+  ],
+  "id": 2,
+  "slots": [
+    {
+      "box": {
+        "items": [
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 3
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
       "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 4
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "hidden_layers": true,
+        "items": [
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 3
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 1
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 0
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 4
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 3
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 1
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 5
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 4
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 0
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 5
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 4
+          }
+        ],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": {
+        "items": [],
+        "kind": "normal",
+        "lid": 0
+      },
+      "kind": "regular",
+      "unlock_after": 0
+    },
+    {
+      "box": null,
+      "kind": "turnover",
+      "unlock_after": -1
     }
   ],
   "stock": [
     {
-      "kind": "normal",
-      "lid": 0,
       "items": [
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 1
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 0
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 4
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 3
         }
-      ]
+      ],
+      "kind": "normal",
+      "lid": 0
     },
     {
-      "kind": "normal",
-      "lid": 0,
       "items": [
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 4
         },
         {
-          "flavor": 1,
-          "revealed": true
+          "flavor": 6
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 6
         },
         {
-          "flavor": 0,
-          "revealed": true
+          "flavor": 2
         }
-      ]
+      ],
+      "kind": "normal",
+      "lid": 0
+    },
+    {
+      "items": [
+        {
+          "flavor": 1
+        },
+        {
+          "flavor": 1
+        },
+        {
+          "flavor": 0
+        },
+        {
+          "flavor": 2
+        }
+      ],
+      "kind": "normal",
+      "lid": 0
+    },
+    {
+      "items": [
+        {
+          "flavor": 0
+        },
+        {
+          "flavor": 1
+        },
+        {
+          "flavor": 3
+        },
+        {
+          "flavor": 6
+        }
+      ],
+      "kind": "normal",
+      "lid": 0
+    },
+    {
+      "items": [
+        {
+          "flavor": 3
+        },
+        {
+          "flavor": 5
+        },
+        {
+          "flavor": 3
+        },
+        {
+          "flavor": 2
+        }
+      ],
+      "kind": "normal",
+      "lid": 0
     }
   ],
+  "title": "惊喜餐盒",
   "tools": {
-    "undo": 3,
-    "add_box": 2,
-    "top": 3
-  },
-  "combo_rewards": [
-    {
-      "count": 2,
-      "coins": 5,
-      "diamonds": 0
-    },
-    {
-      "count": 3,
-      "coins": 10,
-      "diamonds": 1
-    },
-    {
-      "count": 4,
-      "coins": 20,
-      "diamonds": 2
-    }
-  ]
+    "add_box": 1,
+    "top": 1,
+    "undo": 1
+  }
 }

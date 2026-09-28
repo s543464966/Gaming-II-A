@@ -18,15 +18,23 @@ func _run() -> void:
 	current_scene = app
 	await process_frame
 	var page: Control = app.get_node("SceneContainer/HomeScreen")
-	if page.get_node("Stage/Boxes").get_child_count() != 16 or page.session.total_orders() <= 0 \
+	if (page.get_node("Stage/Boxes") as DonutBoardView).boxes.size() != 17 or page.session.total_orders() <= 0 \
 			or page.session.total_donuts() <= 0:
 		_fail("Exported level configuration did not load.")
 		return
-	var font: FontFile = load("res://ui/design_system/fonts/donut_sans_sc.otf")
+	if (page.get_node("Stage/Orders") as DonutOrdersView).cards.size() != 4:
+		_fail("Exported order cards are missing.")
+		return
+	for path: String in ["Stage/Tools/Undo", "Stage/Tools/AddBox",
+			"Stage/Tools/Top", "Stage/Boxes/Box0/Food"]:
+		if page.get_node_or_null(path) == null:
+			_fail("Exported UI component is missing: " + path)
+			return
+	var font: FontFile = load("res://design_system/fonts/donut_sans_sc.otf")
 	if font == null:
 		_fail("Bundled Chinese font is missing.")
 		return
-	for character: String in "甜甜圈小铺草莓巧克力抹茶蓝莓暂停继续重新开始撤回置顶餐盒订单完成取消":
+	for character: String in "甜甜圈小铺草莓巧克力抹茶蓝莓选择关卡重新开始撤回置顶餐盒订单完成取消查看餐台":
 		if not font.has_char(character.unicode_at(0)):
 			_fail("Bundled font is missing: " + character)
 			return

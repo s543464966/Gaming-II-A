@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://features/donut_sort/orders/ui/donut_orders_view.gd" id="view"]
+[ext_resource type="PackedScene" path="res://features/donut_sort/orders/ui/donut_order_card.tscn" id="order_card"]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/orders/ui/art/orders_panel_four_slots.png" id="order_panel"]
+
+[node name="Orders" type="Control"]
+layout_mode = 0
+offset_right = 1024
+offset_bottom = 307
+mouse_filter = 2
+script = ExtResource("view")
+
+[node name="Panel" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 171
+offset_top = 112
+offset_right = 849
+offset_bottom = 338
+mouse_filter = 2
+texture = ExtResource("order_panel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Order0" parent="Panel" instance=ExtResource("order_card")]
+layout_mode = 1
+anchor_left = 0.069061
+anchor_top = 0.19337
+anchor_right = 0.270718
+anchor_bottom = 0.803867
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Order1" parent="Panel" instance=ExtResource("order_card")]
+layout_mode = 1
+anchor_left = 0.289595
+anchor_top = 0.19337
+anchor_right = 0.491252
+anchor_bottom = 0.803867
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Order2" parent="Panel" instance=ExtResource("order_card")]
+layout_mode = 1
+anchor_left = 0.509669
+anchor_top = 0.19337
+anchor_right = 0.711326
+anchor_bottom = 0.803867
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Order3" parent="Panel" instance=ExtResource("order_card")]
+layout_mode = 1
+anchor_left = 0.729742
+anchor_top = 0.19337
+anchor_right = 0.9314
+anchor_bottom = 0.803867
+offset_right = 0.0
+offset_bottom = 0.0

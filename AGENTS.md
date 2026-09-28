@@ -9,7 +9,7 @@
 - 工程入口为 `Coding/godot/project.godot`，使用 GDScript、Godot 4.5.1 与 Compatibility；现有竖屏设置保留。运行与结构说明见 `Coding/godot/README.md`，Git 边界见 `Coding/godot/GIT.md`。
 - 第一方文件和目录使用 `snake_case`，节点与类名使用 PascalCase；README、GIT、LICENSE 和第三方文件遵循各自约定。修改目录大小写时检查实际磁盘名称。
 - 玩法状态、规则与页面归 `features/<owner>/`；页面及专属装饰归该 Owner 的 `ui/`。当前 `features/home/` 是启动与独立预览入口，实例化 `features/donut_sort/` 的关卡页面；新增业务目录按实际实现或已确认需求建立。失效业务目录、`.gitkeep` 和文档引用同步移除，不保留旧业务空占位。
-- 游戏静态定义、素材与文本归 `game_content/`，同类内容相邻并保持唯一人工事实源。通用 UI 资源归 `ui/design_system/`，通用组件归 `ui/components/`，全局模态归 `ui/overlays/`。当前没有 Schema 或生成管线，建立后再明确来源、校验与生成物边界。
+- 游戏静态定义、素材与文本归 `game_content/`，同类内容相邻并保持唯一人工事实源。通用 UI 资源归 `design_system/`，通用组件归 `design_system/components/`，全局模态归 `design_system/overlays/`。当前没有 Schema 或生成管线，建立后再明确来源、校验与生成物边界。
 - 后续通用存储等 I/O 归 `services/`，当前没有服务实现，按实际需要创建目录；宿主适配归 `platforms/`，微信与抖音配置和启动适配分别位于 `platforms/wechat/`、`platforms/douyin/`。不预建笼统的 systems 或全局状态副本。
 - `Designing/` 统一保存项目策划与设计文档，入口为 `Designing/README.md`；`Archive/ReferenceImage/` 只保存参考图，`Archive/Builds/<平台>/` 是各平台唯一打包目录。每次打包更新该目录内容并保留本地 IDE 配置，不另建随机或时间目录，不重复创建模拟器项目；双击 `Tooling/<平台>.command` 委托对应导出入口，后续平台接入时沿用。设计文档引用工程内的运行素材与配置，不复制维护第二套运行数据；不得把备份或生成缓存当作开发事实源。
 - 工作区 `Tooling/` 按 preview、export、data、environment 分用途；桌面 `.command` 仅委托唯一入口。工程 `tooling/` 当前只保留引擎基线 `engine.json`，版本绑定的制作实现按实际需要添加；`addons/` 仅放实际需要的第三方插件和引擎薄入口。运行时不得依赖工作区工具或测试代码。
@@ -20,7 +20,7 @@
 - `bootstrap/app.tscn` 是唯一持续存活的 App，拥有 Services、SceneContainer、Overlay；页面替换只影响 SceneContainer 的子场景，服务不随页面重建。第一方不使用 Autoload。当前 App 向 Home 显式注入 DonutSession；F6 独立页面创建预览会话，无账号或存档读写。
 - 页面通过显式依赖接收状态，通过信号请求操作或导航，不查找全局根、不创建第二套 App。稳定布局用 `.tscn`，样式由设计系统的 Theme 驱动。
 - F6 用于单页预览；完整启动使用 F5 或 `Tooling/preview/preview.mjs`。新增存储时隔离新项目数据，不自动读取或迁移旧项目真实账号。
-- 玩家界面保留必要状态、错误反馈和操作确认，避免教学步骤、重复玩法说明与开发布局备注。新增滚动、点击、拖拽或关闭交互时先读 `Coding/godot/ui/README.md`，验证取消、暂停、隐藏、离树与恢复。
+- 玩家界面保留必要状态、错误反馈和操作确认，避免教学步骤、重复玩法说明与开发布局备注。新增滚动、点击、拖拽或关闭交互时先读 `Coding/godot/design_system/README.md`，验证取消、暂停、隐藏、离树与恢复。
 
 ## 修改与验证
 

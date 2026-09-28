@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://features/donut_sort/board/ui/donut_drag_preview.gd" id="preview"]
+
+[node name="DonutDragPreview" type="TextureRect"]
+offset_right = 142.0
+offset_bottom = 131.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("preview")

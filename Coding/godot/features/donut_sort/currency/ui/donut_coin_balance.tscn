@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://features/donut_sort/currency/ui/donut_coin_balance.gd" id="script"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/currency/ui/art/coin_balance_plate.png" id="plate"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/currency/ui/art/coin.png" id="coin"]
+[ext_resource type="FontVariation" path="res://features/donut_sort/ui/donut_display_font.tres" id="display_font"]
+
+[sub_resource type="AtlasTexture" id="PlateArt"]
+atlas = ExtResource("plate")
+region = Rect2(75, 88, 1889, 558)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="CoinArt"]
+atlas = ExtResource("coin")
+region = Rect2(188, 164, 880, 916)
+filter_clip = true
+
+[node name="CoinBalance" type="Control"]
+layout_mode = 0
+offset_right = 246.0
+offset_bottom = 96.0
+mouse_filter = 2
+tooltip_text = "本关金币"
+script = ExtResource("script")
+
+[node name="Plate" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 246.0
+offset_bottom = 96.0
+mouse_filter = 2
+texture = SubResource("PlateArt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coin" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 2.0
+offset_right = 88.0
+offset_bottom = 94.0
+mouse_filter = 2
+texture = SubResource("CoinArt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 0.0
+offset_right = 232.0
+offset_bottom = 96.0
+mouse_filter = 2
+text = "0"
+theme_override_fonts/font = ExtResource("display_font")
+theme_override_font_sizes/font_size = 41
+theme_override_colors/font_color = Color(0.33, 0.14, 0.07, 1)
+horizontal_alignment = 0
+vertical_alignment = 1

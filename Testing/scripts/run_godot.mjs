@@ -41,7 +41,8 @@ if (suites.some(suite => !['architecture', 'home', 'donut'].includes(suite))) {
       }
     }
 
-    await execute('import', ['--editor', '--import', '--quit']);
+    // 与导出入口一致，规避 macOS 无界面导入字体时的 Godot 4.5.1 崩溃。
+    await execute('import', ['--single-threaded-scene', '--editor', '--import', '--quit']);
     const sceneSuites = suites.filter(suite => suite !== 'donut');
     if (sceneSuites.length) {
       await execute('skeleton', ['--script', join(workspace, 'Testing/integration/architecture/skeleton_test.gd'), '--', ...sceneSuites],

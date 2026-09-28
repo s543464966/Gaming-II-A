@@ -11,6 +11,34 @@
     {
       "title": "忙碌午后",
       "path": "res://game_content/donuts/levels/level_03.json"
+    },
+    {
+      "title": "缤纷茶歇",
+      "path": "res://game_content/donuts/levels/level_04.json"
+    },
+    {
+      "title": "冰霜派对",
+      "path": "res://game_content/donuts/levels/level_05.json"
+    },
+    {
+      "title": "双倍甜蜜",
+      "path": "res://game_content/donuts/levels/level_06.json"
+    },
+    {
+      "title": "午后高峰",
+      "path": "res://game_content/donuts/levels/level_07.json"
+    },
+    {
+      "title": "彩糖工坊",
+      "path": "res://game_content/donuts/levels/level_08.json"
+    },
+    {
+      "title": "甜点盛宴",
+      "path": "res://game_content/donuts/levels/level_09.json"
+    },
+    {
+      "title": "甜蜜挑战",
+      "path": "res://game_content/donuts/levels/level_10.json"
     }
   ]
 }

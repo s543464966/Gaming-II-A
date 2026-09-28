@@ -1,0 +1,142 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://features/donut_sort/board/ui/donut_board_view.gd" id="view"]
+[ext_resource type="PackedScene" path="res://features/donut_sort/board/ui/donut_box.tscn" id="box"]
+
+[node name="Boxes" type="Control"]
+layout_mode = 0
+offset_right = 1024
+offset_bottom = 1159
+mouse_filter = 2
+script = ExtResource("view")
+
+[node name="Box0" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 142.0
+offset_top = 378.0
+offset_right = 342.0
+offset_bottom = 535.0
+
+[node name="Box1" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 332.0
+offset_top = 378.0
+offset_right = 532.0
+offset_bottom = 535.0
+
+[node name="Box2" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 522.0
+offset_top = 378.0
+offset_right = 722.0
+offset_bottom = 535.0
+
+[node name="Box3" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 712.0
+offset_top = 378.0
+offset_right = 912.0
+offset_bottom = 535.0
+
+[node name="Box4" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 126.0
+offset_top = 548.0
+offset_right = 326.0
+offset_bottom = 705.0
+
+[node name="Box5" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 324.0
+offset_top = 548.0
+offset_right = 524.0
+offset_bottom = 705.0
+
+[node name="Box6" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 522.0
+offset_top = 548.0
+offset_right = 722.0
+offset_bottom = 705.0
+
+[node name="Box7" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 720.0
+offset_top = 548.0
+offset_right = 920.0
+offset_bottom = 705.0
+
+[node name="Box8" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 110.0
+offset_top = 718.0
+offset_right = 310.0
+offset_bottom = 875.0
+
+[node name="Box9" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 316.0
+offset_top = 718.0
+offset_right = 516.0
+offset_bottom = 875.0
+
+[node name="Box10" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 522.0
+offset_top = 718.0
+offset_right = 722.0
+offset_bottom = 875.0
+
+[node name="Box11" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 728.0
+offset_top = 718.0
+offset_right = 928.0
+offset_bottom = 875.0
+
+[node name="Box12" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 94.0
+offset_top = 888.0
+offset_right = 294.0
+offset_bottom = 1045.0
+
+[node name="Box13" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 308.0
+offset_top = 888.0
+offset_right = 508.0
+offset_bottom = 1045.0
+
+[node name="Box14" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 522.0
+offset_top = 888.0
+offset_right = 722.0
+offset_bottom = 1045.0
+
+[node name="Box15" parent="." instance=ExtResource("box")]
+layout_mode = 0
+scale = Vector2(1, 1)
+offset_left = 736.0
+offset_top = 888.0
+offset_right = 936.0
+offset_bottom = 1045.0
+
+[node name="Box16" parent="." instance=ExtResource("box")]
+layout_mode = 0
