@@ -1,5 +1,11 @@
 # UI 比例与组合检查
 
+2026-09-30 订单与失败弹窗修正：订单图标按原图波浪背景贴纸的可见中心对齐，共用 `LidContent` 锚点 (110, 83)，甜甜圈仍为 64×64；完成标记的字体最小尺寸变化也保持中心。失败卡片在安全区居中，最大宽度为安全区的 80%／360 逻辑像素，最大高度为 58%，图案和按钮等比显示。效果见 [订单贴纸](../Archive/ReferenceImage/donut_order_alignment_1.png)、[失败弹窗](../Archive/ReferenceImage/donut_failure_440x956.png)、[短屏弹窗](../Archive/ReferenceImage/donut_failure_320x568.png)。
+
+当前盒位构图、顶部间距及特殊状态的进一步调整见 [盒位布局优化](board_layouts.md)。
+
+当前 v8 的尺寸、三段背景遮挡顺序、独立订单盒与纸托比例、真实截图及回归范围见 [局内界面更新](in_game_ui_refresh.md)。以下是旧 v7 的比例修正记录；其中方纸盒前后层、一体式订单卡及满屏木台尺寸不再用于当前界面。
+
 视觉依据：[已确认的盒子与布局参考](../Archive/ReferenceImage/donut_sort_layout_and_style_approved.png)。设计宽度为 1024，高度随视口安全区变化；店铺背景、浅色木台、一体式订单底板和纸盒来自 `donut_game_assets_v7`。
 
 ## 比例修正

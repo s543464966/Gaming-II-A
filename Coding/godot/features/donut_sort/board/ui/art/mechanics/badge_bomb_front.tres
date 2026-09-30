@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/board/ui/art/mechanics/badge_bomb_front.png" id="image"]
+
+[resource]
+atlas = ExtResource("image")
+region = Rect2(52, 72, 1147, 1122)
+filter_clip = true

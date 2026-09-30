@@ -1,0 +1,173 @@
+{
+  "assets": [
+    {
+      "id": "order_box_pink",
+      "label": "草莓粉翻盖需求盒·空标牌",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "735a935082198a1b6335a0cb5cd4485f1251865e80111f8b3b43ba2dae8d87c3",
+      "path": "res://features/donut_sort/orders/ui/art/order_box_pink.png"
+    },
+    {
+      "id": "order_box_brown",
+      "label": "巧克力棕翻盖需求盒·空标牌",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "5a78d12235c176d895dd37877a3d412e8dafe1ae38756ced74db9216d36057ce",
+      "path": "res://features/donut_sort/orders/ui/art/order_box_brown.png"
+    },
+    {
+      "id": "order_box_green",
+      "label": "抹茶绿翻盖需求盒·空标牌",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "0980c487850018f3e190a382b4f43c0faaac86b9444d3061b5b9b21ccb151d8d",
+      "path": "res://features/donut_sort/orders/ui/art/order_box_green.png"
+    },
+    {
+      "id": "order_box_blue",
+      "label": "蓝莓蓝翻盖需求盒·空标牌",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ad9fd15fd7fecb67758a029c58d66eda47cf2f51b30c3f2faad8121a77acd348",
+      "path": "res://features/donut_sort/orders/ui/art/order_box_blue.png"
+    },
+    {
+      "id": "order_box_orange",
+      "label": "香橙红橙翻盖需求盒·空标牌",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "c395476adecf062bec291652c9637b8d8b98931df426882b20a09af0cdbeee33",
+      "path": "res://features/donut_sort/orders/ui/art/order_box_orange.png"
+    },
+    {
+      "id": "order_box_purple",
+      "label": "葡萄紫翻盖需求盒·空标牌",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "bad1e78fce136777794ed0cba0389709387be309325cbfef1e9c2eba28c14683",
+      "path": "res://features/donut_sort/orders/ui/art/order_box_purple.png"
+    },
+    {
+      "id": "sticker_pink",
+      "label": "草莓粉·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "63df3fd8ee43bd216840322c40e10cacc8a33e286c2760f8e49d41abc1fc154d",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_pink.png"
+    },
+    {
+      "id": "sticker_brown",
+      "label": "巧克力棕·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "22eab476f32f70b41ed5e2ce802ef61d40a17ebaee5f445f248099e19985e1b4",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_brown.png"
+    },
+    {
+      "id": "sticker_green",
+      "label": "抹茶绿·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "15fdb554a03613c4640a5f370679b1a8faaa58adfbe794e9d7d5b9bc0000b674",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_green.png"
+    },
+    {
+      "id": "sticker_blue",
+      "label": "蓝莓蓝·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "7de770c2aae8cf099a128450ae10f93ebd2b8ebb96b4785204a9c01802884196",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_blue.png"
+    },
+    {
+      "id": "sticker_orange",
+      "label": "香橙红橙·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "cdc08e17590ca69a06a3cce7d5dec4c8973ac24cb6143dbbeb5d877f13c7830b",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_orange.png"
+    },
+    {
+      "id": "sticker_purple",
+      "label": "葡萄深紫·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "5663068b895cac0d23ac705d93324c809ec707b4e36a0efec04b19aeb40b59aa",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_purple.png"
+    },
+    {
+      "id": "sticker_ivory",
+      "label": "香草奶白·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "b71c73a8de4cc1ec93d8bd7477919bb78051954fcfd1e9ad586eb589b8187a8d",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_ivory.png"
+    },
+    {
+      "id": "sticker_magenta",
+      "label": "火龙果玫红·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "cf213af822a08b3c1150581a83fc68596a5787e2ccf4bb06f0088260e1c5d273",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_magenta.png"
+    },
+    {
+      "id": "sticker_red",
+      "label": "树莓莓红·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "874abc2e9a2fcc269f61f256b404b25856542c215febdae449f3350d0eb71c44",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_red.png"
+    },
+    {
+      "id": "sticker_russet",
+      "label": "焦糖红棕·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "1e8db2d2d37db04f981d05982c9ba0a25e589d0906dd1995f212a6988d93264d",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_russet.png"
+    },
+    {
+      "id": "sticker_teal",
+      "label": "薄荷青·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d24a3ea5c993def0a5085168ee42d52cea353cfe88bada7ed3709b91f404548e",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_teal.png"
+    },
+    {
+      "id": "sticker_charcoal",
+      "label": "黑芝麻炭灰·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "b8effb7a7968a1d60a136038b257bd3367dfc87ad75d68ccda9e133ef55ef744",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_charcoal.png"
+    },
+    {
+      "id": "sticker_pistachio",
+      "label": "开心果浅绿·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "aa04fd694815167ae05944aaf55d840f4f2fef0eaebf9f90f515c1808ada3aa5",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_pistachio.png"
+    },
+    {
+      "id": "sticker_lavender",
+      "label": "紫薯浅紫·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "9f847511d3fee645444fd3cddcc82faee6a7084d412ab62b9615b289aea2bcb3",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_lavender.png"
+    },
+    {
+      "id": "sticker_mocha",
+      "label": "咖啡浅咖·盒盖贴纸",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "83b60397e14104b694e86e59ab5c89f4b1173307cad78d9e083306fdda7444b6",
+      "path": "res://features/donut_sort/orders/ui/art/sticker_mocha.png"
+    }
+  ],
+  "source_pack": "donut_game_assets_v8"
+}

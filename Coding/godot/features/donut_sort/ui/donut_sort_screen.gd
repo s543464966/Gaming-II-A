@@ -11,11 +11,26 @@ signal home_requested # 主页尚未实现，交由后续宿主导航接入。
 
 const DESIGN_SIZE: Vector2 = Vector2(1024, 1536)
 const HOST_VIEWPORT: Script = preload("res://platforms/minigame/host_viewport.gd")
+const HEADER_HEIGHT: float = 368.0 # 标题贴近安全区顶部，标题与订单盒保持 20 设计单位间隔。
+const FOOTER_HEIGHT: float = 248.0 # 包含次数角标、按钮及底部内边距，系统安全区另行避让。
+const MIN_STAGE_ASPECT: float = 2.05 # 短屏收紧头尾占高，给最多四排及对称留白留足高度，按钮仍保留触控尺寸。
 
 ## 宿主尺寸读取边界；独立预览默认使用完整视口。
 var viewport_metrics: Callable = HOST_VIEWPORT.read_metrics
+@export var idle_hint_seconds: float = 35.0 # 连续没有有效搬运的秒数；提示不暂停炸弹。
+@export var idle_hint_invalid_attempts: int = 4 # 连续无效操作达到此数也可提示。
 
 var session: DonutSession
+var progress: DonutProgress
+var lessons_enabled: bool = false # 完整App启用持久教学，F6与规则测试保持独立。
+var _seen_lessons: Dictionary = {}
+var _dialog_kind: String = ""
+var _dialog_value: Variant
+var _idle_seconds: float = 0.0
+var _idle_dismissed: bool = false
+var _invalid_attempts: int = 0
+var _clock_refresh: float = 0.0
+var _review_keys: Array[String] = []
 var selected_box: int = -1
 var _top_mode: bool = false
 var _busy: bool = false
@@ -37,6 +52,7 @@ var _drop_origin: Variant = null # 仅本次拖放落点使用的设计坐标，
 @onready var settings_button: DonutSettingsButton = $Stage/Settings
 @onready var settings_panel: DonutSettingsPanel = $Stage/SettingsPanel
 @onready var failure_panel: DonutFailurePanel = $Stage/FailurePanel
+@onready var lesson_dialog: DonutDialog = $Stage/LessonDialog
 
 
 ## 显式连接会话依赖与操作信号，替换会话前清理旧连接。
@@ -68,8 +84,7 @@ func _ready() -> void:
 	event_player.playback_finished.connect(_finish_animation)
 	if session == null:
 		initialize(DonutSession.new())
-	for box: DonutBox in board.boxes:
-		box.pressed.connect(_on_box_pressed.bind(box.box_index))
+	board.box_pressed.connect(_on_box_pressed)
 	board_input.initialize(board.boxes, _board_input_enabled)
 	board_input.gesture_started.connect(_settle_presentation)
 	board_input.tapped.connect(_on_box_pressed)
@@ -83,6 +98,8 @@ func _ready() -> void:
 	settings_panel.level_selected.connect(_on_settings_level_selected)
 	settings_panel.restart_selected.connect(_on_settings_restart_selected)
 	settings_panel.sidebar_failed.connect(func() -> void: _toast("当前设备暂不支持抖音侧边栏"))
+	settings_panel.lessons_requested.connect(_review_lessons)
+	lesson_dialog.answered.connect(_on_dialog_answer.call_deferred)
 	settings_panel.visibility_changed.connect(func() -> void: _sync_failure.call_deferred())
 	settings_panel.visibility_changed.connect(_sync_completion)
 	failure_panel.home_requested.connect(_on_failure_home.call_deferred)
@@ -93,6 +110,7 @@ func _ready() -> void:
 	$AdvanceTimer.timeout.connect(_on_continue_requested)
 	$Stage/Title.gui_input.connect(_on_level_title_input)
 	$ToastTimer.timeout.connect(_hide_toast)
+	$Stage/IdleHint/Row/Dismiss.pressed.connect(func() -> void: $Stage/IdleHint.hide())
 	resized.connect(_fit_stage)
 	visibility_changed.connect(_on_visibility_changed)
 	_fit_stage.call_deferred()
@@ -105,9 +123,11 @@ func _begin_after_layout() -> void:
 	await get_tree().process_frame
 	if is_inside_tree():
 		session.begin()
+		if not _busy:
+			_maybe_show_lesson()
 
 
-## 顶部与底部各自固定，四排餐盒分配安全区内剩余高度；宽屏限制内容宽度。
+## 在系统安全区内另外保留界面边距，再按剩余宽高布置头部、棋盘与道具。
 func _fit_stage() -> void:
 	if not is_node_ready() or size.x <= 0 or size.y <= 0:
 		return
@@ -115,31 +135,59 @@ func _fit_stage() -> void:
 		_cancel_interaction()
 	var metrics: Dictionary = viewport_metrics.call()
 	var available: Rect2 = HOST_VIEWPORT.content_rect(size, metrics)
-	var width: float = minf(available.size.x, available.size.y / 1.70)
+	var logical_width: float = float(metrics.get("width", minf(size.x, 430.0)))
+	if not is_finite(logical_width) or logical_width <= 0:
+		logical_width = minf(size.x, 430.0)
+	# 边距以宿主逻辑像素计算；没有安全区数据的网页也保留基础留白。
+	var logical_pixel: float = size.x / maxf(1, logical_width)
+	var vertical_padding: float = lerpf(16.0, 24.0,
+		clampf((available.size.y / logical_pixel - 560.0) / 200.0, 0.0, 1.0)) * logical_pixel
+	var horizontal_padding: float = clampf(logical_width * 0.045, 16.0, 24.0) * logical_pixel
+	var content := Rect2(available.position + Vector2(horizontal_padding, vertical_padding),
+		available.size - Vector2(horizontal_padding, vertical_padding) * 2.0)
+	var width: float = minf(content.size.x, content.size.y / MIN_STAGE_ASPECT)
 	var factor: float = width / DESIGN_SIZE.x
 	stage.scale = Vector2.ONE * factor
-	stage.size = Vector2(DESIGN_SIZE.x, available.size.y / factor)
-	stage.position = available.position + Vector2((available.size.x - width) * 0.5, 0)
-	backdrop.set_shop_boundary(stage.position.y + 360.0 * factor)
-	var logical_width: float = float(metrics.get("width", minf(size.x, 430.0)))
+	stage.size = Vector2(DESIGN_SIZE.x, content.size.y / factor)
+	stage.position = content.position + Vector2((content.size.x - width) * 0.5, 0)
+	var table_top: float = HEADER_HEIGHT
+	var table_bottom: float = stage.size.y - FOOTER_HEIGHT
+	var surface_bottom: float = (backdrop.fit_counter(stage.position.y + table_top * factor,
+		stage.position.y + table_bottom * factor) - stage.position.y) / factor
+	orders.position.y = table_top - 232.0
+	for path: String in ["LevelPlate", "Title", "Settings", "CoinBalance"]:
+		get_node("Stage/" + path).position.y = orders.position.y - 116.0
 	board_input.logical_pixel = size.x / maxf(1, logical_width)
-	var board_area := Rect2(48, 353, 928, stage.size.y - 716)
+	# 棋盘统一负责上下留白，避免桌面再叠加固定内缩而挤小短屏食物。
+	var board_area := Rect2(24, table_top, 976, surface_bottom - table_top)
 	board.fit(board_area)
-	tools_view.position.y = stage.size.y - 270
+	tools_view.position.y = stage.size.y - 208
+	event_player.entry_bounds = Rect2(-stage.position / factor, size / factor)
+	$Stage/IdleHint.scale = Vector2.ONE * maxf(1.0, 44.0 * logical_pixel / (104.0 * factor))
 	top_choices.position = Vector2(48, tools_view.position.y - 54)
 	completion_view.position.y = tools_view.position.y - 54
-	$Stage/Toast.position.y = stage.size.y - 376
+	$Stage/Toast.position.y = tools_view.position.y - 108
 	event_player.size = stage.size
-	settings_panel.position = -stage.position / factor
-	settings_panel.size = size / factor
-	var settings_card: Control = settings_panel.get_node("Card")
-	settings_card.position = stage.position / factor + (stage.size - settings_card.size) * 0.5
-	failure_panel.position = settings_panel.position
-	failure_panel.size = settings_panel.size
-	var failure_card: Control = failure_panel.get_node("Card")
-	failure_card.position = stage.position / factor + (stage.size - failure_card.size) * 0.5
+	_fit_modal(settings_panel, available, logical_pixel)
+	_fit_modal(failure_panel, available, logical_pixel)
+	_fit_modal(lesson_dialog, available, logical_pixel)
 	failure_panel.reset_feedback()
 	_render()
+
+
+## 弹窗按安全区独立缩放，避免短屏棋盘收窄后连带缩小选关按钮；遮罩仍覆盖全屏。
+func _fit_modal(panel: Control, available: Rect2, logical_pixel: float) -> void:
+	var card: Control = panel.get_node("Card")
+	var room: Vector2 = available.size - Vector2.ONE * 32.0 * logical_pixel
+	if panel == failure_panel:
+		# 失败提示保留棋盘背景，短屏同时限高；独立缩放不会缩小其他弹窗。
+		room = room.min(available.size * Vector2(0.80, 0.58))
+		room.x = minf(room.x, 360.0 * logical_pixel)
+	var factor: float = minf(room.x / card.size.x, room.y / card.size.y)
+	panel.position = -stage.position / stage.scale
+	panel.scale = Vector2.ONE * factor / stage.scale
+	panel.size = size / factor
+	card.position = available.get_center() / factor - card.size * 0.5
 
 
 ## 失焦、暂停与离树中断展示，不回滚或重放已经提交的玩法事件。
@@ -149,6 +197,8 @@ func _notification(what: int) -> void:
 	elif what == NOTIFICATION_APPLICATION_FOCUS_IN:
 		_suspended = false
 	if is_node_ready() and what in [NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_PAUSED, NOTIFICATION_EXIT_TREE]:
+		if progress != null:
+			progress.save()
 		_cancel_interaction()
 	if is_node_ready() and what == NOTIFICATION_APPLICATION_FOCUS_IN:
 		_fit_stage.call_deferred()
@@ -165,7 +215,11 @@ func _on_visibility_changed() -> void:
 ## 返回键关闭面板或取消临时选择，空闲时交还宿主处理。
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		if failure_panel.visible:
+		if lesson_dialog.visible:
+			lesson_dialog._answer(false)
+			get_viewport().set_input_as_handled()
+			return
+		elif failure_panel.visible:
 			get_viewport().set_input_as_handled()
 			return
 		elif settings_panel.visible:
@@ -179,7 +233,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## 页面可操作时才接收棋盘手势，菜单和动效期间不抢占其他控件输入。
 func _board_input_enabled() -> bool:
-	return is_visible_in_tree() and session.started and not settings_panel.visible and not failure_panel.visible and not session.is_won()
+	return is_visible_in_tree() and session.started and not event_player.refill_pending and not settings_panel.visible and not failure_panel.visible and not lesson_dialog.visible and not session.is_won() and not session.failed and not _has_pending_lesson()
 
 
 ## 拖动时只拿起首颗，连续同味的后续食物留在来源盒等待有效松手。
@@ -218,9 +272,14 @@ func _on_drag_ended(target: int, canceled: bool) -> void:
 		tween.tween_property(returning, "position", board.origin(source) + board.boxes[source].food_position(0) * board.boxes[source].scale, 0.14)
 		tween.tween_callback(returning.queue_free)
 	if valid:
+		_reset_idle()
 		_drop_origin = origin
 		move_requested.emit(source, target)
 		_drop_origin = null
+	elif not canceled:
+		_invalid_attempts += 1
+		if source >= 0 and session.slots[source].box != null and session.slots[source].box.kind == "in_only":
+			_toast("这个纸托只进不出")
 
 
 ## 丢弃临时拖拽显示，不退还、扣除或改写任何玩法数据。
@@ -238,16 +297,17 @@ func _settle_presentation() -> void:
 	event_player.stop()
 	_busy = false
 	_render()
+	_maybe_show_lesson()
 
 
 ## 选择来源与目标；空盒位、机关未解除或非法目标均不给规则状态写入机会。
 func _on_box_pressed(index: int) -> void:
-	if settings_panel.visible or failure_panel.visible or session.is_won():
+	if event_player.refill_pending or settings_panel.visible or failure_panel.visible or lesson_dialog.visible or session.is_won() or session.failed or _has_pending_lesson():
 		return
 	var slot: Dictionary = session.slots[index]
 	if not slot.open:
 		if slot.kind == "turnover":
-			_on_add_box_pressed()
+			_offer_turnover(index)
 		else:
 			_toast("完成 %d 单后解锁" % int(slot.unlock_after))
 		return
@@ -268,19 +328,24 @@ func _on_box_pressed(index: int) -> void:
 	if selected_box >= 0:
 		var source: int = selected_box
 		if session.can_move(source, index):
+			_reset_idle()
 			selected_box = -1
 			move_requested.emit(source, index)
 		else:
+			_invalid_attempts += 1
 			_toast("餐盒已满" if slot.box.items.size() == session.capacity(index) else "只能放入空盒或同口味餐盒")
 		return
 	if not slot.box.items.is_empty():
+		if not session.can_pick_top(index):
+			_toast("这个纸托只进不出")
+			return
 		selected_box = index
 		_render()
 
 
 ## 撤回整次操作及其回收、补位、揭示和奖励，取消选择不消耗道具。
 func _on_undo_pressed() -> void:
-	if settings_panel.visible or failure_panel.visible or session.is_won():
+	if settings_panel.visible or failure_panel.visible or lesson_dialog.visible or session.is_won():
 		return
 	_cancel_interaction()
 	if not session.can_undo():
@@ -291,18 +356,18 @@ func _on_undo_pressed() -> void:
 
 ## 在预设盒位中启用下一个周转盒，不动态增添棋盘位置。
 func _on_add_box_pressed() -> void:
-	if settings_panel.visible or failure_panel.visible or session.is_won():
+	if settings_panel.visible or failure_panel.visible or lesson_dialog.visible or session.is_won():
 		return
 	_cancel_interaction()
 	if session.next_turnover() < 0 or int(session.tools.add_box) <= 0 or session.is_won():
-		_toast("周转盒已全部启用" if session.next_turnover() < 0 else "加餐盒次数已用完")
+		_toast("没有可用的周转盒位" if session.next_turnover() < 0 else "加餐盒次数已用完")
 		return
 	add_box_requested.emit()
 
 
 ## 进入置顶模式，实际有效选择之前不扣道具。
 func _on_top_pressed() -> void:
-	if settings_panel.visible or failure_panel.visible or session.is_won():
+	if settings_panel.visible or failure_panel.visible or lesson_dialog.visible or session.is_won():
 		return
 	if int(session.tools.top) <= 0:
 		_toast("置顶次数已用完")
@@ -345,6 +410,8 @@ func _on_session_changed(events: Array) -> void:
 	if not is_node_ready():
 		return
 	_continuing = false
+	if events.any(func(event: Dictionary) -> bool: return event.kind == "begin"):
+		_reset_idle()
 	_top_mode = false
 	top_choices.clear()
 	failure_panel.hide()
@@ -367,8 +434,8 @@ func _finish_animation() -> void:
 	_render()
 	if session.is_failed():
 		_sync_failure()
-	elif session.is_blocked():
-		_toast("暂无可移动位置，可撤回、启用周转盒或重开")
+	else:
+		_maybe_show_lesson()
 
 
 ## 更新真实状态的最终显示，取消动画时直接收敛到此状态。
@@ -380,7 +447,14 @@ func _render() -> void:
 ## 呈现会话快照，具体盒位、订单和道具显示由各自视图负责。
 func _render_state(state: Dictionary) -> void:
 	$Stage/Title.text = "第 %d 关" % (session.level_index + 1)
+	settings_panel.current_level = session.level_index
+	if str(state.get("layout_id", "")).is_empty():
+		board.configure_level(session.level_index, state.slots.size())
+	else:
+		board.configure_layout(state.layout_id)
 	board.present(state, selected_box)
+	if session.next_turnover() < 0 or session.is_won() or session.failed:
+		$Stage/IdleHint.hide()
 	orders.present(state.demands)
 	tools_view.present(state.tools, _top_mode)
 	coin_balance.present(int(state.coins))
@@ -405,7 +479,7 @@ func _on_level_title_input(event: InputEvent) -> void:
 
 ## 关卡标题打开设置模块的选关视图，不改变场景树暂停状态。
 func _show_level_menu() -> void:
-	if failure_panel.visible:
+	if failure_panel.visible or lesson_dialog.visible:
 		return
 	_cancel_interaction()
 	settings_panel.show_level_selection()
@@ -413,7 +487,7 @@ func _show_level_menu() -> void:
 
 ## 齿轮打开设置模块的操作面板。
 func _show_settings_menu() -> void:
-	if failure_panel.visible:
+	if failure_panel.visible or lesson_dialog.visible:
 		return
 	_cancel_interaction()
 	settings_panel.show_settings()
@@ -422,13 +496,16 @@ func _show_settings_menu() -> void:
 ## 设置面板切关前结束手势与动画，延后提交会话操作。
 func _on_settings_level_selected(index: int) -> void:
 	_cancel_interaction()
-	level_requested.emit.call_deferred(index)
+	_dialog_kind = "level"
+	_dialog_value = index
+	lesson_dialog.present("切换关卡", "切换会放弃当前局面和本次解锁的周转盒。确定进入第 %d 关？" % (index + 1), "进入", "继续本局", false)
 
 
 ## 设置面板重开前结束手势与动画，延后提交会话操作。
 func _on_settings_restart_selected() -> void:
 	_cancel_interaction()
-	restart_requested.emit.call_deferred()
+	_dialog_kind = "restart"
+	lesson_dialog.present("重开本关", "重开会恢复原始局面和计时，两只周转盒重新锁定。", "重新开始", "继续本局", false)
 
 
 ## 完成反馈计时只在当前可见、活跃且设置已关闭的页面中运行。
@@ -437,6 +514,7 @@ func _sync_completion() -> void:
 		return
 	var can_advance: bool = completion_view.visible and session.is_won() and not _busy and not _continuing \
 		and is_visible_in_tree() and not _suspended and not get_tree().paused and not settings_panel.visible \
+		and not lesson_dialog.visible \
 		and session.level_index + 1 < DonutLevel.catalog().size()
 	if not can_advance:
 		$AdvanceTimer.stop()
@@ -447,7 +525,7 @@ func _sync_completion() -> void:
 ## 反馈结束后自动切关，末关由玩家点重玩，导航延后且去重。
 func _on_continue_requested() -> void:
 	if _continuing or not completion_view.visible or not session.is_won() or settings_panel.visible \
-			or not is_visible_in_tree() or _suspended or get_tree().paused:
+			or lesson_dialog.visible or not is_visible_in_tree() or _suspended or get_tree().paused:
 		return
 	_continuing = true
 	$AdvanceTimer.stop()
@@ -475,7 +553,7 @@ func _sync_failure() -> void:
 	if not session.is_failed():
 		failure_panel.hide()
 		return
-	if settings_panel.visible or failure_panel.visible:
+	if settings_panel.visible or failure_panel.visible or lesson_dialog.visible:
 		return
 	board_input.cancel()
 	_clear_drag()
@@ -514,10 +592,12 @@ func _cancel_interaction() -> void:
 	selected_box = -1
 	$ToastTimer.stop()
 	_hide_toast()
+	$Stage/IdleHint.hide()
 	settings_panel.close()
 	top_choices.clear()
 	_render()
 	_sync_failure.call_deferred()
+	_maybe_show_lesson.call_deferred()
 
 
 ## 给出短暂操作反馈，不让提示覆盖底部道具命中区域。
@@ -530,3 +610,141 @@ func _toast(message: String) -> void:
 ## 清除到时或中断后的短提示。
 func _hide_toast() -> void:
 	$Stage/Toast.hide()
+
+
+## 仅活跃游戏时间推进炸弹，搬运动画照常计时，系统收餐与入场暂停。
+func _process(delta: float) -> void:
+	if not is_node_ready() or session == null or not session.started or not is_visible_in_tree() or _suspended or get_tree().paused:
+		return
+	if settings_panel.visible or lesson_dialog.visible or failure_panel.visible or _has_pending_lesson():
+		return
+	if not event_player.clock_blocked:
+		if session.advance_clock(delta):
+			_clock_refresh += delta
+		if session.failed:
+			_cancel_interaction()
+			_sync_failure()
+		elif _clock_refresh >= 0.2 and not _busy and not board_input.is_active():
+			_clock_refresh = 0.0
+			_render()
+	if not session.is_won() and not _busy:
+		_idle_seconds += delta
+		if not _idle_dismissed and (_idle_seconds >= idle_hint_seconds or _invalid_attempts >= idle_hint_invalid_attempts) and session.next_turnover() >= 0 and _reward_preview_available():
+			_idle_dismissed = true
+			var index: int = session.next_turnover()
+			var anchor: Vector2 = board.origin(index) + board.boxes[index].size * board.boxes[index].scale * Vector2(0.5, 1.0)
+			var hint_size: Vector2 = $Stage/IdleHint.size * $Stage/IdleHint.scale
+			$Stage/IdleHint.position = Vector2(clampf(anchor.x - hint_size.x * 0.5, 24.0, 1000.0 - hint_size.x), anchor.y + 10.0)
+			$Stage/IdleHint.show()
+
+
+## 有效搬运才开始下一轮停滞观察，关闭提示不会原地反复弹出。
+func _reset_idle() -> void:
+	_idle_seconds = 0.0
+	_invalid_attempts = 0
+	_idle_dismissed = false
+	$Stage/IdleHint.hide()
+
+
+## 返回同局或跨关保留的教学记录，独立预览不触碰磁盘。
+func _lesson_record() -> Dictionary:
+	return progress.seen if progress != null else _seen_lessons
+
+
+## 首次机制说明未结束前不允许用新手势跳过入场与教学。
+func _has_pending_lesson() -> bool:
+	if not lessons_enabled:
+		return false
+	for key: String in DonutLessons.available(session.snapshot()):
+		if not _lesson_record().has(key):
+			return true
+	return false
+
+
+## 稳定结算后一次呈现一项首次机制；提前跳关仍能获得实际机制说明。
+func _maybe_show_lesson() -> void:
+	if not lessons_enabled or not _dialog_kind.is_empty() or lesson_dialog.visible or settings_panel.visible or _busy or session.is_won() or session.failed:
+		return
+	for key: String in DonutLessons.available(session.snapshot()):
+		if not _lesson_record().has(key):
+			_show_lesson(key)
+			return
+
+
+## 用同一张可关闭卡片显示当前机制，图示取当前机制的实际资源。
+func _show_lesson(key: String) -> void:
+	_dialog_kind = "lesson"
+	_dialog_value = key
+	var text: Array = DonutLessons.TEXT[key]
+	var message: String = str(text[1])
+	if key == "in_only":
+		var locations: PackedStringArray = []
+		for index: int in session.slots.size():
+			if session.slots[index].box != null and session.slots[index].box.kind == "in_only":
+				var row: int = int(board.layout_slots[index].layer)
+				var column: int = 1
+				for prior: int in index:
+					column += 1 if int(board.layout_slots[prior].layer) == row else 0
+				locations.append("第%d排第%d个" % [row + 1, column])
+		message = "、".join(locations) + "纸托只进不出。\n" + message
+	lesson_dialog.present(str(text[0]), message)
+	var picture: TextureRect = lesson_dialog.get_node("Card/Donut")
+	picture.texture = DonutArt.FOOD[0]
+	if key == "lid":
+		picture.texture = DonutMechanicArt.COVER
+	elif key in ["frozen", "number_frozen"]:
+		picture.texture = DonutMechanicArt.FROST
+	elif key == "cycle":
+		picture.texture = DonutMechanicArt.CYCLE
+	elif key == "bomb":
+		picture.texture = DonutMechanicArt.BOMB
+	elif key == "hidden":
+		picture.texture = DonutArt.HIDDEN
+
+
+## 设置内可重新查看当前局使用的说明，不清空永久已读记录。
+func _review_lessons() -> void:
+	_review_keys = DonutLessons.available(session.snapshot())
+	if not _review_keys.is_empty():
+		_show_lesson(_review_keys.pop_front())
+
+
+## 只有本地预览提供明确标注的模拟奖励，平台未绑定广告时不伪造成功。
+func _reward_preview_available() -> bool:
+	return not OS.has_feature("wechat") and not OS.has_feature("douyin")
+
+
+## 点击锁定的固定ID盒位进入确认，奖励只能发给这只盒子。
+func _offer_turnover(index: int) -> void:
+	if not _reward_preview_available():
+		_toast("广告暂不可用，请稍后再试")
+		return
+	_cancel_interaction()
+	var token: String = session.request_turnover(index)
+	if token.is_empty():
+		return
+	_dialog_kind = "reward"
+	_dialog_value = token
+	lesson_dialog.present("解锁周转盒", "完整观看后解锁所选空盒，仅限本次尝试。重开将重新锁定。\n当前为本地预览，可模拟奖励或取消。", "模拟观看完成", "取消", false)
+
+
+## 确认、取消和重复回调都经过会话校验；重开不会继承旧奖励。
+func _on_dialog_answer(accepted: bool) -> void:
+	var kind: String = _dialog_kind
+	var value: Variant = _dialog_value
+	_dialog_kind = ""
+	if kind == "lesson":
+		_lesson_record()[str(value)] = true
+		if progress != null:
+			progress.save()
+		if not _review_keys.is_empty():
+			_show_lesson(_review_keys.pop_front())
+		else:
+			_maybe_show_lesson()
+	elif kind == "reward":
+		session.resolve_turnover(str(value), accepted)
+	elif kind == "restart" and accepted:
+		restart_requested.emit()
+	elif kind == "level" and accepted:
+		level_requested.emit(int(value))
+	_sync_completion()

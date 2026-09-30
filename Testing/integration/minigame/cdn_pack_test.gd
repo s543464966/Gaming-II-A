@@ -32,12 +32,19 @@ func _run() -> void:
 			_fail("Remote content pack cannot mount: " + pack.file)
 			return
 	for path: String in [
-		"res://features/donut_sort/ui/art/scene/shop_background_unified.png",
-		"res://features/donut_sort/ui/art/scene/tabletop_light.png",
+		"res://features/donut_sort/ui/art/scene/background_top.png",
+		"res://features/donut_sort/ui/art/scene/background_middle.png",
+		"res://features/donut_sort/ui/art/scene/background_bottom.png",
+		"res://features/donut_sort/board/ui/art/paper_holder_round.png",
+		"res://features/donut_sort/orders/ui/art/order_box_orange.png",
+		"res://game_content/donuts/art/donut_orange_plain.png",
+		"res://game_content/donuts/art/donut_ivory_sprinkles.png",
+		"res://features/donut_sort/orders/ui/art/sticker_ivory.png",
+		"res://features/donut_sort/orders/ui/art/sticker_purple.png",
 		"res://features/donut_sort/failure/ui/art/panel_failure_blank.png",
 	]:
 		if load(path) == null:
-			_fail("Remote background texture is missing: " + path)
+			_fail("Remote UI texture is missing: " + path)
 			return
 	var scene: PackedScene = load("res://features/home/ui/home_screen.tscn")
 	if scene == null:

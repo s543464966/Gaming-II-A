@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://features/donut_sort/orders/ui/art/sticker_mocha.png" id="image"]
+
+[resource]
+atlas = ExtResource("image")
+region = Rect2(66, 67, 1123, 1110)
+filter_clip = true

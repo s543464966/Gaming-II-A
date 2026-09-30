@@ -2,7 +2,7 @@ class_name DonutOrdersView
 extends Control
 ## 汇总四个订单位置的口味、单盒需求与锁定状态。
 
-## 卡位按底图中的实际边界归一化锚定，随底板整体缩放。
+## 四个独立翻盖盒共用固定间距，随页面等比缩放。
 @onready var cards: Array[DonutOrderCard] = [$Panel/Order0, $Panel/Order1, $Panel/Order2, $Panel/Order3]
 
 

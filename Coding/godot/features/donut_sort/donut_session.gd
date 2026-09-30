@@ -20,6 +20,11 @@ var _definition: Dictionary = {}
 var _stock_cursor: int = 0
 var _next_box_id: int = 0
 var _history: DonutUndoHistory = DonutUndoHistory.new()
+var active_seconds: float = 0.0 # 只累计可操作时间；撤回不退还炸弹时间。
+var failed: bool = false
+var attempt: int = 0 # 重开或切关后递增，用于拒绝旧广告奖励。
+var pending_reward: Dictionary = {}
+var _reward_serial: int = 0
 
 
 ## 正常启动读取内容目录；验证可显式注入独立定义而不修改运行配置。
@@ -33,6 +38,8 @@ func _init(definition: Dictionary = {}) -> void:
 
 ## 切换内容目录中的关卡，清除上一关事务与奖励后重新入场。
 func load_level(index: int) -> bool:
+	if not pending_reward.is_empty():
+		return false
 	var levels: Array = DonutLevel.catalog()
 	if index < 0 or index >= levels.size():
 		return false
@@ -59,6 +66,8 @@ func begin() -> void:
 
 ## 重开完整关卡，不保留可刷取的奖励或上次隐藏信息。
 func restart() -> void:
+	if not pending_reward.is_empty():
+		return
 	_prepare()
 	begin()
 
@@ -76,6 +85,10 @@ func _prepare() -> void:
 	_stock_cursor = 0
 	_next_box_id = 0
 	started = false
+	active_seconds = 0.0
+	failed = false
+	attempt += 1
+	pending_reward = {}
 	_history.clear()
 	if _definition.is_empty():
 		return
@@ -98,9 +111,13 @@ func _make_box(definition: Dictionary) -> Dictionary:
 	var hidden_layers: bool = definition.get("hidden_layers", false)
 	var items: Array = []
 	for item: Dictionary in definition.items:
-		items.append({"flavor": int(item.flavor), "revealed": not hidden_layers})
-	return {"id": _next_box_id, "kind": definition.get("kind", "normal"),
-		"lid": int(definition.get("lid", 0)), "frozen": definition.get("kind", "normal") == "frozen", "items": items}
+		items.append({"flavor": int(item.flavor), "revealed": not bool(item.get("hidden", hidden_layers))})
+	var kind: String = definition.get("kind", "normal")
+	return {"id": _next_box_id, "kind": kind, "lid": int(definition.get("lid", 0)),
+		"frozen": kind in ["frozen", "number_frozen"], "items": items,
+		"grouped": items.size() == 4 and items.all(func(item: Dictionary) -> bool: return item.flavor == items[0].flavor),
+		"fixed_flavor": int(definition.get("fixed_flavor", -1)),
+		"bomb_deadline": active_seconds + float(definition.get("bomb_seconds", 0)) if kind == "bomb" else -1.0}
 
 
 ## 返回本关全部需求数，包含锁定位置及各位置的后续需求。
@@ -135,9 +152,10 @@ func remaining_donuts() -> int:
 	return total
 
 
-## 全部需求完成且备货和场上食物都已处理后才允许通关。
+## 全部需求与食物处理完且没有未解除炸弹后才允许通关，单纯搬空炸弹不算解除。
 func is_won() -> bool:
-	return started and completed == total_orders() and remaining_stock() == 0 and remaining_donuts() == 0
+	return started and not failed and completed == total_orders() and remaining_stock() == 0 and remaining_donuts() == 0 and not slots.any(
+		func(slot: Dictionary) -> bool: return slot.box != null and slot.box.kind == "bomb")
 
 
 ## 单颗暂存容量为一，其余盒子容量为四。
@@ -152,17 +170,17 @@ func can_handle(index: int) -> bool:
 
 ## 仅允许从可操作餐盒的明牌顶层开始拿取。
 func can_pick_top(source: int) -> bool:
-	return DonutMoveRules.can_pick_top(slots, started, is_won(), source)
+	return DonutMoveRules.can_pick_top(slots, started, is_won() or failed or not pending_reward.is_empty(), source)
 
 
 ## 返回操作开始时可一起拿起的连续同味明牌数量。
 func pick_count(source: int) -> int:
-	return DonutMoveRules.pick_count(slots, started, is_won(), source)
+	return DonutMoveRules.pick_count(slots, started, is_won() or failed or not pending_reward.is_empty(), source)
 
 
 ## 返回连续同味组中目标容量允许接收的实际数量。
 func move_count(source: int, target: int) -> int:
-	return DonutMoveRules.move_count(slots, started, is_won(), source, target)
+	return DonutMoveRules.move_count(slots, started, is_won() or failed or not pending_reward.is_empty(), source, target)
 
 
 ## 为界面提供与正式执行完全一致的目标合法性判断。
@@ -184,8 +202,12 @@ func move(source: int, target: int) -> bool:
 	last_combo = 0
 	var events: Array = []
 	_event(events, "move", {"source": source, "target": target, "items": moving, "count": count})
+	if slots[source].box.kind == "cycle" and slots[source].box.items.size() > 1:
+		slots[source].box.items.push_front(slots[source].box.items.pop_back())
+		_event(events, "cycle", {"index": source})
 	if _reveal_top(source):
 		_event(events, "reveal", {"index": source})
+	_first_group(target, events)
 	_settle(events)
 	_award_combo(completed - before, events)
 	changed.emit(events)
@@ -200,7 +222,7 @@ func next_turnover() -> int:
 ## 道具只解锁固定棋盘内的周转盒，并创建一个空盒，不消耗备货。
 func add_box() -> bool:
 	var index: int = next_turnover()
-	if not started or is_won() or index < 0 or int(tools.add_box) <= 0:
+	if not started or is_won() or failed or not pending_reward.is_empty() or index < 0 or int(tools.add_box) <= 0:
 		return false
 	_remember()
 	tools.add_box -= 1
@@ -215,7 +237,7 @@ func add_box() -> bool:
 
 ## 置顶可选已知下层或盲选未揭示下层，不提前显示未知口味。
 func can_bring_to_top(index: int, item_index: int) -> bool:
-	if not started or is_won() or not can_handle(index) or int(tools.top) <= 0:
+	if not started or is_won() or failed or not pending_reward.is_empty() or not can_handle(index) or slots[index].box.kind == "in_only" or int(tools.top) <= 0:
 		return false
 	return DonutTopRules.can_reorder(slots[index].box.items, item_index)
 
@@ -266,27 +288,31 @@ func is_waiting(index: int) -> bool:
 	return DonutOrderRules.matching_demand(demands, int(slots[index].box.items[0].flavor)) < 0
 
 
-## 在确定的盒位顺序中逐次回收，每次都先影响旧盒，再原位补入一个新盒。
+## 先结清在场连续回收，再按回收顺序补货，重复到局面稳定。
 func _settle(events: Array) -> void:
 	while true:
-		var match: Vector2i = DonutDispatchRules.next_match(slots, demands)
-		if match.x < 0:
+		var refill: Array[int] = []
+		var current_match: Vector2i = DonutDispatchRules.next_match(slots, demands)
+		while current_match.x >= 0:
+			var parcel: Dictionary = slots[current_match.x].box.duplicate(true)
+			slots[current_match.x].box = null
+			demands[current_match.y].cursor += 1
+			completed += 1
+			refill.append(current_match.x)
+			_event(events, "dispatch", {"index": current_match.x, "box": parcel, "demand": current_match.y})
+			_apply_mechanisms(events)
+			_unlock_positions(events)
+			current_match = DonutDispatchRules.next_match(slots, demands)
+		if refill.is_empty() or remaining_stock() == 0:
 			_return_spare_boxes(events)
 			return
-		var match_index: int = match.x
-		var demand_index: int = match.y
-		var parcel: Dictionary = slots[match_index].box.duplicate(true)
-		slots[match_index].box = null
-		demands[demand_index].cursor += 1
-		completed += 1
-		_event(events, "dispatch", {"index": match_index, "box": parcel, "demand": demand_index})
-		_apply_mechanisms(events)
-		_unlock_positions(events)
-		if slots[match_index].kind != "single" and remaining_stock() > 0:
-			slots[match_index].box = _make_box(_definition.stock[_stock_cursor])
+		for index: int in refill:
+			if remaining_stock() == 0:
+				break
+			slots[index].box = _make_box(_definition.stock[_stock_cursor])
 			_stock_cursor += 1
-			_reveal_top(match_index)
-			_event(events, "refill", {"index": match_index})
+			_reveal_top(index)
+			_event(events, "refill", {"index": index})
 
 
 ## 通关后归还道具增添的空盒，不增加订单、机关或奖励，撤回随完整事务恢复。
@@ -298,24 +324,47 @@ func _return_spare_boxes(events: Array) -> void:
 		_event(events, "spare_return", {"index": index})
 
 
-## 一次真实回收使已在场数字盖各减一，并按盒位顺序解冻一盒。
+## 一次真实回收仅解冻当前在场的第一只无数字冰冻盒。
 func _apply_mechanisms(events: Array) -> void:
-	var thawed: bool = false
 	for index: int in slots.size():
 		var slot: Dictionary = slots[index]
 		if not slot.open or slot.box == null:
 			continue
-		var modified: bool = false
-		if int(slot.box.lid) > 0:
-			slot.box.lid -= 1
-			modified = true
-		if slot.box.frozen and not thawed:
+		if slot.box.kind == "frozen" and slot.box.frozen:
 			slot.box.frozen = false
-			thawed = true
-			modified = true
-		if modified:
 			_reveal_top(index)
 			_event(events, "mechanism", {"index": index})
+			return
+
+
+## 返回按固定盒位顺序排列的数字机关，成组时只推进首个目标。
+func number_targets() -> Array[int]:
+	var result: Array[int] = []
+	for index: int in slots.size():
+		if slots[index].open and slots[index].box != null and int(slots[index].box.lid) > 0:
+			result.append(index)
+	return result
+
+
+## 目标首次四同味解除炸弹并产生归纳，一次只减一个数字，不必等待需求回收。
+func _first_group(index: int, events: Array) -> void:
+	var box: Dictionary = slots[index].box
+	if box.grouped or not DonutDispatchRules.packable(slots, index):
+		return
+	box.grouped = true
+	if box.kind == "bomb":
+		box.kind = "normal"
+		box.bomb_deadline = -1.0
+	_event(events, "group", {"index": index})
+	var targets: Array[int] = number_targets()
+	if targets.is_empty():
+		return
+	var target: int = targets[0]
+	slots[target].box.lid -= 1
+	if int(slots[target].box.lid) == 0:
+		slots[target].box.frozen = false
+		_reveal_top(target)
+	_event(events, "mechanism", {"index": target})
 
 
 ## 消除达到配置阈值时只开放常规盒位，订单位等待显式解锁。
@@ -354,10 +403,11 @@ func snapshot() -> Dictionary:
 	var waiting: Array[bool] = []
 	for index: int in slots.size():
 		waiting.append(is_waiting(index))
-	return {"waiting": waiting, "slots": slots.duplicate(true), "demands": demands.duplicate(true), "completed": completed,
+	return {"layout_id": _definition.get("layout_id", ""), "waiting": waiting, "slots": slots.duplicate(true), "demands": demands.duplicate(true), "completed": completed,
 		"moves": moves, "tools": tools.duplicate(), "coins": coins, "diamonds": diamonds,
 		"last_combo": last_combo, "best_combo": best_combo, "stock_cursor": _stock_cursor,
-		"next_box_id": _next_box_id, "started": started, "won": is_won(), "remaining_stock": remaining_stock()}
+		"next_box_id": _next_box_id, "started": started, "won": is_won(), "remaining_stock": remaining_stock(),
+		"active_seconds": active_seconds, "failed": failed, "number_targets": number_targets()}
 
 
 ## 记录一次事件之后的画面快照，避免动画完成时再次执行回收或发奖。
@@ -375,7 +425,7 @@ func _remember() -> void:
 
 ## 检查是否可撤回；撤回次数本身不会被旧快照补回。
 func can_undo() -> bool:
-	return _history.has_entry() and int(tools.undo) > 0
+	return not failed and pending_reward.is_empty() and _history.has_entry() and int(tools.undo) > 0
 
 
 ## 原子恢复上一步全部结果并保留本次撤回消耗，不重播或重复结算历史事件。
@@ -414,17 +464,161 @@ func is_blocked() -> bool:
 	return true
 
 
-## 无搬运路线且没有实际可用的补救道具时判负，不保存第二份结束状态。
+## 停滞不自动判负；仅未归纳解除的炸弹到时失败。
 func is_failed() -> bool:
-	if not is_blocked() or can_undo():
+	return failed
+
+
+## 页面只在可计时时调用；已归纳解除的盒子不再计时或触发爆炸。
+func advance_clock(seconds: float) -> bool:
+	if not started or is_won() or failed or not pending_reward.is_empty() or not is_finite(seconds) or seconds <= 0:
 		return false
-	if int(tools.add_box) > 0 and next_turnover() >= 0:
+	if not slots.any(func(slot: Dictionary) -> bool: return slot.open and slot.box != null and slot.box.kind == "bomb"):
 		return false
-	if int(tools.top) > 0:
-		for index: int in slots.size():
-			if not can_handle(index):
-				continue
-			for item_index: int in slots[index].box.items.size():
-				if can_bring_to_top(index, item_index):
-					return false
+	active_seconds += seconds
+	for slot: Dictionary in slots:
+		if slot.open and slot.box != null and slot.box.kind == "bomb" and active_seconds >= float(slot.box.bomb_deadline):
+			failed = true
 	return true
+
+
+## 请求指定周转位奖励，使用本次尝试与唯一序号隔离延迟或重复回调。
+func request_turnover(index: int) -> String:
+	if not started or failed or is_won() or not pending_reward.is_empty() or index < 0 or index >= slots.size():
+		return ""
+	if slots[index].kind != "turnover" or slots[index].open:
+		return ""
+	_reward_serial += 1
+	var token: String = "%d:%d:%d" % [attempt, _reward_serial, index]
+	pending_reward = {"token": token, "index": index, "attempt": attempt}
+	return token
+
+
+## 只有匹配的奖励确认才开放所选盒，不扣道具且不可被撤回重复领取。
+func resolve_turnover(token: String, rewarded: bool) -> bool:
+	if pending_reward.is_empty() or token != pending_reward.token or int(pending_reward.attempt) != attempt:
+		return false
+	var index: int = int(pending_reward.index)
+	pending_reward = {}
+	if not rewarded or slots[index].open:
+		return false
+	slots[index].open = true
+	slots[index].box = _make_box({"items": []})
+	_history.clear()
+	var events: Array = []
+	_event(events, "unlock", {"index": index})
+	changed.emit(events)
+	return true
+
+
+## 存档绑定当前关卡内容摘要，关卡更新后不套用过时局面。
+func export_run() -> Dictionary:
+	return {"level_index": level_index, "content_hash": JSON.stringify(_definition).sha256_text(),
+		"state": snapshot(), "undo": _history.export_latest()}
+
+
+## 只恢复同版本定义下数量守恒的完整局面，不恢复未收到确认的广告请求。
+func restore_run(data: Dictionary) -> bool:
+	var index: int = int(data.get("level_index", -1))
+	if index < 0 or index >= DonutLevel.catalog().size() or not data.get("state") is Dictionary:
+		return false
+	var definition: Dictionary = DonutLevel.load_definition(DonutLevel.catalog()[index].path)
+	if str(data.get("content_hash", "")) != JSON.stringify(definition).sha256_text():
+		return false
+	if not _valid_saved_state(data.state, definition):
+		return false
+	var history: Dictionary = data.get("undo", {}) if data.get("undo") is Dictionary else {}
+	if not history.is_empty() and not _valid_saved_state(history, definition):
+		return false
+	_definition = definition
+	level_index = index
+	_prepare()
+	var state: Dictionary = data.state
+	slots = state.slots.duplicate(true)
+	_normalize_grouped_bombs(slots)
+	demands = state.demands.duplicate(true)
+	completed = int(state.completed)
+	moves = int(state.moves)
+	coins = int(state.coins)
+	diamonds = int(state.diamonds)
+	last_combo = int(state.last_combo)
+	best_combo = int(state.best_combo)
+	_stock_cursor = int(state.stock_cursor)
+	_next_box_id = int(state.next_box_id)
+	active_seconds = float(state.active_seconds)
+	failed = bool(state.failed)
+	started = bool(state.started)
+	tools = state.tools.duplicate()
+	for key: String in tools:
+		tools[key] = int(tools[key])
+	if not history.is_empty():
+		history = history.duplicate(true)
+		_normalize_grouped_bombs(history.slots)
+	_history.restore_latest(history)
+	return true
+
+
+## 兼容同一项目旧存档：已经归纳的炸弹按新规则解除，未归纳的原倒计时保留。
+func _normalize_grouped_bombs(box_slots: Array) -> void:
+	for slot: Dictionary in box_slots:
+		if slot.box != null and slot.box.kind == "bomb" and slot.box.grouped:
+			slot.box.kind = "normal"
+			slot.box.bomb_deadline = -1.0
+
+
+## 拒绝损坏存档的容器、游标、机关与逐口味数量，避免加载后才在交互中崩溃。
+func _valid_saved_state(state: Dictionary, definition: Dictionary) -> bool:
+	for key: String in ["slots", "demands"]:
+		if not state.get(key) is Array or state[key].size() != definition[key].size():
+			return false
+	for key: String in ["completed", "moves", "coins", "diamonds", "last_combo", "best_combo", "stock_cursor", "next_box_id", "active_seconds"]:
+		if not (state.get(key) is int or state.get(key) is float) or not is_finite(float(state[key])) or float(state[key]) < 0:
+			return false
+	if not state.get("started") is bool or not state.get("failed") is bool or not state.get("tools") is Dictionary:
+		return false
+	for key: String in ["undo", "add_box", "top"]:
+		if not state.tools.has(key) or int(state.tools[key]) < 0:
+			return false
+	if int(state.stock_cursor) > definition.stock.size():
+		return false
+	var supply: Array[int] = []
+	var required: Array[int] = []
+	supply.resize(DonutLevel.FLAVOR_COUNT)
+	required.resize(DonutLevel.FLAVOR_COUNT)
+	var seen_ids: Dictionary = {}
+	for index: int in state.slots.size():
+		var slot: Variant = state.slots[index]
+		if not slot is Dictionary or not slot.has_all(["kind", "box", "open", "unlock_after"]) or slot.kind != definition.slots[index].kind or not slot.open is bool:
+			return false
+		if slot.box == null:
+			continue
+		var box: Variant = slot.box
+		if not box is Dictionary or not box.has_all(["id", "kind", "lid", "frozen", "items", "grouped", "fixed_flavor", "bomb_deadline"]):
+			return false
+		if not box.items is Array or box.items.size() > (1 if slot.kind == "single" else 4) or int(box.lid) < 0 or not box.frozen is bool or not box.grouped is bool:
+			return false
+		if seen_ids.has(int(box.id)) or int(box.id) < 1 or int(box.id) > int(state.next_box_id):
+			return false
+		seen_ids[int(box.id)] = true
+		if not box.kind in ["normal", "lid", "frozen", "number_frozen", "fixed", "in_only", "cycle", "bomb"] or not is_finite(float(box.bomb_deadline)):
+			return false
+		if box.kind == "fixed" and (int(box.fixed_flavor) < 0 or int(box.fixed_flavor) >= DonutLevel.FLAVOR_COUNT):
+			return false
+		for item: Variant in box.items:
+			if not item is Dictionary or not item.has_all(["flavor", "revealed"]) or not item.revealed is bool or int(item.flavor) < 0 or int(item.flavor) >= DonutLevel.FLAVOR_COUNT:
+				return false
+			supply[int(item.flavor)] += 1
+	for stock_index: int in range(int(state.stock_cursor), definition.stock.size()):
+		for item: Dictionary in definition.stock[stock_index].items:
+			supply[int(item.flavor)] += 1
+	var dispatched: int = 0
+	for index: int in state.demands.size():
+		var demand: Variant = state.demands[index]
+		if not demand is Dictionary or not demand.has_all(["sequence", "cursor", "open"]) or not demand.sequence is Array or not demand.open is bool:
+			return false
+		if JSON.stringify(demand.sequence) != JSON.stringify(definition.demands[index].sequence) or int(demand.cursor) < 0 or int(demand.cursor) > demand.sequence.size():
+			return false
+		dispatched += int(demand.cursor)
+		for cursor: int in range(int(demand.cursor), demand.sequence.size()):
+			required[int(demand.sequence[cursor])] += 4
+	return supply == required and dispatched == int(state.completed)

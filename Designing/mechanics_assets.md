@@ -1,5 +1,39 @@
 # 甜甜圈素材与界面
 
+当前局内使用三段背景、独立翻盖订单盒、十五款甜甜圈和圆纸托，百关机制范围见 [百关实现](level_100_implementation.md)，布局见 [UI 校准](ui_alignment.md)。2026-09-30 按用户最新提供的 `donut_game_assets_v9_paper_mechanics` 更新颜色，逐项对应如下。以下 v1／v7 接入记录保留作美术来源与失败弹窗说明，不代表当前主界面布局。
+
+## 2026-09-30 素材颜色更新
+
+核对本次包 `manifest.json` 的全部 39 张素材及真实 PNG SHA-256：8 张甜甜圈发生变化，30 张与现有文件逐字节一致；另 1 张 `mechanics/badge_number.png` 是包内注明的可选备件，现有数字直接用文字层显示，因此没有新增数字底牌。
+
+甜甜圈使用下表现有口味编号，不能按外部包的数组顺序重排（包中 purple 与 ivory 的顺序不同）。源图来自 `base/`，目标均在 `Coding/godot/game_content/donuts/art/`；十五款固定口味纸托对应 `fixed_flavors/holder_fixed_<颜色>.png`，均与 `board/ui/art/mechanics/` 的同名文件完全一致。
+
+| 口味 ID | 包内颜色名 | 工程 PNG 名称 | 本次处理 |
+| --- | --- | --- | --- |
+| 0 | pink | donut_pink_plain.png | 替换新版 |
+| 1 | brown | donut_brown_plain.png | 已一致 |
+| 2 | green | donut_green_plain.png | 替换新版 |
+| 3 | blue | donut_blue_plain.png | 替换新版 |
+| 4 | orange | donut_orange_plain.png | 替换新版 |
+| 5 | ivory | donut_ivory_sprinkles.png | 已一致 |
+| 6 | purple | donut_purple_plain.png | 替换新版 |
+| 7 | magenta | donut_magenta_sprinkles.png | 替换新版 |
+| 8 | red | donut_red_drizzle.png | 替换新版 |
+| 9 | russet | donut_russet_sprinkles.png | 已一致 |
+| 10 | teal | donut_teal_sprinkles.png | 替换新版 |
+| 11 | charcoal | donut_charcoal_sprinkles.png | 已一致 |
+| 12 | pistachio | donut_pistachio_sprinkles.png | 已一致 |
+| 13 | lavender | donut_lavender_drizzle.png | 已一致 |
+| 14 | mocha | donut_mocha_drizzle.png | 已一致 |
+
+其余已接入素材均已一致：`base/holder.png` 对应 `board/ui/art/paper_holder_round.png`；`mechanics/` 下的 `holder_single`、`cover_opaque_round`、`donut_hidden_neutral`、`icon_question`、`frost_donut_overlay`、`badge_cycle_front`、`badge_bomb_front` 分别对应 `board/ui/art/mechanics/` 的同名 PNG。
+
+替换使用设计师原始 PNG，不重绘、调色或压缩；源文件与校验值记入[甜甜圈素材清单](../Coding/godot/game_content/donuts/art/asset_manifest.json)。新版画布尺寸与原图一致，可见主体完整落在现有 Atlas 裁切区域内，因此沿用原尺寸、锚点、叠放和机关层级。棋盘、拖拽、补货和出餐共用同一口味纹理引用，所有关卡同步生效。
+
+本包没有新版订单贴纸、盒体、背景或失败弹窗，继续使用现有对应素材。包内 HTML、预览图、生成提示词和可选数字底牌不接入运行工程；不采用“只进不出”图标，不修改关卡数值或玩法。
+
+本次验证：38 张运行 PNG 均与包内原图及清单 SHA-256 一致，15 款甜甜圈可见边界落在现有裁切框内，100 关配置哈希保持不变。`node Testing/scripts/run_godot.mjs donut` 与 `node Tooling/export/web.mjs` 通过；实际导出 PCK 在 Compatibility 渲染器中生成 19 张标准竖屏、13 张小屏关卡截图及菜单／教学截图，复查第 61、98 关与小屏第 59 关的颜色、纸托和冰霜叠层。唯一预览 `http://127.0.0.1:4173/` 已更新并刷新，未另建版本链接。
+
 状态：已接入 `donut_game_assets_v1`、v7 的背景、订单与纸盒素材，以及用户提供的五张道具按钮图。当前盒形、堆叠和按钮布局依据为 [已确认参考图](../Archive/ReferenceImage/donut_sort_layout_and_style_approved.png)；[上一版参考图](../Archive/ReferenceImage/donut_sort_reference.png)与旧 v1～v3 截图只作历史对照。
 
 ## 收录与归属

@@ -9,8 +9,8 @@ const requested = process.argv.slice(2);
 const suites = requested.length ? [...new Set(requested)] : ['architecture', 'home', 'donut'];
 const errorPattern = /SCRIPT ERROR:|(?:^|\n)ERROR:|Parse Error:|ObjectDB instances leaked|resources still in use/i;
 
-if (suites.some(suite => !['architecture', 'home', 'donut'].includes(suite))) {
-  console.error('Usage: node Testing/scripts/run_godot.mjs [architecture] [home] [donut]');
+if (suites.some(suite => !['architecture', 'home', 'donut', 'hundred'].includes(suite))) {
+  console.error('Usage: node Testing/scripts/run_godot.mjs [architecture] [home] [donut] [hundred]');
   process.exitCode = 2;
 } else {
   let run;
@@ -30,7 +30,7 @@ if (suites.some(suite => !['architecture', 'home', 'donut'].includes(suite))) {
     async function execute(name, args, markers = []) {
       const log = join(run, `${name}.log`);
       const result = spawnSync(engine, ['--headless', '--path', project, '--log-file', log, ...args], {
-        encoding: 'utf8', timeout: 60_000, maxBuffer: 8 * 1024 * 1024,
+        encoding: 'utf8', timeout: 180_000, maxBuffer: 8 * 1024 * 1024,
       });
       const output = (result.stdout ?? '') + (result.stderr ?? '');
       process.stdout.write(output);
@@ -43,13 +43,16 @@ if (suites.some(suite => !['architecture', 'home', 'donut'].includes(suite))) {
 
     // 与导出入口一致，规避 macOS 无界面导入字体时的 Godot 4.5.1 崩溃。
     await execute('import', ['--single-threaded-scene', '--editor', '--import', '--quit']);
-    const sceneSuites = suites.filter(suite => suite !== 'donut');
+    const sceneSuites = suites.filter(suite => suite !== 'donut' && suite !== 'hundred');
     if (sceneSuites.length) {
       await execute('skeleton', ['--script', join(workspace, 'Testing/integration/architecture/skeleton_test.gd'), '--', ...sceneSuites],
         sceneSuites.map(suite => `PASS: ${suite}`));
     }
     if (suites.includes('donut')) {
       await execute('donut', ['--script', join(workspace, 'Testing/integration/donut_sort/donut_test.gd')], ['PASS: donut']);
+    }
+    if (suites.includes('hundred')) {
+      await execute('hundred', ['--script', join(workspace, 'Testing/integration/donut_sort/hundred_test.gd')], ['PASS: hundred']);
     }
     await rm(run, { recursive: true });
     console.log(`PASS: ${suites.join(', ')}; isolated project and logs removed.`);

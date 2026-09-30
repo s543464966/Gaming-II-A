@@ -25,6 +25,29 @@ func _run() -> void:
 	if (page.get_node("Stage/Orders") as DonutOrdersView).cards.size() != 4:
 		_fail("Exported order cards are missing.")
 		return
+	var flavors: Array[String] = ["pink", "brown", "green", "blue", "orange", "ivory", "purple"]
+	for index: int in flavors.size():
+		var file: String = "donut_ivory_sprinkles" if index == 5 else "donut_%s_plain" % flavors[index]
+		if DonutArt.FOOD[index] != load("res://game_content/donuts/art/%s.tres" % file):
+			_fail("Exported pack is still using old flavor art: " + file)
+			return
+		if DonutOrderCard.STICKER_ART[index] != load("res://features/donut_sort/orders/ui/art/sticker_%s.tres" % flavors[index]):
+			_fail("Exported pack is missing the matching order sticker: " + flavors[index])
+			return
+	if page.board.boxes[0].back.texture != load("res://features/donut_sort/board/ui/art/paper_holder_round.tres"):
+		_fail("Exported pack is missing the V8 round holder.")
+		return
+	for segment: String in ["top", "middle", "bottom"]:
+		if not ResourceLoader.exists("res://features/donut_sort/ui/art/scene/background_%s.png" % segment):
+			_fail("Exported V8 background segment is missing: " + segment)
+			return
+	var order: DonutOrderCard = page.orders.cards[0]
+	if order.get_node_or_null("Box") == null or order.box_art.material == null:
+		_fail("Exported pack still uses the old order panel.")
+		return
+	if page.orders.cards[0].get_global_rect().position.y - page.get_node("Stage/Title").get_global_rect().end.y > 32.0 * page.stage.scale.y + 0.01:
+		_fail("Exported layout still expands the header spacing.")
+		return
 	for path: String in ["Stage/Tools/Undo", "Stage/Tools/AddBox",
 			"Stage/Tools/Top", "Stage/Boxes/Box0/Food"]:
 		if page.get_node_or_null(path) == null:
@@ -40,7 +63,7 @@ func _run() -> void:
 			return
 	app.queue_free()
 	await process_frame
-	print("PASS: minigame exported pack")
+	print("PASS: minigame exported pack; ivory donut, seven matching stickers and compact layout")
 	quit(0)
 
 

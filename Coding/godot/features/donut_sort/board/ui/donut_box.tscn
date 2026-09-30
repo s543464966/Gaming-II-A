@@ -6,9 +6,8 @@
 
 [ext_resource type="FontVariation" path="res://features/donut_sort/ui/donut_display_font.tres" id="display_font"]
 
-[ext_resource type="Texture2D" path="res://features/donut_sort/board/ui/art/paper_holder_empty.tres" id="back"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/board/ui/art/paper_holder_round.tres" id="back"]
 
-[ext_resource type="Texture2D" path="res://features/donut_sort/board/ui/art/paper_holder_front.tres" id="front"]
 
 [ext_resource type="Texture2D" path="res://features/donut_sort/board/ui/art/paper_package_closed.tres" id="closed"]
 
@@ -24,13 +23,25 @@
 
 [sub_resource type="StyleBoxEmpty" id="Empty"]
 
+[sub_resource type="StyleBoxFlat" id="TargetStyle"]
+bg_color = Color(1, 0.94, 0.62, 0.12)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.96, 0.72, 0.85)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_left = 35
+corner_radius_bottom_right = 35
+
 [node name="DonutBox" type="Button"]
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 200.0
-offset_bottom = 157.0
-custom_minimum_size = Vector2(200, 157)
+offset_bottom = 126.0
+custom_minimum_size = Vector2(200, 126)
 mouse_default_cursor_shape = 2
 focus_mode = 0
 theme_override_styles/normal = SubResource("Empty")
@@ -44,7 +55,7 @@ layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 200.0
-offset_bottom = 157.0
+offset_bottom = 126.0
 mouse_filter = 2
 texture = ExtResource("back")
 expand_mode = 1
@@ -53,24 +64,12 @@ stretch_mode = 5
 [node name="Food" parent="." instance=ExtResource("donut_stack")]
 z_index = 1
 
-[node name="Front" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 200.0
-offset_bottom = 157.0
-mouse_filter = 2
-texture = ExtResource("front")
-z_index = 10
-expand_mode = 1
-stretch_mode = 5
-
 [node name="Closed" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 200.0
-offset_bottom = 157.0
+offset_bottom = 126.0
 mouse_filter = 2
 texture = ExtResource("closed")
 z_index = 20
@@ -151,5 +150,39 @@ text = ""
 theme_override_fonts/font = ExtResource("rounded")
 theme_override_font_sizes/font_size = 52
 theme_override_colors/font_color = Color(0.51,0.24,0.13,1)
+theme_override_colors/font_outline_color = Color(1,0.96,0.87,1)
+theme_override_constants/outline_size = 6
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Mechanic" type="TextureRect" parent="."]
+visible = false
+offset_left = 60.0
+offset_top = 66.0
+offset_right = 140.0
+offset_bottom = 146.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+z_index = 24
+
+[node name="Countdown" type="Label" parent="."]
+visible = false
+offset_left = 100.0
+offset_top = 30.0
+offset_right = 200.0
+offset_bottom = 106.0
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("rounded")
+theme_override_font_sizes/font_size = 60
+theme_override_colors/font_outline_color = Color(1, 0.96, 0.87, 1)
+theme_override_constants/outline_size = 6
+z_index = 25
+
+[node name="NumberTarget" type="Panel" parent="."]
+visible = false
+offset_right = 70.0
+offset_bottom = 70.0
+mouse_filter = 2
+z_index = 21
+theme_override_styles/panel = SubResource("TargetStyle")

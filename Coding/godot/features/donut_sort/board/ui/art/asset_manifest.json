@@ -1,5 +1,5 @@
 {
-  "source_pack": "donut_game_assets_v7/containers",
+  "source_pack": "donut_game_assets_v7 + donut_game_assets_v8",
   "assets": [
     {
       "id": "paper_holder_empty",
@@ -21,6 +21,14 @@
       "height": 1254,
       "sha256": "0e59e0523733e5da5f2f986abc36007e8ca42281ef923e76f10806120169ec52",
       "path": "res://features/donut_sort/board/ui/art/paper_package_closed.png"
+    },
+    {
+      "id": "paper_holder_round",
+      "label": "浅粉褶皱纸托",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "9cf453530989400c99b9870488b4241c104bdc49ca7ab8963bf835565e8743ca",
+      "path": "res://features/donut_sort/board/ui/art/paper_holder_round.png"
     }
   ]
 }

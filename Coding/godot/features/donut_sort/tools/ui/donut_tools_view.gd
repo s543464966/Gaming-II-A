@@ -24,6 +24,13 @@ func present(counts: Dictionary, top_mode: bool) -> void:
 	$AddBox/Count.text = str(counts.add_box)
 	$Top/Count.text = str(counts.top)
 	$Top.modulate = Color(1, 0.9, 0.6) if top_mode else Color.WHITE
+	for entry: Array in [[$Undo, "undo"], [$AddBox, "add_box"], [$Top, "top"]]:
+		var available: bool = int(counts.get(entry[1], 0)) > 0
+		var button: BaseButton = entry[0]
+		button.get_node("Count").visible = available
+		button.get_node("Badge").visible = available
+		button.get_node("Icon").modulate = Color.WHITE if available else Color(0.72, 0.72, 0.72, 0.65)
+		button.tooltip_text = "" if available else "本关次数已用完"
 
 
 ## 动效和页面中断时恢复所有按钮的普通外观。

@@ -1,6 +1,7 @@
 {
   "id": 3,
-  "title": "忙碌午后",
+  "title": "甜甜圈小铺 · 3",
+  "layout_id": "level_03",
   "slots": [
     {
       "kind": "regular",
@@ -10,561 +11,141 @@
         "lid": 0,
         "items": [
           {
-            "flavor": 0
-          },
-          {
-            "flavor": 5
-          },
-          {
-            "flavor": 0
-          },
-          {
-            "flavor": 1
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 1
-          },
-          {
-            "flavor": 3
-          },
-          {
-            "flavor": 5
-          },
-          {
-            "flavor": 3
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "hidden_layers": true,
-        "items": [
-          {
-            "flavor": 2
-          },
-          {
-            "flavor": 2
-          },
-          {
-            "flavor": 3
-          },
-          {
-            "flavor": 3
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 3
-          },
-          {
-            "flavor": 3
-          },
-          {
-            "flavor": 6
-          },
-          {
-            "flavor": 5
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 4
-          },
-          {
-            "flavor": 3
-          },
-          {
-            "flavor": 0
-          },
-          {
-            "flavor": 0
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 2
-          },
-          {
-            "flavor": 2
-          },
-          {
-            "flavor": 4
-          },
-          {
-            "flavor": 5
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "lid",
-        "lid": 2,
-        "items": [
-          {
-            "flavor": 1
-          },
-          {
             "flavor": 1
           },
           {
             "flavor": 2
           },
           {
-            "flavor": 0
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 3
-          },
-          {
-            "flavor": 4
-          },
-          {
-            "flavor": 1
-          },
-          {
-            "flavor": 6
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "frozen",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 4
-          },
-          {
-            "flavor": 5
-          },
-          {
-            "flavor": 4
-          },
-          {
-            "flavor": 6
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 3
-          },
-          {
-            "flavor": 4
-          },
-          {
-            "flavor": 0
-          },
-          {
-            "flavor": 6
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "frozen",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 5
-          },
-          {
-            "flavor": 1
-          },
-          {
             "flavor": 1
           },
           {
             "flavor": 0
           }
         ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 6
-          },
-          {
-            "flavor": 0
-          },
-          {
-            "flavor": 3
-          },
-          {
-            "flavor": 1
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 0
-          },
-          {
-            "flavor": 0
-          }
-        ]
-      }
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 5
-          },
-          {
-            "flavor": 5
-          }
-        ]
-      }
-    },
-    {
-      "box": {
-        "items": [],
-        "kind": "normal",
-        "lid": 0
       },
-      "kind": "regular",
-      "unlock_after": 0
+      "group_id": "R2-003-01",
+      "id": "slot_00"
     },
     {
-      "box": {
-        "items": [],
-        "kind": "normal",
-        "lid": 0
-      },
       "kind": "regular",
-      "unlock_after": 0
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 2
+          }
+        ]
+      },
+      "group_id": "R2-003-01",
+      "id": "slot_01"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 1
+          }
+        ]
+      },
+      "group_id": "R2-003-01",
+      "id": "slot_02"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 1
+          }
+        ]
+      },
+      "group_id": "R2-003-01",
+      "id": "slot_03"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": []
+      },
+      "group_id": "R2-003-02",
+      "id": "slot_04"
     },
     {
       "kind": "turnover",
+      "id": "A",
+      "unlock_after": -1,
+      "box": null
+    },
+    {
+      "kind": "turnover",
+      "id": "B",
       "unlock_after": -1,
       "box": null
     }
   ],
+  "stock": [],
   "demands": [
     {
-      "sequence": [
-        0,
-        3,
-        3,
-        5,
-        4,
-        1,
-        2,
-        6,
-        5,
-        0,
-        6,
-        3,
-        4,
-        0,
-        5,
-        1,
-        0
-      ],
-      "initially_open": true
-    },
-    {
+      "initially_open": true,
       "sequence": [
         1,
-        4,
-        2,
-        4,
-        1,
-        5,
-        6
-      ],
-      "initially_open": true
-    },
-    {
-      "sequence": [],
-      "initially_open": false
-    },
-    {
-      "sequence": [],
-      "initially_open": false
-    }
-  ],
-  "stock": [
-    {
-      "kind": "normal",
-      "lid": 0,
-      "items": [
-        {
-          "flavor": 1
-        },
-        {
-          "flavor": 6
-        },
-        {
-          "flavor": 4
-        },
-        {
-          "flavor": 4
-        }
+        2
       ]
     },
     {
-      "kind": "normal",
-      "lid": 0,
-      "items": [
-        {
-          "flavor": 0
-        },
-        {
-          "flavor": 6
-        },
-        {
-          "flavor": 0
-        },
-        {
-          "flavor": 1
-        }
+      "initially_open": true,
+      "sequence": [
+        0,
+        1
       ]
     },
     {
-      "kind": "normal",
-      "lid": 0,
-      "items": [
-        {
-          "flavor": 1
-        },
-        {
-          "flavor": 4
-        },
-        {
-          "flavor": 4
-        },
-        {
-          "flavor": 6
-        }
-      ]
+      "initially_open": false,
+      "sequence": []
     },
     {
-      "kind": "lid",
-      "lid": 2,
-      "items": [
-        {
-          "flavor": 5
-        },
-        {
-          "flavor": 0
-        },
-        {
-          "flavor": 1
-        },
-        {
-          "flavor": 4
-        }
-      ]
-    },
-    {
-      "kind": "normal",
-      "lid": 0,
-      "items": [
-        {
-          "flavor": 2
-        },
-        {
-          "flavor": 6
-        },
-        {
-          "flavor": 5
-        },
-        {
-          "flavor": 6
-        }
-      ]
-    },
-    {
-      "kind": "normal",
-      "lid": 0,
-      "items": [
-        {
-          "flavor": 4
-        },
-        {
-          "flavor": 1
-        },
-        {
-          "flavor": 1
-        },
-        {
-          "flavor": 4
-        }
-      ]
-    },
-    {
-      "kind": "normal",
-      "lid": 0,
-      "items": [
-        {
-          "flavor": 0
-        },
-        {
-          "flavor": 5
-        },
-        {
-          "flavor": 5
-        },
-        {
-          "flavor": 6
-        }
-      ]
-    },
-    {
-      "kind": "normal",
-      "lid": 0,
-      "items": [
-        {
-          "flavor": 2
-        },
-        {
-          "flavor": 0
-        },
-        {
-          "flavor": 4
-        },
-        {
-          "flavor": 3
-        }
-      ]
-    },
-    {
-      "kind": "normal",
-      "lid": 0,
-      "items": [
-        {
-          "flavor": 1
-        },
-        {
-          "flavor": 5
-        },
-        {
-          "flavor": 6
-        },
-        {
-          "flavor": 4
-        }
-      ]
-    },
-    {
-      "kind": "normal",
-      "lid": 0,
-      "items": [
-        {
-          "flavor": 4
-        },
-        {
-          "flavor": 5
-        },
-        {
-          "flavor": 3
-        },
-        {
-          "flavor": 5
-        }
-      ]
-    },
-    {
-      "kind": "normal",
-      "lid": 0,
-      "items": [
-        {
-          "flavor": 5
-        },
-        {
-          "flavor": 2
-        },
-        {
-          "flavor": 0
-        },
-        {
-          "flavor": 1
-        }
-      ]
+      "initially_open": false,
+      "sequence": []
     }
   ],
   "tools": {
@@ -572,21 +153,16 @@
     "add_box": 1,
     "top": 1
   },
-  "combo_rewards": [
-    {
-      "count": 2,
-      "coins": 5,
-      "diamonds": 0
-    },
-    {
-      "count": 3,
-      "coins": 10,
-      "diamonds": 1
-    },
-    {
-      "count": 4,
-      "coins": 20,
-      "diamonds": 2
-    }
-  ]
+  "combo_rewards": [],
+  "design": {
+    "version": "R2",
+    "seed": 230300000,
+    "source_row": 8,
+    "assist_boxes": 1,
+    "hidden_donuts": 0,
+    "layer_order": "top_to_bottom",
+    "playtest_status": "pending",
+    "approved_adjustments": [],
+    "bomb_multiplier": null
+  }
 }

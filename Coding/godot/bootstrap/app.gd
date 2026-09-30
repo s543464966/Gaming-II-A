@@ -3,6 +3,7 @@ extends Node
 
 const HOME_SCENE: String = "res://features/home/ui/home_screen.tscn"
 const DELIVERY: Script = preload("res://services/content_delivery.gd")
+const PROGRESS: Script = preload("res://services/donut_progress.gd")
 
 var _delivery: Node
 @onready var _loading: Control = $Overlay/Loading
@@ -52,5 +53,11 @@ func _show_game() -> void:
 		_retry.hide()
 		return
 	var page: Control = scene.instantiate()
-	page.initialize(DonutSession.new())
+	var session := DonutSession.new()
+	var progress: DonutProgress = PROGRESS.new()
+	$Services.add_child(progress)
+	progress.initialize(session, not OS.has_environment("DONUT_DISABLE_SAVE") and not OS.get_cmdline_args().has("--script"))
+	page.progress = progress
+	page.lessons_enabled = true
+	page.initialize(session)
 	$SceneContainer.add_child(page)

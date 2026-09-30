@@ -1,0 +1,220 @@
+{
+  "id": 40,
+  "title": "甜甜圈小铺 · 40",
+  "layout_id": "level_40",
+  "slots": [
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 0
+          }
+        ]
+      },
+      "group_id": "R2-040-01",
+      "id": "slot_00"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "lid",
+        "lid": 1,
+        "items": [
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 2
+          }
+        ]
+      },
+      "group_id": "R2-040-02",
+      "id": "slot_01"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 5,
+            "hidden": true
+          },
+          {
+            "flavor": 0
+          }
+        ]
+      },
+      "group_id": "R2-040-01",
+      "id": "slot_02"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "number_frozen",
+        "lid": 1,
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 2
+          }
+        ]
+      },
+      "group_id": "R2-040-04",
+      "id": "slot_03"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "lid",
+        "lid": 1,
+        "items": [
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 4
+          }
+        ]
+      },
+      "group_id": "R2-040-03",
+      "id": "slot_04"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 1,
+            "hidden": true
+          },
+          {
+            "flavor": 3
+          }
+        ]
+      },
+      "group_id": "R2-040-01",
+      "id": "slot_05"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": []
+      },
+      "group_id": "R2-040-05",
+      "id": "slot_06"
+    },
+    {
+      "kind": "turnover",
+      "id": "A",
+      "unlock_after": -1,
+      "box": null
+    },
+    {
+      "kind": "turnover",
+      "id": "B",
+      "unlock_after": -1,
+      "box": null
+    }
+  ],
+  "stock": [],
+  "demands": [
+    {
+      "initially_open": true,
+      "sequence": [
+        5,
+        1,
+        3
+      ]
+    },
+    {
+      "initially_open": true,
+      "sequence": [
+        2,
+        4,
+        0
+      ]
+    },
+    {
+      "initially_open": false,
+      "sequence": []
+    },
+    {
+      "initially_open": false,
+      "sequence": []
+    }
+  ],
+  "tools": {
+    "undo": 1,
+    "add_box": 1,
+    "top": 1
+  },
+  "combo_rewards": [],
+  "design": {
+    "version": "R2",
+    "seed": 234003572,
+    "source_row": 45,
+    "assist_boxes": 1,
+    "hidden_donuts": 2,
+    "layer_order": "top_to_bottom",
+    "playtest_status": "pending",
+    "approved_adjustments": [],
+    "bomb_multiplier": null
+  }
+}

@@ -71,7 +71,7 @@ func _check_home() -> bool:
 	if passed:
 		passed = title.is_visible_in_tree() and not title.text.is_empty() \
 			and title.size.x > 0 and title.size.y > 0 and boxes != null \
-			and (boxes as DonutBoardView).boxes.size() == 17 and page.session.slots.size() == 17 and page.session.demands.size() == 4
+			and (boxes as DonutBoardView).boxes.size() == page.session.slots.size() and page.session.slots.size() == 8 and page.session.demands.size() == 4
 	page.queue_free()
 	await process_frame
 	return passed

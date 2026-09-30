@@ -23,3 +23,15 @@ func has_entry() -> bool:
 ## 取出最近一次操作前的快照，调用方负责原子恢复。
 func take() -> Dictionary:
 	return _states.pop_back()
+
+
+## 仅保存仍可能使用的最近一次撤回，避免历史随长关无限增长。
+func export_latest() -> Dictionary:
+	return _states.back().duplicate(true) if not _states.is_empty() else {}
+
+
+## 恢复已经由会话校验的最近一次操作，空值表示没有撤回记录。
+func restore_latest(state: Dictionary) -> void:
+	_states.clear()
+	if not state.is_empty():
+		_states.append(state.duplicate(true))

@@ -3,9 +3,8 @@ extends RefCounted
 ## 加载并校验甜甜圈关卡的唯一 JSON 定义，不持有运行中的关卡状态。
 
 const CATALOG_PATH: String = "res://game_content/donuts/levels/catalog.json"
-const SLOT_COUNT: int = 17
-const FLAVOR_COUNT: int = 7
-const MIN_LEVEL_FLAVORS: int = 7
+const MAX_SLOT_COUNT: int = 25 # 包含两个预留周转位，每关实际数量由配置决定。
+const FLAVOR_COUNT: int = 15
 
 
 ## 读取可游玩的关卡列表，供会话切换与页面选关共用。
@@ -26,8 +25,8 @@ static func load_definition(path: String) -> Dictionary:
 ## 校验盒位、需求、逐盒备货及各口味数量，避免关卡静默进入不可完成状态。
 static func validate(definition: Dictionary) -> PackedStringArray:
 	var errors: PackedStringArray = []
-	if not definition.get("slots") is Array or definition.slots.size() != SLOT_COUNT:
-		errors.append("slots must contain %d positions" % SLOT_COUNT)
+	if not definition.get("slots") is Array or definition.slots.size() < 3 or definition.slots.size() > MAX_SLOT_COUNT:
+		errors.append("slots must contain 3–25 positions including two turnover slots")
 	if not definition.get("demands") is Array or definition.demands.size() != 4:
 		errors.append("demands must contain 4 positions")
 	if not definition.get("stock") is Array:
@@ -51,9 +50,9 @@ static func validate(definition: Dictionary) -> PackedStringArray:
 		elif int(slot.get("unlock_after", 0)) < 0:
 			errors.append("ordinary slot requires a nonnegative unlock threshold")
 		if slot.get("box") != null:
-			_check_box(slot.box, 1 if slot.kind == "single" else 4, supply, errors)
-	if turnover_count < 1 or turnover_count > 2:
-		errors.append("one or two turnover slots required")
+			_check_box(slot.box, 1 if slot.kind == "single" else 4, supply, errors, true)
+	if turnover_count != 2:
+		errors.append("exactly two turnover slots required")
 	for box: Variant in definition.stock:
 		_check_box(box, 4, supply, errors)
 	for position: Variant in definition.demands:
@@ -72,12 +71,12 @@ static func validate(definition: Dictionary) -> PackedStringArray:
 	if errors.is_empty():
 		var box_count: int = definition.stock.size()
 		for slot: Dictionary in definition.slots:
-			box_count += 1 if slot.box != null else 0
+			box_count += 1 if slot.box != null and slot.kind != "single" else 0
 		var spare_boxes: int = box_count - DonutOrderRules.total_orders(definition.demands)
-		if spare_boxes < 2 or spare_boxes > 3:
-			errors.append("level must finish with two or three base containers, got %d" % spare_boxes)
-	if supply.filter(func(amount: int) -> bool: return amount > 0).size() < MIN_LEVEL_FLAVORS:
-		errors.append("level must contain at least %d flavors" % MIN_LEVEL_FLAVORS)
+		if spare_boxes < 0:
+			errors.append("level has fewer containers than required orders")
+	if supply.all(func(amount: int) -> bool: return amount == 0):
+		errors.append("level must contain donuts")
 	if not definition.get("tools") is Dictionary:
 		errors.append("tools must be defined")
 	else:
@@ -97,16 +96,31 @@ static func validate(definition: Dictionary) -> PackedStringArray:
 
 
 ## 校验单盒限制与食物口味，并累积实际口味数量；揭示历史由会话记录。
-static func _check_box(value: Variant, capacity: int, supply: Array[int], errors: PackedStringArray) -> void:
+static func _check_box(value: Variant, capacity: int, supply: Array[int], errors: PackedStringArray, initial: bool = false) -> void:
 	if not value is Dictionary or not value.get("items") is Array or value.items.size() > capacity:
 		errors.append("invalid box capacity or items")
 		return
-	if not value.get("kind", "normal") in ["normal", "lid", "frozen"] or int(value.get("lid", 0)) < 0:
+	if not value.get("kind", "normal") in ["normal", "lid", "frozen", "number_frozen", "fixed", "in_only", "cycle", "bomb"] or int(value.get("lid", 0)) < 0:
 		errors.append("invalid box mechanism")
+	if value.get("kind") == "fixed" and not _valid_flavor(value.get("fixed_flavor")):
+		errors.append("fixed box requires a valid flavor")
+	if value.get("kind") == "bomb" and (not value.get("bomb_seconds") is float and not value.get("bomb_seconds") is int or float(value.get("bomb_seconds", 0)) <= 0):
+		errors.append("bomb requires positive seconds")
+	if value.get("kind") in ["lid", "number_frozen"] and int(value.get("lid", 0)) <= 0:
+		errors.append("numbered mechanism requires a positive count")
 	if not value.get("hidden_layers", false) is bool:
 		errors.append("hidden_layers must be a boolean")
+	if initial:
+		var kind: String = str(value.get("kind", "normal"))
+		var amount: int = value.items.size()
+		if kind in ["lid", "frozen", "number_frozen", "bomb", "cycle"] and (capacity != 4 or amount not in [3, 4]):
+			errors.append("initial special four-slot box requires 3 or 4 donuts")
+		if kind == "fixed" and amount != 0:
+			errors.append("initial fixed-color box must be empty")
+		if kind == "in_only" and amount > 1:
+			errors.append("initial one-way box allows 0 or 1 donut")
 	for item: Variant in value.items:
-		if not item is Dictionary or not _valid_flavor(item.get("flavor")) or item.has("revealed"):
+		if not item is Dictionary or not _valid_flavor(item.get("flavor")) or item.has("revealed") or not item.get("hidden", false) is bool:
 			errors.append("invalid donut flavor or obsolete visibility field")
 		else:
 			supply[int(item.flavor)] += 1

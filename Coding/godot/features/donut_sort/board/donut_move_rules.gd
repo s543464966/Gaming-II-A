@@ -23,7 +23,7 @@ static func can_pick_top(slots: Array, started: bool, won: bool, source: int) ->
 	if not started or won or not can_handle(slots, source):
 		return false
 	var items: Array = slots[source].box.items
-	return not items.is_empty() and items[0].revealed
+	return slots[source].box.kind != "in_only" and not items.is_empty() and items[0].revealed
 
 
 ## 统计操作开始时顶层连续同味明牌，遇到灰色或不同口味即停止。
@@ -44,6 +44,9 @@ static func move_count(slots: Array, started: bool, won: bool, source: int, targ
 	if not can_pick_top(slots, started, won, source) or source == target or not can_handle(slots, target):
 		return 0
 	var destination: Array = slots[target].box.items
+	var fixed_flavor: int = int(slots[target].box.get("fixed_flavor", -1))
+	if fixed_flavor >= 0 and int(slots[source].box.items[0].flavor) != fixed_flavor:
+		return 0
 	if destination.size() >= capacity(slots, target):
 		return 0
 	if not destination.is_empty() and (not destination[0].revealed or destination[0].flavor != slots[source].box.items[0].flavor):

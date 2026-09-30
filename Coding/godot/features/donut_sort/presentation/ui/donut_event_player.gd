@@ -9,9 +9,13 @@ const BOX_SCENE: PackedScene = preload("res://features/donut_sort/board/ui/donut
 const SPARKLE: Texture2D = preload("res://features/donut_sort/ui/art/effects/sparkle.tres")
 const DONUT_FLIGHT_DURATION: float = 0.30 # 秒；每颗完成自身的飞行与落下。
 const DONUT_FLIGHT_STAGGER: float = 0.10 # 秒；拉开可见先后，同时保持相邻两颗飞行重叠。
+const REFILL_FLIGHT_DURATION: float = 0.45 # 秒；补货整盒从侧边清楚进入原位。
 
 var _animation: Tween
 var _board: DonutBoardView
+var clock_blocked: bool = false # 入场与系统收餐暂停炸弹，普通搬运仍计时。
+var refill_pending: bool = false # 含补货的事务展示完成前不接受新棋盘手势，避免跳过补货画面。
+var entry_bounds: Rect2 = Rect2(0, 0, 1024, 1536) # 页面可见边界，使用动效层坐标；整盒从边界外进入。
 
 
 ## 显式接收页面拥有的棋盘，入场路径从目标盒位与当前视口计算。
@@ -22,10 +26,13 @@ func initialize(board: DonutBoardView) -> void:
 ## 把事务事件串成一条时间线，快照只交给页面渲染，不重新执行规则。
 func play(events: Array, drop_origin: Variant, render_state: Callable, toast: Callable) -> void:
 	stop()
+	refill_pending = events.any(func(event: Dictionary) -> bool: return event.kind == "refill")
+	clock_blocked = not events.is_empty() and events[0].kind in ["begin", "dispatch", "refill", "mechanism", "combo"]
 	_animation = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	_animation.tween_interval(0.01)
 	var reward_origin: Vector2 = _board.position + _board.size * 0.5
 	for event: Dictionary in events:
+		_animation.tween_callback(func() -> void: clock_blocked = event.kind in ["begin", "dispatch", "refill", "mechanism", "combo"])
 		match event.kind:
 			"begin":
 				render_state.call(event.state)
@@ -42,9 +49,11 @@ func play(events: Array, drop_origin: Variant, render_state: Callable, toast: Ca
 				_append_flight(PARCEL, _board.origin(event.index), Vector2(_board.origin(event.index).x, -180),
 					_board.boxes[event.index].size * _board.boxes[event.index].scale, 0.18)
 			"refill":
-				_append_box_flight(event.state.slots[event.index], event.index, 0.28)
-			"mechanism", "reveal", "unlock", "demand_unlock", "spare_return":
+				_append_box_flight(event.state.slots[event.index], event.index, REFILL_FLIGHT_DURATION)
+			"mechanism", "reveal", "unlock", "demand_unlock", "spare_return", "cycle":
 				_animation.tween_interval(0.06)
+			"group":
+				_animation.tween_callback(toast.bind("已归纳"))
 			"combo":
 				_animation.tween_callback(toast.bind("%d 连单！" % event.count))
 				var sparkle_start: Vector2 = reward_origin - Vector2(37.5, 80)
@@ -52,7 +61,7 @@ func play(events: Array, drop_origin: Variant, render_state: Callable, toast: Ca
 			"undo":
 				_animation.tween_callback(toast.bind("已撤回"))
 		_animation.tween_callback(render_state.bind(event.state))
-	_animation.finished.connect(playback_finished.emit)
+	_animation.finished.connect(func() -> void: clock_blocked = false; refill_pending = false; playback_finished.emit())
 
 
 ## 查询已提交事件是否仍在展示，供新手势决定是否先收敛画面。
@@ -62,6 +71,8 @@ func is_playing() -> bool:
 
 ## 停止旧时间线并清理全部临时精灵，页面随后渲染最终快照。
 func stop() -> void:
+	clock_blocked = false
+	refill_pending = false
 	if is_playing():
 		_animation.kill()
 	for effect: Node in get_children():
@@ -112,7 +123,7 @@ func _position_donut(progress: float, sprite: TextureRect, start: Vector2, finis
 	sprite.position = start.lerp(finish, progress) - Vector2(0, sin(progress * PI) * 42.0 * sprite.scale.y)
 
 
-## 按目标盒位所在半区从视口外水平移入，保持与落点餐盒一致的尺寸和行高。
+## 首批与补货按目标所在半区从左右边界外水平进入，落定后恢复真实盒体。
 func _append_box_flight(slot: Dictionary, index: int, duration: float) -> void:
 	var sprite: DonutBox = BOX_SCENE.instantiate()
 	sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -120,10 +131,8 @@ func _append_box_flight(slot: Dictionary, index: int, duration: float) -> void:
 	sprite.size = DonutBox.BOX_SIZE
 	sprite.scale = _board.boxes[index].scale
 	var finish: Vector2 = _board.origin(index)
-	var viewport_bounds: Rect2 = get_global_transform_with_canvas().affine_inverse() * get_viewport_rect()
-	var box_width: float = sprite.size.x * sprite.scale.x
-	var from_left: bool = finish.x + box_width * 0.5 <= _board.position.x + _board.size.x * 0.5
-	var start_x: float = viewport_bounds.position.x - box_width - 24.0 if from_left else viewport_bounds.end.x + 24.0
+	var from_left: bool = finish.x + sprite.size.x * sprite.scale.x * 0.5 < entry_bounds.get_center().x
+	var start_x: float = entry_bounds.position.x - sprite.size.x * sprite.scale.x - 24.0 if from_left else entry_bounds.end.x + 24.0
 	sprite.position = Vector2(start_x, finish.y)
 	sprite.hide()
 	add_child(sprite)

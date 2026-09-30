@@ -1,0 +1,427 @@
+{
+  "id": 86,
+  "title": "甜甜圈小铺 · 86",
+  "layout_id": "level_86",
+  "slots": [
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "frozen",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 3,
+            "hidden": true
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 5
+          }
+        ]
+      },
+      "group_id": "R2-086-03",
+      "id": "slot_00"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "bomb",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 4
+          }
+        ],
+        "bomb_seconds": 50
+      },
+      "group_id": "R2-086-05",
+      "id": "slot_01"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 2
+          }
+        ]
+      },
+      "group_id": "R2-086-01",
+      "id": "slot_02"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 3,
+            "hidden": true
+          },
+          {
+            "flavor": 1,
+            "hidden": true
+          },
+          {
+            "flavor": 4,
+            "hidden": true
+          }
+        ]
+      },
+      "group_id": "R2-086-01",
+      "id": "slot_03"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 1
+          }
+        ]
+      },
+      "group_id": "R2-086-01",
+      "id": "slot_04"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 7
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 3
+          }
+        ]
+      },
+      "group_id": "R2-086-01",
+      "id": "slot_05"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 2,
+            "hidden": true
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 0,
+            "hidden": true
+          }
+        ]
+      },
+      "group_id": "R2-086-01",
+      "id": "slot_06"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 6
+          }
+        ]
+      },
+      "group_id": "R2-086-01",
+      "id": "slot_07"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 3,
+            "hidden": true
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 1
+          }
+        ]
+      },
+      "group_id": "R2-086-01",
+      "id": "slot_08"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "frozen",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 7
+          },
+          {
+            "flavor": 1,
+            "hidden": true
+          },
+          {
+            "flavor": 1
+          },
+          {
+            "flavor": 3
+          }
+        ]
+      },
+      "group_id": "R2-086-02",
+      "id": "slot_09"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "fixed",
+        "lid": 0,
+        "items": [],
+        "fixed_flavor": 2
+      },
+      "group_id": "R2-086-04",
+      "id": "slot_10"
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": []
+      },
+      "group_id": "R2-086-06",
+      "id": "slot_11"
+    },
+    {
+      "kind": "turnover",
+      "id": "A",
+      "unlock_after": -1,
+      "box": null
+    },
+    {
+      "kind": "turnover",
+      "id": "B",
+      "unlock_after": -1,
+      "box": null
+    }
+  ],
+  "stock": [
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 4
+        },
+        {
+          "flavor": 1
+        },
+        {
+          "flavor": 1
+        },
+        {
+          "flavor": 4
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 7
+        },
+        {
+          "flavor": 1
+        },
+        {
+          "flavor": 3,
+          "hidden": true
+        },
+        {
+          "flavor": 6
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 5
+        },
+        {
+          "flavor": 7
+        },
+        {
+          "flavor": 3,
+          "hidden": true
+        },
+        {
+          "flavor": 2
+        }
+      ]
+    },
+    {
+      "kind": "normal",
+      "lid": 0,
+      "items": [
+        {
+          "flavor": 6
+        },
+        {
+          "flavor": 5
+        },
+        {
+          "flavor": 4
+        },
+        {
+          "flavor": 2
+        }
+      ]
+    }
+  ],
+  "demands": [
+    {
+      "initially_open": true,
+      "sequence": [
+        4,
+        6,
+        1,
+        5,
+        4,
+        3,
+        0
+      ]
+    },
+    {
+      "initially_open": true,
+      "sequence": [
+        3,
+        1,
+        1,
+        4,
+        3,
+        2,
+        7
+      ]
+    },
+    {
+      "initially_open": false,
+      "sequence": []
+    },
+    {
+      "initially_open": false,
+      "sequence": []
+    }
+  ],
+  "tools": {
+    "undo": 1,
+    "add_box": 1,
+    "top": 1
+  },
+  "combo_rewards": [],
+  "design": {
+    "version": "R2",
+    "seed": 238600046,
+    "source_row": 91,
+    "assist_boxes": 1,
+    "hidden_donuts": 10,
+    "layer_order": "top_to_bottom",
+    "playtest_status": "pending",
+    "approved_adjustments": [],
+    "bomb_multiplier": 1.35,
+    "bomb_timing": {
+      "status": "provisional_playtest_required",
+      "profile": "short",
+      "estimated_seconds_per_move": 3,
+      "max_disarm_moves": 9,
+      "seconds": 50,
+      "multiplier": 1.35,
+      "basis": "estimated_disarm_operation_budget_not_measured_player_time"
+    }
+  }
+}

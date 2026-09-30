@@ -1,5 +1,5 @@
 {
-  "source_pack": "donut_game_assets_v1 + donut_game_assets_v7",
+  "source_pack": "donut_game_assets_v1 + donut_game_assets_v7 + donut_game_assets_v8",
   "assets": [
     {
       "id": "donut_blueberry",
@@ -536,6 +536,30 @@
       "height": 724,
       "sha256": "8c4eb831e96a4523ad2b3201730ed00ca02fb0927a27437372ae0e168cf7479e",
       "path": "res://features/donut_sort/orders/ui/art/orders_panel_four_slots.png"
+    },
+    {
+      "id": "background_top",
+      "label": "背景上段·店铺墙面窗景",
+      "width": 1560,
+      "height": 1008,
+      "sha256": "ff0b0ed9887d089ddde3603dabe2d6122ef6c973c543fc2a030b689c3c0ca5e7",
+      "path": "res://features/donut_sort/ui/art/scene/background_top.png"
+    },
+    {
+      "id": "background_middle",
+      "label": "背景中段·台面柜体一体",
+      "width": 1137,
+      "height": 1383,
+      "sha256": "269f72f0cdf9d5a49d48815af05672c67c5fe2e769271b765ea436414c3c04cb",
+      "path": "res://features/donut_sort/ui/art/scene/background_middle.png"
+    },
+    {
+      "id": "background_bottom",
+      "label": "背景下段·纯木地板",
+      "width": 2172,
+      "height": 724,
+      "sha256": "a9802597e48d0525a428743e360790904ec91d4f0dfd2d69cca0e75930ea442f",
+      "path": "res://features/donut_sort/ui/art/scene/background_bottom.png"
     }
   ]
 }
