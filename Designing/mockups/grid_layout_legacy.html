@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>局内界面 · 方案1与3</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:#f2e8dd;color:#694932;font-family:"Microsoft YaHei","PingFang SC",sans-serif}#sheet{width:1440px;max-width:100%;margin:auto;padding:44px}header{margin-bottom:32px}h1{font-size:38px;letter-spacing:2px;margin:0 0 12px}header p{font-size:21px;color:#9a7860;margin:0}.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 28px}figure{margin:0;min-width:0}figcaption{height:66px;display:flex;align-items:flex-start;gap:13px;font-size:25px;font-weight:700}figcaption .number{display:grid;place-items:center;flex:none;width:35px;height:35px;border-radius:11px;background:#855d45;color:#fff;font-size:20px}figcaption a{color:inherit;text-decoration:none;line-height:35px}.frame{position:relative;width:100%;aspect-ratio:1206/2622;overflow:hidden;background:#e9ba8e;box-shadow:0 5px 18px #7151321b}.screen{width:1206px;height:2622px;position:absolute;left:0;top:0;isolation:isolate;transform-origin:top left;overflow:hidden}.screen .background{position:absolute;inset:0;width:1206px;height:2622px;z-index:0}.bg-zone{position:absolute;left:0;width:1206px;overflow:hidden}.bg-zone img{position:absolute;left:0;display:block;width:1206px;max-width:none}.bg-top{top:0;height:656px}.bg-top img{top:0;height:1984.091653px}.bg-middle{top:656px;height:1494px}.bg-middle img{top:-576px;height:2622px;object-fit:cover}.bg-bottom{top:2150px;height:472px}.bg-bottom .bottom-wood{top:-1590px;height:2622px;object-fit:cover}.bg-bottom .bottom-cloth{top:0;height:472px;object-fit:fill;filter:drop-shadow(0 -2px 3px #7b452c25)}.background>.awning{position:absolute;display:block;max-width:none}body.background-only .hud,body.background-only .board,body.background-only .dispatch-zone{display:none}.dispatch-zone{position:absolute;inset:0;z-index:2;pointer-events:none}.dispatch-zone img{position:absolute;display:block;max-width:none;filter:drop-shadow(0 5px 4px #70432729)}.bottom-controls{position:absolute;left:586px;top:2291px;display:flex;gap:24px;width:552px;height:158px}.tool-card{position:relative;flex:none;width:168px;height:158px;border:3px solid #f0cdb0;border-radius:32px;background:linear-gradient(140deg,#fffaf0,#fff0de);box-shadow:inset 0 3px 0 #fffefa,inset 0 -3px 5px #ecc1a177,0 4px 5px #83513524}.dispatch-zone .tool-card img{filter:none}.tool-label{position:absolute;left:0;right:0;bottom:3px;height:40px;line-height:40px;text-align:center;color:#65402b;font-size:33px;font-weight:800;white-space:nowrap}.tool-count{position:absolute;right:-13px;top:-20px;width:47px;height:47px;display:grid;place-items:center;z-index:3;border:2px solid #fff5e8;border-radius:50%;background:linear-gradient(135deg,#ff8f9e 0%,#ff416c 56%,#e62758 100%);box-shadow:inset 0 2px 0 #ffd6dc,inset 0 -2px 0 #cc225054,0 2px 2px #86433224;color:#fff;font-size:31px;font-weight:700;line-height:1}.board{position:absolute;inset:0;z-index:1}.cell{position:absolute;width:244px;height:350px;isolation:isolate}.cell img{position:absolute;display:block;user-select:none;pointer-events:none}.ground-shadow{position:absolute;left:15px;top:306px;width:214px;height:27px;background:#6c351b33;border-radius:50%;filter:blur(8px);z-index:1}.contact-shadow{position:absolute;left:49px;width:146px;height:30px;border-radius:50%;background:#5d352525;filter:blur(3px);z-index:3}.locked .ground-shadow{opacity:.7}.locked .box-art{filter:saturate(.7)}
+.hud{position:absolute;left:0;top:0;width:1206px;height:656px;z-index:2;overflow:hidden}.hud img{position:absolute;display:block;user-select:none;pointer-events:none}.level-title{position:absolute;left:343px;top:208px;width:520px;height:72px;display:flex;align-items:center;justify-content:center;color:#6c301d;font-size:56px;line-height:1;font-weight:900;letter-spacing:3px;text-shadow:0 2px 0 #fff8e8}.demand-panel{position:absolute;left:69px;top:325px;width:1068px;height:284px;border-radius:38px;background:linear-gradient(180deg,#fff3e0,#f5dfc3);border:8px solid #cf9970;box-shadow:0 5px 0 #a96b3d,0 9px 14px #6b391e33,inset 0 0 0 4px #fff9ec,inset 0 0 0 7px #e9c3a0,inset 0 8px 15px #fff8e9;}.level-sign{z-index:2}.level-title{z-index:3}.roof-link{position:absolute;top:90px;width:11px;height:65px;z-index:1;border:2px solid #9b6239;border-radius:8px;background:linear-gradient(90deg,#c88f5b,#ffe0a3 43%,#c58b58);box-shadow:1px 1px 2px #5d321e44}.panel-hanger{position:absolute;top:284px;width:19px;height:65px;border:4px solid #9e6039;border-radius:13px;z-index:5;background:linear-gradient(90deg,#ce945b,#ffddb0 43%,#bf824c);box-shadow:2px 2px 2px #64371d44,inset 1px 0 0 #fff0c8}.panel-hanger:before,.panel-hanger:after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:26px;height:17px;border-radius:50%;background:#8d512e;border:3px solid #edbf8d;z-index:-1}.panel-hanger:before{top:-5px}.panel-hanger:after{bottom:-5px}.order-slot{position:absolute;top:357px;width:220px;height:220px;isolation:isolate}.order-slot .order-box{z-index:1}.order-donut{z-index:2;filter:drop-shadow(0 2px 1px #5b352829)}.order-cover{position:absolute;inset:20px;z-index:2;border-radius:8px;background:linear-gradient(135deg,#fff5e7,#f2e0c5);border:1px solid #e3c9aa;box-shadow:inset 0 0 0 4px #fff5e47a,inset 0 0 14px #d6b99426;}.order-slot.locked .order-box{filter:saturate(.65)}.order-slot .order-lock{z-index:3;filter:drop-shadow(0 2px 1px #71492725)}
+.background>.dispatch-mat{position:absolute;display:block;max-width:none;filter:drop-shadow(0 5px 5px #8a52352b);z-index:2}.dispatch-contents{position:absolute;overflow:hidden;border-radius:0 0 5px 5px;z-index:1}.dispatch-contents .dispatch-donut{filter:drop-shadow(0 2px 2px #64372240)}.footer-options{display:flex;gap:12px;margin-top:16px}.footer-options a{font-size:18px;text-decoration:none;color:#825239;background:#fff6ed;padding:8px 16px;border:1px solid #d8b9a2;border-radius:9px}.footer-comparison .frame{aspect-ratio:1206/472}.all-comparison #sheet{width:1800px;padding:56px}.all-comparison h1{font-size:48px}.all-comparison header p{font-size:28px}.all-comparison header{margin-bottom:44px}.all-comparison .gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:48px 32px}.all-comparison figcaption{height:72px;font-size:27px}.all-comparison figcaption .number{width:52px}.all-comparison .footer-options{display:none}body.single{display:flex;align-items:flex-start;justify-content:center;background:#251b14}body.single #sheet{padding:0;margin:0;max-width:none}body.single header,body.single figcaption{display:none}body.single .gallery{display:block}body.single .frame{box-shadow:none}
+/* 出餐盒局部光照：压低高光，叠加盒盖及侧壁遮光，保留开口方向的柔和亮部。 */
+.dispatch-contents{isolation:isolate;clip-path:polygon(0 0,100% 0,100% 84%,97% 100%,3% 100%,0 84%)}
+.dispatch-contents .dispatch-donut{z-index:2;filter:brightness(.86) saturate(.94) contrast(.94) drop-shadow(1px 2px 1.5px #412a1d75)}
+.dispatch-contact{position:absolute;z-index:1;border-radius:50%;background:radial-gradient(ellipse at center,#3b251b66 0%,#4d302447 38%,#5c3b241c 65%,transparent 76%)}
+.dispatch-contents:after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(180deg,#35251bb8 0%,#48302585 8%,#50362a4d 25%,#5d412c20 51%,#805b3905 78%,#5b392315 100%),linear-gradient(90deg,#49302338 0%,#6948320b 8%,transparent 18%,transparent 79%,#4b30211a 92%,#3c261840 100%);box-shadow:inset 0 2px 2px #281c1966}
+.footer-comparison .gallery{grid-template-columns:1fr;gap:32px}.footer-comparison figcaption{height:52px}
+@media(max-width:760px){#sheet{padding:24px}h1{font-size:25px}header p{font-size:15px}.gallery{grid-template-columns:1fr;gap:26px}figcaption{font-size:19px;height:54px}}
+</style></head><body><main id="sheet"><header><h1>局内界面 · 方案1与3</h1><p>桌布、餐垫与木桌面三种底部方案 · 出餐盒内甜甜圈示意</p></header><section class="gallery"></section></main>
+<script id="asset-library" type="application/json">{"a_pink":{"file":"../../Archive/ReferenceImage/planning/source_bundle/strawberry_donut.png","label":"草莓","width":1254,"height":1254,"bounds":[47,260,1209,1071]},"a_brown":{"file":"../../Archive/ReferenceImage/planning/source_bundle/chocolate_donut.png","label":"巧克力","width":1254,"height":1254,"bounds":[45,258,1213,1071]},"a_green":{"file":"../../Archive/ReferenceImage/planning/source_bundle/matcha_donut.png","label":"抹茶","width":1254,"height":1254,"bounds":[45,251,1218,1074]},"a_blue":{"file":"../../Archive/ReferenceImage/planning/source_bundle/blueberry_donut.png","label":"蓝莓","width":1254,"height":1254,"bounds":[42,254,1216,1075]},"a_yellow":{"file":"../../Archive/ReferenceImage/planning/source_bundle/orange_donut.png","label":"橙色","width":1254,"height":1254,"bounds":[48,258,1211,1072]},"a_purple":{"file":"../../Archive/ReferenceImage/planning/source_bundle/grape_donut.png","label":"葡萄","width":1254,"height":1254,"bounds":[43,254,1214,1071]},"square_pink":{"file":"../../Archive/ReferenceImage/planning/source_bundle/square_box_pink.png","label":"草莓粉爱心方形纸盒","width":1254,"height":1254,"bounds":[78,263,1177,974]},"round_pink":{"file":"../../Archive/ReferenceImage/planning/source_bundle/round_box_pink.png","label":"草莓粉爱心圆形纸盒","width":1254,"height":1254,"bounds":[96,265,1157,1023]},"square_mint":{"file":"../../Archive/ReferenceImage/planning/source_bundle/square_box_mint.png","label":"薄荷绿条纹方形纸盒","width":1254,"height":1254,"bounds":[97,276,1158,976]},"round_mint":{"file":"../../Archive/ReferenceImage/planning/source_bundle/round_box_mint.png","label":"薄荷绿条纹圆形纸盒","width":1254,"height":1254,"bounds":[98,263,1156,1023]},"square_cream":{"file":"../../Archive/ReferenceImage/planning/source_bundle/square_box_cream.png","label":"奶油白波点方形纸盒","width":1254,"height":1254,"bounds":[102,260,1153,1013]},"round_cream":{"file":"../../Archive/ReferenceImage/planning/source_bundle/round_box_cream.png","label":"奶油白波点圆形纸盒","width":1254,"height":1254,"bounds":[97,264,1157,1025]},"dispatch_mat":{"file":"../../Archive/ReferenceImage/planning/backgrounds/dispatch_placemat.png","label":"草莓粉正俯视餐垫","width":1683,"height":935,"bounds":[83,64,1600,872]},"dispatch_box":{"file":"../../Archive/ReferenceImage/planning/dispatch_boxes/dispatch_box_cream.png","label":"奶油波点纸质出餐盒正俯视","width":1586,"height":992,"bounds":[157,128,1429,846]},"tool_undo":{"file":"../../Archive/ReferenceImage/planning/buttons/undo_icon.png","label":"粉色撤回图标","width":1314,"height":1197,"bounds":[138,100,1175,1096]},"tool_add":{"file":"../../Archive/ReferenceImage/planning/buttons/add_box_icon.png","label":"加餐盒图标","width":1377,"height":1142,"bounds":[160,138,1220,1042]},"tool_top":{"file":"../../Archive/ReferenceImage/planning/buttons/top_icon.png","label":"紫色置顶图标","width":1285,"height":1224,"bounds":[294,156,989,1095]},"lock":{"file":"../../Archive/ReferenceImage/planning/source_bundle/lock_icon.png","label":"锁定周转盒","width":1254,"height":1254,"bounds":[235,121,1018,1137]},"awning":{"file":"../../Archive/ReferenceImage/planning/source_bundle/awning.png","label":"清晰粉白条纹屋檐","width":2021,"height":778,"bounds":[21,214,1998,494]},"hud_sign":{"file":"../../Archive/ReferenceImage/planning/source_bundle/level_sign.png","label":"奶油木框关卡牌","width":2059,"height":764,"bounds":[140,44,1918,696]},"hud_box":{"file":"../../Archive/ReferenceImage/planning/source_bundle/order_box.png","label":"正俯视奶油纸质需求盒","width":1254,"height":1254,"bounds":[116,134,1138,1114]},"hud_pink":{"file":"../../Archive/ReferenceImage/planning/source_bundle/strawberry_donut_top.png","label":"草莓需求甜甜圈","width":1254,"height":1254,"bounds":[104,112,1149,1142]},"hud_brown":{"file":"../../Archive/ReferenceImage/planning/source_bundle/chocolate_donut_top.png","label":"巧克力需求甜甜圈","width":1254,"height":1254,"bounds":[77,83,1177,1168]}}</script>
+<script>
+const assets=JSON.parse(document.getElementById('asset-library').textContent);
+const W=1206,H=2622;
+const variants=[
+ {id:1,shape:'square',donut:'a',title:'方形盒子 · 带面包胚',file:'../../Archive/ReferenceImage/planning/square_boxes_preview.png'},
+ {id:3,shape:'round',donut:'a',title:'圆形盒子 · 带面包胚',file:'../../Archive/ReferenceImage/planning/round_boxes_preview.png'}
+];
+// 仅用于对比美术的摆放样例；从底到顶。两种盒型共享同一数据。
+const board=[
+ ['brown','blue','pink','pink'],['yellow','green','green'],['pink','purple','blue','blue'],['green','yellow','brown','brown'],
+ ['purple','brown','yellow'],['blue','pink','green','purple'],['pink','pink'],['yellow','blue','purple','purple'],
+ ['green','brown','blue','yellow'],['purple','yellow','green'],['brown','pink','green','blue'],['yellow','purple','brown','pink'],
+ null,['blue'],['green','yellow','purple','brown'],null
+];
+const geometry=[];
+const boxStyles=['pink','mint','cream','pink','cream','pink','mint','cream','mint','cream','pink','mint','cream','mint','pink','cream'];
+function visibleHeight(id,w){const b=assets[id].bounds;return w*(b[3]-b[1])/(b[2]-b[0]);}
+function sprite(id,x,y,w,style='',cls='',h=null){const a=assets[id],b=a.bounds,kx=w/(b[2]-b[0]),ky=h===null?kx:h/(b[3]-b[1]);return '<img class="'+cls+'" data-asset="'+id+'" src="'+a.file+'" alt="'+a.label+'" style="left:'+(x-b[0]*kx)+'px;top:'+(y-b[1]*ky)+'px;width:'+(a.width*kx)+'px;height:'+(a.height*ky)+'px;'+style+'">';}
+// 沿圆盒前沿的弧线分层；不使用水平矩形遮罩截断甜甜圈。
+function roundFront(){const p=[[0,44.66]];for(let i=0;i<=64;i++){const t=Math.PI-i*Math.PI/64;p.push([49.92+39.87*Math.cos(t),44.66+22.81*Math.sin(t)]);}p.push([100,44.66],[100,100],[0,100]);return 'polygon('+p.map(v=>v[0]+'% '+v[1]+'%').join(',')+')';}
+function topHud(){
+ let s='<section class="hud" aria-label="悬挂在屋檐下的关卡牌与四格需求池"><div class="roof-link" style="left:403px"></div><div class="roof-link" style="left:792px"></div>';
+ s+=sprite('hud_sign',343,305-visibleHeight('hud_sign',520),520,'','level-sign');
+ s+='<div class="level-title">第 1 关</div><div class="demand-panel"></div><div class="panel-hanger" style="left:378px"></div><div class="panel-hanger" style="left:809px"></div>';
+ ['pink','brown',null,null].forEach((flavor,i)=>{
+  s+='<div class="order-slot '+(flavor?'open':'locked')+'" data-order="'+(i+1)+'" data-flavor="'+(flavor||'unknown')+'" aria-label="'+(flavor?(flavor==='pink'?'草莓':'巧克力')+'订单，四颗甜甜圈':'锁定需求，口味未知')+'" style="left:'+(109+i*256)+'px">';
+  s+=sprite('hud_box',0,0,220,'','order-box',220);
+  if(flavor){for(let n=0;n<4;n++)s+=sprite('hud_'+flavor,(24+n%2*100)*220/232,(24+Math.floor(n/2)*100)*220/232,84*220/232,'','order-donut');}
+  else{s+='<div class="order-cover"></div>';s+=sprite('lock',78,110-visibleHeight('lock',64)/2,64,'','order-lock');}
+  s+='</div>';
+ });
+ return s+'</section>';
+}
+function dispatchGeometry(style='cloth'){
+ const bw=style==='mat'?350:420,bh=visibleHeight('dispatch_box',bw);
+ const mw=462,mh=visibleHeight('dispatch_mat',mw);
+ return {cloth:{x:0,y:2150,w:1206,h:472},mat:{x:64,y:2370-mh/2,w:mw,h:mh},box:{x:295-bw/2,y:2370-bh/2,w:bw,h:bh}};
+}
+function bottomBackground(style){
+ let s='<div class="bg-zone bg-bottom"><img class="bottom-wood" src="../../Archive/ReferenceImage/planning/source_bundle/wood_table_source.png" alt="水平浅木桌面">';
+ if(style==='cloth')s+='<img class="bottom-cloth" src="../../Archive/ReferenceImage/planning/source_bundle/dispatch_tablecloth.png" alt="自然布边粉白格纹桌布">';
+ s+='</div>';
+ if(style==='mat'){const m=dispatchGeometry().mat;s+=sprite('dispatch_mat',m.x,m.y,m.w,'','dispatch-mat');}
+ return s;
+}
+function dispatchContents(style){
+ const b=dispatchGeometry(style).box,w=b.w*.856,h=b.h*.34,k=b.w/350;
+ let s='<div class="dispatch-contents" aria-label="出餐盒内的甜甜圈示意" style="left:'+(b.x+b.w*.072)+'px;top:'+(b.y+b.h*.555)+'px;width:'+w+'px;height:'+h+'px">';
+ ['hud_pink','hud_brown','hud_pink'].forEach((id,i)=>{
+  s+='<span class="dispatch-contact" aria-hidden="true" style="left:'+((18+i*93)*k)+'px;top:'+(27*k)+'px;width:'+(76*k)+'px;height:'+(44*k)+'px"></span>';
+  s+=sprite(id,(20+i*93)*k,-4*k,72*k,'','dispatch-donut');
+ });
+ return s+'</div>';
+}
+function bottomControls(){
+ const items=[['tool_undo','撤回'],['tool_add','加餐盒'],['tool_top','置顶']];
+ return '<div class="bottom-controls" aria-label="撤回、加餐盒、置顶按钮样式示意">'+items.map(([id,label])=>{
+  const iw=Math.min(88,88/visibleHeight(id,1)),ih=visibleHeight(id,iw);
+  return '<div class="tool-card" data-label="'+label+'" role="img" aria-label="'+label+'，角标1仅为样式示意">'+sprite(id,(162-iw)/2,10+(88-ih)/2,iw,'','tool-art')+'<span class="tool-label">'+label+'</span><span class="tool-count" data-demo-value="1">1</span></div>';
+ }).join('')+'</div>';
+}
+function dispatchBox(style){const b=dispatchGeometry(style).box;return '<section class="dispatch-zone" aria-label="左侧波点纸质出餐盒与盒内甜甜圈，右侧三个功能按钮样式">'+sprite('dispatch_box',b.x,b.y,b.w,'','dispatch-box')+dispatchContents(style)+bottomControls()+'</section>';}
+function scene(v,footerStyle){
+ let s='<div class="background" aria-label="甜品店背景、中部浅木桌面与底部出餐区"><div class="bg-zone bg-top"><img src="../../Archive/ReferenceImage/planning/source_bundle/shop_background_source.png" alt="顶部店景"></div><div class="bg-zone bg-middle"><img src="../../Archive/ReferenceImage/planning/source_bundle/wood_table_source.png" alt="原尺寸浅木桌面"></div>'+bottomBackground(footerStyle)+''+sprite('awning',183,-4,840,'z-index:1','awning')+'</div>'+topHud()+'<section class="board" aria-label="四行四列游戏操作区">';
+ board.forEach((stack,i)=>{
+  const boxId=v.shape+'_'+boxStyles[i];
+  const x=66+i%4*276,y=684+Math.floor(i/4)*352,bw=232,bh=166,bx=6,by=324-bh,floor=by+bh*(v.shape==='round'?.75:.80),dw=180,step=47;
+  let top=y+by;
+  s+='<div class="cell '+(stack===null?'locked':'')+'" data-position="'+(i+1)+'" data-locked="'+(stack===null)+'" data-count="'+(stack?stack.length:0)+'" style="left:'+x+'px;top:'+y+'px"><div class="ground-shadow"></div>';
+  s+=sprite(boxId,bx,by,bw,'z-index:2','box-art',bh);
+  if(stack===null){const lw=57,lh=visibleHeight('lock',lw);s+=sprite('lock',(244-lw)/2,by+bh*.47-lh/2,lw,'z-index:10');}
+  else{
+   if(stack.length)s+='<div class="contact-shadow" style="top:'+(by+bh*.58-15)+'px"></div>';
+   stack.forEach((f,n)=>{const id=v.donut+'_'+f,dy=floor-visibleHeight(id,dw)-n*step;s+=sprite(id,32,dy,dw,'z-index:'+(4+n),'donut');top=Math.min(top,y+dy);});
+   if(v.shape==='round')s+=sprite(boxId,bx,by,bw,'z-index:10;clip-path:'+roundFront(),'box-front',bh);
+   else{const a=assets[boxId],clip=(a.bounds[1]+(a.bounds[3]-a.bounds[1])*.82)/a.height*100;s+=sprite(boxId,bx,by,bw,'z-index:10;clip-path:inset('+clip+'% 0 0 0)','box-front',bh);}
+  }
+  s+='</div>';
+  geometry.push({variant:v.id,cell:i+1,boxStyle:boxStyles[i],boxWidth:bw,boxHeight:bh,left:x+6,right:x+238,top,bottom:y+333,locked:stack===null,count:stack?.length||0});
+ });
+ return s+'</section>'+dispatchBox(footerStyle);
+}
+const params=new URLSearchParams(location.search);
+const footerStyle=['cloth','mat','plain'].includes(params.get('footer'))?params.get('footer'):'cloth';
+const footerLabels={cloth:'桌布',mat:'餐垫',plain:'木桌面'};
+const footerBadges={cloth:'A',mat:'B',plain:'C'};
+const footerComparison=params.get('comparison')==='footer';
+const allComparison=params.get('comparison')==='all';
+const selected=footerComparison||allComparison?0:Number(params.get('variant'));
+const active=allComparison?['cloth','mat','plain'].flatMap(footer=>variants.map(v=>({...v,footer,badge:footerBadges[footer]+v.id,title:v.title+' · '+footerLabels[footer]}))):footerComparison?['cloth','mat','plain'].map(footer=>({...variants[0],footer,title:footerLabels[footer]+'方案',badge:footerBadges[footer]})):variants.filter(v=>selected?v.id===selected:[1,3].includes(v.id)).map(v=>({...v,footer:footerStyle}));
+if(footerComparison){document.body.classList.add('footer-comparison');document.querySelector('h1').textContent='底部出餐区 · 三种方案';document.querySelector('header p').textContent='桌布、餐垫、木桌面 · 桌布与木桌面的出餐盒尺寸一致';}
+if(allComparison){document.body.classList.add('all-comparison');document.querySelector('h1').textContent='局内界面 · 全部方案总览';document.querySelector('header p').textContent='从上到下：桌布、餐垫、木桌面　｜　左列：方盒　右列：圆盒';}
+if(!footerComparison&&!allComparison&&footerStyle==='plain'){document.querySelector('h1').textContent='局内界面 · 木桌面方案';document.querySelector('header p').textContent='无桌布、无餐垫 · 出餐盒放大20% · 方盒与圆盒对比';}
+document.querySelector('header').insertAdjacentHTML('beforeend','<nav class="footer-options" aria-label="底部样式"><a href="?footer=cloth">桌布方案</a><a href="?footer=mat">餐垫方案</a><a href="?footer=plain">木桌面方案</a><a href="?comparison=footer">底部对比</a><a href="?comparison=all">全部方案</a></nav>');
+if(!active.length)throw Error('Unknown variant');
+if(selected)document.body.classList.add('single');
+if(new URLSearchParams(location.search).has('background'))document.body.classList.add('background-only');
+document.querySelector('.gallery').innerHTML=active.map(v=>'<figure data-variant="'+v.id+'" data-footer="'+v.footer+'"><figcaption><span class="number">'+(v.badge||v.id)+'</span><a href="?variant='+v.id+'&footer='+v.footer+'">'+v.title+'</a></figcaption><div class="frame"><div class="screen" role="img" aria-label="'+v.title+'，顶部需求池、中部操作区与底部出餐区">'+scene(v,v.footer)+'</div></div></figure>').join('');
+function fit(){if(selected){const scale=Math.min(innerWidth/W,innerHeight/H,1);document.getElementById('sheet').style.width=W*scale+'px';}document.querySelectorAll('.frame').forEach(f=>{const screen=f.querySelector('.screen'),scale=f.clientWidth/W;screen.style.transform='scale('+scale+')';screen.style.top=footerComparison?(-2150*scale)+'px':'0';});}
+addEventListener('resize',fit);fit();
+ window.MOCKUP={width:W,height:H,variants,board,geometry,middle:{top:656,bottom:2150},hud:{bottom:656,slots:4,open:2,locked:2,signBottom:305,panelTop:325,paddingX:40,paddingY:32,gap:36,orderSize:220},regions:{top:656,middle:1494,bottom:472},boardShift:80,dispatch:dispatchGeometry(footerStyle),bottomControls:3,dispatchDonuts:3,footerStyle,footerComparison,staticDesign:true};
+window.LAYOUT_READY=Promise.all([...document.images].map(i=>i.decode())).then(()=>document.fonts.ready).then(()=>{fit();return window.MOCKUP;});
+</script></body></html>

@@ -6,27 +6,80 @@
     {
       "kind": "regular",
       "unlock_after": 0,
+      "id": "slot_00",
+      "group_id": "WAVE-013-01",
       "box": {
         "kind": "normal",
         "lid": 0,
         "items": [
           {
-            "flavor": 1
+            "flavor": 2
           },
           {
-            "flavor": 1
+            "flavor": 0
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 8
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_01",
+      "group_id": "WAVE-013-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 6
           },
           {
             "flavor": 3
           }
         ]
-      },
-      "group_id": "R2-013-02",
-      "id": "slot_00"
+      }
     },
     {
       "kind": "regular",
       "unlock_after": 0,
+      "id": "slot_02",
+      "group_id": "WAVE-013-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 12
+          },
+          {
+            "flavor": 12
+          },
+          {
+            "flavor": 0
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_03",
+      "group_id": "WAVE-013-05",
       "box": {
         "kind": "lid",
         "lid": 1,
@@ -35,46 +88,142 @@
             "flavor": 2
           },
           {
-            "flavor": 4
+            "flavor": 0
           },
           {
-            "flavor": 4
+            "flavor": 2
           },
           {
-            "flavor": 3
+            "flavor": 6
           }
         ]
-      },
-      "group_id": "R2-013-03",
-      "id": "slot_01"
+      }
     },
     {
       "kind": "regular",
       "unlock_after": 0,
+      "id": "slot_04",
+      "group_id": "WAVE-013-01",
       "box": {
         "kind": "normal",
         "lid": 0,
         "items": [
           {
-            "flavor": 1
-          },
-          {
             "flavor": 2
           },
           {
-            "flavor": 2
+            "flavor": 12
           },
           {
-            "flavor": 4
+            "flavor": 3
+          },
+          {
+            "flavor": 3
           }
         ]
-      },
-      "group_id": "R2-013-01",
-      "id": "slot_02"
+      }
     },
     {
       "kind": "regular",
       "unlock_after": 0,
+      "id": "slot_05",
+      "group_id": "WAVE-013-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 5
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_06",
+      "group_id": "WAVE-013-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 8
+          },
+          {
+            "flavor": 12
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 8
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_07",
+      "group_id": "WAVE-013-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 2
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_08",
+      "group_id": "WAVE-013-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 5
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_09",
+      "group_id": "WAVE-013-01",
       "box": {
         "kind": "normal",
         "lid": 0,
@@ -83,140 +232,207 @@
             "flavor": 0
           },
           {
-            "flavor": 1
+            "flavor": 4
           },
           {
-            "flavor": 1
+            "flavor": 8
           },
           {
             "flavor": 4
           }
         ]
-      },
-      "group_id": "R2-013-01",
-      "id": "slot_03"
+      }
     },
     {
       "kind": "regular",
       "unlock_after": 0,
+      "id": "slot_10",
+      "group_id": "WAVE-013-02",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 12
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_11",
+      "group_id": "WAVE-013-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 8
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_12",
+      "group_id": "WAVE-013-02",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 12
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 12
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_13",
+      "group_id": "WAVE-013-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 8
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_14",
+      "group_id": "WAVE-013-04",
       "box": {
         "kind": "lid",
         "lid": 1,
         "items": [
           {
-            "flavor": 1
+            "flavor": 5
           },
           {
             "flavor": 4
           },
           {
-            "flavor": 0
-          }
-        ]
-      },
-      "group_id": "R2-013-04",
-      "id": "slot_04"
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 1
-          },
-          {
-            "flavor": 0
-          },
-          {
-            "flavor": 1
-          },
-          {
-            "flavor": 1
-          }
-        ]
-      },
-      "group_id": "R2-013-01",
-      "id": "slot_05"
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 1
-          },
-          {
-            "flavor": 0
-          },
-          {
-            "flavor": 3
-          },
-          {
-            "flavor": 1
-          }
-        ]
-      },
-      "group_id": "R2-013-01",
-      "id": "slot_06"
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
             "flavor": 4
           },
           {
-            "flavor": 4
+            "flavor": 6
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_15",
+      "group_id": "WAVE-013-02",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 8
+          },
+          {
+            "flavor": 8
+          },
+          {
+            "flavor": 6
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_16",
+      "group_id": "WAVE-013-02",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 12
           },
           {
             "flavor": 3
           }
         ]
-      },
-      "group_id": "R2-013-02",
-      "id": "slot_07"
+      }
     },
     {
       "kind": "regular",
       "unlock_after": 0,
+      "id": "slot_17",
+      "group_id": "WAVE-013-01",
       "box": {
         "kind": "normal",
         "lid": 0,
         "items": [
-          {
-            "flavor": 4
-          },
-          {
-            "flavor": 1
-          },
           {
             "flavor": 2
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 4
           }
         ]
-      },
-      "group_id": "R2-013-02",
-      "id": "slot_08"
+      }
     },
     {
       "kind": "regular",
       "unlock_after": 0,
+      "id": "slot_18",
+      "group_id": "WAVE-013-03",
       "box": {
         "kind": "normal",
         "lid": 0,
         "items": []
-      },
-      "group_id": "R2-013-05",
-      "id": "slot_09"
+      }
     },
     {
       "kind": "turnover",
@@ -236,19 +452,28 @@
     {
       "initially_open": true,
       "sequence": [
-        0,
-        1,
-        3,
-        1
+        12,
+        5,
+        12,
+        5,
+        2,
+        4,
+        2,
+        6,
+        6
       ]
     },
     {
       "initially_open": true,
       "sequence": [
+        8,
+        3,
         4,
-        1,
+        0,
         2,
-        4
+        8,
+        3,
+        0
       ]
     },
     {
@@ -268,13 +493,14 @@
   "combo_rewards": [],
   "design": {
     "version": "R2",
-    "seed": 231300000,
     "source_row": 18,
-    "assist_boxes": 1,
+    "assist_boxes": 0,
     "hidden_donuts": 0,
     "layer_order": "top_to_bottom",
     "playtest_status": "pending",
     "approved_adjustments": [],
-    "bomb_multiplier": null
+    "bomb_multiplier": null,
+    "authored_opening": true,
+    "reference": "2026-10-04 用户确认11—20关难度表；2026-10-05制作；层序自顶向下"
   }
 }

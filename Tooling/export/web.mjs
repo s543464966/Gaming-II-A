@@ -34,7 +34,9 @@ try {
     console.log(`PASS: ${label}`);
     return log;
   }
-  await writeFile(join(run,'import.log'), execute('web import',['--single-threaded-scene','--editor','--import','--quit']));
+  // 与测试入口保持一致，Windows 不启用会导致字体导入崩溃的单线程场景模式。
+  const importOptions = process.platform === 'win32' ? [] : ['--single-threaded-scene'];
+  await writeFile(join(run,'import.log'), execute('web import',[...importOptions,'--editor','--import','--quit']));
   await writeFile(join(run,'export.log'), execute('web export',['--export-release','Web Preview',join(output,'game.html')]));
   await writeFile(join(run,'pack.log'), execute('100-level exported content',['--main-pack',join(output,'game.pck'),'--script',join(workspace,'Testing/integration/donut_sort/web_pack_test.gd')], 'PASS: hundred web pack'));
   const catalog = JSON.parse(await readFile(join(source, 'game_content/donuts/levels/catalog.json'), 'utf8'));

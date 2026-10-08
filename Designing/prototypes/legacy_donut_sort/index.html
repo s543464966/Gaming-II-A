@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fbf5e9">
+  <title>我的甜品店 · 局内体验</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="svg-library" aria-hidden="true"></div>
+  <main class="game" aria-label="我的甜品店局内游戏">
+    <header class="topbar">
+      <button class="settings icon-button" id="settings" aria-label="设置"><svg><use href="#icon-settings"/></svg></button>
+      <div class="level-ticket"><span>第 <strong>1</strong> 关</span></div>
+      <div class="progress" aria-label="出餐进度"><span>已出餐</span><strong id="progress">0 <i>/ 10</i></strong></div>
+    </header>
+
+    <section class="order-panel" aria-label="需求池">
+      <span class="section-label"><svg><use href="#icon-receipt"/></svg>今日订单</span>
+      <div class="orders" id="orders"></div>
+    </section>
+
+    <div class="guidance" id="guidance" role="status">点选一个盒子，再放入同口味的盒子</div>
+    <section class="board" id="board" aria-label="4行4列游戏操作区"></section>
+
+    <footer class="serving-area">
+      <div class="serving-tray">
+        <div class="supply-head"><span>出餐台</span><span id="supply-count">待出餐 3 盒</span></div>
+        <div class="supply-preview" id="supply" aria-label="备货预览"></div>
+      </div>
+      <nav class="tools" aria-label="游戏工具">
+        <button class="tool undo" id="undo" disabled><svg><use href="#icon-undo"/></svg><span>撤回</span></button>
+        <button class="tool extra" id="extra"><svg><use href="#icon-extra"/></svg><span>加餐盒</span></button>
+        <button class="tool lift" id="lift"><svg><use href="#icon-lift"/></svg><span>置顶</span></button>
+      </nav>
+    </footer>
+    <div id="toast" class="toast" role="status"></div>
+    <div id="combo" class="combo" aria-live="polite"></div>
+  </main>
+
+  <dialog id="settings-dialog" class="modal">
+    <button class="close-dialog" aria-label="关闭设置" data-close>×</button>
+    <div class="modal-icon"><svg><use href="#icon-donut"/></svg></div>
+    <p class="eyebrow">我的甜品店</p><h1>休息一下</h1>
+    <p>整理甜甜圈，完成今天的订单。</p>
+    <div class="how-to"><strong>局内体验版</strong><p>先点来源盒，再点目标盒。凑齐4颗同口味，匹配顶部订单后自动出餐。</p><p>本版可体验搬运、拆分、连续回收、补位与撤回。解锁方式、置顶道具及后期特殊盒尚未接入。</p></div>
+    <button class="primary-button" data-close>继续整理</button>
+    <button class="text-button" id="restart">重新开始本关</button>
+  </dialog>
+  <dialog id="win-dialog" class="modal">
+    <div class="win-donuts" aria-hidden="true"></div>
+    <p class="eyebrow">今日订单 · 全部完成</p><h1>甜蜜收工！</h1>
+    <p id="win-summary"></p>
+    <button class="primary-button" id="play-again">再玩一次</button>
+    <button class="text-button" data-close>看看我的餐台</button>
+  </dialog>
+  <script type="module" src="./main.mjs"></script>
+</body>
+</html>

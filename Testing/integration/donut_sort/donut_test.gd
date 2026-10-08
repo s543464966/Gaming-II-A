@@ -3,10 +3,10 @@ extends SceneTree
 
 # 数值表“关卡总表”第 6–15 行：盒位、非空盒、空盒、备货、订单、口味、隐藏颗数。
 const LEVEL_TARGETS: Array = [
-	[8, 4, 2, 0, 3, 2, 0], [6, 3, 1, 0, 3, 2, 0], [7, 4, 1, 0, 4, 3, 0],
-	[7, 4, 1, 0, 4, 3, 0], [8, 5, 1, 0, 5, 3, 0], [8, 5, 1, 0, 4, 3, 1],
-	[8, 5, 1, 0, 5, 4, 1], [8, 5, 1, 0, 5, 4, 2], [9, 6, 1, 1, 6, 4, 0],
-	[7, 4, 1, 2, 6, 4, 0],
+	[8, 4, 2, 0, 3, 2, 0], [14, 10, 2, 0, 9, 7, 0], [21, 18, 1, 0, 17, 7, 0],
+	[23, 19, 2, 0, 19, 8, 0], [21, 18, 1, 0, 17, 7, 0], [22, 19, 1, 0, 17, 8, 1],
+	[22, 20, 0, 0, 18, 8, 2], [21, 17, 2, 0, 17, 8, 2], [20, 17, 1, 1, 17, 8, 0],
+	[20, 18, 0, 2, 18, 8, 0],
 ]
 var _failures: Array[String] = []
 
@@ -19,6 +19,9 @@ func _initialize() -> void:
 ## 一次执行全部相关场景，汇总失败而不逐项修改期望。
 func _run() -> void:
 	_check_content_and_solutions()
+	_check_reference_level_two()
+	_check_reference_level_three()
+	_check_reference_level_four()
 	_check_order_slot_unlock()
 	_check_early_level_space()
 	_check_spare_box_return()
@@ -96,6 +99,29 @@ func _definition(boxes: Array = []) -> Dictionary:
 		"combo_rewards": [{"count": 2, "coins": 5, "diamonds": 0}, {"count": 3, "coins": 10, "diamonds": 1}, {"count": 4, "coins": 20, "diamonds": 2}]}
 
 
+## 锁定八色参考层序与双冰冻，并验证原带罩两盒开局可操作。
+func _check_reference_level_four() -> void:
+	var definition: Dictionary = DonutLevel.load_definition(DonutLevel.catalog()[3].path)
+	var expected: Array = [[3, 0, 8, 8], [3, 4, 2, 0], [6, 5, 3, 2], [8, 0, 5, 6], [6, 12, 4, 8], [8, 5, 6, 2], [3, 5, 4, 12],
+		[3, 8, 12, 4], [3, 0, 6, 2], [4, 12, 6, 8], [3, 3, 6, 0], [12, 8, 6, 3], [4, 12, 12, 2], [8, 3, 3, 12],
+		[4, 2, 5, 3], [0, 6, 5, 0], [4, 8, 5, 0], [2, 6, 8, 8], [5, 2, 6, 6], [], []]
+	for index: int in expected.size():
+		var actual: Array = definition.slots[index].box.items.map(func(item: Dictionary) -> int: return int(item.flavor))
+		_expect(actual == expected[index], "Fourth-level reference layers differ at %d" % index)
+	_expect(definition.slots[7].box.kind == "normal" and definition.slots[13].box.kind == "normal", "Removed covers must be ordinary boxes")
+	var session := DonutSession.new(definition)
+	session.level_index = 3
+	session.begin()
+	for step: Array in [[1, 19], [7, 19], [10, 19]]:
+		_expect(session.move(step[0], step[1]), "Fourth-level first-group prefix failed")
+	_expect(not session.slots[0].box.frozen and session.slots[6].box.frozen, "First group must thaw only first ice")
+	_expect(session.can_handle(7) and session.can_handle(13), "Former covers must remain usable")
+	var restored := DonutSession.new()
+	_expect(restored.restore_run(JSON.parse_string(JSON.stringify(session.export_run()))), "Reference run did not restore")
+	_expect(restored.can_handle(7) and restored.can_handle(13), "Restore added a removed cover restriction")
+	_expect(restored.undo() and restored.slots[0].box.frozen, "Restored undo lost ice")
+
+
 ## 对照策划表验证十关数量，并在正式会话中重放完整解，锁定周转盒且不使用道具。
 func _check_content_and_solutions() -> void:
 	var levels: Array = DonutLevel.catalog()
@@ -121,7 +147,7 @@ func _check_content_and_solutions() -> void:
 				continue
 			filled += 1 if not slot.box.items.is_empty() else 0
 			empty += 1 if slot.box.items.is_empty() else 0
-			_expect(slot.box.kind == "normal", "Mechanism introduced before its planned teaching level")
+			_expect(slot.box.kind == "normal" or (index in [1, 2, 3, 4, 7] and slot.box.kind == "number_frozen"), "Unexpected mechanism in early levels")
 			for item: Dictionary in slot.box.items:
 				flavors[item.flavor] = true
 				hidden += 0 if item.revealed else 1
@@ -169,7 +195,58 @@ func _check_content_and_solutions() -> void:
 	_expect(not DonutLevel.validate(invalid).is_empty(), "26 slots escaped limit")
 
 
-## 开局普通空盒按逐关表配置，可直接搬入并撤回；不再规定统一的剩余容器数。
+## 第二关保留参考层序；首次四同味即解冻，与订单回收独立，撤回恢复冰冻。
+func _check_reference_level_two() -> void:
+	var definition: Dictionary = DonutLevel.load_definition(DonutLevel.catalog()[1].path)
+	var expected: Array = [[6, 4, 1, 4], [3, 4, 6, 4], [5, 3, 2, 4], [4, 3], [0, 5],
+		[4, 3, 2, 6], [0, 0, 4, 3], [2, 5, 0, 1], [1, 2, 3, 3], [], [], [6, 5, 1, 3]]
+	for index: int in expected.size():
+		var actual: Array = []
+		for item: Dictionary in definition.slots[index].box.items:
+			actual.append(int(item.flavor))
+		_expect(actual == expected[index], "Reference level layers differ at slot %d" % index)
+	_expect(definition.slots[6].box.kind == "number_frozen" and int(definition.slots[6].box.lid) == 1, "Reference ice must start at one")
+	# 将香橙订单留在后面，仅用于区分归纳解冻和回收解冻，逐味总量不变。
+	definition.demands[0].sequence = [6, 4, 5, 4, 3]
+	var session := DonutSession.new(definition)
+	session.begin()
+	_expect(not session.move(6, 9) and not session.move(4, 6), "Frozen reference box accepted a move")
+	var prefix: Array = [[0, 9], [0, 3], [0, 10], [3, 0]]
+	for step: Array in prefix:
+		_expect(session.move(step[0], step[1]), "Reference opening move failed")
+		_expect(session.slots[6].box.frozen and session.slots[6].box.lid == 1, "Ice thawed before first group")
+	_expect(session.move(5, 0), "Fifth reference move failed")
+	_expect(not session.slots[6].box.frozen and session.slots[6].box.lid == 0 and session.can_handle(6) and session.completed == 0, "First group must thaw ice without dispatch")
+	_expect(session.undo(), "Reference thaw undo failed")
+	_expect(session.slots[6].box.frozen and session.slots[6].box.lid == 1, "Undo failed to restore ice")
+	_expect(session.remaining_donuts() == 36, "Reference thaw/undo changed food count")
+
+
+## 第三关逐柱对应参考层序，两只数字冰冻按固定顺序解除，撤回恢复双冰状态。
+func _check_reference_level_three() -> void:
+	var definition: Dictionary = DonutLevel.load_definition(DonutLevel.catalog()[2].path)
+	var expected: Array = [[0, 5, 0, 3], [3, 3, 2, 4], [5, 6, 0, 3], [6, 2, 0, 2],
+		[5, 3, 1, 5], [3, 1, 2, 6], [4, 3, 3, 2], [0, 4, 0, 0], [3, 1], [], [2, 3], [1, 4, 2, 1],
+		[0, 3, 2, 0], [4, 5, 1, 2], [6, 0, 5, 6], [3, 4, 0, 5], [5, 2, 4, 6], [6, 2, 4, 2], [0, 1, 6, 1]]
+	for index: int in expected.size():
+		var actual: Array = []
+		for item: Dictionary in definition.slots[index].box.items:
+			actual.append(int(item.flavor))
+		_expect(actual == expected[index], "Third-level reference differs at slot %d" % index)
+	var session := DonutSession.new(definition)
+	session.begin()
+	_expect(session.number_targets() == [0, 6], "Third level must have two ordered ice-one targets")
+	for step: Array in [[1, 8], [5, 9]]:
+		_expect(session.move(step[0], step[1]), "Third-level reference opening failed")
+		_expect(session.slots[0].box.frozen and session.slots[6].box.frozen, "Reference ice thawed before the first group")
+	_expect(session.move(8, 9), "Third-level three-move first group failed")
+	_expect(not session.slots[0].box.frozen and session.slots[6].box.frozen and session.number_targets() == [6], "One group must thaw only the first ice box")
+	_expect(session.undo(), "Third-level thaw undo failed")
+	_expect(session.slots[0].box.frozen and session.slots[6].box.frozen and session.number_targets() == [0, 6], "Undo did not restore two ice targets")
+	_expect(session.remaining_donuts() == 68 and session.completed == 0, "Third-level thaw undo changed the material budget")
+
+
+## 验证开局空盒或同味余量可搬入并撤回，不要求每关存在完整空盒。
 func _check_early_level_space() -> void:
 	for index: int in mini(10, DonutLevel.catalog().size()):
 		var definition: Dictionary = DonutLevel.load_definition(DonutLevel.catalog()[index].path)
@@ -180,9 +257,19 @@ func _check_early_level_space() -> void:
 			if session.can_handle(slot_index) and session.slots[slot_index].box.items.is_empty():
 				empty_index = slot_index
 				break
-		_expect(empty_index >= 0 and session.completed == 0, "Opening is blocked or clears itself")
+		_expect(session.completed == 0, "Opening clears itself before a player move")
+		var source_index: int = -1
+		var target_index: int = empty_index
+		for source: int in session.slots.size():
+			for target: int in session.slots.size():
+				if (empty_index < 0 or target == empty_index) and session.move_count(source, target) > 0:
+					source_index = source
+					target_index = target
+					break
+			if source_index >= 0:
+				break
 		var before: Dictionary = session.snapshot()
-		_expect(session.move(0, empty_index) and session.tools.add_box == 1, "Initial empty box cannot accept food")
+		_expect(source_index >= 0 and session.move(source_index, target_index) and session.tools.add_box == 1, "Opening has no usable working space")
 		_expect(session.undo() and session.slots == before.slots, "Undo failed to restore opening")
 
 

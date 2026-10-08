@@ -14,11 +14,16 @@ def extract(source):
     adjustment_path = Path(__file__).with_name('level_adjustments.json')
     adjustments = json.loads(adjustment_path.read_text(encoding='utf-8'))
     groups = defaultdict(list)
+    authored = {}
     for row in workbook['装量配置'].iter_rows(min_row=6, values_only=True):
         if not isinstance(row[0], int):
             continue
         groups[row[0]].append(dict(zip(
             ('level', 'phase', 'id', 'kind', 'count', 'capacity', 'fill', 'number'), row[:8])))
+        # 手工参考关的层序仍由数值源维护，重复导入不得随机改写。
+        if isinstance(row[16], str) and row[16].startswith('层序JSON:'):
+            assert row[0] not in authored, ('Duplicate authored opening', row[0])
+            authored[row[0]] = json.loads(row[16].removeprefix('层序JSON:'))
     levels = []
     for row in workbook['关卡总表'].iter_rows(min_row=6, values_only=True):
         if not isinstance(row[0], int):
@@ -40,6 +45,8 @@ def extract(source):
             plan['bomb_multiplier'] = float(multiplier.group(1)) if multiplier else None
         plan['source_row'] = plan['id'] + 5
         plan['groups'] = groups[plan['id']]
+        if plan['id'] in authored:
+            plan['authored_opening'] = authored[plan['id']]
         # R2 已重新配平并更换组 ID，旧版 48/49 的修正不能叠加到新表。
         plan['approved_adjustments'] = [] if is_r2 else adjustments['levels'].get(str(plan['id']), [])
         initial = [g for g in plan['groups'] if g['phase'] == '开局']

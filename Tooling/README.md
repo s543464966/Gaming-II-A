@@ -1,5 +1,7 @@
 # 工作区工具
 
+策划与开发共用仓库内 [1—100 关数值总表](../Designing/levels/level_plan_001_100.xlsx)。导入命令为 `python Tooling/data/import_level_plan.py Designing/levels/level_plan_001_100.xlsx Testing/.runtime/<run-id>/level_plan.json`；不再依赖旧策划工作区的 `outputs/`。文件编辑与正式关卡安装边界见 [数值表维护说明](../Designing/levels/README.md)。
+
 当前 R2 百关制作使用 `data/import_level_plan.py` 只读提取数值表、`data/build_r2_levels.py` 生成层序与四条件路线，并检查首归纳及中段腾位。`--tune` 在装量不变的条件下局部交换口味；仅显式识别为旧 V1.3 的来源才应用 `data/level_adjustments.json`。先在 `Testing/.runtime/<run-id>/` 制作，经 `Testing/scripts/check_v13_levels.py` 检查，再由 `data/rebalance_hundred_levels.py <目录> --install` 更新唯一运行配置。完整命令与验证限制见 [R2 接入](../Designing/r2_level_update.md)。
 
 网页预览唯一地址为 [http://127.0.0.1:4173/](http://127.0.0.1:4173/)。先执行 `node Tooling/export/web.mjs` 验证并覆盖最新百关包，再执行 `node Tooling/preview/web.mjs` 启动或复用固定服务；它只读取 `Archive/Builds/web/`。导出使用本机已准备的 `Tooling/.runtime/godot-platform/web-4.5.1/` 无线程模板，不自动下载。外壳使用 `preview/web.html`，更新后刷新原有页面，不新增版本链接、端口或标签页。服务禁用资源缓存，旧的 `?v=...` 地址会跳转到固定入口。下文 `preview.mjs` 是 Godot 原生窗口预览。

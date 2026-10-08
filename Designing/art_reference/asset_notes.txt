@@ -1,0 +1,9 @@
+局内界面素材包｜方盒与圆盒
+迁入说明（2026-09-30）：以下为原交付包说明。当前项目按图片、HTML、清单分目录保存，路径以 asset_manifest.csv 和 ../planning_import_manifest.json 为准；无需把它们复制回同一目录。可编辑稿位于 ../mockups/assembly_preview.html，原 ZIP 位于 in_game_art_source.zip。此包是历史设计素材，正式游戏继续使用 Coding/godot 内的当前素材。
+对应用户本次提供的4×4、桌布底部、方盒和圆盒两张截图，不是25盒位布局。
+所有文件均集中在本文件夹。双击“../mockups/assembly_preview.html”可离线查看两种方案，点击标题可切换为单张手机效果；请保持素材与HTML在同一目录。
+原始PNG包含背景、屋檐、关卡牌、需求纸盒、六种带面包胚甜甜圈、两种正俯视甜甜圈、三款方盒、三款圆盒、锁、出餐盒及三个功能图标。
+需求池底板、挂环、挂绳、盖面、按钮底板、次数角标和完整按钮由原页面组件导出为透明PNG，保留可编辑HTML/CSS。关卡数字和按钮文案属于文字图层，字体由系统提供。
+“../../Archive/ReferenceImage/planning/source_bundle/dispatch_box_lit_donuts.png”已包含盒盖遮光、内壁阴影及接触阴影；独立甜甜圈保留原始亮度，方便其他位置复用。
+../../Archive/ReferenceImage/planning/square_boxes_preview.png、参考效果-圆盒.png为1206×2622完整效果图；背景-整屏桌布版.png为不含盒子、需求池及按钮的整屏背景。
+素材清单.csv列出每张PNG的尺寸和透明通道。按钮角标与关卡数据仅为截图示意，不定义正式次数或关卡规则。

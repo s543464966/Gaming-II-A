@@ -1,0 +1,907 @@
+{
+  "date": "2026-09-30",
+  "hash_scope": "source_sha256 and target_sha256 are import-time snapshots. Later edits to maintained documents do not update these provenance hashes.",
+  "source_workspace": "Documents/Codex/Projects/消除小游戏",
+  "excluded": [
+    ".codex-levels-build/",
+    "outputs/**/*.inspect.ndjson"
+  ],
+  "files": [
+    {
+      "source": "产品策划方案.md",
+      "target": "Designing/product_plan.md",
+      "source_sha256": "e1a63e64fa465f0ea9747b01a5a1f7cd08ced7fe6cbce2356cd27b4559755f23",
+      "target_sha256": "5c94f6add55880324040f6be75566e3e3d6187903da1ac664edcc1941d6aaf07",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "README.md",
+      "target": "Designing/history/planning_workspace_readme.md",
+      "source_sha256": "f96e819f97c325dcf6b7d09e97844889a924c3f8b6bc5f8c924d5cea3f5a6dcf",
+      "target_sha256": "d2f27bef6af120723d42c373bdd76d0595c5bb08b381c8fc89b6bdd3edae0d33",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "Designing/history/planning_workspace_rules.md",
+      "source_sha256": "b95d6b641108672def51f0e44b6231d9103f5432be483ec5646844c4d55d3c85",
+      "target_sha256": "a893119f15c2032e3858a4ffb149119815d7bb4d99e118f910220369a2baaeaa",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "局内原型/index.html",
+      "target": "Designing/prototypes/legacy_donut_sort/index.html",
+      "source_sha256": "808e9e52cf7fb79ade731687c750b3953282e60a0de47309d6f413417a326cbd",
+      "target_sha256": "808e9e52cf7fb79ade731687c750b3953282e60a0de47309d6f413417a326cbd",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "局内原型/main.mjs",
+      "target": "Designing/prototypes/legacy_donut_sort/main.mjs",
+      "source_sha256": "f151d6d167a9d53407dfdf20a6f8e5f5630ea363d8e7547bec65079693d99d95",
+      "target_sha256": "f151d6d167a9d53407dfdf20a6f8e5f5630ea363d8e7547bec65079693d99d95",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "局内原型/engine.mjs",
+      "target": "Designing/prototypes/legacy_donut_sort/engine.mjs",
+      "source_sha256": "0b933c81c28468346a725c1b8c906b7a4066eef016b6d2058e65f3af6e2127cb",
+      "target_sha256": "0b933c81c28468346a725c1b8c906b7a4066eef016b6d2058e65f3af6e2127cb",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "局内原型/styles.css",
+      "target": "Designing/prototypes/legacy_donut_sort/styles.css",
+      "source_sha256": "0c1010a74ebcd371562bb2aeeffc55238a0aefe08f2524b20b90549c8fdf8eae",
+      "target_sha256": "0c1010a74ebcd371562bb2aeeffc55238a0aefe08f2524b20b90549c8fdf8eae",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "局内原型/engine.test.mjs",
+      "target": "Testing/planning/legacy_donut_sort_test.mjs",
+      "source_sha256": "c25155f02eefde4e8e75ba8e715461fe159f4a6f1bdf12d2193bb58a6bc801d8",
+      "target_sha256": "5f0309fc4590027f984245adcca98fb59f5834392e13dcbc109ca8835079d66e",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "局内原型/server.cjs",
+      "target": "Designing/history/prototype_server.cjs.txt",
+      "source_sha256": "66c78d15bd1477df1eb7d30b0dc3107895c7f7524a947b4a42e8a351d95378ad",
+      "target_sha256": "66c78d15bd1477df1eb7d30b0dc3107895c7f7524a947b4a42e8a351d95378ad",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "outputs/fcd52dc9-c476-496c-9928-7d7bdd167d3c/1-100关关卡数值总表.xlsx",
+      "target": "Designing/levels/level_plan_001_100.xlsx",
+      "source_sha256": "b3bb1a7d5ad34c1df955e52d90706276cbdfb49cbb7319660ad41d5a81b70c06",
+      "target_sha256": "b3bb1a7d5ad34c1df955e52d90706276cbdfb49cbb7319660ad41d5a81b70c06",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "局内界面-V1.0.md",
+      "target": "Designing/requirements/in_game_v1_0.md",
+      "source_sha256": "a005e33347a70f309863d5bd668b9506a24c214e1004e8872976da12ad306b03",
+      "target_sha256": "c18781a1f04bdaae2a404436afc7c722c356531ac4755222917828eeab0e1502",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "局内界面-V1.1.md",
+      "target": "Designing/requirements/in_game_v1_1.md",
+      "source_sha256": "c47b7379b424b63c5ecf99f38aaf8d634fd9ba8bcfd0c904165433b13bd44fd9",
+      "target_sha256": "bc77aa864fc228bf2f88edb016f243505313dcb62d358371cc4c8a6408bbd08e",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "局内界面-V1.2.md",
+      "target": "Designing/requirements/in_game_v1_2.md",
+      "source_sha256": "27ea1e82c5f2572a391eff484b4c8d2b6c2b13990313e4a42ddf707015bfab57",
+      "target_sha256": "d7cd7d2828fe1bd9e95b996a0f7aa86271777c84fa3da1cd12171474134a7166",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "局内界面-V1.3.md",
+      "target": "Designing/requirements/in_game_v1_3.md",
+      "source_sha256": "a6ec0b5d63eab32965b09cd797ec1e8f24cc7d903a27e81a4085001c0879e733",
+      "target_sha256": "f351c59432175e6a0f2330ca1876afa2095142c2caa75e2f391a13523904dfed",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "素材/出餐盒/出餐盒-原木滑盖.png",
+      "target": "Archive/ReferenceImage/planning/dispatch_boxes/dispatch_box_wood.png",
+      "source_sha256": "ddfedb69332615fadebb6c3ac5784e49bee630aa4fd95b8e5a539906fa317b24",
+      "target_sha256": "ddfedb69332615fadebb6c3ac5784e49bee630aa4fd95b8e5a539906fa317b24",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/出餐盒/出餐盒-奶油翻盖.png",
+      "target": "Archive/ReferenceImage/planning/dispatch_boxes/dispatch_box_cream.png",
+      "source_sha256": "2e172f7e02aaf22ad387b01ba69ffdc965a28b3a189f8de3443e22cf8702f6ad",
+      "target_sha256": "2e172f7e02aaf22ad387b01ba69ffdc965a28b3a189f8de3443e22cf8702f6ad",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/出餐盒/出餐盒-粉白推拉.png",
+      "target": "Archive/ReferenceImage/planning/dispatch_boxes/dispatch_box_pink.png",
+      "source_sha256": "a3efbda4538f92fd5c55032623efd5a0a53b3d4bd5f1ebd1bf604c7ef240bc4f",
+      "target_sha256": "a3efbda4538f92fd5c55032623efd5a0a53b3d4bd5f1ebd1bf604c7ef240bc4f",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/出餐盒/出餐盒-薄荷卷帘.png",
+      "target": "Archive/ReferenceImage/planning/dispatch_boxes/dispatch_box_mint.png",
+      "source_sha256": "73c0ac35ce5e0f0ef6c23b3282540f7d350d75c55591e2082106ad1952a24865",
+      "target_sha256": "73c0ac35ce5e0f0ef6c23b3282540f7d350d75c55591e2082106ad1952a24865",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/出餐盒/出餐盒方案对比.html",
+      "target": "Designing/mockups/dispatch_box_comparison.html",
+      "source_sha256": "ff36ace6799ac553d4cc72a84bab3d0fa82c6c0a5a1ff0bd93f3c66381f0eef6",
+      "target_sha256": "cfd30df08ed849f16dd621e1ebd9cf9aa6053271f34fa55a7641b2f9da274aba",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "素材/出餐盒/出餐盒方案对比.png",
+      "target": "Archive/ReferenceImage/planning/dispatch_boxes/dispatch_box_comparison.png",
+      "source_sha256": "6fe10727e6267ade3a6b8cd24ee8c146902351aaaec4817b4ecddb4b5c4dfc5d",
+      "target_sha256": "6fe10727e6267ade3a6b8cd24ee8c146902351aaaec4817b4ecddb4b5c4dfc5d",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/功能按钮/加餐盒图标.png",
+      "target": "Archive/ReferenceImage/planning/buttons/add_box_icon.png",
+      "source_sha256": "9a2ac6630ff03d318df908b0d9a61d2fc84daac7ae00ee9e01bb42a5b669130f",
+      "target_sha256": "9a2ac6630ff03d318df908b0d9a61d2fc84daac7ae00ee9e01bb42a5b669130f",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/功能按钮/撤回图标.png",
+      "target": "Archive/ReferenceImage/planning/buttons/undo_icon.png",
+      "source_sha256": "b51b5c531cc86a7636da613dcbd32301a63fe6b0ef5d71a8e7595d43bad8908a",
+      "target_sha256": "b51b5c531cc86a7636da613dcbd32301a63fe6b0ef5d71a8e7595d43bad8908a",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/功能按钮/置顶图标.png",
+      "target": "Archive/ReferenceImage/planning/buttons/top_icon.png",
+      "source_sha256": "955e78e5c28fce6cf70c69a40c63dfb704468cf4d0c48bbd39877704d4eddd55",
+      "target_sha256": "955e78e5c28fce6cf70c69a40c63dfb704468cf4d0c48bbd39877704d4eddd55",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内操作区-方案1-方盒-带面包胚.png",
+      "target": "Archive/ReferenceImage/planning/square_boxes_preview.png",
+      "source_sha256": "806ca6854dcd0a6cbf8f3632392e74ee267959a1151230f882dfe8ce658f8f8d",
+      "target_sha256": "806ca6854dcd0a6cbf8f3632392e74ee267959a1151230f882dfe8ce658f8f8d",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内操作区-方案3-圆盒-带面包胚.png",
+      "target": "Archive/ReferenceImage/planning/round_boxes_preview.png",
+      "source_sha256": "beb00dd14d8ea7f69c4b8c3062dcc3c32874abb56cb6a61489cd5ed912cb86bb",
+      "target_sha256": "beb00dd14d8ea7f69c4b8c3062dcc3c32874abb56cb6a61489cd5ed912cb86bb",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面.png",
+      "target": "Archive/ReferenceImage/planning/in_game_reference.png",
+      "source_sha256": "29ee4ccc3112046c9bc8e79ff3f4f75ffccff848306a693a8fbaf7725360f6f0",
+      "target_sha256": "29ee4ccc3112046c9bc8e79ff3f4f75ffccff848306a693a8fbaf7725360f6f0",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒.zip",
+      "target": "Designing/art_reference/in_game_art_source.zip",
+      "source_sha256": "d30ff2f9723c24ac312ea261e96605eb6965392a345c40213309a87abeaa3137",
+      "target_sha256": "d30ff2f9723c24ac312ea261e96605eb6965392a345c40213309a87abeaa3137",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/关卡牌-顶部挂绳.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/level_sign_hanger.png",
+      "source_sha256": "07b38c2374a17e2b236e0797c9dd88e8a6c970a019e70de9ae17dc4f118e2165",
+      "target_sha256": "07b38c2374a17e2b236e0797c9dd88e8a6c970a019e70de9ae17dc4f118e2165",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/关卡牌.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/level_sign.png",
+      "source_sha256": "8b08f43c94541e595930e74f4b0c70946c1a0892a007eb16ad69c0ac6794c5f0",
+      "target_sha256": "8b08f43c94541e595930e74f4b0c70946c1a0892a007eb16ad69c0ac6794c5f0",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/出餐盒-含甜甜圈与光照.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/dispatch_box_lit_donuts.png",
+      "source_sha256": "8c10e926a9e30a93f4a573e7bb2a512465d3de037dc4e30f3d3d3397c1e97e19",
+      "target_sha256": "8c10e926a9e30a93f4a573e7bb2a512465d3de037dc4e30f3d3d3397c1e97e19",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/出餐盒-奶油翻盖.png",
+      "target": "Archive/ReferenceImage/planning/dispatch_boxes/dispatch_box_cream.png",
+      "source_sha256": "2e172f7e02aaf22ad387b01ba69ffdc965a28b3a189f8de3443e22cf8702f6ad",
+      "target_sha256": "2e172f7e02aaf22ad387b01ba69ffdc965a28b3a189f8de3443e22cf8702f6ad",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/加餐盒图标.png",
+      "target": "Archive/ReferenceImage/planning/buttons/add_box_icon.png",
+      "source_sha256": "9a2ac6630ff03d318df908b0d9a61d2fc84daac7ae00ee9e01bb42a5b669130f",
+      "target_sha256": "9a2ac6630ff03d318df908b0d9a61d2fc84daac7ae00ee9e01bb42a5b669130f",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/参考效果-两方案总览.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/box_styles_preview.png",
+      "source_sha256": "6af237d61a7ccde4d22d74e11dcd9302f7253b5d88ef301a3b3fab7200a1ec6d",
+      "target_sha256": "6af237d61a7ccde4d22d74e11dcd9302f7253b5d88ef301a3b3fab7200a1ec6d",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/参考效果-圆盒.png",
+      "target": "Archive/ReferenceImage/planning/round_boxes_preview.png",
+      "source_sha256": "beb00dd14d8ea7f69c4b8c3062dcc3c32874abb56cb6a61489cd5ed912cb86bb",
+      "target_sha256": "beb00dd14d8ea7f69c4b8c3062dcc3c32874abb56cb6a61489cd5ed912cb86bb",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/参考效果-方盒.png",
+      "target": "Archive/ReferenceImage/planning/square_boxes_preview.png",
+      "source_sha256": "806ca6854dcd0a6cbf8f3632392e74ee267959a1151230f882dfe8ce658f8f8d",
+      "target_sha256": "806ca6854dcd0a6cbf8f3632392e74ee267959a1151230f882dfe8ce658f8f8d",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/圆形纸盒-奶油白波点.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/round_box_cream.png",
+      "source_sha256": "cfc0b114f053108b10d4af7067981a300eb3c478aead5a18bc6176c2e124279e",
+      "target_sha256": "cfc0b114f053108b10d4af7067981a300eb3c478aead5a18bc6176c2e124279e",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/圆形纸盒-草莓粉爱心.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/round_box_pink.png",
+      "source_sha256": "d1112210749301f0f31cb9bdc029900460aecf0d94a7f12fe31927f98ae5dc12",
+      "target_sha256": "d1112210749301f0f31cb9bdc029900460aecf0d94a7f12fe31927f98ae5dc12",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/圆形纸盒-薄荷绿条纹.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/round_box_mint.png",
+      "source_sha256": "40683c78da8eb82d3c7360174d97670b158f8b8f02832188d7cd547b881095b5",
+      "target_sha256": "40683c78da8eb82d3c7360174d97670b158f8b8f02832188d7cd547b881095b5",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/屋檐.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/awning.png",
+      "source_sha256": "48ea169a8d7fe367cb3588d1eb4e37d06659997e6a73b3a769e2ea7e761ed1fb",
+      "target_sha256": "48ea169a8d7fe367cb3588d1eb4e37d06659997e6a73b3a769e2ea7e761ed1fb",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/底部出餐桌布.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/dispatch_tablecloth.png",
+      "source_sha256": "700f465f7f80b9cd1c8b2aac1cd3743f48ef398971f04ae1953238df2de3513b",
+      "target_sha256": "700f465f7f80b9cd1c8b2aac1cd3743f48ef398971f04ae1953238df2de3513b",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/按钮-加餐盒-完整示意.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/add_box_button.png",
+      "source_sha256": "470af7059c9271112ca2f540967cd55c24d96113633d80513a4f03291f86a9c7",
+      "target_sha256": "470af7059c9271112ca2f540967cd55c24d96113633d80513a4f03291f86a9c7",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/按钮-撤回-完整示意.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/undo_button.png",
+      "source_sha256": "920c3d7aa1f3fb931fd2b0a104d7d0ee29c5e7b36af870597cf6f3a0bf30a57a",
+      "target_sha256": "920c3d7aa1f3fb931fd2b0a104d7d0ee29c5e7b36af870597cf6f3a0bf30a57a",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/按钮-次数角标示意.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/button_badge.png",
+      "source_sha256": "0ba97829811bcd891dce0abec11ea2857956b479e62a3ca162a182edc49d066e",
+      "target_sha256": "0ba97829811bcd891dce0abec11ea2857956b479e62a3ca162a182edc49d066e",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/按钮-置顶-完整示意.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/top_button.png",
+      "source_sha256": "808296d0645fbc44d6a78ba98035f0ee749b6ce10cc5f3e020ca9f59cfb9ddc9",
+      "target_sha256": "808296d0645fbc44d6a78ba98035f0ee749b6ce10cc5f3e020ca9f59cfb9ddc9",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/按钮-通用底板.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/button_background.png",
+      "source_sha256": "ed39d7ef72ecdbf389033a1d84db19ff8f3e66b9134179ff9c763de68bcf30d5",
+      "target_sha256": "ed39d7ef72ecdbf389033a1d84db19ff8f3e66b9134179ff9c763de68bcf30d5",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/撤回图标.png",
+      "target": "Archive/ReferenceImage/planning/buttons/undo_icon.png",
+      "source_sha256": "b51b5c531cc86a7636da613dcbd32301a63fe6b0ef5d71a8e7595d43bad8908a",
+      "target_sha256": "b51b5c531cc86a7636da613dcbd32301a63fe6b0ef5d71a8e7595d43bad8908a",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/浅木桌面源.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/wood_table_source.png",
+      "source_sha256": "005f621c5e24bf4aa96e1f82b8cf41580458f0c5711eb52700fc2f3f0c642908",
+      "target_sha256": "005f621c5e24bf4aa96e1f82b8cf41580458f0c5711eb52700fc2f3f0c642908",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/甜甜圈-巧克力-正俯视.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/chocolate_donut_top.png",
+      "source_sha256": "abb07552575e35f16666111a900351ab82443fb34095c82d0d093335000fe6d7",
+      "target_sha256": "abb07552575e35f16666111a900351ab82443fb34095c82d0d093335000fe6d7",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/甜甜圈-巧克力.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/chocolate_donut.png",
+      "source_sha256": "67bca02ba34edc45598efffb67533bcf0fe55f02f8e258a6b564297f2b10d3f7",
+      "target_sha256": "67bca02ba34edc45598efffb67533bcf0fe55f02f8e258a6b564297f2b10d3f7",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/甜甜圈-抹茶.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/matcha_donut.png",
+      "source_sha256": "a9bf48f0fe40e38112cb5148e09e853e353fd76dc0500a4288976876a596e56e",
+      "target_sha256": "a9bf48f0fe40e38112cb5148e09e853e353fd76dc0500a4288976876a596e56e",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/甜甜圈-橙色.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/orange_donut.png",
+      "source_sha256": "4e725e72415455f4aab7624a4f5853fdd5f9feefb4a38f8098ab1b8fd4c8a59d",
+      "target_sha256": "4e725e72415455f4aab7624a4f5853fdd5f9feefb4a38f8098ab1b8fd4c8a59d",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/甜甜圈-草莓-正俯视.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/strawberry_donut_top.png",
+      "source_sha256": "c59e5014e3b8918456f02609982a4d47e6875f225d50c3f50181543d859582b6",
+      "target_sha256": "c59e5014e3b8918456f02609982a4d47e6875f225d50c3f50181543d859582b6",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/甜甜圈-草莓.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/strawberry_donut.png",
+      "source_sha256": "09f1144e788cfb1abc366cc9d4d74be741555538b6159943de67a20d3a98f77a",
+      "target_sha256": "09f1144e788cfb1abc366cc9d4d74be741555538b6159943de67a20d3a98f77a",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/甜甜圈-葡萄.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/grape_donut.png",
+      "source_sha256": "e0c44884d1da7fff1e874c91a3ee04fd791740cfb1ff2d1d52a6fecccd05dab8",
+      "target_sha256": "e0c44884d1da7fff1e874c91a3ee04fd791740cfb1ff2d1d52a6fecccd05dab8",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/甜甜圈-蓝莓.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/blueberry_donut.png",
+      "source_sha256": "55b7d20cc084cb4747f6167acead60fef25983c7be7e00c59df3aa6599c47a05",
+      "target_sha256": "55b7d20cc084cb4747f6167acead60fef25983c7be7e00c59df3aa6599c47a05",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/素材清单.csv",
+      "target": "Designing/art_reference/asset_manifest.csv",
+      "source_sha256": "2b97193d54a92287b1e37554cdc8a24002c142b2ad8f3aec46cbaef7b8999ce9",
+      "target_sha256": "b3e64624bd5c6bb88659a2a1a6d1f4f867140c5242681d520065edd50f032733",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/素材说明.txt",
+      "target": "Designing/art_reference/asset_notes.txt",
+      "source_sha256": "007e8d90cc97fdeed03aa773df0bf43d58d5e97b308bdaf90bea6c9b19fe062a",
+      "target_sha256": "20395a8819ad3ec3767709256592a00709bde3f7df9324edb743c57c6d16ab7e",
+      "mode": "relative_links_and_migration_note_updated"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/纸盒-奶油白波点.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/square_box_cream.png",
+      "source_sha256": "57f9026851169bb032ba4450ae0bf191955465ff6872c09879ddbf4e346afdc0",
+      "target_sha256": "57f9026851169bb032ba4450ae0bf191955465ff6872c09879ddbf4e346afdc0",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/纸盒-草莓粉爱心.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/square_box_pink.png",
+      "source_sha256": "09e0387f0c4e46a47f1e8393e7eb7835d20172fb5d98cb62df3a11467dc167ec",
+      "target_sha256": "09e0387f0c4e46a47f1e8393e7eb7835d20172fb5d98cb62df3a11467dc167ec",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/纸盒-薄荷绿条纹.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/square_box_mint.png",
+      "source_sha256": "3f60eacfe8eb710bdd4bf7de5e068d5daebb8371a8e9300e980622b8ab66e186",
+      "target_sha256": "3f60eacfe8eb710bdd4bf7de5e068d5daebb8371a8e9300e980622b8ab66e186",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/组装预览.html",
+      "target": "Designing/mockups/assembly_preview.html",
+      "source_sha256": "a7e7e78c8deb1a46624f08b60b1cc285d2c8439512280db93a752df6cabf507e",
+      "target_sha256": "229d4ee6c30b4b75664259b532bda1f70927455654536e7f059c7ed30c41baea",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/置顶图标.png",
+      "target": "Archive/ReferenceImage/planning/buttons/top_icon.png",
+      "source_sha256": "955e78e5c28fce6cf70c69a40c63dfb704468cf4d0c48bbd39877704d4eddd55",
+      "target_sha256": "955e78e5c28fce6cf70c69a40c63dfb704468cf4d0c48bbd39877704d4eddd55",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/背景-整屏桌布版.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/tablecloth_background.png",
+      "source_sha256": "fee02945a2847cfc306012e93891655caa28ffe01b5072bb9aaafd62bd012f32",
+      "target_sha256": "fee02945a2847cfc306012e93891655caa28ffe01b5072bb9aaafd62bd012f32",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/锁定图标.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/lock_icon.png",
+      "source_sha256": "d586c9c866bed2022ff4b1afd643739f1b111ba20969321b9f779eff6105bb11",
+      "target_sha256": "d586c9c866bed2022ff4b1afd643739f1b111ba20969321b9f779eff6105bb11",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/需求池-连接挂环.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/order_panel_hanger.png",
+      "source_sha256": "367268d5d2534800a3244b1bf30feeb5763e63e14da28ffb94425b220426d6f9",
+      "target_sha256": "367268d5d2534800a3244b1bf30feeb5763e63e14da28ffb94425b220426d6f9",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/需求池-锁定盖面.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/order_locked_cover.png",
+      "source_sha256": "b4602789be24f297d50bfdafe855e32214b447043890896eafa580f6a39556bb",
+      "target_sha256": "b4602789be24f297d50bfdafe855e32214b447043890896eafa580f6a39556bb",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/需求池-面板底板.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/order_panel.png",
+      "source_sha256": "b333de6655de17c3c1908377668c0b264a67b57ca44fb33501dfec684fc23c51",
+      "target_sha256": "b333de6655de17c3c1908377668c0b264a67b57ca44fb33501dfec684fc23c51",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/需求纸盒.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/order_box.png",
+      "source_sha256": "8f0ad01ec2fb0aa32e1b525dfc561551e9f9fc869ec5b0967f1c0bb7cf71f808",
+      "target_sha256": "8f0ad01ec2fb0aa32e1b525dfc561551e9f9fc869ec5b0967f1c0bb7cf71f808",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内界面素材包-方盒与圆盒/顶部店景源.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/shop_background_source.png",
+      "source_sha256": "85c7155110e97c99c9944a0a16a747a1086004f9e6de6b6e7f48f37fcad6a5fd",
+      "target_sha256": "85c7155110e97c99c9944a0a16a747a1086004f9e6de6b6e7f48f37fcad6a5fd",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内背景-木桌面方案.png",
+      "target": "Archive/ReferenceImage/planning/wood_background.png",
+      "source_sha256": "99b09bdd5a923e8f063c59365c65090d390d8b5b2ed02c95a22feca2d741cc7a",
+      "target_sha256": "99b09bdd5a923e8f063c59365c65090d390d8b5b2ed02c95a22feca2d741cc7a",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内背景-浅木-iPhone17.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/tablecloth_background.png",
+      "source_sha256": "fee02945a2847cfc306012e93891655caa28ffe01b5072bb9aaafd62bd012f32",
+      "target_sha256": "fee02945a2847cfc306012e93891655caa28ffe01b5072bb9aaafd62bd012f32",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内背景-餐垫方案.png",
+      "target": "Archive/ReferenceImage/planning/placemat_background.png",
+      "source_sha256": "0854efbd7070b13a8e2e701acd82768a75394f704fc37ef1ea151a302baaa530",
+      "target_sha256": "0854efbd7070b13a8e2e701acd82768a75394f704fc37ef1ea151a302baaa530",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内背景候选-原木暖粉.png",
+      "target": "Archive/ReferenceImage/planning/warm_pink_background.png",
+      "source_sha256": "3f540362256c67b91db4632e53752b648527343c973ffa42154b2c25d104e479",
+      "target_sha256": "3f540362256c67b91db4632e53752b648527343c973ffa42154b2c25d104e479",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内背景候选-奶油浅木.png",
+      "target": "Archive/ReferenceImage/planning/cream_wood_background.png",
+      "source_sha256": "52a0930f03e5fae5e102bc7dca0a9cc02eecbd283d9b0b3ec9dabbfe88f2918d",
+      "target_sha256": "52a0930f03e5fae5e102bc7dca0a9cc02eecbd283d9b0b3ec9dabbfe88f2918d",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内背景候选-橱窗夕照.png",
+      "target": "Archive/ReferenceImage/planning/sunset_background.png",
+      "source_sha256": "5d71f7e423d846526134dbc8053c9280edff9a46b059354c985d92e85ce1e570",
+      "target_sha256": "5d71f7e423d846526134dbc8053c9280edff9a46b059354c985d92e85ce1e570",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内背景图-iPhone17标准版-1206x2622.png",
+      "target": "Archive/ReferenceImage/planning/iphone_17_background_1206x2622.png",
+      "source_sha256": "4ed3c125b9b09909529e0653ce6e44dd210576ebfb6ffc14c53ae05572ba99bb",
+      "target_sha256": "4ed3c125b9b09909529e0653ce6e44dd210576ebfb6ffc14c53ae05572ba99bb",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内背景图.png",
+      "target": "Archive/ReferenceImage/planning/in_game_background.png",
+      "source_sha256": "137719012762bae2333d240b61ae603d5b8e4bd4450bc67cdcb44cc612f78382",
+      "target_sha256": "137719012762bae2333d240b61ae603d5b8e4bd4450bc67cdcb44cc612f78382",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内设计稿-25盒位-圆盒.png",
+      "target": "Archive/ReferenceImage/planning/layout_25_round.png",
+      "source_sha256": "6aec6c943433061efc08639689354e5fede99618d2432be953af684b5fdece54",
+      "target_sha256": "6aec6c943433061efc08639689354e5fede99618d2432be953af684b5fdece54",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内设计稿-25盒位-方盒.png",
+      "target": "Archive/ReferenceImage/planning/layout_25_square.png",
+      "source_sha256": "55222f6d4485fa5e362fcc53ad57fead735c8cef54de9ee39058da167e4066f7",
+      "target_sha256": "55222f6d4485fa5e362fcc53ad57fead735c8cef54de9ee39058da167e4066f7",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内设计稿-25盒位.png",
+      "target": "Archive/ReferenceImage/planning/layout_25_comparison.png",
+      "source_sha256": "e3705272953f8dad4ac772db1241019b5dddc126ac66fdb906a3bff5ce1d9d70",
+      "target_sha256": "e3705272953f8dad4ac772db1241019b5dddc126ac66fdb906a3bff5ce1d9d70",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内设计稿-修改副本.html",
+      "target": "Designing/mockups/grid_layout_legacy.html",
+      "source_sha256": "5e626272caee3f9b4dd6941467e6a1b91d301d00b7e8dab849435c7149bf6f28",
+      "target_sha256": "a8d6baee089110ef8d4f7ee336e7c026ecec9c627d23bcbbcba32035d7234808",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "素材/局内设计稿-修改副本.png",
+      "target": "Archive/ReferenceImage/planning/grid_layout_legacy.png",
+      "source_sha256": "84a2d73d547cdcdaf33f77cb2c6b9c80eb77c58c60a477c8bc092f8417f32b96",
+      "target_sha256": "84a2d73d547cdcdaf33f77cb2c6b9c80eb77c58c60a477c8bc092f8417f32b96",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内设计稿-全部方案总览.png",
+      "target": "Archive/ReferenceImage/planning/grid_layout_variants_legacy.png",
+      "source_sha256": "dad8bccf023e2b1f5eac52386da28762cc90260b5ae7fcf9319e197f8724d5b5",
+      "target_sha256": "dad8bccf023e2b1f5eac52386da28762cc90260b5ae7fcf9319e197f8724d5b5",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内设计稿-木桌面方案.png",
+      "target": "Archive/ReferenceImage/planning/wood_layout.png",
+      "source_sha256": "a0826bc0224b9ebd3f3a0466992477f5382f02424da0695edd85d85be0586257",
+      "target_sha256": "a0826bc0224b9ebd3f3a0466992477f5382f02424da0695edd85d85be0586257",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内设计稿-错落布局-全部方案.png",
+      "target": "Archive/ReferenceImage/planning/staggered_layout_variants.png",
+      "source_sha256": "b2fc3a513dc0d6e92b2f511e328863310098cd13bfda06675eab1091ee37fa67",
+      "target_sha256": "b2fc3a513dc0d6e92b2f511e328863310098cd13bfda06675eab1091ee37fa67",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内设计稿-错落布局-盒位示例.png",
+      "target": "Archive/ReferenceImage/planning/staggered_layout_counts.png",
+      "source_sha256": "be95b5027179435891c8809ff7408fb12a0ccbc12fc09db3c4e3c3243ef0507f",
+      "target_sha256": "be95b5027179435891c8809ff7408fb12a0ccbc12fc09db3c4e3c3243ef0507f",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内设计稿-错落布局.html",
+      "target": "Designing/mockups/staggered_layout.html",
+      "source_sha256": "7bf451bb0a54ce419323aaba4a249f4d0dc5fb4074b2e4cb1dc970651c8f389c",
+      "target_sha256": "378dedac6c67ed472fe8a2db38f14243b69335dd23039e8cbb775c06f6a3b26b",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "素材/局内设计稿-错落布局.png",
+      "target": "Archive/ReferenceImage/planning/staggered_layout.png",
+      "source_sha256": "1eb259817d4144a9d49973501cf9a88411c4f64145f00f32985729ee2f6f25c7",
+      "target_sha256": "1eb259817d4144a9d49973501cf9a88411c4f64145f00f32985729ee2f6f25c7",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/局内设计稿-餐垫方案.png",
+      "target": "Archive/ReferenceImage/planning/placemat_layout.png",
+      "source_sha256": "e76fc8e047b1a3f8f50f2c70cf4ca3a2fae7a544d3698068473d3732f1af3f8d",
+      "target_sha256": "e76fc8e047b1a3f8f50f2c70cf4ca3a2fae7a544d3698068473d3732f1af3f8d",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/底部出餐区-方案对比.png",
+      "target": "Archive/ReferenceImage/planning/dispatch_area_comparison.png",
+      "source_sha256": "d0f697eea72231bb2094c31b7db8cc67e2399b8b6ac77d39328a01528c6d0088",
+      "target_sha256": "d0f697eea72231bb2094c31b7db8cc67e2399b8b6ac77d39328a01528c6d0088",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/游戏素材/参考-甜甜圈与透明棍子.png",
+      "target": "Archive/ReferenceImage/planning/game_art/donut_rod_reference.png",
+      "source_sha256": "bc12646288ff9cc4c40d44a1b08fafe2b41d7a11db394bf32b9137e372e5e8ae",
+      "target_sha256": "bc12646288ff9cc4c40d44a1b08fafe2b41d7a11db394bf32b9137e372e5e8ae",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/游戏素材/参考-螺丝角度与透视.png",
+      "target": "Archive/ReferenceImage/planning/game_art/screw_perspective_reference.png",
+      "source_sha256": "205b0a2bc63c209f019e12ff62f27dc926031c55aa3a4d5eb58e06a8a17b0bf4",
+      "target_sha256": "205b0a2bc63c209f019e12ff62f27dc926031c55aa3a4d5eb58e06a8a17b0bf4",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/游戏素材/甜甜圈-巧克力坚果.png",
+      "target": "Archive/ReferenceImage/planning/game_art/chocolate_nut_donut.png",
+      "source_sha256": "711a270ffee5ff9195d34c3a29badbd7ded8e736301cb07e940ee0b72274049b",
+      "target_sha256": "711a270ffee5ff9195d34c3a29badbd7ded8e736301cb07e940ee0b72274049b",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/游戏素材/甜甜圈-巧克力白纹.png",
+      "target": "Archive/ReferenceImage/planning/game_art/chocolate_stripe_donut.png",
+      "source_sha256": "eba7e47fd55e4b0e6f77d343c88c529b4e9435ccbad7bd76658c59655b4ed39a",
+      "target_sha256": "eba7e47fd55e4b0e6f77d343c88c529b4e9435ccbad7bd76658c59655b4ed39a",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/游戏素材/甜甜圈-抹茶.png",
+      "target": "Archive/ReferenceImage/planning/game_art/matcha_donut.png",
+      "source_sha256": "d52314fde59d248c9ac9e768a9073c748bae28529c9cc0f38a8aefb339f64a3a",
+      "target_sha256": "d52314fde59d248c9ac9e768a9073c748bae28529c9cc0f38a8aefb339f64a3a",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/游戏素材/甜甜圈-柠檬.png",
+      "target": "Archive/ReferenceImage/planning/game_art/lemon_donut.png",
+      "source_sha256": "df4d67ce1c9f7495659141ba1b23b78131502a935597cc6c77e8d5149c444039",
+      "target_sha256": "df4d67ce1c9f7495659141ba1b23b78131502a935597cc6c77e8d5149c444039",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/游戏素材/甜甜圈-草莓.png",
+      "target": "Archive/ReferenceImage/planning/game_art/strawberry_donut.png",
+      "source_sha256": "fed87400ebbffd1570a9037b432113fbd1d95def2dfc39499e7f8fef5874e202",
+      "target_sha256": "fed87400ebbffd1570a9037b432113fbd1d95def2dfc39499e7f8fef5874e202",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/游戏素材/甜甜圈-葡萄.png",
+      "target": "Archive/ReferenceImage/planning/game_art/grape_donut.png",
+      "source_sha256": "fe1c6ee8a7d7853ae80efce47c601810f63d54ca21b98e9911c24fa273f5e0d3",
+      "target_sha256": "fe1c6ee8a7d7853ae80efce47c601810f63d54ca21b98e9911c24fa273f5e0d3",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/游戏素材/甜甜圈-蓝莓.png",
+      "target": "Archive/ReferenceImage/planning/game_art/blueberry_donut.png",
+      "source_sha256": "0d03c797c1ee2151bc6ece701401b25b75e010020fc888a8ccbfdf04283f76c3",
+      "target_sha256": "0d03c797c1ee2151bc6ece701401b25b75e010020fc888a8ccbfdf04283f76c3",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/游戏素材/甜甜圈-香草.png",
+      "target": "Archive/ReferenceImage/planning/game_art/vanilla_donut.png",
+      "source_sha256": "68ab922eee1fb69e3cee8979c6fbcc5e9b461ac77054a306132589552ab9044f",
+      "target_sha256": "68ab922eee1fb69e3cee8979c6fbcc5e9b461ac77054a306132589552ab9044f",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/游戏素材/透明棍子.png",
+      "target": "Archive/ReferenceImage/planning/game_art/transparent_rod.png",
+      "source_sha256": "c37a34c4ee4f8e735c5320dc1f5a44b53412b0439a53101f9644953477928ec0",
+      "target_sha256": "c37a34c4ee4f8e735c5320dc1f5a44b53412b0439a53101f9644953477928ec0",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/圆形与方形订单盒对比.html",
+      "target": "Designing/mockups/box_shape_comparison.html",
+      "source_sha256": "c73fd8fc0e0d4ecc8327e7689ca94bb910636367f95c3c7a18781b52333c6e17",
+      "target_sha256": "90a086c81855a51a113909bac94f6fb0ca6542a75175705d4942b91be9fc130c",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/圆形与方形订单盒对比.png",
+      "target": "Archive/ReferenceImage/planning/boxes_and_donuts/box_shape_comparison.png",
+      "source_sha256": "b601a2dc19515f57ba2bc46d5a4bd64dfe7c73e13bdecc769168fdeb35fbf378",
+      "target_sha256": "b601a2dc19515f57ba2bc46d5a4bd64dfe7c73e13bdecc769168fdeb35fbf378",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/圆形纸盒-奶油白波点.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/round_box_cream.png",
+      "source_sha256": "cfc0b114f053108b10d4af7067981a300eb3c478aead5a18bc6176c2e124279e",
+      "target_sha256": "cfc0b114f053108b10d4af7067981a300eb3c478aead5a18bc6176c2e124279e",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/圆形纸盒-草莓粉爱心.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/round_box_pink.png",
+      "source_sha256": "d1112210749301f0f31cb9bdc029900460aecf0d94a7f12fe31927f98ae5dc12",
+      "target_sha256": "d1112210749301f0f31cb9bdc029900460aecf0d94a7f12fe31927f98ae5dc12",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/圆形纸盒-薄荷绿条纹.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/round_box_mint.png",
+      "source_sha256": "40683c78da8eb82d3c7360174d97670b158f8b8f02832188d7cd547b881095b5",
+      "target_sha256": "40683c78da8eb82d3c7360174d97670b158f8b8f02832188d7cd547b881095b5",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/甜甜圈-巧克力.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/chocolate_donut.png",
+      "source_sha256": "67bca02ba34edc45598efffb67533bcf0fe55f02f8e258a6b564297f2b10d3f7",
+      "target_sha256": "67bca02ba34edc45598efffb67533bcf0fe55f02f8e258a6b564297f2b10d3f7",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/甜甜圈-抹茶.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/matcha_donut.png",
+      "source_sha256": "a9bf48f0fe40e38112cb5148e09e853e353fd76dc0500a4288976876a596e56e",
+      "target_sha256": "a9bf48f0fe40e38112cb5148e09e853e353fd76dc0500a4288976876a596e56e",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/甜甜圈-橙色.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/orange_donut.png",
+      "source_sha256": "4e725e72415455f4aab7624a4f5853fdd5f9feefb4a38f8098ab1b8fd4c8a59d",
+      "target_sha256": "4e725e72415455f4aab7624a4f5853fdd5f9feefb4a38f8098ab1b8fd4c8a59d",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/甜甜圈-草莓.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/strawberry_donut.png",
+      "source_sha256": "09f1144e788cfb1abc366cc9d4d74be741555538b6159943de67a20d3a98f77a",
+      "target_sha256": "09f1144e788cfb1abc366cc9d4d74be741555538b6159943de67a20d3a98f77a",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/甜甜圈-葡萄.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/grape_donut.png",
+      "source_sha256": "e0c44884d1da7fff1e874c91a3ee04fd791740cfb1ff2d1d52a6fecccd05dab8",
+      "target_sha256": "e0c44884d1da7fff1e874c91a3ee04fd791740cfb1ff2d1d52a6fecccd05dab8",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/甜甜圈-蓝莓.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/blueberry_donut.png",
+      "source_sha256": "55b7d20cc084cb4747f6167acead60fef25983c7be7e00c59df3aa6599c47a05",
+      "target_sha256": "55b7d20cc084cb4747f6167acead60fef25983c7be7e00c59df3aa6599c47a05",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/素材总览.html",
+      "target": "Designing/mockups/art_overview.html",
+      "source_sha256": "85a9670529405f23ab8e52adb71c9e3f8ad6f4e2b3e5fb4fc8f75f0e5641ae6e",
+      "target_sha256": "eb5570519eaa3487a197f91d55c99b857f4ade4b6a065a6efc4bab897c0f7ee3",
+      "mode": "relative_links_updated"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/素材总览.png",
+      "target": "Archive/ReferenceImage/planning/boxes_and_donuts/art_overview.png",
+      "source_sha256": "c934480363662106eb88e5fb7e2a2a33d26a6e7aabebe7b48dd6a658a8db8fa5",
+      "target_sha256": "c934480363662106eb88e5fb7e2a2a33d26a6e7aabebe7b48dd6a658a8db8fa5",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/纸盒-奶油白波点.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/square_box_cream.png",
+      "source_sha256": "57f9026851169bb032ba4450ae0bf191955465ff6872c09879ddbf4e346afdc0",
+      "target_sha256": "57f9026851169bb032ba4450ae0bf191955465ff6872c09879ddbf4e346afdc0",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/纸盒-草莓粉爱心.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/square_box_pink.png",
+      "source_sha256": "09e0387f0c4e46a47f1e8393e7eb7835d20172fb5d98cb62df3a11467dc167ec",
+      "target_sha256": "09e0387f0c4e46a47f1e8393e7eb7835d20172fb5d98cb62df3a11467dc167ec",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/纸盒-薄荷绿条纹.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/square_box_mint.png",
+      "source_sha256": "3f60eacfe8eb710bdd4bf7de5e068d5daebb8371a8e9300e980622b8ab66e186",
+      "target_sha256": "3f60eacfe8eb710bdd4bf7de5e068d5daebb8371a8e9300e980622b8ab66e186",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/纸盒与甜甜圈/锁定图标.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/lock_icon.png",
+      "source_sha256": "d586c9c866bed2022ff4b1afd643739f1b111ba20969321b9f779eff6105bb11",
+      "target_sha256": "d586c9c866bed2022ff4b1afd643739f1b111ba20969321b9f779eff6105bb11",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/背景素材/出餐餐垫.png",
+      "target": "Archive/ReferenceImage/planning/backgrounds/dispatch_placemat.png",
+      "source_sha256": "32db1308f63e318f74a94539eb0e7c46c22a295488071c1896f06e7ebcfd3ec4",
+      "target_sha256": "32db1308f63e318f74a94539eb0e7c46c22a295488071c1896f06e7ebcfd3ec4",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/背景素材/屋檐.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/awning.png",
+      "source_sha256": "48ea169a8d7fe367cb3588d1eb4e37d06659997e6a73b3a769e2ea7e761ed1fb",
+      "target_sha256": "48ea169a8d7fe367cb3588d1eb4e37d06659997e6a73b3a769e2ea7e761ed1fb",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/背景素材/底部出餐桌布.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/dispatch_tablecloth.png",
+      "source_sha256": "700f465f7f80b9cd1c8b2aac1cd3743f48ef398971f04ae1953238df2de3513b",
+      "target_sha256": "700f465f7f80b9cd1c8b2aac1cd3743f48ef398971f04ae1953238df2de3513b",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/背景素材/浅木桌面源.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/wood_table_source.png",
+      "source_sha256": "005f621c5e24bf4aa96e1f82b8cf41580458f0c5711eb52700fc2f3f0c642908",
+      "target_sha256": "005f621c5e24bf4aa96e1f82b8cf41580458f0c5711eb52700fc2f3f0c642908",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/背景素材/顶部店景源.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/shop_background_source.png",
+      "source_sha256": "85c7155110e97c99c9944a0a16a747a1086004f9e6de6b6e7f48f37fcad6a5fd",
+      "target_sha256": "85c7155110e97c99c9944a0a16a747a1086004f9e6de6b6e7f48f37fcad6a5fd",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/需求池/关卡牌.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/level_sign.png",
+      "source_sha256": "8b08f43c94541e595930e74f4b0c70946c1a0892a007eb16ad69c0ac6794c5f0",
+      "target_sha256": "8b08f43c94541e595930e74f4b0c70946c1a0892a007eb16ad69c0ac6794c5f0",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/需求池/甜甜圈-巧克力-正俯视.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/chocolate_donut_top.png",
+      "source_sha256": "abb07552575e35f16666111a900351ab82443fb34095c82d0d093335000fe6d7",
+      "target_sha256": "abb07552575e35f16666111a900351ab82443fb34095c82d0d093335000fe6d7",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/需求池/甜甜圈-草莓-正俯视.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/strawberry_donut_top.png",
+      "source_sha256": "c59e5014e3b8918456f02609982a4d47e6875f225d50c3f50181543d859582b6",
+      "target_sha256": "c59e5014e3b8918456f02609982a4d47e6875f225d50c3f50181543d859582b6",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/需求池/需求纸盒.png",
+      "target": "Archive/ReferenceImage/planning/source_bundle/order_box.png",
+      "source_sha256": "8f0ad01ec2fb0aa32e1b525dfc561551e9f9fc869ec5b0967f1c0bb7cf71f808",
+      "target_sha256": "8f0ad01ec2fb0aa32e1b525dfc561551e9f9fc869ec5b0967f1c0bb7cf71f808",
+      "mode": "byte_identical"
+    },
+    {
+      "source": "素材/首页.png",
+      "target": "Archive/ReferenceImage/planning/home_reference.png",
+      "source_sha256": "71ca2fcfd7b27e00039ac9257aa4bac74d3fc12d61c78e499255357c8240efe4",
+      "target_sha256": "71ca2fcfd7b27e00039ac9257aa4bac74d3fc12d61c78e499255357c8240efe4",
+      "mode": "byte_identical"
+    }
+  ]
+}

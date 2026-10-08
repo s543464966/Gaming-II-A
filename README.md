@@ -2,6 +2,20 @@
 
 甜甜圈小铺的 Godot 工程，已实现 100 关首轮可玩内容、独立需求、有限整盒备货、特殊盒与连单奖励。百关机制、验证和待试玩项目见 [实现与验收](Designing/level_100_implementation.md)。仓库根统一管理工程、工具、测试和项目规则。
 
+## 策划与开发
+
+策划与开发统一在本仓库进行。原“文档 / Codex / Projects / 消除小游戏”中的策划资料已迁入；以后从 [策划入口](Designing/README.md) 查阅与更新，旧目录仅保留迁入前原件，不再作为日常维护位置。
+
+| 工作 | 入口 |
+| --- | --- |
+| 产品方向、玩法与系统策划 | [产品策划方案](Designing/product_plan.md) |
+| 当前局内需求基线 | [V1.3 需求文档](Designing/requirements/in_game_v1_3.md)，结合 [R2 实施与用户后续调整](Designing/r2_level_update.md) |
+| 逐关数值编辑 | [1—100 关数值总表](Designing/levels/level_plan_001_100.xlsx) |
+| 设计稿与历史版本 | [设计资料索引](Designing/README.md) |
+| 游戏开发 | [Godot 工程说明](Coding/godot/README.md) |
+
+策划方案持续更新同一份正文，正式需求版本保留历史；修改 Excel 不会自动修改已运行关卡，须经过导入、层序生成与验证。实际开发完成情况以实施及测试记录为准。
+
 ## 运行
 
 网页预览统一使用 [http://127.0.0.1:4173/](http://127.0.0.1:4173/)，始终读取 `Archive/Builds/web/` 中的最新导出。更新后刷新同一页面即可；服务入口为 `node Tooling/preview/web.mjs`，不再生成带版本参数的预览链接。

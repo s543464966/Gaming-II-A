@@ -41,8 +41,9 @@ if (suites.some(suite => !['architecture', 'home', 'donut', 'hundred'].includes(
       }
     }
 
-    // 与导出入口一致，规避 macOS 无界面导入字体时的 Godot 4.5.1 崩溃。
-    await execute('import', ['--single-threaded-scene', '--editor', '--import', '--quit']);
+    // Windows 默认导入可避开 4.5.1 单线程字体崩溃；其他平台保留既有规避参数。
+    const importOptions = process.platform === 'win32' ? [] : ['--single-threaded-scene'];
+    await execute('import', [...importOptions, '--editor', '--import', '--quit']);
     const sceneSuites = suites.filter(suite => suite !== 'donut' && suite !== 'hundred');
     if (sceneSuites.length) {
       await execute('skeleton', ['--script', join(workspace, 'Testing/integration/architecture/skeleton_test.gd'), '--', ...sceneSuites],

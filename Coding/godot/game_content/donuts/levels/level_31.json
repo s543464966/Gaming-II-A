@@ -6,33 +6,176 @@
     {
       "kind": "regular",
       "unlock_after": 0,
+      "id": "slot_00",
+      "group_id": "W031-02",
       "box": {
         "kind": "normal",
         "lid": 0,
         "items": [
           {
-            "flavor": 1
+            "flavor": 5
+          },
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 8
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_01",
+      "group_id": "W031-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 4
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_02",
+      "group_id": "W031-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 8
+          },
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 5
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_03",
+      "group_id": "W031-04",
+      "box": {
+        "kind": "number_frozen",
+        "lid": 2,
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 8
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 5
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_04",
+      "group_id": "W031-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 8
           },
           {
             "flavor": 4
           },
           {
             "flavor": 2
+          },
+          {
+            "flavor": 6
           }
         ]
-      },
-      "group_id": "R2-031-02",
-      "id": "slot_00"
+      }
     },
     {
       "kind": "regular",
       "unlock_after": 0,
+      "id": "slot_05",
+      "group_id": "W031-01",
       "box": {
         "kind": "normal",
         "lid": 0,
         "items": [
           {
-            "flavor": 4
+            "flavor": 6
+          },
+          {
+            "flavor": 12
+          },
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 12
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_06",
+      "group_id": "W031-03",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 12
+          },
+          {
+            "flavor": 0
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_07",
+      "group_id": "W031-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 2
           },
           {
             "flavor": 3
@@ -41,103 +184,154 @@
             "flavor": 4
           }
         ]
-      },
-      "group_id": "R2-031-02",
-      "id": "slot_01"
+      }
     },
     {
       "kind": "regular",
       "unlock_after": 0,
+      "id": "slot_08",
+      "group_id": "W031-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 12
+          },
+          {
+            "flavor": 6
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 2
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_09",
+      "group_id": "W031-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 4
+          },
+          {
+            "flavor": 12
+          },
+          {
+            "flavor": 6
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_10",
+      "group_id": "W031-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 12
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 8
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_11",
+      "group_id": "W031-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 2
+          },
+          {
+            "flavor": 5
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 4
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_12",
+      "group_id": "W031-02",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 8
+          },
+          {
+            "flavor": 2
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_13",
+      "group_id": "W031-05",
       "box": {
         "kind": "number_frozen",
         "lid": 1,
         "items": [
           {
-            "flavor": 2
-          },
-          {
-            "flavor": 1
-          },
-          {
-            "flavor": 4
-          }
-        ]
-      },
-      "group_id": "R2-031-03",
-      "id": "slot_02"
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 0
-          },
-          {
-            "flavor": 4
-          },
-          {
             "flavor": 3
-          }
-        ]
-      },
-      "group_id": "R2-031-02",
-      "id": "slot_03"
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 2
           },
           {
-            "flavor": 0
+            "flavor": 6
           },
           {
-            "flavor": 2
-          },
-          {
-            "flavor": 3
-          }
-        ]
-      },
-      "group_id": "R2-031-01",
-      "id": "slot_04"
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": [
-          {
-            "flavor": 4
-          },
-          {
-            "flavor": 1
-          },
-          {
-            "flavor": 4
+            "flavor": 12
           },
           {
             "flavor": 4
           }
         ]
-      },
-      "group_id": "R2-031-01",
-      "id": "slot_05"
+      }
     },
     {
       "kind": "regular",
       "unlock_after": 0,
+      "id": "slot_14",
+      "group_id": "W031-01",
       "box": {
         "kind": "normal",
         "lid": 0,
@@ -149,37 +343,84 @@
             "flavor": 3
           },
           {
-            "flavor": 1
+            "flavor": 0
+          },
+          {
+            "flavor": 5
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_15",
+      "group_id": "W031-03",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 8
+          },
+          {
+            "flavor": 5
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_16",
+      "group_id": "W031-03",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 8
+          },
+          {
+            "flavor": 12
+          }
+        ]
+      }
+    },
+    {
+      "kind": "regular",
+      "unlock_after": 0,
+      "id": "slot_17",
+      "group_id": "W031-01",
+      "box": {
+        "kind": "normal",
+        "lid": 0,
+        "items": [
+          {
+            "flavor": 3
+          },
+          {
+            "flavor": 0
+          },
+          {
+            "flavor": 5
           },
           {
             "flavor": 0
           }
         ]
-      },
-      "group_id": "R2-031-01",
-      "id": "slot_06"
+      }
     },
     {
-      "kind": "regular",
+      "kind": "single",
       "unlock_after": 0,
+      "id": "slot_18",
+      "group_id": "W031-06",
       "box": {
         "kind": "normal",
         "lid": 0,
         "items": []
-      },
-      "group_id": "R2-031-04",
-      "id": "slot_07"
-    },
-    {
-      "kind": "regular",
-      "unlock_after": 0,
-      "box": {
-        "kind": "normal",
-        "lid": 0,
-        "items": []
-      },
-      "group_id": "R2-031-04",
-      "id": "slot_08"
+      }
     },
     {
       "kind": "turnover",
@@ -199,17 +440,27 @@
     {
       "initially_open": true,
       "sequence": [
+        5,
+        8,
+        6,
         0,
-        4,
-        1
+        12,
+        8,
+        3,
+        6
       ]
     },
     {
       "initially_open": true,
       "sequence": [
+        4,
+        12,
         2,
-        3,
-        4
+        2,
+        5,
+        4,
+        0,
+        3
       ]
     },
     {
@@ -229,13 +480,14 @@
   "combo_rewards": [],
   "design": {
     "version": "R2",
-    "seed": 233100000,
     "source_row": 36,
     "assist_boxes": 1,
     "hidden_donuts": 0,
     "layer_order": "top_to_bottom",
     "playtest_status": "pending",
     "approved_adjustments": [],
-    "bomb_multiplier": null
+    "bomb_multiplier": null,
+    "authored_opening": true,
+    "reference": "已确认的31–40关续接方案；第31关：零空盒阶梯解冻；固定层序与订单，非参考小游戏逐关复刻"
   }
 }

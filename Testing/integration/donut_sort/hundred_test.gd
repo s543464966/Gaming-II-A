@@ -30,6 +30,8 @@ func _run() -> void:
 			check(false, "Invalid definition %d" % (index + 1))
 			continue
 		var plan: Dictionary = plans[index]
+		if index >= 30 and index <= 39:
+			_check_wave_thirty_one(definition, index - 30)
 		for key: String in ["undo", "add_box", "top"]:
 			check(int(definition.tools.get(key, 0)) == 1, "Every level must enable the three tools")
 		var has_bomb: bool = definition.slots.any(func(slot: Dictionary) -> bool: return slot.box != null and slot.box.kind == "bomb")
@@ -87,6 +89,10 @@ func _run() -> void:
 			var interval_has_group: bool = false
 			var interval_split_group: bool = false
 			var midgame_count: int = 0
+			var first_group_step: int = -1
+			var refill_steps: Array[int] = []
+			var first_single_in: int = -1
+			var first_single_out: int = -1
 			for step_index: int in steps.size():
 				var step: Array = steps[step_index]
 				if mode == 0 and interval_start < 0:
@@ -97,6 +103,7 @@ func _run() -> void:
 				var source: int = int(step[0])
 				var target: int = int(step[1])
 				var grouping: bool = _is_new_group(session, source, target)
+				var refills_before: int = refills.size()
 				if mode == 0:
 					interval_split_group = interval_split_group or session.slots[source].box.grouped
 				# 三秒仅为自动回放的操作预算；真人拆弹耗时仍须试玩标定。
@@ -104,11 +111,28 @@ func _run() -> void:
 				if not session.move(int(step[0]), int(step[1])):
 					check(false, "Level %d mode %d invalid move %s step %d" % [index + 1, mode, step, step_index])
 					break
+				if session.slots[target].kind == "single" and first_single_in < 0:
+					first_single_in = step_index + 1
+				if session.slots[source].kind == "single" and first_single_out < 0:
+					first_single_out = step_index + 1
 				if mode == 0 and grouping:
+					if first_group_step < 0:
+						first_group_step = step_index + 1
+						if index == 17 or index == 18 or index == 20:
+							check(session.completed > 0, "Ordinary ice practice must deliver its first group")
 					var fraction: float = float(interval_progress) / session.total_orders()
 					if fraction >= 0.3 and fraction <= 0.7 and step_index > interval_start and not interval_has_group and not interval_split_group:
 						midgame_count += 1
 					interval_start = -1
+				if mode == 0 and refills.size() > refills_before:
+					refill_steps.append(step_index + 1)
+					# 补货教学的基线路线留有可操作余量，余量仍受顶层同味限制。
+					if index == 8 or (index >= 13 and index <= 16) or (index >= 25 and index <= 27) or index in [33, 36, 37]:
+						var usable_space: int = 0
+						for slot_index: int in session.slots.size():
+							if session.can_handle(slot_index):
+								usable_space += session.capacity(slot_index) - session.slots[slot_index].box.items.size()
+						check(usable_space >= 4, "Level %d refill leaves no planned working space" % (index + 1))
 				check(session.remaining_donuts() + session.completed * 4 == session.total_donuts(), "Conservation %d/%d" % [index + 1, step_index])
 				for slot_index: int in session.slots.size():
 					check(session.slots[slot_index].box == null or session.slots[slot_index].box.items.size() <= session.capacity(slot_index), "Capacity exceeded")
@@ -116,6 +140,21 @@ func _run() -> void:
 			if mode == 0:
 				check(midgame_count >= int(plan.midgame_space_min) and midgame_count == int(solution.midgame_metrics.count),
 					"R2 midgame %d actual %d target %d recorded %d" % [index + 1, midgame_count, plan.midgame_space_min, solution.midgame_metrics.count])
+				if index >= 4 and index <= 39:
+					check(first_group_step == int(solution.opening_metrics.first_group_moves), "Early wave opening prefix no longer reaches its target")
+				if index == 9:
+					check(refill_steps.size() == 2 and refill_steps[1] - refill_steps[0] >= 3, "Level ten stock must enter on separate operations")
+				if index == 15 or index == 16 or index == 26 or index == 36:
+					check(refill_steps.size() == 2 and refill_steps[1] - refill_steps[0] >= 5, "Wave stock must enter on separate operations")
+				# 暂存练习必须实际取放；预放一颗的盒子先移出才能再次接收。
+				if (index >= 23 and index <= 29) or index in [30, 33, 35, 36, 37, 38]:
+					check(first_single_in > 0 and first_single_out > 0, "Single-box wave must exercise storage and removal")
+					if index == 23 or index == 24:
+						check(first_single_in <= first_group_step and first_single_out <= first_group_step + 6, "Single introduction must demonstrate an early storage cycle")
+					if index in [25, 28, 35, 38]:
+						check(first_single_out < first_single_in, "Preloaded single must empty before accepting another donut")
+					if index == 25:
+						check(not refill_steps.is_empty() and first_single_in <= refill_steps[0], "Level 26 must reuse its single before the stock arrives")
 			check(not session.slots.any(func(slot: Dictionary) -> bool: return slot.box != null and slot.box.kind == "bomb"), "Win leaves bomb %d/%d" % [index + 1, mode])
 			check(session.total_orders() == int(plan.orders), "Plan orders")
 			check(refills.size() == definition.stock.size(), "Level %d mode %d refill count differs from real stock" % [index + 1, mode])
@@ -128,8 +167,9 @@ func _run() -> void:
 		print("PASS: level %d; four turnover conditions; %d baseline moves" % [index + 1, solution.moves])
 	check(stock_levels == 30, "Expected 30 stock levels")
 	check(short_bomb_levels > 0 and long_bomb_levels > 0 and short_bomb_levels + long_bomb_levels == 10, "R2 requires ten bomb levels with operation-time budgets")
-	check(mechanism_firsts == {"hidden": 6, "lid": 12, "frozen": 18, "single": 24, "number_frozen": 31,
-		"fixed": 41, "in_only": 51, "cycle": 61, "bomb": 81}, "R2 mechanism introductions differ from source")
+	# 用户参考关提前引入数字冰冻，其余机关仍沿用 R2。
+	check(mechanism_firsts == {"hidden": 6, "lid": 12, "frozen": 18, "single": 24, "number_frozen": 2,
+		"fixed": 41, "in_only": 51, "cycle": 61, "bomb": 81}, "R2 and confirmed reference-level introductions differ")
 	_check_mechanics()
 	_check_v13_data_boundaries()
 	_check_restore_and_rewards()
@@ -142,6 +182,41 @@ func _run() -> void:
 	else:
 		print("PASS: hundred; 400 complete replays, planning counts and mechanism boundaries")
 		quit(0)
+
+
+## 锁定续接方案中的混合装量、预装暂存与隐藏边界，防止回退为统一双空盒。
+func _check_wave_thirty_one(definition: Dictionary, offset: int) -> void:
+	var amounts: Array = [[11,2,3,0,0], [13,1,0,1,1], [13,2,1,0,1], [13,1,0,1,1], [14,0,0,0,2],
+		[11,3,1,0,1], [12,2,3,0,0], [12,2,1,0,1], [10,3,3,0,0], [12,4,0,0,1]]
+	var single_fills: Array[int] = [0, -1, -1, 0, -1, 1, 0, 0, 1, -1]
+	var hidden_totals: Array[int] = [0, 0, 3, 0, 3, 6, 0, 0, 6, 0]
+	var numbered: Array = [[2,1], [1], [1,1], [1], [1,2], [], [1,1], [], [2], [1,1]]
+	var actual_amounts: Array[int] = [0, 0, 0, 0, 0]
+	var actual_single: Array[int] = []
+	var actual_numbered: Array[int] = []
+	var hidden: int = 0
+	for slot: Dictionary in definition.slots:
+		if slot.box == null:
+			continue
+		var item_count: int = slot.box.items.size()
+		if slot.kind == "single":
+			actual_single.append(item_count)
+		elif slot.box.kind == "normal":
+			actual_amounts[4 - item_count] += 1
+		else:
+			check(item_count == 4, "Wave mechanisms must start full")
+		if int(slot.box.lid) > 0:
+			actual_numbered.append(int(slot.box.lid))
+		var hidden_indices: Array[int] = []
+		for item_index: int in item_count:
+			if slot.box.items[item_index].get("hidden", false):
+				hidden_indices.append(item_index)
+		if not hidden_indices.is_empty():
+			check(slot.box.kind == "normal" and slot.kind == "regular" and hidden_indices == [1,2,3], "Hidden layers must belong to a normal full box")
+			hidden += hidden_indices.size()
+	check(actual_amounts == amounts[offset], "Wave ordinary fill distribution %d" % (offset + 31))
+	check(actual_single == ([] if single_fills[offset] < 0 else [single_fills[offset]]), "Wave single preload")
+	check(actual_numbered == numbered[offset] and hidden == hidden_totals[offset], "Wave numeric order or hidden amount")
 
 
 ## 用正式搬运判定枚举全部一步归纳，避免把某条刻意绕远的操作当成必须腾位。

@@ -10,6 +10,8 @@ KINDS = {'普通盒':'normal', '数字盖盒':'lid', '普通冰冻盒':'frozen',
 
 
 def candidate(plan, seed):
+    if 'authored_opening' in plan:
+        return authored_candidate(plan)
     rng = random.Random(seed)
     flavors = list(range(plan['flavors']))
     demands = flavors + [rng.choice(flavors) for _ in range(plan['orders']-len(flavors))]
@@ -71,6 +73,50 @@ def candidate(plan, seed):
     if 'bomb_multiplier' in plan:
         definition['design']['bomb_multiplier'] = plan['bomb_multiplier']
     return definition
+
+
+def authored_candidate(plan):
+    """复用工作簿固定层序、逐颗隐藏及备货，校验装量与逐味订单守恒。"""
+    spec = plan['authored_opening']
+    remaining = Counter({g['id']:g['count'] for g in plan['groups'] if g['kind']!='广告锁定周转盒'})
+    groups = {g['id']:g for g in plan['groups']}
+    def box_for(source, phase):
+        group = groups[source['group_id']]
+        assert group['phase']==phase and group['kind'] in ('普通盒','数字冰冻盒','数字盖盒','普通冰冻盒','单颗暂存盒'), group
+        assert group['capacity']==(1 if group['kind']=='单颗暂存盒' else 4), group
+        assert phase=='开局' or group['kind']=='普通盒', group
+        assert len(source['layers'])==group['fill'] and remaining[group['id']]>0, source
+        remaining[group['id']] -= 1
+        hidden = source.get('hidden', [])
+        assert len(hidden)==len(set(hidden)) and all(0<i<len(source['layers']) for i in hidden), source
+        return {'kind':KINDS[group['kind']], 'lid':group['number'],
+                'items':[dict(flavor=f, **({'hidden':True} if i in hidden else {})) for i,f in enumerate(source['layers'])]}
+    slots = []
+    for index, source in enumerate(spec['slots']):
+        slots.append({'kind':'single' if groups[source['group_id']]['capacity']==1 else 'regular','unlock_after':0,'id':f'slot_{index:02}',
+                      'group_id':source['group_id'],'box':box_for(source,'开局')})
+    stock = [box_for(source,'备货') for source in spec.get('stock', [])]
+    assert not any(remaining.values()) and len(stock)==plan['stock'], plan['id']
+    items = [item for box in [s['box'] for s in slots]+stock for item in box['items']]
+    supply = Counter(item['flavor'] for item in items)
+    hidden_count = sum(bool(item.get('hidden',False)) for item in items)
+    assert hidden_count==round(plan['hidden_ratio']*plan['donuts']), plan['id']
+    sequences = spec['demand_sequences']
+    demand = Counter(f for seq in sequences for f in seq)
+    assert len(sequences)==2 and all(sequences) and len(supply)==plan['flavors'], plan['id']
+    assert supply==Counter({f:count*4 for f,count in demand.items()}), plan['id']
+    assert sum(supply.values())==plan['donuts'] and all(0<=f<15 for f in supply), plan['id']
+    slots += [{'kind':'turnover','id':name,'unlock_after':-1,'box':None} for name in ('A','B')]
+    assert len(slots)==plan['slots'], plan['id']
+    return {'id':plan['id'],'title':f'甜甜圈小铺 · {plan["id"]}','layout_id':f'level_{plan["id"]:02}',
+            'slots':slots,'stock':stock,
+            'demands':[{'initially_open':True,'sequence':seq} for seq in sequences]+
+                      [{'initially_open':False,'sequence':[]} for _ in range(2)],
+            'tools':{'undo':1,'add_box':1,'top':1},'combo_rewards':[],
+            'design':{'version':'R2','source_row':plan['source_row'],'assist_boxes':plan['assist'],
+                      'hidden_donuts':hidden_count,'layer_order':'top_to_bottom','playtest_status':'pending',
+                      'approved_adjustments':[],'bomb_multiplier':None,'authored_opening':True,
+                      'reference':spec['reference']}}
 
 
 def opening_metrics(definition):
@@ -170,6 +216,10 @@ def install(output):
         # 每排最多五盒，余数均摊；16–20 盒形成四排，少盒关不强凑四排。
         rows = math.ceil(count/5)
         sizes = [count//rows+(row<count%rows) for row in range(rows)]
+        # 五排关避免末排只有空托或低堆叠而拉大可见间隙；调换行宽，不改盒序及数量。
+        if rows >= 5 and sizes[-1] < max(sizes) and not any(s.get('box') and len(s['box']['items']) >= 3 for s in d['slots'][-sizes[-1]:]):
+            donor = max(i for i,n in enumerate(sizes[:-1]) if n == max(sizes))
+            sizes[donor],sizes[-1] = sizes[-1],sizes[donor]
         kind = {'整齐':'grid','错落':'staggered','自由':'free'}[p['layout']]
         positions = []
         for row,number in enumerate(sizes):

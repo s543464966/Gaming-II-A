@@ -1,6 +1,6 @@
 {
   "requirements": "R2",
-  "source_sha256": "b3bb1a7d5ad34c1df955e52d90706276cbdfb49cbb7319660ad41d5a81b70c06",
+  "source_sha256": "d4b237eb7d11f6564f7c803c2de804e81961b71dccabf2ee31e1f7ce57ed2b77",
   "offline_status": "passed",
   "godot_status": "passed",
   "web_pack_status": "passed",
@@ -36,25 +36,17 @@
     },
     {
       "level": 2,
-      "definition_sha256": "e5794ee1f09eadfaead339901608f1e366fc7ea55e7adba5f927dcde76c6b52c",
-      "baseline_moves": 7,
-      "A_moves": 7,
-      "B_moves": 7,
-      "AB_moves": 7,
+      "definition_sha256": "4f0c38cffcd70ba40fcb54259b92bf3fc9db17527f4357bb4b7e6443cb05ef09",
+      "baseline_moves": 30,
+      "A_moves": 30,
+      "B_moves": 30,
+      "AB_moves": 30,
       "optimal": false,
-      "first_group_lower_bound": 1,
+      "first_group_lower_bound": 5,
       "midgame_target": 0,
       "midgame": {
-        "count": 1,
-        "intervals": [
-          {
-            "from_step": 3,
-            "recovered": 1,
-            "one_step_targets": [],
-            "to_step": 6,
-            "moves": 4
-          }
-        ],
+        "count": 0,
+        "intervals": [],
         "scope": "verified_baseline_route_not_all_paths"
       },
       "bomb_timing": null,
@@ -62,25 +54,17 @@
     },
     {
       "level": 3,
-      "definition_sha256": "0a627dc28aa9774c3e796c384d85266eebe9abb845edc309d098651e5cc1be16",
-      "baseline_moves": 11,
-      "A_moves": 11,
-      "B_moves": 11,
-      "AB_moves": 11,
+      "definition_sha256": "b797636b94bc1ed30f7062e6a36c436e021222c8099ba26cc1d6c092afc73dbd",
+      "baseline_moves": 51,
+      "A_moves": 51,
+      "B_moves": 51,
+      "AB_moves": 51,
       "optimal": false,
-      "first_group_lower_bound": 2,
+      "first_group_lower_bound": 3,
       "midgame_target": 0,
       "midgame": {
-        "count": 1,
-        "intervals": [
-          {
-            "from_step": 8,
-            "recovered": 2,
-            "one_step_targets": [],
-            "to_step": 10,
-            "moves": 3
-          }
-        ],
+        "count": 0,
+        "intervals": [],
         "scope": "verified_baseline_route_not_all_paths"
       },
       "bomb_timing": null,
@@ -88,11 +72,11 @@
     },
     {
       "level": 4,
-      "definition_sha256": "17d04befeac597f5cec4e622fbe3781a0af05fd63608579eb69bbad37046250f",
-      "baseline_moves": 10,
-      "A_moves": 10,
-      "B_moves": 10,
-      "AB_moves": 10,
+      "definition_sha256": "8a0a255dedd72b3cd7c931ac78e71293f195a3f0b54f44fe73549452d3b7cea9",
+      "baseline_moves": 58,
+      "A_moves": 58,
+      "B_moves": 58,
+      "AB_moves": 58,
       "optimal": false,
       "first_group_lower_bound": 3,
       "midgame_target": 0,
@@ -106,679 +90,46 @@
     },
     {
       "level": 5,
-      "definition_sha256": "6ea347b5fad854d62600a77e8cd0712ad85759fe8e2c0b7d7c548208ae497207",
-      "baseline_moves": 16,
-      "A_moves": 15,
-      "B_moves": 15,
-      "AB_moves": 15,
+      "definition_sha256": "88d0fd2339618bc76c8d2fab5c8c13fcd0a915f914fd65ee2660b18e0be5f6a7",
+      "baseline_moves": 47,
+      "A_moves": 47,
+      "B_moves": 47,
+      "AB_moves": 47,
       "optimal": false,
-      "first_group_lower_bound": 3,
-      "midgame_target": 0,
+      "first_group_lower_bound": 4,
+      "midgame_target": 1,
       "midgame": {
-        "count": 0,
-        "intervals": [],
+        "count": 1,
+        "intervals": [
+          {
+            "from_step": 34,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 35,
+            "moves": 2
+          }
+        ],
         "scope": "verified_baseline_route_not_all_paths"
       },
       "bomb_timing": null,
-      "playtest": "pending"
+      "playtest": "pending",
+      "adjacent_ratio": 0.18,
+      "aabb_ratio": 0.0,
+      "first_group_moves": 4
     },
     {
       "level": 6,
-      "definition_sha256": "e221242b8caf62067c38997a6f007e8157083b34a52dc33fc319264c0f531c8c",
-      "baseline_moves": 12,
-      "A_moves": 12,
-      "B_moves": 12,
-      "AB_moves": 12,
-      "optimal": false,
-      "first_group_lower_bound": 1,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 0,
-        "intervals": [],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 7,
-      "definition_sha256": "c4b76c0d7a0206a7ee502fe27c6deee091f5a7845bcb078204eb798417b6e1e5",
-      "baseline_moves": 14,
-      "A_moves": 14,
-      "B_moves": 14,
-      "AB_moves": 14,
-      "optimal": false,
-      "first_group_lower_bound": 3,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 1,
-        "intervals": [
-          {
-            "from_step": 9,
-            "recovered": 2,
-            "one_step_targets": [],
-            "to_step": 12,
-            "moves": 4
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 8,
-      "definition_sha256": "a94624cfd733b7be72d325a183c83cbfec9befca6a8316b763839ff37665d666",
-      "baseline_moves": 14,
-      "A_moves": 14,
-      "B_moves": 14,
-      "AB_moves": 14,
-      "optimal": false,
-      "first_group_lower_bound": 3,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 1,
-        "intervals": [
-          {
-            "from_step": 12,
-            "recovered": 2,
-            "one_step_targets": [],
-            "to_step": 13,
-            "moves": 2
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 9,
-      "definition_sha256": "0da72644c821ab58129ef9819d9121f9edab595518d7182ba5142d752e95976a",
-      "baseline_moves": 13,
-      "A_moves": 13,
-      "B_moves": 13,
-      "AB_moves": 13,
-      "optimal": false,
-      "first_group_lower_bound": 1,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 0,
-        "intervals": [],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 10,
-      "definition_sha256": "616d9fd343626e41882138ef26e0f543584c3747003e541ccadd4ed1fe1fc1ea",
-      "baseline_moves": 15,
-      "A_moves": 15,
-      "B_moves": 15,
-      "AB_moves": 15,
-      "optimal": false,
-      "first_group_lower_bound": 3,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 2,
-        "intervals": [
-          {
-            "from_step": 9,
-            "recovered": 2,
-            "one_step_targets": [],
-            "to_step": 12,
-            "moves": 4
-          },
-          {
-            "from_step": 13,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 14,
-            "moves": 2
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 11,
-      "definition_sha256": "d13aaf2a9c20a641f4daf1ee490aa4580b15dff58bf3d031ccad8a28288023b0",
-      "baseline_moves": 18,
-      "A_moves": 18,
-      "B_moves": 18,
-      "AB_moves": 18,
-      "optimal": false,
-      "first_group_lower_bound": 3,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 1,
-        "intervals": [
-          {
-            "from_step": 12,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 14,
-            "moves": 3
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 12,
-      "definition_sha256": "a53d30cdee989375443d1491e1ef406f8bf51beb7e94ed9b711cce0a9348e067",
-      "baseline_moves": 21,
-      "A_moves": 21,
-      "B_moves": 21,
-      "AB_moves": 21,
-      "optimal": false,
-      "first_group_lower_bound": 1,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 0,
-        "intervals": [],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 13,
-      "definition_sha256": "e8145fc2c71d25a8c0ab6bf22c54473428e37a0325e23526e02f13f123b32b78",
-      "baseline_moves": 22,
-      "A_moves": 22,
-      "B_moves": 22,
-      "AB_moves": 22,
-      "optimal": false,
-      "first_group_lower_bound": 2,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 1,
-        "intervals": [
-          {
-            "from_step": 12,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 18,
-            "moves": 7
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 14,
-      "definition_sha256": "5435bb912a72b02b4034e602ef6c3b88cc58a8aba53085f37a3c4d3ef0e18bc3",
-      "baseline_moves": 25,
-      "A_moves": 25,
-      "B_moves": 25,
-      "AB_moves": 25,
-      "optimal": false,
-      "first_group_lower_bound": 3,
-      "midgame_target": 1,
-      "midgame": {
-        "count": 3,
-        "intervals": [
-          {
-            "from_step": 14,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 15,
-            "moves": 2
-          },
-          {
-            "from_step": 16,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 17,
-            "moves": 2
-          },
-          {
-            "from_step": 18,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 23,
-            "moves": 6
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 15,
-      "definition_sha256": "e18beba9a9a6b68dc1cf6313a546bcf7d001920eb1bd9f58fe963f6502b520a3",
-      "baseline_moves": 25,
-      "A_moves": 24,
-      "B_moves": 24,
-      "AB_moves": 24,
-      "optimal": false,
-      "first_group_lower_bound": 4,
-      "midgame_target": 1,
-      "midgame": {
-        "count": 1,
-        "intervals": [
-          {
-            "from_step": 23,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 24,
-            "moves": 2
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 16,
-      "definition_sha256": "d168e5bb50250bf8e808418b056d1106322dbd15bdeba7bcd308acdf7696e0e7",
-      "baseline_moves": 24,
-      "A_moves": 24,
-      "B_moves": 24,
-      "AB_moves": 24,
-      "optimal": false,
-      "first_group_lower_bound": 5,
-      "midgame_target": 2,
-      "midgame": {
-        "count": 2,
-        "intervals": [
-          {
-            "from_step": 15,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 16,
-            "moves": 2
-          },
-          {
-            "from_step": 17,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 22,
-            "moves": 6
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 17,
-      "definition_sha256": "3e8d57ea9a9e474600d1b9bba3dd9fd43c2e398f8f2b6164b3aa0c5563d997d7",
-      "baseline_moves": 27,
-      "A_moves": 27,
-      "B_moves": 27,
-      "AB_moves": 27,
-      "optimal": false,
-      "first_group_lower_bound": 5,
-      "midgame_target": 2,
-      "midgame": {
-        "count": 3,
-        "intervals": [
-          {
-            "from_step": 11,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 14,
-            "moves": 4
-          },
-          {
-            "from_step": 15,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 18,
-            "moves": 4
-          },
-          {
-            "from_step": 25,
-            "recovered": 6,
-            "one_step_targets": [],
-            "to_step": 26,
-            "moves": 2
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 18,
-      "definition_sha256": "3a33d52f289e364686f080f27ec7e2ff6b1ec4d66f8100a22a4c41fffdd66191",
-      "baseline_moves": 28,
-      "A_moves": 28,
-      "B_moves": 28,
-      "AB_moves": 28,
-      "optimal": false,
-      "first_group_lower_bound": 1,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 0,
-        "intervals": [],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 19,
-      "definition_sha256": "4d04bcec7d94fcb6689346675f26ccd0c1be8add0ad9b2e874a62879a32e2bdf",
-      "baseline_moves": 34,
-      "A_moves": 34,
-      "B_moves": 34,
-      "AB_moves": 34,
-      "optimal": false,
-      "first_group_lower_bound": 2,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 0,
-        "intervals": [],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 20,
-      "definition_sha256": "6a36e850fd016b5773c927d639f767acbb8f9d66e8d81e84392f00a9f10b58d0",
-      "baseline_moves": 32,
-      "A_moves": 32,
-      "B_moves": 32,
-      "AB_moves": 32,
-      "optimal": false,
-      "first_group_lower_bound": 3,
-      "midgame_target": 1,
-      "midgame": {
-        "count": 2,
-        "intervals": [
-          {
-            "from_step": 25,
-            "recovered": 5,
-            "one_step_targets": [],
-            "to_step": 27,
-            "moves": 3
-          },
-          {
-            "from_step": 28,
-            "recovered": 7,
-            "one_step_targets": [],
-            "to_step": 29,
-            "moves": 2
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 21,
-      "definition_sha256": "9e93529d8903cb1b214a1608300c5e92185e269e5b9d873429e451e8b90e4ff1",
-      "baseline_moves": 19,
-      "A_moves": 19,
-      "B_moves": 19,
-      "AB_moves": 19,
+      "definition_sha256": "bc7b23fc182c43f7e6afaef8b39c414172304a31ac95f33b21234fcce83394a7",
+      "baseline_moves": 52,
+      "A_moves": 52,
+      "B_moves": 52,
+      "AB_moves": 52,
       "optimal": false,
       "first_group_lower_bound": 3,
       "midgame_target": 1,
       "midgame": {
         "count": 1,
         "intervals": [
-          {
-            "from_step": 15,
-            "recovered": 2,
-            "one_step_targets": [],
-            "to_step": 17,
-            "moves": 3
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 22,
-      "definition_sha256": "081771c27bcbba64d6fb1db21ddf6701ff6ccb1b03cc143f3d59ee66b12c0092",
-      "baseline_moves": 17,
-      "A_moves": 17,
-      "B_moves": 17,
-      "AB_moves": 17,
-      "optimal": false,
-      "first_group_lower_bound": 4,
-      "midgame_target": 1,
-      "midgame": {
-        "count": 1,
-        "intervals": [
-          {
-            "from_step": 14,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 16,
-            "moves": 3
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 23,
-      "definition_sha256": "90312ebfd6b36ae93099c34531ae960961dfb30481d97e3b3cc0e53227a0d97e",
-      "baseline_moves": 18,
-      "A_moves": 18,
-      "B_moves": 18,
-      "AB_moves": 18,
-      "optimal": false,
-      "first_group_lower_bound": 4,
-      "midgame_target": 1,
-      "midgame": {
-        "count": 2,
-        "intervals": [
-          {
-            "from_step": 8,
-            "recovered": 2,
-            "one_step_targets": [],
-            "to_step": 14,
-            "moves": 7
-          },
-          {
-            "from_step": 15,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 16,
-            "moves": 2
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 24,
-      "definition_sha256": "9af929ddb04fdc1cce33f9defec21aace4896adade33a9314ebe765514a7b625",
-      "baseline_moves": 28,
-      "A_moves": 28,
-      "B_moves": 28,
-      "AB_moves": 28,
-      "optimal": false,
-      "first_group_lower_bound": 1,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 2,
-        "intervals": [
-          {
-            "from_step": 16,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 20,
-            "moves": 5
-          },
-          {
-            "from_step": 21,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 25,
-            "moves": 5
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 25,
-      "definition_sha256": "7ed1f25f51172fb2585e8e6eaca66853e50a762b3ca94bd8bfe11c31dcbce506",
-      "baseline_moves": 26,
-      "A_moves": 26,
-      "B_moves": 26,
-      "AB_moves": 26,
-      "optimal": false,
-      "first_group_lower_bound": 2,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 2,
-        "intervals": [
-          {
-            "from_step": 20,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 21,
-            "moves": 2
-          },
-          {
-            "from_step": 24,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 25,
-            "moves": 2
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 26,
-      "definition_sha256": "42737ea6c06c4b0bc6cf88221b9ca4e6c6cff543dd5940a50742309059632bf9",
-      "baseline_moves": 32,
-      "A_moves": 32,
-      "B_moves": 32,
-      "AB_moves": 32,
-      "optimal": false,
-      "first_group_lower_bound": 3,
-      "midgame_target": 1,
-      "midgame": {
-        "count": 3,
-        "intervals": [
-          {
-            "from_step": 21,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 22,
-            "moves": 2
-          },
-          {
-            "from_step": 23,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 25,
-            "moves": 3
-          },
-          {
-            "from_step": 26,
-            "recovered": 7,
-            "one_step_targets": [],
-            "to_step": 28,
-            "moves": 3
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 27,
-      "definition_sha256": "868dc3e01e25f679afcdcf42fcee1d6553eafaef313aa0f2f15d975d24327ba5",
-      "baseline_moves": 23,
-      "A_moves": 23,
-      "B_moves": 23,
-      "AB_moves": 23,
-      "optimal": false,
-      "first_group_lower_bound": 5,
-      "midgame_target": 2,
-      "midgame": {
-        "count": 2,
-        "intervals": [
-          {
-            "from_step": 15,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 18,
-            "moves": 4
-          },
-          {
-            "from_step": 19,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 21,
-            "moves": 3
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 28,
-      "definition_sha256": "2028067b837752dbd42318667e2ac10c5f8fc4ca0a73ae62874cc495079d0861",
-      "baseline_moves": 44,
-      "A_moves": 40,
-      "B_moves": 40,
-      "AB_moves": 40,
-      "optimal": false,
-      "first_group_lower_bound": 5,
-      "midgame_target": 2,
-      "midgame": {
-        "count": 4,
-        "intervals": [
-          {
-            "from_step": 28,
-            "recovered": 5,
-            "one_step_targets": [],
-            "to_step": 29,
-            "moves": 2
-          },
-          {
-            "from_step": 30,
-            "recovered": 5,
-            "one_step_targets": [],
-            "to_step": 35,
-            "moves": 6
-          },
-          {
-            "from_step": 36,
-            "recovered": 5,
-            "one_step_targets": [],
-            "to_step": 37,
-            "moves": 2
-          },
           {
             "from_step": 39,
             "recovered": 8,
@@ -790,324 +141,896 @@
         "scope": "verified_baseline_route_not_all_paths"
       },
       "bomb_timing": null,
-      "playtest": "pending"
+      "playtest": "pending",
+      "adjacent_ratio": 0.061224489795918366,
+      "aabb_ratio": 0.0,
+      "first_group_moves": 3
     },
     {
-      "level": 29,
-      "definition_sha256": "7034961043352d56884d8210ab4cbb17267d4361eb02c0aca6e9ce604d1e6c4f",
-      "baseline_moves": 31,
-      "A_moves": 28,
-      "B_moves": 28,
-      "AB_moves": 27,
+      "level": 7,
+      "definition_sha256": "e647bd24df8b51f0d353b6e067aef0fb8ae4ad206bc9d968be9d30ed5b573301",
+      "baseline_moves": 52,
+      "A_moves": 52,
+      "B_moves": 52,
+      "AB_moves": 52,
       "optimal": false,
-      "first_group_lower_bound": 5,
+      "first_group_lower_bound": 4,
       "midgame_target": 2,
       "midgame": {
         "count": 2,
         "intervals": [
           {
-            "from_step": 18,
-            "recovered": 3,
+            "from_step": 33,
+            "recovered": 6,
             "one_step_targets": [],
-            "to_step": 21,
-            "moves": 4
+            "to_step": 34,
+            "moves": 2
           },
           {
-            "from_step": 26,
-            "recovered": 4,
+            "from_step": 35,
+            "recovered": 6,
             "one_step_targets": [],
-            "to_step": 27,
-            "moves": 2
+            "to_step": 38,
+            "moves": 4
           }
         ],
         "scope": "verified_baseline_route_not_all_paths"
       },
       "bomb_timing": null,
-      "playtest": "pending"
+      "playtest": "pending",
+      "adjacent_ratio": 0.11538461538461539,
+      "aabb_ratio": 0.0,
+      "first_group_moves": 4
     },
     {
-      "level": 30,
-      "definition_sha256": "76e383c4a193344ef9a1d5da783abf794c268b057120ec9553eafe0192a0ed60",
-      "baseline_moves": 24,
-      "A_moves": 23,
-      "B_moves": 23,
-      "AB_moves": 23,
+      "level": 8,
+      "definition_sha256": "352244d41f684579a48b18b6f6d66047bf4b4532bd4117357501da37bc10c8be",
+      "baseline_moves": 51,
+      "A_moves": 50,
+      "B_moves": 50,
+      "AB_moves": 50,
       "optimal": false,
       "first_group_lower_bound": 3,
       "midgame_target": 1,
-      "midgame": {
-        "count": 2,
-        "intervals": [
-          {
-            "from_step": 18,
-            "recovered": 2,
-            "one_step_targets": [],
-            "to_step": 20,
-            "moves": 3
-          },
-          {
-            "from_step": 21,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 23,
-            "moves": 3
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 31,
-      "definition_sha256": "13fcd2cc91b9ddc7c6a7d154e5bacac77514bc963b2a96f1093207c59bfcc6dd",
-      "baseline_moves": 19,
-      "A_moves": 19,
-      "B_moves": 19,
-      "AB_moves": 19,
-      "optimal": false,
-      "first_group_lower_bound": 1,
-      "midgame_target": 0,
       "midgame": {
         "count": 1,
         "intervals": [
           {
-            "from_step": 16,
-            "recovered": 3,
+            "from_step": 40,
+            "recovered": 11,
             "one_step_targets": [],
-            "to_step": 17,
-            "moves": 2
+            "to_step": 43,
+            "moves": 4
           }
         ],
         "scope": "verified_baseline_route_not_all_paths"
       },
       "bomb_timing": null,
-      "playtest": "pending"
+      "playtest": "pending",
+      "adjacent_ratio": 0.13725490196078433,
+      "aabb_ratio": 0.0,
+      "first_group_moves": 3
     },
     {
-      "level": 32,
-      "definition_sha256": "e7cf2480524c4990ff9bdb36f0ab5af18cd2fe3162ab07ad9d37f01ccc29d101",
-      "baseline_moves": 18,
-      "A_moves": 18,
-      "B_moves": 18,
-      "AB_moves": 18,
+      "level": 9,
+      "definition_sha256": "a5f9935a3c624701c6a4ae094e91c2c038b9e1c7c320a056b50bbf97254d09eb",
+      "baseline_moves": 56,
+      "A_moves": 53,
+      "B_moves": 53,
+      "AB_moves": 53,
       "optimal": false,
-      "first_group_lower_bound": 2,
-      "midgame_target": 0,
-      "midgame": {
-        "count": 0,
-        "intervals": [],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 33,
-      "definition_sha256": "2f09c55f9d7048e1a61488495541cecddf0d8b924cc260a197b5a7bdc85fecfb",
-      "baseline_moves": 19,
-      "A_moves": 19,
-      "B_moves": 19,
-      "AB_moves": 19,
-      "optimal": false,
-      "first_group_lower_bound": 3,
+      "first_group_lower_bound": 4,
       "midgame_target": 1,
       "midgame": {
         "count": 2,
         "intervals": [
           {
-            "from_step": 11,
-            "recovered": 2,
+            "from_step": 45,
+            "recovered": 10,
             "one_step_targets": [],
-            "to_step": 15,
-            "moves": 5
+            "to_step": 47,
+            "moves": 3
           },
           {
-            "from_step": 16,
-            "recovered": 3,
+            "from_step": 48,
+            "recovered": 10,
             "one_step_targets": [],
-            "to_step": 17,
-            "moves": 2
+            "to_step": 52,
+            "moves": 5
           }
         ],
         "scope": "verified_baseline_route_not_all_paths"
       },
       "bomb_timing": null,
-      "playtest": "pending"
+      "playtest": "pending",
+      "adjacent_ratio": 0.06382978723404255,
+      "aabb_ratio": 0.0,
+      "first_group_moves": 4
     },
     {
-      "level": 34,
-      "definition_sha256": "997f304d0b15a8feedb219c91b74cbe0e77d985657adae176a35c6c956647df1",
-      "baseline_moves": 38,
-      "A_moves": 31,
-      "B_moves": 31,
-      "AB_moves": 31,
+      "level": 10,
+      "definition_sha256": "e997a527b69a3b5199657c2fedd90034bbea9d1f50ce828f481e2e5033e33553",
+      "baseline_moves": 57,
+      "A_moves": 57,
+      "B_moves": 57,
+      "AB_moves": 57,
+      "optimal": false,
+      "first_group_lower_bound": 5,
+      "midgame_target": 2,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 39,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 40,
+            "moves": 2
+          },
+          {
+            "from_step": 41,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 42,
+            "moves": 2
+          },
+          {
+            "from_step": 49,
+            "recovered": 12,
+            "one_step_targets": [],
+            "to_step": 51,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.043478260869565216,
+      "aabb_ratio": 0.0,
+      "first_group_moves": 5
+    },
+    {
+      "level": 11,
+      "definition_sha256": "f619f6a41af4caf8d965df19f72d59d5388727b82d034b557c8e034d6ef97c3d",
+      "baseline_moves": 49,
+      "A_moves": 49,
+      "B_moves": 49,
+      "AB_moves": 49,
       "optimal": false,
       "first_group_lower_bound": 4,
+      "midgame_target": 2,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 28,
+            "recovered": 5,
+            "one_step_targets": [],
+            "to_step": 32,
+            "moves": 5
+          },
+          {
+            "from_step": 37,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 38,
+            "moves": 2
+          },
+          {
+            "from_step": 39,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 43,
+            "moves": 5
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.14893617021276595,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 12,
+      "definition_sha256": "1f6a165dabf7c3313cd97106bf8c9a4e28d4f4fd7ef4253ebd264d2fe83fc883",
+      "baseline_moves": 48,
+      "A_moves": 48,
+      "B_moves": 48,
+      "AB_moves": 48,
+      "optimal": false,
+      "first_group_lower_bound": 3,
       "midgame_target": 1,
       "midgame": {
         "count": 2,
         "intervals": [
           {
             "from_step": 31,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 34,
+            "moves": 4
+          },
+          {
+            "from_step": 36,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 42,
+            "moves": 7
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.022727272727272728,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 13,
+      "definition_sha256": "c0a182d2b753e8eeb5e1d43085b99454d135faf05467f232bb49a31de95e02aa",
+      "baseline_moves": 53,
+      "A_moves": 52,
+      "B_moves": 52,
+      "AB_moves": 52,
+      "optimal": false,
+      "first_group_lower_bound": 4,
+      "midgame_target": 2,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 37,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 40,
+            "moves": 4
+          },
+          {
+            "from_step": 44,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 45,
+            "moves": 2
+          },
+          {
+            "from_step": 49,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 51,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.1,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 14,
+      "definition_sha256": "047fab81455dcbd1abb68a0e96cf1b8fb96fc463fdd531e045e6c16ed557ccd0",
+      "baseline_moves": 58,
+      "A_moves": 57,
+      "B_moves": 57,
+      "AB_moves": 58,
+      "optimal": false,
+      "first_group_lower_bound": 5,
+      "midgame_target": 2,
+      "midgame": {
+        "count": 2,
+        "intervals": [
+          {
+            "from_step": 45,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 47,
+            "moves": 3
+          },
+          {
+            "from_step": 55,
+            "recovered": 11,
+            "one_step_targets": [],
+            "to_step": 56,
+            "moves": 2
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.061224489795918366,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 15,
+      "definition_sha256": "bb34008f5992a2749a2ce6792a4062e94d280618f9acec2e627fc20ecf2d2ede",
+      "baseline_moves": 51,
+      "A_moves": 51,
+      "B_moves": 51,
+      "AB_moves": 51,
+      "optimal": false,
+      "first_group_lower_bound": 4,
+      "midgame_target": 2,
+      "midgame": {
+        "count": 2,
+        "intervals": [
+          {
+            "from_step": 27,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 28,
+            "moves": 2
+          },
+          {
+            "from_step": 29,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 34,
+            "moves": 6
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.14893617021276595,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 16,
+      "definition_sha256": "095c61da1902e52f2bc9e435d570940ff743abc9ecc9c66809a92912004180d6",
+      "baseline_moves": 59,
+      "A_moves": 59,
+      "B_moves": 59,
+      "AB_moves": 59,
+      "optimal": false,
+      "first_group_lower_bound": 5,
+      "midgame_target": 3,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 46,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 48,
+            "moves": 3
+          },
+          {
+            "from_step": 49,
+            "recovered": 11,
+            "one_step_targets": [],
+            "to_step": 50,
+            "moves": 2
+          },
+          {
+            "from_step": 51,
+            "recovered": 11,
+            "one_step_targets": [],
+            "to_step": 55,
+            "moves": 5
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.06382978723404255,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 17,
+      "definition_sha256": "cbdb19c3fe29d395ea3e4c02e6b7f0c7cc2138ff7666de59483e6b54afe822f8",
+      "baseline_moves": 54,
+      "A_moves": 52,
+      "B_moves": 52,
+      "AB_moves": 52,
+      "optimal": false,
+      "first_group_lower_bound": 5,
+      "midgame_target": 3,
+      "midgame": {
+        "count": 5,
+        "intervals": [
+          {
+            "from_step": 35,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 36,
+            "moves": 2
+          },
+          {
+            "from_step": 37,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 38,
+            "moves": 2
+          },
+          {
+            "from_step": 39,
+            "recovered": 11,
+            "one_step_targets": [],
+            "to_step": 41,
+            "moves": 3
+          },
+          {
+            "from_step": 46,
+            "recovered": 11,
+            "one_step_targets": [],
+            "to_step": 50,
+            "moves": 5
+          },
+          {
+            "from_step": 51,
+            "recovered": 11,
+            "one_step_targets": [],
+            "to_step": 52,
+            "moves": 2
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.10869565217391304,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 18,
+      "definition_sha256": "766f78f572cdaaf865915fb93c50d4025bbe0b6a732918a2d1146ad9f8cbc1a9",
+      "baseline_moves": 52,
+      "A_moves": 52,
+      "B_moves": 52,
+      "AB_moves": 52,
+      "optimal": false,
+      "first_group_lower_bound": 3,
+      "midgame_target": 1,
+      "midgame": {
+        "count": 1,
+        "intervals": [
+          {
+            "from_step": 48,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 50,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.08,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 19,
+      "definition_sha256": "3aa234716108c08f1c50c0256e461ea115f80f19d4537e0295450a941eef608c",
+      "baseline_moves": 57,
+      "A_moves": 50,
+      "B_moves": 50,
+      "AB_moves": 50,
+      "optimal": false,
+      "first_group_lower_bound": 4,
+      "midgame_target": 2,
+      "midgame": {
+        "count": 2,
+        "intervals": [
+          {
+            "from_step": 45,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 47,
+            "moves": 3
+          },
+          {
+            "from_step": 48,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 51,
+            "moves": 4
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.0851063829787234,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 20,
+      "definition_sha256": "115f745713a7be54f40cf828284d5204f9b4a20f8e00b8af3da15e9c91480244",
+      "baseline_moves": 56,
+      "A_moves": 56,
+      "B_moves": 56,
+      "AB_moves": 56,
+      "optimal": false,
+      "first_group_lower_bound": 5,
+      "midgame_target": 3,
+      "midgame": {
+        "count": 4,
+        "intervals": [
+          {
+            "from_step": 28,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 33,
+            "moves": 6
+          },
+          {
+            "from_step": 34,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 42,
+            "moves": 9
+          },
+          {
+            "from_step": 43,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 45,
+            "moves": 3
+          },
+          {
+            "from_step": 47,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 49,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.07692307692307693,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 21,
+      "definition_sha256": "39c03233b9ad198ff7c42a1ea1bebc03a46218c93a9dde62342ef3fbe9510111",
+      "baseline_moves": 52,
+      "A_moves": 50,
+      "B_moves": 50,
+      "AB_moves": 50,
+      "optimal": false,
+      "first_group_lower_bound": 4,
+      "midgame_target": 2,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 35,
             "recovered": 5,
+            "one_step_targets": [],
+            "to_step": 39,
+            "moves": 5
+          },
+          {
+            "from_step": 45,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 47,
+            "moves": 3
+          },
+          {
+            "from_step": 48,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 50,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.06382978723404255,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 22,
+      "definition_sha256": "49460be1476a525dc798ca3d0eff26ad8882d73ac93a0772004759e28dd1fd35",
+      "baseline_moves": 58,
+      "A_moves": 56,
+      "B_moves": 56,
+      "AB_moves": 56,
+      "optimal": false,
+      "first_group_lower_bound": 5,
+      "midgame_target": 3,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 45,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 46,
+            "moves": 2
+          },
+          {
+            "from_step": 47,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 49,
+            "moves": 3
+          },
+          {
+            "from_step": 50,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 52,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.04081632653061224,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 23,
+      "definition_sha256": "e4a4a0ea02a279afe3ba44499a2c9e772c0c9470aee0f0412aa260bb923d3251",
+      "baseline_moves": 62,
+      "A_moves": 62,
+      "B_moves": 62,
+      "AB_moves": 62,
+      "optimal": false,
+      "first_group_lower_bound": 5,
+      "midgame_target": 3,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 34,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 37,
+            "moves": 4
+          },
+          {
+            "from_step": 49,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 55,
+            "moves": 7
+          },
+          {
+            "from_step": 59,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 60,
+            "moves": 2
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.03773584905660377,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 24,
+      "definition_sha256": "82d875762c377a4441fba4d292d62b0d0de7113890baa59dc9617c05a3103002",
+      "baseline_moves": 44,
+      "A_moves": 44,
+      "B_moves": 44,
+      "AB_moves": 44,
+      "optimal": false,
+      "first_group_lower_bound": 3,
+      "midgame_target": 1,
+      "midgame": {
+        "count": 2,
+        "intervals": [
+          {
+            "from_step": 29,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 30,
+            "moves": 2
+          },
+          {
+            "from_step": 36,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 37,
+            "moves": 2
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.13636363636363635,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 25,
+      "definition_sha256": "76b8978350c7394d87f257af836ce2e6ebe0c2f20dd7686c960709f653c73bc7",
+      "baseline_moves": 48,
+      "A_moves": 48,
+      "B_moves": 48,
+      "AB_moves": 48,
+      "optimal": false,
+      "first_group_lower_bound": 4,
+      "midgame_target": 2,
+      "midgame": {
+        "count": 4,
+        "intervals": [
+          {
+            "from_step": 29,
+            "recovered": 5,
+            "one_step_targets": [],
+            "to_step": 30,
+            "moves": 2
+          },
+          {
+            "from_step": 31,
+            "recovered": 6,
             "one_step_targets": [],
             "to_step": 34,
             "moves": 4
           },
           {
             "from_step": 35,
-            "recovered": 5,
+            "recovered": 7,
             "one_step_targets": [],
             "to_step": 37,
             "moves": 3
+          },
+          {
+            "from_step": 40,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 44,
+            "moves": 5
           }
         ],
         "scope": "verified_baseline_route_not_all_paths"
       },
       "bomb_timing": null,
-      "playtest": "pending"
+      "playtest": "pending",
+      "adjacent_ratio": 0.09302325581395349,
+      "aabb_ratio": 0.0
     },
     {
-      "level": 35,
-      "definition_sha256": "a04196edf311733f6536569645912b48aa0319b84c236a8ddc31e1d545c5463c",
-      "baseline_moves": 26,
-      "A_moves": 22,
-      "B_moves": 22,
-      "AB_moves": 22,
+      "level": 26,
+      "definition_sha256": "d5ce9d1efb7b87454e7ccc75c522f8f08573d9873e8cde612de4eb197018a29a",
+      "baseline_moves": 56,
+      "A_moves": 54,
+      "B_moves": 54,
+      "AB_moves": 54,
       "optimal": false,
       "first_group_lower_bound": 4,
-      "midgame_target": 1,
-      "midgame": {
-        "count": 2,
-        "intervals": [
-          {
-            "from_step": 12,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 19,
-            "moves": 8
-          },
-          {
-            "from_step": 20,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 22,
-            "moves": 3
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 36,
-      "definition_sha256": "57042140b5236f3b54ae9cca45e6a662bb32b3e62d442657d919adb2a0f2e0e4",
-      "baseline_moves": 27,
-      "A_moves": 27,
-      "B_moves": 27,
-      "AB_moves": 27,
-      "optimal": false,
-      "first_group_lower_bound": 5,
       "midgame_target": 2,
       "midgame": {
-        "count": 2,
+        "count": 3,
         "intervals": [
           {
-            "from_step": 19,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 20,
-            "moves": 2
-          },
-          {
-            "from_step": 24,
-            "recovered": 5,
-            "one_step_targets": [],
-            "to_step": 26,
-            "moves": 3
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 37,
-      "definition_sha256": "11dabcf23acea511cf16e70eb102cbc2e973456b4bda3fea53184e53b1b82378",
-      "baseline_moves": 32,
-      "A_moves": 31,
-      "B_moves": 31,
-      "AB_moves": 31,
-      "optimal": false,
-      "first_group_lower_bound": 5,
-      "midgame_target": 2,
-      "midgame": {
-        "count": 4,
-        "intervals": [
-          {
-            "from_step": 19,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 22,
-            "moves": 4
-          },
-          {
-            "from_step": 23,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 25,
-            "moves": 3
-          },
-          {
-            "from_step": 26,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 27,
-            "moves": 2
-          },
-          {
-            "from_step": 30,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 31,
-            "moves": 2
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 38,
-      "definition_sha256": "6753455b6821fa732a6488a6b15dda926a6d5b8a2dcfd2e7c854e34a1670c47c",
-      "baseline_moves": 42,
-      "A_moves": 40,
-      "B_moves": 40,
-      "AB_moves": 40,
-      "optimal": false,
-      "first_group_lower_bound": 5,
-      "midgame_target": 2,
-      "midgame": {
-        "count": 4,
-        "intervals": [
-          {
-            "from_step": 27,
-            "recovered": 5,
-            "one_step_targets": [],
-            "to_step": 29,
-            "moves": 3
-          },
-          {
-            "from_step": 30,
+            "from_step": 39,
             "recovered": 6,
             "one_step_targets": [],
-            "to_step": 33,
+            "to_step": 41,
+            "moves": 3
+          },
+          {
+            "from_step": 42,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 45,
             "moves": 4
           },
+          {
+            "from_step": 46,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 48,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.06521739130434782,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 27,
+      "definition_sha256": "a6ecd3e8342b507425a1f142952c435701aa7719adaf3ef24b833033b3eff59d",
+      "baseline_moves": 65,
+      "A_moves": 62,
+      "B_moves": 62,
+      "AB_moves": 62,
+      "optimal": false,
+      "first_group_lower_bound": 5,
+      "midgame_target": 3,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 39,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 47,
+            "moves": 9
+          },
+          {
+            "from_step": 48,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 50,
+            "moves": 3
+          },
+          {
+            "from_step": 53,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 55,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.02040816326530612,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 28,
+      "definition_sha256": "c0850167dd441beb36d395534b3bb6c57bc5abdf7d1ebec989354bafb62a1a79",
+      "baseline_moves": 50,
+      "A_moves": 50,
+      "B_moves": 50,
+      "AB_moves": 50,
+      "optimal": false,
+      "first_group_lower_bound": 4,
+      "midgame_target": 2,
+      "midgame": {
+        "count": 2,
+        "intervals": [
+          {
+            "from_step": 36,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 37,
+            "moves": 2
+          },
+          {
+            "from_step": 38,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 41,
+            "moves": 4
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.08888888888888889,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 29,
+      "definition_sha256": "1ffbeb4be71ec39c6fe071aa9b3fe1f777bd8df7fda6f67c27f535fb56362a3f",
+      "baseline_moves": 57,
+      "A_moves": 55,
+      "B_moves": 55,
+      "AB_moves": 55,
+      "optimal": false,
+      "first_group_lower_bound": 5,
+      "midgame_target": 4,
+      "midgame": {
+        "count": 4,
+        "intervals": [
           {
             "from_step": 34,
             "recovered": 7,
@@ -1117,82 +1040,487 @@
           },
           {
             "from_step": 36,
-            "recovered": 7,
+            "recovered": 8,
             "one_step_targets": [],
-            "to_step": 38,
-            "moves": 3
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 39,
-      "definition_sha256": "214a8f1be71afff62c4a0e905dee1efabd98b9c4d13518c0a94eac65e1410b80",
-      "baseline_moves": 30,
-      "A_moves": 29,
-      "B_moves": 29,
-      "AB_moves": 29,
-      "optimal": false,
-      "first_group_lower_bound": 6,
-      "midgame_target": 3,
-      "midgame": {
-        "count": 3,
-        "intervals": [
-          {
-            "from_step": 13,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 15,
-            "moves": 3
-          },
-          {
-            "from_step": 16,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 22,
+            "to_step": 42,
             "moves": 7
           },
           {
-            "from_step": 27,
-            "recovered": 4,
+            "from_step": 49,
+            "recovered": 8,
             "one_step_targets": [],
-            "to_step": 29,
+            "to_step": 51,
             "moves": 3
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 40,
-      "definition_sha256": "f09eb84e85a9bee9dcbae6ffb33f3a8ab524a044218dc1ad30e37fe8de382d83",
-      "baseline_moves": 21,
-      "A_moves": 21,
-      "B_moves": 21,
-      "AB_moves": 21,
-      "optimal": false,
-      "first_group_lower_bound": 3,
-      "midgame_target": 1,
-      "midgame": {
-        "count": 1,
-        "intervals": [
+          },
           {
-            "from_step": 19,
-            "recovered": 3,
+            "from_step": 52,
+            "recovered": 8,
             "one_step_targets": [],
-            "to_step": 20,
+            "to_step": 53,
             "moves": 2
           }
         ],
         "scope": "verified_baseline_route_not_all_paths"
       },
       "bomb_timing": null,
-      "playtest": "pending"
+      "playtest": "pending",
+      "adjacent_ratio": 0.041666666666666664,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 30,
+      "definition_sha256": "b0be921594da8fee8b1e488a527b925eefc511ff4103b4f75b025d79a6ac201e",
+      "baseline_moves": 47,
+      "A_moves": 47,
+      "B_moves": 47,
+      "AB_moves": 47,
+      "optimal": false,
+      "first_group_lower_bound": 4,
+      "midgame_target": 2,
+      "midgame": {
+        "count": 2,
+        "intervals": [
+          {
+            "from_step": 33,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 37,
+            "moves": 5
+          },
+          {
+            "from_step": 38,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 40,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "bomb_timing": null,
+      "playtest": "pending",
+      "adjacent_ratio": 0.1276595744680851,
+      "aabb_ratio": 0.0
+    },
+    {
+      "level": 31,
+      "baseline_moves": 51,
+      "A_moves": 51,
+      "B_moves": 51,
+      "AB_moves": 51,
+      "first_group_lower_bound": 5,
+      "adjacent_ratio": 0.043478260869565216,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 4,
+        "intervals": [
+          {
+            "from_step": 36,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 38,
+            "moves": 3
+          },
+          {
+            "from_step": 44,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 45,
+            "moves": 2
+          },
+          {
+            "from_step": 46,
+            "recovered": 11,
+            "one_step_targets": [],
+            "to_step": 47,
+            "moves": 2
+          },
+          {
+            "from_step": 48,
+            "recovered": 11,
+            "one_step_targets": [],
+            "to_step": 50,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending",
+      "definition_sha256": "a245b7e986216dad55eeb3d226c23f222de4847aceecfbf915a8cabe627797e1",
+      "midgame_target": 3,
+      "bomb_timing": null
+    },
+    {
+      "level": 32,
+      "baseline_moves": 51,
+      "A_moves": 47,
+      "B_moves": 47,
+      "AB_moves": 47,
+      "first_group_lower_bound": 4,
+      "adjacent_ratio": 0.045454545454545456,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 2,
+        "intervals": [
+          {
+            "from_step": 37,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 39,
+            "moves": 3
+          },
+          {
+            "from_step": 40,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 44,
+            "moves": 5
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending",
+      "definition_sha256": "b805f7b96b35e92cc6517de9cfdeee2e51503e629f28c7b0426c1d996f5fbe78",
+      "midgame_target": 2,
+      "bomb_timing": null
+    },
+    {
+      "level": 33,
+      "baseline_moves": 54,
+      "A_moves": 54,
+      "B_moves": 54,
+      "AB_moves": 54,
+      "first_group_lower_bound": 4,
+      "adjacent_ratio": 0.08,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 38,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 40,
+            "moves": 3
+          },
+          {
+            "from_step": 42,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 46,
+            "moves": 5
+          },
+          {
+            "from_step": 47,
+            "recovered": 11,
+            "one_step_targets": [],
+            "to_step": 48,
+            "moves": 2
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending",
+      "definition_sha256": "1ff730471828f2c1b746894bd95a5ed8966e44daa2371cf52858e9b5b382ffbd",
+      "midgame_target": 3,
+      "bomb_timing": null
+    },
+    {
+      "level": 34,
+      "baseline_moves": 56,
+      "A_moves": 56,
+      "B_moves": 56,
+      "AB_moves": 56,
+      "first_group_lower_bound": 5,
+      "adjacent_ratio": 0.0425531914893617,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 36,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 39,
+            "moves": 4
+          },
+          {
+            "from_step": 40,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 41,
+            "moves": 2
+          },
+          {
+            "from_step": 49,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 52,
+            "moves": 4
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending",
+      "definition_sha256": "aadcfc9a92394a2f4cc2f00b8091d9fe2b900572cbe494ff2f585a3c9b72f5fb",
+      "midgame_target": 3,
+      "bomb_timing": null
+    },
+    {
+      "level": 35,
+      "baseline_moves": 49,
+      "A_moves": 49,
+      "B_moves": 49,
+      "AB_moves": 49,
+      "first_group_lower_bound": 4,
+      "adjacent_ratio": 0.125,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 2,
+        "intervals": [
+          {
+            "from_step": 33,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 36,
+            "moves": 4
+          },
+          {
+            "from_step": 43,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 44,
+            "moves": 2
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending",
+      "definition_sha256": "9a72fd4cc85bf1ef444998223089847c77080034474b0ec1409663e376245bbc",
+      "midgame_target": 2,
+      "bomb_timing": null
+    },
+    {
+      "level": 36,
+      "baseline_moves": 52,
+      "A_moves": 52,
+      "B_moves": 52,
+      "AB_moves": 52,
+      "first_group_lower_bound": 5,
+      "adjacent_ratio": 0.13043478260869565,
+      "aabb_ratio": 0.058823529411764705,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 29,
+            "recovered": 5,
+            "one_step_targets": [],
+            "to_step": 30,
+            "moves": 2
+          },
+          {
+            "from_step": 33,
+            "recovered": 5,
+            "one_step_targets": [],
+            "to_step": 37,
+            "moves": 5
+          },
+          {
+            "from_step": 38,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 40,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending",
+      "definition_sha256": "f185bdd38817964d2fa312bd85838b54d73e509c6ca3144fb6d53bde3ef4b198",
+      "midgame_target": 3,
+      "bomb_timing": null
+    },
+    {
+      "level": 37,
+      "baseline_moves": 62,
+      "A_moves": 59,
+      "B_moves": 59,
+      "AB_moves": 59,
+      "first_group_lower_bound": 5,
+      "adjacent_ratio": 0.10204081632653061,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 48,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 49,
+            "moves": 2
+          },
+          {
+            "from_step": 53,
+            "recovered": 13,
+            "one_step_targets": [],
+            "to_step": 54,
+            "moves": 2
+          },
+          {
+            "from_step": 55,
+            "recovered": 13,
+            "one_step_targets": [],
+            "to_step": 57,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending",
+      "definition_sha256": "e12bedaf7dfc41357440fe940a318e434bc6870048383a4335e7b01e6092a1cf",
+      "midgame_target": 3,
+      "bomb_timing": null
+    },
+    {
+      "level": 38,
+      "baseline_moves": 53,
+      "A_moves": 50,
+      "B_moves": 50,
+      "AB_moves": 50,
+      "first_group_lower_bound": 4,
+      "adjacent_ratio": 0.06818181818181818,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 4,
+        "intervals": [
+          {
+            "from_step": 31,
+            "recovered": 5,
+            "one_step_targets": [],
+            "to_step": 32,
+            "moves": 2
+          },
+          {
+            "from_step": 33,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 39,
+            "moves": 7
+          },
+          {
+            "from_step": 44,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 45,
+            "moves": 2
+          },
+          {
+            "from_step": 49,
+            "recovered": 11,
+            "one_step_targets": [],
+            "to_step": 52,
+            "moves": 4
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending",
+      "definition_sha256": "034ddaf5686c5022a212ddfdeb9042595dbaea558bc7128a4140801f318a2a24",
+      "midgame_target": 2,
+      "bomb_timing": null
+    },
+    {
+      "level": 39,
+      "baseline_moves": 56,
+      "A_moves": 53,
+      "B_moves": 53,
+      "AB_moves": 53,
+      "first_group_lower_bound": 5,
+      "adjacent_ratio": 0.08333333333333333,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 4,
+        "intervals": [
+          {
+            "from_step": 35,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 38,
+            "moves": 4
+          },
+          {
+            "from_step": 39,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 40,
+            "moves": 2
+          },
+          {
+            "from_step": 41,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 44,
+            "moves": 4
+          },
+          {
+            "from_step": 45,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 50,
+            "moves": 6
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending",
+      "definition_sha256": "be4fdd6ad310f4bca13ab6ba691251fe488b24ff9078cc08964e367a82f835de",
+      "midgame_target": 4,
+      "bomb_timing": null
+    },
+    {
+      "level": 40,
+      "baseline_moves": 52,
+      "A_moves": 52,
+      "B_moves": 52,
+      "AB_moves": 52,
+      "first_group_lower_bound": 4,
+      "adjacent_ratio": 0.06,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 2,
+        "intervals": [
+          {
+            "from_step": 35,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 37,
+            "moves": 3
+          },
+          {
+            "from_step": 39,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 40,
+            "moves": 2
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending",
+      "definition_sha256": "417be30568eba623c786c9512555e7b5ab9b63bd94e3e89bfbe004ae320151c5",
+      "midgame_target": 2,
+      "bomb_timing": null
     },
     {
       "level": 41,
@@ -3154,8 +3482,470 @@
   ],
   "visual_capture_count": 45,
   "row_distribution": {
-    "2": 22,
-    "3": 66,
-    "4": 12
+    "2": 3,
+    "3": 57,
+    "4": 24,
+    "5": 16
+  },
+  "latest_update": {
+    "date": "2026-10-05",
+    "scope": "level_21_30_wave",
+    "levels": [
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "godot_suites": [
+      "donut",
+      "hundred"
+    ],
+    "complete_godot_replays": 400,
+    "offline_replays": 400,
+    "viewport_cases": 12,
+    "other_90_definitions_solutions_and_layouts_unchanged": true,
+    "first_group_moves": [
+      4,
+      5,
+      5,
+      3,
+      4,
+      4,
+      5,
+      4,
+      5,
+      4
+    ],
+    "baseline_moves": [
+      52,
+      58,
+      62,
+      44,
+      48,
+      56,
+      65,
+      50,
+      57,
+      47
+    ],
+    "baseline_refill_steps": {
+      "26": [
+        25
+      ],
+      "27": [
+        25,
+        32
+      ],
+      "28": [
+        4
+      ]
+    },
+    "baseline_refill_available_space": {
+      "26": [
+        9
+      ],
+      "27": [
+        9,
+        9
+      ],
+      "28": [
+        9
+      ]
+    },
+    "complete_empty_normal_boxes": [
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      2,
+      0,
+      1
+    ],
+    "normal_fill_distribution": {
+      "21": {
+        "4": 12,
+        "3": 2,
+        "2": 1,
+        "0": 1
+      },
+      "22": {
+        "4": 11,
+        "3": 4,
+        "2": 2
+      },
+      "23": {
+        "4": 14,
+        "3": 1,
+        "1": 1,
+        "0": 1
+      },
+      "24": {
+        "4": 13,
+        "3": 2,
+        "2": 1,
+        "0": 1
+      },
+      "25": {
+        "4": 11,
+        "3": 4,
+        "2": 2
+      },
+      "26": {
+        "4": 12,
+        "3": 3,
+        "2": 1,
+        "0": 1
+      },
+      "27": {
+        "4": 12,
+        "3": 2,
+        "2": 3
+      },
+      "28": {
+        "4": 14,
+        "0": 2
+      },
+      "29": {
+        "4": 10,
+        "3": 3,
+        "2": 3
+      },
+      "30": {
+        "4": 12,
+        "3": 2,
+        "2": 1,
+        "0": 1
+      }
+    },
+    "single_initial_fills": {
+      "21": [],
+      "22": [],
+      "23": [],
+      "24": [
+        0
+      ],
+      "25": [
+        0
+      ],
+      "26": [
+        1
+      ],
+      "27": [
+        0
+      ],
+      "28": [
+        0
+      ],
+      "29": [
+        1
+      ],
+      "30": [
+        0
+      ]
+    },
+    "single_baseline_moves": {
+      "24": [
+        [
+          1,
+          "in"
+        ],
+        [
+          5,
+          "out"
+        ],
+        [
+          32,
+          "in"
+        ],
+        [
+          36,
+          "out"
+        ]
+      ],
+      "25": [
+        [
+          2,
+          "in"
+        ],
+        [
+          6,
+          "out"
+        ],
+        [
+          36,
+          "in"
+        ],
+        [
+          42,
+          "out"
+        ]
+      ],
+      "26": [
+        [
+          13,
+          "out"
+        ],
+        [
+          18,
+          "in"
+        ],
+        [
+          21,
+          "out"
+        ],
+        [
+          29,
+          "in"
+        ],
+        [
+          34,
+          "out"
+        ],
+        [
+          35,
+          "in"
+        ],
+        [
+          44,
+          "out"
+        ]
+      ],
+      "27": [
+        [
+          1,
+          "in"
+        ],
+        [
+          27,
+          "out"
+        ],
+        [
+          43,
+          "in"
+        ],
+        [
+          46,
+          "out"
+        ]
+      ],
+      "28": [
+        [
+          1,
+          "in"
+        ],
+        [
+          29,
+          "out"
+        ]
+      ],
+      "29": [
+        [
+          2,
+          "out"
+        ],
+        [
+          3,
+          "in"
+        ],
+        [
+          22,
+          "out"
+        ]
+      ],
+      "30": [
+        [
+          1,
+          "in"
+        ],
+        [
+          13,
+          "out"
+        ]
+      ]
+    },
+    "refill_and_single_scope": "verified_baseline_routes_not_all_paths",
+    "row_sizes": {
+      "21": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "22": [
+        5,
+        4,
+        4,
+        4,
+        4
+      ],
+      "23": [
+        5,
+        5,
+        4,
+        4,
+        4
+      ],
+      "24": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "25": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "26": [
+        5,
+        4,
+        4,
+        4,
+        4
+      ],
+      "27": [
+        5,
+        4,
+        4,
+        4,
+        5
+      ],
+      "28": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "29": [
+        5,
+        5,
+        4,
+        4,
+        4
+      ],
+      "30": [
+        4,
+        4,
+        4,
+        4,
+        5
+      ]
+    },
+    "playtest": "pending",
+    "preview_url": "http://127.0.0.1:4173/",
+    "browser_checks": [
+      "level_21_ready_to_play",
+      "level_24_first_five_moves_single_in_and_out",
+      "level_27_five_rows",
+      "level_29_prefilled_single_and_mechanisms"
+    ],
+    "browser_known_console_note": "Existing optional __donutHostViewport interface is absent on plain web; adapter falls back to full viewport. Not changed in this update.",
+    "captures": [
+      "Archive/ReferenceImage/planning/level_21_wave_preview.png",
+      "Archive/ReferenceImage/planning/level_24_single_cycle_preview.png",
+      "Archive/ReferenceImage/planning/level_27_wave_preview.png",
+      "Archive/ReferenceImage/planning/level_29_wave_preview.png"
+    ],
+    "reference_image": "Archive/ReferenceImage/planning/screw_game_level_05_reference.png",
+    "reference_game_playtest": "not_performed_native_desktop_control_unavailable",
+    "temporary_cleanup": "blocked_by_automatic_approval_policy; retained ignored Testing/.runtime/level21_30_wave and Testing/.runtime/godot-test-gxHSUZ"
+  },
+  "thirty_one_forty_update": {
+    "temporary_cleanup": "blocked_by_automatic_approval_policy; retained ignored Testing/.runtime/level31_40_wave, godot-test-gLmRBc and godot-test-AzitWf",
+    "date": "2026-10-08",
+    "levels": [
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "level_30": "unchanged_transition",
+    "baseline_moves": [
+      51,
+      51,
+      54,
+      56,
+      49,
+      52,
+      62,
+      53,
+      56,
+      52
+    ],
+    "first_group_moves": [
+      5,
+      4,
+      4,
+      5,
+      4,
+      5,
+      5,
+      4,
+      5,
+      4
+    ],
+    "midgame_counts": [
+      4,
+      2,
+      3,
+      3,
+      2,
+      3,
+      3,
+      4,
+      4,
+      2
+    ],
+    "full_empty_normal_boxes": [
+      0,
+      1,
+      1,
+      1,
+      2,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    "source_reimport": "passed_ten_authored_definitions_equal",
+    "source_preservation": "other_ninety_rows_values_formulas_caches_styles_and_native_features_preserved",
+    "runtime_preservation": "other_ninety_definitions_layouts_plans_and_replays_unchanged",
+    "godot_complete_replays": 400,
+    "offline_complete_replays": 400,
+    "viewport_cases": 12,
+    "web_pack": "passed",
+    "playtest": "pending",
+    "optimal": false,
+    "preview_url": "http://127.0.0.1:4173/",
+    "reference_game": "not_played_in_this_update; approved_original_design",
+    "windows_import": "default_scene_thread_mode; existing single-threaded import crashed on font; full clean import tests and web export passed",
+    "browser_checks": [
+      "level_31_ready_to_play",
+      "level_39_hidden_and_ice_layout",
+      "level_39_first_two_moves_single_out_then_in"
+    ],
+    "captures": [
+      "Archive/ReferenceImage/planning/level_31_wave_preview.png",
+      "Archive/ReferenceImage/planning/level_39_wave_preview.png",
+      "Archive/ReferenceImage/planning/level_39_single_cycle_preview.png"
+    ],
+    "browser_known_console_note": "Existing optional __donutHostViewport interface is absent on plain web; adapter falls back to full viewport. Not changed in this update."
   }
 }
