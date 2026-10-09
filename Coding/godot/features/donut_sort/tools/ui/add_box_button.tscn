@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Texture2D" path="res://design_system/art/button_base.tres" id="base"]
 
@@ -6,9 +6,7 @@
 
 [ext_resource type="Texture2D" path="res://features/donut_sort/tools/ui/art/count_badge.tres" id="count_badge"]
 
-[ext_resource type="FontVariation" path="res://features/donut_sort/ui/donut_display_font.tres" id="display_font"]
-
-[ext_resource type="FontFile" path="res://design_system/fonts/lilita_one.ttf" id="rounded"]
+[ext_resource type="FontFile" path="res://design_system/fonts/chill_round_bold.ttf" id="display_font"]
 
 [node name="AddBox" type="TextureButton"]
 layout_mode = 0
@@ -66,7 +64,7 @@ offset_right = 182
 offset_bottom = 36
 mouse_filter = 2
 text = "+"
-theme_override_fonts/font = ExtResource("rounded")
+theme_override_fonts/font = ExtResource("display_font")
 theme_override_font_sizes/font_size = 34
 theme_override_colors/font_color = Color(1,1,1,1)
 horizontal_alignment = 1

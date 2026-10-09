@@ -1,5 +1,9 @@
 # UI 比例与组合检查
 
+2026-10-09 失败弹窗定稿接入：使用用户提供的整块奶油色面板、粉色标题牌、散落甜甜圈插画，以及独立的主页／重试图标按钮。原 PNG 保留，通过 AtlasTexture 排除透明边距，两按钮按可见底座统一大小；遮罩透明度为 0.42。中文保留定稿立体标题与副标题，英文在同款去字底图上显示翻译；切换语言时同时切换底图和文字显隐。弹窗的总体安全区布局仍由关卡页面负责，继续使用 80%／360 逻辑像素限宽、58% 限高，不改变 App 装配。
+
+验证：`node Testing/scripts/run_godot.mjs donut` 通过，覆盖语言地区匹配、英语回退、运行中切换、按钮与文字边界、重试、触摸取消及生命周期恢复。Compatibility 渲染复查 320×568、440×956、768×1024 的中英文共六张截图：[中文手机](../Archive/ReferenceImage/donut_failure_zh_cn_440x956.png)、[英文手机](../Archive/ReferenceImage/donut_failure_en_us_440x956.png)、[中文短屏](../Archive/ReferenceImage/donut_failure_zh_cn_320x568.png)、[英文短屏](../Archive/ReferenceImage/donut_failure_en_us_320x568.png)。素材来源与内置 image_gen 去字提示词见[失败素材清单](../Coding/godot/features/donut_sort/failure/ui/art/asset_manifest.json)。本次网页导出因本机缺少固定的 Godot 4.5.1 Web 模板而未更新；尚未验证微信／抖音真机。以下记录保留历史状态。
+
 2026-10-08 整叠冰壳与纸托前沿：冰壳宽 188，三／四层高分别为 232／272 设计单位；冰壳的上、下边缘等比缩放，中段适配层数，透明度为 0.8，最高边界为局部 y=-156，仍在原四层选中 y=-169 预留之内。开局居中纳入冰沿，解冻后不重排。普通、固定色和单颗纸托前沿使用各自原图坐标及同一缩放，最底层饼底少量被遮挡；固定色与单颗标记保持一致。组件及十二个实际页面在 393×852、320×568 复查，[组件效果](../Archive/ReferenceImage/donut_ice_shell_components.png)、[手机五排](../Archive/ReferenceImage/donut_ice_shell_393_004.png)、[短屏五排](../Archive/ReferenceImage/donut_ice_shell_320_004.png)。下方记录保留上一轮素材及历史布局。
 
 2026-10-08 新甜甜圈比例：柔光糖霜原图比旧图更高，容器调整为 160×136、底端仍落在 y=108、层距为 40；满四层选中预留由 171 调整至 169。食物、订单贴纸与纸托保持等比绘制；收餐使用统一缩放倍率居中落入盒口，避免按盒口宽高拉伸。新版灰圈与正常食物可见宽度接近，固定口味纸托同步新色板，关卡摆位不变。百关 × 13 组视口／安全区回归通过，包含五排和四层抬起预留。[新色板与特殊层](../Archive/ReferenceImage/donut_soft_glaze_palette.png)、[手机五排](../Archive/ReferenceImage/donut_soft_glaze_393_004.png)、[最小屏五排](../Archive/ReferenceImage/donut_soft_glaze_320_004.png)。下方截图与尺寸记录是此前版本，素材替换细节见[当前清单](mechanics_assets.md)。
@@ -55,3 +59,9 @@ v7 纸盒的后层与前沿共用 `Rect2(100, 270, 1060, 800)` 裁切区域及�
 订单数、口味分布、解锁状态和备货数量来自现有关卡。本轮未修改关卡或玩法数据，未重新导出微信包或进行真机验收。
 
 2026-10-01：三个道具按钮与原图统一归入 `features/donut_sort/tools/ui/` 及其 `art/`。在 320×568 短屏、393×852 手机安全区、440×956 长屏和 768×1024 平板检查真实渲染；按钮等比缩放、角标完整且不遮柜体。标准入口在本机字体无界面导入阶段崩溃，改用 Godot 4.5.1 Compatibility 渲染器导入同一隔离工程后，`architecture home donut` 对应检查全部通过，退出码 0，无脚本或资源错误；未做平台打包或真机复测。[手机效果](../Archive/ReferenceImage/donut_tools_enlarged_phone.png)。
+
+## 2026-10-09 统一字体
+
+全部文字控件改用用户提供的寒蝉全圆体 Bold，中文、英文、数字和提示不再混用多套字体或合成加粗。订单完成符号使用字体内的 `√`；字体原件及授权归 `design_system/fonts/`。失败弹窗的图片立体字按用户最新确认保留，可编辑英文文案使用新字体。旧字体及混合配置移除。
+
+验证：隔离工程的 `architecture home donut` 全部通过；遍历百关文字控件、十页选关和机制文案，未发现缺字或混用字体。在 320×568、440×956、768×1024 三种尺寸复核主界面、设置与中英文失败弹窗。固定网页构建及 PCK 检查通过，已更新 4173 预览并携带字体授权；未重新导出小游戏平台包或进行真机验收。

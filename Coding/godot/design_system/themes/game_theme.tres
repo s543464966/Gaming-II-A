@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3]
 
-[ext_resource type="FontFile" path="res://design_system/fonts/donut_sans_sc.otf" id="1_font"]
+[ext_resource type="FontFile" path="res://design_system/fonts/chill_round_bold.ttf" id="1_font"]
 
 [sub_resource type="StyleBoxFlat" id="CreamPanel"]
 bg_color = Color(1, 0.969, 0.902, 1)

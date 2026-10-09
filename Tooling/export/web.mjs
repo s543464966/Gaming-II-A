@@ -46,6 +46,7 @@ try {
     hashes[path] = createHash('sha256').update(await readFile(join(source,path))).digest('hex');
   }
   await cp(join(workspace,'Tooling/preview/web.html'),join(output,'index.html'));
+  await cp(join(source,'design_system/fonts/LICENSE.txt'),join(output,'font_license.txt'));
   await writeFile(join(output,'build_info.json'),JSON.stringify({levels:catalog.levels.length,builtAt:new Date().toISOString(),hashes},null,2)+'\n');
   await mkdir(destination,{recursive:true});
   // 输出文件只覆盖已验证的同一路径；服务继续读取固定目录，不创建另一个链接。

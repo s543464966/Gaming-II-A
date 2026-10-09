@@ -29,6 +29,7 @@ func _run() -> void:
 		print("PASS: " + suite)
 	app.queue_free()
 	await process_frame
+	await preload("../../helpers/audio_cleanup.gd").wait_for_mix(self)
 	quit(0)
 
 

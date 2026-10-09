@@ -51,6 +51,7 @@ var _drop_origin: Variant = null # 本次首颗飞行起点；承接选中抬起
 @onready var board: DonutBoardView = $Stage/Boxes
 @onready var orders: DonutOrdersView = $Stage/Orders
 @onready var event_player: DonutEventPlayer = $Stage/Effects
+@onready var audio: DonutAudio = $Audio
 @onready var tools_view: DonutToolsView = $Stage/Tools
 @onready var top_choices: DonutTopChoices = $Stage/TopChoices
 @onready var completion_view: DonutCompletionView = $Stage/Completion
@@ -91,6 +92,9 @@ func _ready() -> void:
 	HOST_LOCALE.apply()
 	event_player.initialize(board, orders)
 	event_player.playback_finished.connect(_finish_animation)
+	event_player.audio_cue.connect(audio.play_cue)
+	event_player.playback_stopped.connect(audio.stop_effects)
+	_sync_audio()
 	if session == null:
 		initialize(DonutSession.new())
 	board.box_pressed.connect(_on_box_pressed)
@@ -276,11 +280,21 @@ func _notification(what: int) -> void:
 		_fit_stage.call_deferred()
 	if is_node_ready() and what == NOTIFICATION_UNPAUSED:
 		_sync_completion.call_deferred()
+		_sync_audio.call_deferred()
+	if is_node_ready() and what in [NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_APPLICATION_FOCUS_IN,
+			NOTIFICATION_PAUSED, NOTIFICATION_EXIT_TREE]:
+		_sync_audio()
+
+
+## 页面可见且宿主活跃时续播配乐，退出树或外部暂停时停止发声。
+func _sync_audio() -> void:
+	audio.set_active(is_visible_in_tree() and not _suspended and can_process())
 
 
 ## 隐藏与恢复时统一清理临时输入并显示真实最终状态。
 func _on_visibility_changed() -> void:
 	if is_node_ready():
+		_sync_audio()
 		if not is_visible_in_tree():
 			session.cancel_tool_reward()
 		_cancel_interaction()

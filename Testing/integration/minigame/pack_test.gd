@@ -71,7 +71,7 @@ func _run() -> void:
 		if page.get_node_or_null(path) == null:
 			_fail("Exported UI component is missing: " + path)
 			return
-	var font: FontFile = load("res://design_system/fonts/donut_sans_sc.otf")
+	var font: FontFile = load("res://design_system/fonts/chill_round_bold.ttf")
 	if font == null:
 		_fail("Bundled Chinese font is missing.")
 		return

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://features/donut_sort/currency/ui/donut_coin_balance.gd" id="script"]
 [ext_resource type="Texture2D" path="res://features/donut_sort/currency/ui/art/coin_balance_plate.png" id="plate"]
 [ext_resource type="Texture2D" path="res://features/donut_sort/currency/ui/art/coin.png" id="coin"]
-[ext_resource type="FontVariation" path="res://features/donut_sort/ui/donut_display_font.tres" id="display_font"]
+[ext_resource type="FontFile" path="res://design_system/fonts/chill_round_bold.ttf" id="display_font"]
 
 [sub_resource type="AtlasTexture" id="PlateArt"]
 atlas = ExtResource("plate")

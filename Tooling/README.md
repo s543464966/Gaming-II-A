@@ -34,4 +34,4 @@ $env:GODOT_BIN = 'C:\Tools\Godot\Godot_v4.5.1-stable_win64.exe'
 
 每个平台有一个 `Tooling/<平台>.command` 薄入口，委托 `Tooling/export/<平台>.mjs`。微信和抖音通过 `export/minigame.mjs` 共用资源导出、验证与固定目录替换；各自的模板和宿主配置保持独立。TapTap 接入时沿用固定目录约定，当前尚未实现。
 
-`data/subset_ui_font.py` 只在维护随包中文字体时使用；字体来源、依赖与再生成方法见 [字体说明](../Coding/godot/design_system/fonts/README.md)。
+游戏使用用户提供的完整统一字体，不再运行旧字体子集工具；原件摘要与授权见 [字体说明](../Coding/godot/design_system/fonts/README.md)。

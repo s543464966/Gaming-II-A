@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://features/donut_sort/ui/donut_sort_screen.gd" id="script"]
+[ext_resource type="PackedScene" path="res://features/donut_sort/presentation/donut_audio.tscn" id="audio_scene"]
 [ext_resource type="Theme" path="res://design_system/themes/game_theme.tres" id="theme"]
-[ext_resource type="FontVariation" path="res://features/donut_sort/ui/donut_display_font.tres" id="display_font"]
+[ext_resource type="FontFile" path="res://design_system/fonts/chill_round_bold.ttf" id="display_font"]
 [ext_resource type="PackedScene" path="res://features/donut_sort/ui/donut_background.tscn" id="background_scene"]
 [ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/header_level.tres" id="level"]
 [ext_resource type="PackedScene" path="res://features/donut_sort/currency/ui/donut_coin_balance.tscn" id="coin_scene"]
@@ -215,5 +216,7 @@ layout_mode = 0
 layout_mode = 0
 
 [node name="BoardInput" parent="." instance=ExtResource("board_input_scene")]
+
+[node name="Audio" parent="." instance=ExtResource("audio_scene")]
 
 [node name="LessonDialog" parent="Stage" instance=ExtResource("lesson_scene")]

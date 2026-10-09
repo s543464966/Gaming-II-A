@@ -54,10 +54,75 @@
         1081,
         1280
       ]
+    },
+    {
+      "id": "failure_popup_body_zh",
+      "width": 1089,
+      "height": 1444,
+      "sha256": "2b0ce08eedbae3e3079fa61c9816af583554e6f06fcf3c3cedb347e08cde083a",
+      "path": "res://features/donut_sort/failure/ui/art/failure_popup_body_zh.png",
+      "resource": "res://features/donut_sort/failure/ui/art/failure_popup_body_zh.tres",
+      "region": [
+        50,
+        54,
+        990,
+        1296
+      ],
+      "source": "/Users/juntao/Downloads/Loading与失败弹窗_定稿素材/02_挑战失败弹窗/failure_popup_body.png"
+    },
+    {
+      "id": "failure_popup_body_blank",
+      "width": 1089,
+      "height": 1445,
+      "sha256": "bab9768e88f013004b34f13bddc0dfc9d2bb2d0281c2486bddf466479f89a5f6",
+      "path": "res://features/donut_sort/failure/ui/art/failure_popup_body_blank.png",
+      "resource": "res://features/donut_sort/failure/ui/art/failure_popup_body_blank.tres",
+      "region": [
+        50,
+        54,
+        990,
+        1296
+      ],
+      "source": "/Users/juntao/.codex/generated_images/01a10bb0-4d45-74c0-9f85-0d74ddce78ad/exec-e7c81eb0-3c63-4c2e-902c-018e4b26b424.png",
+      "derived_from": "failure_popup_body_zh",
+      "generator": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent game failure popup panel, prepared for runtime localization. Image 1 is the edit target. Remove ONLY the large cream Chinese title 挑战失败 from the pink plaque, and the brown Chinese subtitle 再试一次吧！ below it. Reconstruct the smooth pink glossy plaque and warm cream panel surface seamlessly where those letters were. Keep absolutely everything else unchanged: same rounded orange cream border, same pink plaque and two small round fasteners, exact same open pink striped pastry box and two fallen donuts illustration, same size and positions, same empty bottom area for buttons, same colors, lighting, perspective, shadows, margins and portrait composition. Do not add any buttons, text, letters, symbols, new objects or decorative details. Preserve the genuinely transparent background outside the panel including the soft edge shadows; no black, white, checkerboard or colored backdrop. Produce the complete panel at the original aspect ratio with all edges fully visible."
+    },
+    {
+      "id": "button_home_approved",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "102faa6a3ea938042f1cfc1243a5d0f6e0a6e4a79138eaf8ea2548a6588364ce",
+      "path": "res://features/donut_sort/failure/ui/art/button_home_approved.png",
+      "resource": "res://features/donut_sort/failure/ui/art/button_home_approved.tres",
+      "region": [
+        284,
+        305,
+        688,
+        670
+      ],
+      "source": "/Users/juntao/Downloads/Loading与失败弹窗_定稿素材/02_挑战失败弹窗/button_home.png"
+    },
+    {
+      "id": "button_retry_approved",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "f0ac3261bfb21342fbb977a8dac92b6751d59761f03a0882acde7ed4289a04ac",
+      "path": "res://features/donut_sort/failure/ui/art/button_retry_approved.png",
+      "resource": "res://features/donut_sort/failure/ui/art/button_retry_approved.tres",
+      "region": [
+        218,
+        230,
+        820,
+        807
+      ],
+      "source": "/Users/juntao/Downloads/Loading与失败弹窗_定稿素材/02_挑战失败弹窗/button_retry.png"
     }
   ],
-  "english_header": {
-    "resource": "res://features/donut_sort/ui/art/ui/header_level.tres",
-    "usage": "英文及其他语言回退使用共用粉色空标题底板与本地化文字；中文直接使用 failure_header_zh。"
+  "active_presentation": {
+    "source": "Loading与失败弹窗_定稿素材/02_挑战失败弹窗",
+    "body": "failure_popup_body_zh for zh; failure_popup_body_blank with localized Labels otherwise",
+    "buttons": "approved icon-only buttons; localized tooltips",
+    "notes": "原 PNG 完整保留；AtlasTexture 只排除透明边距，所有节点等比缩放。旧版素材保留作来源记录，不再参与失败弹窗装配。"
   }
 }

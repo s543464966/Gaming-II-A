@@ -43,6 +43,7 @@ func _run() -> void:
 	await _check_inline_actions()
 	await _check_group_flight()
 	await _check_dispatch_flight()
+	await _check_audio_lifecycle()
 	await _check_drag_follow_flight()
 	await _check_pointer_input()
 	await _check_hit_area_and_no_hints()
@@ -53,6 +54,7 @@ func _run() -> void:
 	await _check_side_refill()
 	await _check_order_card_layout()
 	await _check_host_safe_area()
+	await preload("../../helpers/audio_cleanup.gd").wait_for_mix(self)
 	if not _failures.is_empty():
 		for failure: String in _failures:
 			push_error(failure)
@@ -788,7 +790,7 @@ func _check_failure_panel() -> void:
 ## 验证中英文地区匹配、未知语言回退、运行中切换、随包字形及文本边界。
 func _check_failure_localization(panel: DonutFailurePanel) -> void:
 	var original_locale: String = TranslationServer.get_locale()
-	var paths: Array[String] = ["Heading/Text", "Subtitle", "Home/Text", "TryAgain/Text"]
+	var paths: Array[String] = ["Heading/Text", "Subtitle"]
 	var chinese: Array[String] = ["挑战失败", "再试一次吧！", "返回主页", "再试一次"]
 	var english: Array[String] = ["Level Failed", "Let’s try again!", "Home", "Try Again"]
 	for locale: String in ["zh_CN", "en_US", "zh_Hans", "en_GB", "fr_FR", "zh"]:
@@ -796,9 +798,13 @@ func _check_failure_localization(panel: DonutFailurePanel) -> void:
 		await process_frame
 		var expected: Array[String] = chinese if locale.begins_with("zh") else english
 		var use_chinese_art: bool = locale.begins_with("zh")
-		_expect(panel.get_node("Card/Heading").texture == (DonutFailurePanel.HEADER_ZH if use_chinese_art else DonutFailurePanel.HEADER_BLANK)
-			and panel.get_node("Card/Heading/Text").visible == (not use_chinese_art),
-			"Failure heading duplicates baked text or uses the wrong language: " + locale)
+		_expect(panel.get_node("Card/Panel").texture == (DonutFailurePanel.BODY_ZH if use_chinese_art else DonutFailurePanel.BODY_BLANK)
+			and panel.get_node("Card/Heading/Text").visible == (not use_chinese_art)
+			and panel.get_node("Card/Subtitle").visible == (not use_chinese_art),
+			"Failure body duplicates baked text or uses the wrong language: " + locale)
+		for index: int in 2:
+			var button: TextureButton = panel.get_node("Card/" + (["Home", "TryAgain"][index]))
+			_expect(button.tr(button.tooltip_text) == expected[index + 2], "Failure icon action is not localized: " + locale)
 		for index: int in paths.size():
 			var label: Label = panel.get_node("Card/" + paths[index])
 			var translated: String = label.tr(label.text)
@@ -1500,6 +1506,93 @@ func _check_dispatch_flight() -> void:
 	viewport.queue_free()
 	await process_frame
 	print("PASS: staggered dispatch, exact order mouth, downward occlusion, chain and lifecycle")
+
+
+## 声音随实际落位和入盒触发，中断不补播，循环配乐在重开与后台恢复时保持同一播放实例。
+func _check_audio_lifecycle() -> void:
+	var page: Control = load("res://features/home/ui/home_screen.tscn").instantiate()
+	root.add_child(page)
+	await process_frame
+	await process_frame
+	var sound: DonutAudio = page.audio
+	var music: AudioStreamWAV = sound.music.stream
+	_expect(music.loop_mode == AudioStreamWAV.LOOP_FORWARD and music.loop_begin == 0
+		and music.loop_end == 1411200 and is_equal_approx(music.get_length(), 32.0), "Music must loop the entire 32-second source")
+	_expect(music.mix_rate == 44100 and music.stereo and sound.music.volume_db == -8.0, "Music format or gain changed")
+	for player: AudioStreamPlayer in [sound.move_sound, sound.clear_sound, sound.pack_sound]:
+		_expect(player.stream is AudioStreamWAV and player.stream.loop_mode == AudioStreamWAV.LOOP_DISABLED
+			and not player.stream.stereo, "One-shot effect loops or lost mono format: " + player.name)
+	_expect(sound.move_sound.volume_db == -12.0 and sound.clear_sound.volume_db == -9.0
+		and sound.pack_sound.volume_db == -8.0, "Effect gains differ from the supplied mix")
+	_expect(sound.music.playing and not sound.music.stream_paused, "Visible page did not start music")
+	var music_playback: AudioStreamPlayback = sound.music.get_stream_playback()
+	var cues: Array[StringName] = []
+	page.event_player.audio_cue.connect(func(cue: StringName) -> void: cues.append(cue))
+	var definition: Dictionary = _definition([_box([0, 0, 0]), _box([0])])
+	page.initialize(DonutSession.new(definition))
+	page._cancel_interaction()
+	_expect(not page.session.move(0, 0) and cues.is_empty(), "Invalid move emitted audio")
+	_expect(page.session.move(1, 0), "Audio fixture failed to move")
+	var timeline: Tween = page.event_player._animation
+	timeline.pause()
+	timeline.custom_step(0.29)
+	_expect(cues.is_empty() and not sound.move_sound.playing, "Move sounded before landing")
+	timeline.custom_step(0.03)
+	_expect(cues == [&"move", &"clear"] and sound.move_sound.playing and sound.clear_sound.playing,
+		"Landing and four-of-a-kind did not play their sounds")
+	timeline.custom_step(0.90)
+	_expect(not cues.has(&"pack") and not sound.pack_sound.playing, "Packing sounded before the last donut entered")
+	timeline.custom_step(0.06)
+	_expect(cues == [&"move", &"clear", &"pack"] and sound.pack_sound.playing, "Packing did not sound exactly once on completion")
+	# 用可控毫秒边界验证抖动过滤，不让快速推进动画代替真实播放时间。
+	var milliseconds: Array[int] = [1000000]
+	sound.ticks_msec = func() -> int: return milliseconds[0]
+	sound.stop_effects()
+	sound.play_cue(&"move")
+	var first_move: AudioStreamPlayback = sound.move_sound.get_stream_playback()
+	milliseconds[0] += 69
+	sound.play_cue(&"move")
+	_expect(sound.move_sound.get_stream_playback() == first_move, "Moves less than 70 ms apart overlapped")
+	milliseconds[0] += 1
+	sound.play_cue(&"move")
+	_expect(sound.move_sound.get_stream_playback() != first_move, "Move at the 70 ms boundary was suppressed")
+	for interruption: String in ["hide", "focus", "pause"]:
+		page.initialize(DonutSession.new(definition))
+		page._cancel_interaction()
+		cues.clear()
+		page.session.move(1, 0)
+		timeline = page.event_player._animation
+		timeline.pause()
+		timeline.custom_step(0.32)
+		match interruption:
+			"hide": page.hide()
+			"focus": page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+			"pause": paused = true
+		_expect(sound.music.stream_paused and not sound.move_sound.playing and not sound.clear_sound.playing
+			and not sound.pack_sound.playing, "Interruption retained audio: " + interruption)
+		sound.play_cue(&"pack")
+		_expect(not sound.pack_sound.playing, "Inactive page accepted an audio cue")
+		match interruption:
+			"hide": page.show()
+			"focus": page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_IN)
+			"pause": paused = false
+		await process_frame
+		await process_frame
+		_expect(not timeline.is_valid() and not cues.has(&"pack") and not sound.pack_sound.playing,
+			"Interrupted timeline replayed packing on resume: " + interruption)
+		_expect(sound.music.playing and not sound.music.stream_paused and sound.music.get_stream_playback() == music_playback,
+			"Resume or level restart duplicated/restarted music: " + interruption)
+	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+	paused = true
+	paused = false
+	await process_frame
+	_expect(sound.music.stream_paused, "Tree resume unmuted a still-backgrounded page")
+	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_IN)
+	root.remove_child(page)
+	_expect(not sound.music.playing and not sound.pack_sound.playing, "Page exit retained audio")
+	page.free()
+	await process_frame
+	print("PASS: audio cue timing, 70 ms debounce, loop settings and lifecycle")
 
 
 ## 用真实视口输入复现拖拽，验证鼠标、触摸、取消与点击共存。

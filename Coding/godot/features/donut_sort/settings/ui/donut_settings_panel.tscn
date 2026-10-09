@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://features/donut_sort/settings/ui/donut_settings_panel.gd" id="script"]
-[ext_resource type="FontVariation" path="res://features/donut_sort/ui/donut_display_font.tres" id="display_font"]
+[ext_resource type="FontFile" path="res://design_system/fonts/chill_round_bold.ttf" id="display_font"]
 
 [node name="SettingsPanel" type="ColorRect"]
 layout_mode = 0

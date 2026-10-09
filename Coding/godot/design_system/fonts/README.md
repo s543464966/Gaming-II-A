@@ -1,18 +1,13 @@
-# 随包 UI 字体
+# 统一游戏字体
 
-`donut_sans_sc.otf` 是 Noto Sans SC Regular 的子集，遵循随附 SIL OFL 1.1。覆盖 GB2312 常用字符以及生成时工程中的文本，确保微信环境无需设备系统字体即可显示中文。文件已提交，普通预览、导出不需要 Python。
+全部文字控件统一使用用户提供的 `chill_round_bold.ttf`（寒蝉全圆体 Bold），中文、英文、数字与提示符号共用这一份运行字体，不再合成加粗或混用旧字体。共享 Theme 和各功能场景均直接引用同一个字体文件。
 
-源文件：[notofonts/noto-cjk / NotoSansSC-Regular.otf](https://github.com/notofonts/noto-cjk/blob/main/Sans/SubsetOTF/SC/NotoSansSC-Regular.otf)。本次源文件 SHA-256：`faa6c9df652116dde789d351359f3d7e5d2285a2b2a1f04a2d7244df706d5ea9`。重新获取同版本源文件后，使用 Python 与 `fonttools==4.60.0` 执行：
+- 文件与用户原件一致，未修改或子集化，大小为 7,004,128 字节。
+- SHA-256：`f2c4f9295d9d04a1eb6392ae3c51ecf2a9ffab355a45c6686eeec5eede3381ec`。
+- `LICENSE.txt` 复制自用户提供的字体包，含 ChillType 版权声明与 SIL Open Font License 1.1；导出时一并携带。
+- 关闭设备系统字体回退；新增文字需确认字形覆盖。订单完成标记采用此字体提供的 `√`。
+- 已删除旧字体文件、混合字体资源和旧子集制作工具；运行与导出无需字体制作依赖。
 
-```sh
-python3 Tooling/data/subset_ui_font.py /path/to/NotoSansSC-Regular.otf
-```
+失败弹窗图片中的定稿立体字按用户要求保留；其余可编辑文案统一用本字体。原始美术中的字样属于图片内容，不是额外的字体文件。
 
-脚本校验源文件哈希，在工作区生成同一字体路径。更新字符或上游字体后重新生成，重新导入并运行 `architecture home` 与微信导出包检查；新增生僻字应在目标设备确认字形。字体许可随微信包一并复制。
-
-## 参考稿排版字体
-
-主界面的英文标题、订单数字与道具文字使用 Lilita One；盒沿 Donut 和出餐纸盒文案使用 Lobster Two Italic。两者均随包携带完整字体，模态菜单与中文反馈继续使用 Noto Sans SC。许可证已完整追加到 `LICENSE.txt`，现有导出入口会随制品复制该文件。
-
-- `lilita_one.ttf`：[Google Fonts 官方来源](https://github.com/google/fonts/tree/main/ofl/lilitaone)，SHA-256 `f5b641c45c69d772ee4eda687bc9fda411d5cad6b0b45371491da4580cbc8d59`。
-- `lobster_two_italic.ttf`：[Google Fonts 官方来源](https://github.com/google/fonts/tree/main/ofl/lobstertwo)，SHA-256 `c727ae1d9e1e166a7c0679fcf79c2ff0c21bc5483ee253fdfee2f5792c0bebd9`。
+替换后运行 `node Testing/scripts/run_godot.mjs architecture home donut`，检查中英文文字边界，并用 `node Tooling/export/web.mjs` 更新固定网页预览；小游戏导出包字体覆盖由 `Testing/integration/minigame/pack_test.gd` 检查。

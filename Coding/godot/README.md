@@ -20,7 +20,7 @@ Godot 4.5.1、Compatibility 渲染，720×1280 竖屏。已实现 100 关首轮�
 
 无普通搬运路线时保留补救入口，不直接判失败。炸弹超时显示独立失败弹窗：Level Failed 标题、Let’s try again! 副标题、散落甜甜圈插画及 Home／Try Again。Try Again 重开本关；Home 暂只预留 `home_requested` 导航信号，未接主页时保留弹窗和重试入口。
 
-App 持续拥有 `Services`、`SceneContainer` 和 `Overlay`，并向 Home 显式注入独立 DonutSession 和 DonutProgress。进度服务归 Services，使用独立 `user://sweet_sort_100_v1.json`，不读旧账号；没有 Autoload。页面增加首次机制提示、玩法回看及切关／重开／周转奖励确认。F6 和自动化脚本不读写真实存档。基础 Theme 使用随包 Noto Sans SC 子集，来源和许可证见 [字体说明](design_system/fonts/README.md)。
+App 持续拥有 `Services`、`SceneContainer` 和 `Overlay`，并向 Home 显式注入独立 DonutSession 和 DonutProgress。进度服务归 Services，使用独立 `user://sweet_sort_100_v1.json`，不读旧账号；没有 Autoload。页面增加首次机制提示、玩法回看及切关／重开／周转奖励确认。F6 和自动化脚本不读写真实存档。基础 Theme 与全部文字控件统一使用随包寒蝉全圆体 Bold，来源和许可证见 [字体说明](design_system/fonts/README.md)。
 
 运行结构为 `bootstrap/app.tscn` → `features/home/ui/home_screen.tscn` → `features/donut_sort/ui/donut_sort_screen.tscn`。Home 是现有启动及单页预览入口，直接实例化玩法场景，不复制玩法实现。
 

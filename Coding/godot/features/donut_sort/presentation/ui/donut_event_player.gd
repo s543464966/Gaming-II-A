@@ -3,6 +3,8 @@ extends Control
 ## 依次播放会话已提交的事件快照，统一持有临时精灵和可取消动效。
 
 signal playback_finished
+signal playback_stopped
+signal audio_cue(cue: StringName)
 
 const BOX_SCENE: PackedScene = preload("res://features/donut_sort/board/ui/donut_box.tscn")
 const SPARKLE: Texture2D = preload("res://features/donut_sort/ui/art/effects/sparkle.tres")
@@ -57,6 +59,7 @@ func play(events: Array, drop_origin: Variant, render_state: Callable, toast: Ca
 			"mechanism", "reveal", "unlock", "demand_unlock", "spare_return", "cycle":
 				_animation.tween_interval(0.06)
 			"group":
+				_animation.tween_callback(audio_cue.emit.bind(&"clear"))
 				_animation.tween_callback(toast.bind("已归纳"))
 			"combo":
 				_animation.tween_callback(toast.bind("%d 连单！" % event.count))
@@ -80,6 +83,7 @@ func stop() -> void:
 	dispatch_pending = false
 	if _animation != null and _animation.is_valid():
 		_animation.kill()
+	playback_stopped.emit()
 	for effect: Node in get_children():
 		if effect is CanvasItem:
 			effect.hide()
@@ -119,6 +123,7 @@ func _append_donut_flight(event: Dictionary, drop_origin: Variant) -> void:
 		_animation.parallel().tween_method(_position_donut.bind(sprite, sprite.position, finish), 0.0, 1.0,
 			DONUT_FLIGHT_DURATION).set_delay(delay).set_ease(Tween.EASE_OUT)
 		_animation.parallel().tween_property(sprite, "scale", _board.boxes[event.target].scale, DONUT_FLIGHT_DURATION).set_delay(delay)
+		_animation.parallel().tween_callback(audio_cue.emit.bind(&"move")).set_delay(delay + DONUT_FLIGHT_DURATION)
 	for sprite: TextureRect in sprites:
 		_animation.tween_callback(sprite.queue_free)
 
@@ -169,6 +174,7 @@ func _append_dispatch(event: Dictionary) -> void:
 		_animation.parallel().tween_method(_position_dispatch.bind(sprite, sprite.position, hover, source.scale, target_scale, clip),
 			0.0, DISPATCH_FLIGHT_DURATION + DISPATCH_DROP_DURATION, DISPATCH_FLIGHT_DURATION + DISPATCH_DROP_DURATION
 		).set_delay(delay).set_trans(Tween.TRANS_LINEAR)
+	_animation.tween_callback(audio_cue.emit.bind(&"pack"))
 	_animation.tween_callback(clip.queue_free)
 
 

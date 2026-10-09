@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://features/donut_sort/presentation/donut_audio.gd" id="script"]
+[ext_resource type="AudioStream" path="res://game_content/donuts/audio/sweet_bakery_loop_v2.wav" id="music"]
+[ext_resource type="AudioStream" path="res://game_content/donuts/audio/donut_move.wav" id="move"]
+[ext_resource type="AudioStream" path="res://game_content/donuts/audio/donut_clear.wav" id="clear"]
+[ext_resource type="AudioStream" path="res://game_content/donuts/audio/donut_pack.wav" id="pack"]
+
+[node name="Audio" type="Node"]
+script = ExtResource("script")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("music")
+volume_db = -8.0
+
+[node name="Move" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("move")
+volume_db = -12.0
+max_polyphony = 2
+
+[node name="Clear" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("clear")
+volume_db = -9.0
+
+[node name="Pack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("pack")
+volume_db = -8.0
