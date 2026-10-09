@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://features/donut_sort/learning/ui/donut_dialog.gd" id="script"]
 [ext_resource type="Texture2D" path="res://features/donut_sort/board/ui/art/paper_holder_round.tres" id="holder"]
-[ext_resource type="Texture2D" path="res://game_content/donuts/art/donut_pink_plain.tres" id="donut"]
+[ext_resource type="Texture2D" path="res://game_content/donuts/art/soft_glaze_pink.tres" id="donut"]
+
+[ext_resource type="PackedScene" path="res://features/donut_sort/board/ui/donut_box.tscn" id="frozen_example"]
 
 [node name="LessonDialog" type="ColorRect"]
 visible = false
@@ -40,12 +42,21 @@ mouse_filter = 2
 
 [node name="Donut" type="TextureRect" parent="Card"]
 offset_left = 320.0
-offset_top = 210.0
+offset_top = 188.0
 offset_right = 480.0
 offset_bottom = 324.0
 texture = ExtResource("donut")
 expand_mode = 1
 stretch_mode = 5
+mouse_filter = 2
+
+[node name="FrozenExample" parent="Card" instance=ExtResource("frozen_example")]
+visible = false
+offset_left = 330.0
+offset_top = 245.0
+offset_right = 530.0
+offset_bottom = 371.0
+scale = Vector2(0.7, 0.7)
 mouse_filter = 2
 
 [node name="Message" type="Label" parent="Card"]

@@ -65,7 +65,7 @@ def candidate(plan, seed):
                   'slots':entries, 'stock':[e['box'] for e in stock_entries],
                   'demands':[{'initially_open':True,'sequence':demands[i::2]} for i in range(2)] +
                             [{'initially_open':False,'sequence':[]} for _ in range(2)],
-                  'tools':{'undo':1,'add_box':1,'top':1}, 'combo_rewards':[],
+                  'tools':{'undo':0,'add_box':0,'top':0}, 'combo_rewards':[],
                   'design':{'version':'R2' if 'midgame_space_min' in plan else '1.3','seed':seed,'source_row':plan['source_row'],
                             'assist_boxes':plan['assist'],'hidden_donuts':hidden_count,
                             'layer_order':'top_to_bottom', 'playtest_status':'pending',
@@ -112,7 +112,7 @@ def authored_candidate(plan):
             'slots':slots,'stock':stock,
             'demands':[{'initially_open':True,'sequence':seq} for seq in sequences]+
                       [{'initially_open':False,'sequence':[]} for _ in range(2)],
-            'tools':{'undo':1,'add_box':1,'top':1},'combo_rewards':[],
+            'tools':{'undo':0,'add_box':0,'top':0},'combo_rewards':[],
             'design':{'version':'R2','source_row':plan['source_row'],'assist_boxes':plan['assist'],
                       'hidden_donuts':hidden_count,'layer_order':'top_to_bottom','playtest_status':'pending',
                       'approved_adjustments':[],'bomb_multiplier':None,'authored_opening':True,

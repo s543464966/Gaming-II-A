@@ -55,7 +55,7 @@
 | [当前网页截图](../Archive/ReferenceImage/donut_sort_layout_browser.png)、[手机安全区模拟](../Archive/ReferenceImage/donut_sort_layout_phone.png)、[小屏截图](../Archive/ReferenceImage/donut_sort_layout_small.png) | 交错盒位、顶部贴纸与状态、柜体留白；基础内边距与安全区分开处理 |
 | [UI 比例校准](ui_alignment.md) | 对照参考稿的尺寸差异、透视、透明层叠、排版和长屏适配 |
 | [小游戏平台画面适配](platform_viewport.md) | 抖音画面挤压根因、两端安全区、等比缩放与模拟器验收 |
-| [素材与界面](mechanics_assets.md) | 原素材来源与失败弹窗说明，链接当前 v8 替换方案 |
+| [素材与界面](mechanics_assets.md) | 当前十五色柔光糖霜、整叠冰壳与纸托前沿的来源、裁切、替换范围和验证入口 |
 | [置顶选择](../Archive/ReferenceImage/donut_sort_top_choices_v2.png)、[补餐](../Archive/ReferenceImage/donut_sort_refill_v2.png)、[通关](../Archive/ReferenceImage/donut_sort_victory_v2.png) | 早期 v2 画面，仅保留历史对比；最新状态见差距补齐验收 |
 | [工程说明](../Coding/godot/README.md) | 已实现玩法、运行方式与当前范围 |
 | [关卡目录](../Coding/godot/game_content/donuts/levels/catalog.json) | 100 关配置入口，包含独立需求、特殊盒、逐盒备货和奖励 |

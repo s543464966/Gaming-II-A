@@ -55,6 +55,15 @@ func _run() -> void:
 	if not await service.prepare(args[1]) or service.download_count != 1:
 		_fail("A second startup must reuse every verified chunk.")
 		return
+	var levels: Script = load("res://features/donut_sort/donut_level.gd")
+	var catalog: Array = levels.catalog()
+	if catalog.size() != 100:
+		_fail("Cached CDN content must contain the complete 100-level catalog.")
+		return
+	var first_level: Dictionary = levels.load_definition(catalog[0].path)
+	if first_level.is_empty():
+		_fail("Cached CDN content has no valid first-level definition.")
+		return
 	var scene: PackedScene = load("res://features/home/ui/home_screen.tscn")
 	if scene == null:
 		_fail("Home scene cannot load after CDN cache mount.")
@@ -63,7 +72,9 @@ func _run() -> void:
 	root.add_child(page)
 	await process_frame
 	var board: Node = page.get_node_or_null("Stage/Boxes")
-	if board == null or board.get("boxes").size() != 17:
+	if board == null or board.get("boxes").size() != first_level.slots.size() \
+			or page.session.slots.size() != first_level.slots.size() or page.session.total_orders() <= 0 \
+			or page.session.total_donuts() <= 0:
 		_fail("CDN mount did not restore the first level.")
 		return
 	page.queue_free()

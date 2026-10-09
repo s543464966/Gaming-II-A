@@ -1,5 +1,5 @@
 extends SceneTree
-## 从真实导出包验证启动场景、关卡配置与随包中文字体。
+## 从真实导出包验证启动场景、百关配置与随包中文字体。
 
 
 ## 延迟到场景树就绪后执行打包资源检查。
@@ -9,6 +9,16 @@ func _initialize() -> void:
 
 ## 导出包必须能装配真实首关，并提供中文字符而无需系统字体。
 func _run() -> void:
+	var catalog: Array = DonutLevel.catalog()
+	if catalog.size() != 100:
+		_fail("Exported pack must contain the complete 100-level catalog.")
+		return
+	for entry: Dictionary in catalog:
+		if DonutLevel.load_definition(entry.path).is_empty():
+			_fail("Exported level definition is missing or invalid: " + entry.path)
+			return
+	var first_level: Dictionary = DonutLevel.load_definition(catalog[0].path)
+	var expected_slots: int = first_level.slots.size()
 	var packed: PackedScene = load("res://bootstrap/app.tscn")
 	if packed == null:
 		_fail("Exported App scene is missing.")
@@ -18,20 +28,28 @@ func _run() -> void:
 	current_scene = app
 	await process_frame
 	var page: Control = app.get_node("SceneContainer/HomeScreen")
-	if (page.get_node("Stage/Boxes") as DonutBoardView).boxes.size() != 17 or page.session.total_orders() <= 0 \
+	if (page.get_node("Stage/Boxes") as DonutBoardView).boxes.size() != expected_slots \
+			or page.session.slots.size() != expected_slots or page.session.total_orders() <= 0 \
 			or page.session.total_donuts() <= 0:
-		_fail("Exported level configuration did not load.")
+		_fail("Exported first level did not assemble its %d configured slots." % expected_slots)
 		return
 	if (page.get_node("Stage/Orders") as DonutOrdersView).cards.size() != 4:
 		_fail("Exported order cards are missing.")
 		return
-	var flavors: Array[String] = ["pink", "brown", "green", "blue", "orange", "ivory", "purple"]
-	for index: int in flavors.size():
-		var file: String = "donut_ivory_sprinkles" if index == 5 else "donut_%s_plain" % flavors[index]
-		if DonutArt.FOOD[index] != load("res://game_content/donuts/art/%s.tres" % file):
-			_fail("Exported pack is still using old flavor art: " + file)
+	if DonutArt.FOOD.size() != DonutLevel.FLAVOR_COUNT or DonutOrderCard.STICKER_ART.size() != DonutLevel.FLAVOR_COUNT:
+		_fail("Exported flavor and sticker counts do not match the level content.")
+		return
+	for flavor: int in DonutLevel.FLAVOR_COUNT:
+		if DonutArt.FOOD[flavor] == null or DonutOrderCard.STICKER_ART[flavor] == null:
+			_fail("Exported flavor or sticker is missing: %d" % flavor)
 			return
-		if DonutOrderCard.STICKER_ART[index] != load("res://features/donut_sort/orders/ui/art/sticker_%s.tres" % flavors[index]):
+	var flavors: Array[String] = ["pink", "cocoa", "forest_green", "sky_blue", "orange", "ivory", "purple",
+		"raspberry", "red", "caramel", "teal", "royal_blue", "lime", "lavender", "yellow"]
+	for index: int in flavors.size():
+		if DonutArt.FOOD[index] != load("res://game_content/donuts/art/soft_glaze_%s.tres" % flavors[index]):
+			_fail("Exported pack is still using old flavor art: " + flavors[index])
+			return
+		if DonutOrderCard.STICKER_ART[index] != load("res://features/donut_sort/orders/ui/art/soft_glaze_sticker_%s.tres" % flavors[index]):
 			_fail("Exported pack is missing the matching order sticker: " + flavors[index])
 			return
 	if page.board.boxes[0].back.texture != load("res://features/donut_sort/board/ui/art/paper_holder_round.tres"):
@@ -63,7 +81,7 @@ func _run() -> void:
 			return
 	app.queue_free()
 	await process_frame
-	print("PASS: minigame exported pack; ivory donut, seven matching stickers and compact layout")
+	print("PASS: minigame exported pack; 100 levels, fifteen flavors and configured first-level layout")
 	quit(0)
 
 

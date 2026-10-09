@@ -24,7 +24,7 @@ for first in range(0xA1, 0xF8):
         except UnicodeDecodeError:
             pass
 for path in (ROOT / "Coding/godot").rglob("*"):
-    if path.suffix in {".gd", ".tscn", ".json"} and ".godot" not in path.parts:
+    if path.suffix in {".gd", ".tscn", ".json", ".po"} and ".godot" not in path.parts:
         characters.update(path.read_text())
 
 font = TTFont(source, recalcTimestamp=False)

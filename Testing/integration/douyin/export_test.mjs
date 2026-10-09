@@ -4,12 +4,39 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 import vm from 'node:vm';
-import { launcherConfig, patchLauncherViewport, validateAppId } from '../../../Tooling/export/douyin.mjs';
+import { launcherConfig, patchLauncherViewport, selectDouyinResources, validateAppId } from '../../../Tooling/export/douyin.mjs';
 import { packageSizes } from '../../../Tooling/export/minigame.mjs';
 import installHostViewport from '../../../Coding/godot/platforms/minigame/runtime/host_viewport.js';
+import installHostLocale from '../../../Coding/godot/platforms/minigame/runtime/host_locale.js';
 
 const root = resolve(import.meta.dirname, '../../..');
 const platform = join(root, 'Coding/godot/platforms/douyin');
+
+test('Douyin resource selection preserves neighboring presets and engine options in any order', () => {
+  const wechat = '[preset.0]\nname="WeChat Resources"\nexport_filter="all_resources"\n\n';
+  const web = '[preset.8]\nname="Web Preview"\nexport_filter="all_resources"\n\n';
+  const douyin = '[preset.3]\nname="Douyin Resources"\nexport_filter="all_resources"\ninclude_filter="levels/*.json"\n\n';
+  const options = '[preset.3.options]\nvariant/thread_support=false\n\n';
+  const expected = '[preset.3]\nname="Douyin Resources"\nexport_filter="resources"\n'
+    + 'export_files=PackedStringArray("res://bootstrap/app.tscn", "res://game_content/icon.png")\ninclude_filter="levels/*.json"\n\n';
+  const paths = new Set(['res://game_content/icon.png', 'res://bootstrap/app.tscn']);
+  for (const [before, after] of [[wechat, web], ['', wechat + web], [wechat + web, '']]) {
+    for (const newline of ['\n', '\r\n']) {
+      const source = (before + douyin + options + after).replaceAll('\n', newline);
+      assert.equal(selectDouyinResources(source, paths), (before + expected + options + after).replaceAll('\n', newline));
+    }
+  }
+});
+
+test('invalid Douyin settings cannot borrow a filter from a later platform', () => {
+  const target = '[preset.0]\nname="Douyin Resources"\n';
+  const neighbor = '[preset.1]\nname="Web Preview"\nexport_filter="all_resources"\n';
+  assert.throws(() => selectDouyinResources(neighbor, []), /missing or ambiguous/);
+  assert.throws(() => selectDouyinResources(target + target, []), /missing or ambiguous/);
+  assert.throws(() => selectDouyinResources(target + neighbor, []), /filter/);
+  assert.throws(() => selectDouyinResources(target + 'export_filter="scenes"\n' + neighbor, []), /filter/);
+  assert.throws(() => selectDouyinResources(target + 'export_filter="all_resources"\nexport_filter="scenes"\n', []), /filter/);
+});
 
 test('tools-only export allows an unbound AppID and rejects WeChat IDs', () => {
   for (const value of ['', 'tt0123456789abcdef', 'tt0123456789abcdef01']) assert.doesNotThrow(() => validateAppId(value));
@@ -56,7 +83,7 @@ test('launcher receives a pixel-sized canvas; startup errors and host focus are 
     const navigations = [];
     const canvas = { dispatchEvent: event => events.push(event.type) };
     const windowEvents = [];
-    let info = { screenWidth: 390, screenHeight: 844, pixelRatio: 3 };
+    let info = { screenWidth: 390, screenHeight: 844, pixelRatio: 3, language: 'en-US' };
     let startCount = 0;
     const scope = {
       console: { log: value => messages.push(value), error() {} },
@@ -72,6 +99,7 @@ test('launcher receives a pixel-sized canvas; startup errors and host focus are 
       },
       require(name) {
         if (name === './host_viewport.js') return installHostViewport;
+        if (name === './host_locale.js') return installHostLocale;
         if (name === './godot.config.js') return launcherConfig('4.5.1');
         assert.equal(name, './godot.launcher.js');
         return { start(options) {
@@ -87,6 +115,7 @@ test('launcher receives a pixel-sized canvas; startup errors and host focus are 
       },
     };
     vm.runInNewContext(source, scope);
+    assert.equal(scope.__donutHostLocale.read(), 'en-US');
     await new Promise(done => setImmediate(done));
     assert.equal(startCount, 1);
     handlers.hide(); handlers.show();

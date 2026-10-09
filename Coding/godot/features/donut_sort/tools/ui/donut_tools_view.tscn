@@ -1,37 +1,40 @@
 [gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://features/donut_sort/tools/ui/donut_tools_view.gd" id="view"]
-[ext_resource type="PackedScene" path="res://features/donut_sort/tools/undo/ui/undo_button.tscn" id="undo_scene"]
-[ext_resource type="PackedScene" path="res://features/donut_sort/tools/add_box/ui/add_box_button.tscn" id="add_box_scene"]
-[ext_resource type="PackedScene" path="res://features/donut_sort/tools/top/ui/top_button.tscn" id="top_scene"]
+[ext_resource type="PackedScene" path="res://features/donut_sort/tools/ui/undo_button.tscn" id="undo_scene"]
+[ext_resource type="PackedScene" path="res://features/donut_sort/tools/ui/add_box_button.tscn" id="add_box_scene"]
+[ext_resource type="PackedScene" path="res://features/donut_sort/tools/ui/top_button.tscn" id="top_scene"]
 
 [node name="Tools" type="Control"]
 layout_mode = 0
 offset_right = 1024
-offset_bottom = 170
+offset_bottom = 264
 mouse_filter = 2
 script = ExtResource("view")
 
 [node name="Undo" parent="." instance=ExtResource("undo_scene")]
 layout_mode = 0
-offset_left = 214
-offset_right = 384
-offset_bottom = 170
+offset_left = 117
+offset_right = 287
+offset_top = 47
+offset_bottom = 217
 pivot_offset = Vector2(85, 85)
-scale = Vector2(1.1, 1.1)
+scale = Vector2(1.55, 1.55)
 
 [node name="AddBox" parent="." instance=ExtResource("add_box_scene")]
 layout_mode = 0
 offset_left = 427
 offset_right = 597
-offset_bottom = 170
+offset_top = 47
+offset_bottom = 217
 pivot_offset = Vector2(85, 85)
-scale = Vector2(1.1, 1.1)
+scale = Vector2(1.55, 1.55)
 
 [node name="Top" parent="." instance=ExtResource("top_scene")]
 layout_mode = 0
-offset_left = 640
-offset_right = 810
-offset_bottom = 170
+offset_left = 737
+offset_right = 907
+offset_top = 47
+offset_bottom = 217
 pivot_offset = Vector2(85, 85)
-scale = Vector2(1.1, 1.1)
+scale = Vector2(1.55, 1.55)

@@ -1,12 +1,20 @@
 {
-  "source": "user_supplied_button_images_and_donut_game_assets_v7",
+  "source": "user_supplied_button_images_and_donut_game_assets_v7 + user_supplied_05_buttons_and_common_ui",
   "assets": [
     {
       "id": "button_cream",
       "width": 1254,
       "height": 1254,
       "sha256": "c37292b47f9eb752b4b42d671d51f1cd1bfb69f73eebf27fa9223c8b5c86b2a7",
-      "path": "res://design_system/art/button_cream.png"
+      "path": "res://design_system/art/button_cream.png",
+      "source": "/Users/juntao/Downloads/最新素材/05_按钮与通用UI/button_cream.png",
+      "resource": "res://design_system/art/button_base.tres",
+      "region": [
+        206,
+        228,
+        837,
+        815
+      ]
     }
   ]
 }

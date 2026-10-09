@@ -1,156 +1,222 @@
 {
-  "assets": [
+  "source_pack": "user_supplied_soft_glaze",
+  "verified_on": "2026-10-08",
+  "atlases": [
     {
-      "id": "donut_pink_plain",
-      "label": "草莓粉·纯色",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "88835a5c241a57e1b0f0db51f555f177ba42f801d60c0ffefa85e702f6050f9a",
-      "path": "res://game_content/donuts/art/donut_pink_plain.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_pink.tres",
-      "source_file": "base/pink.png"
-    },
-    {
-      "id": "donut_brown_plain",
-      "label": "巧克力棕·纯色",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "60a894fb059dd85d7330a086cda322aaa88066a5db84483b3e5c9f5e4299f3f5",
-      "path": "res://game_content/donuts/art/donut_brown_plain.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_brown.tres",
-      "source_file": "base/brown.png"
-    },
-    {
-      "id": "donut_green_plain",
-      "label": "抹茶绿·纯色",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "bab85d12cc8a7856499ed2d00a7953ab5fd99882655c3e23301e35a19a4aa826",
-      "path": "res://game_content/donuts/art/donut_green_plain.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_green.tres",
-      "source_file": "base/green.png"
-    },
-    {
-      "id": "donut_blue_plain",
-      "label": "蓝莓蓝·纯色",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "3364467aa24aa0c2c0e4e838e6b62df68288304d45d6c17cd51a91906d325ddc",
-      "path": "res://game_content/donuts/art/donut_blue_plain.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_blue.tres",
-      "source_file": "base/blue.png"
-    },
-    {
-      "id": "donut_orange_plain",
-      "label": "香橙红橙·纯色",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "9cb375b6a44137ca6a1cc705f1f68eed433b79de6acfb87ac544b0263f850919",
-      "path": "res://game_content/donuts/art/donut_orange_plain.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_orange.tres",
-      "source_file": "base/orange.png"
-    },
-    {
-      "id": "donut_purple_plain",
-      "label": "葡萄深紫·纯色",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "de693d2a8bbe9fac562e5aa94385416434ebea64ecf59104959e77d49a369bcc",
-      "path": "res://game_content/donuts/art/donut_purple_plain.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_purple.tres",
-      "source_file": "base/purple.png"
-    },
-    {
-      "id": "donut_ivory_sprinkles",
-      "label": "香草奶白·少量糖针",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "c39ae617bea12a6f1a471cca6898f577612d5b2e0b8c819c8b12a610af9dba68",
-      "path": "res://game_content/donuts/art/donut_ivory_sprinkles.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_ivory.tres",
-      "source_file": "base/ivory.png"
-    },
-    {
-      "id": "donut_magenta_sprinkles",
-      "label": "火龙果玫红·少量糖针",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "4d495473f6ce818b3f4013859a681953df4d9b8e89a30e3fddc248e56ebbcf3b",
-      "path": "res://game_content/donuts/art/donut_magenta_sprinkles.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_magenta.tres",
-      "source_file": "base/magenta.png"
-    },
-    {
-      "id": "donut_red_drizzle",
-      "label": "树莓莓红·细淋面",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "12b35d6caa7bf262ab68ffe6d89976b3e4d51b1b18895b867eab6d49c95d2095",
-      "path": "res://game_content/donuts/art/donut_red_drizzle.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_red.tres",
-      "source_file": "base/red.png"
-    },
-    {
-      "id": "donut_russet_sprinkles",
-      "label": "焦糖红棕·少量糖针",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "8a029ec5b510fd850f3f872876a584f7801b02888d50eb293f6b73292adfa95c",
-      "path": "res://game_content/donuts/art/donut_russet_sprinkles.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_russet.tres",
-      "source_file": "base/russet.png"
-    },
-    {
-      "id": "donut_teal_sprinkles",
-      "label": "薄荷青·少量糖针",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "2c6dedd5070459a45395e676e9df884e819cd3defc1006f78253ac8fd9fc5ea9",
-      "path": "res://game_content/donuts/art/donut_teal_sprinkles.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_teal.tres",
-      "source_file": "base/teal.png"
-    },
-    {
-      "id": "donut_charcoal_sprinkles",
-      "label": "黑芝麻炭灰·少量糖针",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "8e1e601fc81fa67e23b1c710a1059472ed865a4bc930866b4e755d8cfc8901ea",
-      "path": "res://game_content/donuts/art/donut_charcoal_sprinkles.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_charcoal.tres",
-      "source_file": "base/charcoal.png"
-    },
-    {
-      "id": "donut_pistachio_sprinkles",
-      "label": "开心果浅绿·少量糖针",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "b3197d0ad9ffb5dc66208e01fa1d14e1fe2fa876a6ff47f37b008aa907aa3ca3",
-      "path": "res://game_content/donuts/art/donut_pistachio_sprinkles.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_pistachio.tres",
-      "source_file": "base/pistachio.png"
-    },
-    {
-      "id": "donut_lavender_drizzle",
-      "label": "紫薯浅紫·细淋面",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "5b6bae228a81c69bf1f11e169d0ad3d524835b566042aa0807f3f63f3a2208f7",
-      "path": "res://game_content/donuts/art/donut_lavender_drizzle.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_lavender.tres",
-      "source_file": "base/lavender.png"
-    },
-    {
-      "id": "donut_mocha_drizzle",
-      "label": "咖啡浅咖·细淋面",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "b130bd1c47cfdf0294b2b577468350c791427540f01818930afab56b95f2680e",
-      "path": "res://game_content/donuts/art/donut_mocha_drizzle.png",
-      "order_sticker": "res://features/donut_sort/orders/ui/art/sticker_mocha.tres",
-      "source_file": "base/mocha.png"
+      "path": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "sha256": "001edac5e3a2b01011ea5bcbc52370de12f36f727061b1168aaa310589fccff4",
+      "width": 1536,
+      "height": 1024
     }
   ],
-  "source_pack": "donut_game_assets_v9_paper_mechanics",
-  "verified_on": "2026-09-30"
+  "assets": [
+    {
+      "id": "soft_glaze_pink",
+      "flavor_id": 0,
+      "label": "草莓粉·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_pink.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        1221,
+        95,
+        279,
+        233
+      ]
+    },
+    {
+      "id": "soft_glaze_cocoa",
+      "flavor_id": 1,
+      "label": "可可棕·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_cocoa.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        1220,
+        690,
+        283,
+        238
+      ]
+    },
+    {
+      "id": "soft_glaze_forest_green",
+      "flavor_id": 2,
+      "label": "森林绿·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_forest_green.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        628,
+        690,
+        280,
+        238
+      ]
+    },
+    {
+      "id": "soft_glaze_sky_blue",
+      "flavor_id": 3,
+      "label": "天蓝·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_sky_blue.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        924,
+        396,
+        279,
+        234
+      ]
+    },
+    {
+      "id": "soft_glaze_orange",
+      "flavor_id": 4,
+      "label": "香橙·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_orange.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        629,
+        96,
+        278,
+        233
+      ]
+    },
+    {
+      "id": "soft_glaze_ivory",
+      "flavor_id": 5,
+      "label": "香草奶白·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_ivory.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        36,
+        97,
+        276,
+        232
+      ]
+    },
+    {
+      "id": "soft_glaze_purple",
+      "flavor_id": 6,
+      "label": "葡萄紫·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_purple.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        627,
+        396,
+        281,
+        234
+      ]
+    },
+    {
+      "id": "soft_glaze_raspberry",
+      "flavor_id": 7,
+      "label": "树莓玫红·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_raspberry.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        32,
+        396,
+        280,
+        234
+      ]
+    },
+    {
+      "id": "soft_glaze_red",
+      "flavor_id": 8,
+      "label": "莓红·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_red.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        926,
+        96,
+        276,
+        233
+      ]
+    },
+    {
+      "id": "soft_glaze_caramel",
+      "flavor_id": 9,
+      "label": "焦糖·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_caramel.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        923,
+        690,
+        281,
+        238
+      ]
+    },
+    {
+      "id": "soft_glaze_teal",
+      "flavor_id": 10,
+      "label": "薄荷青·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_teal.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        32,
+        690,
+        282,
+        238
+      ]
+    },
+    {
+      "id": "soft_glaze_royal_blue",
+      "flavor_id": 11,
+      "label": "宝蓝·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_royal_blue.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        1221,
+        395,
+        280,
+        235
+      ]
+    },
+    {
+      "id": "soft_glaze_lime",
+      "flavor_id": 12,
+      "label": "青柠浅绿·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_lime.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        332,
+        690,
+        280,
+        238
+      ]
+    },
+    {
+      "id": "soft_glaze_lavender",
+      "flavor_id": 13,
+      "label": "薰衣草浅紫·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_lavender.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        331,
+        396,
+        280,
+        234
+      ]
+    },
+    {
+      "id": "soft_glaze_yellow",
+      "flavor_id": 14,
+      "label": "柠檬黄·柔光糖霜",
+      "path": "res://game_content/donuts/art/soft_glaze_yellow.tres",
+      "atlas": "res://game_content/donuts/art/soft_glaze_palette.png",
+      "region": [
+        331,
+        95,
+        277,
+        233
+      ]
+    }
+  ],
+  "hidden": {
+    "path": "res://game_content/donuts/art/soft_glaze_hidden_gray.tres",
+    "atlas": "res://game_content/donuts/art/soft_glaze_hidden_gray.png",
+    "sha256": "d818d7737cf2342b21a89ca191d82ee70dcebb526061d37f1ec126f66d22ad17",
+    "region": [
+      101,
+      131,
+      1174,
+      957
+    ],
+    "source": "built-in imagegen",
+    "prompt": "One neutral gray donut matching the pink soft-glaze reference: same perspective and ~1.20 silhouette; gray icing and dough, transparent background and hole, no flavor colors, symbols or ground shadow."
+  }
 }

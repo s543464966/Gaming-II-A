@@ -33,7 +33,7 @@ func _run() -> void:
 		if index >= 30 and index <= 39:
 			_check_wave_thirty_one(definition, index - 30)
 		for key: String in ["undo", "add_box", "top"]:
-			check(int(definition.tools.get(key, 0)) == 1, "Every level must enable the three tools")
+			check(int(definition.tools.get(key, -1)) == 0, "Every level must start with zero tool charges")
 		var has_bomb: bool = definition.slots.any(func(slot: Dictionary) -> bool: return slot.box != null and slot.box.kind == "bomb")
 		if has_bomb:
 			var timer: float = float(definition.design.bomb_timing.seconds)
@@ -173,6 +173,8 @@ func _run() -> void:
 	_check_mechanics()
 	_check_v13_data_boundaries()
 	_check_restore_and_rewards()
+	_check_tool_rewards()
+	await _check_tool_reward_lifecycle()
 	await _check_new_ui()
 	await _check_v13_presentation()
 	if not failures.is_empty():
@@ -266,7 +268,7 @@ func _check_v13_data_boundaries() -> void:
 	check(not s.can_pick_top(0) and not s.move(0,1) and s.move(1,0), "Preloaded one-way food must remain extract-disabled")
 
 
-## 检查备货隐藏、三个真实道具、数字顺序提示和可关闭的停滞提示，不暂停炸弹。
+## 检查三种道具的两次点击、一次上限及隐藏备货、数字顺序和停滞提示。
 func _check_v13_presentation() -> void:
 	var viewport := SubViewport.new()
 	viewport.size = Vector2i(320,568)
@@ -277,15 +279,22 @@ func _check_v13_presentation() -> void:
 	await process_frame
 	page._cancel_interaction()
 	for name: String in ["Undo", "AddBox", "Top"]:
-		check(page.tools_view.get_node(name+"/Badge").visible and page.tools_view.get_node(name+"/Count").text == "1", "Available tool must display one charge")
+		check(page.tools_view.get_node(name+"/Badge").visible and page.tools_view.get_node(name+"/Count").text == "+", "Unclaimed tool must display a plus badge")
 	var before: Dictionary = page.session.snapshot()
 	var turnover: int = page.session.next_turnover()
+	page.tools_view.get_node("AddBox").pressed.emit()
+	check(not page.session.slots[turnover].open and page.session.tools.add_box == 1, "First click must only claim add-box")
+	check(page.tools_view.get_node("AddBox/Count").text == "1", "Claimed tool must display one charge")
 	page.tools_view.get_node("AddBox").pressed.emit()
 	page._cancel_interaction()
 	check(page.session.slots[turnover].open and page.session.tools.add_box == 0, "Add-box button did not execute its tool")
 	page.tools_view.get_node("Undo").pressed.emit()
+	check(page.session.slots[turnover].open and page.session.tools.undo == 1, "First click must only claim undo")
+	page.tools_view.get_node("Undo").pressed.emit()
 	page._cancel_interaction()
-	check(page.session.slots == before.slots and page.session.tools.undo == 0 and page.session.tools.add_box == 1, "Undo button did not restore the add-box transaction")
+	check(page.session.slots == before.slots and page.session.tools.undo == 0 and page.session.tools.add_box == 0, "Undo button refunded spent add-box")
+	page.tools_view.get_node("Top").pressed.emit()
+	check(not page._top_mode and page.session.tools.top == 1, "First click must only claim top")
 	page.tools_view.get_node("Top").pressed.emit()
 	var top_source: int = -1
 	var top_item: int = -1
@@ -301,6 +310,12 @@ func _check_v13_presentation() -> void:
 	page._choose_top(top_source, top_item)
 	page._cancel_interaction()
 	check(page.session.tools.top == 0 and page.session.slots[top_source].box.items[0].flavor == before.slots[top_source].box.items[top_item].flavor, "Top button did not reorder the selected donut")
+	for name: String in ["Undo", "AddBox", "Top"]:
+		check(page.tools_view.get_node(name).disabled and not page.tools_view.get_node(name+"/Badge").visible, "Spent tool must be disabled without a zero badge")
+	var spent: Dictionary = page.session.snapshot()
+	for name: String in ["Undo", "AddBox", "Top"]:
+		page.tools_view.get_node(name).pressed.emit()
+	check(page.session.snapshot() == spent, "Spent button reissued a charge")
 	check(page.get_node_or_null("Stage/Stock") == null, "Removed stock area remains in the scene")
 	page.session.load_level(9)
 	page._cancel_interaction()
@@ -414,6 +429,98 @@ func _check_mechanics() -> void:
 	check(s.failed, "Undo must not refund the original bomb deadline")
 
 
+## 道具奖励独立于棋盘历史，取消、存档、重复和跨种类回调均不能多发次数。
+func _check_tool_rewards() -> void:
+	var s := DonutSession.new()
+	s.load_level(80)
+	var initial: Dictionary = s.snapshot()
+	check(s.request_tool_reward("unknown").is_empty(), "Unknown tool accepted")
+	var token: String = s.request_tool_reward("top")
+	check(not token.is_empty() and s.request_tool_reward("undo").is_empty(), "Concurrent reward accepted")
+	check(not s.advance_clock(5) and not s.move(0, 1) and not s.add_box(), "Pending reward allowed gameplay")
+	check(not s.resolve_turnover(token, true) and not s.pending_reward.is_empty(), "Tool token accepted as turnover")
+	check(not s.resolve_tool_reward("wrong", true) and not s.pending_reward.is_empty(), "Foreign token consumed pending reward")
+	check(not s.resolve_tool_reward(token, false) and s.snapshot() == initial, "Canceled reward changed game")
+	var retry: String = s.request_tool_reward("top")
+	check(not s.resolve_tool_reward(token, true), "Canceled callback granted a later request")
+	check(s.resolve_tool_reward(retry, true) and s.tools.top == 1, "Retry did not grant exactly one charge")
+	check(not s.resolve_tool_reward(retry, true) and s.request_tool_reward("top").is_empty(), "Duplicate charge granted")
+	check(s.slots == initial.slots and s.moves == 0, "Claim executed a tool")
+	var restored := DonutSession.new()
+	check(restored.restore_run(JSON.parse_string(JSON.stringify(s.export_run()))) and restored.tools.top == 1, "Earned charge lost on resume")
+	check(restored.request_tool_reward("top").is_empty(), "Resume allowed claiming twice")
+	var turnover: int = s.next_turnover()
+	token = s.request_turnover(turnover)
+	check(not s.resolve_tool_reward(token, true) and s.resolve_turnover(token, false) == false, "Turnover token accepted as tool")
+	check(s.resolve_tool_reward(s.request_tool_reward("add_box"), true) and s.add_box(), "Add-box fixture failed")
+	check(s.resolve_tool_reward(s.request_tool_reward("undo"), true) and s.undo(), "Earned undo failed")
+	check(s.tools.top == 1 and s.tools.add_box == 0 and s.tools.undo == 0 and not s.slots[turnover].open, "Undo changed charge ledger")
+	var saved: Dictionary = JSON.parse_string(JSON.stringify(s.export_run()))
+	check(restored.restore_run(saved) and restored.tools == s.tools, "Spent charges lost on resume")
+	for tool: String in ["undo", "add_box", "top"]:
+		check(restored.request_tool_reward(tool).is_empty(), "Spent/earned tool could be reclaimed after resume")
+	for malformed: Dictionary in [{"undo": 2}, {"top": 0.5}, {"add_box": "0"}]:
+		var invalid: Dictionary = saved.duplicate(true)
+		invalid.state.tools.merge(malformed, true)
+		check(not restored.restore_run(invalid), "Invalid tool charge accepted")
+	var invalid: Dictionary = saved.duplicate(true)
+	invalid.state.tool_claimed.top = false
+	check(not restored.restore_run(invalid), "Unclaimed charge accepted")
+	s.restart()
+	check(s.tools == initial.tools and s.tool_claimed == initial.tool_claimed and not s.resolve_tool_reward(retry, true), "Restart retained charges or accepted stale reward")
+	token = s.request_tool_reward("undo")
+	check(restored.restore_run(JSON.parse_string(JSON.stringify(s.export_run()))) and restored.pending_reward.is_empty() and restored.tools.undo == 0, "Pending reward persisted as earned")
+	s.cancel_tool_reward()
+	check(s.load_level(1) and not s.resolve_tool_reward(token, true), "Canceled callback crossed levels")
+	print("PASS: tool reward idempotency, once-per-attempt ledger, undo and save boundaries")
+
+
+## 用延迟广告替身验证取消、失焦、暂停、隐藏、离树与会话替换，恢复后可重新领取。
+func _check_tool_reward_lifecycle() -> void:
+	var page: Control = load("res://features/home/ui/home_screen.tscn").instantiate()
+	root.add_child(page)
+	await process_frame
+	await process_frame
+	page._cancel_interaction()
+	var callbacks: Array[Callable] = []
+	page.tool_reward_provider = func(_tool: String, complete: Callable) -> void: callbacks.append(complete)
+	page.tools_view.get_node("Top").pressed.emit()
+	check(callbacks.size() == 1 and not page._board_input_enabled() and page.tools_view.get_node("Top").disabled, "Ad request did not lock gameplay")
+	page.tools_view.get_node("Undo").pressed.emit()
+	check(callbacks.size() == 1, "Pending ad opened another request")
+	callbacks.pop_front().call(false)
+	check(page.tools_view.get_node("Top/Count").text == "+" and not page.tools_view.get_node("Top").disabled, "Canceled ad lost plus/retry")
+	page.tools_view.get_node("Top").pressed.emit()
+	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+	callbacks.pop_front().call(true)
+	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_IN)
+	check(page.session.tools.top == 1 and not page._top_mode, "Ad focus change lost charge or auto-used it")
+	page.tools_view.get_node("Top").pressed.emit()
+	page._cancel_top_selection()
+	check(page.session.tools.top == 1, "Canceled top selection spent charge")
+	for interruption: String in ["hide", "pause", "replace", "exit"]:
+		page._cancel_interaction()
+		var source: DonutSession = page.session
+		page.tools_view.get_node("Undo").pressed.emit()
+		check(callbacks.size() == 1 and not source.pending_reward.is_empty(), "Could not request after interruption")
+		match interruption:
+			"hide":
+				page.hide()
+				page.show()
+			"pause":
+				paused = true
+				paused = false
+			"replace":
+				page.initialize(DonutSession.new())
+			"exit":
+				root.remove_child(page)
+		callbacks.pop_front().call(true)
+		check(source.pending_reward.is_empty() and source.tools.undo == 0 and not source.tool_claimed.undo, "Late callback granted after " + interruption)
+		await process_frame
+	page.free()
+	print("PASS: delayed tool ad callback, cancel, focus, pause, hide, replacement and exit")
+
+
 ## 恢复同局包含解锁与时间，旧内容、损坏数据及过期奖励不能改变新局。
 func _check_restore_and_rewards() -> void:
 	var s := DonutSession.new()
@@ -429,6 +536,7 @@ func _check_restore_and_rewards() -> void:
 	var path: String = get_script().resource_path.get_base_dir().path_join("../../fixtures/donut_sort/level_81_solution.json")
 	var step: Array = JSON.parse_string(FileAccess.get_file_as_string(path)).steps[0]
 	check(s.move(int(step[0]), int(step[1])), "Save fixture move")
+	check(s.resolve_tool_reward(s.request_tool_reward("undo"), true), "Save fixture reward")
 	var data: Dictionary = JSON.parse_string(JSON.stringify(s.export_run()))
 	var restored := DonutSession.new()
 	check(restored.restore_run(data), "Valid saved game rejected")

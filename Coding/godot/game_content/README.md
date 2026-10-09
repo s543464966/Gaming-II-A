@@ -1,5 +1,7 @@
 # 游戏内容
 
+`localization/failure_en.po` 和 `localization/failure_zh_hans.po` 是失败弹窗四处文案的唯一事实源，分别支持英语与简体中文，在 `project.godot` 注册，其他语言回退英语。翻译文字不写进图片；字体制作入口同时扫描 `.po`，避免后续裁切漏掉翻译所需字形。
+
 `donuts/levels/catalog.json` 指向 100 份 `level_01.json`～`level_100.json`，这是唯一运行关卡定义；`donuts/layouts/board_layouts.json` 保存各关布局映射与实际坐标，不从屏幕宽高临时生成盒位。
 
 2026-09-30 按“机制复用试配 R2”数值表重新制作全部100关。`level_plan.json` 是原表100行与687组装量的只读提取结果，R2不再叠加上一版48／49关补丁。实际层序、需求和隐藏信息以关卡JSON为准。30关有备货、70关无备货，前十关6～9个盒位、百关最多20个；第6关实际隐藏一颗，第9关首次备货。机制提前与持续复用、首归纳和中段腾位检查见 [R2 接入](../../../Designing/r2_level_update.md)。
@@ -7,11 +9,11 @@
 ## 关卡字段
 
 - `slots`：逐关确定，最多 25 项并包含两个 `turnover`；普通 `regular` 容量 4，`single` 容量 1。周转位 `unlock_after: -1` 且初始没有盒子。没有容器是 `box: null`，可接收食物的空盒是 `items: []`。
-- `box`／`stock`：`kind` 支持 `normal`／`lid`／`frozen`／`number_frozen`／`fixed`／`in_only`／`cycle`／`bomb`；`lid` 是数字机关计数，`items` 从顶部到下部保存 `flavor`。固定口味使用 `fixed_flavor`，炸弹使用 `bomb_seconds`；局内首次四同味归纳后转为普通盒并解除倒计时，无需等待订单回收。运行映射支持 15 种口味，前十关使用前四种，本批百关最多同时使用 10 种。
+- `box`／`stock`：`kind` 支持 `normal`／`lid`／`frozen`／`number_frozen`／`fixed`／`in_only`／`cycle`／`bomb`；`lid` 是数字机关计数，`items` 从顶部到下部保存 `flavor`。固定口味使用 `fixed_flavor`，炸弹使用 `bomb_seconds`；局内首次四同味归纳后转为普通盒并解除倒计时，无需等待订单回收。运行映射支持 15 种口味，当前百关合计使用 11 个口味 ID，每关实际种类以 JSON 为准。
 - `items[].hidden`：逐颗初始隐藏标记；兼容旧夹具的整盒 `hidden_layers` 默认值。开局露顶和搬运后露顶按规则揭示，预览不泄露真实口味。
 - `demands`：四个位置分别维护 `sequence` 与 `initially_open`；当前需求在左二位置，右二锁定且序列为空。序列游标由会话维护。
 - `stock`：有限有序队列，真实回收后逐盒补入原位，队列耗尽后不补货。
-- `tools`／`combo_rewards`：按用户后续反馈，正式关卡三种道具每关各1次、连单奖励表仍为空。加餐盒开启下一锁定周转位，点击锁位也可走独立模拟奖励流程；两种方式共用相同盒位，不重复生成盒子。平台真实广告尚未验收。
+- `tools`／`combo_rewards`：正式关卡三种道具初始次数均为 0、连单奖励表仍为空；按钮初始显示“＋”，领取一次后再次点击使用，每次尝试每种道具最多一次，撤回不返还。当前广告入口临时直接发点。加餐盒开启下一锁定周转位，点击锁位也可走独立模拟奖励流程；两种方式共用相同盒位，不重复生成盒子。平台真实广告尚未验收。
 
 ## 布局与校验
 
@@ -21,4 +23,4 @@
 
 校验盒位上限、两个锁定位、盒容量、隐藏开关类型及逐口味供需守恒。容器预算按“初始可回收四格盒数＋备货−订单”核对，不再强制剩余 2～3 盒。`Testing/` 在真实 DonutSession 中逐步重放百关的四种周转条件，共 400 条完整解；原有周转盒使用、通关归还、撤回、重做和鼠标拖拽验证保留。
 
-`donuts/art/` 保留原始美术与十五款当前口味素材，15 组立体食物与需求贴纸已按口味配对接入。2026-09-30 已逐项核对新版 `donut_game_assets_v9_paper_mechanics`，替换其中更新颜色的 8 款甜甜圈，其余 7 款一致；编号和裁切引用不变，来源及哈希见同目录 `asset_manifest.json`，完整对应见 [素材接入记录](../../../Designing/mechanics_assets.md)。每关只使用配置中的口味；关卡和布局 JSON 为运行事实源，运行时不依赖工作区测试或制作脚本。
+`donuts/art/` 保存用户原始柔光糖霜图集、15 份等比裁切资源和新版灰圈；15 款配对订单贴纸归 `features/donut_sort/orders/ui/art/`。已删除被替换的旧食物与贴纸，来源、裁切和哈希见各自 `asset_manifest.json`，编号与备用色见 [素材接入记录](../../../Designing/mechanics_assets.md)。每关只使用配置中的口味；关卡和布局 JSON 为运行事实源，运行时不依赖工作区测试或制作脚本。

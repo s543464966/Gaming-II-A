@@ -1,79 +1,83 @@
 # 甜甜圈素材与界面
 
-当前局内使用三段背景、独立翻盖订单盒、十五款甜甜圈和圆纸托，百关机制范围见 [百关实现](level_100_implementation.md)，布局见 [UI 校准](ui_alignment.md)。2026-09-30 按用户最新提供的 `donut_game_assets_v9_paper_mechanics` 更新颜色，逐项对应如下。以下 v1／v7 接入记录保留作美术来源与失败弹窗说明，不代表当前主界面布局。
+2026-10-08 接入用户提供的 `01_纯色甜甜圈与贴纸`：15 款柔光糖霜甜甜圈与 15 款正俯视贴纸全部入库，立体图用于棋盘、拖拽、补货、收餐、置顶选择和机制说明，俯视图用于订单。百关范围见 [百关实现](level_100_implementation.md)，页面布局见 [UI 校准](ui_alignment.md)。
 
-## 2026-09-30 素材颜色更新
+## 2026-10-09 彩色纸托与机制素材
 
-核对本次包 `manifest.json` 的全部 39 张素材及真实 PNG SHA-256：8 张甜甜圈发生变化，30 张与现有文件逐字节一致；另 1 张 `mechanics/badge_number.png` 是包内注明的可选备件，现有数字直接用文字层显示，因此没有新增数字底牌。
+接入用户 `08_玩法机制/彩色纸托` 的 15 张原图，其中奶白与现有文件相同，其余 14 张从本次来源包入库；15 组纸托及同源前沿的裁切、来源与摘要记录在[机关清单](../Coding/godot/features/donut_sort/board/ui/art/mechanics/asset_manifest.json)。13 个对应口味改为直接显示彩色原图，前沿沿用各自原图的缩放与坐标；不再经过统一染色。口味编号保持现行十五色映射：包内深灰、摩卡仅入库备用，不重新绑定已改为宝蓝、黄色的 11／14；这两种备用口味仍用奶白纸托与原有色板着色。
 
-甜甜圈使用下表现有口味编号，不能按外部包的数组顺序重排（包中 purple 与 ivory 的顺序不同）。源图来自 `base/`，目标均在 `Coding/godot/game_content/donuts/art/`；十五款固定口味纸托对应 `fixed_flavors/holder_fixed_<颜色>.png`，均与 `board/ui/art/mechanics/` 的同名文件完全一致。
+炸弹、循环、单格纸托和问号四张 PNG 均与工程现有原图逐字节一致，复用原文件及裁切并更新来源记录。单格容量标记、徽章与动态倒计时保持既有呈现；问号图保留备用，隐藏食物继续使用新版灰圈。删除已无消费者的旧 `bomb_icon`、`icon_cycle`、`timer_plate`、`tray_single`、`color_ring` 及配套裁切／导入文件，共 11 个文件，清理页面素材清单。
 
-| 口味 ID | 包内颜色名 | 工程 PNG 名称 | 本次处理 |
-| --- | --- | --- | --- |
-| 0 | pink | donut_pink_plain.png | 替换新版 |
-| 1 | brown | donut_brown_plain.png | 已一致 |
-| 2 | green | donut_green_plain.png | 替换新版 |
-| 3 | blue | donut_blue_plain.png | 替换新版 |
-| 4 | orange | donut_orange_plain.png | 替换新版 |
-| 5 | ivory | donut_ivory_sprinkles.png | 已一致 |
-| 6 | purple | donut_purple_plain.png | 替换新版 |
-| 7 | magenta | donut_magenta_sprinkles.png | 替换新版 |
-| 8 | red | donut_red_drizzle.png | 替换新版 |
-| 9 | russet | donut_russet_sprinkles.png | 已一致 |
-| 10 | teal | donut_teal_sprinkles.png | 替换新版 |
-| 11 | charcoal | donut_charcoal_sprinkles.png | 已一致 |
-| 12 | pistachio | donut_pistachio_sprinkles.png | 已一致 |
-| 13 | lavender | donut_lavender_drizzle.png | 已一致 |
-| 14 | mocha | donut_mocha_drizzle.png | 已一致 |
+验证：`node Testing/scripts/run_godot.mjs donut` 通过，退出码 0，无脚本／资源错误；初次沙箱导入因编辑器设置写入限制停止，允许本机引擎访问后同一标准入口通过。Compatibility 渲染十五组口味、单格／循环／炸弹／备用问号，以及 393×852、320×568 下第 24／41／61／81 关；保留[组件总览](../Archive/ReferenceImage/donut_mechanics_palette.png)、[手机固定纸托](../Archive/ReferenceImage/donut_mechanics_393_041.png)、[短屏炸弹](../Archive/ReferenceImage/donut_mechanics_320_081.png)。100 关与目录共 101 份文件摘要未变，本轮未改玩法或关卡，未重跑 `hundred`。`node Tooling/export/web.mjs` 仍因固定目录缺少 Godot 4.5.1 Web 模板而停止，网页包未更新，未做小游戏真机验收。
 
-其余已接入素材均已一致：`base/holder.png` 对应 `board/ui/art/paper_holder_round.png`；`mechanics/` 下的 `holder_single`、`cover_opaque_round`、`donut_hidden_neutral`、`icon_question`、`frost_donut_overlay`、`badge_cycle_front`、`badge_bomb_front` 分别对应 `board/ui/art/mechanics/` 的同名 PNG。
+## 2026-10-08 纸托与整叠冰壳
 
-替换使用设计师原始 PNG，不重绘、调色或压缩；源文件与校验值记入[甜甜圈素材清单](../Coding/godot/game_content/donuts/art/asset_manifest.json)。新版画布尺寸与原图一致，可见主体完整落在现有 Atlas 裁切区域内，因此沿用原尺寸、锚点、叠放和机关层级。棋盘、拖拽、补货和出餐共用同一口味纹理引用，所有关卡同步生效。
+按用户确认接入 `02_纸托与新冰冻`：新增 `board/ui/art/mechanics/ice_stack_shell.png` 及 AtlasTexture；该 PNG 与用户原件字节一致。普通／数字冰冻共用一只整叠冰壳，分别适配三层和四层；顶部与底沿保持同一缩放倍率，中段按高度伸缩，不把整个轮廓压扁。九宫格源图上沿 270、下沿 235 像素，左右不切片；显示不透明度 0.8，让内部口味和下层仍可辨认。食物四周预留水平 14、垂直 8 设计单位，开局居中同步计算冰壳上沿，解冻与撤回只刷新呈现，不修改规则。
 
-本包没有新版订单贴纸、盒体、背景或失败弹窗，继续使用现有对应素材。包内 HTML、预览图、生成提示词和可选数字底牌不接入运行工程；不采用“只进不出”图标，不修改关卡数值或玩法。
+纸托、封盖、时钟 PNG 与工程现有文件完全相同，复用唯一原图；纸托与封盖按用户新 `.tres` 收紧透明留白，时钟连裁切也相同，保持原样。普通纸托新增用户提供的 `paper_holder_round_front.tres`；固定色和单颗纸托分别从自身原图定义前沿裁片，保留口味颜色和单颗“1”标记。前沿共用底图缩放、颜色和原图坐标偏移，覆盖最底层的小段饼底；空盒、锁位、封盖和食物全部飞离时隐藏前沿。
 
-本次验证：38 张运行 PNG 均与包内原图及清单 SHA-256 一致，15 款甜甜圈可见边界落在现有裁切框内，100 关配置哈希保持不变。`node Testing/scripts/run_godot.mjs donut` 与 `node Tooling/export/web.mjs` 通过；实际导出 PCK 在 Compatibility 渲染器中生成 19 张标准竖屏、13 张小屏关卡截图及菜单／教学截图，复查第 61、98 关与小屏第 59 关的颜色、纸托和冰霜叠层。唯一预览 `http://127.0.0.1:4173/` 已更新并刷新，未另建版本链接。
+本包灰圈宽高比约 1.41，与已接入彩色甜甜圈约 1.20 不匹配，按确认方案保留当前 `soft_glaze_hidden_gray`，没有复制另一套灰圈。旧逐颗冰霜、停用冰罩及其裁切／导入描述共 6 个文件已删除，运行代码和清单引用同步移除。机制说明复用正式冻结盒，而不是显示空冰罩图片。
 
-状态：已接入 `donut_game_assets_v1`、v7 的背景、订单与纸盒素材，以及用户提供的五张道具按钮图。当前盒形、堆叠和按钮布局依据为 [已确认参考图](../Archive/ReferenceImage/donut_sort_layout_and_style_approved.png)；[上一版参考图](../Archive/ReferenceImage/donut_sort_reference.png)与旧 v1～v3 截图只作历史对照。
+实际 Compatibility 截图：[组件与三／四层](../Archive/ReferenceImage/donut_ice_shell_components.png)、[手机五排](../Archive/ReferenceImage/donut_ice_shell_393_004.png)、[短屏五排](../Archive/ReferenceImage/donut_ice_shell_320_004.png)、[冰冻说明](../Archive/ReferenceImage/donut_ice_shell_lesson_393.png)。当前测试入口为 `Testing/visual/ice_shell_capture.gd` 和 `donut` 回归，执行结果见 [测试记录](../Testing/README.md)。
 
-## 收录与归属
+## 2026-10-08 订单盒与打包素材
 
-v1 的 11 张甜甜圈归 `Coding/godot/game_content/donuts/art/`，保留的页面素材归 `Coding/godot/features/donut_sort/ui/art/`；独立木质棋盘和被替换的旧店铺背景已删除。v7 的店铺背景与浅色木台归页面 `ui/art/scene/`，一体式四卡底板归 `orders/ui/art/`，3 张纸盒 PNG 归 `board/ui/art/`，金币栏归 `currency/ui/art/`，设置图标归 `settings/ui/art/`。用户提供的 3 张道具图标分别归撤回、加餐盒、置顶模块；设置与道具按钮共用的一份浅色底板归 `design_system/art/`，次数角标归 `tools/ui/art/`。新原图均未修改。完整路径、尺寸及 SHA-256 见[页面素材清单](../Coding/godot/features/donut_sort/ui/art/asset_manifest.json)、[v7 纸盒清单](../Coding/godot/features/donut_sort/board/ui/art/asset_manifest.json)、[金币清单](../Coding/godot/features/donut_sort/currency/ui/art/asset_manifest.json)、[设置清单](../Coding/godot/features/donut_sort/settings/ui/art/asset_manifest.json)、[共用按钮底板清单](../Coding/godot/design_system/art/asset_manifest.json)与[道具清单](../Coding/godot/features/donut_sort/tools/ui/art/asset_manifest.json)。包内预览、HTML 和制作过程文件不作为运行素材复制。
+按用户要求接入 `03_订单盒与打包` 的 8 张 PNG 与 9 份 AtlasTexture，统一放在 `features/donut_sort/orders/ui/art/`。六色空盒 PNG 与工程原图字节一致，保留唯一原件并采用用户新裁切；新增 `order_box_filled_four`、`order_box_closed` 两张原图及裁切。`order_box_shadow.tres` 复用工程中与来源包字节一致的通用阴影，不复制另一张 PNG。路径、裁切及 SHA-256 见[订单素材清单](../Coding/godot/features/donut_sort/orders/ui/art/asset_manifest.json)。
 
-v1 的部分素材仍作备用，旧透明餐盒现已被 v7 纸盒替代。纸盒 PNG 使用 Godot 纹理导入，源 PNG 的 SHA-256 不变。另以旧问号甜甜圈为形状参考，通过内置 imagegen 生成 1254×1254 透明灰色甜甜圈 [`donut_concealed_gray.png`](../Coding/godot/game_content/donuts/art/donut_concealed_gray.png)；旧图仍保留供素材追溯，但运行时隐藏层改用灰色图。
+六色盒用于当前订单卡；贴纸、锁和完成标记按原图标牌中心 `(621, 412)`、各色裁切与实际等比留白定位，刷新口味或改变尺寸时同步对齐。锁定去色和逐颗落盒流程保持现有实现。满盒、闭盒与独立投影已入库备用，当前收餐动画不切换这两张静态图，避免把其他口味显示成图内固定的四颗草莓粉食物。
 
-实际使用的 `.tres` 只定义 PNG 的透明留白区域，不重绘或缩小原始美术。餐盒前后层共用同一裁切区域和显示矩形，避免独立裁边造成错位。PNG 保留可供后续制作的原始画布。
+删除停用的 `ui/art/trays/package_closed` 与 `board/ui/art/paper_package_closed`，连同裁切和导入描述共 6 个文件；清理两处素材清单。棋盘场景的默认盖纹理改为其运行时一直使用的 `cover_opaque_round`，不再加载旧包装盒。
 
-失败弹窗使用用户提供的 `donut_failure_popup_assets_v1` 五张原始 PNG，归 `features/donut_sort/failure/ui/art/`，路径与哈希见[失败素材清单](../Coding/godot/features/donut_sort/failure/ui/art/asset_manifest.json)。布局依据[失败弹窗参考图](../Archive/ReferenceImage/donut_failure_popup_reference.png)：奶油色描边面板、粉紫色 Level Failed 标题、Let’s try again! 副标题、散落甜甜圈与纸盒插画、Home／Try Again 并排图片按钮。副标题使用现有 Lilita One 字体；保留素材内的英文文案。纹理区域仅裁去多余留白，所有素材等比显示。弹窗居中于安全区，深色遮罩覆盖完整视口；运行效果见[Godot 渲染截图](../Archive/ReferenceImage/donut_failure_popup_current.png)。
+实际验证：8 张 PNG 字节与 9 份裁切均和来源一致，资源路径、清单摘要与引擎加载检查通过。`node Testing/scripts/run_godot.mjs donut` 首次检测到新裁切下的标牌偏移，修复后完整回归通过；Compatibility 渲染检查长短屏收餐共 160 帧。截图：[九份资源](../Archive/ReferenceImage/donut_order_boxes_assets.png)、[手机收餐](../Archive/ReferenceImage/donut_order_boxes_phone.png)、[短屏收餐](../Archive/ReferenceImage/donut_order_boxes_short.png)。网页导出在模板检查阶段停止：本机缺少 `Tooling/.runtime/godot-platform/web-4.5.1/web_nothreads_debug.zip`（对应目录不存在），本轮未生成网页包；未做平台真机验收。
 
-| 已接入部分 | 素材 |
-| --- | --- |
-| 七种正式口味 | 粉色彩糖、巧克力坚果、抹茶淋面、蓝莓、柠檬淋面、香草彩糖、紫色彩糖；口味 ID 依次为 0、1、2、3、4、5、6，每关开局均出现七种 |
-| 场景与边缘装饰 | 店铺背景、黑板、粉盒、盆栽、前景叶片、卡片、咖啡与糖针 |
-| 订单和道具 | 标题、订单面板及开放／锁定卡片、备货面板；同款浅色方形按钮、粉色撤回图标、纸盒加号、紫色置顶图标及粉色次数角标 |
-| 餐盒与已有机关 | v7 敞口纸盒后层与前沿、粉色缎带封口包装、锁图标、白霜、灰色隐藏层甜甜圈、等待需求标记 |
-| 操作反馈与奖励 | 选中框、上升箭头、闪光；金币栏与奖励金额暂时隐藏 |
+## 2026-10-08 按钮与通用 UI
 
-暂未启用但已收录：另外 4 款甜甜圈、完整空盒、出餐纸盒及其前后层、订单计数底板与夹板、炸弹及计时板、只进不出／固定颜色／底部置顶标记、冰裂与碎冰、爆炸组件、警示框、无效操作叉号和投影。素材收录不代表对应玩法已实现，正式规则仍以关卡配置和会话为准。
+接入用户 `05_按钮与通用UI` 的 11 张 PNG 与 10 份资源配置。11 张 PNG 与当前对应原图字节一致，复用唯一原件；按钮底板、撤回／加餐盒／置顶图标、关卡标题底板和锁图标采用用户新裁切。次数角标、闪光裁切以及显示字体／Theme 在适配工程路径后均与现有配置一致，保持原样。
 
-## 布局与动态状态
+设置与三个道具按钮统一引用 `design_system/art/button_base.tres`，移除道具目录中的旧底板裁切和设置场景的重复内嵌裁切。清理 `ui/art/icons/` 下停用的三种旧道具图标及重复金币，连同 `.tres` 和 `.import` 共 12 个文件；保留 `tools/ui/art/` 的新图标与 `currency/ui/art/` 的唯一金币。四处素材清单同步更新来源、裁切和引用。金币栏继续隐藏，不因素材接入恢复显示。
 
-基础画布为 1024×1536：金币栏暂时隐藏、居中粉色标题、右侧齿轮按钮、四张需求卡、无独立底板、每排最多 5 组的 17 个纸盒位，以及居中并排的三个浅色方形道具按钮。盒沿不显示容量与空盒文字。按钮名称在按钮内部，次数角标位于右上。棋盘界面文案保留中文，失败弹窗按参考图使用英文。
+`node Testing/scripts/run_godot.mjs architecture home donut` 通过，资源定义与用户文件逐项一致（仅适配路径），无旧路径残留。Compatibility 输出并检查按钮未领取／已领取／耗尽状态和 393×852／320×568 下第 1、4 关；截图：[组件与状态](../Archive/ReferenceImage/donut_common_ui_components.png)、[手机页面](../Archive/ReferenceImage/donut_common_ui_phone.png)、[短屏五排](../Archive/ReferenceImage/donut_common_ui_short.png)。未改规则、关卡或字体文件；本轮未导出网页／小游戏包，缺失的本机 Web 模板仍未安装，未做真机验收。
 
-餐盒按 5／5／5／2 的四排坐标排列，每排居中，所有纹理保留原始宽高比；每个盒组只做整体等比缩放，不用不同的宽高倍率制造透视。较长竖屏把额外高度分配给背景与棋盘行距，纸盒维持 200×157 设计尺寸。金币栏、设置余额和连单奖励金额暂时隐藏，模块与素材保留；后台奖励结算及撤回规则保留。关卡标题可点选关，齿轮打开设置面板，界面不显示暂停按钮。页面拼接由 `donut_sort_screen.tscn` 定义，盒位排列由棋盘模块维护，适配归页面脚本。详细核对见 [UI 比例校准](ui_alignment.md)。
+## 当前资源与编号
 
-棋盘按纸盒后层、下层至顶层甜甜圈、纸盒前沿、机关与标记绘制；最上层是实际可搬运的口味。备货盒入场时复用棋盘餐盒的分层矩形与原图比例，按目标盒位所在半区从左右视口外水平移入对应行与盒位；备货内容入场前不展示。棋盘甜甜圈向纸盒上方堆起，前沿盖住最下层的一小部分。普通盒全部显色，仅指定隐藏层盒中尚未揭示的甜甜圈显示灰色纹理；首次露顶后显示真实口味并保持，重新叠放也不变灰。数字盖使用封口包装遮住食物；白霜保留透明中心；等待需求使用时钟标记。移动、出餐和补位共享同一口味资源映射。
+两张 PNG 与用户源文件逐字节一致，不重绘、不缩小。30 份 AtlasTexture 保留用户给定裁切区域，只修复 `res://` 路径。正文图集为 `game_content/donuts/art/soft_glaze_palette.png`；贴纸图集为 `features/donut_sort/orders/ui/art/soft_glaze_stickers.png`，两处 `.tres` 分别使用 `soft_glaze_<颜色>` 与 `soft_glaze_sticker_<颜色>`。
 
-参考图的 16 单、两张锁定需求卡、口味分布和三个道具数量是示意。实际画面展示关卡真实订单和次数；按后续确认，十关均仅左侧两订单位可用，右侧两位显示锁定，暂不提供解锁入口。
+| 口味 ID | 新颜色 | 使用范围 |
+| --- | --- | --- |
+| 0 | `pink` | 当前关卡使用 |
+| 1 | `cocoa` | 当前关卡使用 |
+| 2 | `forest_green` | 当前关卡使用 |
+| 3 | `sky_blue` | 当前关卡使用 |
+| 4 | `orange` | 当前关卡使用 |
+| 5 | `ivory` | 当前关卡使用 |
+| 6 | `purple` | 当前关卡使用 |
+| 7 | `raspberry` | 当前关卡使用 |
+| 8 | `red` | 当前关卡使用 |
+| 9 | `caramel` | 当前关卡使用 |
+| 10 | `teal` | 备用，当前百关未使用 |
+| 11 | `royal_blue` | 备用，当前百关未使用 |
+| 12 | `lime` | 当前关卡使用 |
+| 13 | `lavender` | 备用，当前百关未使用 |
+| 14 | `yellow` | 备用，当前百关未使用 |
 
-## 旧资源处理
+当前百关合计使用 11 个口味 ID，按每关配置展示，不能理解为每关都出现 15 色。编号 11、14 原本属于未使用的深灰、摩卡，现分别收录宝蓝和明黄；其余映射保持对应色系。未修改任何关卡定义、层序、需求、固定口味规则或完整解文件。
 
-已删除被本包替代的旧背景、餐盒和 UI 图集、机关图集、旧食物图集及相应 AtlasTexture／导入记录；工程不再维护 `_v2.png` 等重复运行版本。历史截图仍位于 Archive，仅作前后效果对照。
+灰色隐藏圈采用内置 imagegen 按新版形状生成，灰色糖霜与灰色饼底、透明背景与洞口；首次露顶后仍按原规则永久揭示，再堆叠不变灰。资源为 [`soft_glaze_hidden_gray.png`](../Coding/godot/game_content/donuts/art/soft_glaze_hidden_gray.png)。提示词、哈希与裁切框记录在[食物清单](../Coding/godot/game_content/donuts/art/asset_manifest.json)；订单配对记录在[订单清单](../Coding/godot/features/donut_sort/orders/ui/art/asset_manifest.json)。
 
-## 验证与运行截图
+固定口味纸托按盒子的指定口味绑定本次彩色原图，清空或食物变化不改底色。仅素材包缺少的宝蓝、黄色备用口味保留 `fixed_holder_tint.gdshader` 着色；各盒材料实例独立，普通纸托与已有对应原图的纸托关闭染色。普通纸托、数字盖及整叠冰壳保持现有资源，循环和炸弹徽章复用与本次来源一致的原图，见[机关清单](../Coding/godot/features/donut_sort/board/ui/art/mechanics/asset_manifest.json)。
 
-`node Testing/scripts/run_godot.mjs architecture home donut` 曾通过：三关完整解、数量守恒、鼠标／触摸拖拽、无效落点、撤回与外部中断恢复。素材比例回归检查覆盖强制拉伸、非等比变换与棋盘／备货组合差异；连续缩放检查覆盖 1024×1536、720×1280、720×1600：餐盒点击区域互不重叠、按钮完整可达，缩放中断拖拽不会提交旧手势。
+## 尺寸与动态呈现
 
-Godot 4.5.1 Compatibility 真实渲染曾检查三关及上述尺寸，并通过视口指针实际完成出餐、撤回和暂停按钮操作；以下截图拍摄于移除暂停入口之前，保留为历史布局记录：[参考比例截图](../Archive/ReferenceImage/donut_sort_current.png)、[720×1280 截图](../Archive/ReferenceImage/donut_sort_current_mobile.png)、[特殊盒截图](../Archive/ReferenceImage/donut_sort_current_mechanics.png)。
+新版立体图裁切宽高比约 1.20，食物容器由 160×114 调整为 160×136；TextureRect 始终等比适配。底端仍落在纸托局部 y=108，层距改为 40，满四层选中上沿预留为 169。这样保持可见宽度和纸托落点，并继续满足五排小屏的预留空间。冰壳覆盖整叠，顶部和底沿保留比例，中段适配实际层数。
 
-此前素材接入时已通过 `node Tooling/export/wechat.mjs` 的本地导出和资源加载检查。接入 v7 纸盒后，微信包仍需重新导出并进行真机验收。
+拖拽只让首颗跟手，其余同味颗粒逐颗错峰起飞；收餐改为统一倍率缩放、对齐盒口中心并向下裁切，避免按盒口宽高分别缩放而压扁甜甜圈。补货共用正式盒子。操作命中仍包含整叠上缘，不增加落点文案、描边或合法性明暗提示。
+
+## 替换范围
+
+2026-10-08 柔光糖霜接入时曾按用户确认删除被替代的旧食物、旧贴纸、旧灰圈和 14 份独立颜色纸托，以及对应 AtlasTexture／导入描述；当时共移除 57 张 PNG、167 个文件，约 50.5 MiB 原始资源。2026-10-09 已按本次提供的彩色纸托包重新接入 14 张原图，当前映射与旧机制清理范围见上方记录。清理教学场景和页面清单中残留的旧食物引用。
+
+背景、道具图标、机关封盖、普通纸托及失败弹窗插画属于其他界面资源，继续保留；六色翻盖订单盒及旧包装盒的后续处理见上方订单盒接入记录。失败弹窗文案已由本地化文字层显示，当前图片来源见[失败素材清单](../Coding/godot/features/donut_sort/failure/ui/art/asset_manifest.json)。Archive 中旧截图只用于历史对照，不作为运行资源。
+
+## 核对入口
+
+`Testing/visual/soft_glaze_capture.gd` 直接渲染 15 组食物与订单贴纸、固定色纸托、灰圈与冰冻堆叠，并捕获 393×852 和 320×568 下的第 1／4／6／86／89 关。检查 Atlas 边界、口味配对、原色纸托与备用着色及材料实例独立；界面与动作回归仍由 `donut` 套件负责。实际执行结果见 [测试记录](../Testing/README.md)。

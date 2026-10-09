@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "DONUT_FAILURE_TITLE"
+msgstr "Level Failed"
+
+msgid "DONUT_FAILURE_SUBTITLE"
+msgstr "Let’s try again!"
+
+msgid "DONUT_FAILURE_HOME"
+msgstr "Home"
+
+msgid "DONUT_FAILURE_RETRY"
+msgstr "Try Again"

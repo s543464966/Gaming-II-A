@@ -38,12 +38,16 @@ func _run() -> void:
 	await _check_level_navigation()
 	await _check_failure_panel()
 	await _check_ui_lifecycle()
+	await _check_selection_height()
+	await _check_tap_reselection()
 	await _check_inline_actions()
 	await _check_group_flight()
+	await _check_dispatch_flight()
 	await _check_drag_follow_flight()
 	await _check_pointer_input()
 	await _check_hit_area_and_no_hints()
 	await _check_early_level_drags()
+	await _check_mechanic_art()
 	await _check_configured_layouts()
 	await _check_portrait_layout()
 	await _check_side_refill()
@@ -95,7 +99,7 @@ func _definition(boxes: Array = []) -> Dictionary:
 	return {"title": "规则夹具", "layout_id": "staggered_17", "slots": slots,
 		"demands": [{"sequence": [0], "initially_open": true}, {"sequence": [1], "initially_open": true},
 			{"sequence": [2], "initially_open": true}, {"sequence": [3], "initially_open": true}],
-		"stock": [], "tools": {"undo": 3, "add_box": 2, "top": 3},
+		"stock": [], "tools": {"undo": 1, "add_box": 1, "top": 1},
 		"combo_rewards": [{"count": 2, "coins": 5, "diamonds": 0}, {"count": 3, "coins": 10, "diamonds": 1}, {"count": 4, "coins": 20, "diamonds": 2}]}
 
 
@@ -116,6 +120,7 @@ func _check_reference_level_four() -> void:
 		_expect(session.move(step[0], step[1]), "Fourth-level first-group prefix failed")
 	_expect(not session.slots[0].box.frozen and session.slots[6].box.frozen, "First group must thaw only first ice")
 	_expect(session.can_handle(7) and session.can_handle(13), "Former covers must remain usable")
+	_expect(session.resolve_tool_reward(session.request_tool_reward("undo"), true), "Reference undo reward failed before save")
 	var restored := DonutSession.new()
 	_expect(restored.restore_run(JSON.parse_string(JSON.stringify(session.export_run()))), "Reference run did not restore")
 	_expect(restored.can_handle(7) and restored.can_handle(13), "Restore added a removed cover restriction")
@@ -171,7 +176,7 @@ func _check_content_and_solutions() -> void:
 				_expect(slot.box == null or slot.box.items.size() <= session.capacity(slot_index), "Capacity exceeded")
 		_expect(session.is_won() and session.moves == int(fixture.moves), "Full solution failed level %d" % (index + 1))
 		_expect(session.slots.filter(func(slot: Dictionary) -> bool: return slot.box != null).size() == expected[1] + expected[2] + expected[3] - expected[4], "Victory container budget")
-		_expect(session.tools == {"undo": 1, "add_box": 1, "top": 1}, "Full solution spent tools")
+		_expect(session.tools == {"undo": 0, "add_box": 0, "top": 0}, "Full solution spent tools")
 		_expect(not session.move(0, 1) and not session.add_box(), "Won session accepts actions")
 		print("PASS: level %d, %d slots, %d moves, %d orders, %d donuts conserved" % [index + 1, session.slots.size(), session.moves, session.completed, session.total_donuts()])
 	var valid: Dictionary = DonutLevel.load_definition(levels[0].path)
@@ -217,6 +222,7 @@ func _check_reference_level_two() -> void:
 		_expect(session.slots[6].box.frozen and session.slots[6].box.lid == 1, "Ice thawed before first group")
 	_expect(session.move(5, 0), "Fifth reference move failed")
 	_expect(not session.slots[6].box.frozen and session.slots[6].box.lid == 0 and session.can_handle(6) and session.completed == 0, "First group must thaw ice without dispatch")
+	_expect(session.resolve_tool_reward(session.request_tool_reward("undo"), true), "Reference undo reward failed")
 	_expect(session.undo(), "Reference thaw undo failed")
 	_expect(session.slots[6].box.frozen and session.slots[6].box.lid == 1, "Undo failed to restore ice")
 	_expect(session.remaining_donuts() == 36, "Reference thaw/undo changed food count")
@@ -241,6 +247,7 @@ func _check_reference_level_three() -> void:
 		_expect(session.slots[0].box.frozen and session.slots[6].box.frozen, "Reference ice thawed before the first group")
 	_expect(session.move(8, 9), "Third-level three-move first group failed")
 	_expect(not session.slots[0].box.frozen and session.slots[6].box.frozen and session.number_targets() == [6], "One group must thaw only the first ice box")
+	_expect(session.resolve_tool_reward(session.request_tool_reward("undo"), true), "Third-level undo reward failed")
 	_expect(session.undo(), "Third-level thaw undo failed")
 	_expect(session.slots[0].box.frozen and session.slots[6].box.frozen and session.number_targets() == [0, 6], "Undo did not restore two ice targets")
 	_expect(session.remaining_donuts() == 68 and session.completed == 0, "Third-level thaw undo changed the material budget")
@@ -269,7 +276,8 @@ func _check_early_level_space() -> void:
 			if source_index >= 0:
 				break
 		var before: Dictionary = session.snapshot()
-		_expect(source_index >= 0 and session.move(source_index, target_index) and session.tools.add_box == 1, "Opening has no usable working space")
+		_expect(source_index >= 0 and session.move(source_index, target_index) and session.tools.add_box == 0, "Opening has no usable working space")
+		_expect(session.resolve_tool_reward(session.request_tool_reward("undo"), true), "Undo reward failed")
 		_expect(session.undo() and session.slots == before.slots, "Undo failed to restore opening")
 
 
@@ -353,7 +361,7 @@ func _check_group_move_and_reveal() -> void:
 	_expect(session.slots[0].box.items.size() == 1 and session.slots[1].box.items.size() == 3 and session.moves == 1,
 		"Group movement was not one transaction")
 	_expect(events.size() == 1 and events[0].count == 2 and events[0].items.size() == 2, "Group event lost its moved items")
-	_expect(session.undo() and session.slots == before.slots and session.moves == 0 and session.tools.undo == 2,
+	_expect(session.undo() and session.slots == before.slots and session.moves == 0 and session.tools.undo == 0,
 		"Undo did not restore the entire group in one operation")
 	for occupied: int in range(1, 4):
 		var target: Array = []
@@ -383,9 +391,17 @@ func _check_group_move_and_reveal() -> void:
 	var after_reveal: Dictionary = session.snapshot()
 	_expect(session.move(1, 0) and session.pick_count(0) == 3 and session.slots[0].box.items[2].revealed
 		and not session.slots[0].box.items[3].revealed, "Re-covering a known donut erased knowledge or leaked hidden flavor")
+	var before_second_reveal: Dictionary = session.snapshot()
 	_expect(session.move(0, 2) and session.slots[2].box.items.size() == 3 and session.slots[0].box.items.size() == 1
 		and session.slots[0].box.items[0].revealed, "Known prefix failed to stop before the concealed fourth donut")
-	_expect(session.undo() and session.undo() and session.slots == after_reveal.slots, "Undo erased prior revealed knowledge")
+	_expect(session.undo() and session.slots == before_second_reveal.slots, "Undo erased prior revealed knowledge")
+	# 每局只撤回一次，分别重放覆盖与首次揭示以验证两个历史边界。
+	session.restart()
+	session.move(0, 1)
+	session.move(1, 0)
+	_expect(session.undo() and session.slots == after_reveal.slots, "Undo re-covering erased known flavors")
+	session.restart()
+	session.move(0, 1)
 	_expect(session.undo() and session.slots == before.slots, "Undo did not restore hidden knowledge")
 	_expect_exposed_tops_revealed(session, "group move undo")
 	var emptying := DonutSession.new(_definition([_box([1, 1]), _box([])]))
@@ -486,7 +502,10 @@ func _check_mechanisms_and_stock() -> void:
 	_expect(session.slots[2].box.lid == 1 and session.slots[3].box.lid == 3, "Only first numbered target should decrement")
 	_expect(not session.slots[4].box.frozen and session.slots[5].box.frozen, "Expected one lowest-index frozen box thawed")
 	_expect(session.move(4, 6) and session.remaining_stock() == 1 and session.completed == 1, "Moving empty source triggered refill/mechanisms")
-	_expect(session.undo() and session.undo() and session.slots[2].box.lid == 2 and session.slots[4].box.frozen, "Undo failed to restore mechanisms")
+	_expect(session.undo() and session.slots[2].box.lid == 1 and not session.slots[4].box.frozen, "Undo ordinary move changed prior mechanisms")
+	session.restart()
+	session.move(1, 0)
+	_expect(session.undo() and session.slots[2].box.lid == 2 and session.slots[4].box.frozen, "Undo failed to restore mechanisms")
 	definition = _definition([_box([0, 0, 0]), _box([0]), _box([1, 1, 1, 1], "lid", 1)])
 	session = DonutSession.new(definition)
 	session.begin()
@@ -550,7 +569,8 @@ func _check_turnover_and_single() -> void:
 	session.move(2, 1)
 	_expect(session.completed == 2 and session.remaining_stock() == 0 and session.slots[14].box.id != turnover_id, "Turnover recycle did not refill in place")
 	_expect(session.slots[0].box != null and session.slots[0].box.items.is_empty(), "Source empty box was consumed")
-	_expect(session.add_box() and not session.add_box() and session.slots.size() == 17, "Turnover tool exceeded two locked positions")
+	_expect(not session.add_box() and not session.slots[15].open and session.slots.size() == 17, "Add-box tool must be limited to one use")
+	_expect(session.resolve_turnover(session.request_turnover(15), true), "Independent turnover reward failed")
 
 
 ## 灰色层可盲选置顶，撤回恢复完整状态，通关不能遗漏需求或备货。
@@ -566,13 +586,15 @@ func _check_tools_and_victory() -> void:
 		not session.slots[0].box.items[2].revealed,
 		"Topping did not preserve known flavors and conceal untouched layers")
 	_expect_exposed_tops_revealed(session, "blind top")
-	_expect(session.undo() and session.slots == before.slots and session.tools.top == 3 and session.tools.undo == 2, "Top undo incorrect")
+	_expect(session.undo() and session.slots == before.slots and session.tools.top == 0 and session.tools.undo == 0, "Top undo refunded spent tools")
 	_expect_exposed_tops_revealed(session, "top undo")
+	_expect(not session.bring_to_top(0, 2), "Undo allowed top reuse")
+	session.restart()
 	_expect(session.bring_to_top(0, 2) and session.slots[0].box.items[0].flavor == 2, "Deeper gray layer could not be topped")
 	_expect_exposed_tops_revealed(session, "deep blind top")
 	session.add_box()
 	session.undo()
-	_expect(not session.slots[14].open and session.slots[14].box == null and session.tools.undo == 1, "Turnover undo restored incorrect container or credits")
+	_expect(not session.slots[14].open and session.slots[14].box == null and session.tools.undo == 0 and session.tools.add_box == 0, "Turnover undo restored incorrect container or credits")
 	var same_flavor := DonutSession.new(_definition([_box([0, 0], "normal", 0, true)]))
 	same_flavor.begin()
 	_expect(same_flavor.bring_to_top(0, 1), "Same-flavor gray layer could not be revealed by topping")
@@ -596,11 +618,15 @@ func _check_tools_and_victory() -> void:
 	session = DonutSession.new()
 	session.begin()
 	var initial: Dictionary = session.snapshot()
-	_expect(session.tools == {"undo": 1, "add_box": 1, "top": 1}, "Level must provide one use of each tool")
+	_expect(session.tools == {"undo": 0, "add_box": 0, "top": 0}, "Level must start without free tools")
+	_expect(not session.add_box() and not session.undo() and not session.bring_to_top(0, 1), "Unclaimed tool executed")
+	for tool: String in ["undo", "add_box", "top"]:
+		_expect(session.resolve_tool_reward(session.request_tool_reward(tool), true), "Cannot claim tool")
+	_expect(session.slots == initial.slots, "Claim executed a tool")
 	var turnover: int = session.next_turnover()
 	_expect(session.add_box() and session.slots[turnover].open and session.tools.add_box == 0, "Add-box tool did not open a turnover box")
 	_expect(not session.add_box(), "Exhausted add-box tool can be spent twice")
-	_expect(session.undo() and session.slots == initial.slots and session.tools.add_box == 1 and session.tools.undo == 0, "Undo did not restore the add-box transaction")
+	_expect(session.undo() and session.slots == initial.slots and session.tools.add_box == 0 and session.tools.undo == 0, "Undo did not restore the board or refunded add-box")
 	_expect(not session.undo(), "Exhausted undo can be spent twice")
 	var top_source: int = -1
 	var top_item: int = -1
@@ -618,7 +644,7 @@ func _check_tools_and_victory() -> void:
 	_expect(not session.bring_to_top(top_source, 1), "Exhausted top tool can be spent twice")
 	session.restart()
 	_expect(session.completed == 0 and session.moves == 0 and session.coins == 0
-		and session.tools == {"undo": 1, "add_box": 1, "top": 1}, "Restart did not restore tool uses")
+		and session.tools == {"undo": 0, "add_box": 0, "top": 0} and not session.tool_claimed.values().has(true), "Restart did not reset claim eligibility")
 
 
 ## 用一次真实搬运形成堵塞，避免直接改写会话的结束标记。
@@ -691,6 +717,7 @@ func _check_failure_panel() -> void:
 	page.home_requested.connect(func() -> void: home_requests.append(true))
 	_expect(panel.visible and not page.completion_view.visible and not page._board_input_enabled(), "Failure did not lock underlying board input")
 	var failed_state: Dictionary = page.session.snapshot()
+	await _check_failure_localization(panel)
 	for dimensions: Vector2i in [Vector2i(320, 568), Vector2i(360, 640), Vector2i(393, 852), Vector2i(440, 956), Vector2i(1024, 1536)]:
 		viewport.size = dimensions
 		await process_frame
@@ -756,6 +783,40 @@ func _check_failure_panel() -> void:
 	viewport.queue_free()
 	await process_frame
 	print("PASS: failure panel layout, cancellation, lifecycle, reserved Home signal and Try Again")
+
+
+## 验证中英文地区匹配、未知语言回退、运行中切换、随包字形及文本边界。
+func _check_failure_localization(panel: DonutFailurePanel) -> void:
+	var original_locale: String = TranslationServer.get_locale()
+	var paths: Array[String] = ["Heading/Text", "Subtitle", "Home/Text", "TryAgain/Text"]
+	var chinese: Array[String] = ["挑战失败", "再试一次吧！", "返回主页", "再试一次"]
+	var english: Array[String] = ["Level Failed", "Let’s try again!", "Home", "Try Again"]
+	for locale: String in ["zh_CN", "en_US", "zh_Hans", "en_GB", "fr_FR", "zh"]:
+		TranslationServer.set_locale(locale)
+		await process_frame
+		var expected: Array[String] = chinese if locale.begins_with("zh") else english
+		var use_chinese_art: bool = locale.begins_with("zh")
+		_expect(panel.get_node("Card/Heading").texture == (DonutFailurePanel.HEADER_ZH if use_chinese_art else DonutFailurePanel.HEADER_BLANK)
+			and panel.get_node("Card/Heading/Text").visible == (not use_chinese_art),
+			"Failure heading duplicates baked text or uses the wrong language: " + locale)
+		for index: int in paths.size():
+			var label: Label = panel.get_node("Card/" + paths[index])
+			var translated: String = label.tr(label.text)
+			_expect(translated == expected[index], "Failure translation mismatch: %s/%s = %s" % [locale, paths[index], translated])
+			var font: Font = label.get_theme_font("font")
+			for character: String in translated:
+				_expect(font.has_char(character.unicode_at(0)), "Failure glyph missing from bundled fonts: " + character)
+			var measured: Vector2 = font.get_string_size(translated, HORIZONTAL_ALIGNMENT_LEFT, -1, label.get_theme_font_size("font_size"))
+			_expect(measured.x <= label.size.x and measured.y <= label.size.y, "Failure text clips: %s/%s" % [locale, paths[index]])
+			if paths[index] != "Subtitle":
+				_expect(Rect2(Vector2.ZERO, label.get_parent().size).encloses(label.get_rect()), "Failure text escapes its artwork: " + paths[index])
+			_expect(label.mouse_filter == Control.MOUSE_FILTER_IGNORE, "Failure caption intercepts button input")
+		panel.hide()
+		panel.present()
+		await process_frame
+	TranslationServer.set_locale(original_locale)
+	await process_frame
+	print("PASS: failure zh/en locale variants, English fallback, live switching, bundled glyphs and text bounds")
 
 
 ## 验证二连、三连、四连及以上只结算对应最高奖励档位。
@@ -876,7 +937,7 @@ func _check_level_navigation() -> void:
 		_expect(page.session.level_index == index and not panel.visible and page.session.moves == 0,
 			"Menu click did not load level %d" % (index + 1))
 		_expect(page.get_node("Stage/Title").text == "第 %d 关" % (index + 1), "Header shows wrong level number")
-		_expect(page.session.tools == {"undo": 1, "add_box": 1, "top": 1}, "Level selection did not reset tool uses")
+		_expect(page.session.tools == {"undo": 0, "add_box": 0, "top": 0}, "Level selection did not reset tool uses")
 	for index: int in [2, 8, 9, 99]:
 		_expect(page.session.load_level(index), "Cannot load navigation boundary level")
 		page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
@@ -1034,7 +1095,8 @@ func _check_ui_lifecycle() -> void:
 	page.hide()
 	page.show()
 	_expect(page.selected_box == -1, "Hide retained selection")
-	page.session.tools = {"undo": 1, "add_box": 1, "top": 1}
+	for tool: String in ["undo", "add_box", "top"]:
+		_expect(page.session.resolve_tool_reward(page.session.request_tool_reward(tool), true), "UI fixture reward failed")
 	page._render()
 	page.get_node("Stage/Tools/Top").pressed.emit()
 	page.get_node("Stage/Boxes/Box0").pressed.emit()
@@ -1071,7 +1133,7 @@ func _check_ui_lifecycle() -> void:
 	await process_frame
 	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
 	_expect(page.session.level_index == 1 and not page.session.demands[3].open, "Level selection not connected to the revised second level")
-	_expect(page.session.tools == {"undo": 1, "add_box": 1, "top": 1}, "Changing level did not reset tool uses")
+	_expect(page.session.tools == {"undo": 0, "add_box": 0, "top": 0}, "Changing level did not reset tool uses")
 	# 隐藏层交互使用独立机制夹具，基础第二关不提前引入灰层。
 	page.initialize(DonutSession.new(_definition([_box([0, 1]), _box([1]), _box([2, 1, 3], "normal", 0, true)])))
 	page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
@@ -1093,7 +1155,7 @@ func _check_ui_lifecycle() -> void:
 		"Board did not preserve a covered known flavor")
 	page.get_node("Stage/Tools/Top").pressed.emit()
 	page.get_node("Stage/Boxes/Box2").pressed.emit()
-	_expect(not page.top_choices.visible and page.get_node("Stage/Tools/Top/Count").text == "0",
+	_expect(not page.top_choices.visible and not page.get_node("Stage/Tools/Top/Count").visible and page.get_node("Stage/Tools/Top").disabled,
 		"Exhausted top tool opened its picker or retained a stale badge")
 	_expect_exposed_tops_revealed(page.session, "UI blind top")
 	page._toast("上关反馈")
@@ -1109,6 +1171,112 @@ func _check_ui_lifecycle() -> void:
 	_expect(page.session.is_won(), "UI actions failed to finish level")
 	page.queue_free()
 	await process_frame
+
+
+## 不同装量与单颗暂存共用选中高度，取消恢复原层，点击搬运从抬起处连续出发。
+func _check_selection_height() -> void:
+	var page: Control = load("res://features/home/ui/home_screen.tscn").instantiate()
+	root.add_child(page)
+	await process_frame
+	await process_frame
+	var selected_heights: Array[float] = []
+	for case_index: int in 5:
+		var count: int = case_index + 1 if case_index < 4 else 1
+		var definition: Dictionary = _definition([_box(range(count)), _box([])])
+		if case_index == 4:
+			definition.slots[0].kind = "single"
+		definition.demands[0].sequence = [4]
+		page.initialize(DonutSession.new(definition))
+		page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+		await process_frame
+		var box: DonutBox = page.board.boxes[0]
+		var original: Vector2 = box.food_stack.food_at(0).position
+		var before: Dictionary = page.session.snapshot()
+		var box_position: Vector2 = box.position
+		box.pressed.emit()
+		var selected: Vector2 = box.food_stack.food_at(0).position
+		selected_heights.append(selected.y)
+		_expect(is_equal_approx(selected.y, box.food_position(0, false, 4).y - 21.0), "Selection did not use the full-stack top plus 50% extra lift: " + str(case_index))
+		_expect(is_equal_approx(selected.x, original.x) and box.position == box_position and page.session.snapshot() == before,
+			"Selection moved the holder or changed the session")
+		for index: int in range(1, count):
+			_expect(box.food_stack.food_at(index).position == box.food_position(index), "Selection lifted a lower donut")
+		box.pressed.emit()
+		_expect(box.food_stack.food_at(0).position == original, "Deselect did not restore the original layer")
+		box.pressed.emit()
+		var flight_start: Vector2 = page.board.origin(0) + box.food_stack.food_at(0).position * box.scale
+		page.board.boxes[1].pressed.emit()
+		page.event_player._animation.pause()
+		var sprites: Array = page.event_player.get_children().filter(func(node: Node) -> bool: return node is TextureRect and node.visible)
+		_expect(sprites.size() == 1 and sprites[0].position.is_equal_approx(flight_start), "Click flight jumped down from the selected height")
+		page.hide()
+		page.show()
+		await process_frame
+		_expect(page.selected_box == -1 and page.event_player.get_child_count() == 0, "Selection or flight survived hide/show")
+	for height: float in selected_heights:
+		_expect(is_equal_approx(height, selected_heights[0]), "Selection height changed with item count or holder kind")
+	page.queue_free()
+	await process_frame
+	print("PASS: fixed selection height for one to four donuts and single holders, cancel and continuous click flight")
+
+
+## 鼠标和触摸均能异色改选后继续同色搬运，受限盒及取消事件不夺走原选择。
+func _check_tap_reselection() -> void:
+	var viewport := SubViewport.new()
+	viewport.size = Vector2i(720, 1280)
+	root.add_child(viewport)
+	var page: Control = load("res://features/home/ui/home_screen.tscn").instantiate()
+	viewport.add_child(page)
+	await process_frame
+	await process_frame
+	var definition: Dictionary = _definition([_box([0, 0]), _box([1, 1]), _box([1]),
+		_box([0, 0, 0, 0]), _box([2, 2, 2, 2]), _box([3], "in_only"), _box([3], "frozen")])
+	for demand: Dictionary in definition.demands:
+		demand.sequence = [4]
+	for touch: bool in [false, true]:
+		page.initialize(DonutSession.new(definition))
+		page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+		await process_frame
+		var before: Dictionary = page.session.snapshot()
+		await _tap_box(viewport, page, 0, touch)
+		await _tap_box(viewport, page, 1, touch, true)
+		_expect(page.selected_box == 0, "Canceled tap changed selection")
+		await _tap_box(viewport, page, 1, touch)
+		_expect(page.selected_box == 1 and page.session.snapshot() == before and not page.get_node("Stage/Toast").visible,
+			"Different-color tap did not silently reselect without a gameplay transaction")
+		_expect(page.board.boxes[0].food_stack.food_at(0).position == page.board.boxes[0].food_position(0)
+			and is_equal_approx(page.board.boxes[1].food_stack.food_at(0).position.y, -169.0), "Reselection did not lower the old donut and raise the new one")
+		await _tap_box(viewport, page, 2, touch)
+		_expect(page.session.moves == 1 and page.selected_box == -1 and page.session.slots[1].box.items.is_empty()
+			and page.session.slots[2].box.items.size() == 3 and page.session.slots[0].box.items.size() == 2,
+			"Same-color tap after reselection moved the old source or failed to merge")
+		page._cancel_interaction()
+		await _tap_box(viewport, page, 0, touch)
+		before = page.session.snapshot()
+		for target: int in [3, 5, 6, 16]:
+			await _tap_box(viewport, page, target, touch)
+			_expect(page.selected_box == 0 and page.session.snapshot() == before, "Full same-color or restricted target changed selection: " + str(target))
+		await _tap_box(viewport, page, 4, touch)
+		_expect(page.selected_box == 4 and page.session.snapshot() == before and not page.get_node("Stage/Toast").visible,
+			"Full different-color stack could not be selected or retained obsolete error feedback")
+		await _tap_box(viewport, page, 4, touch)
+		_expect(page.selected_box == -1, "Tapping the newly selected stack again did not deselect")
+	viewport.queue_free()
+	await process_frame
+	print("PASS: mouse/touch different-color reselection, same-color merge, cancellation and restricted targets")
+
+
+## 通过真实指针轻点盒内食物，取消时只发送取消抬起，不触发点击。
+func _tap_box(viewport: SubViewport, page: Control, index: int, touch: bool, canceled: bool = false) -> void:
+	var point: Vector2 = _box_point(page, index)
+	if touch:
+		await _touch(viewport, point, true, 0)
+		await _touch(viewport, point, false, 0, canceled)
+	else:
+		await _mouse_button(viewport, point, true)
+		if canceled:
+			page.board_input.cancel()
+		await _mouse_button(viewport, point, false)
 
 
 ## 手动推进同一条动效时间线，验证逐颗错峰、飞行重叠、落点层序与中断后的整组一致性。
@@ -1230,6 +1398,108 @@ func _check_drag_follow_flight() -> void:
 	viewport.queue_free()
 	await process_frame
 	print("PASS: mouse/touch single leader drag and source-origin followers for two/four donuts")
+
+
+## 收餐逐颗起飞、垂直入盒并被前沿遮住，订单更新与中断都只消费已提交状态。
+func _check_dispatch_flight() -> void:
+	var viewport := SubViewport.new()
+	viewport.size = Vector2i(393, 852)
+	root.add_child(viewport)
+	var page: Control = load("res://features/home/ui/home_screen.tscn").instantiate()
+	viewport.add_child(page)
+	await process_frame
+	await process_frame
+	var definition: Dictionary = _definition([_box([0, 0, 0]), _box([0])])
+	definition.demands[0].sequence = [2]
+	definition.demands[1].sequence = [0, 1]
+	page.initialize(DonutSession.new(definition))
+	page._cancel_interaction()
+	await process_frame
+	_expect(page.session.move(1, 0), "Dispatch fixture failed")
+	var committed: Dictionary = page.session.snapshot()
+	var effects: DonutEventPlayer = page.event_player
+	var timeline: Tween = effects._animation
+	timeline.pause()
+	var sprites: Array = effects.get_children().filter(func(node: Node) -> bool: return node.name.begins_with("DispatchDonut"))
+	_expect(sprites.size() == 4 and effects.dispatch_pending and not page._board_input_enabled(), "Dispatch did not preserve four sequential arrivals")
+	page._on_box_pressed(1)
+	_expect(effects.dispatch_pending, "Tap skipped collection")
+	if sprites.size() == 4:
+		timeline.custom_step(0.35)
+		_expect(sprites[0].visible and not sprites[1].visible and not page.board.boxes[0].food_stack.food_at(0).visible
+			and page.board.boxes[0].food_stack.food_at(1).visible, "Collection did not leave following donuts on the tray until departure")
+		var first_position: Vector2 = sprites[0].position
+		timeline.custom_step(0.14)
+		_expect(sprites[1].visible and not sprites[2].visible and sprites[0].position != first_position, "Collection is simultaneous or waits for the previous full landing")
+		_expect(page.orders.cards[1].food.texture == DonutOrderCard.STICKER_ART[0], "Order advanced before its food arrived")
+		timeline.custom_step(0.25)
+		var clip: Control = sprites[0].get_parent()
+		var card: DonutOrderCard = page.orders.cards[1]
+		var mouth: Rect2 = card.get_global_transform_with_canvas() * card.receiving_rect()
+		var first_bounds: Rect2 = sprites[0].get_global_rect()
+		_expect(clip.clip_contents and absf(clip.get_global_rect().end.y - mouth.end.y) < 0.01,
+			"Receiving clip does not match the requested order's front rim")
+		_expect(absf(first_bounds.get_center().x - mouth.get_center().x) < 0.01
+			and first_bounds.size.x <= mouth.size.x + 0.01 and first_bounds.size.y <= mouth.size.y + 0.01
+			and is_equal_approx(sprites[0].scale.x, sprites[0].scale.y)
+			and is_equal_approx(first_bounds.size.x / first_bounds.size.y, DonutArt.FOOD_SIZE.x / DonutArt.FOOD_SIZE.y),
+			"Flight must fit the independently scaled order mouth without distorting the donut")
+		timeline.custom_step(0.06)
+		var descending: Rect2 = sprites[0].get_global_rect()
+		_expect(is_equal_approx(descending.position.x, first_bounds.position.x) and descending.position.y > first_bounds.position.y,
+			"Donut did not descend vertically through the mouth")
+		timeline.custom_step(0.14)
+		_expect(sprites[0].position.y >= clip.size.y and sprites[0].modulate.a == 1.0,
+			"Received donut faded instead of disappearing behind the box front")
+		_expect(page.orders.cards[1].food.texture == DonutOrderCard.STICKER_ART[0], "Order advanced while later donuts were still arriving")
+		timeline.custom_step(2.0)
+	await process_frame
+	_expect(effects.get_child_count() == 0 and not effects.dispatch_pending and page.session.snapshot() == committed,
+		"Collection leaked art, retained input lock or changed rules")
+	_expect(page.orders.cards[1].food.texture == DonutOrderCard.STICKER_ART[1], "Order did not advance after the last arrival")
+	# 连单可连续发往同一订单盒，每批结束后才换为下一张贴纸。
+	definition.slots[2].box = _box([1, 1, 1, 1])
+	page.initialize(DonutSession.new(definition))
+	page._cancel_interaction()
+	page.session.move(1, 0)
+	timeline = effects._animation
+	timeline.pause()
+	timeline.custom_step(1.32)
+	_expect(page.session.completed == 2 and page.orders.cards[1].food.texture == DonutOrderCard.STICKER_ART[1]
+		and effects.dispatch_pending, "Chained dispatch lost order identity or advanced early")
+	timeline.custom_step(3.0)
+	await process_frame
+	_expect(page.orders.cards[1].count_label.visible and effects.get_child_count() == 0, "Chained dispatch failed to finish its order")
+	for interruption: String in ["hide", "pause", "focus", "resize", "exit"]:
+		page.initialize(DonutSession.new(definition))
+		page._cancel_interaction()
+		page.session.move(1, 0)
+		committed = page.session.snapshot()
+		timeline = effects._animation
+		timeline.pause()
+		timeline.custom_step(0.76)
+		match interruption:
+			"hide":
+				page.hide()
+				page.show()
+			"pause":
+				paused = true
+				paused = false
+			"focus":
+				page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+				page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_IN)
+			"resize":
+				viewport.size += Vector2i(10, 20)
+			"exit":
+				viewport.remove_child(page)
+		await process_frame
+		await process_frame
+		_expect(not timeline.is_valid() and effects.get_child_count() == 0 and not effects.dispatch_pending
+			and page.session.snapshot() == committed, "Collection failed to clean up after " + interruption)
+	page.free()
+	viewport.queue_free()
+	await process_frame
+	print("PASS: staggered dispatch, exact order mouth, downward occlusion, chain and lifecycle")
 
 
 ## 用真实视口输入复现拖拽，验证鼠标、触摸、取消与点击共存。
@@ -1495,12 +1765,98 @@ func _check_early_level_drags() -> void:
 			await _mouse_drag(viewport, _box_point(page, int(step[0])), _box_point(page, int(step[1])))
 			_expect(page.session.moves == previous_moves + 1, "Level %d drag %s did not commit" % [index + 1, step])
 			page.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
-		_expect(page.session.is_won() and page.session.tools == {"undo": 1, "add_box": 1, "top": 1}, "Early-level drag solution did not finish without tools")
+		_expect(page.session.is_won() and page.session.tools == {"undo": 0, "add_box": 0, "top": 0}, "Early-level drag solution did not finish without tools")
 		_expect(page.board.boxes.filter(func(box: DonutBox) -> bool: return box.visible and box.back.visible).size() == LEVEL_TARGETS[index][1] + LEVEL_TARGETS[index][2] - LEVEL_TARGETS[index][4], "Victory board container budget differs from planning sheet")
 	viewport.queue_free()
 	await process_frame
 	print("PASS: early-level mouse drag solutions and visible container conservation")
 
+
+
+## 验证整叠冰壳、同源纸托前沿和真实解冻／撤回，避免旧冰霜或错误颜色残留。
+func _check_mechanic_art() -> void:
+	var box: DonutBox = load("res://features/donut_sort/board/ui/donut_box.tscn").instantiate()
+	root.add_child(box)
+	await process_frame
+	var heights: Array[float] = []
+	for count: int in [3, 4]:
+		var items: Array = []
+		for index: int in count:
+			items.append({"flavor": index, "revealed": true})
+		var state: Dictionary = {"kind": "number_frozen", "frozen": true, "lid": 2, "items": items}
+		box.present({"kind": "regular", "open": true, "box": state})
+		var ice: NinePatchRect = box.frozen_shell
+		var bounds := Rect2(ice.position, ice.size * ice.scale)
+		heights.append(bounds.size.y)
+		_expect(ice.visible and ice.texture == DonutMechanicArt.ICE_SHELL and not box.closed.visible,
+			"Frozen box does not use its one transparent stack shell")
+		_expect(bounds.encloses(box.food_stack.visible_food_rect()) and box.interaction_rect().encloses(bounds),
+			"Ice clips food or leaves the box's visible bounds")
+		_expect(is_equal_approx(ice.scale.x, ice.scale.y) and ice.size.y >= ice.patch_margin_top + ice.patch_margin_bottom,
+			"Ice caps have non-uniform scale or overlap on a short stack")
+		_expect(is_equal_approx(-bounds.position.y, DonutBox.frozen_top_overhang(count)), "Opening layout ignores ice top edge")
+		_expect(box.get_node("Badge").visible and box.get_node("Badge/Count").text == "2", "Numbered ice lost its count")
+		for index: int in count:
+			_expect(box.food_stack.food_at(index).get_child_count() == 0, "Old per-donut frost remains")
+		state.kind = "frozen"
+		state.lid = 0
+		box.present({"kind": "regular", "open": true, "box": state})
+		_expect(box.frozen_shell.visible and not box.get_node("Badge").visible, "Ordinary ice shows a number")
+	_expect(is_equal_approx(heights[1] - heights[0], DonutStackView.STACK_STEP), "Ice height does not follow the layer count")
+	for kind: String in ["normal", "fixed", "single"]:
+		var state: Dictionary = {"kind": "fixed" if kind == "fixed" else "normal", "fixed_flavor": 2,
+			"frozen": false, "lid": 0, "items": [{"flavor": 2, "revealed": true}]}
+		box.present({"kind": "single" if kind == "single" else "regular", "open": true, "box": state})
+		var base: AtlasTexture = box.back.texture
+		var rim: AtlasTexture = box.front.texture
+		var factor: float = minf(box.back.size.x / base.get_width(), box.back.size.y / base.get_height())
+		var inset: Vector2 = (box.back.size - base.get_size() * factor) * 0.5
+		_expect(rim.atlas == base.atlas and box.front.material == box.back.material,
+			"Rim loses the holder's color, fold texture or single-slot label: " + kind)
+		_expect(box.front.position.is_equal_approx(box.back.position + inset + (rim.region.position - base.region.position) * factor)
+			and box.front.size.is_equal_approx(rim.get_size() * factor), "Rim is not registered to its original image: " + kind)
+		_expect(box.front.visible and not box.frozen_shell.visible and box.front.z_index > 5,
+			"Rim/ice state did not reset on a normal holder")
+		_expect(box.front.position.y > box.food_position(0).y + DonutArt.FOOD_SIZE.y * 0.8, "Rim obscures too much of the food")
+		box.hide_moving_food(1)
+		_expect(not box.front.visible, "Empty moving stack keeps a duplicate rim")
+	# 正式第三关的首次归纳解冻第一盒，撤回必须同时恢复冰壳与数字。
+	var session := DonutSession.new(DonutLevel.load_definition(DonutLevel.catalog()[2].path))
+	session.begin()
+	box.present(session.slots[0])
+	_expect(box.frozen_shell.visible, "Initial reference ice missing")
+	for step: Array in [[1, 8], [5, 9], [8, 9]]:
+		_expect(session.move(step[0], step[1]), "Ice visual reference move rejected")
+	box.present(session.slots[0])
+	_expect(not box.frozen_shell.visible and not box.get_node("Badge").visible, "Thawed box keeps ice or count")
+	session.resolve_tool_reward(session.request_tool_reward("undo"), true)
+	_expect(session.undo(), "Ice visual reference undo rejected")
+	box.present(session.slots[0])
+	box.hide()
+	box.show()
+	_expect(box.frozen_shell.visible and box.get_node("Badge/Count").text == "1", "Undo/hide/show failed to restore numbered ice")
+	box.present({"kind": "regular", "open": true, "box": null})
+	_expect(not box.frozen_shell.visible and not box.front.visible, "Removed box retains an ice shell or rim")
+	box.queue_free()
+	await process_frame
+	var dialog: DonutDialog = load("res://features/donut_sort/learning/ui/donut_dialog.tscn").instantiate()
+	root.add_child(dialog)
+	await process_frame
+	for numbered: bool in [false, true]:
+		dialog.present("Ice", "Example")
+		dialog.show_frozen_example(numbered)
+		var sample: DonutBox = dialog.get_node("Card/FrozenExample")
+		var bounds: Rect2 = sample.get_transform() * sample.interaction_rect()
+		_expect(sample.visible and sample.frozen_shell.visible and sample.get_node("Badge").visible == numbered,
+			"Ice lesson does not match its real mechanic")
+		_expect(not dialog.get_node("Card/Donut").visible and not dialog.get_node("Card/Holder").visible
+			and bounds.position.y > 110 and bounds.end.y < 390, "Ice lesson clips title or message or duplicates its art")
+	dialog.present("Other", "Example")
+	_expect(not dialog.get_node("Card/FrozenExample").visible and dialog.get_node("Card/Donut").visible,
+		"Ice sample leaks into another lesson")
+	dialog.queue_free()
+	await process_frame
+	print("PASS: three/four-layer shell, neutral/numeric ice, aligned per-holder rims, thaw and undo")
 
 
 ## 验证全部布局在不同画布上保留四层食物空间，预览样例不修改现有关卡。
@@ -1535,8 +1891,8 @@ func _check_configured_layouts() -> void:
 			for item: Dictionary in state.items:
 				item.revealed = true
 			frozen.present({"kind": "regular", "open": true, "box": state})
-			var ice: Control = frozen.food_stack.food_at(0).get_child(0)
-			_expect(ice.visible and ice.size == DonutArt.FOOD_SIZE, "Per-donut frost missing")
+			var ice: NinePatchRect = frozen.frozen_shell
+			_expect(ice.visible and Rect2(ice.position, ice.size * ice.scale).encloses(frozen.food_stack.visible_food_rect()), "Stack ice does not cover all donuts")
 			state.frozen = false
 			state.lid = 3
 			state.kind = "lid"
@@ -1622,44 +1978,37 @@ func _check_portrait_layout() -> void:
 		var background: DonutBackground = page.get_node("Backdrop")
 		var tabletop: TextureRect = background.get_node("TableClip/Tabletop")
 		var table_clip: Control = background.get_node("TableClip")
+		var cabinet: Control = background.get_node("Cabinet")
 		var floor_art: TextureRect = background.get_node("Floor")
 		var shop: TextureRect = background.get_node("ShopClip/Shop")
 		_expect(shop.get_global_rect().grow(0.01).encloses(background.get_node("ShopClip").get_global_rect()), "Wall crop exposes a gap above the counter")
 		_expect(background.get_global_rect().is_equal_approx(bounds), "Background does not fill portrait viewport")
 		_expect(tabletop.get_global_rect().grow(0.01).encloses(table_clip.get_global_rect()), "Counter crop exposes an empty margin")
-		_expect(is_equal_approx(tabletop.get_global_rect().end.y, table_clip.get_global_rect().end.y), "Cabinet bottom frame is cropped by the floor")
+		_expect(is_equal_approx(table_clip.get_global_rect().end.y, cabinet.get_global_rect().position.y), "Surface and cabinet do not meet")
 		_expect(absf(floor_art.get_global_rect().end.y - bounds.end.y) < 1.0 and
-			floor_art.get_global_rect().position.y <= table_clip.get_global_rect().end.y,
+			absf(floor_art.get_global_rect().position.y - cabinet.get_global_rect().end.y) <= 1.0,
 			"Counter and floor leave a seam or an uncovered bottom edge")
-		_expect(tabletop.texture.resource_path.ends_with("background_middle.png") and
+		_expect(tabletop.texture.atlas.resource_path.ends_with("background_middle.png") and
 			shop.texture.resource_path.ends_with("background_top.png") and
 			floor_art.texture.resource_path.ends_with("background_bottom.png"), "V8 background segments are not displayed")
 		_expect(table_clip.z_index > page.orders.z_index and table_clip.z_index < page.board.z_index,
 			"Counter does not sit between the orders and the playable board")
 		_check_art_aspect(page)
-		var coin_rect: Rect2 = page.get_node("Stage/CoinBalance").get_global_rect()
 		var title_rect: Rect2 = page.get_node("Stage/Title").get_global_rect()
 		var settings_rect: Rect2 = page.get_node("Stage/Settings").get_global_rect()
 		var stage_rect: Rect2 = page.stage.get_global_rect()
-		var left_inset: float = coin_rect.position.x - stage_rect.position.x
-		var right_inset: float = stage_rect.end.x - settings_rect.end.x
-		_expect(bounds.encloses(coin_rect) and bounds.encloses(settings_rect), "Coin balance or settings left portrait viewport")
-		_expect(not coin_rect.intersects(title_rect) and not title_rect.intersects(settings_rect), "Header controls overlap")
-		_expect(left_inset > 0 and left_inset < stage_rect.size.x * 0.04 and absf(left_inset - right_inset) < 1.0,
-			"Coin balance and settings do not align to matching outer margins")
-		_expect(absf(title_rect.get_center().x - stage_rect.get_center().x) < 1.0, "Level title is not centered on the page")
-		_expect(page.get_node("Stage/CoinBalance/Amount").horizontal_alignment == HORIZONTAL_ALIGNMENT_LEFT,
-			"Coin amount is not left aligned")
-		_expect(absf(coin_rect.get_center().y - title_rect.get_center().y) < 3.0 and
-			absf(settings_rect.get_center().y - title_rect.get_center().y) < 3.0, "Header controls do not share a center line")
+		_expect(bounds.encloses(settings_rect) and bounds.encloses(title_rect), "Header left portrait viewport")
+		_expect(not title_rect.intersects(settings_rect), "Header controls overlap")
+		_expect(absf(settings_rect.position.x - stage_rect.position.x) < 1.0, "Settings does not align to the page content edge")
+		_expect(absf(title_rect.get_center().x - stage_rect.get_center().x) < 1.0, "Title is not centered without a capsule")
+		_expect(absf(settings_rect.get_center().y - title_rect.get_center().y) < 1.0, "Header controls do not share a center line")
 		for box: DonutBox in boxes:
 			_expect(box.size.is_equal_approx(DonutBox.BOX_SIZE), "Paper holder changed shape after resize")
 			_expect(is_equal_approx(box.scale.x, box.scale.y), "Paper holder has non-uniform scale")
 			_expect(box.back.stretch_mode == TextureRect.STRETCH_KEEP_ASPECT_CENTERED, "Paper holder art is stretched")
 			_expect(box.back.texture.atlas.resource_path.ends_with("paper_holder_round.png") and
-				box.get_node_or_null("Front") == null, "Round holder retained an unrelated front occluder")
-			_expect(box.get_global_rect().end.y < floor_art.get_global_rect().position.y -
-				DonutBackground.CABINET_HEIGHT * tabletop.get_global_rect().size.y / DonutBackground.MIDDLE_SIZE.y,
+				box.front.texture.atlas == box.back.texture.atlas, "Round holder rim uses an unrelated original image")
+			_expect(box.get_global_rect().end.y < cabinet.get_global_rect().position.y,
 				"Playable paper holder overlaps cabinet decoration")
 		_expect(page.get_node_or_null("Stage/Dispatch") == null, "Bottom dispatch decoration returned")
 		var single_box: DonutBox = boxes[0]
@@ -1670,7 +2019,7 @@ func _check_portrait_layout() -> void:
 		_expect(single_box.back.visible and not single_box.closed.visible and
 			Rect2(Vector2.ZERO, single_box.size).has_point(food_center), "Single-donut food left its paper holder")
 		_expect(single_box.food_position(0, false, 4).y < 0 and
-			single_box.food_position(3, false, 4).y > -DonutArt.FOOD_SIZE.y * 0.1,
+			is_equal_approx(single_box.food_position(3, false, 4).y + DonutArt.FOOD_SIZE.y, 108.0),
 			"Four donuts do not rest against the paper holder opening")
 		_expect(_highest_z(single_box.food_stack) > single_box.back.z_index,
 			"Round holder incorrectly covers the donut stack")
@@ -1724,7 +2073,7 @@ func _check_box_entry(page: Control, index: int, bounds: Rect2) -> void:
 	_expect(effects.get_child_count() == 0, "Landed box left duplicate flight art")
 
 
-## 真实左右两侧打包后原位补货，动画结束及缩放中断均保留唯一对应餐盒。
+## 逐颗收餐后再从左右两侧原位补货，中断仍保留唯一对应餐盒。
 func _check_side_refill() -> void:
 	var viewport := SubViewport.new()
 	viewport.size = Vector2i(720, 1280)
@@ -1748,7 +2097,8 @@ func _check_side_refill() -> void:
 		_expect(page.event_player.refill_pending and not page._board_input_enabled(), "Fresh board input can skip the pending refill")
 		page._on_box_pressed(1)
 		_expect(page.selected_box == -1 and page.event_player.is_playing(), "Repeated tap skipped the refill timeline")
-		page.event_player._animation.custom_step(0.72)
+		page.event_player._animation.custom_step(0.54 + DonutEventPlayer.DISPATCH_FLIGHT_DURATION +
+			DonutEventPlayer.DISPATCH_DROP_DURATION + 3.0 * DonutEventPlayer.DISPATCH_STAGGER)
 		_expect(arrivals[0].visible and Rect2(Vector2.ZERO, Vector2(viewport.size)).intersects(arrivals[0].get_global_rect()),
 			"Refill must have a visible in-flight frame before landing")
 		_expect(page.session.completed == 1 and page.session.remaining_stock() == 0,
@@ -1837,6 +2187,10 @@ func _check_order_card_layout() -> void:
 func _check_host_safe_area() -> void:
 	var adapter: Script = load("res://platforms/minigame/host_viewport.gd")
 	_expect(adapter.content_rect(Vector2(720, 1280), {}) == Rect2(0, 0, 720, 1280), "Desktop viewport fallback changed")
+	var host: Dictionary = {"width": 393, "height": 852, "safeArea": {"top": 59, "bottom": 818},
+		"menu": {"left": 301, "top": 72, "width": 80, "height": 32, "bottom": 104}}
+	_expect(adapter.menu_rect(Vector2(1179, 2556), host).is_equal_approx(Rect2(903, 216, 240, 96)), "Host capsule lost its local position or DPR conversion")
+	_expect(not adapter.menu_rect(Vector2(393, 852), {}).has_area(), "Missing capsule fabricated an obstruction")
 	var viewport := SubViewport.new()
 	root.add_child(viewport)
 	var page: Control = load("res://features/home/ui/home_screen.tscn").instantiate()
@@ -1844,6 +2198,8 @@ func _check_host_safe_area() -> void:
 	await process_frame
 	var cases: Array = [
 		{"width": 320, "height": 568},
+		{"width": 320, "height": 568, "safeArea": {"top": 24, "bottom": 544},
+			"menu": {"left": 224, "top": 40, "bottom": 72, "width": 80, "height": 32}},
 		{"width": 360, "height": 640},
 		{"width": 440, "height": 956},
 		{"width": 440, "height": 956, "render_scale": 3},
@@ -1873,11 +2229,18 @@ func _check_host_safe_area() -> void:
 		var stage_bounds := Rect2(page.stage.position, page.stage.size * page.stage.scale)
 		_expect(available.grow(0.001).encloses(stage_bounds), "Stage exceeds host safe area")
 		_expect(is_equal_approx(page.stage.scale.x, page.stage.scale.y), "Safe-area fit distorted the whole stage")
-		if metrics.has("menu"):
-			_expect(available.position.y >= (float(metrics.menu.bottom) + 8) * render_scale, "Menu capsule is not excluded")
-		for path: String in ["CoinBalance", "Title", "Settings", "Tools/Undo", "Tools/AddBox", "Tools/Top"]:
+		var menu: Rect2 = adapter.menu_rect(page.size, metrics)
+		if menu.has_area():
+			_expect(is_equal_approx(available.position.y / render_scale, float(metrics.get("safeArea", {}).get("top", metrics.get("statusBarHeight", 0)))),
+				"Capsule incorrectly reduces the entire system safe area")
+		_expect(stage_bounds.size.x >= available.size.x * 0.89, "Short/wide viewport unnecessarily narrows the entire page: " + str(metrics))
+		_expect(page.board.get_global_rect().size.y >= available.size.y * 0.50, "Decoration consumes over half the safe-area height: " + str(metrics))
+		for path: String in ["Title", "Settings", "Tools/Undo", "Tools/AddBox", "Tools/Top"]:
 			var control: Control = page.get_node("Stage/" + path)
-			_expect(available.encloses(control.get_global_rect()), "Interactive content overlaps unsafe region: " + path)
+			var control_rect: Rect2 = control.get_global_rect()
+			_expect(available.grow(0.01).encloses(control_rect), "Interactive content overlaps unsafe region: " + path)
+			_expect(minf(control_rect.size.x, control_rect.size.y) / render_scale >= 43.99, "Page control is smaller than 44 logical pixels: " + path)
+			_expect(not menu.has_area() or not control_rect.intersects(menu.grow(7.99 * render_scale)), "Page control overlaps the host capsule: " + path)
 		_check_art_aspect(page)
 		var title_rect: Rect2 = page.get_node("Stage/Title").get_global_rect()
 		var orders_rect: Rect2 = page.orders.cards[0].get_global_rect()
@@ -1886,12 +2249,13 @@ func _check_host_safe_area() -> void:
 		_expect(page.backdrop.get_node("ShopClip/Shop").get_global_rect().grow(0.01).encloses(page.backdrop.get_node("ShopClip").get_global_rect()), "Safe-area wall crop exposes the clear color")
 		var header_inset: float = (title_rect.position.y - available.position.y) / render_scale
 		var footer_inset: float = (available.end.y - tools_rect.end.y) / render_scale
-		_expect(header_inset >= 20.0 and header_inset <= 36.0, "Title has excessive top padding or leaves its safe area")
-		_expect(footer_inset >= 23.0 and footer_inset <= 40.0, "Tools are flush with the safe edge or have excessive padding")
+		_expect(header_inset >= 15.99 and header_inset <= 24.0, "Title has excessive top padding or leaves its safe area")
+		_expect(footer_inset >= 16.0 and footer_inset <= 40.0, "Tools leave less than the page margin or have excessive bottom padding")
 		_expect((stage_bounds.position.x - available.position.x) / render_scale >= 16.0,
 			"Content is flush with the side of the safe area")
-		_expect(is_equal_approx((orders_rect.position.y - title_rect.end.y) / page.stage.scale.y, 20.0),
-			"Title/order gap differs from the 20-unit layout specification")
+		_expect((orders_rect.position.y - title_rect.end.y) / render_scale >= 7.99,
+			"Orders collide with the title touch target")
+		_expect(not menu.has_area() or orders_rect.position.y >= menu.end.y + 7.99 * render_scale, "Orders collide with the host capsule")
 		_expect((stage_bounds.end.y - tools_rect.end.y) / render_scale <= 18.0 and
 			(tools_rect.position.y - floor_rect.position.y) / render_scale <= 24.0,
 			"Footer expands into a large empty floor or bottom padding")
@@ -1905,7 +2269,12 @@ func _check_host_safe_area() -> void:
 				"Paper holder or touch target is too small in the safe area")
 		for name: String in ["Tools/Undo", "Tools/AddBox", "Tools/Top"]:
 			var button: Control = page.get_node("Stage/" + name)
-			_expect(button.get_global_rect().size.y / render_scale >= 44, "Touch target is shorter than 44 logical pixels: " + name)
+			_expect(button.get_global_rect().size.y / render_scale >= 52, "Enlarged tool is shorter than 52 logical pixels: " + name)
+		var settings_target: Rect2 = page.settings_button.get_global_rect()
+		await _mouse_button(viewport, settings_target.position + Vector2.ONE * 3.0 * render_scale, true)
+		await _mouse_button(viewport, settings_target.position + Vector2.ONE * 3.0 * render_scale, false)
+		_expect(page.settings_panel.visible, "Expanded settings edge is not clickable")
+		page.settings_panel.close()
 		await _check_box_entry(page, 0, Rect2(Vector2.ZERO, Vector2(viewport.size)))
 		await _check_box_entry(page, 4, Rect2(Vector2.ZERO, Vector2(viewport.size)))
 		await _mouse_drag(viewport, _box_point(page, 0), _box_point(page, 1))
@@ -1939,9 +2308,9 @@ func _check_board_padding(page: Control) -> void:
 		visible_bounds = visible_bounds.merge(bounds) if visible_bounds.has_area() else bounds
 		var layer: int = int(page.board.layout_slots[box.box_index].layer)
 		rows[layer] = (rows[layer] as Rect2).merge(bounds) if rows.has(layer) else bounds
-	var tabletop: Rect2 = page.backdrop.get_node("TableClip/Tabletop").get_global_rect()
-	var table_top: float = page.backdrop.get_node("TableClip").get_global_rect().position.y
-	var table_bottom: float = tabletop.end.y - DonutBackground.CABINET_HEIGHT * tabletop.size.x / DonutBackground.MIDDLE_SIZE.x
+	var surface: Rect2 = page.backdrop.get_node("TableClip").get_global_rect()
+	var table_top: float = surface.position.y
+	var table_bottom: float = surface.end.y
 	var top_padding: float = visible_bounds.position.y - table_top
 	var bottom_padding: float = table_bottom - visible_bounds.end.y
 	var paper_width: float = page.board.boxes[0].get_global_rect().size.x

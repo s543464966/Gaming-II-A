@@ -1,8 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3]
-
-[ext_resource type="Texture2D" path="res://game_content/donuts/art/donut_pink_plain.png" id="image"]
-
-[resource]
-atlas = ExtResource("image")
-region = Rect2(33, 241, 1188, 846)
-filter_clip = true

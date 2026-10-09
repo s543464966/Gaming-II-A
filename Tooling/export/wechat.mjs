@@ -12,6 +12,7 @@ async function assemble({ game, platform, artifacts, lock }) {
   execute('unzip', ['-oq', artifacts[0], ...lock.files, '-d', game]);
   await cp(join(platform, 'runtime/game.js'), join(game, 'game.js'));
   await cp(join(platform, '../minigame/runtime/host_viewport.js'), join(game, 'host_viewport.js'));
+  await cp(join(platform, '../minigame/runtime/host_locale.js'), join(game, 'host_locale.js'));
   await cp(join(platform, 'runtime/start_game.js'), join(game, 'start_game.js'));
   await writeFile(join(game, 'engine/game.js'), '// Engine resources are started by the main package.\n');
   await writeFile(join(game, 'content/game.js'), '// Resource-only subpackage.\n');

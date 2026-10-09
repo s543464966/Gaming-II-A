@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://features/donut_sort/ui/donut_background.gd" id="script"]
 [ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/scene/background_top.png" id="shop"]
 [ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/scene/background_middle.png" id="counter"]
 [ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/scene/background_bottom.png" id="floor"]
+
+[sub_resource type="AtlasTexture" id="surface"]
+atlas = ExtResource("counter")
+region = Rect2(0, 0, 1137, 1125)
+filter_clip = true
 
 [node name="DonutBackground" type="Control"]
 layout_mode = 3
@@ -52,6 +57,16 @@ layout_mode = 0
 offset_right = 1024.0
 offset_bottom = 1245.0
 mouse_filter = 2
-texture = ExtResource("counter")
+texture = SubResource("surface")
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 6
+
+[node name="Cabinet" type="NinePatchRect" parent="."]
+z_index = 2
+layout_mode = 0
+mouse_filter = 2
+texture = ExtResource("counter")
+region_rect = Rect2(0, 1125, 1137, 258)
+patch_margin_top = 72
+patch_margin_bottom = 68
+axis_stretch_horizontal = 2

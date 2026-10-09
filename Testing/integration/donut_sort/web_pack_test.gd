@@ -18,8 +18,27 @@ func _run() -> void:
 			quit(1)
 			return
 	for flavor: int in DonutLevel.FLAVOR_COUNT:
-		if DonutArt.FOOD[flavor] == null or DonutOrderCard.STICKER_ART[flavor] == null:
+		if DonutArt.FOOD[flavor] == null or DonutOrderCard.STICKER_ART[flavor] == null \
+			or not DonutArt.FOOD[flavor].atlas.resource_path.ends_with("soft_glaze_palette.png") \
+			or not DonutOrderCard.STICKER_ART[flavor].atlas.resource_path.ends_with("soft_glaze_stickers.png"):
 			push_error("Missing flavor resource")
+			quit(1)
+			return
+	if not DonutArt.HIDDEN.atlas.resource_path.ends_with("soft_glaze_hidden_gray.png"):
+		push_error("Missing new neutral hidden donut")
+		quit(1)
+		return
+	if DonutMechanicArt.ICE_SHELL == null or not DonutMechanicArt.ICE_SHELL.atlas.resource_path.ends_with("ice_stack_shell.png"):
+		push_error("Missing new stack ice shell")
+		quit(1)
+		return
+	for old_path: String in ["res://game_content/donuts/art/donut_pink_plain.tres",
+		"res://features/donut_sort/orders/ui/art/sticker_pink.tres",
+		"res://features/donut_sort/board/ui/art/mechanics/donut_hidden_neutral.tres",
+		"res://features/donut_sort/board/ui/art/mechanics/frost_donut_overlay.tres",
+		"res://features/donut_sort/ui/art/special/ice_cover.tres"]:
+		if ResourceLoader.exists(old_path):
+			push_error("Replaced art remains in the pack: " + old_path)
 			quit(1)
 			return
 	var page: Control = load("res://features/home/ui/home_screen.tscn").instantiate()

@@ -1,33 +1,65 @@
 {
-  "source": "user_supplied_button_images",
+  "source": "user_supplied_button_images + user_supplied_05_buttons_and_common_ui",
   "assets": [
     {
       "id": "icon_undo",
       "width": 1254,
       "height": 1254,
       "sha256": "a0cbcde64afd388cf45b833b8376a1eb08946f89cfe032559d855b73d6560cde",
-      "path": "res://features/donut_sort/tools/undo/ui/art/icon_undo.png"
+      "path": "res://features/donut_sort/tools/ui/art/icon_undo.png",
+      "source": "/Users/juntao/Downloads/最新素材/05_按钮与通用UI/icon_undo.png",
+      "resource": "res://features/donut_sort/tools/ui/art/icon_undo.tres",
+      "region": [
+        178,
+        159,
+        921,
+        939
+      ]
     },
     {
       "id": "icon_add_box",
       "width": 1254,
       "height": 1254,
       "sha256": "eaed33e670f3e7b0e898942d92d81b26058d9cae8f99f3b7fa85aeda2dbf44ba",
-      "path": "res://features/donut_sort/tools/add_box/ui/art/icon_add_box.png"
+      "path": "res://features/donut_sort/tools/ui/art/icon_add_box.png",
+      "source": "/Users/juntao/Downloads/最新素材/05_按钮与通用UI/icon_add_box.png",
+      "resource": "res://features/donut_sort/tools/ui/art/icon_add_box.tres",
+      "region": [
+        129,
+        213,
+        1011,
+        897
+      ]
     },
     {
       "id": "icon_top",
       "width": 1254,
       "height": 1254,
       "sha256": "c89e72a42c1d4fb788964a721356a192c5f7ae58a83350c13bf5453f93c83787",
-      "path": "res://features/donut_sort/tools/top/ui/art/icon_top.png"
+      "path": "res://features/donut_sort/tools/ui/art/icon_top.png",
+      "source": "/Users/juntao/Downloads/最新素材/05_按钮与通用UI/icon_top.png",
+      "resource": "res://features/donut_sort/tools/ui/art/icon_top.tres",
+      "region": [
+        276,
+        157,
+        699,
+        961
+      ]
     },
     {
       "id": "count_badge",
       "width": 1254,
       "height": 1254,
       "sha256": "3a9f7c223cf14b5db08135195d7094f1b0fb9b4cfc869a6d22f7ea572b09c8b4",
-      "path": "res://features/donut_sort/tools/ui/art/count_badge.png"
+      "path": "res://features/donut_sort/tools/ui/art/count_badge.png",
+      "source": "/Users/juntao/Downloads/最新素材/05_按钮与通用UI/count_badge.png",
+      "resource": "res://features/donut_sort/tools/ui/art/count_badge.tres",
+      "region": [
+        110,
+        108,
+        1034,
+        1030
+      ]
     }
   ]
 }

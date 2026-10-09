@@ -24,7 +24,7 @@ node Tooling/export/douyin.mjs
 
 固定启动器 1.1.27 存在 `screenWidth: e.screenHeight` 错误，导致长屏按正方形渲染后被压窄。导出入口在校验原始 SHA-256 后按唯一锚点修正宽高，锚点不匹配即停止构建；不手改缓存或生成文件。启动与窗口变化统一使用逻辑窗口尺寸，DPR 只换算画布像素，Godot 页面保持等比缩放。共用 `platforms/minigame/host_viewport.gd` 通过宿主接口读取安全区与胶囊位置，避开刘海、系统手势区和宿主按钮；使用 `JavaScriptBridge.get_interface`，不依赖平台禁用的 `eval`。
 
-构建在 `Testing/.runtime/douyin-export-*/` 的工程副本中进行，使用 `Douyin Resources` 预设。打包前从当前工程的场景、脚本及其静态资源引用选择运行内容，排除不再使用的美术、平台配置、宿主 JS 与制作工具；共用 GDScript 适配器包含在 PCK 中，`host_viewport.js` 由主包加载。导出后检查 PCK 标识、官方 WASM、主场景、关卡数据、中文字体及包体预算；通过后才更新固定目录。替换发生错误时恢复上一版；成功清理临时文件，失败输出诊断位置。重复启动会被锁文件阻止，异常强制终止后按错误提示确认没有打包进程，再清除残留锁。
+构建在 `Testing/.runtime/douyin-export-*/` 的工程副本中进行，使用 `Douyin Resources` 预设。打包前从当前工程的场景、脚本及其静态资源引用选择运行内容，排除不再使用的美术、平台配置、宿主 JS 与制作工具；资源筛选只修改该预设所在的配置节，保留微信、Web 等其他预设及引擎选项，不依赖预设的排列顺序。共用 GDScript 适配器包含在 PCK 中，`host_viewport.js` 由主包加载。导出后检查 PCK 标识、官方 WASM、主场景、关卡数据、中文字体及包体预算；通过后才更新固定目录。替换发生错误时恢复上一版；成功清理临时文件，失败输出诊断位置。重复启动会被锁文件阻止，异常强制终止后按错误提示确认没有打包进程，再清除残留锁。
 
 项目按[抖音代码包限制](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/guide/basic-function/subpackages/introduction)的默认总包 20 MiB 打包，主包限制 4 MiB；不依赖开通虚拟支付后的 30 MiB 额度。`main.br` 由固定启动器解压，内容与原始 PCK 逐字节往返校验。常规双击 `douyin.command` 默认使用 `auto`：配置了正式 HTTPS CDN 目录时生成对应 CDN 包，否则启动或复用本机 CDN 服务。
 

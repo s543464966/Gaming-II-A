@@ -1,32 +1,30 @@
 class_name DonutBackground
 extends Control
-## 等比组合墙面、台面柜体与地板；台面前景遮住订单盒底部。
+## 按页面提供的台面、柜体与地板边界绘制背景，不反向决定玩法区域大小。
 
-const MIDDLE_SIZE: Vector2 = Vector2(1137, 1383)
-const CABINET_HEIGHT: float = 258.0 # 原图完整台面前沿与柜体高度，不裁去柜门下边框。
-const SHOP_TOP_CROP: float = 48.0 # 原图像素；只裁掉文字上方空白，完整保留黑板四行字。
+const SHOP_TOP_CROP: float = 48.0 # 原图像素；保留黑板文字与窗下绿植的取景基准。
+const CABINET_SOURCE_WIDTH: float = 1137.0
 
 var _table_top: float = 400.0
-var _table_bottom: float = 1500.0
-@onready var _table_clip: Control = $TableClip
-@onready var _tabletop: TextureRect = $TableClip/Tabletop
+var _surface_bottom: float = 1300.0
+var _cabinet_bottom: float = 1380.0
 
 
-## 独立预览和窗口变化均重新计算背景的等比裁切。
+## 独立预览和窗口变化时重新绘制已分配的背景区域。
 func _ready() -> void:
 	resized.connect(_layout)
 	_layout()
 
 
-## 页面传入安全区布局对应的台面起止位置，返回可摆放纸托的桌沿高度。
-func fit_counter(top: float, bottom: float) -> float:
+## 页面给出三个最终边界；柜体只在装饰带内伸缩，保留完整上下边框。
+func fit_counter(top: float, surface_bottom: float, cabinet_bottom: float) -> void:
 	_table_top = top
-	_table_bottom = bottom
+	_surface_bottom = surface_bottom
+	_cabinet_bottom = cabinet_bottom
 	_layout()
-	return bottom - CABINET_HEIGHT * _middle_scale()
 
 
-## 墙面按黑板文字上沿取景且不露空，餐台底部与地板衔接并完整展示柜门。
+## 墙面与台面等比取景，柜体用九宫格保留边框，宽屏横向平铺完整柜门组。
 func _layout() -> void:
 	if not is_node_ready() or size.x <= 0 or size.y <= 0:
 		return
@@ -36,15 +34,13 @@ func _layout() -> void:
 	shop.size = shop.texture.get_size() * shop_scale
 	var shop_y: float = maxf(_table_top + 1.0 - shop.size.y, -SHOP_TOP_CROP * shop_scale)
 	shop.position = Vector2((size.x - shop.size.x) * 0.5, shop_y)
-	var middle_size: Vector2 = MIDDLE_SIZE * _middle_scale()
-	_table_clip.position = Vector2(0, _table_top)
-	_table_clip.size = Vector2(size.x, _table_bottom - _table_top)
-	_tabletop.size = middle_size
-	_tabletop.position = Vector2((size.x - middle_size.x) * 0.5, _table_clip.size.y - middle_size.y)
-	$Floor.position = Vector2(0, _table_bottom - 1.0)
-	$Floor.size = Vector2(size.x, maxf(1, size.y - _table_bottom + 1.0))
-
-
-## 同一等比系数用于绘图和桌沿边界，避免长屏棋盘压到柜门上。
-func _middle_scale() -> float:
-	return maxf(size.x / MIDDLE_SIZE.x, (_table_bottom - _table_top) / MIDDLE_SIZE.y)
+	$TableClip.position = Vector2(0, _table_top)
+	$TableClip.size = Vector2(size.x, maxf(1.0, _surface_bottom - _table_top))
+	$TableClip/Tabletop.size = $TableClip.size
+	var cabinet_height: float = maxf(1.0, _cabinet_bottom - _surface_bottom)
+	var cabinet_scale: float = minf(size.x / CABINET_SOURCE_WIDTH, cabinet_height / 180.0)
+	$Cabinet.position = Vector2(0, _surface_bottom)
+	$Cabinet.scale = Vector2.ONE * cabinet_scale
+	$Cabinet.size = Vector2(size.x, cabinet_height) / cabinet_scale
+	$Floor.position = Vector2(0, _cabinet_bottom - 1.0)
+	$Floor.size = Vector2(size.x, maxf(1, size.y - _cabinet_bottom + 1.0))

@@ -76,13 +76,31 @@ async function prepareProject(project) {
   if (!selected.has('res://bootstrap/app.tscn')) throw new Error('Douyin export has no startup scene.');
   const preset = join(project, 'export_presets.cfg');
   const source = await readFile(preset, 'utf8');
-  const marker = 'name="Douyin Resources"';
-  if (source.split(marker).length !== 2) throw new Error('Douyin export preset is missing or ambiguous.');
-  const [head, section] = source.split(marker);
-  const filter = 'export_filter="all_resources"';
-  if (section.split(filter).length !== 2) throw new Error('Douyin export filter has changed.');
-  const files = `export_filter="resources"\nexport_files=PackedStringArray(${[...selected].sort().map(JSON.stringify).join(', ')})`;
-  await writeFile(preset, head + marker + section.replace(filter, files));
+  await writeFile(preset, selectDouyinResources(source, selected));
+}
+
+// 按配置节边界定位抖音预设，不将其他平台或引擎选项计入资源过滤检查。
+export function selectDouyinResources(source, selected) {
+  const headers = [...source.matchAll(/^\[([^\]\r\n]+)\][ \t]*\r?$/gm)];
+  const matches = [];
+  for (const [index, header] of headers.entries()) {
+    if (!/^preset\.\d+$/.test(header[1])) continue;
+    const start = header.index + header[0].length;
+    const end = headers[index + 1]?.index ?? source.length;
+    const body = source.slice(start, end);
+    const names = body.match(/^name[ \t]*=[ \t]*"Douyin Resources"[ \t]*\r?$/gm) ?? [];
+    if (names.length > 1) throw new Error('Douyin export preset is missing or ambiguous.');
+    if (names.length === 1) matches.push({ start, end, body });
+  }
+  if (matches.length !== 1) throw new Error('Douyin export preset is missing or ambiguous.');
+  const { start, end, body } = matches[0];
+  const filter = /^export_filter[ \t]*=[ \t]*"all_resources"[ \t]*(?=\r?$)/gm;
+  if ([...body.matchAll(/^export_filter[ \t]*=/gm)].length !== 1 || [...body.matchAll(filter)].length !== 1) {
+    throw new Error('Douyin export filter has changed within the Douyin Resources preset.');
+  }
+  const newline = body.includes('\r\n') ? '\r\n' : '\n';
+  const files = `export_filter="resources"${newline}export_files=PackedStringArray(${[...selected].sort().map(JSON.stringify).join(', ')})`;
+  return source.slice(0, start) + body.replace(filter, files) + source.slice(end);
 }
 
 function encodePack(pack) {
@@ -101,6 +119,7 @@ async function assemble({ game, platform, artifacts, lock }) {
   await compatibleScript(artifacts[1], join(game, 'godot.launcher.js'), patchLauncherViewport);
   await cp(join(platform, 'runtime/game.js'), join(game, 'game.js'));
   await cp(join(platform, '../minigame/runtime/host_viewport.js'), join(game, 'host_viewport.js'));
+  await cp(join(platform, '../minigame/runtime/host_locale.js'), join(game, 'host_locale.js'));
   await writeFile(join(engine, 'game.js'), '// Engine and resources are loaded by the official launcher.\n');
   await writeFile(join(game, 'godot.config.js'), `module.exports = ${JSON.stringify(launcherConfig(lock.engine), null, 2)};\n`);
 }

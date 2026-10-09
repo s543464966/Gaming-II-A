@@ -2,10 +2,13 @@ class_name DonutBox
 extends Button
 ## 显示固定盒位中的纸托、隐藏食物与机关，不拥有或推断第二套玩法状态。
 
+const ICE_MARGIN: Vector2 = Vector2(14, 8) # 设计单位，冰壳与食物的水平／垂直间隙。
 const BOX_SIZE: Vector2 = Vector2(200, 126)
 
 var box_index: int = 0
 @onready var back: TextureRect = $Back
+@onready var front: TextureRect = $Front
+@onready var frozen_shell: NinePatchRect = $Frozen
 @onready var closed: TextureRect = $Closed
 @onready var food_stack: DonutStackView = $Food
 @onready var marker: Label = $Marker
@@ -26,16 +29,25 @@ func present(slot: Dictionary, selected: bool = false, waiting: bool = false, cl
 	var frozen: bool = bool(slot.box.frozen) if exists else false
 	var covered: bool = exists and slot.box.kind == "lid" and lid > 0
 	back.texture = DonutMechanicArt.holder(slot)
+	var fixed: bool = exists and slot.box.kind == "fixed" and not single
+	var tint: ShaderMaterial = back.material as ShaderMaterial
+	tint.set_shader_parameter("enabled", fixed and int(slot.box.fixed_flavor) in DonutMechanicArt.TINTED_FIXED_FLAVORS)
+	if fixed:
+		tint.set_shader_parameter("flavor_color", DonutArt.FLAVOR_COLORS[int(slot.box.fixed_flavor)])
 	back.visible = (exists or not open) and not covered
 	back.self_modulate = Color(1.12, 1.08, 1.0) if selected else Color.WHITE
 	closed.texture = DonutMechanicArt.COVER
 	closed.visible = covered
-	$Frozen.visible = false
+	frozen_shell.visible = open and exists and frozen and not covered and not slot.box.items.is_empty()
 	$Lock.visible = not open
 	$Badge.visible = open and exists and lid > 0
 	$Badge/Count.text = str(lid)
 	$Waiting.visible = open and exists and waiting
-	food_stack.present(slot.box.items if exists else [], open and exists and not covered, single, selected, frozen)
+	food_stack.present(slot.box.items if exists else [], open and exists and not covered, single, selected and not frozen)
+	front.texture = DonutMechanicArt.front(back.texture)
+	front.material = back.material
+	front.self_modulate = back.self_modulate
+	front.visible = back.visible and open and exists and not slot.box.items.is_empty()
 	$Mechanic.visible = exists and open and slot.box.kind in ["cycle", "bomb"]
 	if $Mechanic.visible:
 		$Mechanic.texture = DonutMechanicArt.CYCLE if slot.box.kind == "cycle" else DonutMechanicArt.BOMB
@@ -83,11 +95,14 @@ func _layout_contents() -> void:
 	closed.position = Vector2(0, size.y - closed.size.y)
 	food_stack.size = size
 	var contents: Rect2 = Rect2(Vector2.ZERO, size).merge(food_stack.visible_food_rect())
-	var frost: NinePatchRect = $Frozen
-	var factor: float = size.x / frost.texture.get_width()
-	frost.scale = Vector2.ONE * factor
-	frost.size = contents.size / factor
-	frost.position = contents.position
+	_layout_front()
+	if frozen_shell.visible:
+		var shell_bounds: Rect2 = food_stack.visible_food_rect().grow_individual(ICE_MARGIN.x, ICE_MARGIN.y, ICE_MARGIN.x, ICE_MARGIN.y)
+		var factor: float = shell_bounds.size.x / frozen_shell.texture.get_width()
+		frozen_shell.scale = Vector2.ONE * factor
+		frozen_shell.size = shell_bounds.size / factor
+		frozen_shell.position = shell_bounds.position
+		contents = contents.merge(shell_bounds)
 	$Lock.position = Vector2((size.x - $Lock.size.x) * 0.5, size.y * 0.18)
 	$Badge.position.y = contents.get_center().y - 42.0
 	$Waiting.position = Vector2(size.x - $Waiting.size.x - 5.0, contents.position.y + 10.0)
@@ -99,6 +114,8 @@ func interaction_rect() -> Rect2:
 	var bounds := Rect2(Vector2.ZERO, size)
 	if closed.visible:
 		bounds = bounds.merge(closed.get_rect())
+	if frozen_shell.visible:
+		bounds = bounds.merge(Rect2(frozen_shell.position, frozen_shell.size * frozen_shell.scale))
 	var food_bounds: Rect2 = food_stack.visible_food_rect()
 	if food_bounds.has_area():
 		bounds = bounds.merge(food_bounds)
@@ -110,3 +127,19 @@ func interaction_rect() -> Rect2:
 ## 搬运展示开始时隐藏实际飞走的组，后续快照负责恢复剩余食物。
 func hide_moving_food(count: int) -> void:
 	food_stack.hide_moving_food(count)
+	front.visible = back.visible and food_stack.visible_food_rect().has_area()
+
+
+## 前沿沿用纸托原图的缩放与偏移，避免裁片被再次居中或单独拉伸。
+func _layout_front() -> void:
+	var base: AtlasTexture = back.texture as AtlasTexture
+	var rim: AtlasTexture = front.texture as AtlasTexture
+	var factor: float = minf(back.size.x / base.get_width(), back.size.y / base.get_height())
+	var inset: Vector2 = (back.size - base.get_size() * factor) * 0.5
+	front.position = back.position + inset + (rim.region.position - base.region.position) * factor
+	front.size = rim.get_size() * factor
+
+
+## 开局留白与冰壳使用同一外边界，冻结中的三层或四层都预留上下冰沿。
+static func frozen_top_overhang(count: int) -> float:
+	return -DonutStackView.BOTTOM_Y + maxi(0, count - 1) * DonutStackView.STACK_STEP + ICE_MARGIN.y

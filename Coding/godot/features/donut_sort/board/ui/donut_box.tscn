@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://features/donut_sort/board/ui/donut_box.gd" id="script"]
+[ext_resource type="Shader" path="res://features/donut_sort/board/ui/fixed_holder_tint.gdshader" id="fixed_tint"]
 
 [ext_resource type="PackedScene" path="res://features/donut_sort/donuts/ui/donut_stack_view.tscn" id="donut_stack"]
 
@@ -9,9 +10,9 @@
 [ext_resource type="Texture2D" path="res://features/donut_sort/board/ui/art/paper_holder_round.tres" id="back"]
 
 
-[ext_resource type="Texture2D" path="res://features/donut_sort/board/ui/art/paper_package_closed.tres" id="closed"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/board/ui/art/mechanics/cover_opaque_round.tres" id="closed"]
 
-[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/special/ice_cover.tres" id="frozen"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/board/ui/art/mechanics/ice_stack_shell.tres" id="frozen"]
 
 [ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/icons/icon_lock.tres" id="lock"]
 
@@ -21,7 +22,13 @@
 
 [ext_resource type="FontFile" path="res://design_system/fonts/lilita_one.ttf" id="rounded"]
 
+[ext_resource type="Texture2D" path="res://features/donut_sort/board/ui/art/paper_holder_round_front.tres" id="front"]
+
 [sub_resource type="StyleBoxEmpty" id="Empty"]
+
+[sub_resource type="ShaderMaterial" id="FixedTint"]
+resource_local_to_scene = true
+shader = ExtResource("fixed_tint")
 
 [sub_resource type="StyleBoxFlat" id="TargetStyle"]
 bg_color = Color(1, 0.94, 0.62, 0.12)
@@ -51,6 +58,7 @@ theme_override_styles/focus = SubResource("Empty")
 script = ExtResource("script")
 
 [node name="Back" type="TextureRect" parent="."]
+material = SubResource("FixedTint")
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
@@ -63,6 +71,14 @@ stretch_mode = 5
 
 [node name="Food" parent="." instance=ExtResource("donut_stack")]
 z_index = 1
+
+[node name="Front" type="TextureRect" parent="."]
+visible = false
+mouse_filter = 2
+texture = ExtResource("front")
+expand_mode = 1
+stretch_mode = 5
+z_index = 10
 
 [node name="Closed" type="TextureRect" parent="."]
 layout_mode = 0
@@ -78,6 +94,8 @@ stretch_mode = 5
 
 
 [node name="Frozen" type="NinePatchRect" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.8)
 layout_mode = 0
 offset_left = -10.0
 offset_top = -42.0
@@ -86,10 +104,10 @@ offset_bottom = 168.0
 mouse_filter = 2
 texture = ExtResource("frozen")
 z_index = 15
-patch_margin_left = 160
-patch_margin_top = 160
-patch_margin_right = 160
-patch_margin_bottom = 160
+patch_margin_left = 0
+patch_margin_top = 270
+patch_margin_right = 0
+patch_margin_bottom = 235
 
 [node name="Lock" type="TextureRect" parent="."]
 layout_mode = 0

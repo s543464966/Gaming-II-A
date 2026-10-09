@@ -2,16 +2,15 @@ class_name DonutStackView
 extends Control
 ## 在圆纸托上按真实层序绘制甜甜圈，并向拖拽与飞行动效提供位置。
 
-const STACK_STEP: float = 48.0 # 相邻两颗露出约四成高度，纯色糖霜与饼底均可辨认。
-const BOTTOM_Y: float = -6.0 # 最底层底端位于纸托内的 108 处，前沿保留 18 设计单位。
-const SELECTED_LIFT: float = 14.0 # 设计单位；选中顶层轻抬，保持纸托及盒位固定。
+const STACK_STEP: float = 40.0 # 新版较高的圆润轮廓共用紧凑层距，下层保留糖霜与饼底。
+const BOTTOM_Y: float = 108.0 - DonutArt.FOOD_SIZE.y # 底端固定在纸托内 108 处，换图不改变落点。
+const SELECTED_LIFT: float = 21.0 # 设计单位；相对满四层顶端抬升，较原 14 增加 50%。
 const MAX_TOP_OVERHANG: float = 3.0 * STACK_STEP - BOTTOM_Y + SELECTED_LIFT # 四层选中堆叠的最大上沿预留。
 
 var _item_count: int = 0
 var _single: bool = false
 var _selected: bool = false
 var _foods: Array[TextureRect] = []
-var _frost: Array[TextureRect] = []
 
 
 ## 创建四个复用的显示节点，顶层最后绘制。
@@ -25,27 +24,18 @@ func _ready() -> void:
 		food.z_index = 4 - item_index
 		add_child(food)
 		_foods.append(food)
-		var frost := TextureRect.new()
-		frost.texture = DonutMechanicArt.FROST
-		frost.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		frost.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		frost.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		frost.size = DonutArt.FOOD_SIZE
-		food.add_child(frost)
-		_frost.append(frost)
 	resized.connect(_layout_contents)
 	_layout_contents()
 
 
 ## 已揭示食物始终显示真实口味，仅未揭示的食物使用灰色纹理。
-func present(items: Array, visible_food: bool, single: bool, selected: bool, frozen: bool = false) -> void:
+func present(items: Array, visible_food: bool, single: bool, selected: bool) -> void:
 	_item_count = items.size()
 	_single = single
 	_selected = selected
 	for item_index: int in _foods.size():
 		var food: TextureRect = _foods[item_index]
 		food.visible = visible_food and item_index < items.size()
-		_frost[item_index].visible = frozen
 		if food.visible:
 			var item: Dictionary = items[item_index]
 			food.texture = DonutArt.FOOD[int(item.flavor)] if item.revealed else DonutArt.HIDDEN
@@ -87,7 +77,8 @@ func hide_moving_food(count: int) -> void:
 		_foods[index].hide()
 
 
-## 尺寸或选中状态变化后刷新四层位置。
+## 选中首颗统一移至满四层顶端上方，取消后恢复当前层序，其余食物不动。
 func _layout_contents() -> void:
 	for index: int in _foods.size():
-		_foods[index].position = food_position(index, _single) - Vector2(0, SELECTED_LIFT if _selected and index == 0 else 0)
+		_foods[index].position = food_position(0, false, 4) - Vector2(0, SELECTED_LIFT) \
+			if _selected and index == 0 else food_position(index, _single)

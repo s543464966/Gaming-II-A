@@ -37,15 +37,23 @@ func _run() -> void:
 		"res://features/donut_sort/ui/art/scene/background_bottom.png",
 		"res://features/donut_sort/board/ui/art/paper_holder_round.png",
 		"res://features/donut_sort/orders/ui/art/order_box_orange.png",
-		"res://game_content/donuts/art/donut_orange_plain.png",
-		"res://game_content/donuts/art/donut_ivory_sprinkles.png",
-		"res://features/donut_sort/orders/ui/art/sticker_ivory.png",
-		"res://features/donut_sort/orders/ui/art/sticker_purple.png",
+		"res://game_content/donuts/art/soft_glaze_palette.png",
+		"res://game_content/donuts/art/soft_glaze_hidden_gray.png",
+		"res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
 		"res://features/donut_sort/failure/ui/art/panel_failure_blank.png",
 	]:
 		if load(path) == null:
 			_fail("Remote UI texture is missing: " + path)
 			return
+	var levels: Script = load("res://features/donut_sort/donut_level.gd")
+	var catalog: Array = levels.catalog()
+	if catalog.size() != 100:
+		_fail("Split packs must contain the complete 100-level catalog.")
+		return
+	var first_level: Dictionary = levels.load_definition(catalog[0].path)
+	if first_level.is_empty():
+		_fail("Split packs have no valid first-level definition.")
+		return
 	var scene: PackedScene = load("res://features/home/ui/home_screen.tscn")
 	if scene == null:
 		_fail("Core pack has no home scene.")
@@ -55,7 +63,9 @@ func _run() -> void:
 	await process_frame
 	var board: Node = page.get_node_or_null("Stage/Boxes")
 	var orders: Node = page.get_node_or_null("Stage/Orders")
-	if board == null or orders == null or board.get("boxes").size() != 17 or orders.get("cards").size() != 4:
+	if board == null or orders == null or board.get("boxes").size() != first_level.slots.size() \
+			or page.session.slots.size() != first_level.slots.size() or orders.get("cards").size() != 4 \
+			or page.session.total_orders() <= 0 or page.session.total_donuts() <= 0:
 		_fail("Split packs cannot assemble the playable first level.")
 		return
 	page.queue_free()

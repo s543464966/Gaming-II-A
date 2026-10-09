@@ -129,9 +129,9 @@ offset_bottom = 1536.0
 [node name="Tools" parent="Stage" instance=ExtResource("tools_scene")]
 z_index = 4
 layout_mode = 0
-offset_top = 1266
+offset_top = 1242
 offset_right = 1024
-offset_bottom = 1436
+offset_bottom = 1506
 
 [node name="IdleHint" type="PanelContainer" parent="Stage"]
 visible = false

@@ -34,7 +34,7 @@ def verify(content, fixtures):
         assert supply==Counter({key:value*4 for key,value in demand.items()}),name
         assert len(supply)==plan['flavors'] and sum(supply.values())==plan['donuts'],name
         assert all(not o['sequence'] for o in d['demands'][2:]) and all(o['initially_open'] for o in d['demands'][:2]),name
-        assert d['tools']=={'undo':1,'add_box':1,'top':1} and not d['combo_rewards'],name
+        assert d['tools']=={'undo':0,'add_box':0,'top':0} and not d['combo_rewards'],name
         assert sum(bool(item.get('hidden',False)) for item in items)==round(plan['hidden_ratio']*plan['donuts']),name
         initial_four=[s['box'] for s in d['slots'] if s['kind']!='single' and s['box'] and s['box']['items']]
         adjacent=sum(a['flavor']==b['flavor'] for box in boxes for a,b in zip(box['items'],box['items'][1:]))

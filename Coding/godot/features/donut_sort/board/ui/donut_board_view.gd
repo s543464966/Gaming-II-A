@@ -63,6 +63,8 @@ func _cache_opening_bounds() -> void:
 				var count: int = slot.box.items.size()
 				if count > 0:
 					overhang = -DonutStackView.BOTTOM_Y + maxi(0, count - 1) * DonutStackView.STACK_STEP
+				if slot.box.get("kind", "normal") in ["frozen", "number_frozen"] and count > 0:
+					overhang = DonutBox.frozen_top_overhang(count)
 				if slot.box.get("kind", "normal") == "lid" and int(slot.box.get("lid", 0)) > 0:
 					overhang = 200.0 * DonutMechanicArt.COVER.get_height() / DonutMechanicArt.COVER.get_width() - DonutBox.BOX_SIZE.y
 			var extra: float = 20.0 if slot.box != null and slot.box.get("kind", "normal") in ["bomb", "cycle"] else 0.0

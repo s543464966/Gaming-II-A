@@ -9,6 +9,7 @@ var demands: Array = []
 var completed: int = 0
 var moves: int = 0
 var tools: Dictionary = {}
+var tool_claimed: Dictionary = {} # 每次尝试各道具只领取一次，不随撤回恢复。
 var coins: int = 0
 var diamonds: int = 0
 var last_combo: int = 0
@@ -94,8 +95,10 @@ func _prepare() -> void:
 		return
 	title = _definition.get("title", "甜甜圈小铺")
 	tools = _definition.tools.duplicate(true)
+	tool_claimed = {}
 	for key: String in tools:
-		tools[key] = int(tools[key])
+		tools[key] = clampi(int(tools[key]), 0, 1)
+		tool_claimed[key] = tools[key] > 0
 	for entry: Dictionary in _definition.slots:
 		var threshold: int = int(entry.get("unlock_after", 0))
 		slots.append({"kind": entry.kind, "unlock_after": threshold, "open": threshold == 0,
@@ -267,7 +270,7 @@ func demand_flavor(index: int) -> int:
 
 ## 预留显式解锁入口；资格由未来调用方判定，开放及后续回收作为一次可撤回事务。
 func unlock_order_slot(index: int) -> bool:
-	if not started or is_won() or index < 0 or index >= demands.size() or demands[index].open:
+	if not started or failed or is_won() or not pending_reward.is_empty() or index < 0 or index >= demands.size() or demands[index].open:
 		return false
 	_remember()
 	DonutOrderRules.unlock_position(demands, index)
@@ -404,7 +407,7 @@ func snapshot() -> Dictionary:
 	for index: int in slots.size():
 		waiting.append(is_waiting(index))
 	return {"layout_id": _definition.get("layout_id", ""), "waiting": waiting, "slots": slots.duplicate(true), "demands": demands.duplicate(true), "completed": completed,
-		"moves": moves, "tools": tools.duplicate(), "coins": coins, "diamonds": diamonds,
+		"moves": moves, "tools": tools.duplicate(), "tool_claimed": tool_claimed.duplicate(), "coins": coins, "diamonds": diamonds,
 		"last_combo": last_combo, "best_combo": best_combo, "stock_cursor": _stock_cursor,
 		"next_box_id": _next_box_id, "started": started, "won": is_won(), "remaining_stock": remaining_stock(),
 		"active_seconds": active_seconds, "failed": failed, "number_targets": number_targets()}
@@ -428,7 +431,7 @@ func can_undo() -> bool:
 	return not failed and pending_reward.is_empty() and _history.has_entry() and int(tools.undo) > 0
 
 
-## 原子恢复上一步全部结果并保留本次撤回消耗，不重播或重复结算历史事件。
+## 恢复上一步棋盘与奖励，所有道具的领取和消耗均不回退。
 func undo() -> bool:
 	if not can_undo():
 		return false
@@ -445,7 +448,6 @@ func undo() -> bool:
 	_stock_cursor = state.stock_cursor
 	_next_box_id = state.next_box_id
 	started = state.started
-	tools = state.tools
 	tools.undo = remaining
 	var events: Array = []
 	_event(events, "undo")
@@ -490,13 +492,13 @@ func request_turnover(index: int) -> String:
 		return ""
 	_reward_serial += 1
 	var token: String = "%d:%d:%d" % [attempt, _reward_serial, index]
-	pending_reward = {"token": token, "index": index, "attempt": attempt}
+	pending_reward = {"kind": "turnover", "token": token, "index": index, "attempt": attempt}
 	return token
 
 
 ## 只有匹配的奖励确认才开放所选盒，不扣道具且不可被撤回重复领取。
 func resolve_turnover(token: String, rewarded: bool) -> bool:
-	if pending_reward.is_empty() or token != pending_reward.token or int(pending_reward.attempt) != attempt:
+	if pending_reward.get("kind") != "turnover" or token != pending_reward.token or int(pending_reward.attempt) != attempt:
 		return false
 	var index: int = int(pending_reward.index)
 	pending_reward = {}
@@ -509,6 +511,37 @@ func resolve_turnover(token: String, rewarded: bool) -> bool:
 	_event(events, "unlock", {"index": index})
 	changed.emit(events)
 	return true
+
+
+## 未领取的道具才可请求广告奖励，等待期间冻结操作与炸弹计时。
+func request_tool_reward(tool: String) -> String:
+	if not started or failed or is_won() or not pending_reward.is_empty() or not tools.has(tool) or tool_claimed[tool]:
+		return ""
+	_reward_serial += 1
+	var token: String = "%d:%d:%s" % [attempt, _reward_serial, tool]
+	pending_reward = {"kind": "tool", "token": token, "tool": tool, "attempt": attempt}
+	return token
+
+
+## 广告完成只授予一次使用点，不执行道具；取消、重复或过期回调不发奖。
+func resolve_tool_reward(token: String, rewarded: bool) -> bool:
+	if pending_reward.get("kind") != "tool" or token != pending_reward.token or int(pending_reward.attempt) != attempt:
+		return false
+	var tool: String = pending_reward.tool
+	pending_reward = {}
+	if rewarded and not tool_claimed[tool]:
+		tool_claimed[tool] = true
+		tools[tool] = 1
+		changed.emit([])
+		return true
+	changed.emit([])
+	return false
+
+
+## 页面退出或替换时撤销道具请求，迟到的完成回调不能再发奖。
+func cancel_tool_reward() -> void:
+	if pending_reward.get("kind") == "tool":
+		resolve_tool_reward(pending_reward.token, false)
 
 
 ## 存档绑定当前关卡内容摘要，关卡更新后不套用过时局面。
@@ -549,6 +582,7 @@ func restore_run(data: Dictionary) -> bool:
 	failed = bool(state.failed)
 	started = bool(state.started)
 	tools = state.tools.duplicate()
+	tool_claimed = state.tool_claimed.duplicate()
 	for key: String in tools:
 		tools[key] = int(tools[key])
 	if not history.is_empty():
@@ -574,10 +608,12 @@ func _valid_saved_state(state: Dictionary, definition: Dictionary) -> bool:
 	for key: String in ["completed", "moves", "coins", "diamonds", "last_combo", "best_combo", "stock_cursor", "next_box_id", "active_seconds"]:
 		if not (state.get(key) is int or state.get(key) is float) or not is_finite(float(state[key])) or float(state[key]) < 0:
 			return false
-	if not state.get("started") is bool or not state.get("failed") is bool or not state.get("tools") is Dictionary:
+	if not state.get("started") is bool or not state.get("failed") is bool or not state.get("tools") is Dictionary or not state.get("tool_claimed") is Dictionary:
 		return false
 	for key: String in ["undo", "add_box", "top"]:
-		if not state.tools.has(key) or int(state.tools[key]) < 0:
+		if not (state.tools.get(key) is int or state.tools.get(key) is float) or not float(state.tools[key]) in [0.0, 1.0] or not state.tool_claimed.get(key) is bool:
+			return false
+		if state.tools[key] == 1 and not state.tool_claimed[key]:
 			return false
 	if int(state.stock_cursor) > definition.stock.size():
 		return false

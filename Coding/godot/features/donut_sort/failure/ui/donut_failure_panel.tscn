@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://features/donut_sort/failure/ui/donut_failure_panel.gd" id="script"]
 [ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/panel_failure_blank.tres" id="panel"]
-[ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/header_level_failed.tres" id="header"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/ui/art/ui/header_level.tres" id="header"]
 [ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/illustration_failure_scattered.tres" id="illustration"]
-[ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/button_home.tres" id="home"]
-[ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/button_try_again.tres" id="retry"]
-[ext_resource type="FontFile" path="res://design_system/fonts/lilita_one.ttf" id="font"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/failure_home_icon_button.png" id="home"]
+[ext_resource type="Texture2D" path="res://features/donut_sort/failure/ui/art/failure_retry_icon_button.png" id="retry"]
+[ext_resource type="FontVariation" path="res://features/donut_sort/failure/ui/failure_display_font.tres" id="font"]
 
 [node name="FailurePanel" type="ColorRect"]
 visible = false
@@ -42,6 +42,22 @@ texture = ExtResource("header")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="Text" type="Label" parent="Card/Heading"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 12.0
+offset_right = 672.0
+offset_bottom = 179.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.985, 0.96, 1)
+theme_override_colors/font_shadow_color = Color(0.38, 0.08, 0.31, 0.6)
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 100
+text = "DONUT_FAILURE_TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Subtitle" type="Label" parent="Card"]
 layout_mode = 0
 offset_left = 62.0
@@ -52,7 +68,7 @@ mouse_filter = 2
 theme_override_colors/font_color = Color(0.27, 0.115, 0.035, 1)
 theme_override_fonts/font = ExtResource("font")
 theme_override_font_sizes/font_size = 58
-text = "Let’s try again!"
+text = "DONUT_FAILURE_SUBTITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -70,23 +86,51 @@ stretch_mode = 5
 [node name="Home" type="TextureButton" parent="Card"]
 layout_mode = 0
 offset_left = 52.0
-offset_top = 798.0
+offset_top = 770.0
 offset_right = 406.0
-offset_bottom = 1022.0
+offset_bottom = 1068.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("home")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
+
+[node name="Text" type="Label" parent="Card/Home"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 224.0
+offset_right = 330.0
+offset_bottom = 298.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.40, 0.18, 0.07, 1)
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 50
+text = "DONUT_FAILURE_HOME"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TryAgain" type="TextureButton" parent="Card"]
 layout_mode = 0
 offset_left = 434.0
-offset_top = 798.0
+offset_top = 770.0
 offset_right = 788.0
-offset_bottom = 1022.0
+offset_bottom = 1068.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("retry")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
+
+[node name="Text" type="Label" parent="Card/TryAgain"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 224.0
+offset_right = 330.0
+offset_bottom = 298.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.40, 0.18, 0.07, 1)
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 50
+text = "DONUT_FAILURE_RETRY"
+horizontal_alignment = 1
+vertical_alignment = 1

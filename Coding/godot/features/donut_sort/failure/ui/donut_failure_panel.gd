@@ -5,6 +5,9 @@ extends ColorRect
 signal home_requested
 signal retry_requested
 
+const HEADER_ZH: Texture2D = preload("res://features/donut_sort/failure/ui/art/failure_header_zh.png")
+const HEADER_BLANK: Texture2D = preload("res://features/donut_sort/ui/art/ui/header_level.tres")
+
 var _touch_index: int = -1 # 仅跟踪首个手指；负一表示没有按钮触摸。
 var _touch_button: TextureButton
 
@@ -18,6 +21,20 @@ func _ready() -> void:
 		button.button_up.connect(reset_feedback)
 		button.mouse_exited.connect(reset_feedback)
 	visibility_changed.connect(reset_feedback)
+	_sync_localized_heading()
+
+
+## 运行中切换语言时同步标题图片，未就绪阶段由首次装配处理。
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_sync_localized_heading()
+
+
+## 中文标题直接使用带字原图，其余语言复用空底板与现有翻译文字。
+func _sync_localized_heading() -> void:
+	var chinese: bool = TranslationServer.get_locale().get_slice("_", 0) == "zh"
+	$Card/Heading.texture = HEADER_ZH if chinese else HEADER_BLANK
+	$Card/Heading/Text.visible = not chinese
 
 
 ## 每次出现都启用两个动作，不沿用上次面板的按压状态。

@@ -5,6 +5,7 @@ function reportStartupFailure(error) {
 
 let gameCanvas;
 require('./host_viewport.js')(tt, globalThis);
+require('./host_locale.js')(tt, globalThis);
 
 // 画布像素尺寸与逻辑窗口保持同一宽高比；设备切换后同步启动器模拟的浏览器窗口。
 function resizeCanvas(event) {

@@ -11,12 +11,18 @@ signal home_requested # 主页尚未实现，交由后续宿主导航接入。
 
 const DESIGN_SIZE: Vector2 = Vector2(1024, 1536)
 const HOST_VIEWPORT: Script = preload("res://platforms/minigame/host_viewport.gd")
-const HEADER_HEIGHT: float = 368.0 # 标题贴近安全区顶部，标题与订单盒保持 20 设计单位间隔。
-const FOOTER_HEIGHT: float = 248.0 # 包含次数角标、按钮及底部内边距，系统安全区另行避让。
-const MIN_STAGE_ASPECT: float = 2.05 # 短屏收紧头尾占高，给最多四排及对称留白留足高度，按钮仍保留触控尺寸。
+const HOST_LOCALE: Script = preload("res://platforms/minigame/host_locale.gd")
+# 页面统一预算使用宿主逻辑像素，模块内部仍使用各自设计尺寸。
+const PAGE_MARGIN: float = 16.0
+const SECTION_GAP: float = 8.0
+const MIN_TOUCH_SIZE: float = 44.0
+const MAX_ORDERS_WIDTH: float = 480.0 # 宽屏订单独立限宽，棋盘继续使用完整内容宽度。
+const TOOL_BUTTON_SIZE: float = 263.5 # 170 设计单位的按钮在模块内放大 1.55 倍。
 
 ## 宿主尺寸读取边界；独立预览默认使用完整视口。
 var viewport_metrics: Callable = HOST_VIEWPORT.read_metrics
+## 广告预留边界：接收道具名与完成回调，回调参数表示是否获得奖励；未接入时临时直接领取。
+var tool_reward_provider: Callable
 @export var idle_hint_seconds: float = 35.0 # 连续没有有效搬运的秒数；提示不暂停炸弹。
 @export var idle_hint_invalid_attempts: int = 4 # 连续无效操作达到此数也可提示。
 
@@ -38,7 +44,7 @@ var _continuing: bool = false # 防止完成计时或重玩操作重复提交导
 var _suspended: bool = false # 宿主失焦时暂停自动切关，重新激活后恢复反馈。
 var _drag_source: int = -1
 var _drag_preview: DonutDragPreview
-var _drop_origin: Variant = null # 仅本次拖放落点使用的设计坐标，点击搬运时为空。
+var _drop_origin: Variant = null # 本次首颗飞行起点；承接选中抬起或拖放位置，无玩家操作时为空。
 @onready var stage: Control = $Stage
 @onready var backdrop: DonutBackground = $Backdrop
 @onready var board_input: DonutBoardInput = $BoardInput
@@ -57,6 +63,8 @@ var _drop_origin: Variant = null # 仅本次拖放落点使用的设计坐标，
 
 ## 显式连接会话依赖与操作信号，替换会话前清理旧连接。
 func initialize(value: DonutSession) -> void:
+	if session != null:
+		session.cancel_tool_reward()
 	if session != null and session.changed.is_connected(_on_session_changed):
 		session.changed.disconnect(_on_session_changed)
 		move_requested.disconnect(session.move)
@@ -80,7 +88,8 @@ func initialize(value: DonutSession) -> void:
 
 ## 装配稳定布局并开始首批餐盒入场，独立预览使用同一会话实现。
 func _ready() -> void:
-	event_player.initialize(board)
+	HOST_LOCALE.apply()
+	event_player.initialize(board, orders)
 	event_player.playback_finished.connect(_finish_animation)
 	if session == null:
 		initialize(DonutSession.new())
@@ -127,7 +136,7 @@ func _begin_after_layout() -> void:
 			_maybe_show_lesson()
 
 
-## 在系统安全区内另外保留界面边距，再按剩余宽高布置头部、棋盘与道具。
+## 关卡页统一分配可用空间；平台只报告边界，背景和各模块消费页面算出的区域。
 func _fit_stage() -> void:
 	if not is_node_ready() or size.x <= 0 or size.y <= 0:
 		return
@@ -135,44 +144,104 @@ func _fit_stage() -> void:
 		_cancel_interaction()
 	var metrics: Dictionary = viewport_metrics.call()
 	var available: Rect2 = HOST_VIEWPORT.content_rect(size, metrics)
+	var menu: Rect2 = HOST_VIEWPORT.menu_rect(size, metrics)
 	var logical_width: float = float(metrics.get("width", minf(size.x, 430.0)))
 	if not is_finite(logical_width) or logical_width <= 0:
 		logical_width = minf(size.x, 430.0)
-	# 边距以宿主逻辑像素计算；没有安全区数据的网页也保留基础留白。
-	var logical_pixel: float = size.x / maxf(1, logical_width)
-	var vertical_padding: float = lerpf(16.0, 24.0,
-		clampf((available.size.y / logical_pixel - 560.0) / 200.0, 0.0, 1.0)) * logical_pixel
-	var horizontal_padding: float = clampf(logical_width * 0.045, 16.0, 24.0) * logical_pixel
-	var content := Rect2(available.position + Vector2(horizontal_padding, vertical_padding),
-		available.size - Vector2(horizontal_padding, vertical_padding) * 2.0)
-	var width: float = minf(content.size.x, content.size.y / MIN_STAGE_ASPECT)
-	var factor: float = width / DESIGN_SIZE.x
+	var logical_pixel: float = size.x / logical_width
+	var content: Rect2 = available.grow(-PAGE_MARGIN * logical_pixel)
+	var factor: float = content.size.x / DESIGN_SIZE.x
 	stage.scale = Vector2.ONE * factor
-	stage.size = Vector2(DESIGN_SIZE.x, content.size.y / factor)
-	stage.position = content.position + Vector2((content.size.x - width) * 0.5, 0)
-	var table_top: float = HEADER_HEIGHT
-	var table_bottom: float = stage.size.y - FOOTER_HEIGHT
-	var surface_bottom: float = (backdrop.fit_counter(stage.position.y + table_top * factor,
-		stage.position.y + table_bottom * factor) - stage.position.y) / factor
-	orders.position.y = table_top - 232.0
-	for path: String in ["LevelPlate", "Title", "Settings", "CoinBalance"]:
-		get_node("Stage/" + path).position.y = orders.position.y - 116.0
-	board_input.logical_pixel = size.x / maxf(1, logical_width)
-	# 棋盘统一负责上下留白，避免桌面再叠加固定内缩而挤小短屏食物。
-	var board_area := Rect2(24, table_top, 976, surface_bottom - table_top)
-	board.fit(board_area)
-	tools_view.position.y = stage.size.y - 208
+	stage.size = content.size / factor
+	stage.position = content.position
+	board_input.logical_pixel = logical_pixel
+	var unit: float = logical_pixel / factor
+	var header_bottom: float = _fit_header(content, menu, logical_pixel)
+	var safe_height: float = available.size.y / logical_pixel
+	var orders_width: float = lerpf(240.0, MAX_ORDERS_WIDTH, clampf((safe_height - 520.0) / 160.0, 0.0, 1.0))
+	var orders_factor: float = minf(content.size.x, orders_width * logical_pixel) / DESIGN_SIZE.x
+	orders.scale = Vector2.ONE * orders_factor / factor
+	var orders_top: float = header_bottom + SECTION_GAP * logical_pixel
+	if menu.has_area():
+		orders_top = maxf(orders_top, menu.end.y + SECTION_GAP * logical_pixel)
+	orders.position = Vector2((stage.size.x - DESIGN_SIZE.x * orders.scale.x) * 0.5,
+		(orders_top - content.position.y) / factor)
+	# 背景与棋盘共用像素对齐后的分区边界，避免接缝与可见留白偏差。
+	var table_top: float = roundf(orders_top + 232.0 * orders_factor)
+	# 道具按实际按钮大小预留角标，短屏压缩装饰而不缩窄整页。
+	var button_size: float = minf(clampf(safe_height * 0.11, 56.0, 86.0) * logical_pixel,
+		content.size.x * TOOL_BUTTON_SIZE / DESIGN_SIZE.x)
+	tools_view.scale = Vector2.ONE * button_size / TOOL_BUTTON_SIZE / factor
+	tools_view.position = Vector2((stage.size.x - tools_view.size.x * tools_view.scale.x) * 0.5,
+		stage.size.y - tools_view.size.y * tools_view.scale.y)
+	var footer_top: float = roundf(content.position.y + tools_view.position.y * factor - button_size * 0.10 - SECTION_GAP * logical_pixel)
+	# 最短屏柜体收至 12 逻辑像素，为五排满层和抬起预留空间，保留纸托与点击尺寸。
+	var cabinet_height: float = lerpf(12.0, 56.0, clampf((safe_height - 520.0) / 240.0, 0.0, 1.0)) * logical_pixel
+	var surface_bottom: float = roundf(footer_top - cabinet_height)
+	board.fit(Rect2(Vector2(0, (table_top - content.position.y) / factor),
+		Vector2(stage.size.x, (surface_bottom - table_top) / factor)))
+	backdrop.fit_counter(table_top, surface_bottom, footer_top)
+	_fit_footer_feedback(unit)
 	event_player.entry_bounds = Rect2(-stage.position / factor, size / factor)
-	$Stage/IdleHint.scale = Vector2.ONE * maxf(1.0, 44.0 * logical_pixel / (104.0 * factor))
-	top_choices.position = Vector2(48, tools_view.position.y - 54)
-	completion_view.position.y = tools_view.position.y - 54
-	$Stage/Toast.position.y = tools_view.position.y - 108
 	event_player.size = stage.size
-	_fit_modal(settings_panel, available, logical_pixel)
-	_fit_modal(failure_panel, available, logical_pixel)
-	_fit_modal(lesson_dialog, available, logical_pixel)
+	$Stage/IdleHint.scale = Vector2.ONE * maxf(1.0, MIN_TOUCH_SIZE * unit / 104.0)
+	# 只有大卡片需要整块避开胶囊；页面顶部仍保留可利用的左右空间。
+	var modal_area: Rect2 = available
+	if menu.has_area():
+		var top: float = maxf(available.position.y, menu.end.y + SECTION_GAP * logical_pixel)
+		modal_area = Rect2(Vector2(available.position.x, top), Vector2(available.size.x, available.end.y - top))
+	_fit_modal(settings_panel, modal_area, logical_pixel)
+	_fit_modal(failure_panel, modal_area, logical_pixel)
+	_fit_modal(lesson_dialog, modal_area, logical_pixel)
 	failure_panel.reset_feedback()
 	_render()
+
+
+## 设置靠左且至少可点 44 像素；标题优先屏幕居中，仅在碰到胶囊时收窄或下移。
+func _fit_header(content: Rect2, menu: Rect2, logical_pixel: float) -> float:
+	var height: float = MIN_TOUCH_SIZE * logical_pixel
+	var gap: float = SECTION_GAP * logical_pixel
+	var settings_rect := Rect2(content.position, Vector2.ONE * height)
+	var obstacle: Rect2 = menu.grow(gap) if menu.has_area() else Rect2()
+	if obstacle.has_area() and settings_rect.intersects(obstacle):
+		settings_rect.position.y = obstacle.end.y
+	_place_header_control(settings_button, settings_rect, height / 96.0)
+	var title_width: float = height * 400.0 / 96.0
+	var title_rect := Rect2(Vector2(content.get_center().x - title_width * 0.5, content.position.y), Vector2(title_width, height))
+	var left: float = settings_rect.end.x + gap
+	var right: float = content.end.x
+	if obstacle.has_area() and title_rect.position.y < obstacle.end.y and title_rect.end.y > obstacle.position.y:
+		if obstacle.get_center().x >= content.get_center().x:
+			right = minf(right, obstacle.position.x)
+		else:
+			left = maxf(left, obstacle.end.x)
+	if right - left >= 140.0 * logical_pixel:
+		title_rect.size.x = minf(title_width, right - left)
+		title_rect.position.x = clampf(content.get_center().x - title_rect.size.x * 0.5, left, right - title_rect.size.x)
+	else:
+		title_rect.position.y = maxf(settings_rect.end.y, obstacle.end.y) + gap
+	_place_header_control($Stage/LevelPlate, title_rect, height / 96.0)
+	_place_header_control($Stage/Title, title_rect, height / 96.0)
+	return maxf(title_rect.end.y, settings_rect.end.y)
+
+
+## 将标题行的逻辑像素矩形转换为舞台坐标，内部字体和图案继续等比显示。
+func _place_header_control(control: Control, rect: Rect2, draw_scale: float) -> void:
+	control.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	control.scale = Vector2.ONE * draw_scale / stage.scale.x
+	control.size = rect.size / draw_scale
+	control.position = (rect.position - stage.position) / stage.scale
+
+
+## 底部临时选择和完成反馈共用已分配的操作区，按钮保留统一触控下限。
+func _fit_footer_feedback(unit: float) -> void:
+	top_choices.scale = Vector2.ONE * maxf(1.0, MIN_TOUCH_SIZE * unit / 155.0)
+	top_choices.position = Vector2((stage.size.x - top_choices.size.x * top_choices.scale.x) * 0.5,
+		stage.size.y - top_choices.size.y * top_choices.scale.y)
+	completion_view.scale = Vector2.ONE * maxf(1.0, MIN_TOUCH_SIZE * unit / 140.0)
+	completion_view.position = Vector2((stage.size.x - completion_view.size.x * completion_view.scale.x) * 0.5,
+		stage.size.y - completion_view.size.y * completion_view.scale.y)
+	$Stage/Toast.position.y = tools_view.position.y - 108.0
 
 
 ## 弹窗按安全区独立缩放，避免短屏棋盘收窄后连带缩小选关按钮；遮罩仍覆盖全屏。
@@ -197,6 +266,9 @@ func _notification(what: int) -> void:
 	elif what == NOTIFICATION_APPLICATION_FOCUS_IN:
 		_suspended = false
 	if is_node_ready() and what in [NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_PAUSED, NOTIFICATION_EXIT_TREE]:
+		# 激励视频可能使宿主失焦，此时保留请求；暂停或离树则撤销。
+		if what != NOTIFICATION_APPLICATION_FOCUS_OUT:
+			session.cancel_tool_reward()
 		if progress != null:
 			progress.save()
 		_cancel_interaction()
@@ -209,6 +281,8 @@ func _notification(what: int) -> void:
 ## 隐藏与恢复时统一清理临时输入并显示真实最终状态。
 func _on_visibility_changed() -> void:
 	if is_node_ready():
+		if not is_visible_in_tree():
+			session.cancel_tool_reward()
 		_cancel_interaction()
 
 
@@ -233,7 +307,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## 页面可操作时才接收棋盘手势，菜单和动效期间不抢占其他控件输入。
 func _board_input_enabled() -> bool:
-	return is_visible_in_tree() and session.started and not event_player.refill_pending and not settings_panel.visible and not failure_panel.visible and not lesson_dialog.visible and not session.is_won() and not session.failed and not _has_pending_lesson()
+	return is_visible_in_tree() and session.started and session.pending_reward.is_empty() and not event_player.refill_pending and not event_player.dispatch_pending and not settings_panel.visible and not failure_panel.visible and not lesson_dialog.visible and not session.is_won() and not session.failed and not _has_pending_lesson()
 
 
 ## 拖动时只拿起首颗，连续同味的后续食物留在来源盒等待有效松手。
@@ -300,9 +374,9 @@ func _settle_presentation() -> void:
 	_maybe_show_lesson()
 
 
-## 选择来源与目标；空盒位、机关未解除或非法目标均不给规则状态写入机会。
+## 可放入时直接搬运，异色且可拿取时改选新盒；受限目标不改变原选择。
 func _on_box_pressed(index: int) -> void:
-	if event_player.refill_pending or settings_panel.visible or failure_panel.visible or lesson_dialog.visible or session.is_won() or session.failed or _has_pending_lesson():
+	if event_player.refill_pending or event_player.dispatch_pending or settings_panel.visible or failure_panel.visible or lesson_dialog.visible or session.is_won() or session.failed or _has_pending_lesson():
 		return
 	var slot: Dictionary = session.slots[index]
 	if not slot.open:
@@ -329,8 +403,15 @@ func _on_box_pressed(index: int) -> void:
 		var source: int = selected_box
 		if session.can_move(source, index):
 			_reset_idle()
+			var source_box: DonutBox = board.boxes[source]
+			_drop_origin = board.origin(source) + source_box.food_stack.food_at(0).position * source_box.scale
 			selected_box = -1
 			move_requested.emit(source, index)
+			_drop_origin = null
+		elif session.can_pick_top(index) and slot.box.items[0].flavor != session.slots[source].box.items[0].flavor:
+			selected_box = index
+			_hide_toast()
+			_render()
 		else:
 			_invalid_attempts += 1
 			_toast("餐盒已满" if slot.box.items.size() == session.capacity(index) else "只能放入空盒或同口味餐盒")
@@ -348,6 +429,8 @@ func _on_undo_pressed() -> void:
 	if settings_panel.visible or failure_panel.visible or lesson_dialog.visible or session.is_won():
 		return
 	_cancel_interaction()
+	if _claim_tool_if_needed("undo"):
+		return
 	if not session.can_undo():
 		_toast("暂无可撤回操作" if int(session.tools.undo) > 0 else "撤回次数已用完")
 		return
@@ -359,6 +442,8 @@ func _on_add_box_pressed() -> void:
 	if settings_panel.visible or failure_panel.visible or lesson_dialog.visible or session.is_won():
 		return
 	_cancel_interaction()
+	if _claim_tool_if_needed("add_box"):
+		return
 	if session.next_turnover() < 0 or int(session.tools.add_box) <= 0 or session.is_won():
 		_toast("没有可用的周转盒位" if session.next_turnover() < 0 else "加餐盒次数已用完")
 		return
@@ -368,6 +453,8 @@ func _on_add_box_pressed() -> void:
 ## 进入置顶模式，实际有效选择之前不扣道具。
 func _on_top_pressed() -> void:
 	if settings_panel.visible or failure_panel.visible or lesson_dialog.visible or session.is_won():
+		return
+	if _claim_tool_if_needed("top"):
 		return
 	if int(session.tools.top) <= 0:
 		_toast("置顶次数已用完")
@@ -379,6 +466,27 @@ func _on_top_pressed() -> void:
 	_render()
 	if _top_mode:
 		_toast("选择餐盒与要置顶的甜甜圈")
+
+
+## 首次点击只请求使用点，后续点击才进入原有执行流程。
+func _claim_tool_if_needed(tool: String) -> bool:
+	if not session.pending_reward.is_empty():
+		return true
+	if int(session.tools[tool]) > 0:
+		return false
+	_cancel_interaction()
+	var token: String = session.request_tool_reward(tool)
+	if token.is_empty():
+		return true
+	_render()
+	var source: DonutSession = session
+	var completed: Callable = func(rewarded: bool) -> void: source.resolve_tool_reward(token, rewarded)
+	if tool_reward_provider.is_valid():
+		tool_reward_provider.call(tool, completed)
+	else:
+		# 广告 SDK 接入前按当前产品约定直接发点，仍需再次点击使用。
+		completed.call(true)
+	return true
 
 
 ## 在底部操作区展开置顶选项，棋盘保持可见并允许切换餐盒。
@@ -456,7 +564,7 @@ func _render_state(state: Dictionary) -> void:
 	if session.next_turnover() < 0 or session.is_won() or session.failed:
 		$Stage/IdleHint.hide()
 	orders.present(state.demands)
-	tools_view.present(state.tools, _top_mode)
+	tools_view.present(state.tools, state.tool_claimed, _top_mode, not session.pending_reward.is_empty())
 	coin_balance.present(int(state.coins))
 	var completed: bool = bool(state.get("won", false)) and not _busy
 	completion_view.visible = completed
@@ -690,10 +798,12 @@ func _show_lesson(key: String) -> void:
 	lesson_dialog.present(str(text[0]), message)
 	var picture: TextureRect = lesson_dialog.get_node("Card/Donut")
 	picture.texture = DonutArt.FOOD[0]
+	picture.position = Vector2(320, 188)
+	picture.size = DonutArt.FOOD_SIZE
 	if key == "lid":
 		picture.texture = DonutMechanicArt.COVER
 	elif key in ["frozen", "number_frozen"]:
-		picture.texture = DonutMechanicArt.FROST
+		lesson_dialog.show_frozen_example(key == "number_frozen")
 	elif key == "cycle":
 		picture.texture = DonutMechanicArt.CYCLE
 	elif key == "bomb":

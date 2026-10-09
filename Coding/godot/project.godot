@@ -24,6 +24,11 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://game_content/localization/failure_en.po", "res://game_content/localization/failure_zh_hans.po")
+locale/fallback="en"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

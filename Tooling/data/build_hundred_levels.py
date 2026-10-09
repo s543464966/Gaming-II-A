@@ -206,7 +206,7 @@ def candidate(plan,seed):
     demands=[{'initially_open':True,'sequence':order_flavors[i::2]} for i in range(2)]
     demands += [{'initially_open':False,'sequence':[]} for _ in range(2)]
     return {'id':level,'title':player_title(level),'layout_id':f'level_{level:02}', 'slots':slots,'demands':demands,'stock':stock,
-            'tools':{'undo':1,'add_box':1,'top':1},'combo_rewards':[],
+            'tools':{'undo':0,'add_box':0,'top':0},'combo_rewards':[],
             'design':{'seed':seed,'source_row':level+5,'assist_boxes':plan['assist'],'hidden_donuts':hidden_target,
                       'bomb_timing':'provisional_playtest_required' if main=='bomb' else 'none'}}
 

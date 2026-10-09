@@ -264,9 +264,9 @@
     }
   ],
   "tools": {
-    "undo": 1,
-    "add_box": 1,
-    "top": 1
+    "undo": 0,
+    "add_box": 0,
+    "top": 0
   },
   "combo_rewards": [],
   "design": {

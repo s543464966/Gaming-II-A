@@ -1,20 +1,20 @@
 {
-  "source_package": "V9",
+  "source_package": "user_supplied_02_paper_and_ice + user_supplied_08_mechanics",
   "assets": [
     {
       "file": "cover_opaque_round.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\mechanics\\cover_opaque_round.png",
+      "source": "/Users/juntao/Downloads/最新素材/02_纸托与新冰冻/cover_opaque_round.png",
       "sha256": "baa67f65da0a61827976f9a53644dfd35e7d341b98858195b06b0a324f3141af",
       "region": [
-        118,
-        98,
-        1020,
-        1048
+        126,
+        107,
+        1003,
+        1031
       ]
     },
     {
       "file": "holder_single.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\mechanics\\holder_single.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/holder_single.png",
       "sha256": "0146ce048e34206fbc8f35ea1a79a6e55cd507c89e90ad01c70a7079e144740c",
       "region": [
         181,
@@ -24,184 +24,8 @@
       ]
     },
     {
-      "file": "holder_fixed_pink.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_pink.png",
-      "sha256": "e3158991ed383e564dacbfbb77abfcd9eec0c3a23c0a07b1e0c8bd9633f7b295",
-      "region": [
-        141,
-        370,
-        979,
-        574
-      ]
-    },
-    {
-      "file": "holder_fixed_brown.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_brown.png",
-      "sha256": "9a3e5e78d00e452f258e58550bd8ed57cd239f884669cd51f1f8f863e907c8ee",
-      "region": [
-        142,
-        371,
-        978,
-        573
-      ]
-    },
-    {
-      "file": "holder_fixed_green.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_green.png",
-      "sha256": "b8fbe824687969ba8d871e784ec25609209cb132e1662714ab2c4f083c02f6ee",
-      "region": [
-        143,
-        371,
-        976,
-        573
-      ]
-    },
-    {
-      "file": "holder_fixed_blue.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_blue.png",
-      "sha256": "3409843c1e1892a199d54449ef982f168f1c2ca75272d82ddbd276a75ddc2770",
-      "region": [
-        143,
-        370,
-        977,
-        574
-      ]
-    },
-    {
-      "file": "holder_fixed_orange.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_orange.png",
-      "sha256": "365b1662e711ec10568109cab1aa2e6bce02ea9d7b57d7f7c306b44d5f9f20e3",
-      "region": [
-        119,
-        359,
-        1023,
-        605
-      ]
-    },
-    {
-      "file": "holder_fixed_purple.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_purple.png",
-      "sha256": "93fe83c16d40317a06166a3f9d1690e9e582da753aeed8e9375d4a955502e8bf",
-      "region": [
-        141,
-        370,
-        983,
-        576
-      ]
-    },
-    {
-      "file": "holder_fixed_ivory.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_ivory.png",
-      "sha256": "4d24156589efaf0e6a4156ad67e2608193d015909eed179a3768e7f1696125df",
-      "region": [
-        142,
-        371,
-        977,
-        572
-      ]
-    },
-    {
-      "file": "holder_fixed_magenta.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_magenta.png",
-      "sha256": "5b98f488e6624d306a8d06dbd27638508058dee3f7185f07a94759ffeb34b8f2",
-      "region": [
-        142,
-        371,
-        978,
-        572
-      ]
-    },
-    {
-      "file": "holder_fixed_red.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_red.png",
-      "sha256": "63e7af060daf240ac2299b866ab40cd6b7a93002ffc9b80d7d9a3bfd43d567de",
-      "region": [
-        142,
-        371,
-        978,
-        572
-      ]
-    },
-    {
-      "file": "holder_fixed_russet.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_russet.png",
-      "sha256": "6d4964ea6688b2ed3cc1fe898f5b76f67c2f7a0a4f0e986ae8d61900f966a73e",
-      "region": [
-        142,
-        371,
-        977,
-        572
-      ]
-    },
-    {
-      "file": "holder_fixed_teal.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_teal.png",
-      "sha256": "f641c75cbc0b927bc2a4632325a09bd476cfeb998cd5aa5342679379b68609bc",
-      "region": [
-        143,
-        371,
-        977,
-        572
-      ]
-    },
-    {
-      "file": "holder_fixed_charcoal.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_charcoal.png",
-      "sha256": "324167b6a8ccf4e3d5022427f8a501ee5b4d8f2c3693bd92d6bacfad2dd4aa08",
-      "region": [
-        142,
-        370,
-        979,
-        574
-      ]
-    },
-    {
-      "file": "holder_fixed_pistachio.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_pistachio.png",
-      "sha256": "34457d5f9f55e80633e42451aa63cbc786764554b149cbbbe27a5c1ab54aa05e",
-      "region": [
-        143,
-        371,
-        976,
-        573
-      ]
-    },
-    {
-      "file": "holder_fixed_lavender.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_lavender.png",
-      "sha256": "1e3522b603d67dc2f6e6223a6bcafe436c26c1979faf8365c5b0de3007c09cb7",
-      "region": [
-        141,
-        371,
-        979,
-        573
-      ]
-    },
-    {
-      "file": "holder_fixed_mocha.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\fixed_flavors\\holder_fixed_mocha.png",
-      "sha256": "0d3d9c494ad28960215fc2bf1c65ccd43d5c8829cb53cfa74792c1b2a9b9c56d",
-      "region": [
-        143,
-        371,
-        977,
-        572
-      ]
-    },
-    {
-      "file": "donut_hidden_neutral.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\mechanics\\donut_hidden_neutral.png",
-      "sha256": "cb52d5a729ff9b34bf25e472c449677568fe0fe43fa9078a62374316b7c57d8a",
-      "region": [
-        34,
-        242,
-        1187,
-        846
-      ]
-    },
-    {
       "file": "icon_question.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\mechanics\\icon_question.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/icon_question.png",
       "sha256": "6277c6eb891f84157b7534103389302c26320b6ddca5b1d5edb8044ce5cbb62d",
       "region": [
         274,
@@ -211,19 +35,8 @@
       ]
     },
     {
-      "file": "frost_donut_overlay.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\mechanics\\frost_donut_overlay.png",
-      "sha256": "41f147f8bbb2e08440c6f99e78b68742882c01fd42be6aee06c869ec44677c89",
-      "region": [
-        30,
-        236,
-        1196,
-        810
-      ]
-    },
-    {
       "file": "badge_cycle_front.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\mechanics\\badge_cycle_front.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/badge_cycle_front.png",
       "sha256": "d77f64de4ff1804709f5bcc77fa0188a376214ca39e1bd757992c217410a5d08",
       "region": [
         79,
@@ -234,7 +47,7 @@
     },
     {
       "file": "badge_bomb_front.png",
-      "source": "C:\\Users\\lenovo\\Documents\\WXWork\\1688857996809077\\Cache\\File\\2026-09\\机制\\donut_game_assets_v9_paper_mechanics\\mechanics\\badge_bomb_front.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/badge_bomb_front.png",
       "sha256": "24884294cfc47ba36373120edeb8c34a45440af7cf986bc1e1692c0d56f21e30",
       "region": [
         52,
@@ -242,6 +55,383 @@
         1147,
         1122
       ]
+    },
+    {
+      "file": "ice_stack_shell.png",
+      "source": "/Users/juntao/Downloads/最新素材/02_纸托与新冰冻/ice_stack_shell.png",
+      "sha256": "6a576a00168e041968feae9e26f576c55d7c95459cb43eb0af28858d22bd80ba",
+      "region": [
+        160,
+        116,
+        718,
+        1294
+      ],
+      "nine_patch": {
+        "top": 270,
+        "bottom": 235,
+        "left": 0,
+        "right": 0
+      },
+      "opacity": 0.8
+    },
+    {
+      "file": "holder_fixed_blue.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_blue.png",
+      "sha256": "3409843c1e1892a199d54449ef982f168f1c2ca75272d82ddbd276a75ddc2770",
+      "region": [
+        143,
+        370,
+        977,
+        574
+      ]
+    },
+    {
+      "file": "holder_fixed_brown.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_brown.png",
+      "sha256": "9a3e5e78d00e452f258e58550bd8ed57cd239f884669cd51f1f8f863e907c8ee",
+      "region": [
+        142,
+        371,
+        978,
+        572
+      ]
+    },
+    {
+      "file": "holder_fixed_charcoal.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_charcoal.png",
+      "sha256": "324167b6a8ccf4e3d5022427f8a501ee5b4d8f2c3693bd92d6bacfad2dd4aa08",
+      "region": [
+        142,
+        371,
+        979,
+        573
+      ],
+      "usage": "备用原图；当前甜甜圈无对应颜色，不绑定口味 ID。"
+    },
+    {
+      "file": "holder_fixed_green.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_green.png",
+      "sha256": "b8fbe824687969ba8d871e784ec25609209cb132e1662714ab2c4f083c02f6ee",
+      "region": [
+        143,
+        372,
+        976,
+        572
+      ]
+    },
+    {
+      "file": "holder_fixed_ivory.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_ivory.png",
+      "sha256": "4d24156589efaf0e6a4156ad67e2608193d015909eed179a3768e7f1696125df",
+      "region": [
+        142,
+        371,
+        977,
+        572
+      ]
+    },
+    {
+      "file": "holder_fixed_lavender.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_lavender.png",
+      "sha256": "1e3522b603d67dc2f6e6223a6bcafe436c26c1979faf8365c5b0de3007c09cb7",
+      "region": [
+        142,
+        371,
+        978,
+        573
+      ]
+    },
+    {
+      "file": "holder_fixed_magenta.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_magenta.png",
+      "sha256": "5b98f488e6624d306a8d06dbd27638508058dee3f7185f07a94759ffeb34b8f2",
+      "region": [
+        142,
+        371,
+        978,
+        572
+      ]
+    },
+    {
+      "file": "holder_fixed_mocha.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_mocha.png",
+      "sha256": "0d3d9c494ad28960215fc2bf1c65ccd43d5c8829cb53cfa74792c1b2a9b9c56d",
+      "region": [
+        143,
+        371,
+        976,
+        572
+      ],
+      "usage": "备用原图；当前甜甜圈无对应颜色，不绑定口味 ID。"
+    },
+    {
+      "file": "holder_fixed_orange.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_orange.png",
+      "sha256": "365b1662e711ec10568109cab1aa2e6bce02ea9d7b57d7f7c306b44d5f9f20e3",
+      "region": [
+        119,
+        359,
+        1023,
+        603
+      ]
+    },
+    {
+      "file": "holder_fixed_pink.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_pink.png",
+      "sha256": "e3158991ed383e564dacbfbb77abfcd9eec0c3a23c0a07b1e0c8bd9633f7b295",
+      "region": [
+        141,
+        370,
+        979,
+        574
+      ]
+    },
+    {
+      "file": "holder_fixed_pistachio.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_pistachio.png",
+      "sha256": "34457d5f9f55e80633e42451aa63cbc786764554b149cbbbe27a5c1ab54aa05e",
+      "region": [
+        143,
+        371,
+        976,
+        572
+      ]
+    },
+    {
+      "file": "holder_fixed_purple.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_purple.png",
+      "sha256": "93fe83c16d40317a06166a3f9d1690e9e582da753aeed8e9375d4a955502e8bf",
+      "region": [
+        141,
+        370,
+        983,
+        576
+      ]
+    },
+    {
+      "file": "holder_fixed_red.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_red.png",
+      "sha256": "63e7af060daf240ac2299b866ab40cd6b7a93002ffc9b80d7d9a3bfd43d567de",
+      "region": [
+        142,
+        371,
+        978,
+        572
+      ]
+    },
+    {
+      "file": "holder_fixed_russet.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_russet.png",
+      "sha256": "6d4964ea6688b2ed3cc1fe898f5b76f67c2f7a0a4f0e986ae8d61900f966a73e",
+      "region": [
+        142,
+        371,
+        977,
+        572
+      ]
+    },
+    {
+      "file": "holder_fixed_teal.png",
+      "source": "/Users/juntao/Downloads/最新素材/08_玩法机制/彩色纸托/holder_fixed_teal.png",
+      "sha256": "f641c75cbc0b927bc2a4632325a09bd476cfeb998cd5aa5342679379b68609bc",
+      "region": [
+        143,
+        371,
+        977,
+        572
+      ]
     }
-  ]
+  ],
+  "fixed_flavor_rendering": {
+    "holders_by_flavor_id": [
+      "holder_fixed_pink.tres",
+      "holder_fixed_brown.tres",
+      "holder_fixed_green.tres",
+      "holder_fixed_blue.tres",
+      "holder_fixed_orange.tres",
+      "holder_fixed_ivory.tres",
+      "holder_fixed_purple.tres",
+      "holder_fixed_magenta.tres",
+      "holder_fixed_red.tres",
+      "holder_fixed_russet.tres",
+      "holder_fixed_teal.tres",
+      "holder_fixed_ivory.tres",
+      "holder_fixed_pistachio.tres",
+      "holder_fixed_lavender.tres",
+      "holder_fixed_ivory.tres"
+    ],
+    "tinted_flavor_ids": [
+      11,
+      14
+    ],
+    "shader": "res://features/donut_sort/board/ui/fixed_holder_tint.gdshader",
+    "palette": "res://features/donut_sort/donuts/ui/donut_art.gd",
+    "note": "13 个对应色直接使用彩色原图；包内没有宝蓝与黄色纸托，这两个备用口味沿用奶白底图染色。深灰、摩卡只入库备用。"
+  },
+  "hidden_food": "res://game_content/donuts/art/soft_glaze_hidden_gray.tres",
+  "verified_on": "2026-10-09",
+  "holder_fronts": [
+    {
+      "resource": "holder_single_front.tres",
+      "source": "holder_single.png",
+      "region": [
+        181,
+        817,
+        896,
+        161
+      ]
+    },
+    {
+      "resource": "holder_fixed_blue_front.tres",
+      "source": "holder_fixed_blue.png",
+      "region": [
+        143,
+        786,
+        977,
+        158
+      ]
+    },
+    {
+      "resource": "holder_fixed_brown_front.tres",
+      "source": "holder_fixed_brown.png",
+      "region": [
+        142,
+        786,
+        978,
+        157
+      ]
+    },
+    {
+      "resource": "holder_fixed_charcoal_front.tres",
+      "source": "holder_fixed_charcoal.png",
+      "region": [
+        142,
+        787,
+        979,
+        157
+      ]
+    },
+    {
+      "resource": "holder_fixed_green_front.tres",
+      "source": "holder_fixed_green.png",
+      "region": [
+        143,
+        787,
+        976,
+        157
+      ]
+    },
+    {
+      "resource": "holder_fixed_ivory_front.tres",
+      "source": "holder_fixed_ivory.png",
+      "region": [
+        142,
+        786,
+        977,
+        157
+      ]
+    },
+    {
+      "resource": "holder_fixed_lavender_front.tres",
+      "source": "holder_fixed_lavender.png",
+      "region": [
+        142,
+        787,
+        978,
+        157
+      ]
+    },
+    {
+      "resource": "holder_fixed_magenta_front.tres",
+      "source": "holder_fixed_magenta.png",
+      "region": [
+        142,
+        786,
+        978,
+        157
+      ]
+    },
+    {
+      "resource": "holder_fixed_mocha_front.tres",
+      "source": "holder_fixed_mocha.png",
+      "region": [
+        143,
+        786,
+        976,
+        157
+      ]
+    },
+    {
+      "resource": "holder_fixed_orange_front.tres",
+      "source": "holder_fixed_orange.png",
+      "region": [
+        119,
+        796,
+        1023,
+        166
+      ]
+    },
+    {
+      "resource": "holder_fixed_pink_front.tres",
+      "source": "holder_fixed_pink.png",
+      "region": [
+        141,
+        786,
+        979,
+        158
+      ]
+    },
+    {
+      "resource": "holder_fixed_pistachio_front.tres",
+      "source": "holder_fixed_pistachio.png",
+      "region": [
+        143,
+        786,
+        976,
+        157
+      ]
+    },
+    {
+      "resource": "holder_fixed_purple_front.tres",
+      "source": "holder_fixed_purple.png",
+      "region": [
+        141,
+        788,
+        983,
+        158
+      ]
+    },
+    {
+      "resource": "holder_fixed_red_front.tres",
+      "source": "holder_fixed_red.png",
+      "region": [
+        142,
+        786,
+        978,
+        157
+      ]
+    },
+    {
+      "resource": "holder_fixed_russet_front.tres",
+      "source": "holder_fixed_russet.png",
+      "region": [
+        142,
+        786,
+        977,
+        157
+      ]
+    },
+    {
+      "resource": "holder_fixed_teal_front.tres",
+      "source": "holder_fixed_teal.png",
+      "region": [
+        143,
+        786,
+        977,
+        157
+      ]
+    }
+  ],
+  "hidden_food_note": "本包灰圈比当前柔光糖霜更扁，保留现有匹配轮廓的灰圈。",
+  "question_icon_usage": "原图与现有文件相同，保留备用；隐藏食物继续使用匹配新版轮廓的灰圈。"
 }

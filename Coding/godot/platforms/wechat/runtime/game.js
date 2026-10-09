@@ -1,5 +1,6 @@
 require('./weapp-adapter.js');
 require('./host_viewport.js')(wx, window);
+require('./host_locale.js')(wx, window);
 require('./godot-loader.js');
 
 // 将宿主前后台事件交给引擎已有的焦点处理，取消页面中的未完成操作。

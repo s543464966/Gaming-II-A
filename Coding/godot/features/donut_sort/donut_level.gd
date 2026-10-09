@@ -81,7 +81,8 @@ static func validate(definition: Dictionary) -> PackedStringArray:
 		errors.append("tools must be defined")
 	else:
 		for key: String in ["undo", "add_box", "top"]:
-			if int(definition.tools.get(key, -1)) < 0:
+			var count: Variant = definition.tools.get(key)
+			if not (count is int or count is float) or not float(count) in [0.0, 1.0]:
 				errors.append("invalid tool count: " + key)
 	if not definition.get("combo_rewards") is Array:
 		errors.append("combo_rewards must be defined")

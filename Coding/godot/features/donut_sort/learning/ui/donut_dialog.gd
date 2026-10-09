@@ -13,6 +13,7 @@ func _ready() -> void:
 
 ## 使用现有纸托和甜甜圈作示意，确认流程可隐藏示意保持文字清楚。
 func present(title: String, message: String, accept: String = "知道了", cancel: String = "", illustration: bool = true) -> void:
+	$Card/FrozenExample.hide()
 	$Card/Title.text = title
 	$Card/Message.text = message
 	$Card/Accept.text = accept
@@ -31,3 +32,16 @@ func present(title: String, message: String, accept: String = "知道了", cance
 func _answer(accepted: bool) -> void:
 	hide()
 	answered.emit(accepted)
+
+
+## 冰冻说明复用正式盒子，展示透明冰壳中的口味及数字冰冻的剩余次数。
+func show_frozen_example(numbered: bool) -> void:
+	$Card/Donut.hide()
+	$Card/Holder.hide()
+	var sample: DonutBox = $Card/FrozenExample
+	sample.present({"kind": "regular", "open": true, "box": {
+		"kind": "number_frozen" if numbered else "frozen", "frozen": true,
+		"lid": 2 if numbered else 0, "items": [
+			{"flavor": 0, "revealed": true}, {"flavor": 1, "revealed": true},
+			{"flavor": 2, "revealed": true}, {"flavor": 4, "revealed": true}]}})
+	sample.show()

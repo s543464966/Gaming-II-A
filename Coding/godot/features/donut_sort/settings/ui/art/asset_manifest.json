@@ -1,12 +1,13 @@
 {
-  "source": "donut_game_assets_v7",
+  "source": "donut_game_assets_v7 + user_supplied_06_settings_and_popups",
   "assets": [
     {
       "id": "icon_settings_blue",
       "width": 1254,
       "height": 1254,
       "sha256": "155192a268d0a5c1afc818200677dd8a830f660b7caa8b534df6a14a4b5f1b67",
-      "path": "res://features/donut_sort/settings/ui/art/icon_settings_blue.png"
+      "path": "res://features/donut_sort/settings/ui/art/icon_settings_blue.png",
+      "source": "/Users/juntao/Downloads/最新素材/06_设置与弹窗/icon_settings_blue.png"
     }
   ]
 }

@@ -18,19 +18,20 @@ func _ready() -> void:
 		button.mouse_exited.connect(func() -> void: button.self_modulate = Color.WHITE)
 
 
-## 根据会话快照更新次数与置顶选择状态。
-func present(counts: Dictionary, top_mode: bool) -> void:
-	$Undo/Count.text = str(counts.undo)
-	$AddBox/Count.text = str(counts.add_box)
-	$Top/Count.text = str(counts.top)
+## 未领取显示加号，已领取显示一次，用完隐藏角标并禁用按钮。
+func present(counts: Dictionary, claimed: Dictionary, top_mode: bool, pending: bool = false) -> void:
 	$Top.modulate = Color(1, 0.9, 0.6) if top_mode else Color.WHITE
 	for entry: Array in [[$Undo, "undo"], [$AddBox, "add_box"], [$Top, "top"]]:
 		var available: bool = int(counts.get(entry[1], 0)) > 0
+		var can_claim: bool = not claimed.get(entry[1], false)
+		var spent: bool = not available and not can_claim
 		var button: BaseButton = entry[0]
-		button.get_node("Count").visible = available
-		button.get_node("Badge").visible = available
-		button.get_node("Icon").modulate = Color.WHITE if available else Color(0.72, 0.72, 0.72, 0.65)
-		button.tooltip_text = "" if available else "本关次数已用完"
+		button.disabled = spent or pending
+		button.get_node("Count").text = "1" if available else "+"
+		button.get_node("Count").visible = not spent
+		button.get_node("Badge").visible = not spent
+		button.get_node("Icon").modulate = Color(0.72, 0.72, 0.72, 0.65) if spent else Color.WHITE
+		button.tooltip_text = "本关次数已用完" if spent else ("领取一次使用机会" if can_claim else "")
 
 
 ## 动效和页面中断时恢复所有按钮的普通外观。

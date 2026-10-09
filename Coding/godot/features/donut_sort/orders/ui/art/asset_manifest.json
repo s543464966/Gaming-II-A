@@ -6,7 +6,15 @@
       "width": 1254,
       "height": 1254,
       "sha256": "735a935082198a1b6335a0cb5cd4485f1251865e80111f8b3b43ba2dae8d87c3",
-      "path": "res://features/donut_sort/orders/ui/art/order_box_pink.png"
+      "path": "res://features/donut_sort/orders/ui/art/order_box_pink.png",
+      "resource": "res://features/donut_sort/orders/ui/art/order_box_pink.tres",
+      "region": [
+        118,
+        103,
+        1018,
+        1045
+      ],
+      "source": "/Users/juntao/Downloads/最新素材/03_订单盒与打包/order_box_pink.png"
     },
     {
       "id": "order_box_brown",
@@ -14,7 +22,15 @@
       "width": 1254,
       "height": 1254,
       "sha256": "5a78d12235c176d895dd37877a3d412e8dafe1ae38756ced74db9216d36057ce",
-      "path": "res://features/donut_sort/orders/ui/art/order_box_brown.png"
+      "path": "res://features/donut_sort/orders/ui/art/order_box_brown.png",
+      "resource": "res://features/donut_sort/orders/ui/art/order_box_brown.tres",
+      "region": [
+        116,
+        102,
+        1023,
+        1048
+      ],
+      "source": "/Users/juntao/Downloads/最新素材/03_订单盒与打包/order_box_brown.png"
     },
     {
       "id": "order_box_green",
@@ -22,7 +38,15 @@
       "width": 1254,
       "height": 1254,
       "sha256": "0980c487850018f3e190a382b4f43c0faaac86b9444d3061b5b9b21ccb151d8d",
-      "path": "res://features/donut_sort/orders/ui/art/order_box_green.png"
+      "path": "res://features/donut_sort/orders/ui/art/order_box_green.png",
+      "resource": "res://features/donut_sort/orders/ui/art/order_box_green.tres",
+      "region": [
+        116,
+        100,
+        1023,
+        1050
+      ],
+      "source": "/Users/juntao/Downloads/最新素材/03_订单盒与打包/order_box_green.png"
     },
     {
       "id": "order_box_blue",
@@ -30,7 +54,15 @@
       "width": 1254,
       "height": 1254,
       "sha256": "ad9fd15fd7fecb67758a029c58d66eda47cf2f51b30c3f2faad8121a77acd348",
-      "path": "res://features/donut_sort/orders/ui/art/order_box_blue.png"
+      "path": "res://features/donut_sort/orders/ui/art/order_box_blue.png",
+      "resource": "res://features/donut_sort/orders/ui/art/order_box_blue.tres",
+      "region": [
+        117,
+        102,
+        1021,
+        1047
+      ],
+      "source": "/Users/juntao/Downloads/最新素材/03_订单盒与打包/order_box_blue.png"
     },
     {
       "id": "order_box_orange",
@@ -38,7 +70,15 @@
       "width": 1254,
       "height": 1254,
       "sha256": "c395476adecf062bec291652c9637b8d8b98931df426882b20a09af0cdbeee33",
-      "path": "res://features/donut_sort/orders/ui/art/order_box_orange.png"
+      "path": "res://features/donut_sort/orders/ui/art/order_box_orange.png",
+      "resource": "res://features/donut_sort/orders/ui/art/order_box_orange.tres",
+      "region": [
+        117,
+        102,
+        1021,
+        1048
+      ],
+      "source": "/Users/juntao/Downloads/最新素材/03_订单盒与打包/order_box_orange.png"
     },
     {
       "id": "order_box_purple",
@@ -46,128 +86,264 @@
       "width": 1254,
       "height": 1254,
       "sha256": "bad1e78fce136777794ed0cba0389709387be309325cbfef1e9c2eba28c14683",
-      "path": "res://features/donut_sort/orders/ui/art/order_box_purple.png"
+      "path": "res://features/donut_sort/orders/ui/art/order_box_purple.png",
+      "resource": "res://features/donut_sort/orders/ui/art/order_box_purple.tres",
+      "region": [
+        116,
+        101,
+        1023,
+        1050
+      ],
+      "source": "/Users/juntao/Downloads/最新素材/03_订单盒与打包/order_box_purple.png"
     },
     {
-      "id": "sticker_pink",
-      "label": "草莓粉·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "63df3fd8ee43bd216840322c40e10cacc8a33e286c2760f8e49d41abc1fc154d",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_pink.png"
+      "id": "soft_glaze_sticker_pink",
+      "flavor_id": 0,
+      "label": "草莓粉·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_pink.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        1314,
+        32,
+        280,
+        277
+      ]
     },
     {
-      "id": "sticker_brown",
-      "label": "巧克力棕·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "22eab476f32f70b41ed5e2ce802ef61d40a17ebaee5f445f248099e19985e1b4",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_brown.png"
+      "id": "soft_glaze_sticker_cocoa",
+      "flavor_id": 1,
+      "label": "可可棕·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_cocoa.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        1315,
+        649,
+        279,
+        279
+      ]
     },
     {
-      "id": "sticker_green",
-      "label": "抹茶绿·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "15fdb554a03613c4640a5f370679b1a8faaa58adfbe794e9d7d5b9bc0000b674",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_green.png"
+      "id": "soft_glaze_sticker_forest_green",
+      "flavor_id": 2,
+      "label": "森林绿·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_forest_green.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        671,
+        649,
+        279,
+        278
+      ]
     },
     {
-      "id": "sticker_blue",
-      "label": "蓝莓蓝·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "7de770c2aae8cf099a128450ae10f93ebd2b8ebb96b4785204a9c01802884196",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_blue.png"
+      "id": "soft_glaze_sticker_sky_blue",
+      "flavor_id": 3,
+      "label": "天蓝·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_sky_blue.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        993,
+        342,
+        280,
+        277
+      ]
     },
     {
-      "id": "sticker_orange",
-      "label": "香橙红橙·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "cdc08e17590ca69a06a3cce7d5dec4c8973ac24cb6143dbbeb5d877f13c7830b",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_orange.png"
+      "id": "soft_glaze_sticker_orange",
+      "flavor_id": 4,
+      "label": "香橙·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_orange.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        671,
+        32,
+        279,
+        277
+      ]
     },
     {
-      "id": "sticker_purple",
-      "label": "葡萄深紫·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "5663068b895cac0d23ac705d93324c809ec707b4e36a0efec04b19aeb40b59aa",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_purple.png"
+      "id": "soft_glaze_sticker_ivory",
+      "flavor_id": 5,
+      "label": "香草奶白·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_ivory.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        27,
+        33,
+        278,
+        275
+      ]
     },
     {
-      "id": "sticker_ivory",
-      "label": "香草奶白·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "b71c73a8de4cc1ec93d8bd7477919bb78051954fcfd1e9ad586eb589b8187a8d",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_ivory.png"
+      "id": "soft_glaze_sticker_purple",
+      "flavor_id": 6,
+      "label": "葡萄紫·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_purple.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        671,
+        342,
+        279,
+        277
+      ]
     },
     {
-      "id": "sticker_magenta",
-      "label": "火龙果玫红·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "cf213af822a08b3c1150581a83fc68596a5787e2ccf4bb06f0088260e1c5d273",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_magenta.png"
+      "id": "soft_glaze_sticker_raspberry",
+      "flavor_id": 7,
+      "label": "树莓玫红·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_raspberry.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        27,
+        342,
+        278,
+        277
+      ]
     },
     {
-      "id": "sticker_red",
-      "label": "树莓莓红·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "874abc2e9a2fcc269f61f256b404b25856542c215febdae449f3350d0eb71c44",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_red.png"
+      "id": "soft_glaze_sticker_red",
+      "flavor_id": 8,
+      "label": "莓红·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_red.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        993,
+        32,
+        280,
+        277
+      ]
     },
     {
-      "id": "sticker_russet",
-      "label": "焦糖红棕·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "1e8db2d2d37db04f981d05982c9ba0a25e589d0906dd1995f212a6988d93264d",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_russet.png"
+      "id": "soft_glaze_sticker_caramel",
+      "flavor_id": 9,
+      "label": "焦糖·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_caramel.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        992,
+        649,
+        281,
+        279
+      ]
     },
     {
-      "id": "sticker_teal",
-      "label": "薄荷青·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "d24a3ea5c993def0a5085168ee42d52cea353cfe88bada7ed3709b91f404548e",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_teal.png"
+      "id": "soft_glaze_sticker_teal",
+      "flavor_id": 10,
+      "label": "薄荷青·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_teal.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        27,
+        649,
+        279,
+        279
+      ]
     },
     {
-      "id": "sticker_charcoal",
-      "label": "黑芝麻炭灰·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "b8effb7a7968a1d60a136038b257bd3367dfc87ad75d68ccda9e133ef55ef744",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_charcoal.png"
+      "id": "soft_glaze_sticker_royal_blue",
+      "flavor_id": 11,
+      "label": "宝蓝·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_royal_blue.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        1315,
+        342,
+        279,
+        277
+      ]
     },
     {
-      "id": "sticker_pistachio",
-      "label": "开心果浅绿·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "aa04fd694815167ae05944aaf55d840f4f2fef0eaebf9f90f515c1808ada3aa5",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_pistachio.png"
+      "id": "soft_glaze_sticker_lime",
+      "flavor_id": 12,
+      "label": "青柠浅绿·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_lime.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        348,
+        649,
+        280,
+        279
+      ]
     },
     {
-      "id": "sticker_lavender",
-      "label": "紫薯浅紫·盒盖贴纸",
-      "width": 1254,
-      "height": 1254,
-      "sha256": "9f847511d3fee645444fd3cddcc82faee6a7084d412ab62b9615b289aea2bcb3",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_lavender.png"
+      "id": "soft_glaze_sticker_lavender",
+      "flavor_id": 13,
+      "label": "薰衣草浅紫·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_lavender.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        348,
+        342,
+        280,
+        277
+      ]
     },
     {
-      "id": "sticker_mocha",
-      "label": "咖啡浅咖·盒盖贴纸",
+      "id": "soft_glaze_sticker_yellow",
+      "flavor_id": 14,
+      "label": "柠檬黄·订单贴纸",
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_sticker_yellow.tres",
+      "atlas": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "region": [
+        348,
+        32,
+        280,
+        277
+      ]
+    },
+    {
+      "id": "order_box_closed",
+      "label": "粉色闭合包装盒",
       "width": 1254,
       "height": 1254,
-      "sha256": "83b60397e14104b694e86e59ab5c89f4b1173307cad78d9e083306fdda7444b6",
-      "path": "res://features/donut_sort/orders/ui/art/sticker_mocha.png"
+      "sha256": "cc5aa4c11eb5c0c0904cb7a99818f0b14199ecc31fdd593bbd03580fd3d1fab2",
+      "path": "res://features/donut_sort/orders/ui/art/order_box_closed.png",
+      "resource": "res://features/donut_sort/orders/ui/art/order_box_closed.tres",
+      "region": [
+        76,
+        189,
+        1102,
+        875
+      ],
+      "source": "/Users/juntao/Downloads/最新素材/03_订单盒与打包/order_box_closed.png",
+      "usage": "已入库备用；当前逐颗收餐不切换此静态图。"
+    },
+    {
+      "id": "order_box_filled_four",
+      "label": "四颗草莓粉甜甜圈满盒",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "b477165b9a444a81007d61a2cf026ec2f591fd713324c826751bd3ad61dd4d95",
+      "path": "res://features/donut_sort/orders/ui/art/order_box_filled_four.png",
+      "resource": "res://features/donut_sort/orders/ui/art/order_box_filled_four.tres",
+      "region": [
+        85,
+        74,
+        1084,
+        1107
+      ],
+      "source": "/Users/juntao/Downloads/最新素材/03_订单盒与打包/order_box_filled_four.png",
+      "usage": "已入库备用；当前逐颗收餐不切换此静态图。"
     }
   ],
-  "source_pack": "donut_game_assets_v8"
+  "source_pack": "user_supplied_03_order_boxes_and_packaging + user_supplied_soft_glaze",
+  "atlases": [
+    {
+      "path": "res://features/donut_sort/orders/ui/art/soft_glaze_stickers.png",
+      "sha256": "a0e460c652fa86af1ef1a05d5cba40b5740e30ca65593669fd883d37c9f3930e",
+      "width": 1619,
+      "height": 971
+    }
+  ],
+  "shadow_resource": {
+    "path": "res://features/donut_sort/orders/ui/art/order_box_shadow.tres",
+    "atlas": "res://features/donut_sort/ui/art/effects/shadow_soft.png",
+    "region": [
+      20,
+      515,
+      1215,
+      230
+    ],
+    "usage": "订单盒投影资源备用；复用与来源包字节一致的通用阴影 PNG。"
+  }
 }

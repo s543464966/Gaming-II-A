@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"Language: zh_Hans\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "DONUT_FAILURE_TITLE"
+msgstr "挑战失败"
+
+msgid "DONUT_FAILURE_SUBTITLE"
+msgstr "再试一次吧！"
+
+msgid "DONUT_FAILURE_HOME"
+msgstr "返回主页"
+
+msgid "DONUT_FAILURE_RETRY"
+msgstr "再试一次"

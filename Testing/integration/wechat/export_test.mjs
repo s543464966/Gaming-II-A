@@ -5,6 +5,7 @@ import { test } from 'node:test';
 import vm from 'node:vm';
 import { validateAppId } from '../../../Tooling/export/wechat.mjs';
 import installHostViewport from '../../../Coding/godot/platforms/minigame/runtime/host_viewport.js';
+import installHostLocale from '../../../Coding/godot/platforms/minigame/runtime/host_locale.js';
 
 const root = resolve(import.meta.dirname, '../../..');
 const runtime = join(root, 'Coding/godot/platforms/wechat/runtime');
@@ -21,13 +22,17 @@ test('host background and foreground reach engine focus listeners', async () => 
   let watchdog;
   let cancelled = false;
   const scope = {
-    require(name) { if (name === './host_viewport.js') return installHostViewport; },
+    require(name) {
+      if (name === './host_viewport.js') return installHostViewport;
+      if (name === './host_locale.js') return installHostLocale;
+    },
     window: {}, GameGlobal: {}, canvas: {}, console: { error() {}, log() {} },
     document: { dispatchEvent: event => events.push(event.type) },
     GodotLoader: class { progress = 0; updateProgress(_progress, phase) { events.push(phase); } },
     setTimeout: (callback, delay) => { assert.equal(delay, 90_000); watchdog = callback; return 1; },
     clearTimeout: () => { cancelled = true; },
     wx: {
+      getAppBaseInfo: () => ({ language: 'en' }),
       onHide: fn => { handlers.hide = fn; },
       onShow: fn => { handlers.show = fn; },
       onWindowResize: fn => { handlers.resize = fn; },
@@ -37,6 +42,7 @@ test('host background and foreground reach engine focus listeners', async () => 
     },
   };
   vm.runInNewContext(await readFile(join(runtime, 'game.js'), 'utf8'), scope);
+  assert.equal(scope.window.__donutHostLocale.read(), 'en');
   handlers.hide(); handlers.show(); handlers.resize();
   assert.deepEqual(events, ['blur', 'focus', 'resize']);
   scope.GameGlobal.setStartupPhase('正在下载关卡资源');
@@ -67,6 +73,7 @@ test('main package starts engine scripts once after engine resources load', asyn
       require(path) {
         loaded.push(path);
         if (path === './host_viewport.js') return installHostViewport;
+        if (path === './host_locale.js') return installHostLocale;
         if (path === './start_game.js') vm.runInNewContext(startSource, scope);
         if (path === './godot.js' && mode === 'script-throws') throw new Error('engine module unavailable');
       },
