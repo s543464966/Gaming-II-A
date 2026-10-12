@@ -1,6 +1,6 @@
 {
   "requirements": "R2",
-  "source_sha256": "d4b237eb7d11f6564f7c803c2de804e81961b71dccabf2ee31e1f7ce57ed2b77",
+  "source_sha256": "0c8a8d34cefe6526ce7b069e13b2cc5f1ab24dca64646064ec414f9a1be09ae7",
   "offline_status": "passed",
   "godot_status": "passed",
   "web_pack_status": "passed",
@@ -1524,317 +1524,413 @@
     },
     {
       "level": 41,
-      "definition_sha256": "4f71642115632f3b34cb156c935a5d23529c471be37f4858d03d2d8f50aa3da3",
-      "baseline_moves": 22,
-      "A_moves": 22,
-      "B_moves": 22,
-      "AB_moves": 22,
-      "optimal": false,
-      "first_group_lower_bound": 1,
-      "midgame_target": 0,
+      "baseline_moves": 49,
+      "A_moves": 48,
+      "B_moves": 48,
+      "AB_moves": 48,
+      "first_group_lower_bound": 4,
+      "adjacent_ratio": 0.06818181818181818,
+      "aabb_ratio": 0.0,
       "midgame": {
-        "count": 2,
+        "count": 3,
         "intervals": [
           {
-            "from_step": 17,
-            "recovered": 3,
+            "from_step": 35,
+            "recovered": 8,
             "one_step_targets": [],
-            "to_step": 18,
+            "to_step": 36,
             "moves": 2
           },
           {
-            "from_step": 19,
-            "recovered": 4,
+            "from_step": 37,
+            "recovered": 8,
             "one_step_targets": [],
-            "to_step": 20,
-            "moves": 2
+            "to_step": 39,
+            "moves": 3
+          },
+          {
+            "from_step": 40,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 43,
+            "moves": 4
           }
         ],
         "scope": "verified_baseline_route_not_all_paths"
       },
-      "bomb_timing": null,
+      "optimal": false,
       "playtest": "pending"
     },
     {
       "level": 42,
-      "definition_sha256": "93b6aa8eac33318caf02b256f74a090ae8072ac5ecaecb41fc95e66bba97437e",
-      "baseline_moves": 24,
-      "A_moves": 23,
-      "B_moves": 23,
-      "AB_moves": 23,
-      "optimal": false,
-      "first_group_lower_bound": 2,
-      "midgame_target": 0,
+      "baseline_moves": 52,
+      "A_moves": 51,
+      "B_moves": 51,
+      "AB_moves": 51,
+      "first_group_lower_bound": 4,
+      "adjacent_ratio": 0.0851063829787234,
+      "aabb_ratio": 0.0,
       "midgame": {
-        "count": 0,
-        "intervals": [],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 43,
-      "definition_sha256": "c5431a761816529d8018bc4e270ad23ba892d3612b386bf919a29a518d6a4d35",
-      "baseline_moves": 25,
-      "A_moves": 25,
-      "B_moves": 25,
-      "AB_moves": 25,
-      "optimal": false,
-      "first_group_lower_bound": 3,
-      "midgame_target": 1,
-      "midgame": {
-        "count": 1,
+        "count": 3,
         "intervals": [
           {
-            "from_step": 21,
-            "recovered": 3,
+            "from_step": 35,
+            "recovered": 6,
             "one_step_targets": [],
-            "to_step": 23,
+            "to_step": 36,
+            "moves": 2
+          },
+          {
+            "from_step": 40,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 44,
+            "moves": 5
+          },
+          {
+            "from_step": 49,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 51,
             "moves": 3
           }
         ],
         "scope": "verified_baseline_route_not_all_paths"
       },
-      "bomb_timing": null,
+      "optimal": false,
       "playtest": "pending"
     },
     {
-      "level": 44,
-      "definition_sha256": "2ab75d17cf3ec290df5f0c98b673fffd65bc578d1430332b7279026fa6cf0a2d",
-      "baseline_moves": 35,
-      "A_moves": 34,
-      "B_moves": 34,
-      "AB_moves": 34,
-      "optimal": false,
-      "first_group_lower_bound": 4,
-      "midgame_target": 1,
+      "level": 43,
+      "baseline_moves": 53,
+      "A_moves": 53,
+      "B_moves": 53,
+      "AB_moves": 53,
+      "first_group_lower_bound": 5,
+      "adjacent_ratio": 0.058823529411764705,
+      "aabb_ratio": 0.0,
       "midgame": {
         "count": 3,
         "intervals": [
           {
-            "from_step": 27,
-            "recovered": 4,
+            "from_step": 33,
+            "recovered": 9,
             "one_step_targets": [],
-            "to_step": 28,
+            "to_step": 35,
+            "moves": 3
+          },
+          {
+            "from_step": 36,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 39,
+            "moves": 4
+          },
+          {
+            "from_step": 40,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 43,
+            "moves": 4
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending"
+    },
+    {
+      "level": 44,
+      "baseline_moves": 59,
+      "A_moves": 55,
+      "B_moves": 55,
+      "AB_moves": 55,
+      "first_group_lower_bound": 4,
+      "adjacent_ratio": 0.043478260869565216,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 2,
+        "intervals": [
+          {
+            "from_step": 44,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 48,
+            "moves": 5
+          },
+          {
+            "from_step": 55,
+            "recovered": 11,
+            "one_step_targets": [],
+            "to_step": 57,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending"
+    },
+    {
+      "level": 45,
+      "baseline_moves": 59,
+      "A_moves": 56,
+      "B_moves": 56,
+      "AB_moves": 56,
+      "first_group_lower_bound": 5,
+      "adjacent_ratio": 0.04,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 4,
+        "intervals": [
+          {
+            "from_step": 34,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 36,
+            "moves": 3
+          },
+          {
+            "from_step": 41,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 48,
+            "moves": 8
+          },
+          {
+            "from_step": 49,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 51,
+            "moves": 3
+          },
+          {
+            "from_step": 52,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 54,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending"
+    },
+    {
+      "level": 46,
+      "baseline_moves": 55,
+      "A_moves": 53,
+      "B_moves": 53,
+      "AB_moves": 53,
+      "first_group_lower_bound": 5,
+      "adjacent_ratio": 0.11764705882352941,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 3,
+        "intervals": [
+          {
+            "from_step": 26,
+            "recovered": 6,
+            "one_step_targets": [],
+            "to_step": 27,
             "moves": 2
           },
           {
             "from_step": 29,
-            "recovered": 4,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 33,
+            "moves": 5
+          },
+          {
+            "from_step": 34,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 38,
+            "moves": 5
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending"
+    },
+    {
+      "level": 47,
+      "baseline_moves": 49,
+      "A_moves": 49,
+      "B_moves": 49,
+      "AB_moves": 49,
+      "first_group_lower_bound": 4,
+      "adjacent_ratio": 0.09090909090909091,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 2,
+        "intervals": [
+          {
+            "from_step": 33,
+            "recovered": 5,
+            "one_step_targets": [],
+            "to_step": 36,
+            "moves": 4
+          },
+          {
+            "from_step": 37,
+            "recovered": 5,
+            "one_step_targets": [],
+            "to_step": 42,
+            "moves": 6
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending"
+    },
+    {
+      "level": 48,
+      "baseline_moves": 55,
+      "A_moves": 54,
+      "B_moves": 54,
+      "AB_moves": 54,
+      "first_group_lower_bound": 5,
+      "adjacent_ratio": 0.14,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 5,
+        "intervals": [
+          {
+            "from_step": 25,
+            "recovered": 6,
             "one_step_targets": [],
             "to_step": 30,
-            "moves": 2
+            "moves": 6
           },
           {
             "from_step": 31,
             "recovered": 6,
             "one_step_targets": [],
-            "to_step": 32,
-            "moves": 2
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 45,
-      "definition_sha256": "64a3d0a0d0bff20e1c63b426053683e67d4b4a40ef976a67507dd73a4bbe3d8c",
-      "baseline_moves": 24,
-      "A_moves": 24,
-      "B_moves": 24,
-      "AB_moves": 24,
-      "optimal": false,
-      "first_group_lower_bound": 4,
-      "midgame_target": 1,
-      "midgame": {
-        "count": 1,
-        "intervals": [
+            "to_step": 34,
+            "moves": 4
+          },
           {
-            "from_step": 21,
-            "recovered": 5,
+            "from_step": 35,
+            "recovered": 7,
             "one_step_targets": [],
-            "to_step": 22,
+            "to_step": 36,
             "moves": 2
+          },
+          {
+            "from_step": 38,
+            "recovered": 8,
+            "one_step_targets": [],
+            "to_step": 41,
+            "moves": 4
+          },
+          {
+            "from_step": 49,
+            "recovered": 12,
+            "one_step_targets": [],
+            "to_step": 53,
+            "moves": 5
           }
         ],
         "scope": "verified_baseline_route_not_all_paths"
       },
-      "bomb_timing": null,
+      "optimal": false,
       "playtest": "pending"
     },
     {
-      "level": 46,
-      "definition_sha256": "b3d4d86dd168add05307a659f78c786007fe6ef4b0fd6b15f855eeba79e50a6c",
-      "baseline_moves": 40,
-      "A_moves": 40,
-      "B_moves": 40,
-      "AB_moves": 40,
-      "optimal": false,
+      "level": 49,
+      "baseline_moves": 56,
+      "A_moves": 56,
+      "B_moves": 56,
+      "AB_moves": 56,
       "first_group_lower_bound": 5,
-      "midgame_target": 2,
+      "adjacent_ratio": 0.08163265306122448,
+      "aabb_ratio": 0.0,
       "midgame": {
-        "count": 3,
+        "count": 4,
         "intervals": [
           {
-            "from_step": 27,
+            "from_step": 35,
             "recovered": 6,
             "one_step_targets": [],
+            "to_step": 36,
+            "moves": 2
+          },
+          {
+            "from_step": 37,
+            "recovered": 7,
+            "one_step_targets": [],
+            "to_step": 41,
+            "moves": 5
+          },
+          {
+            "from_step": 42,
+            "recovered": 9,
+            "one_step_targets": [],
+            "to_step": 44,
+            "moves": 3
+          },
+          {
+            "from_step": 47,
+            "recovered": 10,
+            "one_step_targets": [],
+            "to_step": 49,
+            "moves": 3
+          }
+        ],
+        "scope": "verified_baseline_route_not_all_paths"
+      },
+      "optimal": false,
+      "playtest": "pending"
+    },
+    {
+      "level": 50,
+      "baseline_moves": 50,
+      "A_moves": 49,
+      "B_moves": 49,
+      "AB_moves": 49,
+      "first_group_lower_bound": 4,
+      "adjacent_ratio": 0.0851063829787234,
+      "aabb_ratio": 0.0,
+      "midgame": {
+        "count": 4,
+        "intervals": [
+          {
+            "from_step": 25,
+            "recovered": 5,
+            "one_step_targets": [],
+            "to_step": 30,
+            "moves": 6
+          },
+          {
+            "from_step": 31,
+            "recovered": 5,
+            "one_step_targets": [],
             "to_step": 33,
-            "moves": 7
+            "moves": 3
           },
           {
             "from_step": 34,
-            "recovered": 8,
+            "recovered": 5,
             "one_step_targets": [],
             "to_step": 35,
             "moves": 2
           },
           {
             "from_step": 36,
-            "recovered": 8,
-            "one_step_targets": [],
-            "to_step": 38,
-            "moves": 3
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 47,
-      "definition_sha256": "47ceb4d47d33b13a0a01413f0752167b9c783d17125b589a6ebad0b90d2bc3e1",
-      "baseline_moves": 30,
-      "A_moves": 25,
-      "B_moves": 25,
-      "AB_moves": 25,
-      "optimal": false,
-      "first_group_lower_bound": 5,
-      "midgame_target": 2,
-      "midgame": {
-        "count": 2,
-        "intervals": [
-          {
-            "from_step": 23,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 25,
-            "moves": 3
-          },
-          {
-            "from_step": 27,
-            "recovered": 5,
-            "one_step_targets": [],
-            "to_step": 29,
-            "moves": 3
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 48,
-      "definition_sha256": "5d4d55f33f26a4ef7471b530a82107588692656b03b85721af9e910cb41df429",
-      "baseline_moves": 45,
-      "A_moves": 45,
-      "B_moves": 45,
-      "AB_moves": 45,
-      "optimal": false,
-      "first_group_lower_bound": 5,
-      "midgame_target": 2,
-      "midgame": {
-        "count": 2,
-        "intervals": [
-          {
-            "from_step": 23,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 28,
-            "moves": 6
-          },
-          {
-            "from_step": 29,
             "recovered": 5,
             "one_step_targets": [],
             "to_step": 38,
-            "moves": 10
+            "moves": 3
           }
         ],
         "scope": "verified_baseline_route_not_all_paths"
       },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 49,
-      "definition_sha256": "b92e847fc6b4b7112dcb011c3d352b7eb5e3b02e80ce8f89a981e3479bc521e2",
-      "baseline_moves": 32,
-      "A_moves": 32,
-      "B_moves": 32,
-      "AB_moves": 32,
       "optimal": false,
-      "first_group_lower_bound": 6,
-      "midgame_target": 3,
-      "midgame": {
-        "count": 3,
-        "intervals": [
-          {
-            "from_step": 18,
-            "recovered": 4,
-            "one_step_targets": [],
-            "to_step": 19,
-            "moves": 2
-          },
-          {
-            "from_step": 20,
-            "recovered": 5,
-            "one_step_targets": [],
-            "to_step": 25,
-            "moves": 6
-          },
-          {
-            "from_step": 26,
-            "recovered": 5,
-            "one_step_targets": [],
-            "to_step": 27,
-            "moves": 2
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
-      "playtest": "pending"
-    },
-    {
-      "level": 50,
-      "definition_sha256": "3fa65a6680987728d296c7177f78d25b2dce99e467a9815ca012019326c1bd3e",
-      "baseline_moves": 20,
-      "A_moves": 20,
-      "B_moves": 20,
-      "AB_moves": 20,
-      "optimal": false,
-      "first_group_lower_bound": 3,
-      "midgame_target": 1,
-      "midgame": {
-        "count": 1,
-        "intervals": [
-          {
-            "from_step": 18,
-            "recovered": 3,
-            "one_step_targets": [],
-            "to_step": 19,
-            "moves": 2
-          }
-        ],
-        "scope": "verified_baseline_route_not_all_paths"
-      },
-      "bomb_timing": null,
       "playtest": "pending"
     },
     {
@@ -3488,6 +3584,388 @@
     "5": 16
   },
   "latest_update": {
+    "date": "2026-10-08",
+    "scope": "level_41_50_wave",
+    "details": "forty_one_fifty_update",
+    "godot_suites": [
+      "donut",
+      "hundred"
+    ],
+    "complete_godot_replays": 400,
+    "offline_replays": 400,
+    "viewport_cases": 12,
+    "other_90_definitions_solutions_plans_and_layouts_unchanged": true,
+    "web_pack": "passed",
+    "playtest": "pending",
+    "preview_url": "http://127.0.0.1:4173/"
+  },
+  "thirty_one_forty_update": {
+    "temporary_cleanup": "blocked_by_automatic_approval_policy; retained ignored Testing/.runtime/level31_40_wave, godot-test-gLmRBc and godot-test-AzitWf",
+    "date": "2026-10-08",
+    "levels": [
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "level_30": "unchanged_transition",
+    "baseline_moves": [
+      51,
+      51,
+      54,
+      56,
+      49,
+      52,
+      62,
+      53,
+      56,
+      52
+    ],
+    "first_group_moves": [
+      5,
+      4,
+      4,
+      5,
+      4,
+      5,
+      5,
+      4,
+      5,
+      4
+    ],
+    "midgame_counts": [
+      4,
+      2,
+      3,
+      3,
+      2,
+      3,
+      3,
+      4,
+      4,
+      2
+    ],
+    "full_empty_normal_boxes": [
+      0,
+      1,
+      1,
+      1,
+      2,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    "source_reimport": "passed_ten_authored_definitions_equal",
+    "source_preservation": "other_ninety_rows_values_formulas_caches_styles_and_native_features_preserved",
+    "runtime_preservation": "other_ninety_definitions_layouts_plans_and_replays_unchanged",
+    "godot_complete_replays": 400,
+    "offline_complete_replays": 400,
+    "viewport_cases": 12,
+    "web_pack": "passed",
+    "playtest": "pending",
+    "optimal": false,
+    "preview_url": "http://127.0.0.1:4173/",
+    "reference_game": "not_played_in_this_update; approved_original_design",
+    "windows_import": "default_scene_thread_mode; existing single-threaded import crashed on font; full clean import tests and web export passed",
+    "browser_checks": [
+      "level_31_ready_to_play",
+      "level_39_hidden_and_ice_layout",
+      "level_39_first_two_moves_single_out_then_in"
+    ],
+    "captures": [
+      "Archive/ReferenceImage/planning/level_31_wave_preview.png",
+      "Archive/ReferenceImage/planning/level_39_wave_preview.png",
+      "Archive/ReferenceImage/planning/level_39_single_cycle_preview.png"
+    ],
+    "browser_known_console_note": "Existing optional __donutHostViewport interface is absent on plain web; adapter falls back to full viewport. Not changed in this update."
+  },
+  "forty_one_fifty_update": {
+    "date": "2026-10-08",
+    "levels": [
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "baseline_moves": [
+      49,
+      52,
+      53,
+      59,
+      59,
+      55,
+      49,
+      55,
+      56,
+      50
+    ],
+    "first_group_moves": [
+      4,
+      4,
+      5,
+      4,
+      5,
+      5,
+      4,
+      5,
+      5,
+      4
+    ],
+    "midgame_counts": [
+      3,
+      3,
+      3,
+      2,
+      4,
+      3,
+      2,
+      5,
+      4,
+      4
+    ],
+    "full_empty_normal_boxes": [
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1
+    ],
+    "source_reimport": "passed_ten_authored_definitions_equal_including_fixed_flavor",
+    "source_preservation": "other_ninety_rows_values_formulas_caches_styles_and_native_features_preserved",
+    "runtime_preservation": "other_ninety_definitions_layouts_plans_and_replays_unchanged",
+    "offline_complete_replays": 400,
+    "godot_complete_replays": 400,
+    "web_pack": "passed",
+    "playtest": "pending",
+    "optimal": false,
+    "preview_url": "http://127.0.0.1:4173/",
+    "reference_game": "not_played; approved_original_design",
+    "features": {
+      "41": {
+        "fixed_in": [
+          3,
+          4
+        ],
+        "fixed_out": [],
+        "fixed_group": [
+          4
+        ],
+        "single_in": [],
+        "single_out": [],
+        "refills": [],
+        "first_group": 4
+      },
+      "42": {
+        "fixed_in": [
+          2,
+          6,
+          14,
+          37
+        ],
+        "fixed_out": [],
+        "fixed_group": [
+          37
+        ],
+        "single_in": [],
+        "single_out": [],
+        "refills": [],
+        "first_group": 4
+      },
+      "43": {
+        "fixed_in": [
+          24,
+          26,
+          29
+        ],
+        "fixed_out": [],
+        "fixed_group": [
+          29
+        ],
+        "single_in": [],
+        "single_out": [],
+        "refills": [],
+        "first_group": 5
+      },
+      "44": {
+        "fixed_in": [],
+        "fixed_out": [],
+        "fixed_group": [],
+        "single_in": [
+          36,
+          40
+        ],
+        "single_out": [
+          7,
+          39,
+          44
+        ],
+        "refills": [
+          {
+            "step": 28,
+            "count": 1,
+            "general_matching_space": 9,
+            "fixed_space": 0
+          }
+        ],
+        "first_group": 4
+      },
+      "45": {
+        "fixed_in": [
+          1,
+          6,
+          30,
+          36
+        ],
+        "fixed_out": [],
+        "fixed_group": [
+          36
+        ],
+        "single_in": [],
+        "single_out": [],
+        "refills": [],
+        "first_group": 5
+      },
+      "46": {
+        "fixed_in": [
+          2,
+          16,
+          29,
+          42
+        ],
+        "fixed_out": [],
+        "fixed_group": [
+          42
+        ],
+        "single_in": [],
+        "single_out": [],
+        "refills": [
+          {
+            "step": 5,
+            "count": 1,
+            "general_matching_space": 5,
+            "fixed_space": 3
+          },
+          {
+            "step": 14,
+            "count": 1,
+            "general_matching_space": 5,
+            "fixed_space": 3
+          }
+        ],
+        "first_group": 5
+      },
+      "47": {
+        "fixed_in": [],
+        "fixed_out": [],
+        "fixed_group": [],
+        "single_in": [
+          34
+        ],
+        "single_out": [
+          47
+        ],
+        "refills": [],
+        "first_group": 4
+      },
+      "48": {
+        "fixed_in": [
+          32,
+          37
+        ],
+        "fixed_out": [],
+        "fixed_group": [
+          37
+        ],
+        "single_in": [
+          3
+        ],
+        "single_out": [
+          45
+        ],
+        "refills": [
+          {
+            "step": 5,
+            "count": 1,
+            "general_matching_space": 5,
+            "fixed_space": 4
+          }
+        ],
+        "first_group": 5
+      },
+      "49": {
+        "fixed_in": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "fixed_out": [
+          16
+        ],
+        "fixed_group": [
+          5
+        ],
+        "single_in": [],
+        "single_out": [],
+        "refills": [],
+        "first_group": 5
+      },
+      "50": {
+        "fixed_in": [
+          40,
+          43,
+          50
+        ],
+        "fixed_out": [],
+        "fixed_group": [
+          50
+        ],
+        "single_in": [],
+        "single_out": [],
+        "refills": [],
+        "first_group": 4
+      }
+    },
+    "godot_suites": [
+      "donut",
+      "hundred"
+    ],
+    "viewport_cases": 12,
+    "build_hashes_match": true,
+    "browser_checks": [
+      "level_41_opening",
+      "level_41_first_four_moves_fixed_box_grouped_waiting_order",
+      "level_49_five_rows_ice_and_hidden",
+      "level_41_ready_to_play"
+    ],
+    "browser_known_console_note": "Existing optional __donutHostViewport interface is absent on plain web; adapter falls back to full viewport. Not changed in this update.",
+    "captures": [
+      "Archive/ReferenceImage/planning/level_41_wave_preview.png",
+      "Archive/ReferenceImage/planning/level_41_fixed_group_preview.png",
+      "Archive/ReferenceImage/planning/level_49_wave_preview.png"
+    ],
+    "temporary_cleanup": "blocked_by_automatic_approval_policy; retained ignored Testing/.runtime/level41_50_wave; successful formal test/export copies cleaned by existing tools"
+  },
+  "twenty_one_thirty_update": {
     "date": "2026-10-05",
     "scope": "level_21_30_wave",
     "levels": [
@@ -3859,93 +4337,5 @@
     "reference_image": "Archive/ReferenceImage/planning/screw_game_level_05_reference.png",
     "reference_game_playtest": "not_performed_native_desktop_control_unavailable",
     "temporary_cleanup": "blocked_by_automatic_approval_policy; retained ignored Testing/.runtime/level21_30_wave and Testing/.runtime/godot-test-gxHSUZ"
-  },
-  "thirty_one_forty_update": {
-    "temporary_cleanup": "blocked_by_automatic_approval_policy; retained ignored Testing/.runtime/level31_40_wave, godot-test-gLmRBc and godot-test-AzitWf",
-    "date": "2026-10-08",
-    "levels": [
-      31,
-      32,
-      33,
-      34,
-      35,
-      36,
-      37,
-      38,
-      39,
-      40
-    ],
-    "level_30": "unchanged_transition",
-    "baseline_moves": [
-      51,
-      51,
-      54,
-      56,
-      49,
-      52,
-      62,
-      53,
-      56,
-      52
-    ],
-    "first_group_moves": [
-      5,
-      4,
-      4,
-      5,
-      4,
-      5,
-      5,
-      4,
-      5,
-      4
-    ],
-    "midgame_counts": [
-      4,
-      2,
-      3,
-      3,
-      2,
-      3,
-      3,
-      4,
-      4,
-      2
-    ],
-    "full_empty_normal_boxes": [
-      0,
-      1,
-      1,
-      1,
-      2,
-      1,
-      0,
-      1,
-      0,
-      1
-    ],
-    "source_reimport": "passed_ten_authored_definitions_equal",
-    "source_preservation": "other_ninety_rows_values_formulas_caches_styles_and_native_features_preserved",
-    "runtime_preservation": "other_ninety_definitions_layouts_plans_and_replays_unchanged",
-    "godot_complete_replays": 400,
-    "offline_complete_replays": 400,
-    "viewport_cases": 12,
-    "web_pack": "passed",
-    "playtest": "pending",
-    "optimal": false,
-    "preview_url": "http://127.0.0.1:4173/",
-    "reference_game": "not_played_in_this_update; approved_original_design",
-    "windows_import": "default_scene_thread_mode; existing single-threaded import crashed on font; full clean import tests and web export passed",
-    "browser_checks": [
-      "level_31_ready_to_play",
-      "level_39_hidden_and_ice_layout",
-      "level_39_first_two_moves_single_out_then_in"
-    ],
-    "captures": [
-      "Archive/ReferenceImage/planning/level_31_wave_preview.png",
-      "Archive/ReferenceImage/planning/level_39_wave_preview.png",
-      "Archive/ReferenceImage/planning/level_39_single_cycle_preview.png"
-    ],
-    "browser_known_console_note": "Existing optional __donutHostViewport interface is absent on plain web; adapter falls back to full viewport. Not changed in this update."
   }
 }

@@ -32,6 +32,8 @@ func _run() -> void:
 		var plan: Dictionary = plans[index]
 		if index >= 30 and index <= 39:
 			_check_wave_thirty_one(definition, index - 30)
+		if index >= 40 and index <= 49:
+			_check_wave_forty_one(definition, index + 1)
 		for key: String in ["undo", "add_box", "top"]:
 			check(int(definition.tools.get(key, -1)) == 0, "Every level must start with zero tool charges")
 		var has_bomb: bool = definition.slots.any(func(slot: Dictionary) -> bool: return slot.box != null and slot.box.kind == "bomb")
@@ -93,6 +95,8 @@ func _run() -> void:
 			var refill_steps: Array[int] = []
 			var first_single_in: int = -1
 			var first_single_out: int = -1
+			var first_fixed_in: int = -1
+			var fixed_groups: int = 0
 			for step_index: int in steps.size():
 				var step: Array = steps[step_index]
 				if mode == 0 and interval_start < 0:
@@ -103,6 +107,10 @@ func _run() -> void:
 				var source: int = int(step[0])
 				var target: int = int(step[1])
 				var grouping: bool = _is_new_group(session, source, target)
+				if session.slots[target].box.kind == "fixed":
+					if first_fixed_in < 0:
+						first_fixed_in = step_index + 1
+					fixed_groups += 1 if grouping else 0
 				var refills_before: int = refills.size()
 				if mode == 0:
 					interval_split_group = interval_split_group or session.slots[source].box.grouped
@@ -127,10 +135,12 @@ func _run() -> void:
 				if mode == 0 and refills.size() > refills_before:
 					refill_steps.append(step_index + 1)
 					# 补货教学的基线路线留有可操作余量，余量仍受顶层同味限制。
-					if index == 8 or (index >= 13 and index <= 16) or (index >= 25 and index <= 27) or index in [33, 36, 37]:
+					if index == 8 or (index >= 13 and index <= 16) or (index >= 25 and index <= 27) or index in [33, 36, 37, 43, 45, 47]:
 						var usable_space: int = 0
 						for slot_index: int in session.slots.size():
 							if session.can_handle(slot_index):
+								if index >= 40 and session.slots[slot_index].box.kind == "fixed":
+									continue
 								usable_space += session.capacity(slot_index) - session.slots[slot_index].box.items.size()
 						check(usable_space >= 4, "Level %d refill leaves no planned working space" % (index + 1))
 				check(session.remaining_donuts() + session.completed * 4 == session.total_donuts(), "Conservation %d/%d" % [index + 1, step_index])
@@ -140,21 +150,25 @@ func _run() -> void:
 			if mode == 0:
 				check(midgame_count >= int(plan.midgame_space_min) and midgame_count == int(solution.midgame_metrics.count),
 					"R2 midgame %d actual %d target %d recorded %d" % [index + 1, midgame_count, plan.midgame_space_min, solution.midgame_metrics.count])
-				if index >= 4 and index <= 39:
+				if index >= 4 and index <= 49:
 					check(first_group_step == int(solution.opening_metrics.first_group_moves), "Early wave opening prefix no longer reaches its target")
 				if index == 9:
 					check(refill_steps.size() == 2 and refill_steps[1] - refill_steps[0] >= 3, "Level ten stock must enter on separate operations")
-				if index == 15 or index == 16 or index == 26 or index == 36:
+				if index == 15 or index == 16 or index == 26 or index == 36 or index == 45:
 					check(refill_steps.size() == 2 and refill_steps[1] - refill_steps[0] >= 5, "Wave stock must enter on separate operations")
 				# 暂存练习必须实际取放；预放一颗的盒子先移出才能再次接收。
-				if (index >= 23 and index <= 29) or index in [30, 33, 35, 36, 37, 38]:
+				if (index >= 23 and index <= 29) or index in [30, 33, 35, 36, 37, 38, 43, 46, 47]:
 					check(first_single_in > 0 and first_single_out > 0, "Single-box wave must exercise storage and removal")
 					if index == 23 or index == 24:
 						check(first_single_in <= first_group_step and first_single_out <= first_group_step + 6, "Single introduction must demonstrate an early storage cycle")
-					if index in [25, 28, 35, 38]:
+					if index in [25, 28, 35, 38, 43]:
 						check(first_single_out < first_single_in, "Preloaded single must empty before accepting another donut")
 					if index == 25:
 						check(not refill_steps.is_empty() and first_single_in <= refill_steps[0], "Level 26 must reuse its single before the stock arrives")
+				if index >= 40 and index <= 49 and int(plan.restricted_space) > 0:
+					check(first_fixed_in > 0 and fixed_groups > 0, "Fixed-flavor wave must use and complete its restricted box")
+					if index <= 41:
+						check(first_fixed_in <= first_group_step + 3, "Fixed-flavor introduction must participate early")
 			check(not session.slots.any(func(slot: Dictionary) -> bool: return slot.box != null and slot.box.kind == "bomb"), "Win leaves bomb %d/%d" % [index + 1, mode])
 			check(session.total_orders() == int(plan.orders), "Plan orders")
 			check(refills.size() == definition.stock.size(), "Level %d mode %d refill count differs from real stock" % [index + 1, mode])
@@ -219,6 +233,36 @@ func _check_wave_thirty_one(definition: Dictionary, offset: int) -> void:
 	check(actual_amounts == amounts[offset], "Wave ordinary fill distribution %d" % (offset + 31))
 	check(actual_single == ([] if single_fills[offset] < 0 else [single_fills[offset]]), "Wave single preload")
 	check(actual_numbered == numbered[offset] and hidden == hidden_totals[offset], "Wave numeric order or hidden amount")
+
+
+## 检查固定口味教学、零空盒变化与隐藏归属，防止受限空盒被当成自由空间。
+func _check_wave_forty_one(definition: Dictionary, level: int) -> void:
+	var normal_empty: int = 0
+	var fixed_count: int = 0
+	var hidden: int = 0
+	var kinds: Dictionary = {}
+	for slot: Dictionary in definition.slots:
+		if slot.box == null:
+			continue
+		var kind: String = str(slot.box.kind)
+		kinds["single" if slot.kind == "single" else kind] = true
+		if kind == "fixed":
+			fixed_count += 1
+			check(slot.box.items.is_empty(), "Fixed-flavor wave must open with an empty restricted box")
+		elif kind == "normal" and slot.kind == "regular" and slot.box.items.is_empty():
+			normal_empty += 1
+		var hidden_indices: Array[int] = []
+		for item_index: int in slot.box.items.size():
+			if slot.box.items[item_index].get("hidden", false):
+				hidden_indices.append(item_index)
+		if not hidden_indices.is_empty():
+			check(kind == "normal" and slot.kind == "regular" and hidden_indices == [1,2,3], "Fixed wave hidden layers must stay below an ordinary full box")
+			hidden += hidden_indices.size()
+	check(normal_empty == (0 if level in [42,45,48,49] else 1), "Fixed wave ordinary empty-box count")
+	check(fixed_count == (0 if level in [44,47] else 1), "Fixed wave restricted-box count")
+	check(hidden == (3 if level == 45 else (6 if level == 49 else 0)), "Fixed wave hidden count")
+	if level <= 42:
+		check(kinds.size() == 2 and kinds.has("normal") and kinds.has("fixed") and definition.stock.is_empty(), "First fixed-flavor levels must practice only this mechanism")
 
 
 ## 用正式搬运判定枚举全部一步归纳，避免把某条刻意绕远的操作当成必须腾位。
@@ -387,6 +431,8 @@ func _check_mechanics() -> void:
 	s = DonutSession.new(fixture([box([0]),box([1]),box([],"fixed"),box([],"in_only")]))
 	s.begin()
 	check(not s.move(0,2) and s.move(1,2), "Fixed flavor rejects wrong flavor while empty")
+	check(s.move(2,1) and not s.move(0,2), "Fixed flavor allows extraction and keeps its color restriction when emptied")
+	check(s.undo() and s.slots[2].box.items.size() == 1 and s.slots[2].box.fixed_flavor == 1, "Undo must restore the fixed-flavor contents and restriction")
 	check(s.move(0,3) and not s.can_pick_top(3) and not s.can_bring_to_top(3,1), "In-only allows entry and forbids extraction")
 	s = DonutSession.new(fixture([box([0,0,1,2],"cycle"),box([])]))
 	s.begin()

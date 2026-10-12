@@ -1,6 +1,6 @@
 {
-  "source": "Designing/levels/level_plan_001_100.xlsx",
-  "sha256": "d4b237eb7d11f6564f7c803c2de804e81961b71dccabf2ee31e1f7ce57ed2b77",
+  "source": "Designing\\levels\\level_plan_001_100.xlsx",
+  "sha256": "0c8a8d34cefe6526ce7b069e13b2cc5f1ab24dca64646064ec414f9a1be09ae7",
   "sheet": "关卡总表",
   "groups_sheet": "装量配置",
   "requirements": "R2",
@@ -20284,55 +20284,55 @@
     },
     {
       "id": 41,
-      "role": "固定颜色盒教学",
-      "difficulty": 2.1,
+      "role": "指定口味周转",
+      "difficulty": 4.7,
       "layout": "错落",
-      "flavors": 6,
-      "filled": 8,
+      "flavors": 7,
+      "filled": 16,
       "stock": 0,
-      "orders": 7,
+      "orders": 15,
       "empty": 2,
       "single": 0,
-      "slots": 12,
+      "slots": 20,
       "general_space": 4,
-      "interleave": 1,
+      "interleave": 4,
       "hidden_ratio": 0,
-      "aabb_max": 0.3,
-      "demand_pressure": 1,
+      "aabb_max": 0.12,
+      "demand_pressure": 2,
       "stock_pressure": 0,
       "main": "固定颜色盒",
       "secondary": null,
       "parameters": "固定颜色盒×1",
-      "donuts": 28,
-      "baseline_rate_target": 0.88,
-      "duration_target_minutes": 3.9,
-      "composition": "中轴错落",
+      "donuts": 60,
+      "baseline_rate_target": null,
+      "duration_target_minutes": 6,
+      "composition": "按实际盒数连续居中分排，上下可见留白对称",
       "assist": 1,
-      "assist_rate_target": 0.9,
-      "opening_donuts": 28,
-      "normal_fill_ratio": 0.875,
+      "assist_rate_target": null,
+      "opening_donuts": 60,
+      "normal_fill_ratio": 0.9375,
       "matching_space": 4,
       "restricted_space": 4,
       "locked_space": 0,
-      "adjacent_max": 0.5,
-      "first_group_min": 1,
-      "one_step_max": 1,
+      "adjacent_max": 0.18,
+      "first_group_min": 4,
+      "one_step_max": 0,
       "special_count": 1,
       "special_types": 1,
       "prerequisite_boxes": 0,
       "numeric_decrements": 0,
-      "mechanism_target": "指定口味接收空间，不能当成任意口味空盒",
-      "midgame_space_min": 0,
-      "tuning_notes": "首次教学，先展示本机制。无备货。",
+      "mechanism_target": "指定口味周转",
+      "midgame_space_min": 2,
+      "tuning_notes": "已确认41–50关方案；目标难度4.7，待真人试玩校准；普通盒装量4/3/2/1/0：13/2/1/0/1",
       "bomb_multiplier": null,
       "source_row": 46,
       "groups": [
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-01",
+          "id": "W041-01",
           "kind": "普通盒",
-          "count": 4,
+          "count": 13,
           "capacity": 4,
           "fill": 4,
           "number": 0
@@ -20340,9 +20340,9 @@
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-02",
+          "id": "W041-02",
           "kind": "普通盒",
-          "count": 4,
+          "count": 2,
           "capacity": 4,
           "fill": 3,
           "number": 0
@@ -20350,7 +20350,27 @@
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-03",
+          "id": "W041-03",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 2,
+          "number": 0
+        },
+        {
+          "level": 41,
+          "phase": "开局",
+          "id": "W041-04",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 0,
+          "number": 0
+        },
+        {
+          "level": 41,
+          "phase": "开局",
+          "id": "W041-05",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -20360,17 +20380,7 @@
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-04",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 41,
-          "phase": "开局",
-          "id": "R2-041-05",
+          "id": "W041-06",
           "kind": "广告锁定周转盒",
           "count": 2,
           "capacity": 4,
@@ -20378,12 +20388,188 @@
           "number": 0
         }
       ],
+      "authored_opening": {
+        "reference": "已确认的41–50关方案；第41关：指定口味周转；固定层序与订单，非参考小游戏逐关复刻",
+        "slots": [
+          {
+            "group_id": "W041-01",
+            "layers": [
+              2,
+              8,
+              8,
+              6
+            ]
+          },
+          {
+            "group_id": "W041-01",
+            "layers": [
+              4,
+              8,
+              5,
+              6
+            ]
+          },
+          {
+            "group_id": "W041-01",
+            "layers": [
+              0,
+              2,
+              4,
+              4
+            ]
+          },
+          {
+            "group_id": "W041-01",
+            "layers": [
+              0,
+              8,
+              6,
+              4
+            ]
+          },
+          {
+            "group_id": "W041-01",
+            "layers": [
+              6,
+              6,
+              4,
+              3
+            ]
+          },
+          {
+            "group_id": "W041-01",
+            "layers": [
+              8,
+              4,
+              2,
+              4
+            ]
+          },
+          {
+            "group_id": "W041-03",
+            "layers": [
+              8,
+              0
+            ]
+          },
+          {
+            "group_id": "W041-01",
+            "layers": [
+              3,
+              5,
+              8,
+              6
+            ]
+          },
+          {
+            "group_id": "W041-01",
+            "layers": [
+              5,
+              3,
+              8,
+              4
+            ]
+          },
+          {
+            "group_id": "W041-01",
+            "layers": [
+              8,
+              0,
+              4,
+              8
+            ]
+          },
+          {
+            "group_id": "W041-02",
+            "layers": [
+              6,
+              4,
+              3
+            ]
+          },
+          {
+            "group_id": "W041-01",
+            "layers": [
+              2,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "group_id": "W041-02",
+            "layers": [
+              3,
+              4,
+              0
+            ]
+          },
+          {
+            "group_id": "W041-01",
+            "layers": [
+              4,
+              8,
+              0,
+              4
+            ]
+          },
+          {
+            "group_id": "W041-01",
+            "layers": [
+              0,
+              3,
+              4,
+              3
+            ]
+          },
+          {
+            "group_id": "W041-01",
+            "layers": [
+              8,
+              3,
+              0,
+              4
+            ]
+          },
+          {
+            "group_id": "W041-05",
+            "layers": [],
+            "fixed_flavor": 8
+          },
+          {
+            "group_id": "W041-04",
+            "layers": []
+          }
+        ],
+        "stock": [],
+        "demand_sequences": [
+          [
+            4,
+            3,
+            2,
+            4,
+            0,
+            6,
+            8,
+            6
+          ],
+          [
+            3,
+            8,
+            5,
+            8,
+            4,
+            0,
+            4
+          ]
+        ]
+      },
       "approved_adjustments": [],
       "effective_groups": [
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-01",
+          "id": "W041-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20393,7 +20579,7 @@
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-01",
+          "id": "W041-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20403,7 +20589,7 @@
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-01",
+          "id": "W041-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20413,7 +20599,7 @@
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-01",
+          "id": "W041-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20423,7 +20609,97 @@
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-02",
+          "id": "W041-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 41,
+          "phase": "开局",
+          "id": "W041-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 41,
+          "phase": "开局",
+          "id": "W041-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 41,
+          "phase": "开局",
+          "id": "W041-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 41,
+          "phase": "开局",
+          "id": "W041-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 41,
+          "phase": "开局",
+          "id": "W041-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 41,
+          "phase": "开局",
+          "id": "W041-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 41,
+          "phase": "开局",
+          "id": "W041-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 41,
+          "phase": "开局",
+          "id": "W041-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 41,
+          "phase": "开局",
+          "id": "W041-02",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20433,7 +20709,7 @@
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-02",
+          "id": "W041-02",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20443,27 +20719,27 @@
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-02",
+          "id": "W041-03",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 3,
+          "fill": 2,
           "number": 0
         },
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-02",
+          "id": "W041-04",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 3,
+          "fill": 0,
           "number": 0
         },
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-03",
+          "id": "W041-05",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -20473,17 +20749,7 @@
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-04",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 41,
-          "phase": "开局",
-          "id": "R2-041-05",
+          "id": "W041-06",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -20493,7 +20759,7 @@
         {
           "level": 41,
           "phase": "开局",
-          "id": "R2-041-05",
+          "id": "W041-06",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -20504,55 +20770,55 @@
     },
     {
       "id": 42,
-      "role": "固定颜色盒练习",
-      "difficulty": 2.7,
-      "layout": "自由",
-      "flavors": 6,
-      "filled": 8,
+      "role": "三颗盒腾位",
+      "difficulty": 4.8,
+      "layout": "整齐",
+      "flavors": 8,
+      "filled": 17,
       "stock": 0,
-      "orders": 8,
-      "empty": 2,
+      "orders": 16,
+      "empty": 1,
       "single": 0,
-      "slots": 12,
-      "general_space": 4,
-      "interleave": 2,
+      "slots": 20,
+      "general_space": 0,
+      "interleave": 4,
       "hidden_ratio": 0,
-      "aabb_max": 0.2,
-      "demand_pressure": 2,
+      "aabb_max": 0.12,
+      "demand_pressure": 3,
       "stock_pressure": 0,
       "main": "固定颜色盒",
       "secondary": null,
       "parameters": "固定颜色盒×1",
-      "donuts": 32,
-      "baseline_rate_target": 0.8,
-      "duration_target_minutes": 4.3,
-      "composition": "散点",
+      "donuts": 64,
+      "baseline_rate_target": null,
+      "duration_target_minutes": 6,
+      "composition": "按实际盒数连续居中分排，上下可见留白对称",
       "assist": 1,
-      "assist_rate_target": 0.9,
-      "opening_donuts": 32,
-      "normal_fill_ratio": 1,
-      "matching_space": 0,
+      "assist_rate_target": null,
+      "opening_donuts": 64,
+      "normal_fill_ratio": 0.9411764705882353,
+      "matching_space": 4,
       "restricted_space": 4,
       "locked_space": 0,
-      "adjacent_max": 0.33,
-      "first_group_min": 2,
+      "adjacent_max": 0.18,
+      "first_group_min": 4,
       "one_step_max": 0,
       "special_count": 1,
       "special_types": 1,
       "prerequisite_boxes": 0,
       "numeric_decrements": 0,
-      "mechanism_target": "指定口味接收空间，不能当成任意口味空盒",
-      "midgame_space_min": 0,
-      "tuning_notes": "巩固新机制，暂不叠加旧机关。无备货。",
+      "mechanism_target": "三颗盒腾位",
+      "midgame_space_min": 3,
+      "tuning_notes": "已确认41–50关方案；目标难度4.8，待真人试玩校准；普通盒装量4/3/2/1/0：13/4/0/0/0",
       "bomb_multiplier": null,
       "source_row": 47,
       "groups": [
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-01",
+          "id": "W042-01",
           "kind": "普通盒",
-          "count": 8,
+          "count": 13,
           "capacity": 4,
           "fill": 4,
           "number": 0
@@ -20560,7 +20826,17 @@
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-02",
+          "id": "W042-02",
+          "kind": "普通盒",
+          "count": 4,
+          "capacity": 4,
+          "fill": 3,
+          "number": 0
+        },
+        {
+          "level": 42,
+          "phase": "开局",
+          "id": "W042-03",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -20570,17 +20846,7 @@
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-03",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 42,
-          "phase": "开局",
-          "id": "R2-042-04",
+          "id": "W042-04",
           "kind": "广告锁定周转盒",
           "count": 2,
           "capacity": 4,
@@ -20588,12 +20854,194 @@
           "number": 0
         }
       ],
+      "authored_opening": {
+        "reference": "已确认的41–50关方案；第42关：三颗盒腾位；固定层序与订单，非参考小游戏逐关复刻",
+        "slots": [
+          {
+            "group_id": "W042-01",
+            "layers": [
+              0,
+              2,
+              5,
+              6
+            ]
+          },
+          {
+            "group_id": "W042-01",
+            "layers": [
+              6,
+              2,
+              8,
+              12
+            ]
+          },
+          {
+            "group_id": "W042-01",
+            "layers": [
+              3,
+              12,
+              3,
+              8
+            ]
+          },
+          {
+            "group_id": "W042-01",
+            "layers": [
+              0,
+              2,
+              2,
+              5
+            ]
+          },
+          {
+            "group_id": "W042-01",
+            "layers": [
+              12,
+              8,
+              8,
+              6
+            ]
+          },
+          {
+            "group_id": "W042-02",
+            "layers": [
+              8,
+              3,
+              2
+            ]
+          },
+          {
+            "group_id": "W042-01",
+            "layers": [
+              2,
+              2,
+              8,
+              6
+            ]
+          },
+          {
+            "group_id": "W042-01",
+            "layers": [
+              0,
+              8,
+              6,
+              2
+            ]
+          },
+          {
+            "group_id": "W042-02",
+            "layers": [
+              8,
+              5,
+              2
+            ]
+          },
+          {
+            "group_id": "W042-02",
+            "layers": [
+              0,
+              2,
+              6
+            ]
+          },
+          {
+            "group_id": "W042-02",
+            "layers": [
+              3,
+              6,
+              8
+            ]
+          },
+          {
+            "group_id": "W042-01",
+            "layers": [
+              5,
+              4,
+              2,
+              2
+            ]
+          },
+          {
+            "group_id": "W042-01",
+            "layers": [
+              3,
+              0,
+              2,
+              8
+            ]
+          },
+          {
+            "group_id": "W042-01",
+            "layers": [
+              0,
+              4,
+              6,
+              3
+            ]
+          },
+          {
+            "group_id": "W042-01",
+            "layers": [
+              2,
+              4,
+              3,
+              4
+            ]
+          },
+          {
+            "group_id": "W042-01",
+            "layers": [
+              2,
+              12,
+              8,
+              0
+            ]
+          },
+          {
+            "group_id": "W042-01",
+            "layers": [
+              8,
+              3,
+              0,
+              2
+            ]
+          },
+          {
+            "group_id": "W042-03",
+            "layers": [],
+            "fixed_flavor": 5
+          }
+        ],
+        "stock": [],
+        "demand_sequences": [
+          [
+            3,
+            6,
+            2,
+            0,
+            4,
+            0,
+            2,
+            8
+          ],
+          [
+            8,
+            12,
+            2,
+            2,
+            5,
+            3,
+            6,
+            8
+          ]
+        ]
+      },
       "approved_adjustments": [],
       "effective_groups": [
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-01",
+          "id": "W042-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20603,7 +21051,7 @@
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-01",
+          "id": "W042-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20613,7 +21061,7 @@
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-01",
+          "id": "W042-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20623,7 +21071,7 @@
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-01",
+          "id": "W042-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20633,7 +21081,7 @@
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-01",
+          "id": "W042-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20643,7 +21091,7 @@
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-01",
+          "id": "W042-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20653,7 +21101,7 @@
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-01",
+          "id": "W042-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20663,7 +21111,7 @@
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-01",
+          "id": "W042-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20673,7 +21121,97 @@
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-02",
+          "id": "W042-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 42,
+          "phase": "开局",
+          "id": "W042-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 42,
+          "phase": "开局",
+          "id": "W042-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 42,
+          "phase": "开局",
+          "id": "W042-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 42,
+          "phase": "开局",
+          "id": "W042-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 42,
+          "phase": "开局",
+          "id": "W042-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 3,
+          "number": 0
+        },
+        {
+          "level": 42,
+          "phase": "开局",
+          "id": "W042-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 3,
+          "number": 0
+        },
+        {
+          "level": 42,
+          "phase": "开局",
+          "id": "W042-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 3,
+          "number": 0
+        },
+        {
+          "level": 42,
+          "phase": "开局",
+          "id": "W042-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 3,
+          "number": 0
+        },
+        {
+          "level": 42,
+          "phase": "开局",
+          "id": "W042-03",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -20683,17 +21221,7 @@
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-03",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 42,
-          "phase": "开局",
-          "id": "R2-042-04",
+          "id": "W042-04",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -20703,7 +21231,7 @@
         {
           "level": 42,
           "phase": "开局",
-          "id": "R2-042-04",
+          "id": "W042-04",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -20714,55 +21242,55 @@
     },
     {
       "id": 43,
-      "role": "固定颜色盒结合旧机制",
-      "difficulty": 3.2,
-      "layout": "整齐",
-      "flavors": 6,
-      "filled": 7,
+      "role": "归纳与指定口味",
+      "difficulty": 4.9,
+      "layout": "错落",
+      "flavors": 8,
+      "filled": 17,
       "stock": 0,
-      "orders": 7,
+      "orders": 17,
       "empty": 2,
       "single": 0,
-      "slots": 11,
+      "slots": 21,
       "general_space": 4,
       "interleave": 4,
-      "hidden_ratio": 0.04,
-      "aabb_max": 0.15,
+      "hidden_ratio": 0,
+      "aabb_max": 0.12,
       "demand_pressure": 3,
       "stock_pressure": 0,
       "main": "固定颜色盒",
-      "secondary": "普通冰冻盒",
-      "parameters": "普通冰冻盒×2；固定颜色盒×1",
-      "donuts": 28,
-      "baseline_rate_target": 0.68,
-      "duration_target_minutes": 4.5,
-      "composition": "短行对齐",
+      "secondary": "数字冰冻盒",
+      "parameters": "数字冰冻盒 1×1；固定颜色盒×1",
+      "donuts": 68,
+      "baseline_rate_target": null,
+      "duration_target_minutes": 6,
+      "composition": "按实际盒数连续居中分排，上下可见留白对称",
       "assist": 1,
-      "assist_rate_target": 0.9,
-      "opening_donuts": 28,
+      "assist_rate_target": null,
+      "opening_donuts": 68,
       "normal_fill_ratio": 1,
       "matching_space": 0,
       "restricted_space": 4,
       "locked_space": 0,
-      "adjacent_max": 0.25,
-      "first_group_min": 3,
+      "adjacent_max": 0.18,
+      "first_group_min": 5,
       "one_step_max": 0,
-      "special_count": 3,
+      "special_count": 2,
       "special_types": 2,
-      "prerequisite_boxes": 2,
-      "numeric_decrements": 0,
-      "mechanism_target": "开放需求须先支持一次回收，再取冻结材料；指定口味接收空间，不能当成任意口味空盒",
-      "midgame_space_min": 1,
-      "tuning_notes": "多个已学机制分别作用于不同盒，避免仅靠隐藏层。无备货。",
+      "prerequisite_boxes": 1,
+      "numeric_decrements": 1,
+      "mechanism_target": "归纳与指定口味",
+      "midgame_space_min": 3,
+      "tuning_notes": "已确认41–50关方案；目标难度4.9，待真人试玩校准；普通盒装量4/3/2/1/0：16/0/0/0/1",
       "bomb_multiplier": null,
       "source_row": 48,
       "groups": [
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-01",
+          "id": "W043-01",
           "kind": "普通盒",
-          "count": 5,
+          "count": 16,
           "capacity": 4,
           "fill": 4,
           "number": 0
@@ -20770,27 +21298,27 @@
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-02",
-          "kind": "普通冰冻盒",
+          "id": "W043-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 0,
+          "number": 0
+        },
+        {
+          "level": 43,
+          "phase": "开局",
+          "id": "W043-03",
+          "kind": "数字冰冻盒",
           "count": 1,
           "capacity": 4,
           "fill": 4,
-          "number": 0
+          "number": 1
         },
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-03",
-          "kind": "普通冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 0
-        },
-        {
-          "level": 43,
-          "phase": "开局",
-          "id": "R2-043-04",
+          "id": "W043-04",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -20800,17 +21328,7 @@
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-05",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 43,
-          "phase": "开局",
-          "id": "R2-043-06",
+          "id": "W043-05",
           "kind": "广告锁定周转盒",
           "count": 2,
           "capacity": 4,
@@ -20818,12 +21336,203 @@
           "number": 0
         }
       ],
+      "authored_opening": {
+        "reference": "已确认的41–50关方案；第43关：归纳与指定口味；固定层序与订单，非参考小游戏逐关复刻",
+        "slots": [
+          {
+            "group_id": "W043-01",
+            "layers": [
+              6,
+              12,
+              5,
+              12
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              0,
+              8,
+              2,
+              3
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              5,
+              12,
+              0,
+              5
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              3,
+              6,
+              12,
+              6
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              0,
+              12,
+              6,
+              0
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              6,
+              12,
+              3,
+              12
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              5,
+              0,
+              0,
+              2
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              5,
+              0,
+              3,
+              8
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              3,
+              2,
+              6,
+              3
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              2,
+              2,
+              5,
+              3
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              8,
+              5,
+              2,
+              12
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              8,
+              3,
+              0,
+              4
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              3,
+              12,
+              0,
+              3
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              0,
+              4,
+              3,
+              0
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              4,
+              12,
+              12,
+              0
+            ]
+          },
+          {
+            "group_id": "W043-03",
+            "layers": [
+              2,
+              5,
+              3,
+              6
+            ]
+          },
+          {
+            "group_id": "W043-01",
+            "layers": [
+              12,
+              4,
+              6,
+              2
+            ]
+          },
+          {
+            "group_id": "W043-02",
+            "layers": []
+          },
+          {
+            "group_id": "W043-04",
+            "layers": [],
+            "fixed_flavor": 12
+          }
+        ],
+        "stock": [],
+        "demand_sequences": [
+          [
+            12,
+            8,
+            0,
+            5,
+            0,
+            2,
+            5,
+            6,
+            12
+          ],
+          [
+            3,
+            6,
+            12,
+            3,
+            3,
+            0,
+            2,
+            4
+          ]
+        ]
+      },
       "approved_adjustments": [],
       "effective_groups": [
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-01",
+          "id": "W043-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20833,7 +21542,7 @@
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-01",
+          "id": "W043-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20843,7 +21552,7 @@
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-01",
+          "id": "W043-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20853,7 +21562,7 @@
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-01",
+          "id": "W043-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20863,7 +21572,7 @@
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-01",
+          "id": "W043-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -20873,8 +21582,8 @@
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-02",
-          "kind": "普通冰冻盒",
+          "id": "W043-01",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
           "fill": 4,
@@ -20883,8 +21592,8 @@
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-03",
-          "kind": "普通冰冻盒",
+          "id": "W043-01",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
           "fill": 4,
@@ -20893,7 +21602,117 @@
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-04",
+          "id": "W043-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 43,
+          "phase": "开局",
+          "id": "W043-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 43,
+          "phase": "开局",
+          "id": "W043-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 43,
+          "phase": "开局",
+          "id": "W043-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 43,
+          "phase": "开局",
+          "id": "W043-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 43,
+          "phase": "开局",
+          "id": "W043-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 43,
+          "phase": "开局",
+          "id": "W043-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 43,
+          "phase": "开局",
+          "id": "W043-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 43,
+          "phase": "开局",
+          "id": "W043-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 43,
+          "phase": "开局",
+          "id": "W043-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 0,
+          "number": 0
+        },
+        {
+          "level": 43,
+          "phase": "开局",
+          "id": "W043-03",
+          "kind": "数字冰冻盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 1
+        },
+        {
+          "level": 43,
+          "phase": "开局",
+          "id": "W043-04",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -20903,17 +21722,7 @@
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-05",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 43,
-          "phase": "开局",
-          "id": "R2-043-06",
+          "id": "W043-05",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -20923,7 +21732,7 @@
         {
           "level": 43,
           "phase": "开局",
-          "id": "R2-043-06",
+          "id": "W043-05",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -20934,55 +21743,55 @@
     },
     {
       "id": 44,
-      "role": "综合周转",
-      "difficulty": 3.5,
-      "layout": "错落",
-      "flavors": 6,
-      "filled": 8,
-      "stock": 2,
-      "orders": 10,
+      "role": "预装暂存复用",
+      "difficulty": 4.8,
+      "layout": "整齐",
+      "flavors": 8,
+      "filled": 17,
+      "stock": 1,
+      "orders": 17,
       "empty": 1,
       "single": 1,
-      "slots": 12,
+      "slots": 21,
       "general_space": 4,
       "interleave": 4,
-      "hidden_ratio": 0.115,
-      "aabb_max": 0.15,
+      "hidden_ratio": 0,
+      "aabb_max": 0.12,
       "demand_pressure": 3,
-      "stock_pressure": 2,
-      "main": "单颗暂存盒",
-      "secondary": "数字冰冻盒",
-      "parameters": "单颗暂存盒×1；数字冰冻盒×2",
-      "donuts": 40,
-      "baseline_rate_target": 0.58,
-      "duration_target_minutes": 4.8,
-      "composition": "逐行错位",
+      "stock_pressure": 1,
+      "main": "数字冰冻盒",
+      "secondary": "数字冰冻盒、单颗暂存盒",
+      "parameters": "数字冰冻盒 1×2；单颗暂存盒预装1颗",
+      "donuts": 68,
+      "baseline_rate_target": null,
+      "duration_target_minutes": 6,
+      "composition": "按实际盒数连续居中分排，上下可见留白对称",
       "assist": 1,
-      "assist_rate_target": 0.9,
-      "opening_donuts": 32,
-      "normal_fill_ratio": 0.9583333333333334,
-      "matching_space": 1,
+      "assist_rate_target": null,
+      "opening_donuts": 64,
+      "normal_fill_ratio": 0.9166666666666666,
+      "matching_space": 5,
       "restricted_space": 0,
       "locked_space": 0,
-      "adjacent_max": 0.25,
+      "adjacent_max": 0.18,
       "first_group_min": 4,
       "one_step_max": 0,
       "special_count": 3,
       "special_types": 2,
       "prerequisite_boxes": 2,
       "numeric_decrements": 2,
-      "mechanism_target": "单格只解决一颗腾挪，后续仍要安排移出；归纳推进数字，回收需求与解冻目标分开安排",
-      "midgame_space_min": 1,
-      "tuning_notes": "多个已学机制分别作用于不同盒，避免仅靠隐藏层。有限备货，不增加本关总甜甜圈。",
+      "mechanism_target": "预装暂存复用",
+      "midgame_space_min": 2,
+      "tuning_notes": "已确认41–50关方案；目标难度4.8，待真人试玩校准；普通盒装量4/3/2/1/0：11/3/1/0/1",
       "bomb_multiplier": null,
       "source_row": 49,
       "groups": [
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-01",
+          "id": "W044-01",
           "kind": "普通盒",
-          "count": 5,
+          "count": 11,
           "capacity": 4,
           "fill": 4,
           "number": 0
@@ -20990,9 +21799,9 @@
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-02",
+          "id": "W044-02",
           "kind": "普通盒",
-          "count": 1,
+          "count": 3,
           "capacity": 4,
           "fill": 3,
           "number": 0
@@ -21000,7 +21809,37 @@
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-03",
+          "id": "W044-03",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 2,
+          "number": 0
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-04",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 0,
+          "number": 0
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-05",
+          "kind": "数字冰冻盒",
+          "count": 2,
+          "capacity": 4,
+          "fill": 4,
+          "number": 1
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-06",
           "kind": "单颗暂存盒",
           "count": 1,
           "capacity": 1,
@@ -21010,37 +21849,7 @@
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-04",
-          "kind": "数字冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 1
-        },
-        {
-          "level": 44,
-          "phase": "开局",
-          "id": "R2-044-05",
-          "kind": "数字冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 1
-        },
-        {
-          "level": 44,
-          "phase": "开局",
-          "id": "R2-044-06",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 44,
-          "phase": "开局",
-          "id": "R2-044-07",
+          "id": "W044-07",
           "kind": "广告锁定周转盒",
           "count": 2,
           "capacity": 4,
@@ -21050,20 +21859,217 @@
         {
           "level": 44,
           "phase": "备货",
-          "id": "R2-044-R01",
+          "id": "W044-08",
           "kind": "普通盒",
-          "count": 2,
+          "count": 1,
           "capacity": 4,
           "fill": 4,
           "number": 0
         }
       ],
+      "authored_opening": {
+        "reference": "已确认的41–50关方案；第44关：预装暂存复用；固定层序与订单，非参考小游戏逐关复刻",
+        "slots": [
+          {
+            "group_id": "W044-01",
+            "layers": [
+              4,
+              3,
+              0,
+              6
+            ]
+          },
+          {
+            "group_id": "W044-01",
+            "layers": [
+              5,
+              4,
+              6,
+              0
+            ]
+          },
+          {
+            "group_id": "W044-01",
+            "layers": [
+              4,
+              3,
+              8,
+              4
+            ]
+          },
+          {
+            "group_id": "W044-01",
+            "layers": [
+              6,
+              12,
+              12,
+              0
+            ]
+          },
+          {
+            "group_id": "W044-01",
+            "layers": [
+              0,
+              3,
+              8,
+              6
+            ]
+          },
+          {
+            "group_id": "W044-02",
+            "layers": [
+              2,
+              3,
+              3
+            ]
+          },
+          {
+            "group_id": "W044-02",
+            "layers": [
+              8,
+              4,
+              8
+            ]
+          },
+          {
+            "group_id": "W044-01",
+            "layers": [
+              12,
+              3,
+              5,
+              6
+            ]
+          },
+          {
+            "group_id": "W044-03",
+            "layers": [
+              6,
+              8
+            ]
+          },
+          {
+            "group_id": "W044-05",
+            "layers": [
+              12,
+              0,
+              6,
+              5
+            ]
+          },
+          {
+            "group_id": "W044-06",
+            "layers": [
+              2
+            ]
+          },
+          {
+            "group_id": "W044-01",
+            "layers": [
+              8,
+              3,
+              2,
+              5
+            ]
+          },
+          {
+            "group_id": "W044-01",
+            "layers": [
+              2,
+              8,
+              12,
+              0
+            ]
+          },
+          {
+            "group_id": "W044-01",
+            "layers": [
+              0,
+              4,
+              6,
+              5
+            ]
+          },
+          {
+            "group_id": "W044-05",
+            "layers": [
+              2,
+              4,
+              12,
+              0
+            ]
+          },
+          {
+            "group_id": "W044-02",
+            "layers": [
+              8,
+              12,
+              4
+            ]
+          },
+          {
+            "group_id": "W044-01",
+            "layers": [
+              4,
+              2,
+              4,
+              2
+            ]
+          },
+          {
+            "group_id": "W044-01",
+            "layers": [
+              5,
+              3,
+              5,
+              4
+            ]
+          },
+          {
+            "group_id": "W044-04",
+            "layers": []
+          }
+        ],
+        "stock": [
+          {
+            "group_id": "W044-08",
+            "layers": [
+              12,
+              2,
+              5,
+              4
+            ]
+          }
+        ],
+        "demand_sequences": [
+          [
+            12,
+            4,
+            6,
+            12,
+            2,
+            0,
+            4,
+            8,
+            5
+          ],
+          [
+            6,
+            4,
+            5,
+            8,
+            3,
+            2,
+            3,
+            0
+          ]
+        ]
+      },
       "approved_adjustments": [],
       "effective_groups": [
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-01",
+          "id": "W044-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21073,7 +22079,7 @@
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-01",
+          "id": "W044-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21083,7 +22089,7 @@
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-01",
+          "id": "W044-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21093,7 +22099,7 @@
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-01",
+          "id": "W044-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21103,7 +22109,7 @@
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-01",
+          "id": "W044-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21113,7 +22119,67 @@
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-02",
+          "id": "W044-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-02",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21123,7 +22189,67 @@
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-03",
+          "id": "W044-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 3,
+          "number": 0
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 3,
+          "number": 0
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-03",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 2,
+          "number": 0
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-04",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 0,
+          "number": 0
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-05",
+          "kind": "数字冰冻盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 1
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-05",
+          "kind": "数字冰冻盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 1
+        },
+        {
+          "level": 44,
+          "phase": "开局",
+          "id": "W044-06",
           "kind": "单颗暂存盒",
           "count": 1,
           "capacity": 1,
@@ -21133,37 +22259,7 @@
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-04",
-          "kind": "数字冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 1
-        },
-        {
-          "level": 44,
-          "phase": "开局",
-          "id": "R2-044-05",
-          "kind": "数字冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 1
-        },
-        {
-          "level": 44,
-          "phase": "开局",
-          "id": "R2-044-06",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 44,
-          "phase": "开局",
-          "id": "R2-044-07",
+          "id": "W044-07",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -21173,7 +22269,7 @@
         {
           "level": 44,
           "phase": "开局",
-          "id": "R2-044-07",
+          "id": "W044-07",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -21183,17 +22279,7 @@
         {
           "level": 44,
           "phase": "备货",
-          "id": "R2-044-R01",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 0
-        },
-        {
-          "level": 44,
-          "phase": "备货",
-          "id": "R2-044-R01",
+          "id": "W044-08",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21204,55 +22290,55 @@
     },
     {
       "id": 45,
-      "role": "综合周转",
-      "difficulty": 3.8,
-      "layout": "自由",
-      "flavors": 6,
-      "filled": 8,
+      "role": "揭示与受限周转",
+      "difficulty": 4.9,
+      "layout": "错落",
+      "flavors": 8,
+      "filled": 18,
       "stock": 0,
-      "orders": 8,
-      "empty": 2,
+      "orders": 17,
+      "empty": 1,
       "single": 0,
-      "slots": 12,
-      "general_space": 4,
+      "slots": 21,
+      "general_space": 0,
       "interleave": 4,
-      "hidden_ratio": 0.115,
-      "aabb_max": 0.15,
+      "hidden_ratio": 0.04411764705882353,
+      "aabb_max": 0.12,
       "demand_pressure": 3,
       "stock_pressure": 0,
-      "main": "数字盖盒",
-      "secondary": "固定颜色盒",
-      "parameters": "数字盖盒×2；固定颜色盒×1",
-      "donuts": 32,
-      "baseline_rate_target": 0.58,
-      "duration_target_minutes": 5,
-      "composition": "中央留白",
+      "main": "固定颜色盒",
+      "secondary": null,
+      "parameters": "固定颜色盒×1",
+      "donuts": 68,
+      "baseline_rate_target": null,
+      "duration_target_minutes": 6,
+      "composition": "按实际盒数连续居中分排，上下可见留白对称",
       "assist": 1,
-      "assist_rate_target": 0.9,
-      "opening_donuts": 32,
-      "normal_fill_ratio": 1,
-      "matching_space": 0,
+      "assist_rate_target": null,
+      "opening_donuts": 68,
+      "normal_fill_ratio": 0.9444444444444444,
+      "matching_space": 4,
       "restricted_space": 4,
       "locked_space": 0,
-      "adjacent_max": 0.25,
-      "first_group_min": 4,
+      "adjacent_max": 0.18,
+      "first_group_min": 5,
       "one_step_max": 0,
-      "special_count": 3,
-      "special_types": 2,
-      "prerequisite_boxes": 2,
-      "numeric_decrements": 2,
-      "mechanism_target": "盖盒保留后续口味材料，先由可操作盒归纳解盖；指定口味接收空间，不能当成任意口味空盒",
-      "midgame_space_min": 1,
-      "tuning_notes": "多个已学机制分别作用于不同盒，避免仅靠隐藏层。无备货。",
+      "special_count": 1,
+      "special_types": 1,
+      "prerequisite_boxes": 0,
+      "numeric_decrements": 0,
+      "mechanism_target": "揭示与受限周转",
+      "midgame_space_min": 3,
+      "tuning_notes": "已确认41–50关方案；目标难度4.9，待真人试玩校准；普通盒装量4/3/2/1/0：15/2/1/0/0",
       "bomb_multiplier": null,
       "source_row": 50,
       "groups": [
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-01",
+          "id": "W045-01",
           "kind": "普通盒",
-          "count": 6,
+          "count": 15,
           "capacity": 4,
           "fill": 4,
           "number": 0
@@ -21260,27 +22346,27 @@
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-02",
-          "kind": "数字盖盒",
-          "count": 1,
+          "id": "W045-02",
+          "kind": "普通盒",
+          "count": 2,
           "capacity": 4,
-          "fill": 4,
-          "number": 1
+          "fill": 3,
+          "number": 0
         },
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-03",
-          "kind": "数字盖盒",
+          "id": "W045-03",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 4,
-          "number": 1
+          "fill": 2,
+          "number": 0
         },
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-04",
+          "id": "W045-04",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -21290,17 +22376,7 @@
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-05",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 45,
-          "phase": "开局",
-          "id": "R2-045-06",
+          "id": "W045-05",
           "kind": "广告锁定周转盒",
           "count": 2,
           "capacity": 4,
@@ -21308,12 +22384,209 @@
           "number": 0
         }
       ],
+      "authored_opening": {
+        "reference": "已确认的41–50关方案；第45关：揭示与受限周转；固定层序与订单，非参考小游戏逐关复刻",
+        "slots": [
+          {
+            "group_id": "W045-01",
+            "layers": [
+              8,
+              5,
+              3,
+              2
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              5,
+              0,
+              5,
+              4
+            ]
+          },
+          {
+            "group_id": "W045-03",
+            "layers": [
+              3,
+              4
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              6,
+              12,
+              0,
+              5
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              2,
+              4,
+              3,
+              0
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              12,
+              4,
+              3,
+              12
+            ]
+          },
+          {
+            "group_id": "W045-02",
+            "layers": [
+              0,
+              12,
+              0
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              12,
+              6,
+              3,
+              4
+            ],
+            "hidden": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              6,
+              8,
+              12,
+              12
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              12,
+              2,
+              4,
+              8
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              6,
+              0,
+              4,
+              0
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              4,
+              3,
+              0,
+              12
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              8,
+              12,
+              0,
+              0
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              6,
+              3,
+              4,
+              3
+            ]
+          },
+          {
+            "group_id": "W045-02",
+            "layers": [
+              8,
+              0,
+              2
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              8,
+              6,
+              8,
+              12
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              4,
+              6,
+              12,
+              4
+            ]
+          },
+          {
+            "group_id": "W045-01",
+            "layers": [
+              8,
+              4,
+              6,
+              0
+            ]
+          },
+          {
+            "group_id": "W045-04",
+            "layers": [],
+            "fixed_flavor": 5
+          }
+        ],
+        "stock": [],
+        "demand_sequences": [
+          [
+            3,
+            8,
+            0,
+            12,
+            0,
+            4,
+            2,
+            3,
+            4
+          ],
+          [
+            12,
+            6,
+            4,
+            0,
+            6,
+            8,
+            12,
+            5
+          ]
+        ]
+      },
       "approved_adjustments": [],
       "effective_groups": [
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-01",
+          "id": "W045-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21323,7 +22596,7 @@
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-01",
+          "id": "W045-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21333,7 +22606,7 @@
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-01",
+          "id": "W045-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21343,7 +22616,7 @@
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-01",
+          "id": "W045-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21353,7 +22626,7 @@
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-01",
+          "id": "W045-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21363,7 +22636,7 @@
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-01",
+          "id": "W045-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21373,27 +22646,127 @@
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-02",
-          "kind": "数字盖盒",
+          "id": "W045-01",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
           "fill": 4,
-          "number": 1
+          "number": 0
         },
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-03",
-          "kind": "数字盖盒",
+          "id": "W045-01",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
           "fill": 4,
-          "number": 1
+          "number": 0
         },
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-04",
+          "id": "W045-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 45,
+          "phase": "开局",
+          "id": "W045-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 45,
+          "phase": "开局",
+          "id": "W045-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 45,
+          "phase": "开局",
+          "id": "W045-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 45,
+          "phase": "开局",
+          "id": "W045-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 45,
+          "phase": "开局",
+          "id": "W045-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 45,
+          "phase": "开局",
+          "id": "W045-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 45,
+          "phase": "开局",
+          "id": "W045-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 3,
+          "number": 0
+        },
+        {
+          "level": 45,
+          "phase": "开局",
+          "id": "W045-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 3,
+          "number": 0
+        },
+        {
+          "level": 45,
+          "phase": "开局",
+          "id": "W045-03",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 2,
+          "number": 0
+        },
+        {
+          "level": 45,
+          "phase": "开局",
+          "id": "W045-04",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -21403,17 +22776,7 @@
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-05",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 45,
-          "phase": "开局",
-          "id": "R2-045-06",
+          "id": "W045-05",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -21423,7 +22786,7 @@
         {
           "level": 45,
           "phase": "开局",
-          "id": "R2-045-06",
+          "id": "W045-05",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -21434,55 +22797,55 @@
     },
     {
       "id": 46,
-      "role": "多机制挑战",
-      "difficulty": 4.1,
+      "role": "交付解冻与分批补货",
+      "difficulty": 4.9,
       "layout": "整齐",
-      "flavors": 6,
-      "filled": 10,
-      "stock": 3,
-      "orders": 12,
+      "flavors": 8,
+      "filled": 17,
+      "stock": 2,
+      "orders": 19,
       "empty": 2,
       "single": 0,
-      "slots": 14,
+      "slots": 21,
       "general_space": 4,
-      "interleave": 5,
-      "hidden_ratio": 0.115,
-      "aabb_max": 0.1,
-      "demand_pressure": 4,
-      "stock_pressure": 3,
-      "main": "普通冰冻盒",
-      "secondary": "数字冰冻盒＋固定颜色盒",
-      "parameters": "普通冰冻盒×2；数字冰冻盒×1；固定颜色盒×1",
-      "donuts": 48,
-      "baseline_rate_target": 0.48,
-      "duration_target_minutes": 5.2,
-      "composition": "左右对齐分组",
+      "interleave": 4,
+      "hidden_ratio": 0,
+      "aabb_max": 0.12,
+      "demand_pressure": 3,
+      "stock_pressure": 1,
+      "main": "固定颜色盒",
+      "secondary": "普通冰冻盒",
+      "parameters": "普通冰冻盒 0×2；固定颜色盒×1",
+      "donuts": 76,
+      "baseline_rate_target": null,
+      "duration_target_minutes": 6,
+      "composition": "按实际盒数连续居中分排，上下可见留白对称",
       "assist": 1,
-      "assist_rate_target": 0.9,
-      "opening_donuts": 36,
-      "normal_fill_ratio": 0.8928571428571429,
-      "matching_space": 3,
+      "assist_rate_target": null,
+      "opening_donuts": 68,
+      "normal_fill_ratio": 1,
+      "matching_space": 0,
       "restricted_space": 4,
-      "locked_space": 1,
-      "adjacent_max": 0.2,
+      "locked_space": 0,
+      "adjacent_max": 0.18,
       "first_group_min": 5,
       "one_step_max": 0,
-      "special_count": 4,
-      "special_types": 3,
-      "prerequisite_boxes": 3,
-      "numeric_decrements": 1,
-      "mechanism_target": "开放需求须先支持一次回收，再取冻结材料；归纳推进数字，回收需求与解冻目标分开安排；指定口味接收空间，不能当成任意口味空盒",
-      "midgame_space_min": 2,
-      "tuning_notes": "多个已学机制分别作用于不同盒，避免仅靠隐藏层。有限备货，不增加本关总甜甜圈。",
+      "special_count": 3,
+      "special_types": 2,
+      "prerequisite_boxes": 2,
+      "numeric_decrements": 0,
+      "mechanism_target": "交付解冻与分批补货",
+      "midgame_space_min": 3,
+      "tuning_notes": "已确认41–50关方案；目标难度4.9，待真人试玩校准；普通盒装量4/3/2/1/0：15/0/0/0/1",
       "bomb_multiplier": null,
       "source_row": 51,
       "groups": [
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-01",
+          "id": "W046-01",
           "kind": "普通盒",
-          "count": 4,
+          "count": 15,
           "capacity": 4,
           "fill": 4,
           "number": 0
@@ -21490,19 +22853,19 @@
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-02",
+          "id": "W046-02",
           "kind": "普通盒",
-          "count": 3,
+          "count": 1,
           "capacity": 4,
-          "fill": 3,
+          "fill": 0,
           "number": 0
         },
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-03",
+          "id": "W046-03",
           "kind": "普通冰冻盒",
-          "count": 1,
+          "count": 2,
           "capacity": 4,
           "fill": 4,
           "number": 0
@@ -21510,27 +22873,7 @@
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-04",
-          "kind": "普通冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 0
-        },
-        {
-          "level": 46,
-          "phase": "开局",
-          "id": "R2-046-05",
-          "kind": "数字冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 3,
-          "number": 1
-        },
-        {
-          "level": 46,
-          "phase": "开局",
-          "id": "R2-046-06",
+          "id": "W046-04",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -21540,17 +22883,7 @@
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-07",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 46,
-          "phase": "开局",
-          "id": "R2-046-08",
+          "id": "W046-05",
           "kind": "广告锁定周转盒",
           "count": 2,
           "capacity": 4,
@@ -21560,20 +22893,232 @@
         {
           "level": 46,
           "phase": "备货",
-          "id": "R2-046-R01",
+          "id": "W046-06",
           "kind": "普通盒",
-          "count": 3,
+          "count": 2,
           "capacity": 4,
           "fill": 4,
           "number": 0
         }
       ],
+      "authored_opening": {
+        "reference": "已确认的41–50关方案；第46关：交付解冻与分批补货；固定层序与订单，非参考小游戏逐关复刻",
+        "slots": [
+          {
+            "group_id": "W046-01",
+            "layers": [
+              4,
+              12,
+              5,
+              5
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              4,
+              6,
+              2,
+              12
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              5,
+              12,
+              6,
+              6
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              8,
+              5,
+              0,
+              5
+            ]
+          },
+          {
+            "group_id": "W046-03",
+            "layers": [
+              0,
+              12,
+              5,
+              6
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              8,
+              5,
+              12,
+              6
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              12,
+              2,
+              6,
+              2
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              2,
+              5,
+              4,
+              8
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              4,
+              2,
+              6,
+              0
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              3,
+              2,
+              2,
+              12
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              12,
+              6,
+              2,
+              2
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              6,
+              5,
+              6,
+              6
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              6,
+              2,
+              4,
+              5
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              12,
+              2,
+              8,
+              4
+            ]
+          },
+          {
+            "group_id": "W046-03",
+            "layers": [
+              4,
+              2,
+              6,
+              6
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              3,
+              4,
+              12,
+              6
+            ]
+          },
+          {
+            "group_id": "W046-01",
+            "layers": [
+              0,
+              3,
+              5,
+              2
+            ]
+          },
+          {
+            "group_id": "W046-04",
+            "layers": [],
+            "fixed_flavor": 8
+          },
+          {
+            "group_id": "W046-02",
+            "layers": []
+          }
+        ],
+        "stock": [
+          {
+            "group_id": "W046-06",
+            "layers": [
+              5,
+              6,
+              2,
+              2
+            ]
+          },
+          {
+            "group_id": "W046-06",
+            "layers": [
+              12,
+              12,
+              2,
+              3
+            ]
+          }
+        ],
+        "demand_sequences": [
+          [
+            6,
+            2,
+            4,
+            5,
+            6,
+            12,
+            3,
+            12,
+            4,
+            2
+          ],
+          [
+            12,
+            2,
+            2,
+            5,
+            0,
+            5,
+            6,
+            6,
+            8
+          ]
+        ]
+      },
       "approved_adjustments": [],
       "effective_groups": [
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-01",
+          "id": "W046-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21583,7 +23128,7 @@
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-01",
+          "id": "W046-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21593,7 +23138,7 @@
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-01",
+          "id": "W046-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21603,7 +23148,7 @@
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-01",
+          "id": "W046-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21613,37 +23158,127 @@
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-02",
+          "id": "W046-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 3,
+          "fill": 4,
           "number": 0
         },
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-02",
+          "id": "W046-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 3,
+          "fill": 4,
           "number": 0
         },
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-02",
+          "id": "W046-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 3,
+          "fill": 4,
           "number": 0
         },
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-03",
+          "id": "W046-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 46,
+          "phase": "开局",
+          "id": "W046-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 46,
+          "phase": "开局",
+          "id": "W046-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 46,
+          "phase": "开局",
+          "id": "W046-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 46,
+          "phase": "开局",
+          "id": "W046-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 46,
+          "phase": "开局",
+          "id": "W046-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 46,
+          "phase": "开局",
+          "id": "W046-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 46,
+          "phase": "开局",
+          "id": "W046-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 46,
+          "phase": "开局",
+          "id": "W046-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 0,
+          "number": 0
+        },
+        {
+          "level": 46,
+          "phase": "开局",
+          "id": "W046-03",
           "kind": "普通冰冻盒",
           "count": 1,
           "capacity": 4,
@@ -21653,7 +23288,7 @@
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-04",
+          "id": "W046-03",
           "kind": "普通冰冻盒",
           "count": 1,
           "capacity": 4,
@@ -21663,17 +23298,7 @@
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-05",
-          "kind": "数字冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 3,
-          "number": 1
-        },
-        {
-          "level": 46,
-          "phase": "开局",
-          "id": "R2-046-06",
+          "id": "W046-04",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -21683,17 +23308,7 @@
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-07",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 46,
-          "phase": "开局",
-          "id": "R2-046-08",
+          "id": "W046-05",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -21703,7 +23318,7 @@
         {
           "level": 46,
           "phase": "开局",
-          "id": "R2-046-08",
+          "id": "W046-05",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -21713,7 +23328,7 @@
         {
           "level": 46,
           "phase": "备货",
-          "id": "R2-046-R01",
+          "id": "W046-06",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21723,17 +23338,7 @@
         {
           "level": 46,
           "phase": "备货",
-          "id": "R2-046-R01",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 0
-        },
-        {
-          "level": 46,
-          "phase": "备货",
-          "id": "R2-046-R01",
+          "id": "W046-06",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21744,55 +23349,55 @@
     },
     {
       "id": 47,
-      "role": "多机制挑战",
-      "difficulty": 4.3,
+      "role": "明牌暂存缓和",
+      "difficulty": 4.7,
       "layout": "错落",
-      "flavors": 7,
-      "filled": 8,
+      "flavors": 8,
+      "filled": 16,
       "stock": 0,
-      "orders": 8,
+      "orders": 15,
       "empty": 1,
       "single": 1,
-      "slots": 12,
-      "general_space": 4,
-      "interleave": 5,
-      "hidden_ratio": 0.14,
-      "aabb_max": 0.1,
-      "demand_pressure": 4,
+      "slots": 20,
+      "general_space": 5,
+      "interleave": 4,
+      "hidden_ratio": 0,
+      "aabb_max": 0.12,
+      "demand_pressure": 2,
       "stock_pressure": 0,
-      "main": "数字盖盒",
-      "secondary": "单颗暂存盒＋数字冰冻盒",
-      "parameters": "数字盖盒×2；单颗暂存盒×1；数字冰冻盒×1",
-      "donuts": 32,
-      "baseline_rate_target": 0.48,
-      "duration_target_minutes": 5.5,
-      "composition": "阶梯错落",
+      "main": "普通冰冻盒",
+      "secondary": "普通冰冻盒、单颗暂存盒",
+      "parameters": "普通冰冻盒 0×1；单颗暂存盒预装0颗",
+      "donuts": 60,
+      "baseline_rate_target": null,
+      "duration_target_minutes": 6,
+      "composition": "按实际盒数连续居中分排，上下可见留白对称",
       "assist": 1,
-      "assist_rate_target": 0.9,
-      "opening_donuts": 32,
-      "normal_fill_ratio": 0.95,
-      "matching_space": 1,
+      "assist_rate_target": null,
+      "opening_donuts": 60,
+      "normal_fill_ratio": 0.9333333333333333,
+      "matching_space": 4,
       "restricted_space": 0,
       "locked_space": 0,
-      "adjacent_max": 0.2,
-      "first_group_min": 5,
+      "adjacent_max": 0.18,
+      "first_group_min": 4,
       "one_step_max": 0,
-      "special_count": 4,
-      "special_types": 3,
-      "prerequisite_boxes": 3,
-      "numeric_decrements": 4,
-      "mechanism_target": "盖盒保留后续口味材料，先由可操作盒归纳解盖；单格只解决一颗腾挪，后续仍要安排移出；归纳推进数字，回收需求与解冻目标分开安排",
+      "special_count": 2,
+      "special_types": 2,
+      "prerequisite_boxes": 1,
+      "numeric_decrements": 0,
+      "mechanism_target": "明牌暂存缓和",
       "midgame_space_min": 2,
-      "tuning_notes": "多个已学机制分别作用于不同盒，避免仅靠隐藏层。无备货。",
+      "tuning_notes": "已确认41–50关方案；目标难度4.7，待真人试玩校准；普通盒装量4/3/2/1/0：12/2/1/0/1",
       "bomb_multiplier": null,
       "source_row": 52,
       "groups": [
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-01",
+          "id": "W047-01",
           "kind": "普通盒",
-          "count": 4,
+          "count": 12,
           "capacity": 4,
           "fill": 4,
           "number": 0
@@ -21800,9 +23405,9 @@
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-02",
+          "id": "W047-02",
           "kind": "普通盒",
-          "count": 1,
+          "count": 2,
           "capacity": 4,
           "fill": 3,
           "number": 0
@@ -21810,47 +23415,17 @@
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-03",
-          "kind": "数字盖盒",
+          "id": "W047-03",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 4,
-          "number": 1
-        },
-        {
-          "level": 47,
-          "phase": "开局",
-          "id": "R2-047-04",
-          "kind": "数字盖盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 2
-        },
-        {
-          "level": 47,
-          "phase": "开局",
-          "id": "R2-047-05",
-          "kind": "单颗暂存盒",
-          "count": 1,
-          "capacity": 1,
-          "fill": 1,
+          "fill": 2,
           "number": 0
         },
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-06",
-          "kind": "数字冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 1
-        },
-        {
-          "level": 47,
-          "phase": "开局",
-          "id": "R2-047-07",
+          "id": "W047-04",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21860,7 +23435,27 @@
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-08",
+          "id": "W047-05",
+          "kind": "普通冰冻盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 47,
+          "phase": "开局",
+          "id": "W047-06",
+          "kind": "单颗暂存盒",
+          "count": 1,
+          "capacity": 1,
+          "fill": 0,
+          "number": 0
+        },
+        {
+          "level": 47,
+          "phase": "开局",
+          "id": "W047-07",
           "kind": "广告锁定周转盒",
           "count": 2,
           "capacity": 4,
@@ -21868,12 +23463,187 @@
           "number": 0
         }
       ],
+      "authored_opening": {
+        "reference": "已确认的41–50关方案；第47关：明牌暂存缓和；固定层序与订单，非参考小游戏逐关复刻",
+        "slots": [
+          {
+            "group_id": "W047-01",
+            "layers": [
+              3,
+              0,
+              6,
+              2
+            ]
+          },
+          {
+            "group_id": "W047-01",
+            "layers": [
+              8,
+              4,
+              6,
+              12
+            ]
+          },
+          {
+            "group_id": "W047-01",
+            "layers": [
+              2,
+              6,
+              6,
+              4
+            ]
+          },
+          {
+            "group_id": "W047-01",
+            "layers": [
+              3,
+              2,
+              6,
+              2
+            ]
+          },
+          {
+            "group_id": "W047-01",
+            "layers": [
+              3,
+              5,
+              2,
+              2
+            ]
+          },
+          {
+            "group_id": "W047-05",
+            "layers": [
+              8,
+              5,
+              0,
+              12
+            ]
+          },
+          {
+            "group_id": "W047-03",
+            "layers": [
+              6,
+              2
+            ]
+          },
+          {
+            "group_id": "W047-02",
+            "layers": [
+              2,
+              8,
+              12
+            ]
+          },
+          {
+            "group_id": "W047-02",
+            "layers": [
+              4,
+              5,
+              8
+            ]
+          },
+          {
+            "group_id": "W047-01",
+            "layers": [
+              3,
+              8,
+              8,
+              3
+            ]
+          },
+          {
+            "group_id": "W047-01",
+            "layers": [
+              12,
+              2,
+              4,
+              2
+            ]
+          },
+          {
+            "group_id": "W047-01",
+            "layers": [
+              12,
+              0,
+              8,
+              2
+            ]
+          },
+          {
+            "group_id": "W047-01",
+            "layers": [
+              3,
+              8,
+              5,
+              5
+            ]
+          },
+          {
+            "group_id": "W047-01",
+            "layers": [
+              6,
+              0,
+              5,
+              12
+            ]
+          },
+          {
+            "group_id": "W047-01",
+            "layers": [
+              3,
+              12,
+              3,
+              5
+            ]
+          },
+          {
+            "group_id": "W047-01",
+            "layers": [
+              2,
+              5,
+              6,
+              12
+            ]
+          },
+          {
+            "group_id": "W047-06",
+            "layers": []
+          },
+          {
+            "group_id": "W047-04",
+            "layers": []
+          }
+        ],
+        "stock": [],
+        "demand_sequences": [
+          [
+            5,
+            2,
+            5,
+            4,
+            8,
+            3,
+            12,
+            8
+          ],
+          [
+            12,
+            2,
+            6,
+            6,
+            0,
+            2,
+            3
+          ]
+        ]
+      },
       "approved_adjustments": [],
       "effective_groups": [
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-01",
+          "id": "W047-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21883,7 +23653,7 @@
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-01",
+          "id": "W047-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21893,7 +23663,7 @@
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-01",
+          "id": "W047-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21903,7 +23673,7 @@
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-01",
+          "id": "W047-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21913,7 +23683,87 @@
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-02",
+          "id": "W047-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 47,
+          "phase": "开局",
+          "id": "W047-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 47,
+          "phase": "开局",
+          "id": "W047-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 47,
+          "phase": "开局",
+          "id": "W047-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 47,
+          "phase": "开局",
+          "id": "W047-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 47,
+          "phase": "开局",
+          "id": "W047-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 47,
+          "phase": "开局",
+          "id": "W047-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 47,
+          "phase": "开局",
+          "id": "W047-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 47,
+          "phase": "开局",
+          "id": "W047-02",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21923,47 +23773,27 @@
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-03",
-          "kind": "数字盖盒",
+          "id": "W047-02",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 4,
-          "number": 1
-        },
-        {
-          "level": 47,
-          "phase": "开局",
-          "id": "R2-047-04",
-          "kind": "数字盖盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 2
-        },
-        {
-          "level": 47,
-          "phase": "开局",
-          "id": "R2-047-05",
-          "kind": "单颗暂存盒",
-          "count": 1,
-          "capacity": 1,
-          "fill": 1,
+          "fill": 3,
           "number": 0
         },
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-06",
-          "kind": "数字冰冻盒",
+          "id": "W047-03",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 4,
-          "number": 1
+          "fill": 2,
+          "number": 0
         },
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-07",
+          "id": "W047-04",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -21973,7 +23803,27 @@
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-08",
+          "id": "W047-05",
+          "kind": "普通冰冻盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 47,
+          "phase": "开局",
+          "id": "W047-06",
+          "kind": "单颗暂存盒",
+          "count": 1,
+          "capacity": 1,
+          "fill": 0,
+          "number": 0
+        },
+        {
+          "level": 47,
+          "phase": "开局",
+          "id": "W047-07",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -21983,7 +23833,7 @@
         {
           "level": 47,
           "phase": "开局",
-          "id": "R2-047-08",
+          "id": "W047-07",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -21994,55 +23844,55 @@
     },
     {
       "id": 48,
-      "role": "多机制挑战",
-      "difficulty": 4.5,
-      "layout": "自由",
-      "flavors": 7,
-      "filled": 11,
-      "stock": 3,
-      "orders": 13,
-      "empty": 2,
-      "single": 0,
-      "slots": 15,
-      "general_space": 4,
-      "interleave": 5,
-      "hidden_ratio": 0.14,
-      "aabb_max": 0.1,
-      "demand_pressure": 4,
-      "stock_pressure": 3,
-      "main": "数字盖盒",
-      "secondary": "普通冰冻盒＋固定颜色盒",
-      "parameters": "数字盖盒×1；普通冰冻盒×2；固定颜色盒×1",
-      "donuts": 52,
-      "baseline_rate_target": 0.48,
-      "duration_target_minutes": 5.9,
-      "composition": "左右两翼",
+      "role": "三类空间配合",
+      "difficulty": 4.9,
+      "layout": "整齐",
+      "flavors": 8,
+      "filled": 18,
+      "stock": 1,
+      "orders": 18,
+      "empty": 1,
+      "single": 1,
+      "slots": 22,
+      "general_space": 1,
+      "interleave": 4,
+      "hidden_ratio": 0,
+      "aabb_max": 0.12,
+      "demand_pressure": 3,
+      "stock_pressure": 1,
+      "main": "固定颜色盒",
+      "secondary": "数字盖盒、单颗暂存盒",
+      "parameters": "数字盖盒 1×1；固定颜色盒×1；单颗暂存盒预装0颗",
+      "donuts": 72,
+      "baseline_rate_target": null,
+      "duration_target_minutes": 6,
+      "composition": "按实际盒数连续居中分排，上下可见留白对称",
       "assist": 1,
-      "assist_rate_target": 0.9,
-      "opening_donuts": 40,
-      "normal_fill_ratio": 0.90625,
-      "matching_space": 3,
+      "assist_rate_target": null,
+      "opening_donuts": 68,
+      "normal_fill_ratio": 0.9411764705882353,
+      "matching_space": 4,
       "restricted_space": 4,
-      "locked_space": 1,
-      "adjacent_max": 0.2,
+      "locked_space": 0,
+      "adjacent_max": 0.18,
       "first_group_min": 5,
       "one_step_max": 0,
-      "special_count": 4,
+      "special_count": 3,
       "special_types": 3,
-      "prerequisite_boxes": 3,
+      "prerequisite_boxes": 1,
       "numeric_decrements": 1,
-      "mechanism_target": "盖盒保留后续口味材料，先由可操作盒归纳解盖；开放需求须先支持一次回收，再取冻结材料；指定口味接收空间，不能当成任意口味空盒",
-      "midgame_space_min": 2,
-      "tuning_notes": "多个已学机制分别作用于不同盒，避免仅靠隐藏层。有限备货，不增加本关总甜甜圈。",
+      "mechanism_target": "三类空间配合",
+      "midgame_space_min": 3,
+      "tuning_notes": "已确认41–50关方案；目标难度4.9，待真人试玩校准；普通盒装量4/3/2/1/0：15/0/2/0/0",
       "bomb_multiplier": null,
       "source_row": 53,
       "groups": [
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-01",
+          "id": "W048-01",
           "kind": "普通盒",
-          "count": 5,
+          "count": 15,
           "capacity": 4,
           "fill": 4,
           "number": 0
@@ -22050,17 +23900,17 @@
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-02",
+          "id": "W048-02",
           "kind": "普通盒",
-          "count": 3,
+          "count": 2,
           "capacity": 4,
-          "fill": 3,
+          "fill": 2,
           "number": 0
         },
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-03",
+          "id": "W048-03",
           "kind": "数字盖盒",
           "count": 1,
           "capacity": 4,
@@ -22070,27 +23920,7 @@
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-04",
-          "kind": "普通冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 3,
-          "number": 0
-        },
-        {
-          "level": 48,
-          "phase": "开局",
-          "id": "R2-048-05",
-          "kind": "普通冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 0
-        },
-        {
-          "level": 48,
-          "phase": "开局",
-          "id": "R2-048-06",
+          "id": "W048-04",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -22100,17 +23930,17 @@
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-07",
-          "kind": "普通盒",
+          "id": "W048-05",
+          "kind": "单颗暂存盒",
           "count": 1,
-          "capacity": 4,
+          "capacity": 1,
           "fill": 0,
           "number": 0
         },
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-08",
+          "id": "W048-06",
           "kind": "广告锁定周转盒",
           "count": 2,
           "capacity": 4,
@@ -22120,20 +23950,227 @@
         {
           "level": 48,
           "phase": "备货",
-          "id": "R2-048-R01",
+          "id": "W048-07",
           "kind": "普通盒",
-          "count": 3,
+          "count": 1,
           "capacity": 4,
           "fill": 4,
           "number": 0
         }
       ],
+      "authored_opening": {
+        "reference": "已确认的41–50关方案；第48关：三类空间配合；固定层序与订单，非参考小游戏逐关复刻",
+        "slots": [
+          {
+            "group_id": "W048-01",
+            "layers": [
+              8,
+              12,
+              12,
+              0
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              2,
+              12,
+              3,
+              3
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              8,
+              4,
+              2,
+              2
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              2,
+              5,
+              4,
+              8
+            ]
+          },
+          {
+            "group_id": "W048-03",
+            "layers": [
+              4,
+              2,
+              12,
+              8
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              8,
+              2,
+              2,
+              0
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              12,
+              6,
+              3,
+              8
+            ]
+          },
+          {
+            "group_id": "W048-02",
+            "layers": [
+              6,
+              3
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              12,
+              6,
+              2,
+              0
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              6,
+              8,
+              8,
+              6
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              4,
+              8,
+              6,
+              0
+            ]
+          },
+          {
+            "group_id": "W048-02",
+            "layers": [
+              0,
+              2
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              0,
+              3,
+              2,
+              8
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              0,
+              5,
+              8,
+              5
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              12,
+              4,
+              6,
+              2
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              4,
+              4,
+              8,
+              12
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              3,
+              8,
+              8,
+              0
+            ]
+          },
+          {
+            "group_id": "W048-01",
+            "layers": [
+              3,
+              6,
+              2,
+              3
+            ]
+          },
+          {
+            "group_id": "W048-04",
+            "layers": [],
+            "fixed_flavor": 5
+          },
+          {
+            "group_id": "W048-05",
+            "layers": []
+          }
+        ],
+        "stock": [
+          {
+            "group_id": "W048-07",
+            "layers": [
+              4,
+              8,
+              5,
+              8
+            ]
+          }
+        ],
+        "demand_sequences": [
+          [
+            0,
+            3,
+            2,
+            8,
+            4,
+            8,
+            8,
+            5,
+            0
+          ],
+          [
+            2,
+            8,
+            4,
+            12,
+            2,
+            12,
+            6,
+            6,
+            3
+          ]
+        ]
+      },
       "approved_adjustments": [],
       "effective_groups": [
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-01",
+          "id": "W048-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22143,7 +24180,7 @@
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-01",
+          "id": "W048-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22153,7 +24190,7 @@
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-01",
+          "id": "W048-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22163,7 +24200,7 @@
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-01",
+          "id": "W048-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22173,7 +24210,7 @@
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-01",
+          "id": "W048-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22183,37 +24220,127 @@
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-02",
+          "id": "W048-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 3,
+          "fill": 4,
           "number": 0
         },
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-02",
+          "id": "W048-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 3,
+          "fill": 4,
           "number": 0
         },
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-02",
+          "id": "W048-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 3,
+          "fill": 4,
           "number": 0
         },
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-03",
+          "id": "W048-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 48,
+          "phase": "开局",
+          "id": "W048-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 48,
+          "phase": "开局",
+          "id": "W048-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 48,
+          "phase": "开局",
+          "id": "W048-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 48,
+          "phase": "开局",
+          "id": "W048-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 48,
+          "phase": "开局",
+          "id": "W048-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 48,
+          "phase": "开局",
+          "id": "W048-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 48,
+          "phase": "开局",
+          "id": "W048-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 2,
+          "number": 0
+        },
+        {
+          "level": 48,
+          "phase": "开局",
+          "id": "W048-02",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 2,
+          "number": 0
+        },
+        {
+          "level": 48,
+          "phase": "开局",
+          "id": "W048-03",
           "kind": "数字盖盒",
           "count": 1,
           "capacity": 4,
@@ -22223,27 +24350,7 @@
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-04",
-          "kind": "普通冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 3,
-          "number": 0
-        },
-        {
-          "level": 48,
-          "phase": "开局",
-          "id": "R2-048-05",
-          "kind": "普通冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 0
-        },
-        {
-          "level": 48,
-          "phase": "开局",
-          "id": "R2-048-06",
+          "id": "W048-04",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -22253,17 +24360,17 @@
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-07",
-          "kind": "普通盒",
+          "id": "W048-05",
+          "kind": "单颗暂存盒",
           "count": 1,
-          "capacity": 4,
+          "capacity": 1,
           "fill": 0,
           "number": 0
         },
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-08",
+          "id": "W048-06",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -22273,7 +24380,7 @@
         {
           "level": 48,
           "phase": "开局",
-          "id": "R2-048-08",
+          "id": "W048-06",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -22283,27 +24390,7 @@
         {
           "level": 48,
           "phase": "备货",
-          "id": "R2-048-R01",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 0
-        },
-        {
-          "level": 48,
-          "phase": "备货",
-          "id": "R2-048-R01",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 0
-        },
-        {
-          "level": 48,
-          "phase": "备货",
-          "id": "R2-048-R01",
+          "id": "W048-07",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22314,55 +24401,55 @@
     },
     {
       "id": 49,
-      "role": "特别难高点",
+      "role": "指定口味综合高点",
       "difficulty": 5,
-      "layout": "整齐",
-      "flavors": 7,
-      "filled": 11,
+      "layout": "错落",
+      "flavors": 8,
+      "filled": 19,
       "stock": 0,
-      "orders": 10,
-      "empty": 2,
+      "orders": 17,
+      "empty": 1,
       "single": 0,
-      "slots": 15,
-      "general_space": 4,
-      "interleave": 5,
-      "hidden_ratio": 0.18,
-      "aabb_max": 0.1,
-      "demand_pressure": 4,
+      "slots": 22,
+      "general_space": 0,
+      "interleave": 4,
+      "hidden_ratio": 0.08823529411764706,
+      "aabb_max": 0.12,
+      "demand_pressure": 3,
       "stock_pressure": 0,
-      "main": "数字盖盒",
-      "secondary": "数字冰冻盒＋固定颜色盒",
-      "parameters": "数字盖盒×2；数字冰冻盒×1；固定颜色盒×1",
-      "donuts": 40,
-      "baseline_rate_target": 0.35,
-      "duration_target_minutes": 7.4,
-      "composition": "行列矩阵",
+      "main": "固定颜色盒",
+      "secondary": "数字冰冻盒、普通冰冻盒",
+      "parameters": "数字冰冻盒 2×1；普通冰冻盒 0×1；固定颜色盒×1",
+      "donuts": 68,
+      "baseline_rate_target": null,
+      "duration_target_minutes": 8,
+      "composition": "按实际盒数连续居中分排，上下可见留白对称",
       "assist": 2,
-      "assist_rate_target": 0.95,
-      "opening_donuts": 40,
-      "normal_fill_ratio": 0.90625,
-      "matching_space": 3,
+      "assist_rate_target": null,
+      "opening_donuts": 68,
+      "normal_fill_ratio": 0.8823529411764706,
+      "matching_space": 8,
       "restricted_space": 4,
-      "locked_space": 1,
-      "adjacent_max": 0.2,
-      "first_group_min": 6,
+      "locked_space": 0,
+      "adjacent_max": 0.18,
+      "first_group_min": 5,
       "one_step_max": 0,
-      "special_count": 4,
+      "special_count": 3,
       "special_types": 3,
-      "prerequisite_boxes": 3,
-      "numeric_decrements": 6,
-      "mechanism_target": "盖盒保留后续口味材料，先由可操作盒归纳解盖；归纳推进数字，回收需求与解冻目标分开安排；指定口味接收空间，不能当成任意口味空盒",
-      "midgame_space_min": 3,
-      "tuning_notes": "多个已学机制分别作用于不同盒，避免仅靠隐藏层。无备货。",
+      "prerequisite_boxes": 2,
+      "numeric_decrements": 2,
+      "mechanism_target": "指定口味综合高点",
+      "midgame_space_min": 4,
+      "tuning_notes": "已确认41–50关方案；目标难度5.0，待真人试玩校准；普通盒装量4/3/2/1/0：12/2/3/0/0",
       "bomb_multiplier": null,
       "source_row": 54,
       "groups": [
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-01",
+          "id": "W049-01",
           "kind": "普通盒",
-          "count": 5,
+          "count": 12,
           "capacity": 4,
           "fill": 4,
           "number": 0
@@ -22370,37 +24457,27 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-02",
+          "id": "W049-02",
+          "kind": "普通盒",
+          "count": 2,
+          "capacity": 4,
+          "fill": 3,
+          "number": 0
+        },
+        {
+          "level": 49,
+          "phase": "开局",
+          "id": "W049-03",
           "kind": "普通盒",
           "count": 3,
           "capacity": 4,
-          "fill": 3,
+          "fill": 2,
           "number": 0
         },
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-03",
-          "kind": "数字盖盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 3,
-          "number": 2
-        },
-        {
-          "level": 49,
-          "phase": "开局",
-          "id": "R2-049-04",
-          "kind": "数字盖盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 2
-        },
-        {
-          "level": 49,
-          "phase": "开局",
-          "id": "R2-049-05",
+          "id": "W049-04",
           "kind": "数字冰冻盒",
           "count": 1,
           "capacity": 4,
@@ -22410,7 +24487,17 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-06",
+          "id": "W049-05",
+          "kind": "普通冰冻盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 49,
+          "phase": "开局",
+          "id": "W049-06",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -22420,17 +24507,7 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-07",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 49,
-          "phase": "开局",
-          "id": "R2-049-08",
+          "id": "W049-07",
           "kind": "广告锁定周转盒",
           "count": 2,
           "capacity": 4,
@@ -22438,12 +24515,219 @@
           "number": 0
         }
       ],
+      "authored_opening": {
+        "reference": "已确认的41–50关方案；第49关：指定口味综合高点；固定层序与订单，非参考小游戏逐关复刻",
+        "slots": [
+          {
+            "group_id": "W049-01",
+            "layers": [
+              3,
+              4,
+              2,
+              3
+            ]
+          },
+          {
+            "group_id": "W049-01",
+            "layers": [
+              6,
+              0,
+              4,
+              3
+            ]
+          },
+          {
+            "group_id": "W049-05",
+            "layers": [
+              12,
+              0,
+              2,
+              5
+            ]
+          },
+          {
+            "group_id": "W049-01",
+            "layers": [
+              4,
+              12,
+              5,
+              3
+            ]
+          },
+          {
+            "group_id": "W049-01",
+            "layers": [
+              0,
+              2,
+              5,
+              8
+            ]
+          },
+          {
+            "group_id": "W049-01",
+            "layers": [
+              0,
+              2,
+              12,
+              2
+            ]
+          },
+          {
+            "group_id": "W049-04",
+            "layers": [
+              12,
+              12,
+              6,
+              12
+            ]
+          },
+          {
+            "group_id": "W049-01",
+            "layers": [
+              12,
+              0,
+              3,
+              2
+            ]
+          },
+          {
+            "group_id": "W049-03",
+            "layers": [
+              2,
+              6
+            ]
+          },
+          {
+            "group_id": "W049-03",
+            "layers": [
+              6,
+              4
+            ]
+          },
+          {
+            "group_id": "W049-02",
+            "layers": [
+              4,
+              12,
+              2
+            ]
+          },
+          {
+            "group_id": "W049-01",
+            "layers": [
+              5,
+              2,
+              12,
+              2
+            ]
+          },
+          {
+            "group_id": "W049-01",
+            "layers": [
+              2,
+              0,
+              8,
+              0
+            ],
+            "hidden": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "group_id": "W049-01",
+            "layers": [
+              0,
+              4,
+              0,
+              3
+            ]
+          },
+          {
+            "group_id": "W049-01",
+            "layers": [
+              12,
+              12,
+              3,
+              5
+            ]
+          },
+          {
+            "group_id": "W049-03",
+            "layers": [
+              8,
+              8
+            ]
+          },
+          {
+            "group_id": "W049-01",
+            "layers": [
+              0,
+              3,
+              0,
+              4
+            ]
+          },
+          {
+            "group_id": "W049-02",
+            "layers": [
+              5,
+              12,
+              0
+            ]
+          },
+          {
+            "group_id": "W049-01",
+            "layers": [
+              2,
+              5,
+              5,
+              4
+            ],
+            "hidden": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "group_id": "W049-06",
+            "layers": [],
+            "fixed_flavor": 2
+          }
+        ],
+        "stock": [],
+        "demand_sequences": [
+          [
+            3,
+            0,
+            4,
+            12,
+            2,
+            12,
+            6,
+            0,
+            3
+          ],
+          [
+            4,
+            5,
+            2,
+            8,
+            0,
+            5,
+            2,
+            12
+          ]
+        ]
+      },
       "approved_adjustments": [],
       "effective_groups": [
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-01",
+          "id": "W049-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22453,7 +24737,7 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-01",
+          "id": "W049-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22463,7 +24747,7 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-01",
+          "id": "W049-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22473,7 +24757,7 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-01",
+          "id": "W049-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22483,7 +24767,7 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-01",
+          "id": "W049-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22493,7 +24777,77 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-02",
+          "id": "W049-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 49,
+          "phase": "开局",
+          "id": "W049-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 49,
+          "phase": "开局",
+          "id": "W049-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 49,
+          "phase": "开局",
+          "id": "W049-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 49,
+          "phase": "开局",
+          "id": "W049-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 49,
+          "phase": "开局",
+          "id": "W049-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 49,
+          "phase": "开局",
+          "id": "W049-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 49,
+          "phase": "开局",
+          "id": "W049-02",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22503,7 +24857,7 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-02",
+          "id": "W049-02",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22513,37 +24867,37 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-02",
+          "id": "W049-03",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 3,
+          "fill": 2,
           "number": 0
         },
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-03",
-          "kind": "数字盖盒",
+          "id": "W049-03",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 3,
-          "number": 2
+          "fill": 2,
+          "number": 0
         },
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-04",
-          "kind": "数字盖盒",
+          "id": "W049-03",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 4,
-          "number": 2
+          "fill": 2,
+          "number": 0
         },
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-05",
+          "id": "W049-04",
           "kind": "数字冰冻盒",
           "count": 1,
           "capacity": 4,
@@ -22553,7 +24907,17 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-06",
+          "id": "W049-05",
+          "kind": "普通冰冻盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 49,
+          "phase": "开局",
+          "id": "W049-06",
           "kind": "固定颜色盒",
           "count": 1,
           "capacity": 4,
@@ -22563,17 +24927,7 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-07",
-          "kind": "普通盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 0,
-          "number": 0
-        },
-        {
-          "level": 49,
-          "phase": "开局",
-          "id": "R2-049-08",
+          "id": "W049-07",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -22583,7 +24937,7 @@
         {
           "level": 49,
           "phase": "开局",
-          "id": "R2-049-08",
+          "id": "W049-07",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -22594,55 +24948,55 @@
     },
     {
       "id": 50,
-      "role": "综合回落",
-      "difficulty": 3,
-      "layout": "错落",
-      "flavors": 7,
-      "filled": 7,
+      "role": "明牌整理收束",
+      "difficulty": 4.8,
+      "layout": "整齐",
+      "flavors": 8,
+      "filled": 17,
       "stock": 0,
-      "orders": 7,
-      "empty": 1,
-      "single": 1,
-      "slots": 11,
+      "orders": 16,
+      "empty": 2,
+      "single": 0,
+      "slots": 21,
       "general_space": 4,
       "interleave": 4,
-      "hidden_ratio": 0.08,
-      "aabb_max": 0.15,
-      "demand_pressure": 3,
+      "hidden_ratio": 0,
+      "aabb_max": 0.12,
+      "demand_pressure": 2,
       "stock_pressure": 0,
-      "main": "普通冰冻盒",
-      "secondary": "单颗暂存盒",
-      "parameters": "普通冰冻盒×2；单颗暂存盒×1",
-      "donuts": 28,
-      "baseline_rate_target": 0.72,
-      "duration_target_minutes": 4.7,
-      "composition": "中轴错落",
+      "main": "固定颜色盒",
+      "secondary": "普通冰冻盒",
+      "parameters": "普通冰冻盒 0×1；固定颜色盒×1",
+      "donuts": 64,
+      "baseline_rate_target": null,
+      "duration_target_minutes": 6,
+      "composition": "按实际盒数连续居中分排，上下可见留白对称",
       "assist": 1,
-      "assist_rate_target": 0.9,
-      "opening_donuts": 28,
-      "normal_fill_ratio": 0.95,
-      "matching_space": 1,
-      "restricted_space": 0,
+      "assist_rate_target": null,
+      "opening_donuts": 64,
+      "normal_fill_ratio": 0.9375,
+      "matching_space": 4,
+      "restricted_space": 4,
       "locked_space": 0,
-      "adjacent_max": 0.25,
-      "first_group_min": 3,
+      "adjacent_max": 0.18,
+      "first_group_min": 4,
       "one_step_max": 0,
-      "special_count": 3,
+      "special_count": 2,
       "special_types": 2,
-      "prerequisite_boxes": 2,
+      "prerequisite_boxes": 1,
       "numeric_decrements": 0,
-      "mechanism_target": "开放需求须先支持一次回收，再取冻结材料；单格只解决一颗腾挪，后续仍要安排移出",
-      "midgame_space_min": 1,
-      "tuning_notes": "保留旧机制复用，降低层序与顺序压力。无备货。",
+      "mechanism_target": "明牌整理收束",
+      "midgame_space_min": 2,
+      "tuning_notes": "已确认41–50关方案；目标难度4.8，待真人试玩校准；普通盒装量4/3/2/1/0：13/2/1/0/1",
       "bomb_multiplier": null,
       "source_row": 55,
       "groups": [
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-01",
+          "id": "W050-01",
           "kind": "普通盒",
-          "count": 4,
+          "count": 13,
           "capacity": 4,
           "fill": 4,
           "number": 0
@@ -22650,9 +25004,9 @@
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-02",
+          "id": "W050-02",
           "kind": "普通盒",
-          "count": 1,
+          "count": 2,
           "capacity": 4,
           "fill": 3,
           "number": 0
@@ -22660,37 +25014,17 @@
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-03",
-          "kind": "普通冰冻盒",
+          "id": "W050-03",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 4,
+          "fill": 2,
           "number": 0
         },
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-04",
-          "kind": "普通冰冻盒",
-          "count": 1,
-          "capacity": 4,
-          "fill": 4,
-          "number": 0
-        },
-        {
-          "level": 50,
-          "phase": "开局",
-          "id": "R2-050-05",
-          "kind": "单颗暂存盒",
-          "count": 1,
-          "capacity": 1,
-          "fill": 1,
-          "number": 0
-        },
-        {
-          "level": 50,
-          "phase": "开局",
-          "id": "R2-050-06",
+          "id": "W050-04",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22700,7 +25034,27 @@
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-07",
+          "id": "W050-05",
+          "kind": "普通冰冻盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-06",
+          "kind": "固定颜色盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 0,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-07",
           "kind": "广告锁定周转盒",
           "count": 2,
           "capacity": 4,
@@ -22708,12 +25062,198 @@
           "number": 0
         }
       ],
+      "authored_opening": {
+        "reference": "已确认的41–50关方案；第50关：明牌整理收束；固定层序与订单，非参考小游戏逐关复刻",
+        "slots": [
+          {
+            "group_id": "W050-01",
+            "layers": [
+              5,
+              3,
+              4,
+              8
+            ]
+          },
+          {
+            "group_id": "W050-01",
+            "layers": [
+              5,
+              4,
+              5,
+              2
+            ]
+          },
+          {
+            "group_id": "W050-01",
+            "layers": [
+              3,
+              5,
+              5,
+              3
+            ]
+          },
+          {
+            "group_id": "W050-01",
+            "layers": [
+              0,
+              8,
+              8,
+              0
+            ]
+          },
+          {
+            "group_id": "W050-03",
+            "layers": [
+              8,
+              6
+            ]
+          },
+          {
+            "group_id": "W050-02",
+            "layers": [
+              8,
+              12,
+              6
+            ]
+          },
+          {
+            "group_id": "W050-01",
+            "layers": [
+              0,
+              2,
+              2,
+              0
+            ]
+          },
+          {
+            "group_id": "W050-01",
+            "layers": [
+              2,
+              0,
+              12,
+              5
+            ]
+          },
+          {
+            "group_id": "W050-01",
+            "layers": [
+              5,
+              8,
+              0,
+              4
+            ]
+          },
+          {
+            "group_id": "W050-05",
+            "layers": [
+              6,
+              8,
+              6,
+              8
+            ]
+          },
+          {
+            "group_id": "W050-01",
+            "layers": [
+              5,
+              2,
+              6,
+              5
+            ]
+          },
+          {
+            "group_id": "W050-01",
+            "layers": [
+              8,
+              0,
+              12,
+              3
+            ]
+          },
+          {
+            "group_id": "W050-02",
+            "layers": [
+              5,
+              2,
+              3
+            ]
+          },
+          {
+            "group_id": "W050-01",
+            "layers": [
+              8,
+              6,
+              3,
+              12
+            ]
+          },
+          {
+            "group_id": "W050-01",
+            "layers": [
+              8,
+              3,
+              5,
+              0
+            ]
+          },
+          {
+            "group_id": "W050-01",
+            "layers": [
+              5,
+              3,
+              4,
+              6
+            ]
+          },
+          {
+            "group_id": "W050-01",
+            "layers": [
+              2,
+              2,
+              8,
+              6
+            ]
+          },
+          {
+            "group_id": "W050-04",
+            "layers": []
+          },
+          {
+            "group_id": "W050-06",
+            "layers": [],
+            "fixed_flavor": 3
+          }
+        ],
+        "stock": [],
+        "demand_sequences": [
+          [
+            5,
+            6,
+            12,
+            8,
+            5,
+            3,
+            2,
+            8
+          ],
+          [
+            3,
+            0,
+            8,
+            0,
+            6,
+            2,
+            4,
+            5
+          ]
+        ]
+      },
       "approved_adjustments": [],
       "effective_groups": [
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-01",
+          "id": "W050-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22723,7 +25263,7 @@
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-01",
+          "id": "W050-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22733,7 +25273,7 @@
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-01",
+          "id": "W050-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22743,7 +25283,7 @@
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-01",
+          "id": "W050-01",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22753,7 +25293,97 @@
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-02",
+          "id": "W050-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-01",
+          "kind": "普通盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-02",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22763,37 +25393,27 @@
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-03",
-          "kind": "普通冰冻盒",
+          "id": "W050-02",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 4,
+          "fill": 3,
           "number": 0
         },
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-04",
-          "kind": "普通冰冻盒",
+          "id": "W050-03",
+          "kind": "普通盒",
           "count": 1,
           "capacity": 4,
-          "fill": 4,
+          "fill": 2,
           "number": 0
         },
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-05",
-          "kind": "单颗暂存盒",
-          "count": 1,
-          "capacity": 1,
-          "fill": 1,
-          "number": 0
-        },
-        {
-          "level": 50,
-          "phase": "开局",
-          "id": "R2-050-06",
+          "id": "W050-04",
           "kind": "普通盒",
           "count": 1,
           "capacity": 4,
@@ -22803,7 +25423,27 @@
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-07",
+          "id": "W050-05",
+          "kind": "普通冰冻盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 4,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-06",
+          "kind": "固定颜色盒",
+          "count": 1,
+          "capacity": 4,
+          "fill": 0,
+          "number": 0
+        },
+        {
+          "level": 50,
+          "phase": "开局",
+          "id": "W050-07",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,
@@ -22813,7 +25453,7 @@
         {
           "level": 50,
           "phase": "开局",
-          "id": "R2-050-07",
+          "id": "W050-07",
           "kind": "广告锁定周转盒",
           "count": 1,
           "capacity": 4,

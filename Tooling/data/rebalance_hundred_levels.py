@@ -82,15 +82,22 @@ def authored_candidate(plan):
     groups = {g['id']:g for g in plan['groups']}
     def box_for(source, phase):
         group = groups[source['group_id']]
-        assert group['phase']==phase and group['kind'] in ('普通盒','数字冰冻盒','数字盖盒','普通冰冻盒','单颗暂存盒'), group
+        assert group['phase']==phase and group['kind'] in ('普通盒','数字冰冻盒','数字盖盒','普通冰冻盒','单颗暂存盒','固定颜色盒'), group
         assert group['capacity']==(1 if group['kind']=='单颗暂存盒' else 4), group
         assert phase=='开局' or group['kind']=='普通盒', group
         assert len(source['layers'])==group['fill'] and remaining[group['id']]>0, source
         remaining[group['id']] -= 1
         hidden = source.get('hidden', [])
         assert len(hidden)==len(set(hidden)) and all(0<i<len(source['layers']) for i in hidden), source
-        return {'kind':KINDS[group['kind']], 'lid':group['number'],
-                'items':[dict(flavor=f, **({'hidden':True} if i in hidden else {})) for i,f in enumerate(source['layers'])]}
+        box = {'kind':KINDS[group['kind']], 'lid':group['number'],
+               'items':[dict(flavor=f, **({'hidden':True} if i in hidden else {})) for i,f in enumerate(source['layers'])]}
+        if group['kind']=='固定颜色盒':
+            fixed_flavor = source.get('fixed_flavor')
+            assert type(fixed_flavor) is int and 0<=fixed_flavor<15 and not source['layers'], source
+            box['fixed_flavor'] = fixed_flavor
+        else:
+            assert 'fixed_flavor' not in source, source
+        return box
     slots = []
     for index, source in enumerate(spec['slots']):
         slots.append({'kind':'single' if groups[source['group_id']]['capacity']==1 else 'regular','unlock_after':0,'id':f'slot_{index:02}',
@@ -99,6 +106,7 @@ def authored_candidate(plan):
     assert not any(remaining.values()) and len(stock)==plan['stock'], plan['id']
     items = [item for box in [s['box'] for s in slots]+stock for item in box['items']]
     supply = Counter(item['flavor'] for item in items)
+    assert all(s['box']['fixed_flavor'] in supply for s in slots if s['box']['kind']=='fixed'), plan['id']
     hidden_count = sum(bool(item.get('hidden',False)) for item in items)
     assert hidden_count==round(plan['hidden_ratio']*plan['donuts']), plan['id']
     sequences = spec['demand_sequences']

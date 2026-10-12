@@ -6,7 +6,7 @@ import hashlib, json, sys
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'Tooling/data'))
 from build_hundred_levels import read, Rules, make_box
-from rebalance_hundred_levels import KINDS, first_group_gate
+from rebalance_hundred_levels import KINDS, first_group_gate, authored_candidate
 from build_r2_levels import midgame_metrics
 
 
@@ -16,6 +16,10 @@ def verify(content, fixtures):
     for plan in plans:
         name=f'level_{plan["id"]:02}'
         d=read(content/'levels'/f'{name}.json')
+        if 'authored_opening' in plan:
+            rebuilt=authored_candidate(plan)
+            for key in ('slots','stock','demands'):
+                assert rebuilt[key]==d[key], (name,'authored source mismatch',key)
         f=read(fixtures/f'{name}_solution.json')
         digest=hashlib.sha256(json.dumps(d,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
         assert f['definition_sha256']==digest, name
