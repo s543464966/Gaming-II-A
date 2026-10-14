@@ -241,14 +241,18 @@ def assign_bomb_timing(definition, fixture, min_seconds=0):
     worst=max(disarm_steps.values())
     multiplier = definition['design'].get('bomb_multiplier')
     seconds=max(min_seconds, math.ceil((worst*3+8)*multiplier/5)*5) if multiplier else max(min_seconds,BOMB_TARGET_SECONDS.get(definition['id'], 90),math.ceil((worst*3+8)/5)*5)
+    # 固定层序的时限由唯一工作簿维护，重算路线只更新诊断，不覆盖已策划的秒数。
+    authored = definition['design'].get('authored_opening', False)
+    if authored:
+        seconds=max(slot['box']['bomb_seconds'] for slot in definition['slots'] if slot['box'] and slot['box']['kind']=='bomb')
     fixture.pop('bomb_dispatch_moves',None)
     fixture['bomb_disarm_moves']=disarm_steps
     definition['design']['bomb_timing']={'status':'provisional_playtest_required',
         'profile':'short' if seconds<100 else 'long', 'estimated_seconds_per_move':3,
         'max_disarm_moves':worst,'seconds':seconds,'multiplier':multiplier,
-        'basis':'estimated_disarm_operation_budget_not_measured_player_time'}
+        'basis':'authored_operation_budget_not_measured_player_time' if authored else 'estimated_disarm_operation_budget_not_measured_player_time'}
     for slot in definition['slots']:
-        if slot['box'] and slot['box']['kind']=='bomb':slot['box']['bomb_seconds']=seconds
+        if not authored and slot['box'] and slot['box']['kind']=='bomb':slot['box']['bomb_seconds']=seconds
 
 def layouts(plans):
     path=CONTENT/'layouts/board_layouts.json'; data=read(path)

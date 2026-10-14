@@ -82,15 +82,25 @@ def authored_candidate(plan):
     groups = {g['id']:g for g in plan['groups']}
     def box_for(source, phase):
         group = groups[source['group_id']]
-        assert group['phase']==phase and group['kind'] in ('普通盒','数字冰冻盒','数字盖盒','普通冰冻盒','单颗暂存盒','固定颜色盒'), group
+        assert group['phase']==phase and group['kind'] in ('普通盒','数字冰冻盒','数字盖盒','普通冰冻盒','单颗暂存盒','固定颜色盒','单向收纳盒','底部置顶盒','炸弹盒'), group
         assert group['capacity']==(1 if group['kind']=='单颗暂存盒' else 4), group
         assert phase=='开局' or group['kind']=='普通盒', group
         assert len(source['layers'])==group['fill'] and remaining[group['id']]>0, source
         remaining[group['id']] -= 1
         hidden = source.get('hidden', [])
         assert len(hidden)==len(set(hidden)) and all(0<i<len(source['layers']) for i in hidden), source
+        if group['kind']=='单向收纳盒':
+            assert group['fill'] in (0,1) and not hidden, source
+        if group['kind']=='底部置顶盒':
+            assert group['fill'] in (3,4), source
         box = {'kind':KINDS[group['kind']], 'lid':group['number'],
                'items':[dict(flavor=f, **({'hidden':True} if i in hidden else {})) for i,f in enumerate(source['layers'])]}
+        if group['kind']=='炸弹盒':
+            seconds = source.get('bomb_seconds')
+            assert group['fill'] in (3,4) and type(seconds) in (int,float) and math.isfinite(seconds) and seconds>0, source
+            box['bomb_seconds'] = seconds
+        else:
+            assert 'bomb_seconds' not in source, source
         if group['kind']=='固定颜色盒':
             fixed_flavor = source.get('fixed_flavor')
             assert type(fixed_flavor) is int and 0<=fixed_flavor<15 and not source['layers'], source
@@ -123,7 +133,7 @@ def authored_candidate(plan):
             'tools':{'undo':0,'add_box':0,'top':0},'combo_rewards':[],
             'design':{'version':'R2','source_row':plan['source_row'],'assist_boxes':plan['assist'],
                       'hidden_donuts':hidden_count,'layer_order':'top_to_bottom','playtest_status':'pending',
-                      'approved_adjustments':[],'bomb_multiplier':None,'authored_opening':True,
+                      'approved_adjustments':[],'bomb_multiplier':plan.get('bomb_multiplier'),'authored_opening':True,
                       'reference':spec['reference']}}
 
 

@@ -21,8 +21,7 @@ func _run() -> void:
 	var levels: Array = DonutLevel.catalog()
 	check(levels.size() == 100, "Catalog must contain 100 levels")
 	var stock_levels: int = 0
-	var short_bomb_levels: int = 0
-	var long_bomb_levels: int = 0
+	var bomb_levels: int = 0
 	var mechanism_firsts: Dictionary = {}
 	for index: int in levels.size():
 		var definition: Dictionary = DonutLevel.load_definition(levels[index].path)
@@ -34,13 +33,31 @@ func _run() -> void:
 			_check_wave_thirty_one(definition, index - 30)
 		if index >= 40 and index <= 49:
 			_check_wave_forty_one(definition, index + 1)
+		if index >= 60 and index <= 69:
+			_check_wave_sixty_one(definition, index + 1)
+		if index >= 70 and index <= 79:
+			_check_wave_seventy_one(definition, index + 1)
+		if index >= 80 and index <= 89:
+			_check_wave_eighty_one(definition, index + 1)
+		if index >= 90:
+			_check_wave_ninety_one(definition, index + 1)
+		if index >= 50 and index <= 59:
+			# 不恢复单向图标，以固定位置降低跨关辨认负担。
+			for box_index: int in definition.slots.size():
+				var box: Variant = definition.slots[box_index].box
+				if box != null and box.kind == "in_only":
+					check(box_index == definition.slots.size() - 3, "Single-direction holder must precede the two ad slots")
 		for key: String in ["undo", "add_box", "top"]:
 			check(int(definition.tools.get(key, -1)) == 0, "Every level must start with zero tool charges")
 		var has_bomb: bool = definition.slots.any(func(slot: Dictionary) -> bool: return slot.box != null and slot.box.kind == "bomb")
 		if has_bomb:
 			var timer: float = float(definition.design.bomb_timing.seconds)
-			short_bomb_levels += 1 if timer < 100 else 0
-			long_bomb_levels += 1 if timer >= 100 else 0
+			bomb_levels += 1
+			check(is_finite(timer) and timer >= 100.0, "Authored bomb time must be finite and leave observation time")
+			check(is_equal_approx(float(definition.design.bomb_timing.estimated_seconds_per_move), 3.0), "Bomb replay budget must remain three seconds per move")
+			for slot: Dictionary in definition.slots:
+				if slot.box != null and slot.box.kind == "bomb":
+					check(is_finite(float(slot.box.bomb_seconds)) and is_equal_approx(float(slot.box.bomb_seconds), timer), "Bomb timer differs from its authored budget")
 		var filled: int = 0
 		var empty: int = 0
 		var single: int = 0
@@ -67,6 +84,7 @@ func _run() -> void:
 		stock_levels += 1 if not definition.stock.is_empty() else 0
 		var path: String = get_script().resource_path.get_base_dir().path_join("../../fixtures/donut_sort/level_%02d_solution.json" % (index + 1))
 		var solution: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
+		var max_bomb_disarm_step: int = 0
 		for mode: int in 4:
 			var session := DonutSession.new(definition)
 			var refills: Array = []
@@ -96,7 +114,15 @@ func _run() -> void:
 			var first_single_in: int = -1
 			var first_single_out: int = -1
 			var first_fixed_in: int = -1
+			var first_in_only_in: int = -1
 			var fixed_groups: int = 0
+			var in_only_groups: int = 0
+			var visible_cycle_steps: Array[int] = []
+			var visible_cycle_slots: Dictionary = {}
+			var last_recovery_step: int = 0
+			var bomb_disarm_step: int = -1
+			var largest_recovery_batch: int = 0
+			var last_recovery_batch: int = 0
 			for step_index: int in steps.size():
 				var step: Array = steps[step_index]
 				if mode == 0 and interval_start < 0:
@@ -107,6 +133,34 @@ func _run() -> void:
 				var source: int = int(step[0])
 				var target: int = int(step[1])
 				var grouping: bool = _is_new_group(session, source, target)
+				if grouping and session.slots[target].box.kind == "bomb":
+					if mode == 0 and index in [87, 88]:
+						var disarm_flavor: int = int(session.slots[source].box.items[0].flavor)
+						for initial_slot: Dictionary in definition.slots:
+							if initial_slot.box != null:
+								for item: Dictionary in initial_slot.box.items:
+									check(not item.get("hidden", false) or int(item.flavor) != disarm_flavor, "Bomb materials must be visible before the hidden-layer challenge")
+					if mode == 0 and index in [91, 92, 98]:
+						var disarm_flavor: int = int(session.slots[source].box.items[0].flavor)
+						for initial_slot: Dictionary in definition.slots:
+							if initial_slot.box == null:
+								continue
+							if index == 91 and initial_slot.box.kind == "fixed":
+								check(int(initial_slot.box.fixed_flavor) != disarm_flavor, "Level 92 fixed holder must not compete for bomb materials")
+							if index in [92, 98]:
+								for item: Dictionary in initial_slot.box.items:
+									if int(item.flavor) == disarm_flavor:
+										check(not item.get("hidden", false) and initial_slot.box.kind not in ["lid", "number_frozen", "in_only"], "Final-wave bomb materials must remain visible and outside locked or one-way holders")
+				if session.slots[source].box.kind == "cycle":
+					var remainder: Array = session.slots[source].box.items.slice(session.move_count(source, target))
+					if remainder.size() > 1 and remainder[0].flavor != remainder[-1].flavor:
+						visible_cycle_steps.append(step_index + 1)
+						visible_cycle_slots[source] = true
+				if session.slots[target].box.kind == "in_only":
+					if first_in_only_in < 0:
+						first_in_only_in = step_index + 1
+					in_only_groups += 1 if grouping else 0
+				var completed_before: int = session.completed
 				if session.slots[target].box.kind == "fixed":
 					if first_fixed_in < 0:
 						first_fixed_in = step_index + 1
@@ -119,6 +173,13 @@ func _run() -> void:
 				if not session.move(int(step[0]), int(step[1])):
 					check(false, "Level %d mode %d invalid move %s step %d" % [index + 1, mode, step, step_index])
 					break
+				if has_bomb and bomb_disarm_step < 0 and not session.slots.any(func(slot: Dictionary) -> bool: return slot.box != null and slot.box.kind == "bomb"):
+					bomb_disarm_step = step_index + 1
+				last_recovery_batch = session.completed - completed_before
+				largest_recovery_batch = maxi(largest_recovery_batch, last_recovery_batch)
+				if mode == 0 and index >= 50 and session.completed > completed_before:
+					check(step_index + 1 - last_recovery_step <= 12, "Wave 51-100 route waits too long for order feedback")
+					last_recovery_step = step_index + 1
 				if session.slots[target].kind == "single" and first_single_in < 0:
 					first_single_in = step_index + 1
 				if session.slots[source].kind == "single" and first_single_out < 0:
@@ -126,6 +187,10 @@ func _run() -> void:
 				if mode == 0 and grouping:
 					if first_group_step < 0:
 						first_group_step = step_index + 1
+						if index >= 50:
+							check(session.completed > 0, "Wave 51-100 first group must deliver and reward planning")
+						if index == 71:
+							check(in_only_groups == 1, "Level 72 first group must use the preloaded single-direction holder")
 						if index == 17 or index == 18 or index == 20:
 							check(session.completed > 0, "Ordinary ice practice must deliver its first group")
 					var fraction: float = float(interval_progress) / session.total_orders()
@@ -135,11 +200,11 @@ func _run() -> void:
 				if mode == 0 and refills.size() > refills_before:
 					refill_steps.append(step_index + 1)
 					# 补货教学的基线路线留有可操作余量，余量仍受顶层同味限制。
-					if index == 8 or (index >= 13 and index <= 16) or (index >= 25 and index <= 27) or index in [33, 36, 37, 43, 45, 47]:
+					if index == 8 or (index >= 13 and index <= 16) or (index >= 25 and index <= 27) or index in [33, 36, 37, 43, 45, 47, 53, 55, 58, 63, 65, 68, 73, 75, 78, 83, 85, 88, 93, 95, 98]:
 						var usable_space: int = 0
 						for slot_index: int in session.slots.size():
 							if session.can_handle(slot_index):
-								if index >= 40 and session.slots[slot_index].box.kind == "fixed":
+								if index >= 40 and session.slots[slot_index].box.kind in ["fixed", "in_only"]:
 									continue
 								usable_space += session.capacity(slot_index) - session.slots[slot_index].box.items.size()
 						check(usable_space >= 4, "Level %d refill leaves no planned working space" % (index + 1))
@@ -150,18 +215,18 @@ func _run() -> void:
 			if mode == 0:
 				check(midgame_count >= int(plan.midgame_space_min) and midgame_count == int(solution.midgame_metrics.count),
 					"R2 midgame %d actual %d target %d recorded %d" % [index + 1, midgame_count, plan.midgame_space_min, solution.midgame_metrics.count])
-				if index >= 4 and index <= 49:
+				if index >= 4:
 					check(first_group_step == int(solution.opening_metrics.first_group_moves), "Early wave opening prefix no longer reaches its target")
 				if index == 9:
 					check(refill_steps.size() == 2 and refill_steps[1] - refill_steps[0] >= 3, "Level ten stock must enter on separate operations")
-				if index == 15 or index == 16 or index == 26 or index == 36 or index == 45:
+				if index in [15, 16, 26, 36, 45, 55, 58, 65, 68, 75, 78, 85, 88, 95, 98]:
 					check(refill_steps.size() == 2 and refill_steps[1] - refill_steps[0] >= 5, "Wave stock must enter on separate operations")
 				# 暂存练习必须实际取放；预放一颗的盒子先移出才能再次接收。
-				if (index >= 23 and index <= 29) or index in [30, 33, 35, 36, 37, 38, 43, 46, 47]:
+				if (index >= 23 and index <= 29) or index in [30, 33, 35, 36, 37, 38, 43, 46, 47, 56, 57, 58]:
 					check(first_single_in > 0 and first_single_out > 0, "Single-box wave must exercise storage and removal")
 					if index == 23 or index == 24:
 						check(first_single_in <= first_group_step and first_single_out <= first_group_step + 6, "Single introduction must demonstrate an early storage cycle")
-					if index in [25, 28, 35, 38, 43]:
+					if index in [25, 28, 35, 38, 43, 58]:
 						check(first_single_out < first_single_in, "Preloaded single must empty before accepting another donut")
 					if index == 25:
 						check(not refill_steps.is_empty() and first_single_in <= refill_steps[0], "Level 26 must reuse its single before the stock arrives")
@@ -169,6 +234,81 @@ func _run() -> void:
 					check(first_fixed_in > 0 and fixed_groups > 0, "Fixed-flavor wave must use and complete its restricted box")
 					if index <= 41:
 						check(first_fixed_in <= first_group_step + 3, "Fixed-flavor introduction must participate early")
+				if index >= 50 and index <= 59:
+					check(in_only_groups == (0 if index in [53, 56] else 1), "Single-direction boxes must actually complete a group")
+					check(midgame_count <= int(plan.midgame_space_min) + 1, "Wave 51-60 exceeds its planned middle-section load")
+				if index >= 60 and index <= 69:
+					check(visible_cycle_steps.size() >= 2, "Cycle wave must visibly rotate to a different flavor at least twice")
+					check(not visible_cycle_steps.is_empty() and visible_cycle_steps[0] <= (first_group_step if index <= 61 else 12), "Cycle wave must use its mechanism early")
+					check(midgame_count <= int(plan.midgame_space_min) + (0 if index in [63, 66, 69] else 1), "Cycle wave exceeds its planned middle-section load")
+					if index in [66, 68]:
+						check(first_single_in > 0 and first_single_out > 0, "Cycle and single-holder combination must exercise both directions")
+					if index == 66:
+						check(first_single_in <= 10 and steps.size() <= 50, "Level 67 relief must use storage early and keep its route short")
+					if index == 68:
+						check(first_single_out < first_single_in, "Level 69 must first empty its preloaded single holder")
+					if index == 64:
+						check(in_only_groups == 1, "Level 65 must finish the single-direction holder")
+				if index >= 70 and index <= 79:
+					var cycle_count: int = 0
+					for slot: Dictionary in definition.slots:
+						cycle_count += 1 if slot.box != null and slot.box.kind == "cycle" else 0
+					if cycle_count > 0:
+						check(visible_cycle_slots.size() == cycle_count and visible_cycle_steps.size() >= cycle_count + 1, "Every cycle holder must visibly change its exposed flavor")
+						check(visible_cycle_steps[0] <= (first_group_step if index == 70 else 12), "Combination wave must use its cycle early")
+					check(midgame_count <= int(plan.midgame_space_min) + (0 if index in [73,76,79] else 1), "Combination wave exceeds its planned middle-section load")
+					if index in [73,76,79]:
+						check(steps.size() <= 50, "Relief levels must keep a compact baseline route")
+					if index in [72,73,77,79]:
+						check(first_fixed_in > 0 and first_fixed_in <= 12 and fixed_groups == 1, "Fixed holder must take part early and finish its group")
+					if index in [71,74]:
+						check(in_only_groups == 1, "Combination wave must finish its single-direction holder")
+					if index in [74,76,78]:
+						check(first_single_in > 0 and first_single_out > 0, "Combination wave must store and remove from its single holder")
+					if index in [74,78]:
+						check(first_single_out <= 12 and first_single_out < first_single_in, "Preloaded single must empty early before reuse")
+					if index == 76:
+						check(first_single_in <= 10, "Level 77 must offer early single-holder relief")
+				if index >= 80 and index <= 89:
+					check(midgame_count <= int(plan.midgame_space_min) + (0 if index in [83,86,89] else 1), "Bomb wave exceeds its planned middle-section load")
+					if index in [83,86,89]:
+						check(steps.size() <= 50, "Bomb wave relief must keep its baseline route compact")
+					if index in [82,85,89]:
+						check(visible_cycle_steps.size() >= 2 and visible_cycle_steps[0] <= 12, "Bomb wave must visibly use the cycle holder")
+					if index in [83,87,89]:
+						check(first_fixed_in > 0 and first_fixed_in <= 12 and fixed_groups == 1, "Bomb wave must complete its fixed holder")
+					if index == 84:
+						check(in_only_groups == 1, "Level 85 must complete its single-direction holder")
+					if index in [86,88]:
+						check(first_single_in > 0 and first_single_out > 0, "Bomb wave must use both directions of single storage")
+					if index == 86:
+						check(first_single_in <= 6, "Level 87 must offer early storage relief")
+					if has_bomb:
+						check(bomb_disarm_step == int(solution.bomb_disarm_moves["0"]), "Bomb disarm event differs from saved route")
+						check(bomb_disarm_step <= (first_group_step if index <= 81 else (20 if index == 88 else 16)), "Bomb wave leaves its timer pressure active too long")
+				if index >= 90:
+					check(first_group_step == 4, "Final wave must reward opening planning on move four")
+					check(midgame_count <= int(plan.midgame_space_min) + (0 if index in [93, 96, 99] else 1), "Final wave exceeds its planned middle-section load")
+					if index in [93, 96, 99]:
+						check(steps.size() <= (48 if index == 99 else 50), "Final-wave relief must keep its baseline route compact")
+					if index in [90, 92, 95, 97, 99]:
+						check(visible_cycle_steps.size() >= 2 and visible_cycle_steps[0] <= 12, "Final wave must visibly use its cycle holder early")
+					if index in [91, 96, 97, 99]:
+						check(first_fixed_in > 0 and first_fixed_in <= 12 and fixed_groups == 1, "Final wave must use and complete its fixed holder")
+					if index in [90, 94, 98]:
+						check(first_in_only_in > 0 and first_in_only_in <= 8 and in_only_groups == 1, "Final wave must use its one-way holder early and complete it")
+					if index in [93, 96]:
+						check(first_single_in > 0 and first_single_in <= 6 and first_single_out > first_single_in, "Final-wave relief must offer early reusable single storage")
+					if index == 95:
+						check(refill_steps.size() == 2 and refill_steps[1] > bomb_disarm_step, "Level 96 second refill must follow bomb disarming")
+					if index == 99:
+						check(last_recovery_batch >= 2 or largest_recovery_batch >= 3, "Level 100 must finish with a double delivery or include a triple delivery")
+					if has_bomb:
+						check(bomb_disarm_step <= (12 if index == 91 else (20 if index == 98 else 16)), "Final wave leaves bomb pressure active too long")
+			if has_bomb:
+				check(bomb_disarm_step > 0 and bomb_disarm_step == int(solution.bomb_disarm_moves.get(str(mode), -1)), "Level %d mode %d actual bomb disarm differs from its saved route" % [index + 1, mode])
+				check(bomb_disarm_step * 3.0 + 8.0 <= float(definition.design.bomb_timing.seconds), "Bomb operation budget leaves no observation margin")
+				max_bomb_disarm_step = maxi(max_bomb_disarm_step, bomb_disarm_step)
 			check(not session.slots.any(func(slot: Dictionary) -> bool: return slot.box != null and slot.box.kind == "bomb"), "Win leaves bomb %d/%d" % [index + 1, mode])
 			check(session.total_orders() == int(plan.orders), "Plan orders")
 			check(refills.size() == definition.stock.size(), "Level %d mode %d refill count differs from real stock" % [index + 1, mode])
@@ -178,9 +318,11 @@ func _run() -> void:
 					"Refill skipped queue order or failed to enter a collected position")
 			for key: String in session.tools:
 				check(int(session.tools[key]) == int(definition.tools[key]), "Solution used tools")
+		if has_bomb:
+			check(max_bomb_disarm_step == int(definition.design.bomb_timing.max_disarm_moves), "Bomb timing record must match the worst of all four actual routes")
 		print("PASS: level %d; four turnover conditions; %d baseline moves" % [index + 1, solution.moves])
 	check(stock_levels == 30, "Expected 30 stock levels")
-	check(short_bomb_levels > 0 and long_bomb_levels > 0 and short_bomb_levels + long_bomb_levels == 10, "R2 requires ten bomb levels with operation-time budgets")
+	check(bomb_levels == 10, "Expected ten bomb levels with authored operation-time budgets")
 	# 用户参考关提前引入数字冰冻，其余机关仍沿用 R2。
 	check(mechanism_firsts == {"hidden": 6, "lid": 12, "frozen": 18, "single": 24, "number_frozen": 2,
 		"fixed": 41, "in_only": 51, "cycle": 61, "bomb": 81}, "R2 and confirmed reference-level introductions differ")
@@ -191,6 +333,8 @@ func _run() -> void:
 	await _check_tool_reward_lifecycle()
 	await _check_new_ui()
 	await _check_v13_presentation()
+	# 页面已释放，留出停止淡出与音频线程回收的时间，再退出隔离测试。
+	await create_timer(0.5).timeout
 	if not failures.is_empty():
 		for message: String in failures:
 			push_error(message)
@@ -263,6 +407,188 @@ func _check_wave_forty_one(definition: Dictionary, level: int) -> void:
 	check(hidden == (3 if level == 45 else (6 if level == 49 else 0)), "Fixed wave hidden count")
 	if level <= 42:
 		check(kinds.size() == 2 and kinds.has("normal") and kinds.has("fixed") and definition.stock.is_empty(), "First fixed-flavor levels must practice only this mechanism")
+
+
+## 检查循环教学的信息边界、缓和关空盒及单向盒位置，避免引入无提示的复合限制。
+func _check_wave_sixty_one(definition: Dictionary, level: int) -> void:
+	var kinds: Dictionary = {}
+	var cycles: int = 0
+	var ordinary_empty: int = 0
+	var hidden: int = 0
+	for index: int in definition.slots.size():
+		var slot: Dictionary = definition.slots[index]
+		if slot.box == null:
+			continue
+		var kind: String = str(slot.box.kind)
+		kinds["single" if slot.kind == "single" else kind] = true
+		cycles += 1 if kind == "cycle" else 0
+		ordinary_empty += 1 if kind == "normal" and slot.kind == "regular" and slot.box.items.is_empty() else 0
+		if kind == "cycle":
+			check(slot.box.items.size() == 4, "Cycle wave starts with a full cycle holder")
+		if kind == "in_only":
+			check(index == definition.slots.size() - 3, "Cycle wave preserves single-direction placement before ad slots")
+		var hidden_indices: Array[int] = []
+		for item_index: int in slot.box.items.size():
+			if slot.box.items[item_index].get("hidden", false):
+				hidden_indices.append(item_index)
+		if not hidden_indices.is_empty():
+			check(kind == "normal" and slot.kind == "regular" and hidden_indices == [1,2,3], "Cycle wave hides only the bottom three layers of an ordinary holder")
+			hidden += hidden_indices.size()
+	check(cycles == 1 and not kinds.has("bomb"), "Cycle wave requires one cycle and no bomb")
+	check(hidden == (3 if level in [68,69] else 0), "Cycle wave hidden count")
+	check(ordinary_empty == (2 if level == 64 else (0 if level in [62,65,69] else 1)), "Cycle wave ordinary empty-holder budget")
+	if level <= 62:
+		check(kinds.size() == 2 and kinds.has("cycle") and kinds.has("normal") and definition.stock.is_empty(), "First two cycle levels must practice only the visible cycle mechanism")
+
+
+## 检查综合关的可读空间、隐藏归属和特殊盒装量，保留缓和与挑战的配置差异。
+func _check_wave_seventy_one(definition: Dictionary, level: int) -> void:
+	var normal_empty: int = 0
+	var cycles: int = 0
+	var hidden: int = 0
+	var singles: Array[int] = []
+	check(definition.slots.size() <= 20, "Combination wave must fit in four compact rows")
+	for index: int in definition.slots.size():
+		var slot: Dictionary = definition.slots[index]
+		if slot.box == null:
+			continue
+		var kind: String = str(slot.box.kind)
+		var count: int = slot.box.items.size()
+		check(kind != "bomb", "Bombs remain outside the 71-80 combination wave")
+		cycles += 1 if kind == "cycle" else 0
+		normal_empty += 1 if kind == "normal" and slot.kind == "regular" and count == 0 else 0
+		if slot.kind == "single":
+			singles.append(count)
+		if kind == "fixed":
+			check(count == 0, "Fixed-flavor holders start empty")
+		if kind == "in_only":
+			check(index == definition.slots.size() - 3 and count == (1 if level == 72 else 0), "Single-direction holder placement or preload differs")
+		if kind in ["cycle", "lid", "frozen", "number_frozen"]:
+			check(count == 4, "Combination wave mechanism holders must start full")
+		var hidden_indices: Array[int] = []
+		for item_index: int in count:
+			if slot.box.items[item_index].get("hidden", false):
+				hidden_indices.append(item_index)
+		if not hidden_indices.is_empty():
+			check(kind == "normal" and slot.kind == "regular" and hidden_indices == [1,2,3], "Combination wave hides only ordinary lower layers")
+			hidden += hidden_indices.size()
+	check(cycles == (2 if level in [71,76,79] else (1 if level in [74,78] else 0)), "Combination wave cycle-holder count")
+	check(normal_empty == (0 if level in [72,75,78,79] else 1), "Combination wave ordinary empty-holder budget")
+	check(hidden == (3 if level in [75,78,79] else 0), "Combination wave hidden count")
+	check(singles == ([1] if level in [75,79] else ([0] if level == 77 else [])), "Combination wave single-holder preload")
+
+
+## 检查炸弹入门的信息条件、三颗装量与缓和关，避免同时叠加未知信息和计时压力。
+func _check_wave_eighty_one(definition: Dictionary, level: int) -> void:
+	var bombs: int = 0
+	var hidden: int = 0
+	var normal_empty: int = 0
+	var kinds: Dictionary = {}
+	check(definition.slots.size() <= 20, "Bomb wave must fit in four compact rows")
+	for index: int in definition.slots.size():
+		var slot: Dictionary = definition.slots[index]
+		if slot.box == null:
+			continue
+		var kind: String = str(slot.box.kind)
+		kinds[kind] = true
+		if kind == "bomb":
+			bombs += 1
+			check(slot.box.items.size() == (3 if level == 82 else 4), "Bomb wave initial fill differs")
+			check(float(slot.box.bomb_seconds) > 0, "Bomb must have an explicit time budget")
+		if kind == "normal" and slot.kind == "regular" and slot.box.items.is_empty():
+			normal_empty += 1
+		if kind == "fixed" or slot.kind == "single":
+			check(slot.box.items.is_empty(), "Bomb wave restricted and single holders start empty")
+		if kind == "in_only":
+			check(level == 85 and slot.box.items.is_empty() and index == definition.slots.size() - 3, "Level 85 single-direction holder placement differs")
+		var hidden_indices: Array[int] = []
+		for item_index: int in slot.box.items.size():
+			if slot.box.items[item_index].get("hidden", false):
+				hidden_indices.append(item_index)
+		if not hidden_indices.is_empty():
+			check(kind == "normal" and slot.kind == "regular" and hidden_indices == [1,2,3], "Bomb wave hides only ordinary lower layers")
+			hidden += hidden_indices.size()
+	check(bombs == (1 if level in [81,82,83,86,88,89] else 0), "Bomb and relief level distribution differs")
+	check(hidden == (3 if level in [85,88,89] else 0), "Bomb wave hidden count differs")
+	check(normal_empty == (2 if level == 81 else (0 if level in [88,89] else 1)), "Bomb wave ordinary empty-holder budget differs")
+	if level <= 82:
+		check(kinds.size() == 2 and kinds.has("normal") and kinds.has("bomb") and definition.stock.is_empty(), "Bomb introduction must use only visible ordinary and bomb holders")
+
+
+## 固定收官十关的机制分工、明牌拆弹和四排布局，并保留三次缓和及末关无计时收束。
+func _check_wave_ninety_one(definition: Dictionary, level: int) -> void:
+	var expected_kinds: Array = [
+		{"cycle": 1, "in_only": 1}, {"bomb": 1, "fixed": 1},
+		{"bomb": 1, "cycle": 1, "number_frozen": 1}, {"frozen": 1, "single": 1},
+		{"lid": 1, "in_only": 1}, {"bomb": 1, "cycle": 1, "frozen": 1},
+		{"fixed": 1, "single": 1}, {"cycle": 1, "fixed": 1},
+		{"bomb": 1, "number_frozen": 1, "in_only": 1}, {"cycle": 1, "fixed": 1},
+	]
+	var actual_kinds: Dictionary = {}
+	var normal_empty: int = 0
+	var hidden: int = 0
+	check(definition.slots.size() >= 18 and definition.slots.size() <= 20, "Final wave must keep 18-20 readable holder positions")
+	for index: int in definition.slots.size():
+		var slot: Dictionary = definition.slots[index]
+		if slot.box == null:
+			check(index >= definition.slots.size() - 2 and slot.kind == "turnover", "Final wave must not add decorative empty positions")
+			continue
+		var kind: String = "single" if slot.kind == "single" else str(slot.box.kind)
+		var amount: int = slot.box.items.size()
+		if kind != "normal":
+			actual_kinds[kind] = int(actual_kinds.get(kind, 0)) + 1
+		elif amount == 0:
+			normal_empty += 1
+		if kind in ["fixed", "single", "in_only"]:
+			check(amount == 0, "Final-wave storage and restricted holders must begin empty")
+		if kind in ["bomb", "cycle", "frozen", "number_frozen", "lid"]:
+			check(amount == 4, "Final-wave mechanism holders must begin with four donuts")
+		if kind in ["number_frozen", "lid"]:
+			check(int(slot.box.lid) == 2, "Final-wave numeric gates must retain two distinct grouping prerequisites")
+		if kind == "in_only":
+			check(index == definition.slots.size() - 3, "Final-wave one-way holder must remain immediately before the two ad positions")
+		var hidden_indices: Array[int] = []
+		for item_index: int in amount:
+			if slot.box.items[item_index].get("hidden", false):
+				hidden_indices.append(item_index)
+		if not hidden_indices.is_empty():
+			check(kind == "normal" and amount == 4 and hidden_indices == [1,2,3], "Final wave may hide only the bottom three layers of an ordinary full holder")
+			hidden += hidden_indices.size()
+	check(actual_kinds == expected_kinds[level - 91], "Final-wave mechanism distribution differs at level %d" % level)
+	check(hidden == (3 if level in [95,98,99] else 0), "Final-wave hidden-layer distribution differs")
+	check(definition.stock.size() == (1 if level == 94 else (2 if level in [96,99] else 0)), "Final-wave refill distribution differs")
+	for refill: Dictionary in definition.stock:
+		check(refill.kind == "normal" and refill.items.size() == 4, "Final-wave refills must be ordinary full holders")
+		check(not refill.items.any(func(item: Dictionary) -> bool: return item.get("hidden", false)), "Final-wave refill contents must not add hidden layers")
+	if level in [94,97,100]:
+		check(normal_empty >= 1 and hidden == 0 and not actual_kinds.has("bomb"), "Relief levels must preserve visible free space and have no timer")
+	if level == 100:
+		var flavors: Dictionary = {}
+		var opening_donuts: int = 0
+		for slot: Dictionary in definition.slots:
+			if slot.box != null:
+				opening_donuts += slot.box.items.size()
+				for item: Dictionary in slot.box.items:
+					flavors[int(item.flavor)] = true
+		check(flavors.size() == 7 and opening_donuts == 56 and definition.stock.is_empty(), "Level 100 must close with seven visible flavors and fourteen orders")
+	var layouts: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(DonutBoardView.LAYOUT_PATH))
+	var positions: Array = layouts.templates[definition.layout_id].slots
+	var rows: Dictionary = {}
+	check(positions.size() == definition.slots.size(), "Final-wave layout and holder count differ")
+	for position: Dictionary in positions:
+		var layer: int = int(position.layer)
+		if not rows.has(layer):
+			rows[layer] = []
+		rows[layer].append(float(position.x))
+	check(rows.size() == 4, "Final wave must fit in four compact rows")
+	for row: Array in rows.values():
+		check(row.size() in [4,5], "Final-wave rows must contain four or five holders")
+		if row.size() < 2:
+			continue
+		var spacing: float = float(row[1]) - float(row[0])
+		check(spacing > 0, "Final-wave holder order must remain left to right")
+		for column: int in range(2, row.size()):
+			check(is_equal_approx(float(row[column]) - float(row[column - 1]), spacing), "Final-wave rows must not contain interior gaps")
 
 
 ## 用正式搬运判定枚举全部一步归纳，避免把某条刻意绕远的操作当成必须腾位。
